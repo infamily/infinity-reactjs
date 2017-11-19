@@ -1,8 +1,10 @@
+import showdown from 'showdown';
+import axios from 'axios';
 var container;
 
 class TopicService {
-  constructor() {
-    this.topics = [];
+  constructor(props) {
+    this.topics = ['Loading...'];
   }
 
   makeRequest(options) {
@@ -16,20 +18,29 @@ class TopicService {
     xhr.send();
   }
 
-  makeSearch(event) {
+  makeSearch(query) {
     const self = this;
-    event.preventDefault();
 
     this.makeRequest({
-      url: 'https://test.wfx.io/api/v1/topics/?search=' + this.querySelector('.topics__search-input').value,
+      url: 'https://test.wfx.io/api/v1/topics/?search=' + query,
       method: 'GET',
       callback: self.setTopics
     });
   }
 
-  setTopics(response) {
-    this.topics = response.results;
-    console.log(this.topics)
+  setTopics(query) {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      axios.get('https://test.wfx.io/api/v1/topics/?search=' + query)
+      .then(function (response) {  
+        self.topics = response.data.results;
+        resolve(response.data.results);
+      })
+      .catch(function (error) {
+        console.log(error);
+        reject(error);
+      });
+    });
   }
 
   // list of topics
@@ -52,10 +63,10 @@ class TopicService {
 
         window.history.pushState({}, null, this.hash);
 
-        makeRequest({
+        this.makeRequest({
           url: 'https://test.wfx.io/api/v1/topics/' + this.dataset.id + '/',
           method: 'GET',
-          callback: showTopicItem
+          callback: this.showTopicItem
         });
       });
     });
@@ -81,10 +92,10 @@ class TopicService {
       var prevButton = document.createElement('button');
       prevButton.textContent = 'Previous page';
       prevButton.addEventListener('click', function () {
-        makeRequest({
+        this.makeRequest({
           url: 'https://' + fakeLinkPrev.host + fakeLinkPrev.pathname + fakeLinkPrev.search,
           method: 'GET',
-          callback: showTopics
+          callback: this.showTopics
         });
         window.scrollTo(0, 0);
       });
@@ -98,10 +109,10 @@ class TopicService {
       var nextButton = document.createElement('button');
       nextButton.textContent = 'Next page';
       nextButton.addEventListener('click', function () {
-        makeRequest({
+        this.makeRequest({
           url: 'https://' + fakeLinkNext.host + fakeLinkNext.pathname + fakeLinkNext.search,
           method: 'GET',
-          callback: showTopics
+          callback: this.showTopics
         });
         window.scrollTo(0, 0);
       });
@@ -145,7 +156,7 @@ class TopicService {
       window.history.pushState({}, null, this.pathname);
     });
 
-    makeRequest({
+    this.makeRequest({
       url: 'https://test.wfx.io/api/v1/comments/?topic=' + response.id,
       method: 'GET',
       callback: function (response) {
@@ -168,21 +179,21 @@ class TopicService {
     container = el;
 
     var search = container.querySelector('.topics__search');
-    search.addEventListener('submit', makeSearch);
+    search.addEventListener('submit', this.makeSearch);
 
     var topicHref = window.location.hash.substr(1);
     if (topicHref) {
-      makeRequest({
+      this.makeRequest({
         url: 'https://test.wfx.io/api/v1/topics/' + topicHref.match(/\/topic\/(\d+)/)[1] + '/',
         method: 'GET',
-        callback: showTopicItem
+        callback: this.showTopicItem
       });
     }
 
-    makeRequest({
+    this.makeRequest({
       url: 'https://test.wfx.io/api/v1/topics/',
       method: 'GET',
-      callback: showTopics
+      callback: this.showTopics
     });
 
     localStorage.removeItem('scrollY');

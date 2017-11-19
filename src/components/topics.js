@@ -1,21 +1,38 @@
-
 import React, { Component } from 'react';
 
-class Home {
-  constructor({ topics }) {
-
+class Topics extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topics: props.topics
+    }
   }
-  
+
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps.topics', nextProps.topics)
+    if (this.state.topics !== nextProps.topics){
+      this.setState({
+        topics: nextProps.topics
+      });
+    }
+  }
+
   render() {
 
     return (
-      <section class="topics__item">
-        <a href="#/topic/9" class="topics__item-title" data-id="9">
-          <h2>{title}</h2>
-        </a>
-      </section>
+      <div className="topics__list">
+      {
+       this.state.topics.map(topic => (
+          <section className="topics__item" key={topic.id}>
+            <a href={'#/topic/' + topic.id} className="topics__item-title" data-id={topic.id}>
+              <h2>{topic.title}</h2>
+            </a>
+          </section>
+        ))
+      }
+      </div>
     );
   }
 }
 
-export default Home;
+export default Topics;
