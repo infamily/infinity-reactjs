@@ -1,0 +1,35 @@
+@media only screen and (min-width: 768px) {
+  /* tablets and desktop */
+  body { margin-left: 30%; margin-right: 30%; };
+}
+
+@media only screen and (max-width: 767px) {
+  /* phones */
+  body { width: 97% };
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  /* portrait phones */
+  body { width: 97% };
+}
+
+body{
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+select {
+  font-size: 25px;
+}
+
+.main { 
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
+}
+
+.menu {
+  position: fixed;
+  bottom: 5px;
+  left: 5px;
+  padding: 5px;
+  background-color:grey;
+}
