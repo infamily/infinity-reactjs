@@ -9,7 +9,7 @@ class Topics extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps.topics', nextProps.topics)
+    console.log('nextProps topics', nextProps.topics.length)
     if (this.state.topics !== nextProps.topics){
       this.setState({
         topics: nextProps.topics

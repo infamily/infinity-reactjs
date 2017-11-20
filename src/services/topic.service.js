@@ -28,7 +28,38 @@ class TopicService {
     });
   }
 
-  setTopics(query) {
+  setTopics() {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      axios.get('https://test.wfx.io/api/v1/topics/')
+      .then(function (response) {  
+        self.topics = response.data.results;
+        resolve(response.data.results);
+      })
+      .catch(function (error) {
+        console.log(error);
+        reject(error);
+      });
+    });
+  }
+
+  getPage(page) {
+    const self = this;
+    console.log('from get', page)
+    return new Promise((resolve, reject) => {
+      axios.get('https://test.wfx.io/api/v1/topics/?page=' + page)
+      .then(function (response) {  
+        self.topics = response.data.results;
+        resolve(response.data.results);
+      })
+      .catch(function (error) {
+        console.log(error);
+        reject(error);
+      });
+    });
+  }
+
+  search(query) {
     const self = this;
     return new Promise((resolve, reject) => {
       axios.get('https://test.wfx.io/api/v1/topics/?search=' + query)
