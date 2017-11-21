@@ -29,7 +29,7 @@ class TopicService {
     const self = this;
     console.log('from get', page)
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?page=${page}`)
+      axios.get(`${this.api}/topics/?page=${page}&lang=${langService.current}`)
       .then(function (response) {  
         self.topics = response.data.results;
         resolve(response.data.results);

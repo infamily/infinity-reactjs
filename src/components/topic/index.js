@@ -23,14 +23,13 @@ class Topic extends Component {
     topicService.getTopic(id).then(topic => {
       self.setState({
         topic: topic
-      }); 
+      });
     });
 
     topicService.getComments(id).then(comments => {
       self.setState({
         comments: comments
-      });
-      console.log(this.state.comments)
+      }); 
     });
   }
 
@@ -39,19 +38,13 @@ class Topic extends Component {
     const comments = this.state.comments;
     let content;
 
-    if (topic) {
-      const { title, body, owner } = topic;
-
-      content = () => 
+    const Topic = () => topic.title ?
       <div>
-        <h1>{title}</h1>
-          <div>{ReactHtmlParser(mdConverter.makeHtml(body))}</div> <br />
-        <span>{owner}</span> <br /> <br />
-      </div>
-
-    } else {
-      content = () => <span>404. Not found.</span>;
-    }
+        <h1>{topic.title}</h1>
+        <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
+        <span>{topic.owner}</span> <br /> <br />
+      </div> 
+      : null; 
 
     const Comments = () => comments.length ?
       <div>
@@ -59,8 +52,10 @@ class Topic extends Component {
         {
           comments.map(comment => {
             return <div key={comment.id}>
-              <p>{ReactHtmlParser(mdConverter.makeHtml(comment.text))}</p>
-              <span style={{textAlign: "right"}}>{comment.owner}</span>
+              <div>{ReactHtmlParser(mdConverter.makeHtml(comment.text))}</div>
+              <div className="comment__owner">
+                <span>{comment.owner}</span>
+              </div>
             </div>
           })
         }
@@ -72,7 +67,7 @@ class Topic extends Component {
         <div className="topics__content-item" style={{display: 'block'}}>
           <NavLink to="/" className="topics__back">&#10094; HOME</NavLink>
 
-          {content()}
+          <Topic />
           <Comments />
         </div>
       </div>

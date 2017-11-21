@@ -1,12 +1,18 @@
 .topics__back {
+  color: gray;
   padding: 20px 0;
   text-decoration: none;
 }
 
 .topics__back:hover {
-  color: lightseagreen;
+  box-shadow: 5px black;
+  color: black;
 }
 
 .topics__content-item {
   margin: 10px;
+}
+
+.comment__owner {
+  text-align: right;
 }

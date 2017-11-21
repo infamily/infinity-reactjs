@@ -7,8 +7,8 @@ import './home.css';
 
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       search: langService.current,
       content: langService.homeContent(),
@@ -16,6 +16,8 @@ class Home extends Component {
       query: '',
       topics: []
     }
+
+    console.log(props.match)
 
     this.changePage = this.changePage.bind(this);
   }
@@ -81,7 +83,7 @@ class Home extends Component {
             </form>
           </div> 
           <div className="topics__content">
-            <Topics topics={this.state.topics}/>
+            <Topics topics={this.state.topics} fp={this.state.page}/>
           </div>
           <Pagination />
         </article>
