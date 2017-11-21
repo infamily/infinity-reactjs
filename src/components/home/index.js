@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import Topics from '../topics';
+import Topics from './topics';
 
-import TopicService from '../../services/topic.service.js';
-import LangService from '../../services/lang.service.js';
+import topicService from '../../services/topic.service.js';
+import langService from '../../services/lang.service.js';
 import './home.css';
 
-const topicService = new TopicService();
-const langService = new LangService();
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
       search: langService.current,
+      content: langService.homeContent(),
       page: 1,
       query: '',
       topics: []
@@ -23,7 +22,7 @@ class Home extends Component {
 
   componentWillMount() {
     const self = this;
-
+    
     topicService.setTopics().then(topics => {
       self.setState({
         topics: topics
@@ -34,11 +33,11 @@ class Home extends Component {
   makeSearch = e => {
     e.preventDefault();
     const self = this;
-    this.state.page = 1;
-    
+
     topicService.search(this.state.query).then(topics => {
       self.setState({
-        topics: topics
+        topics: topics,
+        page: 1
       });
     });
   }
@@ -62,6 +61,8 @@ class Home extends Component {
   }
 
   render() {
+    const { title, button } = this.state.content;
+
     const Pagination = () =>
     <div className="paginator">
       <a className="paginator__btn paginator__right" onClick={() => this.changePage(-1)}>&#10094;</a>
@@ -71,28 +72,18 @@ class Home extends Component {
 
     return (
       <div className="main">
-        <article className="topics">
+        <article className="topics"> 
+          <div className="header">
+            <h1 className="topics__title en">{title}</h1>
+            <form className="topics__search" onSubmit={this.makeSearch}>
+              <input type="search" name="query" className="topics__search-input" value={this.state.query} onChange={this.handleChange} />
+              <button className="en">{button}</button>
+            </form>
+          </div> 
           <div className="topics__content">
-            {
-              this.state.search === 'english'
-              ? <div className="header">
-                  <h1 className="topics__title en">Infinity Family</h1>
-                  <form className="topics__search" onSubmit={this.makeSearch}>
-                    <input type="search" name="query" className="topics__search-input" value={this.state.query} onChange={this.handleChange} />
-                    <button className="en">Search</button>
-                  </form>
-                </div>
-              : <div className="header">
-                  <h1 className="topics__title zh">无界家庭</h1>
-                  <form className="topics__search">
-                    <input type="search" className="topics__search-input" onChange={this.handleChange} />
-                    <button className="zh">Search in Chineese</button>
-                  </form>
-                </div>
-            }
             <Topics topics={this.state.topics}/>
-            <Pagination />
           </div>
+          <Pagination />
         </article>
       </div>
     );

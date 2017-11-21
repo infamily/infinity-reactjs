@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Topics extends Component {
   constructor(props) {
@@ -24,9 +25,9 @@ class Topics extends Component {
       {
        this.state.topics.map(topic => (
           <section className="topics__item" key={topic.id}>
-            <a href={'#/topic/' + topic.id} className="topics__item-title" data-id={topic.id}>
+            <Link to={'/topic/' + topic.id} className="topics__item-title" data-id={topic.id}>
               <h2>{topic.title}</h2>
-            </a>
+            </Link>
           </section>
         ))
       }

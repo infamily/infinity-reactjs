@@ -1,3 +1,7 @@
+.topics__content {
+  min-height: calc(100vh - 100px);
+  
+}
 .paginator {
   vertical-align: middle;
   border: 1px solid #ccc;

@@ -1,0 +1,12 @@
+.topics__back {
+  padding: 20px 0;
+  text-decoration: none;
+}
+
+.topics__back:hover {
+  color: lightseagreen;
+}
+
+.topics__content-item {
+  margin: 10px;
+}

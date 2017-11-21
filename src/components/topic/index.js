@@ -1,0 +1,83 @@
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import topicService from '../../services/topic.service.js';
+import './topic.css';
+
+import ReactHtmlParser from 'react-html-parser';
+import showdown from 'showdown';
+var mdConverter = new showdown.Converter();
+
+class Topic extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topic: {},
+      comments: []    
+    }
+  }
+
+  componentWillMount() {
+    const self = this;
+    const id = this.props.match.params.id;
+
+    topicService.getTopic(id).then(topic => {
+      self.setState({
+        topic: topic
+      }); 
+    });
+
+    topicService.getComments(id).then(comments => {
+      self.setState({
+        comments: comments
+      });
+      console.log(this.state.comments)
+    });
+  }
+
+  render() {
+    const topic = this.state.topic;
+    const comments = this.state.comments;
+    let content;
+
+    if (topic) {
+      const { title, body, owner } = topic;
+
+      content = () => 
+      <div>
+        <h1>{title}</h1>
+          <div>{ReactHtmlParser(mdConverter.makeHtml(body))}</div> <br />
+        <span>{owner}</span> <br /> <br />
+      </div>
+
+    } else {
+      content = () => <span>404. Not found.</span>;
+    }
+
+    const Comments = () => comments.length ?
+      <div>
+        <h3>Comments</h3>
+        {
+          comments.map(comment => {
+            return <div key={comment.id}>
+              <p>{ReactHtmlParser(mdConverter.makeHtml(comment.text))}</p>
+              <span style={{textAlign: "right"}}>{comment.owner}</span>
+            </div>
+          })
+        }
+      </div>
+      : null;
+
+    return (
+      <div className="main">
+        <div className="topics__content-item" style={{display: 'block'}}>
+          <NavLink to="/" className="topics__back">&#10094; HOME</NavLink>
+
+          {content()}
+          <Comments />
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Topic; 

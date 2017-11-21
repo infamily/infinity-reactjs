@@ -23,7 +23,7 @@ select {
 }
 
 .main { 
-  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
+  font-family: 'Courier New',Courier,'Lucida Sans Typewriter','Lucida Typewriter',monospace; 
 }
 
 .menu {
