@@ -1,3 +1,5 @@
+import texts from './content';
+
 class Language {
   constructor() {
     this.languages = ["cn", "en", "ru", "lt"]; 
@@ -9,7 +11,7 @@ class Language {
     
     // reset default by user language
     this.setDefault();
-  } 
+  }
   
   setDefault() {
     const browser_language = navigator.language || navigator.userLanguage;
@@ -29,24 +31,15 @@ class Language {
   }
  
   homeContent() {
-    return [
-      {
-        title: '无界家庭',
-        button: '搜索'
-      },
-      {
-        title: 'Infinity Family',
-        button: 'Search'
-      },
-      {
-        title: 'Семья Инфи́нити',
-        button: 'Поиск'
-      },
-      {
-        title: 'Begalybės šeima',
-        button: 'Paieška'
-      },
-    ][this.lang_index]
+    return texts.main[this.lang_index]
+  }
+
+  howContent() {
+    return texts.how[this.current] || texts.how['en'];
+  }
+  
+  whatContent() {
+    return texts.what[this.current] || texts.what['en'];
   }
 }
 
