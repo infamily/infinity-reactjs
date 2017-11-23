@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Home from './components/home';
-import Topic from './components/topic';
-import How from './components/how';
-import What from './components/what';
-import NotFound from './components/notFound';
+
+import Home from '../home';
+import Topic from '../topic';
+import How from '../how';
+import What from '../what';
+import NotFound from '../notFound';
 
 class App extends Component {
   render() {

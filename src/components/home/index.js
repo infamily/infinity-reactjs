@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Topics from './topics';
+import Menu from '../menu';
+import Language from '../lang_select';
 
-import topicService from '../../services/topic.service.js';
-import langService from '../../services/lang.service.js';
+import topicService from '../../services/topic.service';
+import langService from '../../services/lang.service';
+import store from '../../store';
 import './home.css';
 
 
@@ -85,6 +88,9 @@ class Home extends Component {
           <div className="topics__content">
             <Topics topics={this.state.topics} fp={this.state.page}/>
           </div>
+          
+          <Menu page='Home'/>
+          <Language/>
           <Pagination />
         </article>
       </div>

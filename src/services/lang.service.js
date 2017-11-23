@@ -27,6 +27,7 @@ class Language {
 
   changeLang(num) {
     if(num < 0 || num > this.languages.length) return;
+    this.lang_index = num;
     this.current = this.languages[num];
   }
  

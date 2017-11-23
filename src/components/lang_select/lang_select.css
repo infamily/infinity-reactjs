@@ -1,0 +1,12 @@
+.select-lang {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.select-lang__link {
+  /* margin: 0 20px; */
+  font-size: 20px;
+  display: block;
+  cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.main-menu {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+.main-menu__link {
+  margin: 0 20px;
+  display: block;
+  font-size: 20px;
+}

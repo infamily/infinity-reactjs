@@ -22,12 +22,27 @@ select {
   font-size: 25px;
 }
 
+a {
+  /* color: black; */
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
 .main { 
   font-family: 'Courier New',Courier,'Lucida Sans Typewriter','Lucida Typewriter',monospace; 
 }
 
 .main h1 {
   font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.main h2 {
+  font-size: 1.5em;
+  margin-top: 16px;  
 }
 
 .menu {

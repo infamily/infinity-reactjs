@@ -1,11 +1,14 @@
 import React, { Component } from 'react'; 
 import langService from '../services/lang.service.js';
+import store from '../store';
+import Menu from './menu';
+import Language from './lang_select';
 
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
 var mdConverter = new showdown.Converter();
 
-class How extends Component { 
+class How extends Component {
 
   render() {
     const rowHtml = langService.howContent().reduce((line, newline) => {
@@ -16,6 +19,8 @@ class How extends Component {
     return (
       <div className="main">
         <Content/>
+        <Menu page='How?'/>
+        <Language />
       </div>
     );
   }

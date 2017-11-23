@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import topicService from '../../services/topic.service.js';
+import Menu from '../menu';
+import Language from '../lang_select';
+
 import './topic.css';
 
 import ReactHtmlParser from 'react-html-parser';
@@ -69,6 +72,8 @@ class Topic extends Component {
 
           <Topic />
           <Comments />
+          <Language />
+          <Menu page='Menu'/>
         </div>
       </div>
     );
