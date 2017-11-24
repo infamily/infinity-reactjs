@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import store from '../../store';
 
 //prop-types topics: array
 
@@ -18,13 +19,17 @@ class Topics extends Component {
       });
     }
   }
+ 
+  saveScroll() {
+    store.home_scroll = window.scrollY; 
+  }
 
   render() {
 
     const List = () =>
       this.state.topics.map(topic => (
         <section className="topics__item" key={topic.id}>
-          <Link to={'/topic/' + topic.id} className="topics__item-title" data-id={topic.id}>
+          <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             <h2>{topic.title}</h2>
           </Link>
         </section>

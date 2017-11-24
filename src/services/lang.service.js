@@ -15,9 +15,8 @@ class Language {
   
   setDefault() {
     //get lang from localStorage
-    const set = this.getSetting().lang;
-
-    console.log(set, 'localStorage')
+    const set = this.getSetting().lang; 
+    
     if (set) {
       const default_index = this.languages.indexOf(set);
       if (default_index > -1) {

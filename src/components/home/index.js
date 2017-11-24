@@ -42,6 +42,11 @@ class Home extends Component {
     }
   }
 
+  componentDidMount() {
+    const scrollTo = store.home_scroll;
+    scrollTo && window.scrollTo(0, scrollTo)
+  }
+
   makeSearch = e => {
     e.preventDefault();
     const self = this;
@@ -95,14 +100,16 @@ class Home extends Component {
           <div className="header">
             <h1 className="topics__title en">{title}</h1>
 
-            <FormGroup onSubmit={this.makeSearch}>
-              <InputGroup>
-                <FormControl type="search" name="query" value={this.state.query} onChange={this.handleChange}/>
-                <InputGroup.Button>
-                  <Button type="submit">{button}</Button>
-                </InputGroup.Button>
-              </InputGroup>
-            </FormGroup> 
+            <form onSubmit={this.makeSearch}>
+              <FormGroup >
+                <InputGroup>
+                  <FormControl type="search" name="query" value={this.state.query} onChange={this.handleChange} />
+                  <InputGroup.Button>
+                    <Button type="submit">{button}</Button>
+                  </InputGroup.Button>
+                </InputGroup>
+              </FormGroup>
+            </form>
 
           </div> 
           <div className="topics__content">
