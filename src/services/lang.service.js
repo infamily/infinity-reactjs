@@ -16,7 +16,7 @@ class Language {
   setDefault() {
     //get lang from localStorage
     const set = this.getSetting().lang; 
-    
+
     if (set) {
       const default_index = this.languages.indexOf(set);
       if (default_index > -1) {
@@ -27,7 +27,7 @@ class Language {
       //get lang from navigator
       const browser_language = navigator.language || navigator.userLanguage;
       let default_language = browser_language.substr(0, 2).toLowerCase();
-      if (default_language == 'zh') { default_language = 'cn'; };
+      if (default_language === 'zh') { default_language = 'cn'; };
 
       const default_index = this.languages.indexOf(default_language);
       if (default_index > -1) {

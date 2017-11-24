@@ -6,4 +6,4 @@ Infinity Family
 
 or
 
-3. npm deploy //not available yet
+3. npm deploy (github pages)

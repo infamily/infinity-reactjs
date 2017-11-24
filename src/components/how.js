@@ -1,6 +1,5 @@
 import React, { Component } from 'react'; 
-import langService from '../services/lang.service.js';
-import store from '../store';
+import langService from '../services/lang.service.js'; 
 import Menu from './utils/menu';
 import Language from './utils/lang_select';
 

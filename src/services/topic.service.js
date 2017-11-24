@@ -57,8 +57,7 @@ class TopicService {
     });
   }
 
-  getTopic(id) {
-    const self = this;
+  getTopic(id) { 
     return new Promise((resolve, reject) => {
       axios.get(`${this.api}/topics/${id}/?lang=${langService.current}`)
       .then(function (response) {
@@ -71,8 +70,7 @@ class TopicService {
     });
   }
 
-  getComments(id) {
-    const self = this;
+  getComments(id) { 
     return new Promise((resolve, reject) => {
       axios.get(`${this.api}/comments/?topic=${id}&lang=${langService.current}`)
       .then(function (response) {

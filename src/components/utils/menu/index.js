@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'; 
+import { ButtonToolbar, DropdownButton } from 'react-bootstrap'; 
 
 import './menu.css'
 

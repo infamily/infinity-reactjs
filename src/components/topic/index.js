@@ -38,8 +38,7 @@ class Topic extends Component {
 
   render() {
     const topic = this.state.topic;
-    const comments = this.state.comments;
-    let content;
+    const comments = this.state.comments; 
 
     const Topic = () => topic.title ?
       <div>
