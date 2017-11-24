@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import topicService from '../../services/topic.service.js';
-import Menu from '../menu';
-import Language from '../lang_select';
+import Menu from '../utils/menu';
+import Language from '../utils/lang_select';
 
 import './topic.css';
 

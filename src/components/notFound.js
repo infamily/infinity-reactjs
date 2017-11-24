@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import langService from '../services/lang.service.js';
-import Menu from './menu';
+import Menu from './utils/menu';
 
 class NotFound extends Component {
 

@@ -40,15 +40,15 @@ export default {
     ],
   },
   what : {
-    'lt': [
-      '<h1 class="zh">Kas tai?</h1>'
-    ],
-    'ru': [
-      '<h1 class="zh">Что это такое?</h1>'
-    ],
-    'cn': [
-      '<h1 class="zh">这什么是？</h1>'
-    ],
+    // 'lt': [
+    //   '<h1 class="zh">Kas tai?</h1>',
+    // ],
+    // 'ru': [
+    //   '<h1 class="zh">Что это такое?</h1>'
+    // ],
+    // 'cn': [
+    //   '<h1 class="zh">这什么是？</h1>'
+    // ],
     'en': [
       '<h1 class="en">What is this?</h1>',
       '<p>Infinity is a communal database of Needs, Goals, Ideas, Plans, their Steps and Tasks, with Comments to discuss them and track investments of Time into creation of Assets, and Monetary Transactions to gain transferrable tokens representing the created Assets.</p>',

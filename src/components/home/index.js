@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
+
 import Topics from './topics';
-import Menu from '../menu';
-import Language from '../lang_select';
+import Menu from '../utils/menu';
+import Language from '../utils/lang_select';
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';
@@ -15,24 +17,29 @@ class Home extends Component {
     this.state = {
       search: langService.current,
       content: langService.homeContent(),
-      page: 1,
+      page: store.home_page || 1,
       query: '',
       topics: []
     }
-
-    console.log(props.match)
 
     this.changePage = this.changePage.bind(this);
   }
 
   componentWillMount() {
     const self = this;
-    
-    topicService.setTopics().then(topics => {
+    const { fromPage, topics } = topicService;
+
+    if (fromPage === this.state.page && topics.length) {
       self.setState({
         topics: topics
       });
-    });
+    } else {
+      topicService.setTopics().then(topics => {
+        self.setState({
+          topics: topics
+        });
+      });
+    }
   }
 
   makeSearch = e => {
@@ -49,9 +56,16 @@ class Home extends Component {
 
   changePage(num) {
     const self = this;
-    const next = this.state.page + num;
-    if(next > 0) {
+    const { page, topics } = this.state;
+    const next = page + num;
+
+    // check for a next page
+    if (next > page && topics.length < 25) return;
+    
+    if (next > 0) {
       this.setState({ page: next });
+      store.home_page = next;
+
       topicService.getPage(next).then(topics => {
         self.setState({
           topics: topics
@@ -80,13 +94,19 @@ class Home extends Component {
         <article className="topics"> 
           <div className="header">
             <h1 className="topics__title en">{title}</h1>
-            <form className="topics__search" onSubmit={this.makeSearch}>
-              <input type="search" name="query" className="topics__search-input" value={this.state.query} onChange={this.handleChange} />
-              <button className="en">{button}</button>
-            </form>
+
+            <FormGroup onSubmit={this.makeSearch}>
+              <InputGroup>
+                <FormControl type="search" name="query" value={this.state.query} onChange={this.handleChange}/>
+                <InputGroup.Button>
+                  <Button type="submit">{button}</Button>
+                </InputGroup.Button>
+              </InputGroup>
+            </FormGroup> 
+
           </div> 
           <div className="topics__content">
-            <Topics topics={this.state.topics} fp={this.state.page}/>
+            <Topics topics={this.state.topics}/>
           </div>
           
           <Menu page='Home'/>

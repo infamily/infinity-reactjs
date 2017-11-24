@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'; 
-import langService from '../../services/lang.service';
+import langService from '../../../services/lang.service';
 
 import './lang_select.css'
 
 class Language extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       lang: 'Language'
     }
@@ -20,6 +20,7 @@ class Language extends Component {
   changeLanguage = (index, e) => {
     langService.changeLang(index);
     this.setLanguage();
+    window.location.reload(false);
   }
   
   setLanguage = () => {
