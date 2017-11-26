@@ -1,7 +1,7 @@
 {
   "name": "infinity",
   "version": "0.1.0",
-  "homepage": "https://infamily.github.io",
+  "homepage": "http://infinity.family",
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
