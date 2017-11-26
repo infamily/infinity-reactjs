@@ -7,7 +7,7 @@ import Language from '../utils/lang_select';
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';
-import store from '../../store';
+import store_home from '../../store/home';
 import './home.css';
 
 
@@ -17,7 +17,7 @@ class Home extends Component {
     this.state = {
       search: langService.current,
       content: langService.homeContent(),
-      page: store.home_page || 1,
+      page: store_home.home_page || 1,
       query: '',
       topics: []
     }
@@ -43,7 +43,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const scrollTo = store.home_scroll;
+    const scrollTo = store_home.home_scroll;
     scrollTo && window.scrollTo(0, scrollTo)
   }
 
@@ -69,7 +69,7 @@ class Home extends Component {
     
     if (next > 0) {
       this.setState({ page: next });
-      store.home_page = next;
+      store_home.home_page = next;
 
       topicService.getPage(next).then(topics => {
         self.setState({

@@ -2,6 +2,7 @@
   color: gray;
   padding: 20px 0;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .topics__back:hover {

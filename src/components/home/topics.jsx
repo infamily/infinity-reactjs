@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import store from '../../store';
+import store_home from '../../store/home';
 
 //prop-types topics: array
 
@@ -21,7 +21,7 @@ class Topics extends Component {
   }
  
   saveScroll() {
-    store.home_scroll = window.scrollY; 
+    store_home.home_scroll = window.scrollY; 
   }
 
   render() {

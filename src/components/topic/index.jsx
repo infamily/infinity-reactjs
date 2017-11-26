@@ -67,7 +67,7 @@ class Topic extends Component {
     return (
       <div className="main">
         <div className="topics__content-item" style={{display: 'block'}}>
-          <NavLink to="/" className="topics__back">&#10094; HOME</NavLink>
+          <NavLink to="/" className="topics__back">&#10094; Go Back</NavLink>
 
           <Topic />
           <Comments />
