@@ -1,12 +1,12 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'; 
 import langService from '../../../services/lang.service';
 
-import './lang_select.css'
+import './lang_select.css';
 
 class Language extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       lang: 'Language'
     }

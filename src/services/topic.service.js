@@ -1,12 +1,13 @@
 import axios from 'axios';
-import langService from './lang.service.js';
+import langService from './lang.service';
+import configs from '../configs';
 
 class TopicService {
-  constructor(props) {
+  constructor() {
     this.topics = [];
     this.fromPage = 0;
 
-    this.api = 'https://test.wfx.io/api/v1';
+    this.api = configs.api;
   }
 
   setTopics() {

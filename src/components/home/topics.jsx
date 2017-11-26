@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import store_home from '../../store/home';
-
-//prop-types topics: array
+import store_home from '../../store/home'; 
 
 class Topics extends Component {
   constructor(props) {
@@ -11,6 +10,10 @@ class Topics extends Component {
       topics: props.topics
     }
   }
+
+  static propTypes = {
+    topics: PropTypes.array.isRequired
+  };
 
   componentWillReceiveProps(nextProps) {
     if (this.state.topics !== nextProps.topics){

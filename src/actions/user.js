@@ -27,3 +27,9 @@ function signedOut() {
     type: UserActionTypes.SIGNED_OUT
   }
 }
+
+function saveToken() {
+  return {
+    type: UserActionTypes.SIGNED_OUT
+  }
+}

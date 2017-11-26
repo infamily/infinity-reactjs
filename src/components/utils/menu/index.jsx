@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ButtonToolbar, DropdownButton } from 'react-bootstrap'; 
 
-import './menu.css'
-
-//prop-types page string
+import './menu.css';
 
 class Menu extends Component {
   constructor(props) {
@@ -13,6 +12,10 @@ class Menu extends Component {
       page: props.page || 'Menu'
     }
   }
+
+  static propTypes = {
+    match: PropTypes.string
+  };
 
   render() {
 

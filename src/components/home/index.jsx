@@ -12,8 +12,8 @@ import './home.css';
 
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       search: langService.current,
       content: langService.homeContent(),

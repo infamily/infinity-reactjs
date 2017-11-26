@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import topicService from '../../services/topic.service.js';
 import Menu from '../utils/menu';
@@ -18,6 +19,10 @@ class Topic extends Component {
       comments: []    
     }
   }
+
+  static propTypes = { 
+    match: PropTypes.object.isRequired
+  };
 
   componentWillMount() {
     const self = this;
