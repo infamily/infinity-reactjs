@@ -4,15 +4,13 @@ import OtpLogin from '../components/otp-login';
 
 function mapStateToProps(state) {
   return {
-    notes: state.Notes
+    user: state.user
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNote: note => dispatch(addNote(note)),
-    removeNote: id => dispatch(removeNote(id)),
-    updateNote: (id, note) => dispatch(updateNote(id, note)),
+    saveToken: token => dispatch(saveToken(token)),
   }
 }
 

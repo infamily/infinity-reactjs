@@ -20,11 +20,7 @@ body{
 
 select {
   font-size: 25px;
-}
-
-a {
-  /* color: black; */
-}
+} 
 
 a:hover {
   text-decoration: none;

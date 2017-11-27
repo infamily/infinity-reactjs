@@ -1,0 +1,41 @@
+.otp__box {
+  margin: 0 auto;
+  max-width: 90%;
+  margin-top: 10%;
+  padding: 30px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.otp__input {
+  padding: 20px;
+  font-size: 18px;  
+}
+
+.otp__captcha {
+  padding-top: 0;
+}
+
+.otp__btn {
+  font-size: 16px;
+  margin: 5px;
+}
+
+.otp__btn:hover {
+  background-color: #d2d2d2;
+}
+
+.otp__modal {
+  padding: 50px 10px;
+  display: fixed;
+}
+
+.otp__alert {
+  max-width: 90%;
+  text-align: center;
+  margin:  0 auto;
+  margin-top: 10px;
+}
