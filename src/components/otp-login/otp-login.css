@@ -10,6 +10,10 @@
   text-align: center;
 }
 
+.otp__header {
+  margin-bottom: 50px;
+}
+
 .otp__input {
   padding: 20px;
   font-size: 18px;  
@@ -25,12 +29,14 @@
 }
 
 .otp__btn:hover {
+  color: black;
   background-color: #d2d2d2;
+  border-color: #d2d2d2;
 }
 
 .otp__modal {
+  margin-top: 10%;
   padding: 50px 10px;
-  display: fixed;
 }
 
 .otp__alert {

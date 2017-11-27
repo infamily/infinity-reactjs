@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { signIn, singOut} from '../actions/user';
-import OtpLogin from '../components/otp-login';
+import { saveToken } from '../../actions/user';
+import OtpLogin from './otp-login';
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    token: state
   }
 }
 
