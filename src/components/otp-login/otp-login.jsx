@@ -118,7 +118,7 @@ export default class OtpLogin extends Component {
         });
         return;
       }
-
+      
       const headers = { 'Authorization': 'Token ' + token };
       await axios.post(configs.otp_api + '/otp/login/', { password }, { headers }); 
       this.props.signIn({ email, token });

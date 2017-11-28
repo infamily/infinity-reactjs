@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { ButtonGroup, ButtonToolbar, Button } from 'react-bootstrap';
 import topicService from '../../services/topic.service.js';
 import Menu from '../utils/menu';
 import Comment from './comment';
@@ -44,6 +45,14 @@ class Topic extends Component {
     });
   }
 
+  delete() {
+    
+  }
+
+  edit() {
+
+  }
+
   render() {
     const topic = this.state.topic;
     const comments = this.state.comments; 
@@ -54,7 +63,15 @@ class Topic extends Component {
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
         <span>{topic.owner}</span> <br /> <br />
       </div> 
-      : null; 
+      : null;
+
+    const CommentButton = () =>
+      <ButtonToolbar>
+        <ButtonGroup bsSize="xsmall">
+          <Button onClick={this.edit}>&#9998;</Button>
+          <Button onClick={this.delete}>&#10006;</Button>
+        </ButtonGroup>
+      </ButtonToolbar>
 
     const Comments = () => comments.length ?
       <div>
@@ -62,7 +79,7 @@ class Topic extends Component {
         {
           comments.map(comment => {
             return (
-              <div key={comment.id}>
+              <div key={comment.id} className="comment__section">
                 <div>{ReactHtmlParser(mdConverter.makeHtml(comment.text))}</div>
                 <div className="comment__owner">
                   <span>{comment.owner}</span>
@@ -80,11 +97,14 @@ class Topic extends Component {
           <NavLink to="/" className="topics__back">&#10094; Go Back</NavLink>
 
           <Topic />
-          <Comment
-            topic_id={topic.id}
-            comment_id={this.state.comment_id}
-            text={this.state.comment_text}
-          />
+          {
+            topic.id &&
+            <Comment
+              topic={topic.url}
+              comment_id={this.state.comment_id}
+              text={this.state.comment_text}
+            />
+          }
           <Comments />
           <Language />
           <Menu page='Menu'/>

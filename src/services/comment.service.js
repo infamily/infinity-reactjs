@@ -4,27 +4,25 @@ import configs from '../configs';
 
 class CommentService {
   constructor() {
-    this.topics = [];
-    this.fromPage = 0;
-
     this.api = configs.api;
   }
 
-  createTopic(id, text, owner) {
-    const self = this;
+  async createTopic(topic, text, owner, token) {
+    const lang = langService.current;
+    try {
+      const headers = { 'Authorization': 'Token ' + token };
+      const parameters = {
+        topic: topic,
+        text: '.:'+lang+'\n'+text,
+        owner: owner,
+        languages: [lang],
+      }; 
+      await axios.post(this.api + '/comments/', parameters, { headers });
+      return 'success';
+    } catch(e) {
+      console.error(e);
+    }
 
-    return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?page=${page}&lang=${langService.current}`)
-        .then(function (response) {
-          self.fromPage = page;
-          self.topics = response.data.results;
-          resolve(response.data.results);
-        })
-        .catch(function (error) {
-          console.error(error);
-          reject(error);
-        });
-    });
   }
 }
 

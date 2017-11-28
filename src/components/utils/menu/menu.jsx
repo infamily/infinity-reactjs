@@ -21,6 +21,7 @@ class Menu extends Component {
 
   signOut = () => {
     this.props.signOut();
+    // window.location.reload(false);
   }
 
   render() {
@@ -35,7 +36,7 @@ class Menu extends Component {
             <MenuItem divider />
             {
               this.props.user
-                ? <div className="main-menu__link" onSelect={this.signOut}>Sign Out</div>
+                ? <div className="main-menu__link" onClick={this.signOut}>Sign Out</div>
                 : <Link to="/page/otp" className="main-menu__link">Sign In</Link>
             }
           </DropdownButton>

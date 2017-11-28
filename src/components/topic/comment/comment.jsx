@@ -2,27 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import commentService from '../../../services/comment.service.js';
+
 import './comment.css';
 
 class Comment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic_id: props.topic_id || 0,
-      comment_id: props.comment_id || 0,
+      topic: props.topic,
+      comment_id: props.comment_id,
       text: props.text || '',
     }
   }
 
   static propTypes = {
-    topic_id: PropTypes.number,
+    topic: PropTypes.string.isRequired,
     comment_id: PropTypes.number,
     text: PropTypes.string
   };
 
   submitComment = e => {
     e.preventDefault();
-    console.log(this.state)
+    const user = this.props.user;
+    const owner = user.email.split('@')[0];
+    console.log(owner)
+    commentService.createTopic(this.state.topic, this.state.text, owner, user.token);
+    // window.location.reload(false);
   }
 
   handleChange = e => {

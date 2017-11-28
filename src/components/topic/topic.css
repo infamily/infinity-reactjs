@@ -17,3 +17,7 @@
 .comment__owner {
   text-align: right;
 }
+
+.comment__section {
+  margin: 20px 0;
+}
