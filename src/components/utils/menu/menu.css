@@ -8,4 +8,10 @@
   margin: 0 20px;
   display: block;
   font-size: 20px;
+  color: #337ab7;
+  cursor: pointer;
+}
+
+.main-menu__link:hover { 
+  color: #000; 
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import langService from '../services/lang.service.js';
-import Language from './utils/account';
+import Language from './utils/lang_select';
 import Menu from './utils/menu'; 
 
 import ReactHtmlParser from 'react-html-parser';

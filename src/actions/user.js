@@ -1,9 +1,9 @@
 import * as UserActionTypes from '../actiontypes/user'; 
 
-export function saveToken(token) {
+export function signIn(user) {
   return {
-    type: UserActionTypes.SAVE_TOKEN,
-    token
+    type: UserActionTypes.SIGNED_IN,
+    user
   }
 }
 

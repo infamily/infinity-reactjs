@@ -1,10 +1,10 @@
-.account {
+.select-lang {
   position: fixed;
   bottom: 10px;
   right: 10px;
 }
 
-.account__link { 
+.select-lang__link { 
   font-size: 20px;
   display: block;
   cursor: pointer;

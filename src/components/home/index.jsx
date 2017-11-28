@@ -3,7 +3,7 @@ import { FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 
 import Topics from './topics';
 import Menu from '../utils/menu';
-import Language from '../utils/account';
+import Language from '../utils/lang_select';
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';

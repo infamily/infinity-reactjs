@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Modal, Button, Alert } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import configs from '../../configs';
-import './otp-login.css';
-
-//props-types savetoken
+import './otp-login.css'; 
 
 export default class OtpLogin extends Component {
   constructor(props) {
@@ -35,6 +34,11 @@ export default class OtpLogin extends Component {
     this.resetPopUp = this.resetPopUp.bind(this);
     this.goToHome = this.goToHome.bind(this);
   }
+
+  static propTypes = {
+    signIn: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+  }; 
 
   componentDidMount() {
     console.log(this.props)
@@ -86,8 +90,7 @@ export default class OtpLogin extends Component {
       }
       
       const params = { email, captcha_0, captcha_1 };
-      const { data } = await axios.post(configs.otp_api + '/otp/singup/', params);
-      // this.refresh();
+      const { data } = await axios.post(configs.otp_api + '/otp/singup/', params); 
       console.log('token', data['token'])
       this.setState({
         token: data['token'],
@@ -100,7 +103,6 @@ export default class OtpLogin extends Component {
           text: 'Wrong code. Try again.'
         });
       }
-      // this.updateCaptcha(e.error);
     }
   }
 
@@ -108,7 +110,7 @@ export default class OtpLogin extends Component {
     e.preventDefault();
     
     try {
-      const { token, password } = this.state;
+      const { token, password, email } = this.state;
       if (!password) {
         this.setPopUp({
           title: 'Sign In Error',
@@ -119,13 +121,13 @@ export default class OtpLogin extends Component {
 
       const headers = { 'Authorization': 'Token ' + token };
       const res = await axios.post(configs.otp_api + '/otp/login/', { password }, { headers });
-      console.log(res)
-      this.setPopUp({ 
-        title: 'Welcome!', 
-        text: `Your email is ${this.state.email}`
-      });
-      this.props.saveToken(token);
-      // this.goToHome();
+      // this.setPopUp({ 
+      //   title: 'Welcome!', 
+      //   text: `Your email is ${email}`
+      // });
+
+      this.props.signIn({ email, token});
+      this.goToHome();
     } catch(e) {
       if (e.response.status === 400) {
         this.setPopUp({
@@ -140,8 +142,6 @@ export default class OtpLogin extends Component {
     this.props.history.push('/');
   }
 
-
-
   setPopUp({ title, text }) {
     this.setState({
       popUp: {
@@ -153,7 +153,6 @@ export default class OtpLogin extends Component {
   }
 
   resetPopUp() {
-    (this.props.token === this.state.token) && this.goToHome();
 
     this.setState({
       popUp: {

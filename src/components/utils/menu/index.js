@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { signOut } from '../../../actions/user';
-import Account from './account';
+import Menu from './menu';
 
 function mapStateToProps(state) {
   return {
-    token: state
+    user: state
   }
 }
 
@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Account));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Menu));

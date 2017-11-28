@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ButtonToolbar, DropdownButton } from 'react-bootstrap'; 
+import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'; 
 
-import './menu.css';
+import './menu.css'; 
 
 class Menu extends Component {
   constructor(props) {
@@ -14,8 +14,14 @@ class Menu extends Component {
   }
 
   static propTypes = {
-    match: PropTypes.string
-  };
+    match: PropTypes.object.isRequired,
+    signOut: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+  }; 
+
+  signOut = () => {
+    this.props.signOut();
+  }
 
   render() {
 
@@ -26,6 +32,12 @@ class Menu extends Component {
             <Link to="/" className="main-menu__link">Home </Link>
             <Link to="/page/what" className="main-menu__link">What?</Link>
             <Link to="/page/how" className="main-menu__link">How?</Link>
+            <MenuItem divider />
+            {
+              this.props.token
+                ? <div className="main-menu__link" onSelect={this.signOut}>Sign Out</div>
+                : <Link to="/page/otp" className="main-menu__link">Sign In</Link>
+            }
           </DropdownButton>
         </ButtonToolbar>
       </div>

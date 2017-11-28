@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import topicService from '../../services/topic.service.js';
 import Menu from '../utils/menu';
-import Language from '../utils/account';
+import Language from '../utils/lang_select';
 
 import './topic.css';
 

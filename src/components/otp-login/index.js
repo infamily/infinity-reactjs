@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import { saveToken } from '../../actions/user';
+import { signIn } from '../../actions/user';
 import OtpLogin from './otp-login';
 
 function mapStateToProps(state) {
   return {
-    token: state
+    user: state
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveToken: token => dispatch(saveToken(token)),
+    signIn: user => dispatch(signIn(user)),
   }
 }
 
