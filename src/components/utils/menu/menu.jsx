@@ -34,7 +34,7 @@ class Menu extends Component {
             <Link to="/page/how" className="main-menu__link">How?</Link>
             <MenuItem divider />
             {
-              this.props.token
+              this.props.user
                 ? <div className="main-menu__link" onSelect={this.signOut}>Sign Out</div>
                 : <Link to="/page/otp" className="main-menu__link">Sign In</Link>
             }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import topicService from '../../services/topic.service.js';
 import Menu from '../utils/menu';
+import Comment from './comment';
 import Language from '../utils/lang_select';
 
 import './topic.css';
@@ -16,7 +17,9 @@ class Topic extends Component {
     super(props);
     this.state = {
       topic: {},
-      comments: []    
+      comments: [],
+      comment_id: 0,  
+      comment_text: '',  
     }
   }
 
@@ -58,12 +61,14 @@ class Topic extends Component {
         <h3>Comments</h3>
         {
           comments.map(comment => {
-            return <div key={comment.id}>
-              <div>{ReactHtmlParser(mdConverter.makeHtml(comment.text))}</div>
-              <div className="comment__owner">
-                <span>{comment.owner}</span>
+            return (
+              <div key={comment.id}>
+                <div>{ReactHtmlParser(mdConverter.makeHtml(comment.text))}</div>
+                <div className="comment__owner">
+                  <span>{comment.owner}</span>
+                </div>
               </div>
-            </div>
+            );
           })
         }
       </div>
@@ -75,6 +80,11 @@ class Topic extends Component {
           <NavLink to="/" className="topics__back">&#10094; Go Back</NavLink>
 
           <Topic />
+          <Comment
+            topic_id={topic.id}
+            comment_id={this.state.comment_id}
+            text={this.state.comment_text}
+          />
           <Comments />
           <Language />
           <Menu page='Menu'/>
