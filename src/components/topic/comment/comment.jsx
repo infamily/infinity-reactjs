@@ -18,17 +18,14 @@ class Comment extends Component {
 
   static propTypes = {
     topic: PropTypes.string.isRequired,
+    create: PropTypes.func.isRequired,
     comment_id: PropTypes.number,
     text: PropTypes.string
   };
 
   submitComment = e => {
     e.preventDefault();
-    const user = this.props.user;
-    const owner = user.email.split('@')[0];
-    console.log(owner)
-    commentService.createTopic(this.state.topic, this.state.text, owner, user.token);
-    // window.location.reload(false);
+    this.props.create(this.state.text);
   }
 
   handleChange = e => {

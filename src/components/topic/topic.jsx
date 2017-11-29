@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { ButtonGroup, ButtonToolbar, Button } from 'react-bootstrap';
 import topicService from '../../services/topic.service.js';
+import commentService from '../../services/comment.service.js';
 import Menu from '../utils/menu';
 import Comment from './comment';
 import Language from '../utils/lang_select';
@@ -22,10 +23,12 @@ class Topic extends Component {
       comment_id: 0,  
       comment_text: '',  
     }
+
+    this.create = this.create.bind(this);
   }
 
   static propTypes = { 
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
   };
 
   componentWillMount() {
@@ -45,17 +48,34 @@ class Topic extends Component {
     });
   }
 
-  delete() {
-    
-  }
-
   edit() {
 
+  }
+
+  async remove(id) {
+    const { token } = this.props.user;
+    const status = await commentService.deleteTopic(id, token);
+    const comments = this.state.comments.filter(comment => comment.id !== id);
+    status === 'success' && this.setState({
+      comments: comments
+    });
+  }
+
+  async create(text) {
+    const { url } = this.state.topic;
+    const { token } = this.props.user;
+    const comment = await commentService.createTopic(url, text, token);
+    this.setState(prevState => {
+      return {
+        comments: [comment].concat(prevState.comments)
+      }
+    });
   }
 
   render() {
     const topic = this.state.topic;
     const comments = this.state.comments; 
+    const user = this.props.user; 
 
     const Topic = () => topic.title ?
       <div>
@@ -65,24 +85,29 @@ class Topic extends Component {
       </div> 
       : null;
 
-    const CommentButton = () =>
-      <ButtonToolbar>
-        <ButtonGroup bsSize="xsmall">
-          <Button onClick={this.edit}>&#9998;</Button>
-          <Button onClick={this.delete}>&#10006;</Button>
-        </ButtonGroup>
-      </ButtonToolbar>
+    const CommentButtons = ({ id }) => 
+        <ButtonToolbar>
+          <ButtonGroup bsSize="xsmall">
+            <Button onClick={() => this.edit(id)}>&#9998;</Button>
+            <Button onClick={() => this.remove(id)}>&#10006;</Button>
+          </ButtonGroup>
+        </ButtonToolbar>;
 
     const Comments = () => comments.length ?
       <div>
         <h3>Comments</h3>
         {
           comments.map(comment => {
+            const { id, text, owner } = comment;
             return (
-              <div key={comment.id} className="comment__section">
-                <div>{ReactHtmlParser(mdConverter.makeHtml(comment.text))}</div>
+              <div key={id} className="comment__section">
+                <div>{ReactHtmlParser(mdConverter.makeHtml(text))}</div>
+                {
+                  (user && (user.email === owner)) &&
+                  <CommentButtons id={id}/>
+                }
                 <div className="comment__owner">
-                  <span>{comment.owner}</span>
+                  <span>{owner}</span>
                 </div>
               </div>
             );
@@ -101,6 +126,7 @@ class Topic extends Component {
             topic.id &&
             <Comment
               topic={topic.url}
+              create={this.create}
               comment_id={this.state.comment_id}
               text={this.state.comment_text}
             />

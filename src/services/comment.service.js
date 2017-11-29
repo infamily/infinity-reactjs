@@ -7,22 +7,31 @@ class CommentService {
     this.api = configs.api;
   }
 
-  async createTopic(topic, text, owner, token) {
+  async createTopic(url, text, token) {
     const lang = langService.current;
     try {
       const headers = { 'Authorization': 'Token ' + token };
       const parameters = {
-        topic: topic,
+        topic: url,
         text: '.:'+lang+'\n'+text,
-        owner: owner,
         languages: [lang],
       }; 
-      await axios.post(this.api + '/comments/', parameters, { headers });
-      return 'success';
+      const { data } = await axios.post(this.api + '/comments/', parameters, { headers });
+      return data;
     } catch(e) {
       console.error(e);
     }
 
+  }
+
+  async deleteTopic(id, token) {
+    try {
+      const headers = { 'Authorization': 'Token ' + token }; 
+      await axios.delete(this.api+'/comments/'+id+'/', { headers });
+      return 'success';
+    } catch(e) {
+      console.error(e);
+    }
   }
 }
 
