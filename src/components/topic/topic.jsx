@@ -25,6 +25,8 @@ class Topic extends Component {
     }
 
     this.create = this.create.bind(this);
+    this.edit = this.edit.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   static propTypes = { 
@@ -48,27 +50,66 @@ class Topic extends Component {
     });
   }
 
-  edit() {
+  startToEdit(id) {
+    const comment = this.state.comments.find(comment => comment.id === id);
+    this.setState({
+      comment_id: id,
+      comment_text: comment.text,
+    });
 
+    const com_sec = this.refs.com_sec;
+    const position = com_sec.getBoundingClientRect().top;
+    position < 0 && com_sec.scrollIntoView();  
+  }
+
+  clear() {
+    this.setState({
+      comment_id: 0,
+      comment_text: '',
+    });
+  }
+
+  async edit(text) {
+    try{ 
+      const { token } = this.props.user;
+      const id = this.state.comment_id;
+      await commentService.updateComment(id, text, token);
+  
+      const comments = this.state.comments.map(comment => {
+        if (comment.id === id) 
+          comment.text = text; 
+        return comment;
+      });
+      this.setState({ 
+        comments,
+        comment_id: 0,
+        comment_text: '',
+      });
+    } catch(e) {
+      console.error(e);
+    }
   }
 
   async remove(id) {
     const { token } = this.props.user;
-    const status = await commentService.deleteTopic(id, token);
+    const status = await commentService.deleteComment(id, token);
     const comments = this.state.comments.filter(comment => comment.id !== id);
     status === 'success' && this.setState({
-      comments: comments
+      comments,
+      comment_text: '',
+      comment_id: 0,
     });
+    this.clear();
   }
 
   async create(text) {
     const { url } = this.state.topic;
     const { token } = this.props.user;
-    const comment = await commentService.createTopic(url, text, token);
-    this.setState(prevState => {
-      return {
-        comments: [comment].concat(prevState.comments)
-      }
+    const comment = await commentService.createComment(url, text, token);
+    const comments = [comment].concat(this.state.comments);
+    this.setState({ 
+      comments,
+      comment_text: '',    
     });
   }
 
@@ -88,7 +129,7 @@ class Topic extends Component {
     const CommentButtons = ({ id }) => 
         <ButtonToolbar>
           <ButtonGroup bsSize="xsmall">
-            <Button onClick={() => this.edit(id)}>&#9998;</Button>
+            <Button onClick={() => this.startToEdit(id)}>&#9998;</Button>
             <Button onClick={() => this.remove(id)}>&#10006;</Button>
           </ButtonGroup>
         </ButtonToolbar>;
@@ -123,13 +164,15 @@ class Topic extends Component {
 
           <Topic />
           {
-            topic.id &&
-            <Comment
-              topic={topic.url}
-              create={this.create}
-              comment_id={this.state.comment_id}
-              text={this.state.comment_text}
-            />
+            topic.id && 
+            <div ref="com_sec">
+              <Comment
+                create={this.create}
+                edit={this.edit}
+                clear={this.clear}
+                text={this.state.comment_text}
+              />
+            </div>
           }
           <Comments />
           <Language />

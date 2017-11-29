@@ -7,7 +7,7 @@ class CommentService {
     this.api = configs.api;
   }
 
-  async createTopic(url, text, token) {
+  async createComment(url, text, token) {
     const lang = langService.current;
     try {
       const headers = { 'Authorization': 'Token ' + token };
@@ -16,18 +16,38 @@ class CommentService {
         text: '.:'+lang+'\n'+text,
         languages: [lang],
       }; 
+
       const { data } = await axios.post(this.api + '/comments/', parameters, { headers });
+      data.text = text;
+
       return data;
     } catch(e) {
       console.error(e);
-    }
+    } 
+  }
+  
+  async updateComment(id, text, token) {
+    const lang = langService.current;
+    try {
+      const headers = { 'Authorization': 'Token ' + token };
+      const parameters = {
+        text: '.:'+lang+'\n'+text,
+        languages: [lang],
+      }; 
 
+      const { data } = await axios.patch(`${this.api}/comments/${id}/`, parameters, { headers });
+      data.text = text;
+
+      return data;
+    } catch(e) {
+      console.error(e);
+    } 
   }
 
-  async deleteTopic(id, token) {
+  async deleteComment(id, token) {
     try {
       const headers = { 'Authorization': 'Token ' + token }; 
-      await axios.delete(this.api+'/comments/'+id+'/', { headers });
+      await axios.delete(`${this.api}/comments/${id}/`, { headers });
       return 'success';
     } catch(e) {
       console.error(e);

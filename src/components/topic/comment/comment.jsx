@@ -10,22 +10,37 @@ class Comment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic: props.topic,
-      comment_id: props.comment_id,
       text: props.text || '',
+      editing: Boolean(props.text),
     }
   }
 
   static propTypes = {
-    topic: PropTypes.string.isRequired,
+    edit: PropTypes.func.isRequired,
     create: PropTypes.func.isRequired,
-    comment_id: PropTypes.number,
+    clear: PropTypes.func.isRequired,
     text: PropTypes.string
   };
 
+  componentWillReceiveProps(nextProps) {
+    const { text } = nextProps;
+    text !== this.props.text && this.setState({
+      text: text || '',
+      editing: Boolean(text),
+    })
+  }
+
+
   submitComment = e => {
     e.preventDefault();
-    this.props.create(this.state.text);
+    const { editing, text } = this.state;
+    if (!text) return;
+    
+    editing
+    ? this.props.edit(text)
+    : this.props.create(text);
+
+    this.setState({ text: '' });
   }
 
   handleChange = e => {
@@ -35,7 +50,8 @@ class Comment extends Component {
   } 
 
   render() {
-    const { user } = this.props;
+    const { user, clear } = this.props;
+    const { text, editing } = this.state;
 
     if (!user) return ( 
       <div className="comment__section">
@@ -53,13 +69,17 @@ class Comment extends Component {
               className="comment__text"
               rows="4"
               name="text" 
-              value={this.state.text} 
+              value={text} 
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Button type="submit">
-            Submit
-          </Button>
+          { editing ?
+            <div>
+              <Button type="submit" >Edit</Button>
+              <Button onClick={clear} bsSize="xsmall" className="comment__btn">Cancel</Button>
+            </div>
+            : <Button type="submit">Submit</Button>
+          }
         </form>
       </div>
     );

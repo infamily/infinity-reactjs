@@ -1,9 +1,5 @@
 import * as UserActionTypes from '../actiontypes/user';
 
-const defaultState = {
-  user: null
-};
-
 export default (state = null, action) => {
   switch (action.type) {
     case UserActionTypes.SIGNED_IN:
