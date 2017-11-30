@@ -1,7 +1,14 @@
 .topics__content {
   min-height: calc(100vh - 100px);
-  
 }
+
+.topics__item {
+  transition: all 0.4s ease;
+}
+.topics__item:hover {
+  transform: scale(1.03);
+}
+
 .paginator {
   vertical-align: middle;
   border: 1px solid #ccc;

@@ -15,11 +15,11 @@ export default class OtpLogin extends Component {
       captcha_0: '',
       captcha_1: '',
       password: '',
+      token: '',
       captcha: {
         key: '',
         image_url: ''
       },
-      token: '',
       popUp: {
         state: false,
         title: '',
@@ -41,10 +41,7 @@ export default class OtpLogin extends Component {
   }; 
 
   componentDidMount() {
-    console.log(this.props)
-    if (!this.state.captcha.key) {
-      this.refresh();
-    }
+    !this.state.captcha.key && this.refresh();
   } 
 
   async refresh(e) {
@@ -120,14 +117,20 @@ export default class OtpLogin extends Component {
       }
       
       const headers = { 'Authorization': 'Token ' + token };
-      await axios.post(configs.otp_api + '/otp/login/', { password }, { headers }); 
-      this.props.signIn({ email, token });
+      await axios.post(configs.otp_api + '/otp/login/', { password }, { headers });
+      const { data } = await axios.get(configs.otp_api + '/rest-auth/user/', { params: { email }, headers });
+      this.props.signIn({ token, ...data });
       this.goToHome();
     } catch(e) {
       if (e.response.status === 400) {
         this.setPopUp({
           title: 'Sign In Error',
           text: 'Wrong code. Try again.'
+        });
+      } else {
+        this.setPopUp({
+          title: 'Something went wrong.',
+          text: 'Try again.'
         });
       }
     }
@@ -165,9 +168,15 @@ export default class OtpLogin extends Component {
   } 
 
   render() {
-    const { view, email, captcha_0, captcha_1, captcha, password, popUp } = this.state;
-    const params = { email, captcha_0, captcha_1 };
-    const paramsLogin = { password };
+    const { 
+      view, 
+      email, 
+      captcha_0, 
+      captcha_1, 
+      captcha, 
+      password, 
+      popUp
+    } = this.state;
 
     const PopUp = () => 
       <div >
@@ -199,7 +208,7 @@ export default class OtpLogin extends Component {
                     type="email" 
                     required
                     placeholder="E-mail address"
-                    value={params.email} 
+                    value={email} 
                     onChange={this.handleChange}
                   />
                 </div>
@@ -208,10 +217,10 @@ export default class OtpLogin extends Component {
                   </div>
                   <div className="row">
                     <div className="col-md-8">
-                      <input name="captcha_0" type="hidden" value={params.captcha_0} required />
+                      <input name="captcha_0" type="hidden" value={captcha_0} required />
                       <input 
                         className="form-control otp__input"
-                        value={params.captcha_1} 
+                        value={captcha_1} 
                         name="captcha_1" 
                         spellCheck="false"
                         placeholder="Captcha"
@@ -243,7 +252,7 @@ export default class OtpLogin extends Component {
                 <div className="form-group">
                   <input 
                     className="form-control otp__input" 
-                    value={paramsLogin.password} 
+                    value={password} 
                     name="password" 
                     type="password"
                     placeholder="One time password"                    

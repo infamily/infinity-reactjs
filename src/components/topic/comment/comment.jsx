@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
-import commentService from '../../../services/comment.service.js';
 
 import './comment.css';
 
@@ -11,7 +10,7 @@ class Comment extends Component {
     super(props);
     this.state = {
       text: props.text || '',
-      editing: Boolean(props.text),
+      editing: Boolean(props.id),
     }
   }
 
@@ -23,13 +22,18 @@ class Comment extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const { text } = nextProps;
-    text !== this.props.text && this.setState({
-      text: text || '',
-      editing: Boolean(text),
-    })
+    const { text, id } = nextProps;
+    if (text !== this.props.text) {
+      this.setState({
+        text: text || '',
+        editing: Boolean(id),
+      });
+    }
   }
 
+  componentDidMount() {
+    this.props.text && this.refs.field.focus();
+  }
 
   submitComment = e => {
     e.preventDefault();
@@ -54,7 +58,7 @@ class Comment extends Component {
     const { text, editing } = this.state;
 
     if (!user) return ( 
-      <div className="comment__section">
+      <div className="comment__placeholder">
         <p><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
       </div>
     );
@@ -66,6 +70,7 @@ class Comment extends Component {
             <ControlLabel>Leave your comment</ControlLabel>
             <FormControl 
               componentClass="textarea"
+              ref={(ip) => this.myInp = ip}
               className="comment__text"
               rows="4"
               name="text" 

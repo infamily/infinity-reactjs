@@ -21,3 +21,12 @@
 .comment__section {
   margin: 20px 0;
 }
+
+.comment__placeholder {
+  margin: 20px 0;
+  padding: 0 5px;
+  padding-top: 9px;
+  padding-bottom: 1px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}

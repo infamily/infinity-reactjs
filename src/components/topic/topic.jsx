@@ -33,21 +33,22 @@ class Topic extends Component {
     match: PropTypes.object.isRequired,
   };
 
-  componentWillMount() {
+  async componentWillMount() {
     const self = this;
     const id = this.props.match.params.id;
 
-    topicService.getTopic(id).then(topic => {
-      self.setState({
-        topic: topic
-      });
+    const topic = await topicService.getTopic(id);
+    const comments = await topicService.getComments(id);
+    self.setState({ 
+      topic, 
+      comments 
     });
+  }
 
-    topicService.getComments(id).then(comments => {
-      self.setState({
-        comments: comments
-      }); 
-    });
+  scrollToEdit() {
+    const com_sec = this.refs.com_sec;
+    const position = com_sec.getBoundingClientRect().top;
+    position < 0 && com_sec.scrollIntoView(); 
   }
 
   startToEdit(id) {
@@ -57,9 +58,16 @@ class Topic extends Component {
       comment_text: comment.text,
     });
 
-    const com_sec = this.refs.com_sec;
-    const position = com_sec.getBoundingClientRect().top;
-    position < 0 && com_sec.scrollIntoView();  
+    this.scrollToEdit();     
+  }
+  
+  reply(name) {
+    const response = `[${name}], `
+    this.setState({
+      comment_text: response
+    });
+
+    this.scrollToEdit();
   }
 
   clear() {
@@ -126,13 +134,28 @@ class Topic extends Component {
       </div> 
       : null;
 
-    const CommentButtons = ({ id }) => 
+    const UserButtons = ({ id }) => 
         <ButtonToolbar>
           <ButtonGroup bsSize="xsmall">
             <Button onClick={() => this.startToEdit(id)}>&#9998;</Button>
             <Button onClick={() => this.remove(id)}>&#10006;</Button>
           </ButtonGroup>
         </ButtonToolbar>;
+    
+    const ReplyButtons = ({ owner }) => 
+      <ButtonToolbar>
+        <ButtonGroup bsSize="xsmall">
+          <Button onClick={() => this.reply(owner)}>Reply</Button>
+        </ButtonGroup>
+      </ButtonToolbar>;
+
+    const Buttons = ({ id, owner }) => {
+      return user && (
+        user.username === owner
+          ? <UserButtons id={id} />
+          : <ReplyButtons owner={owner} />
+      );
+    }
 
     const Comments = () => comments.length ?
       <div>
@@ -140,13 +163,12 @@ class Topic extends Component {
         {
           comments.map(comment => {
             const { id, text, owner } = comment;
+            const content = ReactHtmlParser(mdConverter.makeHtml(text));
+            
             return (
               <div key={id} className="comment__section">
-                <div>{ReactHtmlParser(mdConverter.makeHtml(text))}</div>
-                {
-                  (user && (user.email === owner)) &&
-                  <CommentButtons id={id}/>
-                }
+                <div>{content}</div>
+                <Buttons owner={owner} id={id}/>
                 <div className="comment__owner">
                   <span>{owner}</span>
                 </div>
@@ -171,6 +193,7 @@ class Topic extends Component {
                 edit={this.edit}
                 clear={this.clear}
                 text={this.state.comment_text}
+                id={this.state.comment_id}
               />
             </div>
           }

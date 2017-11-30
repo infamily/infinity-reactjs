@@ -5,12 +5,18 @@
 
 @media only screen and (max-width: 767px) {
   /* phones */
-  body { width: 97% };
+  body { 
+    width: 97%;
+    padding: 10px;
+  };
 }
 
 @media only screen and (max-width: 767px) and (orientation: portrait) {
   /* portrait phones */
-  body { width: 97% };
+  body { 
+    width: 97%;
+    padding: 10px;
+  };
 }
 
 body{
@@ -47,4 +53,8 @@ a:hover {
   left: 5px;
   padding: 5px;
   background-color:grey;
+}
+
+* {
+  scroll-behavior: smooth;
 }
