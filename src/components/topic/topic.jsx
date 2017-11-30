@@ -38,7 +38,7 @@ class Topic extends Component {
     const id = this.props.match.params.id;
 
     const topic = await topicService.getTopic(id);
-    const comments = await topicService.getComments(id);
+    const comments = await topicService.getComments(id, topic.lang);
     self.setState({ 
       topic, 
       comments 

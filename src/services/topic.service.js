@@ -58,22 +58,29 @@ class TopicService {
     });
   }
 
-  getTopic(id) { 
-    return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/${id}/?lang=${langService.current}`)
-      .then(function (response) {
-        resolve(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-        resolve(error)
-      });
-    });
+  async getTopic(id) {
+    try {
+      const getTopic = lang => axios.get(`${this.api}/topics/${id}/?lang=${lang || ''}`);
+      const _topic = await getTopic(' ');
+      
+      const { current } = langService;
+      const { languages } = _topic.data;
+
+      const index = languages.indexOf(current);
+      const lang = languages[index > -1 ? index : 0];
+      
+      const { data } = await getTopic(lang);
+      data.lang = lang;
+      return data;
+    } catch(e) {
+      console.log(e);
+      // return _topic.data;
+    }
   }
 
-  getComments(id) { 
+  getComments(id, lang) { 
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/comments/?topic=${id}&lang=${langService.current}`)
+      axios.get(`${this.api}/comments/?topic=${id}&lang=${lang}`)
       .then(function (response) {
         resolve(response.data.results);
       })
