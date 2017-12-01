@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import store_home from '../../store/home'; 
+import configs from '../../configs';
 
 class Topics extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      types: ['', ...configs.types],
       topics: props.topics
     }
   }
@@ -28,12 +31,25 @@ class Topics extends Component {
   }
 
   render() {
+    const { types } = this.state;
+    const colors = [
+      '#CD6B7F',
+      '#90B249',
+      '#56BFC5',
+      '#2E5B96',
+      '#AF9CC9',
+      '#CD6B7F'
+    ];
 
     const List = () =>
       this.state.topics.map(topic => (
         <section className="topics__item" key={topic.id}>
           <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
-            <h2>{topic.title}</h2>
+            <h2>
+            <Badge className="home__type" style={{ backgroundColor: colors[topic.type] }}>
+              {types[topic.type]}
+            </Badge> {topic.title}</h2>
+            
           </Link>
         </section>
       ));
