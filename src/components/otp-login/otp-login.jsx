@@ -37,7 +37,8 @@ export default class OtpLogin extends Component {
 
   static propTypes = {
     signIn: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired, 
+    user: PropTypes.object,
   }; 
 
   componentDidMount() {

@@ -1,7 +1,14 @@
 .topic_view__container {
-  margin: 30px 0;
+  margin: 20px 0 70px 0;
 }
 
 .topic_view__field {
   margin: 10px 0;
 }
+
+.topic_view__select { 
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+} 

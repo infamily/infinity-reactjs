@@ -9,6 +9,38 @@ class TopicViewService {
     this.requestCategories = this.requestCategories.bind(this);
   }
 
+  async createTopic(data, token) {
+    const lang = langService.current;
+    const { type, title, text, parents, categories } = data;
+    try {
+      const headers = { 'Authorization': 'Token ' + token };
+      const parameters = {
+        title: '.:' + lang + ':' + title,
+        body: '.:' + lang + '\n' + text,
+        languages: [lang],
+        type, 
+        parents,
+        categories,
+      };
+
+      const { data } = await axios.post(this.api + '/topics/', parameters, { headers });
+      
+      console.log('parameters', parameters)
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async search(query) {
+    try {
+      const { current } = langService;
+      const { data } = await axios.get(`${this.api}/topics/?search=${query}&lang=${current}`); 
+      return data;
+    } catch(e) {
+      console.error(e);
+    }
+  }
+
   async getCategories(token) {
     const cat_from_ls = this.getDataFromLS('categories');
     return cat_from_ls ? cat_from_ls : this.requestCategories(token);

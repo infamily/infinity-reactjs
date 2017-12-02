@@ -16,12 +16,12 @@ class Menu extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     signOut: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    user: PropTypes.object,
   }; 
 
   signOut = () => {
-    this.props.signOut();
-    // window.location.reload(false);
+    this.props.signOut(); 
   }
 
   render() {

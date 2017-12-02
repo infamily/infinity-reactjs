@@ -31,6 +31,7 @@ class Topic extends Component {
 
   static propTypes = { 
     match: PropTypes.object.isRequired,
+    user: PropTypes.object,
   };
 
   async componentWillMount() {

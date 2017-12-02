@@ -18,7 +18,8 @@ class Comment extends Component {
     edit: PropTypes.func.isRequired,
     create: PropTypes.func.isRequired,
     clear: PropTypes.func.isRequired,
-    text: PropTypes.string
+    text: PropTypes.string,
+    user: PropTypes.object,
   };
 
   componentWillReceiveProps(nextProps) {
