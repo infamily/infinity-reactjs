@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, Button, Modal } from 'react-bootstrap';
 import topicViewService from '../../services/topic_view.service.js';
 import configs from '../../configs.js';
 import Select from 'react-select';
@@ -22,7 +23,13 @@ class Topic extends Component {
       topic_categories: [],  
       topic_title: '',  
       topic_text: '',  
-      topic_parents: [],  
+      topic_parents: [],
+      error: false,
+      success: false,
+      message: {
+        title: '',
+        text: '',
+      }
     }
 
     this.submitTopic = this.submitTopic.bind(this);
@@ -54,6 +61,17 @@ class Topic extends Component {
       topic_parents,
     } = this.state;
 
+    if (!topic_title.trim()) {
+      this.setState({
+        error: true,
+        message: {
+          title: 'Submit error',
+          text: 'Topic title is required.',
+        }
+      });
+      return;
+    }
+
     const data = {
       type: topic_type,
       title: topic_title,
@@ -63,8 +81,21 @@ class Topic extends Component {
     data.parents = topic_parents[0] ? topic_parents.map(item => item.url) : [];
     data.categories = topic_categories[0] ? topic_categories.map(item => item.data.url) : []; 
       
-    await topicViewService.createTopic(data, user.token);
-    this.props.history.push('/');
+    const topic = await topicViewService.createTopic(data, user.token);
+    
+    if (topic) {
+      const { id } = topic;
+      const link = configs.server + '/topic/' + id + '/';
+      const text = <span>Your topic is available on: <Link to={'/topic/' + id}>{link}</Link></span>;
+      
+      this.setState({
+        success: true,
+        message: {
+          title: 'Success',
+          text
+        }
+      });
+    }
   }
   
   async getTopics(input, callback) {
@@ -96,6 +127,18 @@ class Topic extends Component {
       topic_parents: items
     });
   }
+
+  closeModal = state => {
+    this.setState({ 
+      [state]: false,
+      message: {
+        title: '',
+        text: '',
+      }
+    });
+    
+    state === 'success' && this.props.history.push('/');
+  }
   
   render() {
     const { 
@@ -105,7 +148,9 @@ class Topic extends Component {
       topic_text,
       topic_parents,
       all_categories, 
-      all_types 
+      all_types,
+      success,
+      error
     } = this.state;
     
     const type = all_types[topic_type - 1].toLowerCase() || "idea";
@@ -117,6 +162,21 @@ class Topic extends Component {
     const categories = all_categories.map(item => {
       return { value: item.name, label: item.name, data: item }
     });
+
+    const PopUp = ({ state }) =>
+      <div >
+        <Modal show={this.state[state]} className="topic_view__modal">
+          <Modal.Header>
+            <Modal.Title>{this.state.message.title}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {this.state.message.text}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => this.closeModal(state)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>;
 
     return (
       <div className="main">
@@ -182,6 +242,8 @@ class Topic extends Component {
             <Button type="submit">Create</Button>
             </form>
           </div>
+        <PopUp state="error"/>
+        <PopUp state="success"/>
         <Language />
         <Menu page='Menu'/>
       </div>

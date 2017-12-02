@@ -12,3 +12,8 @@
   color: #555;
   background-color: #fff;
 } 
+
+.topic_view__modal {
+  margin-top: 10%;
+  padding: 50px 10px;
+}

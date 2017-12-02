@@ -23,9 +23,10 @@ class TopicViewService {
         categories,
       };
 
-      const { data } = await axios.post(this.api + '/topics/', parameters, { headers });
-      
       console.log('parameters', parameters)
+      const { data } = await axios.post(this.api + '/topics/', parameters, { headers });
+      console.log(data)
+      return data;
     } catch (e) {
       console.error(e);
     }

@@ -25,6 +25,12 @@ class Menu extends Component {
   }
 
   render() {
+    const UserButtons = () =>
+    <div>
+      <Link to='/new-topic' className="main-menu__link">New topic</Link>
+      <MenuItem divider />      
+      <div className="main-menu__link" onClick={this.signOut}>Sign Out</div>
+    </div>
 
     return (
       <div className="main-menu">
@@ -33,10 +39,10 @@ class Menu extends Component {
             <Link to="/" className="main-menu__link">Home </Link>
             <Link to="/page/what" className="main-menu__link">What?</Link>
             <Link to="/page/how" className="main-menu__link">How?</Link>
-            <MenuItem divider />
+            <MenuItem divider />                  
             {
               this.props.user
-                ? <div className="main-menu__link" onClick={this.signOut}>Sign Out</div>
+                ? <UserButtons />
                 : <Link to="/page/otp" className="main-menu__link">Sign In</Link>
             }
           </DropdownButton>
