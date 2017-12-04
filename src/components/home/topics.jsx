@@ -38,7 +38,7 @@ class Topics extends Component {
       '#56BFC5',
       '#2E5B96',
       '#AF9CC9',
-      '#CD6B7F'
+      '#D76B99'
     ];
 
     const List = () =>
@@ -47,9 +47,8 @@ class Topics extends Component {
           <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             <h2>
             <Badge className="home__type" style={{ backgroundColor: colors[topic.type] }}>
-              {types[topic.type]}
+              {' '}
             </Badge> {topic.title}</h2>
-            
           </Link>
         </section>
       ));
