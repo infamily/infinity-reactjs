@@ -10,10 +10,12 @@ class TopicService {
     this.api = configs.api;
   }
 
-  setTopics() {
+  setTopics(flag) {
     const self = this;
+    const f = flag || '';
+
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?lang=${langService.current}`)
+      axios.get(`${this.api}/topics/?lang=${langService.current}&type=${f}`)
       .then(function (response) {  
         self.topics = response.data.results;
         self.fromPage = 1;        
@@ -26,11 +28,12 @@ class TopicService {
     });
   }
 
-  getPage(page) {
+  getPage(page, flag) {
     const self = this;
+    const f = flag || '';
     
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?page=${page}&lang=${langService.current}`)
+      axios.get(`${this.api}/topics/?page=${page}&lang=${langService.current}&type=${f}`)
       .then(function (response) {  
         self.fromPage = page;
         self.topics = response.data.results;
@@ -43,10 +46,12 @@ class TopicService {
     });
   }
 
-  search(query) {
+  search(query, flag) {
     const self = this;
+    const f = flag || '';
+
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?search=${query}&lang=${langService.current}`)
+      axios.get(`${this.api}/topics/?search=${query}&lang=${langService.current}&type=${f}`)
       .then(function (response) {  
         self.topics = response.data.results;
         resolve(response.data.results);

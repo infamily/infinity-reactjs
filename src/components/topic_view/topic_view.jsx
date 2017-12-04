@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FormGroup, FormControl, ControlLabel, Button, Modal } from 'react-bootstrap';
+import {
+  FormGroup, 
+  FormControl, 
+  ControlLabel, 
+  Button, 
+  Modal, 
+  DropdownButton, 
+  InputGroup,
+  MenuItem 
+} from 'react-bootstrap';
+
 import topicViewService from '../../services/topic_view.service.js';
 import configs from '../../configs.js';
 import Select from 'react-select';
@@ -17,7 +27,11 @@ class Topic extends Component {
     super(props);
     this.state = {
       all_types: configs.types,
+      all_types: configs.types,
       all_categories: [],
+
+      flags: configs.flags,
+      flag: 0,
       
       topic_type: 1,  
       topic_categories: [],  
@@ -33,6 +47,7 @@ class Topic extends Component {
     }
 
     this.submitTopic = this.submitTopic.bind(this);
+    this.getTopics = this.getTopics.bind(this);
   }
 
   static propTypes = {
@@ -41,12 +56,16 @@ class Topic extends Component {
   };
 
   async componentWillMount() {
-    const { user } = this.props; 
-    const categories = await topicViewService.getCategories(user.token);
-
-    this.setState({
-      all_categories: categories,
-    });
+    const { user } = this.props;
+    if (user) {
+      const categories = await topicViewService.getCategories(user.token);
+  
+      this.setState({
+        all_categories: categories,
+      });
+    } else {
+      this.props.history.push('/');
+    }
   }
 
   async submitTopic(e) {
@@ -99,7 +118,8 @@ class Topic extends Component {
   }
   
   async getTopics(input, callback) {
-    const { results } = await topicViewService.search(input);
+    const { flag } = this.state;
+    const { results } = await topicViewService.search(input, flag);
     const options = results.map(topic => {
       const { title, url } = topic;
       return { label: title, value: title, url }
@@ -139,6 +159,15 @@ class Topic extends Component {
     
     state === 'success' && this.props.history.push('/');
   }
+
+  setFlag = key => {
+    const { flag } = this.state; 
+
+    flag !== key &&
+    this.setState({
+      flag: key,
+    });
+  }
   
   render() {
     const { 
@@ -147,6 +176,10 @@ class Topic extends Component {
       topic_title, 
       topic_text,
       topic_parents,
+      
+      flags,
+      flag,
+
       all_categories, 
       all_types,
       success,
@@ -177,6 +210,20 @@ class Topic extends Component {
           </Modal.Footer>
         </Modal>
       </div>;
+
+    const Flag = () =>
+      <DropdownButton
+        componentClass={InputGroup.Button}
+        id="input-dropdown-addon"
+        dropup={true}
+        title={flags[flag] || 'All'}
+      >
+        {
+          flags.map((type, i) => {
+            return <MenuItem key={type} eventKey={i} onSelect={this.setFlag}>{type}</MenuItem>
+          })
+        }
+      </DropdownButton>;
 
     return (
       <div className="main">
@@ -229,15 +276,18 @@ class Topic extends Component {
             </FormGroup>
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>Parents</ControlLabel>
-              <Select.Async
-                className="topic_view__select"
-                name="topic_categories"
-                resetValue=''
-                multi={true}
-                value={topic_parents}
-                loadOptions={this.getTopics}
-                onChange={this.selectParents}
-              />
+              <InputGroup>
+                <Flag />
+                <Select.Async
+                  className="topic_view__select"
+                  name="topic_categories"
+                  resetValue=''
+                  multi={true}
+                  value={topic_parents}
+                  loadOptions={this.getTopics}
+                  onChange={this.selectParents}
+                />
+              </InputGroup>
             </FormGroup>
             <Button type="submit">Create</Button>
             </form>
