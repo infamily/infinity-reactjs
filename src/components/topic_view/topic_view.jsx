@@ -38,6 +38,7 @@ class Topic extends Component {
       topic_parents: [],
       error: false,
       success: false,
+      delete: false,
       message: {
         title: '',
         text: '',
@@ -49,6 +50,7 @@ class Topic extends Component {
   }
 
   static propTypes = {
+    match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
   };
@@ -73,9 +75,13 @@ class Topic extends Component {
   async getTopicData(id) {
     if (!id) return {};
 
+    const { user, match, history } = this.props;
     const topic = await topicService.getTopic(id);
     const topic_parents = await getParents(topic.parents);
     const topic_categories = await getCategories(topic.categories);
+    
+    // check if owner 
+    if (topic.owner !== user.username) history.push('/');
 
     return {
       topic_type: topic.type,
@@ -155,7 +161,7 @@ class Topic extends Component {
 
     const data = this.formatData();
     data.id = edited_id;
-    
+
     const action = edited_id ? 'updateTopic' : 'createTopic';
     const topic = await topicViewService[action](data, user.token);
     
@@ -172,6 +178,13 @@ class Topic extends Component {
         }
       });
     }
+  }
+
+  deleteTopic = async () => {
+    const { user, match } = this.props;
+    const edited_id = match.params.id;
+    const result = await topicViewService.deleteTopic(edited_id, user.token);
+    result === 'success' && this.props.history.push('/');
   }
   
   async getTopics(input, callback) {
@@ -202,6 +215,12 @@ class Topic extends Component {
   selectParents = items => { 
     this.setState({
       topic_parents: items
+    });
+  }
+
+  showPopUp = state => { 
+    this.setState({
+      [state]: true
     });
   }
 
@@ -254,7 +273,7 @@ class Topic extends Component {
     const Buttons = () => this.state.id
       ? <div>
           <Button type="submit">Edit</Button>
-          <Button className="topic_view__btn">Delete</Button>
+          <Button className="topic_view__btn" onClick={() => this.showPopUp('delete')}>Delete</Button>
         </div>
       : <Button type="submit">Create</Button>;
 
@@ -268,6 +287,22 @@ class Topic extends Component {
             {message.text}
           </Modal.Body>
           <Modal.Footer>
+            <Button onClick={() => this.closeModal(state)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>; 
+
+    const DeletePopup = ({ state }) =>
+      <div >
+        <Modal show={this.state[state]} className="topic_view__modal">
+          <Modal.Header>
+            <Modal.Title>Confirmation</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Are you sure want to delete this topic?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.deleteTopic}>Delete</Button>
             <Button onClick={() => this.closeModal(state)}>Close</Button>
           </Modal.Footer>
         </Modal>
@@ -342,6 +377,7 @@ class Topic extends Component {
           </div>
         <PopUp state="error"/>
         <PopUp state="success"/>
+        <DeletePopup state="delete"/>
         <Language />
         <Menu page='Menu'/>
       </div>

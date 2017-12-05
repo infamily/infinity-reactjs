@@ -25,7 +25,7 @@ class Topic extends Component {
       comments: [],
       parents: [],
       comment_id: 0,  
-      comment_text: '',  
+      comment_text: '',
     }
   }
 
@@ -161,33 +161,38 @@ class Topic extends Component {
 
     const Tags = () => parents[0]
       ? <div>
-          <span>Parents: </span> 
+          <span>Tags: </span> <span className="topic__tags">{type}</span>
           {
             parents.map(tag => {
             return <Link to={`/topic/${tag.id}`}key={tag.title} className="topic__tags">{tag.title} </Link>
             })
           }
         </div>
-      : null;
+      : <span>Type: <span className="topic__tags">{type}</span></span>;
 
     const Topic = () => topic.title ?
       <div>
         <h1>{topic.title}</h1>
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
-        <span>{topic.owner}</span> <br /><br />
-        <span>Type: <span className="topic__tags">{type}</span></span>
+        <span>{topic.owner}</span>
+        <EditTopic owner={topic.owner} id={topic.id}/>
+        <br /><br /> 
         <Tags />
         <br />
       </div> 
       : null;
 
+    const EditTopic = ({ owner, id }) => owner === this.props.user.username
+      ? <Link to={'/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>
+      : null;
+    
     const UserButtons = ({ id }) => 
-        <ButtonToolbar>
-          <ButtonGroup bsSize="xsmall">
-            <Button onClick={() => this.startToEdit(id)}>&#9998;</Button>
-            <Button onClick={() => this.remove(id)}>&#10006;</Button>
-          </ButtonGroup>
-        </ButtonToolbar>;
+      <ButtonToolbar>
+        <ButtonGroup bsSize="xsmall">
+          <Button onClick={() => this.startToEdit(id)}>&#9998;</Button>
+          <Button onClick={() => this.remove(id)}>&#10006;</Button>
+        </ButtonGroup>
+      </ButtonToolbar>;
     
     const ReplyButtons = ({ owner }) => 
       <ButtonToolbar>
@@ -198,7 +203,7 @@ class Topic extends Component {
 
     const Buttons = ({ id, owner }) => {
       return user && (
-        user.username === owner
+        user.username=== owner
           ? <UserButtons id={id} />
           : <ReplyButtons owner={owner} />
       );

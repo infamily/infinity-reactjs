@@ -42,9 +42,7 @@ class TopicViewService {
         categories,
       };
 
-      console.log('parameters', parameters)      
       const { data } = await axios.patch(`${this.api}/topics/${id}/`, parameters, { headers });
-      console.log('data', data)      
       return data;
     } catch (e) {
       console.error(e);

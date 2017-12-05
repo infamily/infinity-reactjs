@@ -22,6 +22,10 @@
   margin: 5px;
 }
 
+.topic__edit {
+  float: right;
+}
+
 .comment__owner {
   text-align: right;
 }
