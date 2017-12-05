@@ -7,18 +7,18 @@ import {
   ControlLabel, 
   Button, 
   Modal, 
-  DropdownButton, 
   InputGroup,
-  MenuItem 
 } from 'react-bootstrap';
 
-import topicViewService from '../../services/topic_view.service.js';
-import configs from '../../configs.js';
+import topicViewService from '../../services/topic_view.service';
+import topicService from '../../services/topic.service';
+import configs from '../../configs';
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
 
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
+import Flag from '../utils/flag_toggle';
 
 import './topic_view.css';
 
@@ -27,11 +27,9 @@ class Topic extends Component {
     super(props);
     this.state = {
       all_types: configs.types,
-      all_types: configs.types,
       all_categories: [],
-
-      flags: configs.flags,
       flag: 0,
+      id: null,
       
       topic_type: 1,  
       topic_categories: [],  
@@ -56,22 +54,65 @@ class Topic extends Component {
   };
 
   async componentWillMount() {
-    const { user } = this.props;
+    const { user, match } = this.props;
+    const id = match.params.id;
     if (user) {
       const categories = await topicViewService.getCategories(user.token);
-  
+      const editedData = await this.getTopicData(id);
+
       this.setState({
         all_categories: categories,
+        id,
+        ...editedData
       });
     } else {
       this.props.history.push('/');
     }
   }
 
-  async submitTopic(e) {
-    e.preventDefault();
-    const { user } = this.props;
+  async getTopicData(id) {
+    if (!id) return {};
 
+    const topic = await topicService.getTopic(id);
+    const topic_parents = await getParents(topic.parents);
+    const topic_categories = await getCategories(topic.categories);
+
+    return {
+      topic_type: topic.type,
+      topic_title: topic.title,
+      topic_text: topic.body,
+      topic_categories,
+      topic_parents,
+    };
+
+    async function getParents(parents) {
+      const formatted = [];
+
+      for (let link of parents) { 
+        const id = link.match(/topics\/(\d+)/)[1];
+        const topic = await topicService.getTopic(id);
+        const { title, url } = topic;
+        formatted.push({ label: title, value: title, url });
+      }
+
+      return formatted;
+    }
+
+    async function getCategories(categories) {
+      const formatted = [];
+
+      for (let link of categories) { 
+        const id = link.match(/types\/(\d+)/)[1];
+        const category = await topicService.getCategory(id);
+        const { name, url } = category;
+        formatted.push({ label: name, value: name, url });
+      }
+
+      return formatted;
+    }
+  }
+
+  formatData = () => {
     const {
       topic_type,
       topic_categories,
@@ -80,27 +121,43 @@ class Topic extends Component {
       topic_parents,
     } = this.state;
 
-    if (!topic_title.trim()) {
-      this.setState({
-        error: true,
-        message: {
-          title: 'Submit error',
-          text: 'Topic title is required.',
-        }
-      });
-      return;
-    }
+    const formatted = array => array[0] ? array.map(item => item.url) : [];
 
-    const data = {
+    return {
       type: topic_type,
       title: topic_title,
       text: topic_text,
+      parents: formatted(topic_parents),
+      categories: formatted(topic_categories),
     };
+  }
 
-    data.parents = topic_parents[0] ? topic_parents.map(item => item.url) : [];
-    data.categories = topic_categories[0] ? topic_categories.map(item => item.data.url) : []; 
-      
-    const topic = await topicViewService.createTopic(data, user.token);
+  showError = () => {
+    this.setState({
+      error: true,
+      message: {
+        title: 'Submit error',
+        text: 'Topic title is required.',
+      }
+    });
+  }
+
+  async submitTopic(e) {
+    e.preventDefault();
+    const { user, match } = this.props;
+    const { topic_title } = this.state;
+    const edited_id = match.params.id;
+
+    if (!topic_title.trim()) {
+      this.showError();
+      return;
+    }
+
+    const data = this.formatData();
+    data.id = edited_id;
+    
+    const action = edited_id ? 'updateTopic' : 'createTopic';
+    const topic = await topicViewService[action](data, user.token);
     
     if (topic) {
       const { id } = topic;
@@ -136,7 +193,7 @@ class Topic extends Component {
     });
   }
 
-  selectCategory = item => { 
+  selectCategory = item => {
     item && this.setState({
       topic_categories: item
     });
@@ -177,13 +234,10 @@ class Topic extends Component {
       topic_text,
       topic_parents,
       
-      flags,
       flag,
-
       all_categories, 
       all_types,
-      success,
-      error
+      message
     } = this.state;
     
     const type = all_types[topic_type - 1].toLowerCase() || "idea";
@@ -193,37 +247,31 @@ class Topic extends Component {
     });
     
     const categories = all_categories.map(item => {
-      return { value: item.name, label: item.name, data: item }
+      const { name, url } = item;
+      return { value: name, label: name, url }
     });
+
+    const Buttons = () => this.state.id
+      ? <div>
+          <Button type="submit">Edit</Button>
+          <Button className="topic_view__btn">Delete</Button>
+        </div>
+      : <Button type="submit">Create</Button>;
 
     const PopUp = ({ state }) =>
       <div >
         <Modal show={this.state[state]} className="topic_view__modal">
           <Modal.Header>
-            <Modal.Title>{this.state.message.title}</Modal.Title>
+            <Modal.Title>{message.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {this.state.message.text}
+            {message.text}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => this.closeModal(state)}>Close</Button>
           </Modal.Footer>
         </Modal>
-      </div>;
-
-    const Flag = () =>
-      <DropdownButton
-        componentClass={InputGroup.Button}
-        id="input-dropdown-addon"
-        dropup={true}
-        title={flags[flag] || 'All'}
-      >
-        {
-          flags.map((type, i) => {
-            return <MenuItem key={type} eventKey={i} onSelect={this.setFlag}>{type}</MenuItem>
-          })
-        }
-      </DropdownButton>;
+      </div>; 
 
     return (
       <div className="main">
@@ -277,7 +325,7 @@ class Topic extends Component {
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>Parents</ControlLabel>
               <InputGroup>
-                <Flag />
+                <Flag setFlag={this.setFlag} flag={flag} dropup/>
                 <Select.Async
                   className="topic_view__select"
                   name="topic_categories"
@@ -289,7 +337,7 @@ class Topic extends Component {
                 />
               </InputGroup>
             </FormGroup>
-            <Button type="submit">Create</Button>
+            <Buttons />
             </form>
           </div>
         <PopUp state="error"/>

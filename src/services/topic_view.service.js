@@ -21,10 +21,41 @@ class TopicViewService {
         categories,
       };
 
-      console.log('parameters', parameters)
       const { data } = await axios.post(this.api + '/topics/', parameters, { headers });
-      console.log(data)
       return data;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async updateTopic(data, token) {
+    const lang = langService.current;
+    const { type, title, text, parents, categories, id } = data;
+    try {
+      const headers = { 'Authorization': 'Token ' + token };
+      const parameters = {
+        title: '.:' + lang + ':' + title,
+        body: '.:' + lang + '\n' + text,
+        languages: [lang],
+        type,
+        parents,
+        categories,
+      };
+
+      console.log('parameters', parameters)      
+      const { data } = await axios.patch(`${this.api}/topics/${id}/`, parameters, { headers });
+      console.log('data', data)      
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async deleteTopic(id, token) {
+    try {
+      const headers = { 'Authorization': 'Token ' + token };
+      await axios.delete(`${this.api}/topics/${id}/`, { headers });
+      return 'success';
     } catch (e) {
       console.error(e);
     }

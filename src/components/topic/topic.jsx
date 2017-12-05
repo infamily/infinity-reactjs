@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { ButtonGroup, ButtonToolbar, Button } from 'react-bootstrap';
 import topicService from '../../services/topic.service.js';
 import commentService from '../../services/comment.service.js';
+
+import configs from '../../configs';
 import Menu from '../utils/menu';
 import Comment from './comment';
 import Language from '../utils/lang_select';
@@ -19,32 +21,63 @@ class Topic extends Component {
     super(props);
     this.state = {
       topic: {},
+      type: '',
       comments: [],
+      parents: [],
       comment_id: 0,  
       comment_text: '',  
     }
-
-    this.create = this.create.bind(this);
-    this.edit = this.edit.bind(this);
-    this.clear = this.clear.bind(this);
   }
 
   static propTypes = { 
     match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
     user: PropTypes.object,
   };
 
   async componentWillMount() {
-    const self = this;
-    const id = this.props.match.params.id;
+    const id = this.props.match.params.id;    
+    await this.loadTopicData(id);
+  }
 
+  async componentWillReceiveProps(nextProps) {
+    const id = props => props.match.params.id;
+    const solve = id(this.props) !== id(nextProps);
+    solve && await this.loadTopicData(id(nextProps));
+  }
+
+  loadTopicData = async (id) => {
+    const self = this;
     const topic = await topicService.getTopic(id);
+
+    if (!topic) {
+      this.props.history.push('/404');
+      return;
+    }
+
     const comments = await topicService.getComments(id, topic.lang);
-    self.setState({ 
-      topic, 
-      comments 
+    const type = configs.flags[topic.type];
+    const parents = await this.getParents(topic.parents);
+    
+    self.setState({
+      topic,
+      comments,
+      parents,
+      type
     });
   }
+
+  async getParents(parents) {
+    const titles = [];
+
+    for (let link of parents) {
+      const parednt_id = link.match(/topics\/(\d+)/)[1];
+      const { title, id } = await topicService.getTopic(parednt_id);
+      titles.push({ title, id });
+    }
+
+    return titles;
+  } 
 
   scrollToEdit() {
     const com_sec = this.refs.com_sec;
@@ -78,7 +111,7 @@ class Topic extends Component {
     });
   }
 
-  async edit(text) {
+  edit = async (text) => {
     try{ 
       const { token } = this.props.user;
       const id = this.state.comment_id;
@@ -99,7 +132,7 @@ class Topic extends Component {
     }
   }
 
-  async remove(id) {
+  remove = async (id) => {
     const { token } = this.props.user;
     const status = await commentService.deleteComment(id, token);
     const comments = this.state.comments.filter(comment => comment.id !== id);
@@ -111,7 +144,7 @@ class Topic extends Component {
     this.clear();
   }
 
-  async create(text) {
+  create = async (text) => {
     const { url } = this.state.topic;
     const { token } = this.props.user;
     const comment = await commentService.createComment(url, text, token);
@@ -123,15 +156,28 @@ class Topic extends Component {
   }
 
   render() {
-    const topic = this.state.topic;
-    const comments = this.state.comments; 
-    const user = this.props.user; 
+    const { topic, comments, parents, type } = this.state;
+    const user = this.props.user;
+
+    const Tags = () => parents[0]
+      ? <div>
+          <span>Parents: </span> 
+          {
+            parents.map(tag => {
+            return <Link to={`/topic/${tag.id}`}key={tag.title} className="topic__tags">{tag.title} </Link>
+            })
+          }
+        </div>
+      : null;
 
     const Topic = () => topic.title ?
       <div>
         <h1>{topic.title}</h1>
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
-        <span>{topic.owner}</span> <br /> <br />
+        <span>{topic.owner}</span> <br /><br />
+        <span>Type: <span className="topic__tags">{type}</span></span>
+        <Tags />
+        <br />
       </div> 
       : null;
 
@@ -183,7 +229,7 @@ class Topic extends Component {
     return (
       <div className="main">
         <div className="topics__content-item" style={{display: 'block'}}>
-          <NavLink to="/" className="topics__back">&#10094; Go Back</NavLink>
+          <NavLink to="/" className="topics__back">&#10094; Home</NavLink>
 
           <Topic />
           {

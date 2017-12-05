@@ -2,28 +2,24 @@ import React, { Component } from 'react';
 import { 
   FormGroup, 
   FormControl, 
-  InputGroup, 
-  DropdownButton, 
-  MenuItem, 
+  InputGroup,
   Button 
 } from 'react-bootstrap';
 
 import Topics from './topics';
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
+import Flag from '../utils/flag_toggle';
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';
 import store_home from '../../store/home';
-import configs from '../../configs';
 import './home.css';
-
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      flags: configs.flags,
       search: langService.current,
       content: langService.homeContent(),
       page: store_home.home_page || 1,
@@ -107,20 +103,7 @@ class Home extends Component {
 
   render() {
     const { title, button } = this.state.content;
-    const { flags, flag } = this.state;
-
-    const Flag = ({ setFlag }) => 
-      <DropdownButton
-        componentClass={InputGroup.Button}
-        id="input-dropdown-addon"
-        title={flags[flag] || 'All'}
-      >
-      {
-        flags.map((type, i) => {
-            return <MenuItem key={type} eventKey={i} onSelect={setFlag}>{type}</MenuItem>
-        })
-      }
-      </DropdownButton>;
+    const { flag } = this.state;
 
     const Pagination = () =>
     <div className="paginator">
@@ -138,7 +121,7 @@ class Home extends Component {
             <form onSubmit={this.makeSearch}>
               <FormGroup >
                 <InputGroup>
-                  <Flag setFlag={this.setFlag} />
+                  <Flag setFlag={this.setFlag} flag={flag}/>
                   <FormControl type="search" name="query" value={this.state.query} onChange={this.handleChange} />
                   <InputGroup.Button>
                     <Button type="submit">{button}</Button>

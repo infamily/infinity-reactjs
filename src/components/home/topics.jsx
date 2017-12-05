@@ -3,13 +3,11 @@ import { Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import store_home from '../../store/home'; 
-import configs from '../../configs';
 
 class Topics extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      types: ['', ...configs.types],
       topics: props.topics
     }
   }
@@ -31,7 +29,6 @@ class Topics extends Component {
   }
 
   render() {
-    const { types } = this.state;
     const colors = [
       '#CD6B7F',
       '#90B249',

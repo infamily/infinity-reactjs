@@ -21,6 +21,7 @@ class App extends Component {
           <Route path={process.env.PUBLIC_URL + "/page/what"} component={What}/>
           <Route path={process.env.PUBLIC_URL + "/page/otp"} component={OtpLogin}/>
           <Route path={process.env.PUBLIC_URL + "/new-topic"} component={TopicView}/>
+          <Route path={process.env.PUBLIC_URL + "/edit/:id"} component={TopicView}/>
           <Route component={NotFound}/>
         </Switch>
       </BrowserRouter>

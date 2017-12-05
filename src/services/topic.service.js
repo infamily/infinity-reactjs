@@ -79,7 +79,6 @@ class TopicService {
       return data;
     } catch(e) {
       console.log(e);
-      // return _topic.data;
     }
   }
 
@@ -95,7 +94,27 @@ class TopicService {
       });
     });
   }
+
+  async getCategory(id) {
+    try {
+      const getCategory = lang => axios.get(`${this.api}/types/${id}/?lang=${lang || ''}`);
+      const _category = await getCategory(' ');
+  
+      const { current } = langService;
+      const { languages } = _category.data;
+  
+      const index = languages.indexOf(current);
+      const lang = languages[index > -1 ? index : 0];
+  
+      const { data } = await getCategory(lang);
+      data.lang = lang;
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
+
 
 const topicService = new TopicService();
 export default topicService;
