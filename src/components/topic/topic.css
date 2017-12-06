@@ -16,14 +16,18 @@
 }
 
 .topic__tags {
-  background-color: #f1f1f1;
-  padding: 0 5px;
-  border-radius: 10px;
   margin: 5px;
 }
 
 .topic__edit {
   float: right;
+}
+
+.topic__badge {
+  font-size: 11px;
+  padding: 5px;
+  text-align: center;
+  background-color: #bfbfbf;
 }
 
 .comment__owner {

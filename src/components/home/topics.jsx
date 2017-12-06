@@ -3,6 +3,7 @@ import { Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import store_home from '../../store/home'; 
+import configs from '../../configs'; 
 
 class Topics extends Component {
   constructor(props) {
@@ -23,27 +24,23 @@ class Topics extends Component {
       });
     }
   }
- 
+  
   saveScroll() {
     store_home.home_scroll = window.scrollY; 
   }
 
   render() {
-    const colors = [
-      '#CD6B7F',
-      '#90B249',
-      '#56BFC5',
-      '#2E5B96',
-      '#AF9CC9',
-      '#D76B99'
-    ];
+    const { colors } = configs;
+    const badgeStyle = type => { return { 
+      backgroundColor: colors[type]
+    }};
 
     const List = () =>
       this.state.topics.map(topic => (
         <section className="topics__item" key={topic.id}>
           <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             <h2>
-            <Badge className="home__type" style={{ backgroundColor: colors[topic.type] }}>
+              <Badge className="home__type" style={badgeStyle(topic.type)}>
               {' '}
             </Badge> {topic.title}</h2>
           </Link>

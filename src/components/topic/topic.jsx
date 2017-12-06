@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
-import { ButtonGroup, ButtonToolbar, Button } from 'react-bootstrap';
+import { ButtonGroup, ButtonToolbar, Button, Badge } from 'react-bootstrap';
 import topicService from '../../services/topic.service.js';
 import commentService from '../../services/comment.service.js';
 
@@ -68,15 +68,15 @@ class Topic extends Component {
   }
 
   async getParents(parents) {
-    const titles = [];
+    const formatted = [];
 
     for (let link of parents) {
       const parednt_id = link.match(/topics\/(\d+)/)[1];
-      const { title, id } = await topicService.getTopic(parednt_id);
-      titles.push({ title, id });
+      const { title, id, type } = await topicService.getTopic(parednt_id);
+      formatted.push({ title, id, type });
     }
 
-    return titles;
+    return formatted;
   } 
 
   scrollToEdit() {
@@ -159,12 +159,22 @@ class Topic extends Component {
     const { topic, comments, parents, type } = this.state;
     const user = this.props.user;
 
+    const { colors } = configs;
+    const badgeStyle = type => {
+      return {
+        backgroundColor: colors[type]
+      }
+    };
+
     const Tags = () => parents[0]
       ? <div>
           <span>Tags: </span> <span className="topic__tags">{type}</span>
           {
-            parents.map(tag => {
-            return <Link to={`/topic/${tag.id}`}key={tag.title} className="topic__tags">{tag.title} </Link>
+            parents.map(topic => {
+            return <Link to={`/topic/${topic.id}`} key={topic.title} className="topic__tags"> 
+              <Badge className="topic__badge" style={badgeStyle(topic.type)}>{' '}</Badge>
+              {' ' + topic.title}
+            </Link>
             })
           }
         </div>
@@ -173,12 +183,13 @@ class Topic extends Component {
     const Topic = () => topic.title ?
       <div>
         <h1>{topic.title}</h1>
+        <EditTopic owner={topic.owner} id={topic.id}/>
+        <Tags />
+        <br /> <br />
+        
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
         <span>{topic.owner}</span>
-        <EditTopic owner={topic.owner} id={topic.id}/>
         <br /><br /> 
-        <Tags />
-        <br />
       </div> 
       : null;
 
