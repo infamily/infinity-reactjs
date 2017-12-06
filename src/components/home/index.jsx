@@ -6,7 +6,7 @@ import {
   Button 
 } from 'react-bootstrap';
 
-import Topics from './topics';
+import Topics from './topic_list';
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
 import Flag from '../utils/flag_toggle';
@@ -66,20 +66,19 @@ class Home extends Component {
     const { page, topics, flag } = this.state;
     const next = page + num;
 
-    // check for a next page
+    // is next page or previous page exist
     if (next > page && topics.length < 25) return;
-    
-    if (next > 0) {
-      this.setState({ page: next });
-      store_home.home_page = next;
+    if (next < 0) return;
 
-      topicService.getPage(next, flag).then(topics => {
-        self.setState({
-          topics: topics
-        });
+    this.setState({ page: next });
+    store_home.home_page = next;
+
+    topicService.getPage(next, flag).then(topics => {
+      self.setState({
+        topics: topics
       });
-      window.scroll(0, 0);
-    }
+    });
+    window.scroll(0, 0);
   }
 
   setFlag = key => {

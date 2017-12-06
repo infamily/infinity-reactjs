@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Badge } from 'react-bootstrap';
+import { Badge, Button, ButtonGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import store_home from '../../store/home'; 
-import configs from '../../configs'; 
+import store_home from '../../../store/home'; 
+import configs from '../../../configs'; 
+import './topic_list.css'; 
 
 class Topics extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class Topics extends Component {
   }
 
   static propTypes = {
-    topics: PropTypes.array.isRequired
+    topics: PropTypes.array.isRequired,
+    user: PropTypes.object
   };
 
   componentWillReceiveProps(nextProps) {
@@ -31,19 +33,33 @@ class Topics extends Component {
 
   render() {
     const { colors } = configs;
+    const { user } = this.props;
+    const { topics } = this.state;
+    
     const badgeStyle = type => { return { 
       backgroundColor: colors[type]
     }};
 
+    const EditTopic = ({ owner, id }) => {
+      const isOwner = user && (owner === user.username);
+      
+      return isOwner
+        ? <ButtonGroup className="topic_list__edit">
+          <Link to={"/edit/" + id + "/"}><Button bsSize="xsmall">&#9998;</Button></Link>
+        </ButtonGroup> 
+        : null;
+    }
+
     const List = () =>
-      this.state.topics.map(topic => (
+      topics.map(topic => (
         <section className="topics__item" key={topic.id}>
+          <EditTopic owner={topic.owner} id={topic.id} />
           <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             <h2>
               <Badge className="home__type" style={badgeStyle(topic.type)}>
               {' '}
             </Badge> {topic.title}</h2>
-          </Link>
+            </Link>
         </section>
       ));
 

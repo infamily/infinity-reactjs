@@ -196,9 +196,8 @@ class Topic extends Component {
     const EditTopic = ({ owner, id }) => {
       const isOwner = user && (owner === user.username);
       
-      return isOwner
-        ? <Link to={'/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>
-        : null;
+      return isOwner &&
+        <Link to={'/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>;
     }
     
     const UserButtons = ({ id }) => 
