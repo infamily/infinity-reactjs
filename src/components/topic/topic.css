@@ -15,6 +15,20 @@
   margin-bottom: 70px;
 }
 
+.topic__tag-box {
+  /* height: 20px; */
+  overflow: hidden;
+  height: auto;
+  max-height: 20px; 
+  transition: max-height 0.7s ease;
+}
+
+.topic__tag-box:hover {
+  /* height: auto; */
+  max-height: 600px; 
+  /* height: max-content; */
+}
+
 .topic__tags {
   margin: 5px;
 }

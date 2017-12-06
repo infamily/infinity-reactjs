@@ -167,7 +167,7 @@ class Topic extends Component {
     };
 
     const Tags = () => parents[0]
-      ? <div>
+      ? <div className="topic__tag-box">
           <span>Tags: </span> <span className="topic__tags">{type}</span>
           {
             parents.map(topic => {
@@ -209,18 +209,16 @@ class Topic extends Component {
         </ButtonGroup>
       </ButtonToolbar>;
     
-    const ReplyButtons = ({ owner }) => 
-      <ButtonToolbar>
-        <ButtonGroup bsSize="xsmall">
-          <Button onClick={() => this.reply(owner)}>Reply</Button>
-        </ButtonGroup>
-      </ButtonToolbar>;
+    const ReplyButton = ({ owner }) => 
+      <ButtonGroup bsSize="xsmall">
+        <Button onClick={() => this.reply(owner)}>Reply</Button>
+      </ButtonGroup>;
 
     const Buttons = ({ id, owner }) => {
       return user && (
         user.username=== owner
           ? <UserButtons id={id} />
-          : <ReplyButtons owner={owner} />
+          : <ReplyButton owner={owner} />
       );
     }
 
