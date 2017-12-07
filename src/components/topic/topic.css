@@ -18,7 +18,7 @@
 .topic__tag-box {
   overflow: hidden;
   height: auto;
-  max-height: 40px; 
+  max-height: 45px; 
   transition: max-height 0.7s ease;
 }
 

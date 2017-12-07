@@ -2,3 +2,7 @@
   float: right;
   margin: 20px 5px 0;
 }
+
+.topic_list__btn {
+  border-radius: 10px;
+}

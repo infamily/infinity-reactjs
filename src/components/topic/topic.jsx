@@ -178,14 +178,13 @@ class Topic extends Component {
             })
           }
         </div>
-      : <span>Type: <span className="topic__tags">{type}</span></span>;
+      : <div>Type: <span className="topic__tags">{type}</span><br /></div>;
 
     const Topic = () => topic.title ?
       <div>
         <h1>{topic.title}</h1>
         <EditTopic owner={topic.owner} id={topic.id}/>
-        <Tags />
-        <br /> <br />
+        <Tags /> <br /> 
         
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
         <span>{topic.owner}</span>

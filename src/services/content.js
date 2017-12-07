@@ -1,4 +1,12 @@
 export default {
+  utils: {
+    servers: {
+      'en': [
+        'Frankfurt',
+        'Shanghai',
+      ],
+    }
+  },
   main: [
     {
       title: '无界家庭',

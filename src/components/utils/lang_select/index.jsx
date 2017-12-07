@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
+import { ButtonGroup , DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from '../../../services/lang.service';
+import ServerButton from './server_select';
 
 import './lang_select.css';
 
@@ -36,11 +37,12 @@ class Language extends Component {
 
     return (
       <div className="select-lang">
-        <ButtonToolbar>
-          <DropdownButton title={this.state.lang} pullRight={true} dropup bsSize="large" id="dropdown-size-large">
+        <ButtonGroup>
+          <DropdownButton title={this.state.lang} pullRight={true} bsSize="large" dropup id="dropdown-size-large">
             <Languages />
           </DropdownButton>
-        </ButtonToolbar>
+          <ServerButton />
+        </ButtonGroup>
       </div>
     );
   }

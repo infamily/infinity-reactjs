@@ -53,9 +53,14 @@ class Language {
       lang: localStorage["lang_inf"]
     };
   }
+
+  getServers() {
+    const { servers } = texts.utils;
+    return servers[this.current] || servers['en'];
+  }
  
   homeContent() {
-    return texts.main[this.lang_index]
+    return texts.main[this.lang_index];
   }
 
   howContent() {

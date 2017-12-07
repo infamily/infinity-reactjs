@@ -80,7 +80,7 @@ class Topic extends Component {
     const topic_parents = await getParents(topic.parents);
     const topic_categories = await getCategories(topic.categories);
     
-    // check if owner 
+    // redirect if isn't owner 
     if (topic.owner !== user.username) history.push('/');
 
     return {
@@ -259,7 +259,8 @@ class Topic extends Component {
       message
     } = this.state;
     
-    const type = all_types[topic_type - 1].toLowerCase() || "idea";
+
+    const type = all_types[topic_type].toLowerCase() || "idea";
 
     const Types = () => all_types.map((item, i) => {
       return <option value={i + 1} key={item}>{item}</option>;
