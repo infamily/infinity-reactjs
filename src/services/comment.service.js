@@ -1,10 +1,10 @@
 import axios from 'axios';
 import langService from './lang.service';
-import configs from '../configs';
+import serverService from './server.service';
 
 class CommentService {
   constructor() {
-    this.api = configs.api;
+  
   }
 
   async createComment(url, text, token) {
@@ -17,7 +17,7 @@ class CommentService {
         languages: [lang],
       }; 
 
-      const { data } = await axios.post(this.api + '/comments/', parameters, { headers });
+      const { data } = await axios.post(serverService.api + '/comments/', parameters, { headers });
       data.text = text;
 
       return data;
@@ -35,7 +35,7 @@ class CommentService {
         languages: [lang],
       }; 
 
-      const { data } = await axios.patch(`${this.api}/comments/${id}/`, parameters, { headers });
+      const { data } = await axios.patch(`${serverService.api}/comments/${id}/`, parameters, { headers });
       data.text = text;
 
       return data;
@@ -47,7 +47,7 @@ class CommentService {
   async deleteComment(id, token) {
     try {
       const headers = { 'Authorization': 'Token ' + token }; 
-      await axios.delete(`${this.api}/comments/${id}/`, { headers });
+      await axios.delete(`${serverService.api}/comments/${id}/`, { headers });
       return 'success';
     } catch(e) {
       console.error(e);

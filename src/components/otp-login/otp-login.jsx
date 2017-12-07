@@ -3,6 +3,7 @@ import { Modal, Button, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import configs from '../../configs';
+import server from '../../services/server.service';
 import './otp-login.css'; 
 
 export default class OtpLogin extends Component {
@@ -48,7 +49,7 @@ export default class OtpLogin extends Component {
   async refresh(e) {
     e && e.preventDefault();
     try {
-      const { data } = await axios.get(configs.otp_api + '/otp/singup/');
+      const { data } = await axios.get(server.otp_api + '/otp/singup/');
       this.updateCaptcha(data);
     } catch(e) {
       this.setPopUp({
@@ -60,7 +61,7 @@ export default class OtpLogin extends Component {
 
   updateCaptcha(data) {
     if (data['key']) {
-      const image_url = configs.otp_api + data['image_url'];
+      const image_url = server.otp_api + data['image_url'];
       const key = data['key'];
       
       this.setState({
@@ -88,8 +89,8 @@ export default class OtpLogin extends Component {
       }
       
       const params = { email, captcha_0, captcha_1 };
-      const { data } = await axios.post(configs.otp_api + '/otp/singup/', params); 
-      console.log('token', data['token'])
+      const { data } = await axios.post(server.otp_api + '/otp/singup/', params); 
+      
       this.setState({
         token: data['token'],
         view: 'login',
@@ -118,8 +119,8 @@ export default class OtpLogin extends Component {
       }
       
       const headers = { 'Authorization': 'Token ' + token };
-      await axios.post(configs.otp_api + '/otp/login/', { password }, { headers });
-      const { data } = await axios.get(configs.otp_api + '/rest-auth/user/', { params: { email }, headers });
+      await axios.post(server.otp_api + '/otp/login/', { password }, { headers });
+      const { data } = await axios.get(server.otp_api + '/rest-auth/user/', { params: { email }, headers });
       this.props.signIn({ token, ...data });
       this.goToHome();
     } catch(e) {

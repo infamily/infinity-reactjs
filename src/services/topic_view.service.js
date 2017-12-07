@@ -1,10 +1,10 @@
 import axios from 'axios';
 import langService from './lang.service';
-import configs from '../configs';
+import serverService from './server.service';
 
 class TopicViewService {
   constructor() {
-    this.api = configs.api;
+    
   }
 
   async createTopic(data, token) {
@@ -21,7 +21,7 @@ class TopicViewService {
         categories,
       };
 
-      const { data } = await axios.post(this.api + '/topics/', parameters, { headers });
+      const { data } = await axios.post(serverService.api + '/topics/', parameters, { headers });
       return data;
     } catch (e) {
       console.error(e);
@@ -42,7 +42,7 @@ class TopicViewService {
         categories,
       };
 
-      const { data } = await axios.patch(`${this.api}/topics/${id}/`, parameters, { headers });
+      const { data } = await axios.patch(`${serverService.api}/topics/${id}/`, parameters, { headers });
       return data;
     } catch (e) {
       console.error(e);
@@ -52,7 +52,7 @@ class TopicViewService {
   async deleteTopic(id, token) {
     try {
       const headers = { 'Authorization': 'Token ' + token };
-      await axios.delete(`${this.api}/topics/${id}/`, { headers });
+      await axios.delete(`${serverService.api}/topics/${id}/`, { headers });
       return 'success';
     } catch (e) {
       console.error(e);
@@ -64,7 +64,7 @@ class TopicViewService {
     const f = flag || '';
      
     try {
-      const { data } = await axios.get(`${this.api}/topics/?search=${query}&lang=${current}&type=${f}`); 
+      const { data } = await axios.get(`${serverService.api}/topics/?search=${query}&lang=${current}&type=${f}`); 
       return data;
     } catch(e) {
       console.error(e);
@@ -76,7 +76,7 @@ class TopicViewService {
       const { current } = langService;
       const headers = { 'Authorization': 'Token ' + token };
 
-      const categories = await axios.get(`${this.api}/types/?category=true&lang=${current}`, { headers });
+      const categories = await axios.get(`${serverService.api}/types/?category=true&lang=${current}`, { headers });
       return categories.data;
     } catch (e) {
       console.error(e);

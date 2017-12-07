@@ -1,8 +1,17 @@
-import configs from '../configs';
-
 class ServerService {
   constructor() {
+    this.api = 'https://test.wfx.io/api/v1';
+    this.otp_api = 'https://test.wfx.io';
+    
+    this.getDefault();
+  }
 
+  getDefault() {
+    const serverNum = localStorage["inf:api_server"];
+
+    if (serverNum) {
+      this.changeServer(serverNum);
+    }
   }
 
   changeServer(num) {
@@ -13,9 +22,15 @@ class ServerService {
 
     if (num < 0 || num > api_servers.length) return;
     const api = api_servers[num];
+    
+    this.api = api + '/api/v1';
+    this.otp_api = api;
 
-    configs.api = api + '/api/v1';
-    configs.otp_api = api;
+    this.setDefault(num);
+  }
+  
+  setDefault(num) {
+    localStorage["inf:api_server"] = num;
   }
 }
 

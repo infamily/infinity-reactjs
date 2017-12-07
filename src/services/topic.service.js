@@ -1,13 +1,11 @@
 import axios from 'axios';
 import langService from './lang.service';
-import configs from '../configs';
+import serverService from './server.service';
 
 class TopicService {
   constructor() {
     this.topics = [];
-    this.fromPage = 0;
-
-    this.api = configs.api;
+    this.fromPage = 0; 
   }
 
   setTopics(flag) {
@@ -15,7 +13,7 @@ class TopicService {
     const f = flag || '';
 
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?lang=${langService.current}&type=${f}`)
+      axios.get(`${serverService.api}/topics/?lang=${langService.current}&type=${f}`)
       .then(function (response) {  
         self.topics = response.data.results;
         self.fromPage = 1;        
@@ -33,7 +31,7 @@ class TopicService {
     const f = flag || '';
     
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?page=${page}&lang=${langService.current}&type=${f}`)
+      axios.get(`${serverService.api}/topics/?page=${page}&lang=${langService.current}&type=${f}`)
       .then(function (response) {  
         self.fromPage = page;
         self.topics = response.data.results;
@@ -51,7 +49,7 @@ class TopicService {
     const f = flag || '';
 
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/topics/?search=${query}&lang=${langService.current}&type=${f}`)
+      axios.get(`${serverService.api}/topics/?search=${query}&lang=${langService.current}&type=${f}`)
       .then(function (response) {  
         self.topics = response.data.results;
         resolve(response.data.results);
@@ -65,7 +63,7 @@ class TopicService {
 
   async getTopic(id) {
     try {
-      const getTopic = lang => axios.get(`${this.api}/topics/${id}/?lang=${lang || ''}`);
+      const getTopic = lang => axios.get(`${serverService.api}/topics/${id}/?lang=${lang || ''}`);
       const _topic = await getTopic(' ');
       
       const { current } = langService;
@@ -84,7 +82,7 @@ class TopicService {
 
   getComments(id, lang) { 
     return new Promise((resolve, reject) => {
-      axios.get(`${this.api}/comments/?topic=${id}&lang=${lang}`)
+      axios.get(`${serverService.api}/comments/?topic=${id}&lang=${lang}`)
       .then(function (response) {
         resolve(response.data.results);
       })
@@ -97,7 +95,7 @@ class TopicService {
 
   async getCategory(id) {
     try {
-      const getCategory = lang => axios.get(`${this.api}/types/${id}/?lang=${lang || ''}`);
+      const getCategory = lang => axios.get(`${serverService.api}/types/${id}/?lang=${lang || ''}`);
       const _category = await getCategory(' ');
   
       const { current } = langService;
