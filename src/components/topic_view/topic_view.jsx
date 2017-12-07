@@ -260,7 +260,7 @@ class Topic extends Component {
     } = this.state;
     
 
-    const type = all_types[topic_type].toLowerCase() || "idea";
+    const type = all_types[topic_type - 1] || "idea";
 
     const Types = () => all_types.map((item, i) => {
       return <option value={i + 1} key={item}>{item}</option>;
@@ -353,7 +353,7 @@ class Topic extends Component {
                 className="comment__text"
                 rows="10"
                 name="topic_text"
-                placeholder={"Enter your " + type}               
+                placeholder={"Enter your " + type.toLowerCase()}               
                 value={topic_text}
                 onChange={this.handleChange}
               />
