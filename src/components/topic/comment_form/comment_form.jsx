@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 
-import './comment.css';
+import './comment_form.css';
 
 class Comment extends Component {
   constructor(props) {

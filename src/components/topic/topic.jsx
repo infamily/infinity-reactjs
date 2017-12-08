@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import { ButtonGroup, ButtonToolbar, Button, Badge } from 'react-bootstrap';
+
 import topicService from '../../services/topic.service.js';
 import commentService from '../../services/comment.service.js';
-
 import configs from '../../configs';
+
 import Menu from '../utils/menu';
-import Comment from './comment';
 import Language from '../utils/lang_select';
+import Comment from './comment_form';
+import Comments from './comments';
 
 import './topic.css';
 
@@ -85,7 +87,7 @@ class Topic extends Component {
     position < 0 && com_sec.scrollIntoView(); 
   }
 
-  startToEdit(id) {
+  startToEdit = (id) => {
     const comment = this.state.comments.find(comment => comment.id === id);
     this.setState({
       comment_id: id,
@@ -95,7 +97,7 @@ class Topic extends Component {
     this.scrollToEdit();     
   }
   
-  reply(name) {
+  reply = (name) => {
     const response = `[${name}], `
     this.setState({
       comment_text: response
@@ -199,49 +201,6 @@ class Topic extends Component {
         <Link to={'/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>;
     }
     
-    const UserButtons = ({ id }) => 
-      <ButtonToolbar>
-        <ButtonGroup bsSize="xsmall">
-          <Button onClick={() => this.startToEdit(id)}>&#9998;</Button>
-          <Button onClick={() => this.remove(id)}>&#10006;</Button>
-        </ButtonGroup>
-      </ButtonToolbar>;
-    
-    const ReplyButton = ({ owner }) => 
-      <ButtonGroup bsSize="xsmall">
-        <Button onClick={() => this.reply(owner)}>Reply</Button>
-      </ButtonGroup>;
-
-    const Buttons = ({ id, owner }) => {
-      return user && (
-        user.username=== owner
-          ? <UserButtons id={id} />
-          : <ReplyButton owner={owner} />
-      );
-    }
-
-    const Comments = () => comments.length ?
-      <div>
-        <h3>Comments</h3>
-        {
-          comments.map(comment => {
-            const { id, text, owner } = comment;
-            const content = ReactHtmlParser(mdConverter.makeHtml(text));
-            
-            return (
-              <div key={id} className="comment__section">
-                <div>{content}</div>
-                <Buttons owner={owner} id={id}/>
-                <div className="comment__owner">
-                  <span>{owner}</span>
-                </div>
-              </div>
-            );
-          })
-        }
-      </div>
-      : null;
-
     return (
       <div className="main">
         <div className="topics__content-item" style={{display: 'block'}}>
@@ -260,7 +219,12 @@ class Topic extends Component {
               />
             </div>
           }
-          <Comments />
+          <Comments 
+            comments={comments}
+            startToEdit={this.startToEdit}
+            reply={this.reply}
+            remove={this.remove}
+          />
           <Language />
           <Menu page='Menu'/>
         </div>

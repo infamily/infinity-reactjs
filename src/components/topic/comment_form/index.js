@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Comment from './comment';
+import CommentForm from './comment_form';
 
 function mapStateToProps(state) {
   return {
@@ -7,4 +7,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(Comment);
+export default connect(mapStateToProps, null)(CommentForm);
