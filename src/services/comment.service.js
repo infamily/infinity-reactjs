@@ -3,9 +3,6 @@ import langService from './lang.service';
 import serverService from './server.service';
 
 class CommentService {
-  constructor() {
-  
-  }
 
   async createComment(url, text, token) {
     const lang = langService.current;

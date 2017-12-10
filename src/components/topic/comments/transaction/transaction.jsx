@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { 
-  ButtonGroup, 
   Button,
   FormGroup,
   FormControl,
   ControlLabel,
   InputGroup,  
-  ProgressBar, 
   Modal 
 } from 'react-bootstrap';
 import Select from 'react-select';
+import './transaction.css';
 
+import transactionService from '../../../../services/transaction.service';
 import currencies from './currencies';
 
 export default class Transaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: props.comment.remains * 20,
+      payment_amount: props.comment.remains * 20,
       symbol_native: '$',
+      payment_currency: 1,
       currency: 'USD',
     }
   }
@@ -31,15 +32,22 @@ export default class Transaction extends Component {
     comment: PropTypes.object.isRequired,
   };
 
-  makeTransaction = () => {
-    
-    console.log(this.state)
-    console.log('done')
+  makeTransaction = async () => {
+    const { user, comment } = this.props;
+    const { payment_currency, payment_amount } = this.state;
+
+    const data = {
+      payment_currency,
+      payment_amount
+    };
+
+    const result = await transactionService.createTransaction(data, comment, user);
   }
 
   selectCurrency = item => {
     item && this.setState({
       currency: item.value,
+      payment_currency: item.index,
       symbol_native: item.symbol_native,
     });
   }
@@ -52,14 +60,12 @@ export default class Transaction extends Component {
 
   render() {
     const { comment, state, investState } = this.props;
-    const { currency, amount, symbol_native } = this.state;
+    const { currency, payment_amount, symbol_native } = this.state;
 
-    // console.log(comment)
-    
     return (
-      <Modal show={state} className="topic_view__modal">
+      <Modal show={state} className="transaction__modal">
         <Modal.Header>
-          <Modal.Title>Investor Form</Modal.Title>
+          <Modal.Title>Receiver: {comment.owner}</Modal.Title>
         </Modal.Header>
           <Modal.Body>
           <FormGroup controlId="formControlsSelect">
@@ -67,11 +73,10 @@ export default class Transaction extends Component {
             <InputGroup>
               <InputGroup.Addon>{symbol_native}</InputGroup.Addon>
               <FormControl
-                // className="topic_view__field"
                 type="text"
-                name="amount"
+                name="payment_amount"
                 label="Title"
-                value={amount}
+                value={payment_amount}
                 onChange={this.handleChange}
               />
             </InputGroup>
@@ -79,7 +84,6 @@ export default class Transaction extends Component {
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Currency</ControlLabel>
             <Select
-              // className="topic_view__select"
               name="currency"
               clearable={false}
               resetValue={currencies[0]}

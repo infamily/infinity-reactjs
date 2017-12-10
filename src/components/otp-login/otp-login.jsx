@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Modal, Button, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import configs from '../../configs';
 import server from '../../services/server.service';
 import './otp-login.css'; 
 

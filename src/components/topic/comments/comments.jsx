@@ -25,7 +25,7 @@ export default class Comments extends Component {
   };
 
   // componentDidMount() {
-  //   dev feature
+  //   // dev feature
   //   setTimeout(() => this.investState(this.props.comments[0]), 1000)     
   // }
 

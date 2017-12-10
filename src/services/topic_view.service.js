@@ -3,9 +3,6 @@ import langService from './lang.service';
 import serverService from './server.service';
 
 class TopicViewService {
-  constructor() {
-    
-  }
 
   async createTopic(data, token) {
     const lang = langService.current;

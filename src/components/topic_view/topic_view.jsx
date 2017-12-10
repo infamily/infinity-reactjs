@@ -75,7 +75,7 @@ class Topic extends Component {
   async getTopicData(id) {
     if (!id) return {};
 
-    const { user, match, history } = this.props;
+    const { user, history } = this.props;
     const topic = await topicService.getTopic(id);
     const topic_parents = await getParents(topic.parents);
     const topic_categories = await getCategories(topic.categories);

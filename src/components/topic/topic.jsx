@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
-import { ButtonGroup, ButtonToolbar, Button, Badge } from 'react-bootstrap';
+import { Button, Badge } from 'react-bootstrap';
 
 import topicService from '../../services/topic.service.js';
 import commentService from '../../services/comment.service.js';
@@ -9,7 +9,7 @@ import configs from '../../configs';
 
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
-import Comment from './comment_form';
+import CommentForm from './comment_form';
 import Comments from './comments';
 
 import './topic.css';
@@ -160,8 +160,8 @@ class Topic extends Component {
   render() {
     const { topic, comments, parents, type } = this.state;
     const user = this.props.user;
-
     const { colors } = configs;
+
     const badgeStyle = type => {
       return {
         backgroundColor: colors[type]
@@ -210,7 +210,7 @@ class Topic extends Component {
           {
             topic.id && 
             <div ref="com_sec">
-              <Comment
+              <CommentForm
                 create={this.create}
                 edit={this.edit}
                 clear={this.clear}

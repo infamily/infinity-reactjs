@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from '../../../services/lang.service';
 import serverService from '../../../services/server.service';
 
@@ -12,7 +12,6 @@ class ServerButton extends Component {
   } 
 
   changeServer = index => {
-    console.log(index)
     serverService.changeServer(index);
     this.setServer(index);
   }
