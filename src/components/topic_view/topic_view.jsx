@@ -81,7 +81,7 @@ class Topic extends Component {
     const topic_categories = await getCategories(topic.categories);
     
     // redirect if isn't owner 
-    if (topic.owner !== user.username) history.push('/');
+    if (topic.owner.id !== user.pk) history.push('/');
 
     return {
       topic_type: topic.type,

@@ -42,6 +42,7 @@ export default class Transaction extends Component {
     };
 
     const result = await transactionService.createTransaction(data, comment, user);
+    console.log(result);
   }
 
   selectCurrency = item => {
@@ -65,7 +66,7 @@ export default class Transaction extends Component {
     return (
       <Modal show={state} className="transaction__modal">
         <Modal.Header>
-          <Modal.Title>Receiver: {comment.owner}</Modal.Title>
+          <Modal.Title>Receiver: {comment.owner.username}</Modal.Title>
         </Modal.Header>
           <Modal.Body>
           <FormGroup controlId="formControlsSelect">

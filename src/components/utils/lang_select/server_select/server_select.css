@@ -1,0 +1,12 @@
+
+.server_select__bullet {
+  font-size: 11px;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+}
+
+.server_select__img {
+  width: 20px;
+}

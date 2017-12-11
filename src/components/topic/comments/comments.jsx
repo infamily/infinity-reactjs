@@ -46,13 +46,13 @@ export default class Comments extends Component {
       return user && (
         <ButtonGroup bsSize="xsmall">
           {
-            user.username === owner
+            user.pk === owner.id
               ? <ButtonGroup bsSize="xsmall">
                   <Button onClick={() => this.props.startToEdit(id)}>&#9998;</Button>
                   <Button onClick={() => this.props.remove(id)}>&#10006;</Button>
                 </ButtonGroup>
               : <ButtonGroup bsSize="xsmall">
-                  <Button onClick={() => this.props.reply(owner)}>Reply</Button>
+                  <Button onClick={() => this.props.reply(owner.username)}>Reply</Button>
                   {
                     need 
                     ? <Button onClick={() => this.investState(comment)}>Invest {need}$h</Button> 
@@ -94,7 +94,7 @@ export default class Comments extends Component {
           <Buttons owner={owner} id={id} need={need} comment={comment}/>
 
           <div className="comment__owner">
-            <span>{owner}</span>
+            <span>{owner.username}</span>
           </div>
         </div>
       );

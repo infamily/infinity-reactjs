@@ -5,6 +5,7 @@ class TransactionService {
   
   async createTransaction(data, comment, user) {
     const { payment_amount, payment_currency } = data;
+
     try {
       const headers = { 'Authorization': 'Token ' + user.token };
       
@@ -12,7 +13,7 @@ class TransactionService {
         comment: comment.url,
         payment_amount,
         payment_currency,
-        payment_recipient: comment.id,
+        payment_recipient: comment.owner.id,
         payment_sender: user.pk,
 
         snapshot: 1,
