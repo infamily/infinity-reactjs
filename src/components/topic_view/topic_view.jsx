@@ -8,6 +8,8 @@ import {
   Button, 
   Modal, 
   InputGroup,
+  ToggleButtonGroup,
+  ToggleButton
 } from 'react-bootstrap';
 
 import topicViewService from '../../services/topic_view.service';
@@ -30,12 +32,13 @@ class Topic extends Component {
       all_categories: [],
       flag: 0,
       id: null,
-      
+
       topic_type: 1,  
       topic_categories: [],  
       topic_title: '',  
       topic_text: '',  
       topic_parents: [],
+      is_draft: false,
       error: false,
       success: false,
       delete: false,
@@ -45,8 +48,6 @@ class Topic extends Component {
       }
     }
 
-    this.submitTopic = this.submitTopic.bind(this);
-    this.getTopics = this.getTopics.bind(this);
   }
 
   static propTypes = {
@@ -81,12 +82,13 @@ class Topic extends Component {
     const topic_categories = await getCategories(topic.categories);
     
     // redirect if isn't owner 
-    if (topic.owner.id !== user.pk) history.push('/');
+    if (topic.owner !== user.username) history.push('/');
 
     return {
       topic_type: topic.type,
       topic_title: topic.title,
       topic_text: topic.body,
+      is_draft: topic.is_draft,
       topic_categories,
       topic_parents,
     };
@@ -125,6 +127,7 @@ class Topic extends Component {
       topic_title,
       topic_text,
       topic_parents,
+      is_draft,
     } = this.state;
 
     const formatted = array => array[0] ? array.map(item => item.url) : [];
@@ -133,6 +136,7 @@ class Topic extends Component {
       type: topic_type,
       title: topic_title,
       text: topic_text,
+      is_draft,      
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
     };
@@ -148,7 +152,7 @@ class Topic extends Component {
     });
   }
 
-  async submitTopic(e) {
+  submitTopic = async (e) => {
     e.preventDefault();
     const { user, match } = this.props;
     const { topic_title } = this.state;
@@ -187,7 +191,7 @@ class Topic extends Component {
     result === 'success' && this.props.history.push('/');
   }
   
-  async getTopics(input, callback) {
+  getTopics = async (input, callback) => {
     const { flag } = this.state;
     const { results } = await topicViewService.search(input, flag);
     const options = results.map(topic => {
@@ -244,6 +248,12 @@ class Topic extends Component {
       flag: key,
     });
   }
+
+  onChangeDraft = value => {
+    this.setState({
+      is_draft: value
+    });
+  }
   
   render() {
     const { 
@@ -252,7 +262,8 @@ class Topic extends Component {
       topic_title, 
       topic_text,
       topic_parents,
-      
+      is_draft,
+
       flag,
       all_categories, 
       all_types,
@@ -373,6 +384,15 @@ class Topic extends Component {
                 />
               </InputGroup>
             </FormGroup>
+            <ToggleButtonGroup
+              type="radio" 
+              name="options" 
+              value={is_draft}
+              onChange={this.onChangeDraft}>
+              <ToggleButton value={false}>Public</ToggleButton>
+              <ToggleButton value={true}>Draft</ToggleButton>
+            </ToggleButtonGroup>
+            <br /><br />
             <Buttons />
             </form>
           </div>

@@ -6,7 +6,7 @@ class TopicViewService {
 
   async createTopic(data, token) {
     const lang = langService.current;
-    const { type, title, text, parents, categories } = data;
+    const { type, title, text, parents, categories, is_draft } = data;
     try {
       const headers = { 'Authorization': 'Token ' + token };
       const parameters = {
@@ -16,6 +16,7 @@ class TopicViewService {
         type, 
         parents,
         categories,
+        is_draft,
       };
 
       const { data } = await axios.post(serverService.api + '/topics/', parameters, { headers });
@@ -27,7 +28,7 @@ class TopicViewService {
 
   async updateTopic(data, token) {
     const lang = langService.current;
-    const { type, title, text, parents, categories, id } = data;
+    const { type, title, text, parents, categories, id, is_draft } = data;
     try {
       const headers = { 'Authorization': 'Token ' + token };
       const parameters = {
@@ -37,6 +38,7 @@ class TopicViewService {
         type,
         parents,
         categories,
+        is_draft,
       };
 
       const { data } = await axios.patch(`${serverService.api}/topics/${id}/`, parameters, { headers });
