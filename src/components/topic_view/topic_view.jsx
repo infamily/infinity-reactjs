@@ -188,7 +188,10 @@ class Topic extends Component {
     const { user, match } = this.props;
     const edited_id = match.params.id;
     const result = await topicViewService.deleteTopic(edited_id, user.token);
-    result === 'success' && this.props.history.push('/');
+    if (result === 'success') {
+      this.props.history.push('/');
+      window.location.reload(false);
+    };
   }
   
   getTopics = async (input, callback) => {
@@ -346,7 +349,7 @@ class Topic extends Component {
                 options={categories}
                 onChange={this.selectCategory}
               />
-              </FormGroup>
+            </FormGroup>
             <FormGroup>
               <ControlLabel>What's on your mind?</ControlLabel>
               <FormControl
@@ -385,8 +388,9 @@ class Topic extends Component {
               </InputGroup>
             </FormGroup>
             <ToggleButtonGroup
-              type="radio" 
-              name="options" 
+              type="radio"
+              name="options"
+              className="topic_view__draft"
               value={is_draft}
               onChange={this.onChangeDraft}>
               <ToggleButton value={false}>Public</ToggleButton>

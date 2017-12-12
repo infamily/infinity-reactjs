@@ -18,10 +18,10 @@ export default class Transaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      payment_amount: props.comment.remains * 20,
-      symbol_native: '$',
-      payment_currency: 1,
-      currency: 'USD',
+      payment_amount: props.comment.remains,
+      symbol_native: 'HUR',
+      payment_currency: '2',
+      currency: 'HUR',
     }
   }
 
@@ -74,9 +74,8 @@ export default class Transaction extends Component {
             <InputGroup>
               <InputGroup.Addon>{symbol_native}</InputGroup.Addon>
               <FormControl
-                type="text"
+                type="number"
                 name="payment_amount"
-                label="Title"
                 value={payment_amount}
                 onChange={this.handleChange}
               />

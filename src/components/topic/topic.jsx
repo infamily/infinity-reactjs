@@ -184,7 +184,10 @@ class Topic extends Component {
 
     const Topic = () => topic.title ?
       <div>
+        
         <h1>{topic.title}</h1>
+        <i>{topic.is_draft ? <p>draft</p> : ''}</i>
+
         <EditTopic owner={topic.owner} id={topic.id}/>
         <Tags /> <br /> 
         

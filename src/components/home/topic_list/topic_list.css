@@ -6,3 +6,12 @@
 .topic_list__btn {
   border-radius: 10px;
 }
+
+.topic_list__draft {
+  background-color: #ffffffce;
+  border-radius: 5px;
+}
+
+.topic_list__hide {
+  display: none;
+}

@@ -13,12 +13,7 @@ class TransactionService {
         comment: comment.url,
         payment_amount,
         payment_currency,
-        payment_recipient: comment.owner.id,
         payment_sender: user.pk,
-
-        snapshot: 1,
-        hour_price: 1,
-        currency_price: 1,
       }; 
 
       const { data } = await axios.post(serverService.api + '/transactions/', parameters, { headers });

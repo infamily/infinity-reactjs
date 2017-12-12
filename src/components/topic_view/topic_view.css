@@ -22,6 +22,10 @@
   float: right;
 }
 
+.topic_view__draft {
+  z-index: 0;
+}
+
 /* stabilise flag position */
 .input-group > .dropup.input-group-btn {
   vertical-align: top;

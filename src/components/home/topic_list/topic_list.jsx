@@ -40,6 +40,14 @@ class Topics extends Component {
       backgroundColor: colors[type]
     }};
 
+    const draftStyle = topic => { 
+      if (!topic.is_draft) return '';
+      if (!user) return 'topic_list__hide';
+
+      const isOwner = topic.owner === user.username;
+      return isOwner ? 'topic_list__draft' : 'topic_list__hide';
+  };
+
     const EditTopic = ({ owner, id }) => {
       const isOwner = user && (owner === user.username);
       
@@ -53,17 +61,20 @@ class Topics extends Component {
     }
 
     const List = () =>
-      topics.map(topic => (
-        <section className="topics__item" key={topic.id}>
-          <EditTopic owner={topic.owner} id={topic.id} />
-          <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
-            <h2>
-              <Badge className="home__type" style={badgeStyle(topic.type)}>
-              {' '}
-            </Badge> {topic.title}</h2>
+      topics.map(topic => {
+
+        return (
+          <section className={"topics__item " + draftStyle(topic)} key={topic.id}>
+            <EditTopic owner={topic.owner} id={topic.id} />
+            <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
+              <h2>
+                <Badge className="home__type" style={badgeStyle(topic.type)}>
+                  {' '}
+                </Badge> {topic.title}</h2>
             </Link>
-        </section>
-      ));
+          </section>
+        )
+      });
 
     return (
       <div className="topics__list">
