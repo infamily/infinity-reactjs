@@ -43,6 +43,8 @@ export default class Transaction extends Component {
 
     const result = await transactionService.createTransaction(data, comment, user);
     console.log(result);
+
+    window.location.reload(false);
   }
 
   selectCurrency = item => {
