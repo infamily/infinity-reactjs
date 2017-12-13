@@ -49,6 +49,17 @@ class TransactionService {
       console.error(e);
     }
   }
+
+  async getCurrencies(token) {
+    try {
+      const headers = { 'Authorization': 'Token ' + token };
+
+      const { data } = await axios.get(`${serverService.api}/currencies/`, { headers });
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  } 
 }
 
 const transactionService = new TransactionService();

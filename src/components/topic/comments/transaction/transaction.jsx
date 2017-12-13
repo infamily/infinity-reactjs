@@ -12,16 +12,38 @@ import Select from 'react-select';
 import './transaction.css';
 
 import transactionService from '../../../../services/transaction.service';
-import currencies from './currencies';
+import ProgressBar from '../progress_bar';
 
 export default class Transaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
       payment_amount: props.comment.remains,
-      symbol_native: 'HUR',
+      payment_inCurrency: props.comment.remains,
+      symbol: 'HUR',
       payment_currency: '2',
       currency: 'HUR',
+      in_hours: 1,
+      currencies: [],
+      message: ''
+    }
+  }
+
+  async componentWillMount() {
+    const { token } = this.props.user;
+    try {
+      const data = await transactionService.getCurrencies(token);
+      const currencies = data.map(item => {
+        item.value = item.label;
+        return item;
+      });
+      console.log(currencies)
+      
+      this.setState({
+        currencies
+      });
+    } catch(e) {
+      console.error(e)
     }
   }
 
@@ -35,6 +57,16 @@ export default class Transaction extends Component {
   makeTransaction = async () => {
     const { user, comment } = this.props;
     const { payment_currency, payment_amount } = this.state;
+    if (payment_amount < 0) {
+      this.setState({
+        message: "Incorrect amount of hours."
+      });
+      return;
+    } else {
+      this.setState({
+        message: ""
+      });
+    }
 
     const data = {
       payment_currency,
@@ -48,22 +80,44 @@ export default class Transaction extends Component {
   }
 
   selectCurrency = item => {
+    const { payment_amount } = this.state;
+    const { value, id, in_hours } = item;
+    const payment_inCurrency = this.inCurrency(payment_amount, in_hours);
+
     item && this.setState({
-      currency: item.value,
-      payment_currency: item.index,
-      symbol_native: item.symbol_native,
+      currency: value,
+      payment_currency: id,
+      symbol: value,
+      in_hours: in_hours,
+      payment_inCurrency
     });
   }
 
   handleChange = e => {
+    const { payment_amount, in_hours } = this.state;
+    const { value } = e.target;
+    const payment_inCurrency = this.inCurrency(value, in_hours);
+
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: value,
+      payment_inCurrency
     });
+  }
+
+  inCurrency(value, in_hours) {
+    return (value / in_hours).toFixed(2);
   }
 
   render() {
     const { comment, state, investState } = this.props;
-    const { currency, payment_amount, symbol_native } = this.state;
+    const { currencies, currency, payment_amount, payment_inCurrency, symbol } = this.state;
+
+    const Bar = () => {
+      const invest = parseFloat(payment_amount);
+      return(
+        <ProgressBar comment={comment} invest={invest}/>
+      );
+    }
 
     return (
       <Modal show={state} className="transaction__modal">
@@ -71,15 +125,24 @@ export default class Transaction extends Component {
           <Modal.Title>Receiver: {comment.owner.username}</Modal.Title>
         </Modal.Header>
           <Modal.Body>
+          <Bar/>
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Amount</ControlLabel>
             <InputGroup>
-              <InputGroup.Addon>{symbol_native}</InputGroup.Addon>
+              <InputGroup.Addon>HUR</InputGroup.Addon>
               <FormControl
                 type="number"
                 name="payment_amount"
                 value={payment_amount}
                 onChange={this.handleChange}
+              />
+              <InputGroup.Addon>{symbol}</InputGroup.Addon>
+              <FormControl
+                type="number"
+                name="payment_inCurrency"
+                value={payment_inCurrency}
+                disable="true"
+                readOnly
               />
             </InputGroup>
           </FormGroup>
@@ -96,6 +159,7 @@ export default class Transaction extends Component {
           </FormGroup>
           </Modal.Body>
         <Modal.Footer>
+          {this.state.message + '  '}
           <Button onClick={this.makeTransaction}>Invest</Button>
           <Button onClick={() => investState({})}>Close</Button>
         </Modal.Footer>

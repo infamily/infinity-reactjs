@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ButtonGroup, Button, ProgressBar } from 'react-bootstrap';
+import { ButtonGroup, Button } from 'react-bootstrap';
 import Transaction from './transaction';
+import ProgressBar from './progress_bar';
 
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
@@ -26,7 +27,7 @@ export default class Comments extends Component {
 
   // componentDidMount() {
   //   // dev feature
-  //   setTimeout(() => this.investState(this.props.comments[0]), 1000)     
+  //   setTimeout(() => this.investState(this.props.comments[0]), 1500)     
   // }
 
   investState = (comment) => {
@@ -42,7 +43,7 @@ export default class Comments extends Component {
     const { user, comments } = this.props;
     const { transaction, invest_comment } = this.state;
     
-    const Buttons = ({ id, owner, need, comment }) => {
+    const Buttons = ({ id, owner, remains, comment }) => {
       return user && (
         <ButtonGroup bsSize="xsmall">
           {
@@ -54,8 +55,8 @@ export default class Comments extends Component {
               : <ButtonGroup bsSize="xsmall">
                   <Button onClick={() => this.props.reply(owner.username)}>Reply</Button>
                   {
-                    need 
-                    ? <Button onClick={() => this.investState(comment)}>Invest {need}$h</Button> 
+                    remains 
+                    ? <Button onClick={() => this.investState(comment)}>Invest {remains}$h</Button> 
                     : null
                   }
                 </ButtonGroup>
@@ -71,27 +72,20 @@ export default class Comments extends Component {
         owner,
         claimed_hours,
         assumed_hours,
-        matched,
-        donated,
+        remains
       } = comment;
 
       const content = ReactHtmlParser(mdConverter.makeHtml(text));
-      const total_time = parseFloat(claimed_hours) + parseFloat(assumed_hours);
-      const total_money = matched + donated;
-      const need = total_time - total_money;
 
-      const Progress = () => total_time ?
-        <ProgressBar>
-          <ProgressBar bsStyle="success" now={total_money} label={`${total_money}$h`} key={1} max={total_time} />
-          <ProgressBar bsStyle="warning" now={need} label={`${need}h`} key={2} max={total_time} />
-        </ProgressBar>
+      const Progress = () => (claimed_hours || assumed_hours) ?
+        <ProgressBar comment={comment} />
         : null;
 
       return (
         <div key={id} className="comment__section">
           <div>{content}</div>
           <Progress />
-          <Buttons owner={owner} id={id} need={need} comment={comment}/>
+          <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
 
           <div className="comment__owner">
             <span>{owner.username}</span>

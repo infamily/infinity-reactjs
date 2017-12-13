@@ -1,9 +1,9 @@
 export default [
     {
-        "index": "2",
+        "id": "2",
         "symbol": "HUR",
         "name": "Human Hour",
-        "symbol_native": "HUR",
+        "symbol": "HUR",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "HUR",
@@ -12,10 +12,10 @@ export default [
         "name_plural": "Human Hours"
     },
     {
-        "index": "3",
+        "id": "3",
         "symbol": "$",
         "name": "US Dollar",
-        "symbol_native": "$",
+        "symbol": "$",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "USD",
@@ -24,10 +24,10 @@ export default [
         "name_plural": "US dollars"
     },
     {
-        "index": "4",
+        "id": "4",
         "symbol": "€",
         "name": "Euro",
-        "symbol_native": "€",
+        "symbol": "€",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "EUR",
@@ -36,10 +36,10 @@ export default [
         "name_plural": "euros"
     },
     {
-        "index": "1",
+        "id": "1",
         "symbol": "CN¥",
         "name": "Chinese Yuan",
-        "symbol_native": "CN¥",
+        "symbol": "CN¥",
         "decimal_digits": 2,
         "rounding": 0,
         "value": "CNY",
