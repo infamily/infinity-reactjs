@@ -12,8 +12,9 @@ export default class Comments extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      comments: props.comments,
       transaction: false,
-      invest_comment: {}
+      invest_comment: {},
     }
   }
 
@@ -23,12 +24,14 @@ export default class Comments extends Component {
     startToEdit: PropTypes.func.isRequired,
     reply: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired,
-  };
-
-  // componentDidMount() {
-  //   // dev feature
-  //   setTimeout(() => this.investState(this.props.comments[0]), 1500)     
-  // }
+  }; 
+  
+  componentWillReceiveProps(nextProps) {
+    this.props.comments !== nextProps.comments &&
+    this.setState({
+      comments: nextProps.comments
+    });
+  }
 
   investState = (comment) => {
     this.setState(prevState => {
@@ -39,9 +42,20 @@ export default class Comments extends Component {
     });
   }
 
+  updateComments = (comment) => {
+    const { comments } = this.state;
+    const updatedList = comments.map(item => {
+      return item.id === comment.id ? comment : item;
+    });
+
+    this.setState({
+      comments: updatedList
+    });
+  }
+
   render() {
-    const { user, comments } = this.props;
-    const { transaction, invest_comment } = this.state;
+    const { user } = this.props;
+    const { comments, transaction, invest_comment } = this.state;
     
     const Buttons = ({ id, owner, remains, comment }) => {
       return user && (
@@ -55,7 +69,7 @@ export default class Comments extends Component {
               : <ButtonGroup bsSize="xsmall">
                   <Button onClick={() => this.props.reply(owner.username)}>Reply</Button>
                   {
-                    remains 
+                    Boolean(remains) 
                     ? <Button onClick={() => this.investState(comment)}>Invest {remains}$h</Button> 
                     : null
                   }
@@ -105,6 +119,7 @@ export default class Comments extends Component {
              state={transaction}
              comment={invest_comment}
              investState={this.investState}
+             updateComments={this.updateComments}
            />
           }
         </div>

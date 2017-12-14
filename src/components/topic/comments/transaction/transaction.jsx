@@ -11,6 +11,7 @@ import {
 import Select from 'react-select';
 import './transaction.css';
 
+import commentService from '../../../../services/comment.service.js';
 import transactionService from '../../../../services/transaction.service';
 import ProgressBar from '../progress_bar';
 
@@ -37,8 +38,6 @@ export default class Transaction extends Component {
         item.value = item.label;
         return item;
       });
-      console.log(currencies)
-      
       this.setState({
         currencies
       });
@@ -50,6 +49,7 @@ export default class Transaction extends Component {
   static propTypes = {
     user: PropTypes.object,
     investState: PropTypes.func.isRequired,
+    updateComments: PropTypes.func.isRequired,
     state: PropTypes.bool.isRequired,
     comment: PropTypes.object.isRequired,
   };
@@ -74,9 +74,10 @@ export default class Transaction extends Component {
     };
 
     const result = await transactionService.createTransaction(data, comment, user);
-    console.log(result);
+    this.props.investState({});
 
-    window.location.reload(false);
+    const updated = await commentService.getComment(comment.id);
+    this.props.updateComments(updated);
   }
 
   selectCurrency = item => {

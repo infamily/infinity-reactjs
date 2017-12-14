@@ -40,6 +40,16 @@ class CommentService {
       console.error(e);
     } 
   }
+  
+  async getComment(id) {
+    const lang = langService.current;
+    try {
+      const { data } = await axios.get(`${serverService.api}/comments/${id}/?lang=${lang}`);
+      return data;
+    } catch(e) {
+      console.error(e);
+    } 
+  }
 
   async deleteComment(id, token) {
     try {
