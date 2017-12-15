@@ -65,6 +65,11 @@ export default class Comments extends Component {
               ? <ButtonGroup bsSize="xsmall">
                   <Button onClick={() => this.props.startToEdit(id)}>&#9998;</Button>
                   <Button onClick={() => this.props.remove(id)}>&#10006;</Button>
+                   {
+                    Boolean(remains) 
+                    ? <Button onClick={() => this.investState(comment)}>Invest {remains}$h</Button> 
+                    : null
+                  }
                 </ButtonGroup>
               : <ButtonGroup bsSize="xsmall">
                   <Button onClick={() => this.props.reply(owner.username)}>Reply</Button>
