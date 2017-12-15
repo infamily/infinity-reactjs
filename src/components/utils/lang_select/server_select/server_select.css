@@ -10,3 +10,21 @@
 .server_select__img {
   width: 20px;
 }
+
+.server_select__btn--mobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .server_select__btn {
+    display: none;
+  }
+  
+  .server_select__img {
+    width: 13px;
+  }
+
+  .server_select__btn--mobile {
+    display: inline-block;
+  }
+}

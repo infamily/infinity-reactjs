@@ -73,9 +73,8 @@ export default class Transaction extends Component {
       payment_amount
     };
 
-    const result = await transactionService.createTransaction(data, comment, user);
-    this.props.investState({});
-
+    this.close();
+    await transactionService.createTransaction(data, comment, user);
     const updated = await commentService.getComment(comment.id);
     this.props.updateComments(updated);
   }
@@ -95,7 +94,7 @@ export default class Transaction extends Component {
   }
 
   handleChange = e => {
-    const { payment_amount, in_hours } = this.state;
+    const { in_hours } = this.state;
     const { value } = e.target;
     const payment_inCurrency = this.inCurrency(value, in_hours);
 
@@ -105,12 +104,16 @@ export default class Transaction extends Component {
     });
   }
 
+  close = () => {
+    this.props.investState({}, window.scrollY)
+  }
+
   inCurrency(value, in_hours) {
     return (value / in_hours).toFixed(2);
   }
 
   render() {
-    const { comment, state, investState } = this.props;
+    const { comment, state } = this.props;
     const { currencies, currency, payment_amount, payment_inCurrency, symbol } = this.state;
 
     const Bar = () => {
@@ -162,7 +165,7 @@ export default class Transaction extends Component {
         <Modal.Footer>
           {this.state.message + '  '}
           <Button onClick={this.makeTransaction}>Invest</Button>
-          <Button onClick={() => investState({})}>Close</Button>
+          <Button onClick={this.close}>Close</Button>
         </Modal.Footer>
       </Modal>
     );

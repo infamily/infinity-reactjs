@@ -59,30 +59,28 @@ class Topic extends Component {
   async componentWillMount() {
     const { user, match } = this.props;
     const id = match.params.id;
-    if (user) {
-      const categories = await topicViewService.getCategories(user.token);
-      const editedData = await this.getTopicData(id);
-
-      this.setState({
-        all_categories: categories,
-        id,
-        ...editedData
-      });
-    } else {
-      this.props.history.push('/');
-    }
+    const categories = await topicViewService.getCategories();
+    const editedData = (user && id) ? await this.getTopicData(id) : {};
+    
+    this.setState({
+      all_categories: categories,
+      id,
+      ...editedData
+    });
   }
 
   async getTopicData(id) {
-    if (!id) return {};
-
     const { user, history } = this.props;
     const topic = await topicService.getTopic(id);
-    const topic_parents = await getParents(topic.parents);
-    const topic_categories = await getCategories(topic.categories);
     
     // redirect if isn't owner 
-    if (topic.owner !== user.username) history.push('/');
+    if (!topic || topic.owner !== user.username) {
+      history.push('/new-topic');
+      return {};
+    };
+
+    const topic_parents = await getParents(topic.parents);
+    const topic_categories = await getCategories(topic.categories);
 
     return {
       topic_type: topic.type,
@@ -272,6 +270,7 @@ class Topic extends Component {
       all_types,
       message
     } = this.state;
+    const { user } = this.props;
     
 
     const type = all_types[topic_type - 1] || "idea";
@@ -285,12 +284,20 @@ class Topic extends Component {
       return { value: name, label: name, url }
     });
 
-    const Buttons = () => this.state.id
+    const Buttons = () => {
+      if (!user) return (
+        <div>
+          <p><Link to="/page/otp">Sign in</Link> to post a topic.</p>
+        </div>
+      );
+
+      return this.state.id
       ? <div>
           <Button type="submit">Edit</Button>
           <Button className="topic_view__btn" onClick={() => this.showPopUp('delete')}>Delete</Button>
         </div>
       : <Button type="submit">Create</Button>;
+    };
 
     const PopUp = ({ state }) =>
       <div >

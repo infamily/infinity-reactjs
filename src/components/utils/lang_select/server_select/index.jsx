@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from '../../../../services/lang.service';
 import serverService from '../../../../services/server.service';
@@ -25,8 +26,14 @@ class ServerButton extends Component {
     });
   }
 
+  static propTypes = {
+    mobile: PropTypes.bool.isRequired,
+  };
+
+
   render() {
     const servers = langService.getServers();
+    const { mobile } = this.props;
 
     const style = (i) => this.state.server === i ? { backgroundColor: '#90B249' } : {};
     
@@ -37,13 +44,15 @@ class ServerButton extends Component {
       </MenuItem>
     })
 
-    return ( 
+    return (
       <DropdownButton 
-      pullRight={true} 
-      dropup 
-      bsSize="large"
-      title={<img className="server_select__img" src={serverImg} />} 
-      id="dropdown-size-large">
+        id="dropdown-server"
+        className={mobile ? "server_select__btn--mobile" : "server_select__btn"}
+        pullRight={true} 
+        dropup 
+        bsSize={mobile ? "small" : "large"}
+        title={<img className="server_select__img" src={serverImg} alt="server-img" />} 
+        >
         <Servers />
       </DropdownButton> 
     );

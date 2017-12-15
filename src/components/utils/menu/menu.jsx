@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'; 
+import { ButtonGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap'; 
 
 import './menu.css'; 
 
@@ -24,30 +24,40 @@ class Menu extends Component {
     this.props.signOut(); 
   }
 
-  render() {
-    const UserButtons = () =>
-    <div>
-      <Link to='/new-topic' className="main-menu__link">New topic</Link>
-      <MenuItem divider />      
-      <div className="main-menu__link" onClick={this.signOut}>Sign Out</div>
-    </div>
+  new = () => {
+    this.props.history.push('/new-topic'); 
+  }
 
-    return (
-      <div className="main-menu">
-        <ButtonToolbar>
-          <DropdownButton title={this.state.page} dropup bsSize="large" id="dropdown-size-large">
+  render() {
+    const isNew = this.props.location.pathname !== "/new-topic";
+    const NewTopic = ({ mobile }) => isNew 
+      ? <Button bsStyle="success" onClick={this.new} bsSize={mobile ? "small" : "large"}>New Topic</Button> 
+      : null;
+
+    const MainMenu = ({ mobile }) => (
+      <div className={mobile ? "main-menu main-menu--mobile" : "main-menu"}>
+        <ButtonGroup>
+          <DropdownButton title={this.state.page} dropup bsSize={mobile ? "small" : "large"} id="dropdown-size-large">
             <Link to="/" className="main-menu__link">Home </Link>
             <Link to="/page/what" className="main-menu__link">What?</Link>
             <Link to="/page/how" className="main-menu__link">How?</Link>
-            <MenuItem divider />                  
+            <MenuItem divider />
             {
               this.props.user
-                ? <UserButtons />
+                ? <div className="main-menu__link" onClick={this.signOut}>Sign Out</div>
                 : <Link to="/page/otp" className="main-menu__link">Sign In</Link>
             }
           </DropdownButton>
-        </ButtonToolbar>
+          <NewTopic mobile={mobile}/>
+        </ButtonGroup>
       </div>
+    );
+
+    return (
+      <div>
+       <MainMenu mobile={true} />
+       <MainMenu mobile={false} />
+      </div>      
     );
   }
 }

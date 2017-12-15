@@ -33,16 +33,28 @@ class Language extends Component {
   render() {
     const Languages = () => langService.language_names.map((lang, i) => {
       return <MenuItem className="select-lang__link" key={lang} eventKey={i} onSelect={this.changeLanguage}>{lang}</MenuItem>
-    })
+    });
 
-    return (
-      <div className="select-lang">
+    const LangMenu = ({ mobile }) =>
+      <div className={mobile ? "select-lang select-lang--mobile" : "select-lang"}>
         <ButtonGroup>
-          <DropdownButton title={this.state.lang} pullRight={true} bsSize="large" dropup id="dropdown-size-large">
+          <DropdownButton
+            id="dropdown-language"
+            title={this.state.lang} 
+            pullRight={true} 
+            bsSize={mobile ? "small" : "large"} 
+            dropup
+          >
             <Languages />
           </DropdownButton>
-          <ServerButton />
+          <ServerButton mobile={mobile}/>
         </ButtonGroup>
+      </div>;
+
+    return (
+      <div>
+        <LangMenu mobile={true} />
+        <LangMenu mobile={false} />
       </div>
     );
   }

@@ -9,3 +9,17 @@
   display: block;
   cursor: pointer;
 }
+
+.select-lang--mobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .select-lang {
+    display: none;
+  }
+
+  .select-lang--mobile {
+    display: block;
+  }
+}

@@ -70,12 +70,10 @@ class TopicViewService {
     }
   } 
 
-  async getCategories(token) {
+  async getCategories() {
     try {
       const { current } = langService;
-      const headers = { 'Authorization': 'Token ' + token };
-
-      const categories = await axios.get(`${serverService.api}/types/?category=true&lang=${current}`, { headers });
+      const categories = await axios.get(`${serverService.api}/types/?category=true&lang=${current}`);
       return categories.data;
     } catch (e) {
       console.error(e);
