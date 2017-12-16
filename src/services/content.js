@@ -2,9 +2,25 @@ export default {
   utils: {
     servers: {
       'en': [
+        'Singapore',
         'Frankfurt',
         'Shanghai',
       ],
+      'cn': [
+        '新加坡',
+        '法兰克福',
+        '上海',
+      ],
+      'ru': [
+        'Сингапур',
+        'Франкфурт',
+        'Шанхай',
+      ],
+      'lt': [
+        'Singapūras',
+        'Frankfurtas',
+        'Šanchajus',
+      ]
     }
   },
   main: [

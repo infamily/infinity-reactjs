@@ -1,7 +1,7 @@
 class ServerService {
   constructor() {
-    this.api = 'https://test.wfx.io/api/v1';
-    this.otp_api = 'https://test.wfx.io';
+    this.api = 'https://inf.li/api/v1';
+    this.otp_api = 'https://inf.li';
     
     this.getDefault();
   }
@@ -16,6 +16,7 @@ class ServerService {
 
   changeServer(num) {
     const api_servers = [
+      'https://inf.li',
       'https://test.wfx.io',
       'https://test.wefindx.io'
     ];
