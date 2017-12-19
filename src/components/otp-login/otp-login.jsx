@@ -3,7 +3,9 @@ import { Modal, Button, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import server from '../../services/server.service';
+import { checkSubscription } from './utils';
 import './otp-login.css'; 
+import langSet from './lang';
 
 export default class OtpLogin extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export default class OtpLogin extends Component {
       email: '',
       captcha_0: '',
       captcha_1: '',
+      membership: [],      
       password: '',
       token: '',
       captcha: {
@@ -24,7 +27,8 @@ export default class OtpLogin extends Component {
         state: false,
         title: '',
         text: ''
-      }
+      },
+      lang: langSet['en']
     };
 
     this.refresh = this.refresh.bind(this);
@@ -62,10 +66,12 @@ export default class OtpLogin extends Component {
     if (data['key']) {
       const image_url = server.otp_api + data['image_url'];
       const key = data['key'];
+      const membership = data['membership'];
       
       this.setState({
         view: 'email',
         captcha_0: key,
+        membership,
         captcha_1: '',
         captcha: {
           key: key,
@@ -75,8 +81,31 @@ export default class OtpLogin extends Component {
     }
   }
 
-  async signup(e) {
+  checkEmail = () => {
+    const { email, captcha, membership } = this.state;
+    const data = {
+      key: captcha.key,
+      email,
+      membership,
+    };
+
+    return checkSubscription(data);
+  }
+
+  onEmailSubmit = async (e) => {
     e.preventDefault(); 
+    const isIncluded = this.checkEmail();
+    const { title, text } = this.state.lang.membershipError;
+
+    isIncluded 
+    ? this.signup()
+    : this.setPopUp({
+        title,
+        text: <p>{text}<b>organizations@infinity.family</b></p>
+      });
+  }
+
+  signup = async (e) => {
     try {
       const { email, captcha_0, captcha_1 } = this.state;
       if (!email || !captcha_1) {
@@ -88,8 +117,8 @@ export default class OtpLogin extends Component {
       }
       
       const params = { email, captcha_0, captcha_1 };
-      const { data } = await axios.post(server.otp_api + '/otp/singup/', params); 
-      
+      const { data } = await axios.post(server.otp_api + '/otp/singup/', params);
+
       this.setState({
         token: data['token'],
         view: 'login',
@@ -123,6 +152,7 @@ export default class OtpLogin extends Component {
       this.props.signIn({ token, ...data });
       this.goToHome();
     } catch(e) {
+
       if (e.response.status === 400) {
         this.setPopUp({
           title: 'Sign In Error',
@@ -201,7 +231,7 @@ export default class OtpLogin extends Component {
           <PopUp />
             <div className="center-block otp__box"> 
               <h1 className="otp__header">Sign In</h1>
-              <form onSubmit={this.signup}>
+              <form onSubmit={this.onEmailSubmit}>
                 <div className="form-group">
                   <input 
                     className="form-control otp__input"

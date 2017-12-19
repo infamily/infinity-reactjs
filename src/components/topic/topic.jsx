@@ -183,7 +183,7 @@ class Topic extends Component {
       : <div>Type: <span className="topic__tags">{type}</span><br /></div>;
 
     const Topic = () => topic.title ?
-      <div>
+      <div className="topic__container">
         
         <h1>{topic.title}</h1>
         <i>{topic.is_draft ? <p>draft</p> : ''}</i>
