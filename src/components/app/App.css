@@ -54,7 +54,3 @@ a:hover {
   padding: 5px;
   background-color:grey;
 }
-
-* {
-  scroll-behavior: smooth;
-}

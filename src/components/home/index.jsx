@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
 import { 
   FormGroup, 
   FormControl, 
@@ -25,10 +26,9 @@ class Home extends Component {
       page: store_home.home_page || 1,
       flag: store_home.flag || 0,
       query: '',
-      topics: []
+      topics: [],
+      last_pack: [],
     }
-
-    this.changePage = this.changePage.bind(this);
   }
 
   componentWillMount() {
@@ -39,7 +39,7 @@ class Home extends Component {
     fromPage === page && topics.length
     ?  self.setState({ topics })
     : topicService.setTopics(flag).then(topics => {
-        self.setState({ topics });
+        self.setState({ topics, last_pack: topics });
       }); 
   }
 
@@ -56,29 +56,36 @@ class Home extends Component {
     topicService.search(query, flag).then(topics => {
       self.setState({
         topics: topics,
-        page: 1
+        last_pack: topics,
+        page: 1,
       });
     });
   }
 
-  changePage(num) {
+  hasMore = () => {
+    const { last_pack } = this.state;
+    return last_pack.length >= 25;
+  }
+
+  loadMore = () => {
+    const { page, topics, flag, last_pack } = this.state;
     const self = this;
-    const { page, topics, flag } = this.state;
-    const next = page + num;
+    const next = page + 1;
+    
+    if (last_pack < 25) return;
 
-    // is next page or previous page exist
-    if (next > page && topics.length < 25) return;
-    if (next < 0) return;
-
-    this.setState({ page: next });
     store_home.home_page = next;
 
-    topicService.getPage(next, flag).then(topics => {
+    topicService.getPage(next, flag).then(newTopics => {
+      const main_pack = topics.concat(newTopics);
+
+      topicService.topics = main_pack;
       self.setState({
-        topics: topics
+        topics: main_pack,
+        last_pack: topics,
+        page: next,
       });
     });
-    window.scroll(0, 0);
   }
 
   setFlag = key => {
@@ -103,13 +110,8 @@ class Home extends Component {
   render() {
     const { title, button } = this.state.content;
     const { flag } = this.state;
-
-    const Pagination = () =>
-    <div className="paginator">
-      <a className="paginator__btn paginator__right" onClick={() => this.changePage(-1)}>&#10094;</a>
-      <span className="paginator__page">{this.state.page}</span>
-      <a className="paginator__btn paginator__left" onClick={() => this.changePage(1)}>&#10095;</a>
-    </div>;
+    const isVisible = this.hasMore && 'home--hidden';
+    const hasMore = this.hasMore();
 
     return (
       <div className="main">
@@ -131,12 +133,17 @@ class Home extends Component {
 
           </div> 
           <div className="topics__content">
+          <InfiniteScroll
+            pageStart={1}
+            loadMore={this.loadMore}
+            hasMore={hasMore}
+            loader={<div className={isVisible}>Loading ...</div>}>
             <Topics topics={this.state.topics}/>
+          </InfiniteScroll>
           </div>
           
           <Menu page='Home'/>
           <Language/>
-          <Pagination />
         </article>
       </div>
     );

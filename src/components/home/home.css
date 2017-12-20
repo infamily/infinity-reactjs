@@ -53,3 +53,7 @@
   float: left;  
   border-right: 1px solid #ccc;
 }
+
+.home--hidden {
+  display: none;
+}
