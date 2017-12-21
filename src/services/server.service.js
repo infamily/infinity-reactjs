@@ -1,3 +1,8 @@
+import { loadState } from '../store/localStorage';
+
+const persistedState = loadState();
+
+
 class ServerService {
   constructor() {
     this.api = 'https://inf.li/api/v1';
@@ -7,10 +12,12 @@ class ServerService {
   }
 
   getDefault() {
-    const serverNum = localStorage["inf:api_server"];
+    if (persistedState) {
+      const serverNum = persistedState["server"];
 
-    if (serverNum) {
-      this.changeServer(serverNum);
+      if (serverNum) {
+        this.changeServer(serverNum);
+      }
     }
   }
 
@@ -31,7 +38,7 @@ class ServerService {
   }
   
   setDefault(num) {
-    localStorage["inf:api_server"] = num;
+    persistedState["server"] = num;
   }
 }
 

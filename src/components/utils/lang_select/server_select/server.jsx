@@ -54,7 +54,7 @@ class ServerButton extends Component {
         className={mobile ? "server_select__btn--mobile" : "server_select__btn"}
         pullRight={true} 
         dropup 
-        bsSize={mobile ? "small" : ""}
+        bsSize={mobile ? "small" : null}
         title={<Status />} 
         >
         <MenuItem>Server</MenuItem>
