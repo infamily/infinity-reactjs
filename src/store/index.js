@@ -3,13 +3,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import { loadState, saveState } from './localStorage';
-import UserReducer from '../reducers/user';
+import reduces from '../reducers';
 
 const persistedState = loadState();
 
 const configureStore = () => {
   const store = createStore(
-    UserReducer,
+    reduces,
     persistedState,
     composeWithDevTools(applyMiddleware(thunk))
   );

@@ -37,12 +37,12 @@ class Language extends Component {
 
     const LangMenu = ({ mobile }) =>
       <div className={mobile ? "select-lang select-lang--mobile" : "select-lang"}>
-        <ButtonGroup>
+        <ButtonGroup vertical>
           <DropdownButton
             id="dropdown-language"
             title={this.state.lang} 
             pullRight={true} 
-            bsSize={mobile ? "small" : "large"} 
+            bsSize={mobile ? "small" : ""} 
             dropup
           >
             <Languages />

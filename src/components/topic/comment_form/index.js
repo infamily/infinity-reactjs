@@ -3,7 +3,7 @@ import CommentForm from './comment_form';
 
 function mapStateToProps(state) {
   return {
-    user: state
+    user: state.user
   }
 }
 

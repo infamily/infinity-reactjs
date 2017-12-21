@@ -4,7 +4,7 @@ import OtpLogin from './otp-login';
 
 function mapStateToProps(state) {
   return {
-    user: state
+    user: state.user
   }
 }
 

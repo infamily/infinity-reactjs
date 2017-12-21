@@ -8,34 +8,34 @@ import './server_select.css';
 import serverImg from './img/server.png';
 
 class ServerButton extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      server: 0
+      server: props.server
     };
-  } 
-
-  changeServer = index => {
-    serverService.changeServer(index);
-    this.setServer(index);
   }
 
-  setServer = index => {
+  changeServer = index => {
+    this.props.setServer(index);
     this.setState({
       server: index
     });
+    window.location.reload(false)    
   }
 
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
+    setServer: PropTypes.func.isRequired,
+    server: PropTypes.number.isRequired,
   };
 
 
   render() {
     const servers = langService.getServers();
     const { mobile } = this.props;
+    const { server } = this.state;
 
-    const style = (i) => this.state.server === i ? { backgroundColor: '#90B249' } : {};
+    const style = (i) => server === i ? { backgroundColor: '#90B249' } : {};
     
     const Servers = () => servers.map((server, i) => {
       return <MenuItem className="select-lang__link" key={server} eventKey={i} onSelect={this.changeServer}>
@@ -44,15 +44,21 @@ class ServerButton extends Component {
       </MenuItem>
     })
 
+    const Status = () => ( 
+      <span>{servers[server]}</span>
+    );
+      
     return (
       <DropdownButton 
         id="dropdown-server"
         className={mobile ? "server_select__btn--mobile" : "server_select__btn"}
         pullRight={true} 
         dropup 
-        bsSize={mobile ? "small" : "large"}
-        title={<img className="server_select__img" src={serverImg} alt="server-img" />} 
+        bsSize={mobile ? "small" : ""}
+        title={<Status />} 
         >
+        <MenuItem>Server</MenuItem>
+        <MenuItem divider />
         <Servers />
       </DropdownButton> 
     );

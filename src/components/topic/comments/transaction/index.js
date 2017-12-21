@@ -3,7 +3,7 @@ import Transaction from './transaction';
 
 function mapStateToProps(state) {
   return {
-    user: state
+    user: state.user
   }
 }
 
