@@ -42,17 +42,18 @@ class Language {
   
   setDefault() {
     //get lang from localStorage
-    const set = this.getSetting().lang; 
+    const set = this.getSetting(); 
     
     if (set) {
-      this.current = set.lang;
-      this.language = set;
+      this.current = set.lang.lang;
+      this.language = set.lang;
     } else {
       const browser_language = navigator.language || navigator.userLanguage;
       let default_language = browser_language.substr(0, 2).toLowerCase();
       if (default_language === 'zh') { default_language = 'cn'; };
 
       const lang = this.languages.find(lang => lang.lang === default_language);
+      
       if (lang) {
         this.current = lang.lang;
         this.language = lang;
@@ -72,6 +73,8 @@ class Language {
 
   getSetting() {
     const raw = localStorage["lang_inf"];
+    if (!raw) return null;
+
     const lang = JSON.parse(raw);
     return {
       lang
