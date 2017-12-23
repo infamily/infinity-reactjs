@@ -74,7 +74,7 @@ class Topic extends Component {
     const topic = await topicService.getTopic(id);
     
     // redirect if isn't owner 
-    if (!topic || topic.owner !== user.username) {
+    if (!topic || topic.owner.username !== user.username) {
       history.push('/new-topic');
       return {};
     };

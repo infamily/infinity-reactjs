@@ -25,7 +25,8 @@ class ServerService {
     const api_servers = [
       'https://inf.li',
       'https://test.wfx.io',
-      'https://test.wefindx.io'
+      'https://test.wefindx.io',
+      'http://localhost:8000'
     ];
 
     if (num < 0 || num > api_servers.length) return;

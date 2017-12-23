@@ -188,11 +188,11 @@ class Topic extends Component {
         <h1>{topic.title}</h1>
         <i>{topic.is_draft ? <p>draft</p> : ''}</i>
 
-        <EditTopic owner={topic.owner} id={topic.id}/>
+        <EditTopic owner={topic.owner.username} id={topic.id}/>
         <Tags /> <br /> 
         
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
-        <span>{topic.owner}</span>
+        <span>{topic.owner.username}</span>
         <br /><br /> 
       </div> 
       : null;
