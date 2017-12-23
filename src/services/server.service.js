@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 import axios from 'axios';
-=======
-import { loadState } from '../store/localStorage';
-
-const persistedState = loadState();
-
->>>>>>> 81a54ba0129bb6f1b922cac578502338e6150380
 
 class ServerService {
   constructor() {
