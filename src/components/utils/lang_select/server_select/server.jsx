@@ -5,8 +5,6 @@ import langService from '../../../../services/lang.service';
 import serverService from '../../../../services/server.service';
 import './server_select.css';
 
-import serverImg from './img/server.png';
-
 class ServerButton extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +13,25 @@ class ServerButton extends Component {
     };
   }
 
+  async componentWillMount() {
+    const { server } = this.state;
+
+    if (server === null) {
+      const first = await serverService.getDefault();
+      this.props.setServer(first);
+      this.setState({ server: first });
+    } else {
+      serverService.changeServer(server);
+    }
+  }
+
   changeServer = index => {
     this.props.setServer(index);
+    serverService.changeServer(index);
     this.setState({
       server: index
     });
-    window.location.reload(false)    
+    window.location.reload(false);
   }
 
   static propTypes = {
@@ -54,7 +65,7 @@ class ServerButton extends Component {
         className={mobile ? "server_select__btn--mobile" : "server_select__btn"}
         pullRight={true} 
         dropup 
-        bsSize={mobile ? "small" : ""}
+        bsSize={mobile ? "small" : null}
         title={<Status />} 
         >
         <MenuItem>Server</MenuItem>

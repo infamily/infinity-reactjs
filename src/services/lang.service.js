@@ -1,56 +1,80 @@
 import texts from './content';
+import axios from 'axios';
+import serverService from './server.service';
 
 class Language {
   constructor() {
-    this.languages = ["cn", "en", "ru", "lt"]; 
-    this.language_names = ["中文", "English", "Русский", "Lietuvių"];
-    
-    // english default
-    this.lang_index = 1;
-    this.current = this.languages[this.lang_index];
-    
-    // reset default by user language
+    this.languages = [
+      {
+        "lang": "en",
+        "name": "English",
+        "enabled": true
+      },
+      {
+        "lang": "lt",
+        "name": "Lietuvių",
+        "enabled": true
+      },
+      {
+        "lang": "ru",
+        "name": "Русский",
+        "enabled": true
+      },
+      {
+        "lang": "cn",
+        "name": "中文",
+        "enabled": true
+      },
+    ];
+
+    this.current = this.languages[0].lang;
+    this.language = this.languages[0];
+
+    this.loadLanguages();
     this.setDefault();
+  }
+
+  async loadLanguages() {
+    const { data } = await axios.get(serverService.api + '/language_names/');
+    const filtered = data.filter(lang => lang.enabled);
+    this.languages = filtered;
   }
   
   setDefault() {
     //get lang from localStorage
     const set = this.getSetting().lang; 
-
+    
     if (set) {
-      const default_index = this.languages.indexOf(set);
-      if (default_index > -1) {
-        this.current = set;
-        this.lang_index = default_index;
-      }
+      this.current = set.lang;
+      this.language = set;
     } else {
-      //get lang from navigator
       const browser_language = navigator.language || navigator.userLanguage;
       let default_language = browser_language.substr(0, 2).toLowerCase();
       if (default_language === 'zh') { default_language = 'cn'; };
 
-      const default_index = this.languages.indexOf(default_language);
-      if (default_index > -1) {
-        this.current = default_language;
-        this.lang_index = default_index;
+      const lang = this.languages.find(lang => lang.lang === default_language);
+      if (lang) {
+        this.current = lang.lang;
+        this.language = lang;
       }
     }
   }
 
-  changeLang(num) {
-    if(num < 0 || num > this.languages.length) return;
-    this.lang_index = num;
-    this.current = this.languages[num];
-    this.saveSetting(this.current);
+  async changeLang(num) {
+    this.current = this.languages[num].lang;
+    this.language = this.languages[num];
+    await this.saveSetting(this.language);
   }
 
   saveSetting(lang) {
-    localStorage["lang_inf"] = lang;
+    localStorage["lang_inf"] = JSON.stringify(lang);
   }
 
   getSetting() {
+    const raw = localStorage["lang_inf"];
+    const lang = JSON.parse(raw);
     return {
-      lang: localStorage["lang_inf"]
+      lang
     };
   }
 
@@ -60,7 +84,7 @@ class Language {
   }
  
   homeContent() {
-    return texts.main[this.lang_index];
+    return texts.main[this.current] || texts.main['en'];
   }
 
   howContent() {

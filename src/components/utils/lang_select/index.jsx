@@ -17,22 +17,26 @@ class Language extends Component {
     this.setLanguage();
   }
 
-  changeLanguage = (index, e) => {
+  changeLanguage = (index) => {
     langService.changeLang(index);
     this.setLanguage();
     window.location.reload(false);
   }
 
   setLanguage = () => {
-    const lang = langService.language_names[langService.lang_index];
+    const lang = langService.language;
     this.setState({
-      lang: lang
+      lang: lang.name
     });
   }
 
   render() {
-    const Languages = () => langService.language_names.map((lang, i) => {
-      return <MenuItem className="select-lang__link" key={lang} eventKey={i} onSelect={this.changeLanguage}>{lang}</MenuItem>
+    const Languages = () => langService.languages.map((lang, i) => {
+      return (
+        <MenuItem className="select-lang__link" key={lang.lang} eventKey={i} onSelect={this.changeLanguage}>
+          {lang.name}
+        </MenuItem>
+      );
     });
 
     const LangMenu = ({ mobile }) =>
@@ -42,7 +46,7 @@ class Language extends Component {
             id="dropdown-language"
             title={this.state.lang} 
             pullRight={true} 
-            bsSize={mobile ? "small" : ""} 
+            bsSize={mobile ? "small" : null} 
             dropup
           >
             <Languages />

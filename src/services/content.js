@@ -23,24 +23,24 @@ export default {
       ]
     }
   },
-  main: [
-    {
+  main: {
+    'cn': {
       title: '无界家庭',
       button: '搜索'
     },
-    {
+    'en': {
       title: 'Infinity Family',
       button: 'Search'
     },
-    {
+    'ru': {
       title: 'Семья Инфи́нити',
       button: 'Поиск'
     },
-    {
+    'ly': {
       title: 'Begalybės šeima',
       button: 'Paieška'
     },
-  ],
+  },
   how : {
     'en': [
       '<h1 class="en">How does this place work?</h1>',

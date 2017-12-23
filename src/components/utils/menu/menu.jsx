@@ -31,13 +31,13 @@ class Menu extends Component {
   render() {
     const isNew = this.props.location.pathname !== "/new-topic";
     const NewTopic = ({ mobile }) => isNew 
-      ? <Button bsStyle="success" onClick={this.new} bsSize={mobile ? "small" : ""}>New Topic</Button> 
+      ? <Button bsStyle="success" onClick={this.new} bsSize={mobile ? "small" : null}>New Topic</Button> 
       : null;
 
     const MainMenu = ({ mobile }) => (
       <div className={mobile ? "main-menu main-menu--mobile" : "main-menu"}>
         <ButtonGroup>
-          <DropdownButton title={this.state.page} dropup bsSize={mobile ? "small" : ""} id="dropdown-size-large">
+          <DropdownButton title={this.state.page} dropup bsSize={mobile ? "small" : null} id="dropdown-size-large">
             <Link to="/" className="main-menu__link">Home </Link>
             <Link to="/page/what" className="main-menu__link">What?</Link>
             <Link to="/page/how" className="main-menu__link">How?</Link>
