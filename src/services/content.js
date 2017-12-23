@@ -5,25 +5,21 @@ export default {
         'Singapore',
         'Frankfurt',
         'Shanghai',
-        '[localhost]',
       ],
       'cn': [
         '新加坡',
         '法兰克福',
         '上海',
-        '[localhost]',
       ],
       'ru': [
         'Сингапур',
         'Франкфурт',
         'Шанхай',
-        '[localhost]',
       ],
       'lt': [
         'Singapūras',
         'Frankfurtas',
         'Šanchajus',
-        '[localhost]',
       ]
     }
   },

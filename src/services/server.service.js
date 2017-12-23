@@ -11,6 +11,16 @@ class ServerService {
       'https://test.wfx.io',
       'https://test.wefindx.io'
     ];
+
+    this.loadStorage();
+  }
+
+  loadStorage() {
+    const raw = localStorage['state_if'];
+    if(!raw) return;
+    
+    const server = JSON.parse(raw).server;
+    this.setDefault(server);
   }
 
   getDefault() {
@@ -21,7 +31,7 @@ class ServerService {
     return Promise.race(promises);
   }
 
-  getResponse(api, index) {
+  getResponse = (api, index) => {
     return new Promise(function (resolve, reject) {
       axios.get(api).then(() => resolve(index));
     });
@@ -31,11 +41,15 @@ class ServerService {
     const { api_servers } = this;
 
     if (num < 0 || num > api_servers.length) return;
-    const api = api_servers[num];
-    
+    this.setDefault(num);
+  }
+  
+  setDefault = (num) => {
+    const api = this.api_servers[num];
+
+    this.index = num;
     this.api = api + '/api/v1';
     this.otp_api = api;
-    this.index = num;
   }
 }
 

@@ -15,7 +15,8 @@ class ServerButton extends Component {
 
   async componentWillMount() {
     const { server } = this.state;
-
+    console.log(server)
+    console.log(serverService)
     if (server === null) {
       const first = await serverService.getDefault();
       this.props.setServer(first);
