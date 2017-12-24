@@ -13,17 +13,11 @@ class ServerButton extends Component {
     };
   }
 
-  async componentWillMount() {
-    const { server } = this.state;
-    
-    if (server === null) {
-      const first = await serverService.getDefault();
-      this.props.setServer(first);
-      this.setState({ server: first });
-    } else {
-      serverService.changeServer(server);
-    }
-  }
+  static propTypes = {
+    mobile: PropTypes.bool.isRequired,
+    setServer: PropTypes.func.isRequired,
+    server: PropTypes.number.isRequired,
+  };
 
   changeServer = index => {
     this.props.setServer(index);
@@ -33,13 +27,6 @@ class ServerButton extends Component {
     });
     window.location.reload(false);
   }
-
-  static propTypes = {
-    mobile: PropTypes.bool.isRequired,
-    setServer: PropTypes.func.isRequired,
-    server: PropTypes.number.isRequired,
-  };
-
 
   render() {
     const servers = langService.getServers();

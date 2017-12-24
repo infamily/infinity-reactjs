@@ -2,9 +2,9 @@ import axios from 'axios';
 
 class ServerService {
   constructor() {
-    this.api = 'https://inf.li/api/v1';
-    this.otp_api = 'https://inf.li';
-    this.index = 0;
+    // this.api = 'https://inf.li/api/v1';
+    // this.otp_api = 'https://inf.li';
+    // this.index = 0;
 
     this.api_servers = [
       'https://inf.li',

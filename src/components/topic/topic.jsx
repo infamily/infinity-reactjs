@@ -162,8 +162,6 @@ class Topic extends Component {
     const user = this.props.user;
     const { colors } = configs;
 
-    console.log(topic)
-
     const badgeStyle = type => {
       return {
         backgroundColor: colors[type]

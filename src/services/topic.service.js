@@ -11,6 +11,7 @@ class TopicService {
   setTopics(flag) {
     const self = this;
     const f = flag || '';
+    console.log(serverService.api, 'get page')
 
     return new Promise((resolve, reject) => {
       axios.get(`${serverService.api}/topics/?lang=${langService.current}&type=${f}`)
@@ -29,7 +30,6 @@ class TopicService {
   getPage(page, flag) {
     const self = this;
     const f = flag || '';
-    
     return new Promise((resolve, reject) => {
       axios.get(`${serverService.api}/topics/?page=${page}&lang=${langService.current}&type=${f}`)
       .then(function (response) {  
