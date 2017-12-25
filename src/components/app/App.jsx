@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import serverService from '../../services/server.service';
 import './App.css';
 
 import Home from '../home';
@@ -11,28 +12,23 @@ import NotFound from '../notFound';
 import OtpLogin from '../otp-login';
 import TopicView from '../topic_view';
 
-import serverService from '../../services/server.service';
-
-
 class App extends Component {
 
   static propTypes = {
     setServer: PropTypes.func.isRequired,
-    server: PropTypes.number.isRequired,
+    server: PropTypes.number,
   };
   
   async componentWillMount() {
-    const { server } = this.props;
-
-    if (server === null) {
-      const first = await serverService.getDefault();
-      this.props.setServer(first);
-    } else {
-      serverService.changeServer(server);
-    }
+    await serverService.getDefault();
+    const index = serverService.index;
+    this.props.setServer(index);
+    this.forceUpdate();
   }
 
   render() {
+    if (this.props.server === null) return null;
+
     return (
       <HashRouter>
         <Switch>

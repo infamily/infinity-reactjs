@@ -5,6 +5,9 @@ class ServerService {
     // this.api = 'https://inf.li/api/v1';
     // this.otp_api = 'https://inf.li';
     // this.index = 0;
+    this.api = null;
+    this.otp_api = null;
+    this.index = null;
 
     this.api_servers = [
       'https://inf.li',
@@ -12,23 +15,27 @@ class ServerService {
       'https://test.wefindx.io'
     ];
 
-    this.loadStorage();
+    this.getDefault();
   }
 
-  loadStorage() {
+  async getDefault() {
     const raw = localStorage['state_if'];
-    if(!raw) return;
+    if (!raw) {
+      await this.getFastest();
+      return;
+    };
     
-    const server = JSON.parse(raw).server;
+    const { server } = JSON.parse(raw);
     this.setDefault(server);
   }
 
-  getDefault() {
+  getFastest = async () => {
     const promises = this.api_servers.map((api, i) => (
       this.getResponse(api, i)
     ));
 
-    return Promise.race(promises);
+    const first = await Promise.race(promises);
+    this.setDefault(first);
   }
 
   getResponse = (api, index) => {

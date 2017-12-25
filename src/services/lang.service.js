@@ -35,6 +35,8 @@ class Language {
   }
 
   async loadLanguages() {
+    if (!serverService.api) return;
+    
     const { data } = await axios.get(serverService.api + '/language_names/');
     const filtered = data.filter(lang => lang.enabled);
     this.languages = filtered;
