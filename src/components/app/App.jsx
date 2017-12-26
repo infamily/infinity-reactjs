@@ -23,7 +23,7 @@ class App extends Component {
     await serverService.getDefault();
     const index = serverService.index;
     this.props.setServer(index);
-    this.forceUpdate();
+    // this.forceUpdate();
   }
 
   render() {

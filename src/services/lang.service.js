@@ -34,10 +34,11 @@ class Language {
     this.setDefault();
   }
 
-  async loadLanguages() {
-    if (!serverService.api) return;
-    
-    const { data } = await axios.get(serverService.api + '/language_names/');
+  loadLanguages = async () => {
+    const { api_servers, api } = serverService;
+    const server = api || api_servers[1] + '/api/v1';
+
+    const { data } = await axios.get(server + '/language_names/');
     const filtered = data.filter(lang => lang.enabled);
     this.languages = filtered;
   }

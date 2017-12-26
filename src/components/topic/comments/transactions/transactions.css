@@ -1,0 +1,13 @@
+.transactions__panel {
+  font-size: 14px;
+}
+
+.transactions__header {
+  font-size: 14px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.transactions__line {
+  padding: 10px 5px;
+}

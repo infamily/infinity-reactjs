@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import Transaction from './transaction';
+import Transactions from './transactions';
 import ProgressBar from './progress_bar';
 
 import ReactHtmlParser from 'react-html-parser';
@@ -99,6 +100,7 @@ export default class Comments extends Component {
           <Progress />
           <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
 
+          <Transactions id={id} />
           <div className="comment__owner">
             <span>{owner.username}</span>
           </div>
@@ -110,7 +112,7 @@ export default class Comments extends Component {
      return (
         <div>
           <h3>Comments</h3>
-          <Comments/>
+          <Comments />
           {
            transaction &&
            <Transaction

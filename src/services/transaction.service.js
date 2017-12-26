@@ -60,6 +60,15 @@ class TransactionService {
       console.error(e);
     }
   } 
+  
+  async getTransactions(id) {
+    try {
+      const { data } = await axios.get(`${serverService.api}/transactions/?comment=${id}`);
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  } 
 }
 
 const transactionService = new TransactionService();
