@@ -1,6 +1,11 @@
+.progress_bar {
+  margin: 15px 0 5px;
+}
+
 .progress_bar__assumed {
   background-color: #f7be5a;
 }
+
 .progress_bar__over {
   background-color: #5ed091;
 }

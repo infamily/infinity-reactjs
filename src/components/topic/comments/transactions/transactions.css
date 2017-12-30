@@ -9,5 +9,14 @@
 }
 
 .transactions__line {
-  padding: 10px 5px;
+  color: #333;
+  border-color: #ddd;
+  margin: 5px 0;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.transactions__table {
+  text-align: center;
 }

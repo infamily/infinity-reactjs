@@ -98,9 +98,9 @@ export default class Comments extends Component {
         <div key={id} className="comment__section">
           <div>{content}</div>
           <Progress />
+          <Transactions id={id} />
           <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
 
-          <Transactions id={id} />
           <div className="comment__owner">
             <span>{owner.username}</span>
           </div>

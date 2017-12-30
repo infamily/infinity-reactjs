@@ -18,7 +18,8 @@ export default class Transactions extends Component {
     const data = await transactionService.getTransactions(id);
 
     const transactions = data.map(item => ({ 
-      name: item.payment_sender.username,
+      sender: item.payment_sender.username,
+      recipient: item.payment_recipient.username,
       amount: item.matched_hours,
       key: item.url.slice(-3),
     }));
@@ -37,17 +38,17 @@ export default class Transactions extends Component {
   }
 
   render() {
-    console.log(this.state)
     const { transactions } = this.state;
     const header = (`Transactions (${transactions.length})`)
     const Header = () => (
-      <span className="transactions__header">{header}</span>
+      <p className="transactions__header">{header}</p>
     );
     
-    const Row = ({key, name, amount}) => (
+    const Row = ({key, sender, recipient, amount}) => (
       <tr key={key}>
-        <td>{name}</td>
+        <td>{sender}</td>
         <td>{this.round(amount)}h</td>
+        <td>{recipient}</td>
       </tr>
     );
 
@@ -56,11 +57,11 @@ export default class Transactions extends Component {
     return (
       <div className="transactions__panel">
         <Panel 
-          // bsClass="transactions__line"
+          bsClass="transactions__line"
           collapsible 
           defaultExpanded={false} 
           header={Header()}>
-          <Table striped bordered condensed hover>
+          <Table className="transactions__table" striped bordered condensed hover>
             <tbody>
               {transactions.map(item => Row(item))}
             </tbody>

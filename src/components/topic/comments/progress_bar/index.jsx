@@ -33,7 +33,7 @@ export default ({ comment, invest }) => {
   const pay = total - overpay;
 
   return(
-    <ProgressBar>
+    <ProgressBar className="progress_bar">
       <ProgressBar bsStyle="success" now={pay} label={`${pay}$h INVESTED`} key={1} max={all} />
       <ProgressBar bsStyle="warning" now={claimed} label={`${claimed.toFixed(2)}h CLAIMED`} key={2} max={all} />
       <ProgressBar className="progress_bar__assumed" now={assumed} label={`${assumed.toFixed(2)}h ASSUMED`} key={3} max={all} />
