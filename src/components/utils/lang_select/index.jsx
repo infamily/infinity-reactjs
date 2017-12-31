@@ -9,18 +9,14 @@ class Language extends Component {
   constructor() {
     super();
     this.state = {
-      lang: 'Language',
+      lang: langService.language.name,
       languages: []
     }
   }
 
-  componentWillMount() {
-  }
-  
   async componentDidMount() {
-    const { languages, loadLanguages } = langService;
-    await loadLanguages();
-    this.setState({ languages })
+    await langService.loadLanguages();
+    this.setState({ languages: langService.languages })
     this.setLanguage();
   }
 
@@ -39,7 +35,6 @@ class Language extends Component {
 
   render() {
     const { languages } = this.state;
-    
     const Languages = () => languages.map((lang, i) => {
       return (
         <MenuItem className="select-lang__link" key={lang.lang} eventKey={i} onSelect={this.changeLanguage}>

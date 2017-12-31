@@ -59,7 +59,7 @@ class Comment extends Component {
     const { text, editing } = this.state;
 
     if (!user) return ( 
-      <div className="comment__placeholder">
+      <div className="comment_form__signin">
         <p><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
       </div>
     );

@@ -1,3 +1,14 @@
 .comment__btn {
   margin-left: 10px;
 }
+
+.comment_form__signin {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  padding: 10px 10px 0;
+  border: 1px solid lightgray;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  box-shadow: 0 0 1px lightgray;
+}
