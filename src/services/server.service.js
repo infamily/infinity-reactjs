@@ -7,7 +7,6 @@ class ServerService {
     this.index = null;
 
     this.api_servers = [
-      'https://inf.li',
       'https://test.wfx.io',
       'https://test.wefindx.io'
     ];
