@@ -4,18 +4,22 @@ export default {
       'en': [
         'Frankfurt',
         'Shanghai',
+        'Local Fun',
       ],
       'cn': [
         '法兰克福',
         '上海',
+        '本地乐趣',
       ],
       'ru': [
         'Франкфурт',
         'Шанхай',
+        'Локальное развлечение',
       ],
       'lt': [
         'Frankfurtas',
         'Šanchajus',
+        'Vietinis džiaugsmas',
       ]
     }
   },

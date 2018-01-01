@@ -8,7 +8,8 @@ class ServerService {
 
     this.api_servers = [
       'https://test.wfx.io',
-      'https://test.wefindx.io'
+      'https://test.wefindx.io',
+      'https://0.0.0.0:8000'
     ];
 
     this.getDefault();
