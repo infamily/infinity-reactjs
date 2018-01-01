@@ -4,6 +4,8 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from '../../../../services/lang.service';
 import serverService from '../../../../services/server.service';
 import './server_select.css';
+import getMessages from './messages';
+const messages = getMessages(langService.current);
 
 class ServerButton extends Component {
   constructor(props) {
@@ -29,7 +31,8 @@ class ServerButton extends Component {
   }
 
   render() {
-    const servers = langService.getServers();
+    const servers = serverService.api_servers;
+    const names = langService.getServers();
     const { mobile } = this.props;
     const { server } = this.state;
 
@@ -38,12 +41,12 @@ class ServerButton extends Component {
     const Servers = () => servers.map((server, i) => {
       return <MenuItem className="select-lang__link" key={server} eventKey={i} onSelect={this.changeServer}>
         <div className="server_select__bullet" style={style(i)}> </div>
-        {' ' + server}
+        {' ' + names[i]}
       </MenuItem>
     })
 
     const Status = () => ( 
-      <span>{servers[server]}</span>
+      <span>{names[server]}</span>
     );
       
     return (
@@ -55,7 +58,7 @@ class ServerButton extends Component {
         bsSize={mobile ? "small" : null}
         title={<Status />} 
         >
-        <MenuItem>Server</MenuItem>
+        <MenuItem>{messages.server}</MenuItem>
         <MenuItem divider />
         <Servers />
       </DropdownButton> 

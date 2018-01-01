@@ -18,4 +18,4 @@ serverService.getDefault().then(() => {
   document.getElementById('root'));
 });
 
-registerServiceWorker();
+// registerServiceWorker();

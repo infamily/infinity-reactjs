@@ -9,7 +9,6 @@ class ServerService {
     this.api_servers = [
       'https://test.wfx.io',
       'https://test.wefindx.io',
-      'http://0.0.0.0:8000'
     ];
 
     this.getDefault();
@@ -17,6 +16,8 @@ class ServerService {
 
   async getDefault() {
     const raw = localStorage['state_if'];
+    this.isLocal();
+
     if (!raw) {
       await this.getFastest();
       return;
@@ -24,6 +25,13 @@ class ServerService {
     
     const { server } = JSON.parse(raw);
     this.setDefault(server);
+  }
+
+  isLocal = () => {
+    const isLocal = window.location.hostname === 'localhost';
+    const server = 'http://0.0.0.0:8000';
+    const isIncluded = this.api_servers.indexOf(server) > -1;
+    if (isLocal && !isIncluded) this.api_servers.push(server);    
   }
 
   getFastest = async () => {
