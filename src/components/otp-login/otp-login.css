@@ -1,7 +1,7 @@
 .otp__box {
   margin: 0 auto;
   max-width: 90%;
-  margin-top: 10%;
+  margin-top: 20px;
   padding: 30px 16px;
   font-size: 18px;
   line-height: 1.3333333;
@@ -44,4 +44,12 @@
   text-align: center;
   margin:  0 auto;
   margin-top: 10px;
+}
+
+.otp__logo {
+  max-width: 100px;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

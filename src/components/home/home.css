@@ -10,6 +10,20 @@
   transform: scale(1.03);
 }
 
+.home__header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media (max-width: 401px) {
+  .home__header {
+    justify-content: space-around;
+  }
+}
+
 .home__type {
   font-size: 11px;
   padding: 5px;
@@ -57,3 +71,14 @@
 .home--hidden {
   display: none;
 }
+
+.home__logo {
+  max-width: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.home__balance {
+  padding-top: 5px;
+  margin: 5px 0;
+} 

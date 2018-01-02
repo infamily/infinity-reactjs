@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 import './index.css';
 import configureStore from './store';
 import App from './components/app';
-import registerServiceWorker from './registerServiceWorker'; 
 import serverService from './services/server.service';
+// import registerServiceWorker from './registerServiceWorker'; 
+// registerServiceWorker();
 
 const store = configureStore();
 
@@ -18,4 +19,3 @@ serverService.getDefault().then(() => {
   document.getElementById('root'));
 });
 
-// registerServiceWorker();

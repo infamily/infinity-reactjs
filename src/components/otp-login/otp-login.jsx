@@ -6,6 +6,7 @@ import server from '../../services/server.service';
 import { checkSubscription } from './utils';
 import './otp-login.css'; 
 import langSet from './lang';
+import ifIcon from './img/if.png';
 
 export default class OtpLogin extends Component {
   constructor(props) {
@@ -228,7 +229,8 @@ export default class OtpLogin extends Component {
       case 'email': {
         return (
           <div>
-          <PopUp />
+            <PopUp />
+            <img src={ifIcon} className="otp__logo" alt="infinity"/>
             <div className="center-block otp__box"> 
               <h1 className="otp__header">Sign In</h1>
               <form onSubmit={this.onEmailSubmit}>
@@ -244,8 +246,6 @@ export default class OtpLogin extends Component {
                   />
                 </div>
                 <div id="div_id_captcha" className="form-group">
-                  <div className="row">
-                  </div>
                   <div className="row">
                     <div className="col-md-8">
                       <input name="captcha_0" type="hidden" value={captcha_0} required />
@@ -278,6 +278,7 @@ export default class OtpLogin extends Component {
             <Alert bsStyle="info" className="otp__alert">
               <strong>One time password</strong> has been send to your email.
             </Alert>
+            <img src={ifIcon} className="otp__logo" alt="infinity" />
             <div className="center-block otp__box">
               <form>
                 <div className="form-group">

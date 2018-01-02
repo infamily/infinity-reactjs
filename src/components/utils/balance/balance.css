@@ -1,0 +1,21 @@
+.balance__hours {
+  color: #000;
+  font-size: 13px;
+  margin: 0 auto;
+  display: inline-block;  
+  min-width: 25px;
+  text-align: center;
+  margin: 0 5px;
+
+  border: 2px solid lightblue;
+  border-radius: 2px;
+
+  /* background-image: url("./img/hours.png"); */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.balance__counter {
+  padding: 5px;
+}

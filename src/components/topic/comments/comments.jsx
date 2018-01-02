@@ -4,6 +4,7 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import Transaction from './transaction';
 import Transactions from './transactions';
 import ProgressBar from './progress_bar';
+import Balance from '../../utils/balance';
 
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
@@ -103,6 +104,7 @@ export default class Comments extends Component {
 
           <div className="comment__owner">
             <span>{owner.username}</span>
+            <Balance id={owner.id} />
           </div>
         </div>
       );

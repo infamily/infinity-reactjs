@@ -9,6 +9,7 @@ import configs from '../../configs';
 
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
+import Balance from '../utils/balance';
 import CommentForm from './comment_form';
 import Comments from './comments';
 
@@ -193,6 +194,7 @@ class Topic extends Component {
         
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
         <span>{topic.owner.username}</span>
+        <Balance id={topic.owner.id} />
         <br /><br /> 
       </div> 
       : null;
