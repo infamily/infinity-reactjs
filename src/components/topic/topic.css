@@ -5,6 +5,10 @@
   text-transform: uppercase;
 }
 
+.topic__body {
+  margin: 20px 0;
+}
+
 .topics__back:hover {
   box-shadow: 5px black;
   color: black;
@@ -19,31 +23,18 @@
   margin-bottom: 70px;
 }
 
-.topic__tag-box {
-  overflow: hidden;
-  height: auto;
-  max-height: 45px; 
-  transition: max-height 0.7s ease;
-}
 
-.topic__tag-box:hover {
-  max-height: 600px; 
-}
-
-.topic__tags {
-  margin: 5px;
+.topic__type {
+  margin: 0 10px;
+  border-radius: 5px;
+  color: white;
+  padding: 3px;
+  font-size: 14px;
 }
 
 .topic__edit {
   float: right;
   margin-top: 20px;
-}
-
-.topic__badge {
-  font-size: 11px;
-  padding: 5px;
-  text-align: center;
-  background-color: #bfbfbf;
 }
 
 .comment__owner {

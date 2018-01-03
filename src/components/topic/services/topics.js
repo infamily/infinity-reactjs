@@ -21,6 +21,15 @@ async function getTopic(id) {
   }
 }
 
+async function getChildren(id, lang) {
+  try {
+    const { data } = await axios.get(`${serverService.api}/topics/?parents=${id}&lang=${lang}`);
+    return data.results;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 function getComments(id, lang) {
   return new Promise((resolve, reject) => {
     axios.get(`${serverService.api}/comments/?topic=${id}&lang=${lang}`)
@@ -36,5 +45,6 @@ function getComments(id, lang) {
 
 export default {
   getComments,
-  getTopic
+  getTopic,
+  getChildren,
 }

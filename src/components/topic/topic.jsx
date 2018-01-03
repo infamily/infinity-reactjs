@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
-import { Button, Badge } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
-import topicService from './services';
+import topicService from './services/topics';
 import commentService from '../../services/comment.service.js';
 import configs from '../../configs';
+import badgeStyle from './utils/badge';
 
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
 import Balance from '../utils/balance';
 import CommentForm from './comment_form';
 import Comments from './comments';
+import Tags from './tags';
 
 import './topic.css';
 
@@ -27,6 +29,7 @@ class Topic extends Component {
       type: '',
       comments: [],
       parents: [],
+      children: [],
       comment_id: 0,  
       comment_text: '',
     }
@@ -59,13 +62,15 @@ class Topic extends Component {
     }
 
     const comments = await topicService.getComments(id, topic.lang);
+    const children = await topicService.getChildren(id, topic.lang);
     const type = configs.flags[topic.type];
     const parents = await this.getParents(topic.parents);
-    
+
     self.setState({
       topic,
       comments,
       parents,
+      children,
       type
     });
   }
@@ -159,40 +164,25 @@ class Topic extends Component {
   }
 
   render() {
-    const { topic, comments, parents, type } = this.state;
+    const { topic, comments, parents, children, type } = this.state;
     const user = this.props.user;
-    const { colors } = configs;
-
-    const badgeStyle = type => {
-      return {
-        backgroundColor: colors[type]
-      }
-    };
-
-    const Tags = () => parents[0]
-      ? <div className="topic__tag-box">
-          <span>Tags: </span> <span className="topic__tags">{type}</span>
-          {
-            parents.map(topic => {
-            return <Link to={`/topic/${topic.id}`} key={topic.title} className="topic__tags"> 
-              <Badge className="topic__badge" style={badgeStyle(topic.type)}>{' '}</Badge>
-              {' ' + topic.title}
-            </Link>
-            })
-          }
-        </div>
-      : <div>Type: <span className="topic__tags">{type}</span><br /></div>;
 
     const Topic = () => topic.title ?
       <div className="topic__container">
         
         <EditTopic owner={topic.owner.username} id={topic.id}/>
-        <h1>{topic.title}</h1>
+        <h1>
+          {topic.title}
+          <span className="topic__type" style={badgeStyle(topic.type)}>{type}</span>        
+        </h1>
         <i>{topic.is_draft ? <p>draft</p> : ''}</i>
 
-        <Tags /> <br /> 
+        <Tags title="Parents" items={parents} />
         
-        <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />
+        <div className="topic__body">{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div>
+
+        <Tags title="Children" items={children} />
+        
         <span>{topic.owner.username}</span>
         <Balance id={topic.owner.id} />
         <br /><br /> 
