@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import { Button, Badge } from 'react-bootstrap';
 
-import topicService from '../../services/topic.service.js';
+import topicService from './services';
 import commentService from '../../services/comment.service.js';
 import configs from '../../configs';
 
@@ -186,10 +186,10 @@ class Topic extends Component {
     const Topic = () => topic.title ?
       <div className="topic__container">
         
+        <EditTopic owner={topic.owner.username} id={topic.id}/>
         <h1>{topic.title}</h1>
         <i>{topic.is_draft ? <p>draft</p> : ''}</i>
 
-        <EditTopic owner={topic.owner.username} id={topic.id}/>
         <Tags /> <br /> 
         
         <div>{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div> <br />

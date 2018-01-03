@@ -13,7 +13,7 @@ import {
 } from 'react-bootstrap';
 
 import topicViewService from '../../services/topic_view.service';
-import topicService from '../../services/topic.service';
+import topicService from './services';
 import configs from '../../configs';
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';

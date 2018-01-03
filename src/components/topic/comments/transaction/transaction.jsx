@@ -13,7 +13,10 @@ import './transaction.css';
 
 import commentService from '../../../../services/comment.service.js';
 import transactionService from '../../../../services/transaction.service';
+import langService from '../../../../services/lang.service';
 import ProgressBar from '../progress_bar';
+import getMessages from './messages';
+const messages = getMessages(langService.current);
 
 export default class Transaction extends Component {
   constructor(props) {
@@ -59,7 +62,7 @@ export default class Transaction extends Component {
     const { payment_currency, payment_amount } = this.state;
     if (payment_amount < 0) {
       this.setState({
-        message: "Incorrect amount of hours."
+        message: messages.error
       });
       return;
     } else {
@@ -163,7 +166,7 @@ export default class Transaction extends Component {
           </FormGroup>
           </Modal.Body>
         <Modal.Footer>
-          {this.state.message + '  '}
+          <span className="transaction__error">{this.state.message + '  '}</span>
           <Button onClick={this.makeTransaction}>Invest</Button>
           <Button onClick={this.close}>Close</Button>
         </Modal.Footer>

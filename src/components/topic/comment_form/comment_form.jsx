@@ -65,7 +65,7 @@ class Comment extends Component {
     );
 
     return (
-      <div className="comment__section">
+      <div className="comment_form__section">
         <form onSubmit={this.submitComment}>
           <FormGroup controlId="formControlsTextarea">
             <ControlLabel>Leave your comment</ControlLabel>

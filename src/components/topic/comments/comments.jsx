@@ -5,6 +5,7 @@ import Transaction from './transaction';
 import Transactions from './transactions';
 import ProgressBar from './progress_bar';
 import Balance from '../../utils/balance';
+import './comments.css';
 
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
@@ -100,12 +101,14 @@ export default class Comments extends Component {
           <div>{content}</div>
           <Progress />
           <Transactions id={id} />
-          <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
-
-          <div className="comment__owner">
-            <span>{owner.username}</span>
-            <Balance id={owner.id} />
+          <div className="comments__actions">
+            <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
+            <div className="comment__owner">
+              <span>{owner.username}</span>
+              <Balance id={owner.id} />
+            </div>
           </div>
+
         </div>
       );
     });

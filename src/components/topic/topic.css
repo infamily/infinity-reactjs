@@ -36,6 +36,7 @@
 
 .topic__edit {
   float: right;
+  margin-top: 20px;
 }
 
 .topic__badge {
@@ -50,7 +51,9 @@
 }
 
 .comment__section {
-  margin: 20px 0;
+  /* border-top: 2px solid lightblue; */
+  padding: 10px;
+  margin: 30px 0;
 }
 
 .comment__placeholder {

@@ -1,3 +1,7 @@
 .transaction__modal {
   padding: 50px 10px;
 }
+
+.transaction__error {
+  color: tomato;
+}

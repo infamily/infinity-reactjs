@@ -11,3 +11,7 @@
   border-top-right-radius: 3px;
   box-shadow: 0 0 1px lightgray;
 }
+
+.comment_form__section {
+  margin: 20px 0;
+}

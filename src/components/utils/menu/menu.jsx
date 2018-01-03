@@ -28,8 +28,16 @@ class Menu extends Component {
     this.props.history.push('/new-topic'); 
   }
 
+  getName(user) {
+    const name = user && user.username;
+    return name;
+  }
+
+
   render() {
     const isNew = this.props.location.pathname !== "/new-topic";
+    const title = this.getName(this.props.user) || this.state.page;
+
     const NewTopic = ({ mobile }) => isNew 
       ? <Button bsStyle="success" onClick={this.new} bsSize={mobile ? "small" : null}>New Topic</Button> 
       : null;
@@ -37,7 +45,7 @@ class Menu extends Component {
     const MainMenu = ({ mobile }) => (
       <div className={mobile ? "main-menu main-menu--mobile" : "main-menu"}>
         <ButtonGroup>
-          <DropdownButton title={this.state.page} dropup bsSize={mobile ? "small" : null} id="dropdown-size-large">
+          <DropdownButton title={title} dropup bsSize={mobile ? "small" : null} id="dropdown-size-large">
             <Link to="/" className="main-menu__link">Home </Link>
             <Link to="/page/what" className="main-menu__link">What?</Link>
             <Link to="/page/how" className="main-menu__link">How?</Link>
