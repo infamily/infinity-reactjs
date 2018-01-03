@@ -12,13 +12,12 @@ import {
 import Topics from './topic_list';
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
-import Balance from '../utils/balance';
 import Flag from '../utils/flag_toggle';
+import Header from '../utils/header'; 
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';
 import store_home from '../../store/home';
-import ifIcon from './img/if.jpg';
 import './home.css';
 
 class Home extends Component {
@@ -122,55 +121,38 @@ class Home extends Component {
     const isVisible = this.hasMore && 'home--hidden';
     const hasMore = this.hasMore();
 
-    const Hours = () => {
-      if (!user) return null;
-      
-      return  (
-        <div className="home__balance">
-          Balance:
-          <Balance id={user.pk} />
-        </div>
-      );
-    };
+    
 
     if (topics === null) return null;
 
     return (
       <div className="main">
-        <article className="topics"> 
-          <div className="home__header">
-            <h1 className="topics__title">
-              <img src={ifIcon} className="home__logo" alt="infinity" />
-              {title}
-            </h1>
-            <Hours hours={5} />
-          </div> 
+        <Header user={user} title={title}/>
 
-          <form onSubmit={this.makeSearch}>
-            <FormGroup >
-              <InputGroup>
-                <Flag setFlag={this.setFlag} flag={flag}/>
-                <FormControl type="search" name="query" value={this.state.query} onChange={this.handleChange} />
-                <InputGroup.Button>
-                  <Button type="submit">{button}</Button>
-                </InputGroup.Button>
-              </InputGroup>
-            </FormGroup>
-          </form>
+        <form onSubmit={this.makeSearch}>
+          <FormGroup >
+            <InputGroup>
+              <Flag setFlag={this.setFlag} flag={flag}/>
+              <FormControl type="search" name="query" value={this.state.query} onChange={this.handleChange} />
+              <InputGroup.Button>
+                <Button type="submit">{button}</Button>
+              </InputGroup.Button>
+            </InputGroup>
+          </FormGroup>
+        </form>
 
-          <div className="topics__content">
-            <InfiniteScroll
-              pageStart={1}
-              loadMore={this.loadMore}
-              hasMore={hasMore}
-              loader={<div className={isVisible}>Loading ...</div>}>
-              <Topics topics={topics}/>
-            </InfiniteScroll>
-          </div>
-          
-          <Menu page='Home'/>
-          <Language/>
-        </article>
+        <div className="topics__content">
+          <InfiniteScroll
+            pageStart={1}
+            loadMore={this.loadMore}
+            hasMore={hasMore}
+            loader={<div className={isVisible}>Loading ...</div>}>
+            <Topics topics={topics}/>
+          </InfiniteScroll>
+        </div>
+        
+        <Menu page='Home'/>
+        <Language/>
       </div>
     );
   }
