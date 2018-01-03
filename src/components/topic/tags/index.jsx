@@ -23,7 +23,7 @@ Tag.propTypes = {
 
 const Tags = ({ title, items }) => items[0]
   ? <div className="tags__tag-box">
-    <span>{title} </span>
+    <span className="tags__title">{title}</span>
     {items.map(topic => <Tag topic={topic} key={topic.id} />)}
   </div>
   : null;
