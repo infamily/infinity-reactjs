@@ -30,8 +30,9 @@ class Home extends Component {
       page: store_home.home_page || 1,
       flag: store_home.flag || 0,
       query: '',
-      topics: [],
+      topics: null,
       last_pack: [],
+      loading: false,
     }
   }
 
@@ -39,16 +40,15 @@ class Home extends Component {
     user: PropTypes.object,
   }; 
 
-  componentWillMount() {
-    const self = this;
+  async componentWillMount() {
     const { page, flag } = this.state;
-    const { fromPage, topics } = topicService;
+    let { fromPage, topics } = topicService;
 
-    fromPage === page && topics.length
-    ?  self.setState({ topics })
-    : topicService.setTopics(flag).then(topics => {
-        self.setState({ topics, last_pack: topics });
-      }); 
+    if (fromPage !== page && !topics.length) {
+      topics = await topicService.setTopics(flag);
+    }
+
+    this.setState({ topics, last_pack: topics});
   }
 
   componentDidMount() {
@@ -117,7 +117,7 @@ class Home extends Component {
 
   render() {
     const { title, button } = this.state.content;
-    const { flag } = this.state;
+    const { flag, topics } = this.state;
     const { user } = this.props;
     const isVisible = this.hasMore && 'home--hidden';
     const hasMore = this.hasMore();
@@ -132,6 +132,8 @@ class Home extends Component {
         </div>
       );
     };
+
+    if (topics === null) return null;
 
     return (
       <div className="main">
@@ -157,13 +159,13 @@ class Home extends Component {
           </form>
 
           <div className="topics__content">
-          <InfiniteScroll
-            pageStart={1}
-            loadMore={this.loadMore}
-            hasMore={hasMore}
-            loader={<div className={isVisible}>Loading ...</div>}>
-            <Topics topics={this.state.topics}/>
-          </InfiniteScroll>
+            <InfiniteScroll
+              pageStart={1}
+              loadMore={this.loadMore}
+              hasMore={hasMore}
+              loader={<div className={isVisible}>Loading ...</div>}>
+              <Topics topics={topics}/>
+            </InfiniteScroll>
           </div>
           
           <Menu page='Home'/>

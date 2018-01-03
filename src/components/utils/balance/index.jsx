@@ -16,12 +16,10 @@ class Balance extends Component {
   }
 
   async componentWillMount() {
-    setTimeout(async () => { /* will eliminate later*/ 
-      const { id } = this.props;
-      const { balance } = await get(id);
-      const hours = parseFloat(balance).toFixed(1);
-      this.setState({ hours });
-    }, 500);
+    const { id } = this.props;
+    const { balance } = await get(id);
+    const hours = parseFloat(balance).toFixed(1);
+    this.setState({ hours });
   }
 
   render() {
