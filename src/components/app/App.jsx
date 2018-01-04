@@ -38,6 +38,7 @@ class App extends Component {
           <Route path={"/page/otp"} component={OtpLogin}/>
           <Route path={"/new-topic"} component={TopicView}/>
           <Route path={"/edit/:id"} component={TopicView}/>
+          <Route path={"/add-child/:p"} component={TopicView}/>
           <Route component={NotFound}/>
         </Switch>
       </HashRouter>

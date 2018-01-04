@@ -17,8 +17,8 @@
 .tags__title {
   border: 2px solid gainsboro;
   border-radius: 5px;
-  padding: 2px;
-  margin: 2px;
+  padding: 0 5px;
+  margin-right: 2px;
   font-size: 14px;
   margin-right: 5px;
 }

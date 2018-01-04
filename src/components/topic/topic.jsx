@@ -13,6 +13,7 @@ import Language from '../utils/lang_select';
 import Balance from '../utils/balance';
 import CommentForm from './comment_form';
 import Comments from './comments';
+import NewButton from './NewButton';
 import Tags from './tags';
 
 import './topic.css';
@@ -183,8 +184,12 @@ class Topic extends Component {
 
         <Tags title="Children" items={children} />
         
-        <span>{topic.owner.username}</span>
-        <Balance id={topic.owner.id} />
+        <div className="topic__bottom">
+          <span>{topic.owner.username}</span>
+          <Balance id={topic.owner.id} />
+          <NewButton to={"/add-child/" + topic.id} title="&#x2b; Child" />
+        </div>
+        
         <br /><br /> 
       </div> 
       : null;

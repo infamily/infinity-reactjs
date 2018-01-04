@@ -59,13 +59,19 @@ class Topic extends Component {
   async componentWillMount() {
     const { user, match } = this.props;
     const id = match.params.id;
+    const parent = match.params.p;
+    // console.log(this.props);
+    console.log(id, parent);
+
     const categories = await topicViewService.getCategories();
     const editedData = (user && id) ? await this.getTopicData(id) : {};
+    const parentData = parent ? await topicService.addParent(parent) : {};
     
     this.setState({
       all_categories: categories,
       id,
-      ...editedData
+      ...editedData,
+      ...parentData,
     });
   }
 
@@ -79,8 +85,8 @@ class Topic extends Component {
       return {};
     };
 
-    const topic_parents = await getParents(topic.parents);
-    const topic_categories = await getCategories(topic.categories);
+    const topic_parents = await topicService.getParents(topic.parents);
+    const topic_categories = await topicService.getCategories(topic.categories);
 
     return {
       topic_type: topic.type,
@@ -90,32 +96,6 @@ class Topic extends Component {
       topic_categories,
       topic_parents,
     };
-
-    async function getParents(parents) {
-      const formatted = [];
-
-      for (let link of parents) { 
-        const id = link.match(/topics\/(\d+)/)[1];
-        const topic = await topicService.getTopic(id);
-        const { title, url } = topic;
-        formatted.push({ label: title, value: title, url });
-      }
-
-      return formatted;
-    }
-
-    async function getCategories(categories) {
-      const formatted = [];
-
-      for (let link of categories) { 
-        const id = link.match(/types\/(\d+)/)[1];
-        const category = await topicService.getCategory(id);
-        const { name, url } = category;
-        formatted.push({ label: name, value: name, url });
-      }
-
-      return formatted;
-    }
   }
 
   formatData = () => {

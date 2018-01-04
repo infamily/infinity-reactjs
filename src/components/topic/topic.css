@@ -32,6 +32,13 @@
   font-size: 14px;
 }
 
+.topic__bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .topic__edit {
   float: right;
   margin-top: 20px;

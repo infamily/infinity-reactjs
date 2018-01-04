@@ -41,7 +41,46 @@ async function getCategory(id) {
   }
 }
 
+async function getParents(parents) {
+  const formatted = [];
+
+  for (let link of parents) {
+    const id = link.match(/topics\/(\d+)/)[1];
+    const topic = await getTopic(id);
+    const { title, url } = topic;
+    formatted.push({ label: title, value: title, url });
+  }
+
+  return formatted;
+}
+
+async function addParent(id) {
+  const topic = await getTopic(id);
+  const { title, url } = topic;
+  const parent = { label: title, value: title, url };
+
+  return {
+    topic_parents: [parent]
+  };
+}
+
+async function getCategories(categories) {
+  const formatted = [];
+
+  for (let link of categories) {
+    const id = link.match(/types\/(\d+)/)[1];
+    const category = await getCategory(id);
+    const { name, url } = category;
+    formatted.push({ label: name, value: name, url });
+  }
+
+  return formatted;
+}
+
 export default {
   getCategory,
   getTopic,
+  getParents,
+  getCategories,
+  addParent,
 }
