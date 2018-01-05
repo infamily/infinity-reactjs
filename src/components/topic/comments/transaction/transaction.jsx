@@ -35,19 +35,15 @@ export default class Transaction extends Component {
 
   async componentWillMount() {
     const { token } = this.props.user;
-    try {
-      const data = await transactionService.getCurrencies(token);
-      const currencies = data.map(item => {
-        item.value = item.label;
-        return item;
-      });
-      this.setState({
-        currencies
-      });
-      this.selectCurrency(currencies[2]); // select usd
-    } catch(e) {
-      console.error(e)
-    }
+    const data = await transactionService.getCurrencies(token);
+    const currencies = data.map(item => {
+      item.value = item.label;
+      return item;
+    });
+    this.setState({
+      currencies
+    });
+    this.selectCurrency(currencies[2]); // select usd
   }
 
   static propTypes = {

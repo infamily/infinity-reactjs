@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Panel, Table } from 'react-bootstrap';
 
 import transactionService from '../../../../services/transaction.service';
+import currencies from './currencies';
 import './transactions.css';
 
 export default class Transactions extends Component {
@@ -13,25 +14,32 @@ export default class Transactions extends Component {
     }
   }
 
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+  };
+
   async componentDidMount() {
     const { id } = this.props;
     const data = await transactionService.getTransactions(id);
-    
-    const transactions = data.map(item => ({ 
+    // const data = await transactionService.getCurrencies(token);
+    const transactions = data.map(item => ({
+      symbol: getSymbol(item.payment_currency),
       sender: item.payment_sender.username,
       recipient: item.payment_recipient.username,
-      amount: item.matched_hours,
+      amount: item.payment_amount,
+      matched: item.matched_hours,
       key: item.url.slice(-3),
     }));
 
     this.setState({
       transactions,
     });
-  }
 
-  static propTypes = {
-    id: PropTypes.number.isRequired,
-  };
+    function getSymbol(id) {
+      const currency = currencies.find(item => item.id === id);
+      return currency.label || ' ';
+    }
+  }
 
   round(x) {
     return Math.round(x * 100) / 100;
@@ -44,10 +52,10 @@ export default class Transactions extends Component {
       <p className="transactions__header">{header}</p>
     );
 
-    const Row = ({key, sender, recipient, amount}) => (
+    const Row = ({ key, sender, recipient, amount, matched, symbol}) => (
       <tr key={key}>
         <td>{sender}</td>
-        <td>{this.round(amount)}h</td>
+        <td>{this.round(amount)} {symbol} ({this.round(matched)}h)</td>
         <td>{recipient}</td>
       </tr>
     );

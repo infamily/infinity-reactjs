@@ -2,6 +2,9 @@ import axios from 'axios';
 import serverService from './server.service';
 
 class TransactionService {
+  constructor() {
+    this.currencies = null;
+  }
   
   async createTransaction(data, comment, user) {
     const { payment_amount, payment_currency } = data;
@@ -51,10 +54,13 @@ class TransactionService {
   }
 
   async getCurrencies(token) {
+    if (this.currencies) return this.currencies;
+    
     try {
       const headers = { 'Authorization': 'Token ' + token };
 
       const { data } = await axios.get(`${serverService.api}/currencies/`, { headers });
+      this.currencies = data;
       return data;
     } catch (e) {
       console.error(e);
