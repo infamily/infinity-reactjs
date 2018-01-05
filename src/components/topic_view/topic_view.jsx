@@ -65,7 +65,7 @@ class Topic extends Component {
 
     const categories = await topicViewService.getCategories();
     const editedData = (user && id) ? await this.getTopicData(id) : {};
-    const parentData = parent ? await topicService.addParent(parent) : {};
+    const parentData = parent ? await this.setParent(parent) : {};
     
     this.setState({
       all_categories: categories,
@@ -73,6 +73,18 @@ class Topic extends Component {
       ...editedData,
       ...parentData,
     });
+  }
+
+  async setParent(id) {
+    const parent = await topicService.addParent(id);
+    const type = parent.type + 1;
+    const all = this.state.all_types.length;
+    const childType = type < all ? type : parent.type;
+    
+    return {
+      topic_parents: [parent],
+      topic_type: childType,
+    };
   }
 
   async getTopicData(id) {

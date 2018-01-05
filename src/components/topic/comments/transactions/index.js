@@ -16,7 +16,7 @@ export default class Transactions extends Component {
   async componentDidMount() {
     const { id } = this.props;
     const data = await transactionService.getTransactions(id);
-
+    
     const transactions = data.map(item => ({ 
       sender: item.payment_sender.username,
       recipient: item.payment_recipient.username,
@@ -39,11 +39,11 @@ export default class Transactions extends Component {
 
   render() {
     const { transactions } = this.state;
-    const header = (`Transactions (${transactions.length})`)
+    const header = (`Investment (${transactions.length})`)
     const Header = () => (
       <p className="transactions__header">{header}</p>
     );
-    
+
     const Row = ({key, sender, recipient, amount}) => (
       <tr key={key}>
         <td>{sender}</td>

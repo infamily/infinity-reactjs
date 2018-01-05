@@ -121,24 +121,19 @@ class Topic extends Component {
   }
 
   edit = async (text) => {
-    try{ 
-      const { token } = this.props.user;
-      const id = this.state.comment_id;
-      await commentService.updateComment(id, text, token);
-  
-      const comments = this.state.comments.map(comment => {
-        if (comment.id === id) 
-          comment.text = text; 
-        return comment;
-      });
-      this.setState({ 
-        comments,
-        comment_id: 0,
-        comment_text: '',
-      });
-    } catch(e) {
-      console.error(e);
-    }
+    const { token } = this.props.user;
+    const id = this.state.comment_id;
+    const comment = await commentService.updateComment(id, text, token);
+
+    const comments = this.state.comments.map(item => {
+      return item.id === id ? comment : item;
+    });
+    
+    this.setState({ 
+      comments,
+      comment_id: 0,
+      comment_text: '',
+    });
   }
 
   remove = async (id) => {

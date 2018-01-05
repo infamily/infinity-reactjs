@@ -56,12 +56,10 @@ async function getParents(parents) {
 
 async function addParent(id) {
   const topic = await getTopic(id);
-  const { title, url } = topic;
-  const parent = { label: title, value: title, url };
+  const { title, url, type } = topic;
+  const parent = { label: title, value: title, url, type };
 
-  return {
-    topic_parents: [parent]
-  };
+  return parent;
 }
 
 async function getCategories(categories) {

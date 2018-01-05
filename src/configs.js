@@ -8,6 +8,6 @@ export default {
     '#56BFC5',
     '#2E5B96',
     '#AF9CC9',
-    '#D76B99'
+    '#D76B99',
   ]
 }

@@ -44,6 +44,7 @@ export default class Transaction extends Component {
       this.setState({
         currencies
       });
+      this.selectCurrency(currencies[2]); // select usd
     } catch(e) {
       console.error(e)
     }
