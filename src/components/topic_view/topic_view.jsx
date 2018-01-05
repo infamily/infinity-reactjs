@@ -60,8 +60,6 @@ class Topic extends Component {
     const { user, match } = this.props;
     const id = match.params.id;
     const parent = match.params.p;
-    // console.log(this.props);
-    console.log(id, parent);
 
     const categories = await topicViewService.getCategories();
     const editedData = (user && id) ? await this.getTopicData(id) : {};

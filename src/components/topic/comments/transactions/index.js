@@ -22,6 +22,7 @@ export default class Transactions extends Component {
     const { id } = this.props;
     const data = await transactionService.getTransactions(id);
     // const data = await transactionService.getCurrencies(token);
+    
     const transactions = data.map(item => ({
       symbol: getSymbol(item.payment_currency),
       sender: item.payment_sender.username,

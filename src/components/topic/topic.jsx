@@ -28,6 +28,7 @@ class Topic extends Component {
     this.state = {
       topic: {},
       type: '',
+      type_id: 0,
       comments: [],
       parents: [],
       children: [],
@@ -72,7 +73,8 @@ class Topic extends Component {
       comments,
       parents,
       children,
-      type
+      type,
+      type_id: topic.type,
     });
   }
 
@@ -159,9 +161,18 @@ class Topic extends Component {
     });
   }
 
+  getChild = () => {
+    const { type_id } = this.state;
+    const child_type = type_id + 1;
+    const type = child_type < configs.flags.length ? child_type : type_id;
+    
+    return configs.flags[type];
+  }
+
   render() {
     const { topic, comments, parents, children, type } = this.state;
     const user = this.props.user;
+    const child = this.getChild();
 
     const Topic = () => topic.title ?
       <div className="topic__container">
@@ -182,7 +193,7 @@ class Topic extends Component {
         <div className="topic__bottom">
           <span>{topic.owner.username}</span>
           <Balance id={topic.owner.id} />
-          <NewButton to={"/add-child/" + topic.id} title="&#x2b; Child" />
+          <NewButton to={"/add-child/" + topic.id} title={'+ ' + child} />
         </div>
         
         <br /><br /> 
