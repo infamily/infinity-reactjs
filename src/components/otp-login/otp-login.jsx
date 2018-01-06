@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Modal, Button, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { checkSubscription } from './utils';
 import otpService from './services';
+import errorService from './services/error';
 import ifIcon from './img/if.png';
 import lang from './lang';
 import './otp-login.css'; 
@@ -16,7 +16,6 @@ export default class OtpLogin extends Component {
       email: '',
       captcha_0: '',
       captcha_1: '',
-      membership: [],      
       password: '',
       token: '',
       captcha: {
@@ -49,7 +48,7 @@ export default class OtpLogin extends Component {
     } catch(e) {
       this.setPopUp({
         title: 'Network Error',
-        text: e
+        text: e,
       });
     }
   }
@@ -57,46 +56,22 @@ export default class OtpLogin extends Component {
   updateCaptcha(data) {
     if (data['key']) {
       const image_url = otpService.getImage(data);
-      const { membership, key } = data;
       
       this.setState({
         view: 'email',
-        captcha_0: key,
-        membership,
+        captcha_0: data.key,
         captcha_1: '',
         captcha: {
-          key,
+          key: data.key,
           image_url,
         }
       });
     }
   }
 
-  checkEmail = () => {
-    const { email, captcha, membership } = this.state;
-    const data = {
-      key: captcha.key,
-      email,
-      membership,
-    };
-
-    return checkSubscription(data);
-  }
-
-  onEmailSubmit = async (e) => {
-    e.preventDefault(); 
-    const isIncluded = this.checkEmail();
-    const { title, text } = lang.en.membershipError;
-
-    isIncluded 
-    ? this.signup()
-    : this.setPopUp({
-        title,
-        text: <p>{text}<b>organizations@infinity.family</b></p>
-      });
-  }
-
-  signup = async (e) => {
+  onEmailSubmit = async (ev) => {
+    ev.preventDefault(); 
+    
     try {
       const { email, captcha_0, captcha_1 } = this.state;
       if (!email || !captcha_1) {
@@ -106,8 +81,12 @@ export default class OtpLogin extends Component {
         });
         return;
       }
-      
-      const params = { email, captcha_0, captcha_1 };
+      const captcha = {
+        hashkey: captcha_0,
+        response: captcha_1,
+      };
+
+      const params = { email, captcha };
       const data = await otpService.signUp(params);
       
       this.setState({
@@ -115,12 +94,11 @@ export default class OtpLogin extends Component {
         view: 'login',
       });
     } catch(e) {
-      if (e.response.status === 400) {
-        this.setPopUp({
-          title: 'Sign In Error',
-          text: 'Wrong code. Try again.'
-        });
-      }
+      const text = errorService.getErrorMessage(e.response.data);
+      this.setPopUp({
+        title: 'Sign Up Error',
+        text: text || 'Something went wrong. Try again.',
+      });
     }
   }
 
@@ -136,11 +114,15 @@ export default class OtpLogin extends Component {
         });
         return;
       }
-      
-      await otpService.userLogin(password, token);
-      const data = await otpService.getUserData(email, token);
-      this.props.signIn({ token, ...data });
-      this.goToHome();
+      const params = {
+        one_time_password: password,
+        email,
+      };
+
+      await otpService.userLogin(params, token);
+      // const data = await otpService.getUserData(email, token);
+      // this.props.signIn({ token, ...data });
+      // this.goToHome();
     } catch(e) {
       if (e.response.status === 400) {
         this.setPopUp({
@@ -148,9 +130,10 @@ export default class OtpLogin extends Component {
           text: 'Wrong code. Try again.'
         });
       } else {
+        const text = errorService.getErrorMessage(e.response.data);
         this.setPopUp({
           title: 'Something went wrong.',
-          text: 'Try again.'
+          text,
         });
       }
     }

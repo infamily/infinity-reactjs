@@ -7,18 +7,19 @@ async function getUserData(email, token) {
   return data;
 }
 
-async function userLogin(password, token) {
+async function userLogin(params, token) {
   const headers = { 'Authorization': 'Token ' + token };
-  await axios.post(server.otp_api + '/otp/login/', { password }, { headers });
+  const { data } = await axios.post(server.api + '/auth/signin/', params, { headers });
+  console.log(data)
 }
 
 async function signUp(params) {
-  const { data } = await axios.post(server.otp_api + '/otp/singup/', params);
+  const { data } = await axios.post(server.api + '/auth/signup/', params);
   return data;
 }
 
 async function getCaptcha() {
-  const { data } = await axios.get(server.otp_api + '/otp/singup/');
+  const { data } = await axios.get(server.api + '/auth/captcha/');
   return data;
 }
 

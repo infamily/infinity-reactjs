@@ -9,6 +9,7 @@ class ServerService {
     this.api_servers = [
       'https://test.wfx.io',
       'https://test.wefindx.io',
+      'https://dev.wfx.io',
     ];
 
     this.getDefault();
@@ -40,7 +41,7 @@ class ServerService {
     ));
 
     const first = await Promise.race(promises);
-    this.setDefault(first);
+    this.setDefault(2); // set temporary dev server 
   }
 
   getResponse = (api, index) => {

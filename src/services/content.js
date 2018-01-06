@@ -4,23 +4,27 @@ export default {
       'en': [
         'Frankfurt',
         'Shanghai',
+        'Frankfurt #dev',
         'Local Fun',
       ],
       'cn': [
         '法兰克福',
         '上海',
+        '法兰克福 #dev',
         '本地乐趣',
       ],
       'ru': [
         'Франкфурт',
         'Шанхай',
+        'Франкфурт #dev',
         'Песочница',
       ],
       'lt': [
         'Frankfurtas',
         'Šanchajus',
+        'Frankfurtas #dev',
         'Vietinis džiaugsmas',
-      ]
+      ],
     }
   },
   main: {
