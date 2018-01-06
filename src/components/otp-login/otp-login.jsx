@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Modal, Button, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import server from '../../services/server.service';
 import { checkSubscription } from './utils';
-import './otp-login.css'; 
-import langSet from './lang';
+import otpService from './services';
 import ifIcon from './img/if.png';
+import lang from './lang';
+import './otp-login.css'; 
 
 export default class OtpLogin extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       view: 'view',
@@ -28,16 +27,8 @@ export default class OtpLogin extends Component {
         state: false,
         title: '',
         text: ''
-      },
-      lang: langSet['en']
+      }
     };
-
-    this.refresh = this.refresh.bind(this);
-    this.signup = this.signup.bind(this);
-    this.login = this.login.bind(this);
-    this.setPopUp = this.setPopUp.bind(this);
-    this.resetPopUp = this.resetPopUp.bind(this);
-    this.goToHome = this.goToHome.bind(this);
   }
 
   static propTypes = {
@@ -50,10 +41,10 @@ export default class OtpLogin extends Component {
     !this.state.captcha.key && this.refresh();
   } 
 
-  async refresh(e) {
+  refresh = async(e) => {
     e && e.preventDefault();
     try {
-      const { data } = await axios.get(server.otp_api + '/otp/singup/');
+      const data = await otpService.getCaptcha();
       this.updateCaptcha(data);
     } catch(e) {
       this.setPopUp({
@@ -65,9 +56,8 @@ export default class OtpLogin extends Component {
 
   updateCaptcha(data) {
     if (data['key']) {
-      const image_url = server.otp_api + data['image_url'];
-      const key = data['key'];
-      const membership = data['membership'];
+      const image_url = otpService.getImage(data);
+      const { membership, key } = data;
       
       this.setState({
         view: 'email',
@@ -75,8 +65,8 @@ export default class OtpLogin extends Component {
         membership,
         captcha_1: '',
         captcha: {
-          key: key,
-          image_url: image_url
+          key,
+          image_url,
         }
       });
     }
@@ -96,7 +86,7 @@ export default class OtpLogin extends Component {
   onEmailSubmit = async (e) => {
     e.preventDefault(); 
     const isIncluded = this.checkEmail();
-    const { title, text } = this.state.lang.membershipError;
+    const { title, text } = lang.en.membershipError;
 
     isIncluded 
     ? this.signup()
@@ -118,8 +108,8 @@ export default class OtpLogin extends Component {
       }
       
       const params = { email, captcha_0, captcha_1 };
-      const { data } = await axios.post(server.otp_api + '/otp/singup/', params);
-
+      const data = await otpService.signUp(params);
+      
       this.setState({
         token: data['token'],
         view: 'login',
@@ -134,7 +124,7 @@ export default class OtpLogin extends Component {
     }
   }
 
-  async login(e) {
+  login = async (e) => {
     e.preventDefault();
     
     try {
@@ -147,13 +137,11 @@ export default class OtpLogin extends Component {
         return;
       }
       
-      const headers = { 'Authorization': 'Token ' + token };
-      await axios.post(server.otp_api + '/otp/login/', { password }, { headers });
-      const { data } = await axios.get(server.otp_api + '/rest-auth/user/', { params: { email }, headers });
+      await otpService.userLogin(password, token);
+      const data = await otpService.getUserData(email, token);
       this.props.signIn({ token, ...data });
       this.goToHome();
     } catch(e) {
-
       if (e.response.status === 400) {
         this.setPopUp({
           title: 'Sign In Error',
@@ -168,11 +156,11 @@ export default class OtpLogin extends Component {
     }
   }
 
-  goToHome() {
+  goToHome = () => {
     this.props.history.push('/');
   }
 
-  setPopUp({ title, text }) {
+  setPopUp = ({ title, text }) => {
     this.setState({
       popUp: {
         state: true,
@@ -182,8 +170,7 @@ export default class OtpLogin extends Component {
     });
   }
 
-  resetPopUp() {
-
+  resetPopUp = () => {
     this.setState({
       popUp: {
         state: false,
