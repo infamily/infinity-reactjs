@@ -9,22 +9,22 @@ async function getUserData(email, token) {
 
 async function userLogin(params, token) {
   const headers = { 'Authorization': 'Token ' + token };
-  const { data } = await axios.post(server.api + '/auth/signin/', params, { headers });
+  const { data } = await axios.post(server.auth + '/signin/', params, { headers });
   console.log(data)
 }
 
 async function signUp(params) {
-  const { data } = await axios.post(server.api + '/auth/signup/', params);
+  const { data } = await axios.post(server.auth + '/signup/', params);
   return data;
 }
 
 async function getCaptcha() {
-  const { data } = await axios.get(server.api + '/auth/captcha/');
+  const { data } = await axios.get(server.auth + '/captcha/');
   return data;
 }
 
 function getImage(data) {
-  const url = server.otp_api + data['image_url'];
+  const url = server.base + data['image_url'];
   return url;
 }
 
