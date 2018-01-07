@@ -62,7 +62,7 @@ export default class Comments extends Component {
       return user && (
         <ButtonGroup bsSize="xsmall">
           {
-            user.pk === owner.id
+            user.id === owner.id
               ? <ButtonGroup bsSize="xsmall">
                   <Button onClick={() => this.props.startToEdit(id)}>&#9998;</Button>
                   <Button onClick={() => this.props.remove(id)}>&#10006;</Button>

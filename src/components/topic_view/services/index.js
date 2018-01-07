@@ -24,7 +24,7 @@ async function getTopic(id) {
 
 async function getCategory(id) {
   try {
-    const getCategory = lang => axios.get(`${serverService.api}/types/${id}/?lang=${lang || ''}`);
+    const getCategory = lang => axios.get(`${serverService.api}/meta/types/${id}/?lang=${lang || ''}`);
     const _category = await getCategory(' ');
 
     const { current } = langService;

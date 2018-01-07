@@ -16,7 +16,7 @@ class TransactionService {
         comment: comment.url,
         payment_amount,
         payment_currency,
-        payment_sender: user.pk,
+        payment_sender: user.id,
       }; 
 
       const { data } = await axios.post(serverService.api + '/transactions/', parameters, { headers });

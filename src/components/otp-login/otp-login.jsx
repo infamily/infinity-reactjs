@@ -17,7 +17,6 @@ export default class OtpLogin extends Component {
       captcha_0: '',
       captcha_1: '',
       password: '',
-      token: '',
       captcha: {
         key: '',
         image_url: ''
@@ -90,7 +89,6 @@ export default class OtpLogin extends Component {
       const data = await otpService.signUp(params);
       
       this.setState({
-        token: data['token'],
         view: 'login',
       });
     } catch(e) {
@@ -106,7 +104,7 @@ export default class OtpLogin extends Component {
     e.preventDefault();
     
     try {
-      const { token, password, email } = this.state;
+      const { password, email } = this.state;
       if (!password) {
         this.setPopUp({
           title: 'Sign In Error',
@@ -119,10 +117,11 @@ export default class OtpLogin extends Component {
         email,
       };
 
-      await otpService.userLogin(params, token);
-      // const data = await otpService.getUserData(email, token);
-      // this.props.signIn({ token, ...data });
-      // this.goToHome();
+      const data = await otpService.userLogin(params);
+      data.id = data.url.match(/users\/(.*)\//)[1]; // get user id
+      
+      this.props.signIn(data);
+      this.goToHome();
     } catch(e) {
       if (e.response.status === 400) {
         this.setPopUp({
@@ -262,7 +261,7 @@ export default class OtpLogin extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <button className="primaryAction btn otp__btn" onClick={this.refresh}>Resend token</button>
+                <button className="primaryAction btn otp__btn" onClick={this.refresh}>Resend code</button>
                 <button className="btn btn-primary otp__btn" onClick={this.login}>Submit</button>
               </form>
             </div>

@@ -5,11 +5,11 @@ import ifIcon from './img/if.jpg';
 
 const Hours = ({ user }) => {
   if (!user) return null;
-
+  
   return (
     <div className="home__balance">
       Balance
-      <Balance id={user.pk} />
+      <Balance id={user.id} />
     </div>
   );
 };
