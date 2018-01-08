@@ -3,8 +3,8 @@ import { Modal, Button, Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import otpService from './services';
 import errorService from './services/error';
+import helpers from './services/helpers';
 import ifIcon from './img/if.png';
-import lang from './lang';
 import './otp-login.css'; 
 
 export default class OtpLogin extends Component {
@@ -86,7 +86,7 @@ export default class OtpLogin extends Component {
       };
 
       const params = { email, captcha };
-      const data = await otpService.signUp(params);
+      await otpService.signUp(params);
       
       this.setState({
         view: 'login',
@@ -117,9 +117,9 @@ export default class OtpLogin extends Component {
         email,
       };
 
-      const data = await otpService.userLogin(params);
-      data.id = data.url.match(/users\/(.*)\//)[1]; // get user id
-      
+      const raw = await otpService.userLogin(params);
+      const data = helpers.formatUserData(raw);
+
       this.props.signIn(data);
       this.goToHome();
     } catch(e) {

@@ -17,7 +17,7 @@ async function getCaptcha() {
 }
 
 function getImage(data) {
-  const url = server.base + data['image_url'];
+  const url = server.server + data['image_url'];
   return url;
 }
 

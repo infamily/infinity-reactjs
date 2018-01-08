@@ -8,6 +8,14 @@
   cursor: pointer;
 }
 
+.transactions__header a {
+  color: inherit;
+}
+
+.transactions__header a:hover {
+  color: #5cb85c;
+}
+
 .transactions__line {
   color: #333;
   border-color: #ddd;

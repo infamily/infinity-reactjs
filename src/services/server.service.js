@@ -65,6 +65,7 @@ class ServerService {
     this.api = api + '/api/v1/core';
     this.base = api + '/api/v1';
     this.server = api;
+    this.transactions = api + '/api/v1/transactions';
   }
 }
 

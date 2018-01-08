@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Panel, Table } from 'react-bootstrap';
 
 import transactionService from '../../../../services/transaction.service';
-import currencies from './currencies';
 import './transactions.css';
 
 export default class Transactions extends Component {
@@ -19,9 +18,9 @@ export default class Transactions extends Component {
   };
 
   async componentDidMount() {
-    const { id } = this.props;
-    const data = await transactionService.getTransactions(id);
-    // const data = await transactionService.getCurrencies(token);
+    const { id, token } = this.props;
+    const data = await transactionService.getTransactions(id, token);
+    const currencies = await transactionService.getCurrencies(token);
     
     const transactions = data.map(item => ({
       symbol: getSymbol(item.payment_currency),
@@ -56,7 +55,7 @@ export default class Transactions extends Component {
     const Row = ({ key, sender, recipient, amount, matched, symbol}) => (
       <tr key={key}>
         <td>{sender}</td>
-        <td>{this.round(amount)} {symbol} ({this.round(matched)}h)</td>
+        <td> {this.round(amount)} {symbol} ({this.round(matched)}h)</td>
         <td>{recipient}</td>
       </tr>
     );
