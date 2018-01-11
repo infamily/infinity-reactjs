@@ -19,7 +19,7 @@ class TransactionService {
         payment_sender: user.id,
       }; 
 
-      const { data } = await axios.post(serverService.transactions + '/transactions/', parameters, { headers });
+      const { data } = await axios.post(serverService.api + '/transactions/', parameters, { headers });
 
       return data;
     } catch(e) {
@@ -34,7 +34,7 @@ class TransactionService {
         
       }; 
 
-      const { data } = await axios.patch(`${serverService.transactions}/transactions/${id}/`, parameters, { headers });
+      const { data } = await axios.patch(`${serverService.api}/transactions/${id}/`, parameters, { headers });
       data.text = text;
 
       return data;
@@ -46,7 +46,7 @@ class TransactionService {
   async deleteTransaction(id, data, comment, user) {
     try {
       const headers = { 'Authorization': 'Token ' + user.token }; 
-      await axios.delete(`${serverService.transactions}/transactions/${id}/`, { headers });
+      await axios.delete(`${serverService.api}/transactions/${id}/`, { headers });
       return 'success';
     } catch(e) {
       console.error(e);
@@ -57,7 +57,7 @@ class TransactionService {
     if (this.currencies) return this.currencies;
     
     try {
-      const { data } = await axios.get(`${serverService.transactions}/currencies/`);
+      const { data } = await axios.get(`${serverService.api}/currencies/`);
       this.currencies = data;
       return data;
     } catch (e) {
@@ -67,7 +67,7 @@ class TransactionService {
   
   async getTransactions(id) {
     try {
-      const { data } = await axios.get(`${serverService.transactions}/transactions/?comment=${id}`);
+      const { data } = await axios.get(`${serverService.api}/transactions/?comment=${id}`);
       return data;
     } catch (e) {
       console.error(e);

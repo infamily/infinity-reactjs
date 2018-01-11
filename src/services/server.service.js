@@ -3,8 +3,6 @@ import axios from 'axios';
 class ServerService {
   constructor() {
     this.api = null;
-    this.server = null;
-    this.base = null;
     this.index = null;
 
     this.api_servers = [
@@ -62,10 +60,7 @@ class ServerService {
     const api = this.api_servers[num];
 
     this.index = num;
-    this.api = api + '';
-    this.base = api + '';
-    this.server = api;
-    this.transactions = api + '';
+    this.api = api;
   }
 }
 
