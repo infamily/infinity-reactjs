@@ -73,7 +73,7 @@ class TopicViewService {
   async getCategories() {
     try {
       const { current } = langService;
-      const categories = await axios.get(`${serverService.base}/meta/types/?category=true&lang=${current}`);
+      const categories = await axios.get(`${serverService.base}/types/?category=1&lang=${current}`);
       return categories.data;
     } catch (e) {
       console.error(e);

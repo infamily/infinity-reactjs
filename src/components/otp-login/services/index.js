@@ -2,17 +2,17 @@ import axios from 'axios';
 import server from '../../../services/server.service';
 
 async function userLogin(params) {
-  const { data } = await axios.post(server.base + '/auth/signin/', params);
+  const { data } = await axios.post(server.base + '/signin/', params);
   return data;
 }
 
 async function signUp(params) {
-  const { data } = await axios.post(server.base + '/auth/signup/', params);
+  const { data } = await axios.post(server.base + '/signup/', params);
   return data;
 }
 
 async function getCaptcha() {
-  const { data } = await axios.get(server.base + '/auth/captcha/');
+  const { data } = await axios.get(server.base + '/captcha/');
   return data;
 }
 

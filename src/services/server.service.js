@@ -62,10 +62,10 @@ class ServerService {
     const api = this.api_servers[num];
 
     this.index = num;
-    this.api = api + '/api/v1/core';
-    this.base = api + '/api/v1';
+    this.api = api + '';
+    this.base = api + '';
     this.server = api;
-    this.transactions = api + '/api/v1/transactions';
+    this.transactions = api + '';
   }
 }
 
