@@ -17,13 +17,15 @@ class Balance extends Component {
 
   async componentWillMount() {
     const { id } = this.props;
-    const { balance } = await get(id);
-    const hours = parseFloat(balance).toFixed(1);
+    const data = await get(id);
+    const balance = data !== undefined ? data.balance : -1;
+    const hours = parseFloat(balance).toFixed(2);
     this.setState({ hours });
   }
 
   render() {
-    if(!this.state.hours) return null;
+    const { hours } = this.state;
+    if (!hours || hours < 0) return null;
 
     return (
       <div className="balance__hours">

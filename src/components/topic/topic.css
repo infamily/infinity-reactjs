@@ -37,11 +37,31 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .topic__edit {
   float: right;
   margin-top: 20px;
+}
+
+.topic__impact {
+  font-size: 16px;
+  
+}
+
+.topic__match {
+  color: #000;
+  font-size: 13px;
+  margin: 0 auto;
+  display: inline-block;  
+  min-width: 25px;
+  text-align: center;
+  margin: 0 5px;
+  padding: 0 5px;
+
+  border: 2px solid tomato;
+  border-radius: 2px;
 }
 
 .comment__owner {

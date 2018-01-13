@@ -1,34 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 import topicService from './services/topics';
 import commentService from '../../services/comment.service.js';
-import configs from '../../configs';
-import badgeStyle from './utils/badge';
 
+import TopicBody from './TopicBody';
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
-import Balance from '../utils/balance';
 import CommentForm from './comment_form';
 import Comments from './comments';
-import NewButton from './NewButton';
-import Tags from './tags';
 
 import './topic.css';
-
-import ReactHtmlParser from 'react-html-parser';
-import showdown from 'showdown';
-var mdConverter = new showdown.Converter();
 
 class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
       topic: {},
-      type: '',
-      type_id: 0,
       comments: [],
       parents: [],
       children: [],
@@ -65,7 +54,6 @@ class Topic extends Component {
 
     const comments = await topicService.getComments(id, topic.lang);
     const children = await topicService.getChildren(id, topic.lang);
-    const type = configs.flags[topic.type];
     const parents = await this.getParents(topic.parents);
 
     self.setState({
@@ -73,8 +61,6 @@ class Topic extends Component {
       comments,
       parents,
       children,
-      type,
-      type_id: topic.type,
     });
   }
 
@@ -161,58 +147,21 @@ class Topic extends Component {
     });
   }
 
-  getChild = () => {
-    const { type_id } = this.state;
-    const child_type = type_id + 1;
-    const type = child_type < configs.flags.length ? child_type : type_id;
-    
-    return configs.flags[type];
-  }
-
   render() {
     const { topic, comments, parents, children, type } = this.state;
     const user = this.props.user;
-    const child = this.getChild();
 
-    const Topic = () => topic.title ?
-      <div className="topic__container">
-        
-        <EditTopic owner={topic.owner.username} id={topic.id}/>
-        <h1>
-          {topic.title}
-          <span className="topic__type" style={badgeStyle(topic.type)}>{type}</span>        
-        </h1>
-        <i>{topic.is_draft ? <p>draft</p> : ''}</i>
-
-        <Tags title="Parents" items={parents} />
-        
-        <div className="topic__body">{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div>
-
-        <Tags title="Children" items={children} />
-        
-        <div className="topic__bottom">
-          <span>{topic.owner.username}</span>
-          <Balance id={topic.owner.id} />
-          <NewButton to={"/add-child/" + topic.id} title={'+ ' + child} />
-        </div>
-        
-        <br /><br /> 
-      </div> 
-      : null;
-
-    const EditTopic = ({ owner, id }) => {
-      const isOwner = user && (owner === user.username);
-      
-      return isOwner &&
-        <Link to={'/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>;
-    }
-    
     return (
       <div className="main">
         <div className="topics__content-item" style={{display: 'block'}}>
           <NavLink to="/" className="topics__back">&#10094; Home</NavLink>
 
-          <Topic />
+          <TopicBody 
+            topic={topic}
+            children={children}
+            parents={parents}
+            user={user}
+           />
           {
             topic.id && 
             <div ref="com_sec">

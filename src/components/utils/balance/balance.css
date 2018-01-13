@@ -9,11 +9,6 @@
 
   border: 2px solid lightblue;
   border-radius: 2px;
-
-  /* background-image: url("./img/hours.png"); */
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
 }
 
 .balance__counter {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'; // need to implement interceptor for token
 import langService from './lang.service';
 import serverService from './server.service';
 
