@@ -11,6 +11,7 @@ import What from '../what';
 import NotFound from '../notFound';
 import OtpLogin from '../otp-login';
 import TopicView from '../topic_view';
+import UserTransactions from '../user_transactions';
 
 class App extends Component {
 
@@ -32,6 +33,7 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route exact path={"/"} component={Home}/>
+          <Route path={"/user-transactions/:id"} component={UserTransactions}/>
           <Route path={"/topic/:id"} component={Topic}/>
           <Route path={"/page/how"} component={How}/>
           <Route path={"/page/what"} component={What}/>

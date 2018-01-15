@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from './service';
 import './balance.css';
+import { Link } from 'react-router-dom';
 
 class Balance extends Component {
   constructor() {
@@ -25,12 +26,16 @@ class Balance extends Component {
 
   render() {
     const { hours } = this.state;
+    const { id } = this.props;
+    
     if (!hours || hours < 0) return null;
 
     return (
-      <div className="balance__hours">
-        <span className="balance__counter"> {this.state.hours}h </span>
-      </div>
+      <Link to={"/user-transactions/" + id}>
+        <div className="balance__hours">
+          <span className="balance__counter"> {this.state.hours}h </span>
+        </div>
+      </Link>
     );
   }
 };

@@ -15,15 +15,15 @@ class ServerService {
 
   async getDefault() {
     const raw = localStorage['state_if'];
-    this.isLocal();
-
+    
     if (!raw) {
       await this.getFastest();
       return;
     };
+    this.isLocal();
     
     const { server } = JSON.parse(raw);
-    this.setDefault(server);
+    this.setDefault(1);
   }
 
   isLocal = () => {
