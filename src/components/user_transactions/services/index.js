@@ -1,7 +1,7 @@
 import axios from 'axios';
 import server from '../../../services/server.service';
 
-async function getTransactionHistory(id) {
+async function getHistory(id) {
   try {
     const { data } = await axios.get(server.api + '/contributions/?received_by=' + id);
     return data;
@@ -20,6 +20,6 @@ export async function getBalance(id) {
 }
 
 export default {
-  getTransactionHistory,
+  getHistory,
   getBalance,
 }

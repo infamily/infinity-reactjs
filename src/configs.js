@@ -1,5 +1,5 @@
 export default {
-  types: ['Goal', 'Idea', 'Plan', 'Step', 'Task'],
+  topic_types: ['Need', 'Goal', 'Idea', 'Plan', 'Step', 'Task'],
   flags: ['All', 'Goal', 'Idea', 'Plan', 'Step', 'Task'],
   server: 'https://' + window.location.host,
   colors: [

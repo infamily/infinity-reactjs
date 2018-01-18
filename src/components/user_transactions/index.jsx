@@ -11,7 +11,7 @@ export default class UserTransactions extends Component {
   constructor(){
     super();
     this.state = {
-      data: [],
+      data: null,
       balance: {},
     }
   }
@@ -22,7 +22,7 @@ export default class UserTransactions extends Component {
 
   async componentWillMount() {
     const { match } = this.props;
-    const data = await transactionService.getTransactionHistory(match.params.id);
+    const data = await transactionService.getHistory(match.params.id);
     const balance = await transactionService.getBalance(match.params.id);
     this.setState({ data, balance });
   } 
@@ -35,8 +35,8 @@ export default class UserTransactions extends Component {
 
     return (
       <div className="main">
-        <NavLink to="/" className="topics__back">&#10094; Home</NavLink>
-        <h1 className="user_transactions__header">Transactions by {balance.username}</h1>
+        <NavLink to="/" className="nav__back">&#10094; Home</NavLink>
+        <h1 className="user_contribution__header">Transactions by {balance.username}</h1>
         <TransctionTable data={data} />
         <Language />
         <Menu page='Menu' />

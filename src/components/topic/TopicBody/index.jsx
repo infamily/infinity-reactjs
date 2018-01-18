@@ -18,8 +18,8 @@ const TopicBody = ({ topic, children, parents, user }) => {
 
   const getChild = (type_id) => {
     const child_type = type_id + 1;
-    const type = child_type < configs.flags.length ? child_type : type_id;
-    return configs.flags[type];
+    const type = child_type < configs.topic_types.length ? child_type : type_id;
+    return configs.topic_types[type];
   }
 
   const child = getChild(topic.type);
@@ -38,7 +38,7 @@ const TopicBody = ({ topic, children, parents, user }) => {
       <h1>
       {topic.title}
       <span className="topic__type" style={badgeStyle(topic.type)}>
-      {configs.flags[topic.type]}
+      {configs.topic_types[topic.type]}
       </span>
       </h1>
       <p className="topic__impact">

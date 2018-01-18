@@ -16,14 +16,16 @@ class ServerService {
   async getDefault() {
     const raw = localStorage['state_if'];
     
-    if (!raw) {
+    if (true) {
+    // if (!raw) {
       await this.getFastest();
       return;
     };
+    
     this.isLocal();
     
     const { server } = JSON.parse(raw);
-    this.setDefault(1);
+    this.setDefault(server);
   }
 
   isLocal = () => {
@@ -39,7 +41,7 @@ class ServerService {
     ));
 
     const first = await Promise.race(promises);
-    this.setDefault(2); // set temporary dev server 
+    this.setDefault(first); // set temporary dev server 
   }
 
   getResponse = (api, index) => {

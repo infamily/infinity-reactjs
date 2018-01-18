@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Table } from 'react-bootstrap';
+import Loading from '../../utils/Loading';
 import './transactions.css';
-import { spawn } from 'child_process';
 
 export default class Transactions extends Component {
 
   static propTypes = {
-    data: PropTypes.array.isRequired,
+    data: PropTypes.array,
   };
 
   render() {
     const { data } = this.props;
 
-    const Row = ({ type, transaction }) => (
-      <tr key={transaction}>
-        <td>{type}</td>
-        <td><a href={transaction}>{transaction}</a></td>
+    const Row = ({ type, url }) => (
+      <tr key={url}>
+        <td>{type === 0 ? 'Invested time' : 'Invested money'}</td>
+        <td><a href={url} target="_blank">{url}</a></td>
       </tr>
     );
 
+    if (!data) return <Loading />;
     if (!data.length) return <span>Empty =(</span>;
 
     return (
@@ -27,7 +28,7 @@ export default class Transactions extends Component {
         <thead>
           <tr>
             <th>Type</th>
-            <th>Transaction</th>
+            <th>Contribution</th>
           </tr>
         </thead>
         <tbody>

@@ -28,12 +28,12 @@ class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      all_types: configs.types,
+      all_types: configs.topic_types,
       all_categories: [],
       flag: 0,
       id: null,
 
-      topic_type: 1,  
+      topic_type: 0,  
       topic_categories: [],  
       topic_title: '',  
       topic_text: '',  
