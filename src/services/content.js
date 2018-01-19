@@ -4,21 +4,25 @@ export default {
       'en': [
         'Shanghai',
         'Frankfurt #dev',
+        'Vilnius',
         'Local Fun',
       ],
       'cn': [
         '上海',
         '法兰克福 #dev',
+        '维尔纽斯',
         '本地乐趣',
       ],
       'ru': [
         'Шанхай',
         'Франкфурт #dev',
+        'Вильнюс',
         'Песочница',
       ],
       'lt': [
         'Šanchajus',
         'Frankfurtas #dev',
+        'Vilnius',
         'Vietinis džiaugsmas',
       ],
     }
@@ -36,7 +40,7 @@ export default {
       title: 'Семья Инфи́нити',
       button: 'Поиск'
     },
-    'ly': {
+    'lt': {
       title: 'Begalybės šeima',
       button: 'Paieška'
     },
