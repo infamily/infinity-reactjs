@@ -3,22 +3,22 @@ export default {
     servers: {
       'en': [
         'Shanghai',
-        'Frankfurt #dev',
+        'Frankfurt',
         'Local Fun',
       ],
       'cn': [
         '上海',
-        '法兰克福 #dev',
+        '法兰克福',
         '本地乐趣',
       ],
       'ru': [
         'Шанхай',
-        'Франкфурт #dev',
+        'Франкфурт',
         'Песочница',
       ],
       'lt': [
         'Šanchajus',
-        'Frankfurtas #dev',
+        'Frankfurtas',
         'Vietinis džiaugsmas',
       ],
     }

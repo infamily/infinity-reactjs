@@ -6,8 +6,9 @@
   min-width: 25px;
   text-align: center;
   margin: 0 5px;
+  vertical-align: middle;
 
-  border: 2px solid lightblue;
+  border: 2px solid rgb(205, 107, 127);
   border-radius: 2px;
 }
 

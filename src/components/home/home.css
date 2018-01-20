@@ -45,11 +45,10 @@
 
 .home__logo {
   max-width: 30px;
-  margin-right: 10px;
   vertical-align: middle;
 }
 
 .home__balance {
-  padding-top: 10px;
+  padding-top: 5px;
   margin: 5px 0;
 } 

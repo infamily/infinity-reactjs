@@ -33,7 +33,7 @@ class Topic extends Component {
       flag: 0,
       id: null,
 
-      topic_type: 0,  
+      topic_type: 1,  
       topic_categories: [],  
       topic_title: '',  
       topic_text: '',  
@@ -263,10 +263,10 @@ class Topic extends Component {
     const { user } = this.props;
     
 
-    const type = all_types[topic_type - 1] || "idea";
+    const type = all_types[topic_type] || "idea";
 
     const Types = () => all_types.map((item, i) => {
-      return <option value={i + 1} key={item}>{item}</option>;
+      return <option value={i} key={item}>{item}</option>;
     });
     
     const categories = all_categories.map(item => {
