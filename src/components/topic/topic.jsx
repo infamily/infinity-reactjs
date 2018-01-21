@@ -8,6 +8,8 @@ import commentService from '../../services/comment.service.js';
 import TopicBody from './TopicBody';
 import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
+import Loading from '../utils/Loading';
+import Tree from '../utils/tree';
 import CommentForm from './comment_form';
 import Comments from './comments';
 
@@ -150,6 +152,8 @@ class Topic extends Component {
   render() {
     const { topic, comments, parents, children, type } = this.state;
     const user = this.props.user;
+    
+    if (!topic.id) return <Loading />;
 
     return (
       <div className="main">
@@ -161,7 +165,12 @@ class Topic extends Component {
             children={children}
             parents={parents}
             user={user}
-           />
+          />
+          <Tree
+            title={topic.title}
+            children={children}
+            parents={parents}
+          />
           {
             topic.id && 
             <div ref="com_sec">

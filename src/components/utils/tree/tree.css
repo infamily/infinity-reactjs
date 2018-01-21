@@ -1,0 +1,15 @@
+.tree {
+  font-size: 12px;
+}
+
+.tree__cointainer {
+  height: 100%;
+  max-height: 300px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.tree__cointainer:hover {
+  height: 100%;
+  max-height: 100%;
+}

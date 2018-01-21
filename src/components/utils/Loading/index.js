@@ -1,5 +1,6 @@
 import React from 'react';
+import './loading.css';
 
 export default () => (
-  <span className="loading">Loading...</span>
+  <p className="loading"><span>.</span><span>.</span><span>.</span></p>
 );
