@@ -13,7 +13,7 @@ class TopicService {
     const f = flag || '';
 
     return new Promise((resolve, reject) => {
-      axios.get(`${serverService.api}/topics/?lang=${langService.current}&type=${f}`)
+      axios.get(`${serverService.api}/topics/?lang=${langService.current}&type=${f}&type__not=0`)
       .then(function (response) {  
         self.topics = response.data.results;
         self.fromPage = 1;        
@@ -30,7 +30,7 @@ class TopicService {
     const self = this;
     const f = flag || '';
     return new Promise((resolve, reject) => {
-      axios.get(`${serverService.api}/topics/?page=${page}&lang=${langService.current}&type=${f}`)
+      axios.get(`${serverService.api}/topics/?page=${page}&lang=${langService.current}&type=${f}&type__not=0`)
       .then(function (response) {  
         self.fromPage = page;
         self.topics = response.data.results;
@@ -48,7 +48,7 @@ class TopicService {
     const f = flag || '';
 
     return new Promise((resolve, reject) => {
-      axios.get(`${serverService.api}/topics/?search=${query}&lang=${langService.current}&type=${f}`)
+      axios.get(`${serverService.api}/topics/?search=${query}&lang=${langService.current}&type=${f}&type__not=0`)
       .then(function (response) {  
         self.topics = response.data.results;
         resolve(response.data.results);
