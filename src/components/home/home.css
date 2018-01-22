@@ -33,12 +33,6 @@
   }
 }
 
-.home__type {
-  font-size: 11px;
-  padding: 5px;
-  background-color: #bfbfbf;
-}
-
 .home--hidden {
   display: none;
 }
