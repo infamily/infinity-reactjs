@@ -166,23 +166,15 @@ class Topic extends Component {
             parents={parents}
             user={user}
           />
-          <Tree
-            title={topic.title}
-            children={children}
-            parents={parents}
-          />
-          {
-            topic.id && 
-            <div ref="com_sec">
-              <CommentForm
-                create={this.create}
-                edit={this.edit}
-                clear={this.clear}
-                text={this.state.comment_text}
-                id={this.state.comment_id}
-              />
-            </div>
-          }
+          <div ref="com_sec">
+            <CommentForm
+              create={this.create}
+              edit={this.edit}
+              clear={this.clear}
+              text={this.state.comment_text}
+              id={this.state.comment_id}
+            />
+          </div>
           <Comments 
             comments={comments}
             startToEdit={this.startToEdit}
