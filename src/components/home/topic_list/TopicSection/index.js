@@ -26,10 +26,10 @@ class TopicSection extends Component {
     store_home.home_scroll = window.scrollY;
   }
 
-  expand = async () => {
-    const children = await services.getChildren(this.props.topic.id);
+  expandChild = async (id) => {
+    const children = await services.getChildren(id);
     this.setState({
-      children,
+      [id]: children,
     });
   }
 
@@ -44,15 +44,19 @@ class TopicSection extends Component {
 
     const TopicLine = ({ topic }) => (
       <div>
+        {console.log(this)}
         <EditTopic owner={topic.owner.username} id={topic.id} />
         <h2>
-          <Badge onClick={this.expand} className="topic_section__badge" style={badgeStyle(topic.type)}>
+          <Badge onClick={() => this.expandChild(topic.id)} className="topic_section__badge" style={badgeStyle(topic.type)}>
             {' '}
           </Badge>
           <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             {' ' + topic.title}
           </Link>
         </h2>
+        <div className="topic_list__step">
+          {this.state[topic.id] && this.state[topic.id].map(item => (<TopicLine topic={item} key={'_' + item.id} />))}
+        </div>  
       </div>
     );
 
@@ -60,7 +64,7 @@ class TopicSection extends Component {
       <section className={"topics__item " + draftStyle(topic)}>
         <TopicLine topic={topic} />
         <div className="topic_list__step">
-          {this.state.children.map(item => (<TopicLine topic={item} key={item.id} />))}
+          {this.state.children.map(item => (<TopicLine topic={item} key={'_' + item.id} />))}
         </div>
       </section>
     );

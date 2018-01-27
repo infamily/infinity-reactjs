@@ -17,11 +17,10 @@
 }
 
 .topic_list__step {
-  margin-left: 20px;
+  opacity: 0.95;
   font-size: 12px;
-  color: grey !important;
+  margin-left: 20px;
 }
-
 
 .topic_section__badge {
   font-size: 11px;
