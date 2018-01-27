@@ -58,11 +58,22 @@ class Comment extends Component {
     const { user, clear } = this.props;
     const { text, editing } = this.state;
 
-    if (!user) return ( 
-      <div className="comment_form__signin">
-        <p><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
-      </div>
-    );
+    const Buttons = () => {
+      if (!user) 
+        return (
+          <div className="comment_form__signin">
+            <p><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
+          </div>
+        );
+
+      return editing ?
+        <div>
+          <Button type="submit" >Edit</Button>
+          <Button onClick={clear} bsSize="xsmall" className="comment__btn">Cancel</Button>
+        </div>
+        : <Button type="submit">Submit</Button>;
+    }
+    
 
     return (
       <div className="comment_form__section">
@@ -79,13 +90,7 @@ class Comment extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          { editing ?
-            <div>
-              <Button type="submit" >Edit</Button>
-              <Button onClick={clear} bsSize="xsmall" className="comment__btn">Cancel</Button>
-            </div>
-            : <Button type="submit">Submit</Button>
-          }
+          <Buttons />
         </form>
       </div>
     );

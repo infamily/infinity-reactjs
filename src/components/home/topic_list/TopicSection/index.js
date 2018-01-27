@@ -44,7 +44,6 @@ class TopicSection extends Component {
 
     const TopicLine = ({ topic }) => (
       <div>
-        {console.log(this)}
         <EditTopic owner={topic.owner.username} id={topic.id} />
         <h2>
           <Badge onClick={() => this.expandChild(topic.id)} className="topic_section__badge" style={badgeStyle(topic.type)}>

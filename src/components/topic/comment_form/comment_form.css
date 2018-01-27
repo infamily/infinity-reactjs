@@ -4,12 +4,6 @@
 
 .comment_form__signin {
   color: #333;
-  border-color: #ddd;
-  padding: 10px 10px 0;
-  border: 1px solid lightgray;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  box-shadow: 0 0 1px lightgray;
 }
 
 .comment_form__section {
