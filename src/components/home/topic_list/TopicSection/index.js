@@ -12,7 +12,7 @@ class TopicSection extends Component {
     super(props);
 
     this.state = {
-      children: []
+      children: [],
     }
   }
 
@@ -26,11 +26,18 @@ class TopicSection extends Component {
     store_home.home_scroll = window.scrollY;
   }
 
-  expandChild = async (id) => {
+  expand = async (topic, fromId) => {
+    const id = topic.id;
     const children = await services.getChildren(id);
-    this.setState({
-      [id]: children,
-    });
+    const parents = await services.getParents(topic.parents);
+    const filter = (arr) => arr.filter(item => item.id !== fromId);    
+
+    if(!this.state[id]) {
+      this.setState({
+        [id]: filter(children),
+        [id + 'parents']: filter(parents),
+      });
+    }
   }
 
   render() {
@@ -42,19 +49,24 @@ class TopicSection extends Component {
       }
     };
 
-    const TopicLine = ({ topic }) => (
+    const TopicLine = ({ topic, fromId }) => (
       <div>
+        <div className="topic_list__step">
+          {this.state[topic.id + 'parents'] && this.state[topic.id + 'parents'].map(item => (<TopicLine topic={item} fromId={topic.id} key={'_' + item.id} />))}
+        </div>
+        {console.log(topic, 'topic')}
         <EditTopic owner={topic.owner.username} id={topic.id} />
         <h2>
-          <Badge onClick={() => this.expandChild(topic.id)} className="topic_section__badge" style={badgeStyle(topic.type)}>
-            {' '}
+          <Badge onClick={() => this.expand(topic, fromId)} className="topic_section__badge" style={badgeStyle(topic.type)}>
+            {' '} 
           </Badge>
           <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             {' ' + topic.title}
           </Link>
         </h2>
+
         <div className="topic_list__step">
-          {this.state[topic.id] && this.state[topic.id].map(item => (<TopicLine topic={item} key={'_' + item.id} />))}
+          {this.state[topic.id] && this.state[topic.id].map(item => (<TopicLine topic={item} key={'_' + item.id} fromId={topic.id} />))}
         </div>  
       </div>
     );
@@ -62,9 +74,6 @@ class TopicSection extends Component {
     return (
       <section className={"topics__item " + draftStyle(topic)}>
         <TopicLine topic={topic} />
-        <div className="topic_list__step">
-          {this.state.children.map(item => (<TopicLine topic={item} key={'_' + item.id} />))}
-        </div>
       </section>
     );
   }

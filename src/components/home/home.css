@@ -3,12 +3,12 @@
 }
 
 .topics__item {
-  transition: all 0.4s ease;
+  transition: all 0.25s ease;
   padding: 1px;
 }
 
 .topics__item:hover {
-  transform: scale(1.03);
+  transform: scale(1.01);
 }
 
 .topics__title {

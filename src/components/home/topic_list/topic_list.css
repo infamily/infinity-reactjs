@@ -19,7 +19,9 @@
 .topic_list__step {
   opacity: 0.95;
   font-size: 12px;
-  margin-left: 20px;
+  margin-left: 15px;
+  padding-left: 5px;
+  border-left: 1px dotted lightblue;
 }
 
 .topic_section__badge {
