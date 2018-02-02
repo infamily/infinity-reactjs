@@ -12,7 +12,6 @@ import NotFound from '../notFound';
 import OtpLogin from '../otp-login';
 import TopicView from '../topic_view';
 import UserTransactions from '../user_transactions';
-import Tree from '../utils/tree';
 
 class App extends Component {
 
@@ -34,7 +33,6 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route exact path={"/"} component={Home}/>
-          <Route path={"/tree"} component={Tree}/>
           <Route path={"/user-transactions/:id"} component={UserTransactions}/>
           <Route path={"/topic/:id"} component={Topic}/>
           <Route path={"/page/how"} component={How}/>

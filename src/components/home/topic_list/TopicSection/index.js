@@ -27,15 +27,21 @@ class TopicSection extends Component {
   }
 
   expand = async (topic, fromId) => {
+    this.setState({ [topic.id + 'loading']: true })
     const id = topic.id;
     const children = await services.getChildren(id);
-    const parents = await services.getParents(topic.parents);
+    const parents = await services.getParents(id);
     const filter = (arr) => arr.filter(item => item.id !== fromId);    
-
+    
     if(!this.state[id]) {
       this.setState({
         [id]: filter(children),
         [id + 'parents']: filter(parents),
+        [topic.id + 'loading']: false,
+      });
+    } else {
+      this.setState({
+        [topic.id + 'loading']: false,
       });
     }
   }
@@ -49,17 +55,35 @@ class TopicSection extends Component {
       }
     };
 
+    const BadgePoint = ({ topic, fromId }) => {
+      if (topic.children.length || topic.parents.length) {
+        const loading = this.state[topic.id + 'loading'] ? ' point_pulse' : '';
+        return (
+          <Badge 
+            onClick={() => this.expand(topic, fromId)} 
+            className={"topic_section__expand" + loading} 
+            style={badgeStyle(topic.type)}>
+            {' '} 
+          </Badge>
+        );
+      } else {
+        return (
+          <Badge className="topic_section__badge" style={badgeStyle(topic.type)}>
+            {' '}
+          </Badge>
+        );
+      }
+    }
+
     const TopicLine = ({ topic, fromId }) => (
       <div>
         <div className="topic_list__step">
           {this.state[topic.id + 'parents'] && this.state[topic.id + 'parents'].map(item => (<TopicLine topic={item} fromId={topic.id} key={'_' + item.id} />))}
         </div>
-        {console.log(topic, 'topic')}
+        
         <EditTopic owner={topic.owner.username} id={topic.id} />
         <h2>
-          <Badge onClick={() => this.expand(topic, fromId)} className="topic_section__badge" style={badgeStyle(topic.type)}>
-            {' '} 
-          </Badge>
+          <BadgePoint topic={topic} fromId={fromId} />
           <Link to={'/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             {' ' + topic.title}
           </Link>

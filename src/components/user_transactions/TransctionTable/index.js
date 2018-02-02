@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Loading from '../../utils/Loading';
 import './transactions.css';
 
