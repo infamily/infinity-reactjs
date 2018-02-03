@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as services from './services';
 import store_home from '../../../../store/home';
-import configs from '../../../../configs';
+import { badgeStyle } from './helpers';
 
 class TopicSection extends Component {
   constructor(props) {
@@ -47,29 +47,25 @@ class TopicSection extends Component {
   }
 
   render() {
-    const { colors } = configs;
     const { draftStyle, EditTopic, topic } = this.props;
-    const badgeStyle = type => {
-      return {
-        backgroundColor: colors[type]
-      }
-    };
-
+    
     const BadgePoint = ({ topic, fromId }) => {
-      if (topic.children.length || topic.parents.length) {
-        const loading = this.state[topic.id + 'loading'] ? ' point_pulse' : '';
+      const loading = this.state[topic.id + 'loading'] ? ' point_pulse' : '';
+      const { children, parents } = topic;
+      
+      if (children.length || parents.length) {
         return (
           <Badge 
             onClick={() => this.expand(topic, fromId)} 
             className={"topic_section__expand" + loading} 
-            style={badgeStyle(topic.type)}>
+            style={badgeStyle(topic)}>
             {' '} 
           </Badge>
         );
       } else {
         return (
-          <Badge className="topic_section__badge" style={badgeStyle(topic.type)}>
-            {' '}
+          <Badge className="topic_section__badge" style={badgeStyle(topic)}>
+          {' '}
           </Badge>
         );
       }
