@@ -1,0 +1,12 @@
+.types__content {
+  min-height: calc(100vh - 100px);
+}
+
+.types__item {
+  transition: all 0.25s ease-out;
+  padding: 5px;
+}
+
+.types__item:hover {
+  transform: scale(1.01);
+}
