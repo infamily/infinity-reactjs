@@ -1,0 +1,28 @@
+.stream_tab {
+  min-width: 400px;
+  height: 100%;
+  border-left: 1px solid rgb(236, 236, 236);
+  background-color: rgb(247, 247, 247); 
+}
+
+.stream_tab__container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.stream_tab__header {
+  font-weight: 200;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.stream_tab__instance {
+  flex: 1 200px;
+  height: 100px;
+  border: 10px dashed lightgray;
+  padding: 10px;
+  margin: 10px;
+}

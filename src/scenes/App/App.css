@@ -1,27 +1,43 @@
 @media only screen and (min-width: 768px) {
   /* tablets and desktop */
-  body { margin-left: 30%; margin-right: 30%; };
+  .app_container {
+    max-width: 90%; 
+    margin: 0 auto;
+  };
 }
 
 @media only screen and (max-width: 767px) {
   /* phones */
-  body { 
-    width: 97%;
-    padding: 10px;
+  .app_container {
+    max-width: 90%; 
+    margin: 0 auto;
   };
 }
 
 @media only screen and (max-width: 767px) and (orientation: portrait) {
   /* portrait phones */
-  body { 
+  .app_container { 
     width: 97%;
     padding: 10px;
   };
 }
 
-body{
+.app_container {
   overflow-x: hidden;
   font-size: 16px;
+  padding: 10px;
+  width: 60%;
+}
+
+.tab_container {
+  min-width: 600px;
+  position: relative;
+}
+
+.main_layout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 select {

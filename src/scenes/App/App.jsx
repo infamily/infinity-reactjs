@@ -14,6 +14,7 @@ import TopicView from '../topic_view';
 import TypeList from '../TypeList';
 import TypePage from '../TypeView';
 import UserTransactions from '../user_transactions';
+import StreamTab from '../StreamTab';
 
 class App extends Component {
 
@@ -33,20 +34,27 @@ class App extends Component {
 
     return (
       <HashRouter>
-        <Switch>
-          <Route exact path={"/"} component={Home}/>
-          <Route path={"/topic/:id"} component={Topic}/>
-          <Route path={"/page/how"} component={How}/>
-          <Route path={"/page/what"} component={What}/>
-          <Route path={"/page/otp"} component={OtpLogin}/>
-          <Route path={"/new-topic"} component={TopicView}/>
-          <Route path={"/edit/:id"} component={TopicView}/>
-          <Route path={"/types/:id"} component={TypePage}/>
-          <Route path={"/types/"} component={TypeList}/>
-          <Route path={"/add-child/:p"} component={TopicView}/>
-          <Route path={"/user-transactions/:id"} component={UserTransactions}/>
-          <Route component={NotFound}/>
-        </Switch>
+        <div className="main_layout">
+          <div className="app_container">
+            <Switch>
+              <Route exact path={"/"} component={Home}/>
+              <Route path={"/topic/:id"} component={Topic}/>
+              <Route path={"/page/how"} component={How}/>
+              <Route path={"/page/what"} component={What}/>
+              <Route path={"/page/otp"} component={OtpLogin}/>
+              <Route path={"/new-topic"} component={TopicView}/>
+              <Route path={"/edit/:id"} component={TopicView}/>
+              <Route path={"/types/:id"} component={TypePage}/>
+              <Route path={"/types/"} component={TypeList}/>
+              <Route path={"/add-child/:p"} component={TopicView}/>
+              <Route path={"/user-transactions/:id"} component={UserTransactions}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
+          <div className="tab_container">
+            <StreamTab />
+          </div>
+        </div>
       </HashRouter>
     );
   }
