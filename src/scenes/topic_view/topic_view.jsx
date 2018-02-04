@@ -18,9 +18,9 @@ import configs from '../../configs';
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
 
-import Menu from '../components/menu';
-import Language from '../components/lang_select';
-import Flag from '../components/flag_toggle';
+import Menu from '../../components/menu';
+import Language from '../../components/lang_select';
+import Flag from '../../components/flag_toggle';
 
 import './topic_view.css';
 

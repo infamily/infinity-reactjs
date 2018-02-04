@@ -4,7 +4,7 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import Transaction from './transaction';
 import Transactions from './transactions';
 import ProgressBar from './progress_bar';
-import Balance from '../../components/balance';
+import Balance from '../../../components/balance';
 import './comments.css';
 
 import ReactHtmlParser from 'react-html-parser';

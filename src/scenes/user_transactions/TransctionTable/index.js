@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
-import Loading from '../../components/Loading';
+import Loading from '../../../components/Loading';
 import './transactions.css';
 
 export default class Transactions extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
-import langService from '../../../../services/lang.service';
-import serverService from '../../../../services/server.service';
+import langService from '../../../services/lang.service';
+import serverService from '../../../services/server.service';
 import './server_select.css';
 import getMessages from './messages';
 const messages = getMessages(langService.current);

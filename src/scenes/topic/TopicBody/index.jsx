@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import badgeStyle from '../components/badge';
+import badgeStyle from '../helpers/badge';
 import NewButton from '../NewButton';
 import Tags from '../tags';
-import Balance from '../../components/balance';
+import Balance from '../../../components/balance';
 import configs from '../../../configs';
 
 import ReactHtmlParser from 'react-html-parser';

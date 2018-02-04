@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setServer } from '../../../../actions/server';
+import { setServer } from '../../../actions/server';
 import Server from './server';
 
 function mapStateToProps(state) {
