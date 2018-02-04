@@ -12,6 +12,7 @@ import NotFound from '../notFound';
 import OtpLogin from '../otp-login';
 import TopicView from '../topic_view';
 import TypeList from '../TypeList';
+import TypePage from '../TypeView';
 import UserTransactions from '../user_transactions';
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
           <Route path={"/page/otp"} component={OtpLogin}/>
           <Route path={"/new-topic"} component={TopicView}/>
           <Route path={"/edit/:id"} component={TopicView}/>
+          <Route path={"/types/:id"} component={TypePage}/>
           <Route path={"/types/"} component={TypeList}/>
           <Route path={"/add-child/:p"} component={TopicView}/>
           <Route path={"/user-transactions/:id"} component={UserTransactions}/>

@@ -11,7 +11,7 @@ import Menu from '../utils/menu';
 import Language from '../utils/lang_select';
 import Loading from '../utils/Loading'; 
 import Header from '../utils/header'; 
-import TypeItem from './TypeItem'; 
+import TypeItem from '../utils/TypeItem'; 
 
 import { getTypes } from './services';
 import langService from '../../services/lang.service';
@@ -36,8 +36,8 @@ class TypesList extends Component {
     const { location: { search } } = this.props;
     
     if (search) {
-      const query = search && search.match(/type=(.+)/)[1];
-      this.setState({ query });
+      const query = search && search.match(/type=(.+)/);
+      query && this.setState({ query: query[1] });
     }
     
     const types = await getTypes();
@@ -74,7 +74,7 @@ class TypesList extends Component {
         <div className="types__content">
           {types
             .filter(item => this.filterItem(item, query))
-            .map(item => <TypeItem type={item} key={item.url}/>)}
+            .map(item => <TypeItem className="types__item" type={item} key={item.url}/>)}
         </div>
         
         <Menu page='Home'/>

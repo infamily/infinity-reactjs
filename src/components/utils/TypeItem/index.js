@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TopicItem = ({ type }) => (
-  <section className="types__item">
+  <section>
     <h2>{type.name}</h2>
     <p>{type.definition}</p>
   </section>
