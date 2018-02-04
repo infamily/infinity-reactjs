@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
-import badgeStyle from '../utils/badge';
+import badgeStyle from '../components/badge';
 import './tags.css';
 
 

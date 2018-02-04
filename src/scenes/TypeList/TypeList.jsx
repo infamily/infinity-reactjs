@@ -7,11 +7,11 @@ import {
   InputGroup,
 } from 'react-bootstrap';
 
-import Menu from '../utils/menu';
-import Language from '../utils/lang_select';
-import Loading from '../utils/Loading'; 
-import Header from '../utils/header'; 
-import TypeItem from '../utils/TypeItem'; 
+import Menu from '../components/menu';
+import Language from '../components/lang_select';
+import Loading from '../components/Loading'; 
+import Header from '../components/header'; 
+import TypeItem from '../components/TypeItem'; 
 
 import { getTypes } from './services';
 import langService from '../../services/lang.service';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';  
-import Menu from './utils/menu';
+import Menu from './components/menu';
 
 class NotFound extends Component {
 

@@ -10,10 +10,10 @@ import {
 } from 'react-bootstrap';
 
 import Topics from './topic_list';
-import Menu from '../utils/menu';
-import Language from '../utils/lang_select';
-import Flag from '../utils/flag_toggle';
-import Header from '../utils/header'; 
+import Menu from '../components/menu';
+import Language from '../components/lang_select';
+import Flag from '../components/flag_toggle';
+import Header from '../components/header'; 
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';

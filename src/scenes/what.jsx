@@ -1,16 +1,16 @@
 import React, { Component } from 'react'; 
-import langService from '../services/lang.service.js'; 
-import Menu from './utils/menu';
-import Language from './utils/lang_select';
+import langService from '../services/lang.service.js';
+import Language from './components/lang_select';
+import Menu from './components/menu'; 
 
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
 var mdConverter = new showdown.Converter();
 
-class How extends Component {
-
+class What extends Component {  
+  
   render() {
-    const rowHtml = langService.howContent().reduce((line, newline) => {
+    const rowHtml = langService.whatContent().reduce((line, newline) => {
       return line + newline;
     });
     const Content = () => ReactHtmlParser(mdConverter.makeHtml(rowHtml)); 
@@ -18,11 +18,11 @@ class How extends Component {
     return (
       <div className="main">
         <Content/>
-        <Menu page='How?'/>
+        <Menu page='What?'/>
         <Language />
       </div>
     );
   }
 }
 
-export default How; 
+export default What; 
