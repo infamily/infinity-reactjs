@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 @media only screen and (min-width: 768px) {
   /* tablets and desktop */
   .app_container {
@@ -9,7 +13,7 @@
 @media only screen and (max-width: 767px) {
   /* phones */
   .app_container {
-    max-width: 90%; 
+    max-width: 95%; 
     margin: 0 auto;
   };
 }
@@ -26,12 +30,7 @@
   overflow-x: hidden;
   font-size: 16px;
   padding: 10px;
-  width: 60%;
-}
-
-.tab_container {
-  min-width: 600px;
-  position: relative;
+  max-width: 700px;
 }
 
 .main_layout {
