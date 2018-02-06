@@ -1,38 +1,15 @@
 .tab_container {
-  width: 600px;
+  min-width: 600px;
   position: relative;
 }
 
-@media (max-width: 900px) {
-  .tab_container {
-    width: 400px;
-  }
-
-  .stream_tab {
-    width: 400px;
-  }
-}
-
-@media (max-width: 600px) {
-  .tab_container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    /* width: 400px; */
-  }
-
-  .stream_tab {
-    width: 400px;
-  }
-}
 
 .stream_tab {
   padding: 10px;
+  padding-top: 30px;
   height: 100vh;
   position: fixed;
-  box-sizing: border-box;
-  /* min-width: 100%; */
+  overflow-y: auto;  
   width: 600px;
   border-left: 1px solid rgb(236, 236, 236);
   background-color: rgb(247, 247, 247); 
@@ -47,6 +24,40 @@
   justify-content: space-between;
 }
 
+
+@media (max-width: 1000px) {
+  .tab_container {
+    min-width: 400px;
+  }
+
+  .stream_tab {
+    width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tab_container {
+    min-width: 300px;    
+  }
+
+  .stream_tab {
+    width: 300px;    
+  }
+}
+
+@media (max-width: 600px) {
+  .tab_container {
+    position: fixed;
+    min-width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .stream_tab {
+    width: 100%;
+  }
+}
+
 .stream_tab__header {
   font-weight: 200;
   padding: 10px;
@@ -59,4 +70,48 @@
   border: 10px dashed lightgray;
   padding: 10px;
   margin: 10px;
+}
+
+.stream_tab__toggle {
+  position: fixed;
+  top: 60px;
+  right: 5px;
+  writing-mode: vertical-rl; 
+  padding: 10px 5px 10px 5px;
+  border: 1px solid rgb(207, 207, 207);
+  background-color: rgb(243, 243, 243);
+  border-radius: 5px 0 0 5px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.stream_tab__close {
+  position: absolute;
+  cursor: pointer;
+  right: 20px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+.stream_tab__close:hover {
+  opacity: 1;
+}
+
+.stream_tab__close:before, .stream_tab__close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+
+.stream_tab__close:before {
+  transform: rotate(45deg);
+}
+
+.stream_tab__close:after {
+  transform: rotate(-45deg);
 }
