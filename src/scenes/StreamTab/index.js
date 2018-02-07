@@ -21,7 +21,7 @@ export default class StreamTab extends Component {
 
   async componentWillMount() {
     const schemas = await getSchemas();
-    const activeSchema = schemas[0] && schemas[0].name;
+    const activeSchema = (schemas && schemas[0]) && schemas[0].name;
     
     this.setState({
       schemas,
