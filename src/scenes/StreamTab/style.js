@@ -4,7 +4,7 @@ export const transitionStyles = {
     transform: 'translate(100%)',
   },
   entered: {
-    transform: 'translate(0%)',
+    transform: 'none',
     transition: 'all 250ms ease-in-out',
   },
   exiting: {
