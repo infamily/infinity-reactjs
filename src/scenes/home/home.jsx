@@ -14,6 +14,7 @@ import Menu from '../../components/menu';
 import Language from '../../components/lang_select';
 import Flag from '../../components/flag_toggle';
 import Header from '../../components/header'; 
+import Loading from '../../components/Loading';
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';
@@ -121,9 +122,7 @@ class Home extends Component {
     const isVisible = this.hasMore && 'home--hidden';
     const hasMore = this.hasMore();
 
-    
-
-    if (topics === null) return null;
+    if (topics === null) return <Loading />;
 
     return (
       <div className="main">

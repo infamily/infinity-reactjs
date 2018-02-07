@@ -64,14 +64,20 @@
   font-weight: 200;
   padding: 10px;
   margin: 0 auto;
+  margin-top: 15px;
+}
+
+.stream_tab__select {
+  border: none;
+  background-color: inherit;
 }
 
 .stream_tab__instance {
   flex: 1 200px;
-  height: 100px;
-  border: 10px dashed lightgray;
   padding: 10px;
   margin: 10px;
+  height: max-content;
+  border: 3px dashed lightgray;
 }
 
 .stream_tab__toggle {
