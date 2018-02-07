@@ -7,7 +7,7 @@ class ServerService {
 
     this.api_servers = [
       'https://test.wefindx.io',
-      'https://dev.wfx.io',
+      'https://test.wfx.io',
       'https://lt.wfx.io',
     ];
 
