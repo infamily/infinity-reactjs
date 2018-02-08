@@ -1,3 +1,6 @@
+
+/* Tab Layout -- Start */
+
 .tab_container {
   width: 600px;
   position: relative;
@@ -15,7 +18,6 @@
   background-color: rgb(247, 247, 247); 
 }
 
-
 .stream_tab__container {
   width: 100%;
   display: flex;
@@ -23,7 +25,6 @@
   flex-direction: row;
   justify-content: space-between;
 }
-
 
 @media (max-width: 1000px) {
   .tab_container {
@@ -58,7 +59,36 @@
   .stream_tab {
     width: 100%;
   }
+
+  .stream_tab__container {
+    display: block;
+    word-wrap: break-word;
+  }
+
+  .stream_tab__full_icon {
+    display: none;
+  }
 }
+
+.tab_container--full {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+
+.stream_tab--full {
+  width: 100%;
+}
+
+/* Tab Layout -- End */
+
+
+
+/* Tab Content -- Start */
 
 .stream_tab__header {
   font-weight: 200;
@@ -93,6 +123,18 @@
   cursor: pointer;
 }
 
+.stream_tab__full_icon {
+  position: absolute;
+  cursor: pointer;
+  right: 60px;
+  top: 36px;
+  opacity: 0.2;
+}
+
+.stream_tab__full_icon:hover {
+  opacity: 1;
+}
+
 .stream_tab__close {
   position: absolute;
   cursor: pointer;
@@ -112,7 +154,7 @@
   left: 15px;
   content: ' ';
   height: 33px;
-  width: 2px;
+  width: 1px;
   background-color: #333;
 }
 

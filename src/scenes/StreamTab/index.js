@@ -3,6 +3,7 @@ import Transition from 'react-transition-group/Transition';
 
 // import Loading from '../../components/Loading';
 import FormSelect from '../../components/FormSelect';
+import fullIcon from '../../img/fullscreen.svg';
 
 import { getSchemas } from './services';
 import { transitionStyles } from './style';
@@ -16,6 +17,7 @@ export default class StreamTab extends Component {
       schemas: null,
       isOpen: false,
       activeSchema: '',
+      fullWidth: true,
     }
   }
 
@@ -27,6 +29,12 @@ export default class StreamTab extends Component {
       schemas,
       activeSchema,
     });
+  }
+
+  toggleFullScreen = () => {
+    this.setState((prevState => (
+      { fullWidth: !prevState.fullWidth }
+    )));
   }
 
   open = () => {
@@ -44,11 +52,18 @@ export default class StreamTab extends Component {
   }
 
   render() {
-    const { isOpen, schemas, activeSchema } = this.state;
+    const { isOpen, schemas, activeSchema, fullWidth } = this.state;
+    const full = fullWidth ? {
+      tab: ' tab_container--full',
+      content: ' stream_tab--full',
+    } : {
+      tab: '',
+      content: '',
+    };
 
     const TabToggle = () => ( !isOpen &&
       <div className="stream_tab__toggle" onClick={this.open}>
-        Stream Tab
+        Stream
       </div>
     );
 
@@ -69,11 +84,14 @@ export default class StreamTab extends Component {
         <TabToggle />
         <Transition in={isOpen} timeout={0}>
           {(state) => (
-            <div className="tab_container" style={{
+            <div className={"tab_container" + full.tab} style={{
               ...transitionStyles[state]
             }}>
-              <div className="stream_tab">
+              <div className={"stream_tab" + full.content}>
                 <span onClick={this.close} className="stream_tab__close"></span>
+                <div onClick={this.toggleFullScreen} className="stream_tab__full_icon">
+                  <img src={fullIcon} alt=""/>
+                </div>
                 <div className="stream_tab__header">
                   <FormSelect
                     name="activeSchema"
