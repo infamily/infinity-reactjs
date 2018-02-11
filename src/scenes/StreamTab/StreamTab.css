@@ -70,22 +70,14 @@
   }
 }
 
-.tab_container--full {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 2;
-}
-
-
 .stream_tab--full {
   width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 2;  
 }
 
 /* Tab Layout -- End */
-
 
 
 /* Tab Content -- Start */

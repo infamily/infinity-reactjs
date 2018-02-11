@@ -17,7 +17,7 @@ export default class StreamTab extends Component {
       schemas: null,
       isOpen: false,
       activeSchema: '',
-      fullWidth: true,
+      fullWidth: false,
     }
   }
 
@@ -53,13 +53,7 @@ export default class StreamTab extends Component {
 
   render() {
     const { isOpen, schemas, activeSchema, fullWidth } = this.state;
-    const full = fullWidth ? {
-      tab: ' tab_container--full',
-      content: ' stream_tab--full',
-    } : {
-      tab: '',
-      content: '',
-    };
+    const fullStyle = fullWidth ? ' stream_tab--full' : '';
 
     const TabToggle = () => ( !isOpen &&
       <div className="stream_tab__toggle" onClick={this.open}>
@@ -84,10 +78,12 @@ export default class StreamTab extends Component {
         <TabToggle />
         <Transition in={isOpen} timeout={0}>
           {(state) => (
-            <div className={"tab_container" + full.tab} style={{
+            <div className="tab_container" style={{
               ...transitionStyles[state]
             }}>
-              <div className={"stream_tab" + full.content}>
+              <div className={"stream_tab" + fullStyle} style={{
+                ...transitionStyles[state]
+              }}>
                 <span onClick={this.close} className="stream_tab__close"></span>
                 <div onClick={this.toggleFullScreen} className="stream_tab__full_icon">
                   <img src={fullIcon} alt=""/>
