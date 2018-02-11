@@ -18,7 +18,7 @@ import Loading from '../../components/Loading';
 
 import topicService from '../../services/topic.service';
 import langService from '../../services/lang.service';
-import store_home from '../../store/home';
+import store_home from './services/home';
 import './home.css';
 
 class Home extends Component {

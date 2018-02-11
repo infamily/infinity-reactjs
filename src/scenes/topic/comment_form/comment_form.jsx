@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 
 import './comment_form.css';
+import { persistComment } from '../../../actions/persistedComment';
 
 class Comment extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ class Comment extends Component {
     edit: PropTypes.func.isRequired,
     create: PropTypes.func.isRequired,
     clear: PropTypes.func.isRequired,
+    clearComment: PropTypes.func.isRequired,
+    persistComment: PropTypes.func.isRequired,
+    persistedComment: PropTypes.object.isRequired,
+    topic_id: PropTypes.number.isRequired,
     text: PropTypes.string,
     user: PropTypes.object,
   };
@@ -33,7 +38,21 @@ class Comment extends Component {
   }
 
   componentDidMount() {
+    this.checkPersisted();
     this.props.text && this.refs.field.focus();
+  }
+
+  persistComment() {
+    const { topic_id, persistComment } = this.props;
+    const { text } = this.state;
+    persistComment({ id: topic_id, body: text });
+  }
+
+  checkPersisted() {
+    const { persistedComment, topic_id } = this.props;
+    if (persistComment.id === topic_id) {
+      this.setState({ text: persistComment.body });
+    }
   }
 
   submitComment = e => {
@@ -68,7 +87,7 @@ class Comment extends Component {
 
       return editing ?
         <div>
-          <Button type="submit" >Edit</Button>
+          <Button type="submit">Edit</Button>
           <Button onClick={clear} bsSize="xsmall" className="comment__btn">Cancel</Button>
         </div>
         : <Button type="submit">Submit</Button>;
