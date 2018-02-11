@@ -98,8 +98,18 @@
   flex: 1 200px;
   padding: 10px;
   margin: 10px;
-  height: max-content;
+  max-height: 200px;
+  overflow: hidden;
   border: 3px dashed lightgray;
+}
+
+.stream_tab__instance:hover {
+  max-height: max-content;  
+}
+
+.instance__tag {
+  color: lightgray;
+  font-style: italic; 
 }
 
 .stream_tab__toggle {

@@ -4,8 +4,8 @@ import CommentForm from './comment_form';
 
 function mapDispatchToProps(dispatch) {
   return {
-    clearComment: dispatch(clearComment()),
-    persistComment: dispatch(persistComment()),
+    clearComment: () => dispatch(clearComment()),
+    persistComment: (comment) => dispatch(persistComment(comment)),
   }
 }
 

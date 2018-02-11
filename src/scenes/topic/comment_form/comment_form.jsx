@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 
 import './comment_form.css';
-import { persistComment } from '../../../actions/persistedComment';
 
 class Comment extends Component {
   constructor(props) {
@@ -42,16 +41,20 @@ class Comment extends Component {
     this.props.text && this.refs.field.focus();
   }
 
-  persistComment() {
+  persistComment = () => {
     const { topic_id, persistComment } = this.props;
     const { text } = this.state;
+    
+    console.log(topic_id, text);
     persistComment({ id: topic_id, body: text });
   }
 
   checkPersisted() {
     const { persistedComment, topic_id } = this.props;
-    if (persistComment.id === topic_id) {
-      this.setState({ text: persistComment.body });
+    console.log(persistedComment, 'persistedComment');
+    
+    if (persistedComment.id === topic_id) {
+      this.setState({ text: persistedComment.body });
     }
   }
 
@@ -64,6 +67,7 @@ class Comment extends Component {
     ? this.props.edit(text)
     : this.props.create(text);
 
+    this.props.clearComment();
     this.setState({ text: '' });
   }
 
@@ -81,7 +85,7 @@ class Comment extends Component {
       if (!user) 
         return (
           <div className="comment_form__signin">
-            <p><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
+            <p onClick={this.persistComment}><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
           </div>
         );
 

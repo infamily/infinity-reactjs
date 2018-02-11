@@ -172,7 +172,7 @@ class Topic extends Component {
               clear={this.clear}
               text={this.state.comment_text}
               id={this.state.comment_id}
-              topic_id={this.state.topic_id}
+              topic_id={this.state.topic.id}
             />
           </div>
           <Comments 
