@@ -70,7 +70,9 @@ export default class StreamTab extends Component {
     const schemaData = schemas.find(item => item.name === activeSchema);
     
     const Instances = () => schemas && schemaData.specification.map(
-      (item, i) => (<div className="stream_tab__instance" key={i}>{JSON.stringify(item)}</div>)
+      (item, i) => (<div className="stream_tab__instance" key={i}>
+        <pre><code>{JSON.stringify(item, null, 2)}</code></pre>
+      </div>)
     );
     
     return (
