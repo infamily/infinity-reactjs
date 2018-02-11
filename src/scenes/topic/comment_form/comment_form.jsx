@@ -18,6 +18,10 @@ class Comment extends Component {
     edit: PropTypes.func.isRequired,
     create: PropTypes.func.isRequired,
     clear: PropTypes.func.isRequired,
+    clearComment: PropTypes.func.isRequired,
+    persistComment: PropTypes.func.isRequired,
+    persistedComment: PropTypes.object.isRequired,
+    topic_id: PropTypes.number.isRequired,
     text: PropTypes.string,
     user: PropTypes.object,
   };
@@ -33,7 +37,25 @@ class Comment extends Component {
   }
 
   componentDidMount() {
+    this.checkPersisted();
     this.props.text && this.refs.field.focus();
+  }
+
+  persistComment = () => {
+    const { topic_id, persistComment } = this.props;
+    const { text } = this.state;
+    
+    console.log(topic_id, text);
+    persistComment({ id: topic_id, body: text });
+  }
+
+  checkPersisted() {
+    const { persistedComment, topic_id } = this.props;
+    console.log(persistedComment, 'persistedComment');
+    
+    if (persistedComment.id === topic_id) {
+      this.setState({ text: persistedComment.body });
+    }
   }
 
   submitComment = e => {
@@ -45,6 +67,7 @@ class Comment extends Component {
     ? this.props.edit(text)
     : this.props.create(text);
 
+    this.props.clearComment();
     this.setState({ text: '' });
   }
 
@@ -62,13 +85,13 @@ class Comment extends Component {
       if (!user) 
         return (
           <div className="comment_form__signin">
-            <p><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
+            <p onClick={this.persistComment}><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
           </div>
         );
 
       return editing ?
         <div>
-          <Button type="submit" >Edit</Button>
+          <Button type="submit">Edit</Button>
           <Button onClick={clear} bsSize="xsmall" className="comment__btn">Cancel</Button>
         </div>
         : <Button type="submit">Submit</Button>;

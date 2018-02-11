@@ -1,10 +1,19 @@
 import { connect } from 'react-redux';
+import { clearComment, persistComment } from '../../../actions/persistedComment';
 import CommentForm from './comment_form';
 
-function mapStateToProps(state) {
+function mapDispatchToProps(dispatch) {
   return {
-    user: state.user
+    clearComment: () => dispatch(clearComment()),
+    persistComment: (comment) => dispatch(persistComment(comment)),
   }
 }
 
-export default connect(mapStateToProps, null)(CommentForm);
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+    persistedComment: state.persistedComment,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

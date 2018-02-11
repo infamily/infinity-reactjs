@@ -21,6 +21,7 @@ import 'react-select/dist/react-select.min.css';
 import Menu from '../../components/menu';
 import Language from '../../components/lang_select';
 import Flag from '../../components/flag_toggle';
+import FormSelect from '../../components/FormSelect';
 
 import './topic_view.css';
 
@@ -318,22 +319,19 @@ class Topic extends Component {
             <Button onClick={() => this.closeModal(state)}>Close</Button>
           </Modal.Footer>
         </Modal>
-      </div>; 
+      </div>;
 
     return (
       <div className="main">
         <div className="topic_view__container">
           <form onSubmit={this.submitTopic}>
-            <FormGroup controlId="formControlsSelect">
-              <ControlLabel>Type</ControlLabel>
-              <FormControl 
-                name="topic_type"
-                componentClass="select" 
-                value={topic_type} 
-                onChange={this.handleChange}>
-                <Types />
-              </FormControl>
-            </FormGroup>
+            <FormSelect 
+              name="topic_type" 
+              label="Type" 
+              action={this.handleChange} 
+              value={topic_type}>
+              <Types />              
+            </FormSelect>
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>Category</ControlLabel> 
               <Select

@@ -32,6 +32,8 @@ export default class OtpLogin extends Component {
   static propTypes = {
     signIn: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired, 
+    persistedComment: PropTypes.object.isRequired, 
+    persistedTopic: PropTypes.object.isRequired, 
     user: PropTypes.object,
   }; 
 
@@ -121,7 +123,7 @@ export default class OtpLogin extends Component {
       const data = helpers.formatUserData(raw);
 
       this.props.signIn(data);
-      this.goToHome();
+      this.redirectTo();
     } catch(e) {
       if (e.response.status === 400) {
         this.setPopUp({
@@ -138,8 +140,15 @@ export default class OtpLogin extends Component {
     }
   }
 
-  goToHome = () => {
-    this.props.history.push('/');
+  redirectTo = () => {
+    const { history, persistedComment } = this.props;
+    let path = '/';
+
+    if (persistedComment.id) {
+      path = '/topic/' + persistedComment.id;
+    }
+
+    history.push(path);
   }
 
   setPopUp = ({ title, text }) => {

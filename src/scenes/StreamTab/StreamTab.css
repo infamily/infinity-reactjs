@@ -1,0 +1,169 @@
+
+/* Tab Layout -- Start */
+
+.tab_container {
+  width: 600px;
+  position: relative;
+}
+
+
+.stream_tab {
+  padding: 10px;
+  padding-top: 30px;
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;  
+  width: 600px;
+  border-left: 1px solid rgb(236, 236, 236);
+  background-color: rgb(247, 247, 247); 
+}
+
+.stream_tab__container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
+  .tab_container {
+    width: 400px;
+  }
+
+  .stream_tab {
+    width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tab_container {
+    width: 300px;    
+  }
+
+  .stream_tab {
+    width: 300px;    
+  }
+}
+
+@media (max-width: 600px) {
+  .tab_container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
+
+  .stream_tab {
+    width: 100%;
+  }
+
+  .stream_tab__container {
+    display: block;
+    word-wrap: break-word;
+  }
+
+  .stream_tab__full_icon {
+    display: none;
+  }
+}
+
+.stream_tab--full {
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 2;  
+}
+
+/* Tab Layout -- End */
+
+
+/* Tab Content -- Start */
+
+.stream_tab__header {
+  font-weight: 200;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.stream_tab__select {
+  border: none;
+  background-color: inherit;
+}
+
+.stream_tab__instance {
+  flex: 1 200px;
+  padding: 10px;
+  margin: 10px;
+  max-height: 200px;
+  overflow: hidden;
+  border: 3px dashed lightgray;
+}
+
+.stream_tab__instance:hover {
+  max-height: max-content;  
+}
+
+.instance__tag {
+  color: lightgray;
+  font-style: italic; 
+}
+
+.stream_tab__toggle {
+  position: fixed;
+  top: 60px;
+  right: 5px;
+  writing-mode: vertical-rl; 
+  padding: 10px 5px 10px 5px;
+  border: 1px solid rgb(207, 207, 207);
+  background-color: rgb(243, 243, 243);
+  border-radius: 5px 0 0 5px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.stream_tab__full_icon {
+  position: absolute;
+  cursor: pointer;
+  right: 60px;
+  top: 36px;
+  opacity: 0.2;
+}
+
+.stream_tab__full_icon:hover {
+  opacity: 1;
+}
+
+.stream_tab__close {
+  position: absolute;
+  cursor: pointer;
+  right: 20px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+.stream_tab__close:hover {
+  opacity: 1;
+}
+
+.stream_tab__close:before, .stream_tab__close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 1px;
+  background-color: #333;
+}
+
+.stream_tab__close:before {
+  transform: rotate(45deg);
+}
+
+.stream_tab__close:after {
+  transform: rotate(-45deg);
+}

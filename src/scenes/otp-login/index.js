@@ -4,7 +4,9 @@ import OtpLogin from './otp-login';
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    persistedComment: state.persistedComment,
+    persistedTopic: state.persistedTopic,
   }
 }
 
