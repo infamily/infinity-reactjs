@@ -21,6 +21,7 @@ class App extends Component {
   static propTypes = {
     setServer: PropTypes.func.isRequired,
     server: PropTypes.number,
+    user: PropTypes.object,
   };
   
   async componentWillMount() {
@@ -30,7 +31,8 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.server === null) return null;
+    const { server, user } = this.props;
+    if (server === null) return null;
 
     return (
       <HashRouter>
@@ -51,7 +53,7 @@ class App extends Component {
               <Route component={NotFound}/>
             </Switch>
           </div>
-          <StreamTab />
+          {user && <StreamTab />}
         </div>
       </HashRouter>
     );

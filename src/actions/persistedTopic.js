@@ -1,14 +1,14 @@
-import * as UserActionTypes from '../actiontypes/user'; 
+import { PERSIST_TOPIC, CLEAR_TOPIC } from '../actiontypes/persisted';
 
-export function signIn(user) {
+export function persistTopic(topic) {
   return {
-    type: UserActionTypes.SIGNED_IN,
-    user
+    type: PERSIST_TOPIC,
+    topic,
   }
 }
 
-export function signOut() {
+export function clearTopic() {
   return {
-    type: UserActionTypes.SIGNED_OUT
+    type: CLEAR_TOPIC,
   }
 }

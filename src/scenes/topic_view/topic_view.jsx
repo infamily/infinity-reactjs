@@ -34,10 +34,10 @@ class Topic extends Component {
       flag: 0,
       id: null,
 
-      topic_type: 1,  
-      topic_categories: [],  
-      topic_title: '',  
-      topic_text: '',  
+      topic_type: 1,
+      topic_categories: [],
+      topic_title: '',
+      topic_text: '',
       topic_parents: [],
       is_draft: false,
       error: false,
@@ -54,11 +54,12 @@ class Topic extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    persistedTopic: PropTypes.object.isRequired,
     user: PropTypes.object,
   };
 
   async componentWillMount() {
-    const { user, match } = this.props;
+    const { user, match, persistedTopic } = this.props;
     const id = match.params.id;
     const parent = match.params.p;
 
@@ -71,6 +72,7 @@ class Topic extends Component {
       id,
       ...editedData,
       ...parentData,
+      ...persistedTopic,
     });
   }
 
@@ -109,6 +111,28 @@ class Topic extends Component {
     };
   }
 
+  persistTopic = () => {
+    const {
+      topic_type,
+      topic_title,
+      topic_text,
+      is_draft,
+      topic_categories,
+      topic_parents,
+    } = this.state;
+
+    const topic = {
+      topic_type,
+      topic_title,
+      topic_text,
+      is_draft,
+      topic_categories,
+      topic_parents,
+    };
+
+    this.props.persistTopic(topic);
+  }
+
   formatData = () => {
     const {
       topic_type,
@@ -125,7 +149,7 @@ class Topic extends Component {
       type: topic_type,
       title: topic_title,
       text: topic_text,
-      is_draft,      
+      is_draft,    
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
     };
@@ -143,7 +167,7 @@ class Topic extends Component {
 
   submitTopic = async (e) => {
     e.preventDefault();
-    const { user, match } = this.props;
+    const { user, match, clearTopic } = this.props;
     const { topic_title } = this.state;
     const edited_id = match.params.id;
 
@@ -170,6 +194,8 @@ class Topic extends Component {
           text
         }
       });
+
+      clearTopic();
     }
   }
 
@@ -262,7 +288,6 @@ class Topic extends Component {
       message
     } = this.state;
     const { user } = this.props;
-    
 
     const type = all_types[topic_type] || "idea";
 
@@ -277,7 +302,7 @@ class Topic extends Component {
 
     const Buttons = () => {
       if (!user) return (
-        <div>
+        <div onClick={this.persistTopic}>
           <p><Link to="/page/otp">Sign in</Link> to post a topic.</p>
         </div>
       );

@@ -4,7 +4,8 @@ import App from './App';
 
 function mapStateToProps(state) {
   return {
-    server: state.server
+    server: state.server,
+    user: state.user,
   }
 }
 

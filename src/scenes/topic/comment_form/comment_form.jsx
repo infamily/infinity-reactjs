@@ -51,7 +51,6 @@ class Comment extends Component {
 
   checkPersisted() {
     const { persistedComment, topic_id } = this.props;
-    console.log(persistedComment, 'persistedComment');
     
     if (persistedComment.id === topic_id) {
       this.setState({ text: persistedComment.body });

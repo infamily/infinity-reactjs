@@ -68,8 +68,10 @@ export default class StreamTab extends Component {
     );
 
     const schemaData = schemas.find(item => item.name === activeSchema);
+    const isSchemaValid = schemas && schemaData.specification instanceof Array;
     
-    const Instances = () => schemas && schemaData.specification.map(
+    const Instances = () => isSchemaValid &&
+     schemaData.specification.map(
       (item, i) => (
         <div className="stream_tab__instance" key={i}>
           <p className="instance__tag">#{i + 1}</p>

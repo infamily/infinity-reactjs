@@ -141,11 +141,15 @@ export default class OtpLogin extends Component {
   }
 
   redirectTo = () => {
-    const { history, persistedComment } = this.props;
+    const { history, persistedComment, persistedTopic } = this.props;
     let path = '/';
 
     if (persistedComment.id) {
       path = '/topic/' + persistedComment.id;
+    }
+    
+    if (persistedTopic.hasOwnProperty('topic_title')) {
+      path = '/new-topic';
     }
 
     history.push(path);
