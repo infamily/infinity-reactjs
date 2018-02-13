@@ -4,6 +4,7 @@ import Transition from 'react-transition-group/Transition';
 import FormSelect from '../../components/FormSelect';
 import fullIcon from '../../img/fullscreen.svg';
 import Instance from './Instance';
+import InstanceModal from './InstanceModal';
 
 import { getSchemas, getInstances } from './services';
 import { transitionStyles } from './style';
@@ -16,6 +17,7 @@ export default class StreamTab extends Component {
     this.state = {
       isOpen: false,
       instances: [],
+      instanceData: null,
       schemas: [],
       activeSchema: 'null',
       fullWidth: false,
@@ -52,8 +54,22 @@ export default class StreamTab extends Component {
     });
   }
 
+  showInstance = (data) => {
+    this.setState({ instanceData: data });
+  }
+
+  closeInstance = () => {
+    this.setState({ instanceData: null });
+  }
+
   render() {
-    const { isOpen, schemas, instances, activeSchema, fullWidth } = this.state;
+    const { 
+      isOpen,
+      schemas,
+      instances,
+      activeSchema,
+      instanceData,
+      fullWidth } = this.state;
     const fullStyle = fullWidth ? ' stream_tab--full' : '';
 
     const TabToggle = () => ( !isOpen &&
@@ -92,12 +108,15 @@ export default class StreamTab extends Component {
                   </FormSelect>
                 </div>
                 <div className="stream_tab__container">
-                  {schemaData.map((item) => <Instance data={item} key={item.url} />)}
+                  {schemaData.map((item) => (
+                    <Instance data={item} key={item.url} showInstance={this.showInstance} />
+                  ))}
                 </div>
               </div>
             </div>
           )}
         </Transition>
+        <InstanceModal data={instanceData} show={!!instanceData} onHide={this.closeInstance} />
       </div>
     );
   }

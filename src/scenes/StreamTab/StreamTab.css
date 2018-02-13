@@ -112,8 +112,8 @@
   border-color: rgb(236, 177, 177);  
 }
 
-.instance__tag {
-  color: lightgray;
+.instance__text {
+  color: rgb(163, 163, 163);
   font-style: italic; 
 }
 
