@@ -5,7 +5,7 @@ export const transitionStyles = {
   },
   entered: {
     transform: 'none',
-    transition: 'all 250ms ease-in-out',
+    transition: 'transform, width 250ms ease-in-out',
   },
   exiting: {
     transform: 'translate(0%)',
@@ -13,6 +13,6 @@ export const transitionStyles = {
   exited: {
     width: '0px',
     transform: 'translate(100%)',
-    transition: 'all 250ms ease-in-out',
+    transition: 'transform, width 250ms ease-in-out',
   },
 }

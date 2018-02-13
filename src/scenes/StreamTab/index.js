@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Transition from 'react-transition-group/Transition';
 
-// import Loading from '../../components/Loading';
 import FormSelect from '../../components/FormSelect';
 import fullIcon from '../../img/fullscreen.svg';
+import Instance from './Instance';
 
-import { getSchemas } from './services';
+import { getSchemas, getInstances } from './services';
 import { transitionStyles } from './style';
 import './StreamTab.css';
 
@@ -14,20 +14,21 @@ export default class StreamTab extends Component {
   constructor() {
     super();
     this.state = {
-      schemas: null,
       isOpen: false,
-      activeSchema: '',
+      instances: [],
+      schemas: [],
+      activeSchema: 'null',
       fullWidth: false,
     }
   }
 
   async componentWillMount() {
     const schemas = await getSchemas();
-    const activeSchema = (schemas && schemas[0]) && schemas[0].name;
+    const instances = await getInstances();
     
     this.setState({
       schemas,
-      activeSchema,
+      instances,
     });
   }
 
@@ -52,7 +53,7 @@ export default class StreamTab extends Component {
   }
 
   render() {
-    const { isOpen, schemas, activeSchema, fullWidth } = this.state;
+    const { isOpen, schemas, instances, activeSchema, fullWidth } = this.state;
     const fullStyle = fullWidth ? ' stream_tab--full' : '';
 
     const TabToggle = () => ( !isOpen &&
@@ -60,25 +61,8 @@ export default class StreamTab extends Component {
         Stream
       </div>
     );
-
-    if (!schemas) return null;
-
-    const Schemas = () => schemas && schemas.map(
-      (item, i) => <option value={item.name} key={item.url}>{item.name}</option>
-    );
-
-    const schemaData = schemas.find(item => item.name === activeSchema);
-    const isSchemaValid = schemas && schemaData.specification instanceof Array;
     
-    const Instances = () => isSchemaValid &&
-     schemaData.specification.map(
-      (item, i) => (
-        <div className="stream_tab__instance" key={i}>
-          <p className="instance__tag">#{i + 1}</p>
-          <pre><code className="json">{JSON.stringify(item, null, 2)}</code></pre>
-        </div>
-      )
-    );
+    const schemaData = instances.filter(item => item.schema === activeSchema);
     
     return (
       <div>
@@ -102,11 +86,13 @@ export default class StreamTab extends Component {
                     action={this.handleChange}
                     value={activeSchema}
                     className="stream_tab__select">
-                    <Schemas />
+                    {schemas.map(
+                      (item) => <option value={item.url} key={item.url}>{item.name}</option>
+                    )}
                   </FormSelect>
                 </div>
                 <div className="stream_tab__container">
-                  <Instances />
+                  {schemaData.map((item) => <Instance data={item} key={item.url} />)}
                 </div>
               </div>
             </div>

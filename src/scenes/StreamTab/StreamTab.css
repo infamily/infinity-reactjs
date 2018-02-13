@@ -103,8 +103,13 @@
   border: 3px dashed lightgray;
 }
 
-.stream_tab__instance:hover {
-  max-height: max-content;  
+.instance--hasdata:hover {
+  border-color: rgb(180, 250, 180);
+  cursor: pointer;
+}
+
+.instance--nodata:hover {
+  border-color: rgb(236, 177, 177);  
 }
 
 .instance__tag {
