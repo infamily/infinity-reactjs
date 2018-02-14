@@ -5,7 +5,7 @@ export default class Instance extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      end: 200, // max json length
     }
   }
   
@@ -14,13 +14,16 @@ export default class Instance extends Component {
     showInstance: PropTypes.func.isRequired,
   }
   
-  handleChange = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
+  show = () => {
+    this.setState({ end: 1000 })
+  }
+
+  hide = () => {
+    this.setState({ end: 200 })
   }
 
   render() {
+    const { end } = this.state;
     const { data, showInstance } = this.props;
     const hasData = Object.keys(data.data).length; // check for instance data
     const hoverStyle = hasData ? ' instance--hasdata' : ' instance--nodata';
@@ -30,13 +33,16 @@ export default class Instance extends Component {
           <p>{data.identifiers}</p>  
           <span className="instance__text">{data.description}</span>  
         </div>
-      : <pre><code className="json">
-        {JSON.stringify(data, null, 2).slice(0, 200)}
+      : <pre onMouseOver ={this.show} onMouseLeave={this.hide}><code className="json">
+          {JSON.stringify(data, null, 2).slice(0, end)}
         </code></pre>;
 
     return (
-      <div className={"stream_tab__instance" + hoverStyle} onClick={() => hasData && showInstance(data)}>
-        <Body/>
+      <div className="stream_tab__instance-box">
+        <div className={"stream_tab__instance" + hoverStyle}>
+          <p onClick={() => hasData && showInstance(data)} className="instance__show">SHOW</p>
+          <Body />
+        </div>
       </div>
     );
   }

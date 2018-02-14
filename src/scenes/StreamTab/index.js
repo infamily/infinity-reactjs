@@ -15,7 +15,7 @@ export default class StreamTab extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false,
+      isOpen: true,
       instances: [],
       instanceData: null,
       schemas: [],
@@ -31,6 +31,7 @@ export default class StreamTab extends Component {
     this.setState({
       schemas,
       instances,
+      activeSchema: schemas[2].url,      
     });
   }
 

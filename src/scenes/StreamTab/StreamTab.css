@@ -94,13 +94,21 @@
   background-color: inherit;
 }
 
+.stream_tab__instance-box {
+  position: relative;
+  flex: 1 250px;  
+}
+
 .stream_tab__instance {
-  flex: 1 200px;
   padding: 10px;
   margin: 10px;
   max-height: 200px;
-  overflow: hidden;
+  overflow-y: hidden;
   border: 3px dashed lightgray;
+}
+
+.stream_tab__instance:hover {
+  overflow-y: scroll;
 }
 
 .instance--hasdata:hover {
@@ -110,6 +118,20 @@
 
 .instance--nodata:hover {
   border-color: rgb(236, 177, 177);  
+}
+
+.instance__show {
+  color: rgb(150, 149, 149);
+  padding: 0 5px;
+  position: absolute;
+  background-color: #f7f7f7;
+  left: 25px;
+  top: 0px;
+  border: 3px dashed lightgray;  
+}
+
+.instance__show:hover {
+  color: rgb(26, 26, 26);
 }
 
 .instance__text {

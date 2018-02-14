@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import {
   Button,
   Modal
@@ -35,7 +36,7 @@ export default class InstanceModal extends Component {
         aria-labelledby="contained-modal-title-lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-lg">{data.created_date}</Modal.Title>
+          <Modal.Title id="contained-modal-title-lg">Created at: {moment(data.created_date).format('MMMM Do YYYY, h:mm:ss a')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h4>{data.identifiers}</h4>
