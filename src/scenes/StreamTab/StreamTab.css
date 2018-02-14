@@ -108,7 +108,7 @@
 }
 
 .stream_tab__instance:hover {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .instance--hasdata:hover {

@@ -36,11 +36,13 @@ export default class Instance extends Component {
       : <pre onMouseOver ={this.show} onMouseLeave={this.hide}><code className="json">
           {JSON.stringify(data, null, 2).slice(0, end)}
         </code></pre>;
+    
+    const Show = () => <p onClick={() => hasData && showInstance(data)} className="instance__show">SHOW</p>;
 
     return (
       <div className="stream_tab__instance-box">
         <div className={"stream_tab__instance" + hoverStyle}>
-          <p onClick={() => hasData && showInstance(data)} className="instance__show">SHOW</p>
+          {hasData ? <Show /> : null}
           <Body />
         </div>
       </div>
