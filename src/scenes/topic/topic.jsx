@@ -34,7 +34,8 @@ class Topic extends Component {
   };
 
   async componentWillMount() {
-    const id = this.props.match.params.id;    
+    const { match: { params } } = this.props;
+    const id = params.id;
     await this.loadTopicData(id);
   }
 
@@ -46,7 +47,9 @@ class Topic extends Component {
 
   loadTopicData = async (id) => {
     const self = this;
-    const topic = await topicService.getTopic(id);
+    const { match: { params } } = this.props;
+    const server = params.server;
+    const topic = await topicService.getTopic(id, server);
 
     if (!topic) {
       this.props.history.push('/404');

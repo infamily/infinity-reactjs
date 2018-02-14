@@ -40,14 +40,20 @@ class App extends Component {
           <div className="app_container">
             <Switch>
               <Route exact path={"/"} component={Home}/>
+
+              <Route path={"/topic/:id/:server"} component={Topic}/>
               <Route path={"/topic/:id"} component={Topic}/>
+              
               <Route path={"/page/how"} component={How}/>
               <Route path={"/page/what"} component={What}/>
               <Route path={"/page/otp"} component={OtpLogin}/>
+
               <Route path={"/new-topic"} component={TopicView}/>
               <Route path={"/edit/:id"} component={TopicView}/>
+
               <Route path={"/types/:id"} component={TypePage}/>
               <Route path={"/types/"} component={TypeList}/>
+              
               <Route path={"/add-child/:p"} component={TopicView}/>
               <Route path={"/user-transactions/:id"} component={UserTransactions}/>
               <Route component={NotFound}/>
