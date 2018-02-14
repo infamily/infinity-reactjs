@@ -15,6 +15,7 @@ export async function getSchemas() {
     return withNull;
   } catch (e) {
     console.error(e);
+    return null;    
   }
 }
 
@@ -30,5 +31,6 @@ export async function getInstances() {
     return formatted;
   } catch (e) {
     console.error(e);
+    return null;        
   }
 }

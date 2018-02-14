@@ -78,7 +78,7 @@ export default class StreamTab extends Component {
       </div>
     );
     
-    const schemaData = instances.filter(item => item.schema === activeSchema);
+    const schemaData = instances ? instances.filter(item => item.schema === activeSchema) : [];
     
     return (
       <div>
@@ -102,9 +102,9 @@ export default class StreamTab extends Component {
                     action={this.handleChange}
                     value={activeSchema}
                     className="stream_tab__select">
-                    {schemas.map(
+                    {schemas ? schemas.map(
                       (item) => <option value={item.url} key={item.url}>{item.name}</option>
-                    )}
+                    ) : []}
                   </FormSelect>
                 </div>
                 <div className="stream_tab__container">

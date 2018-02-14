@@ -104,7 +104,7 @@
   margin: 10px;
   max-height: 200px;
   overflow-y: hidden;
-  border: 3px dashed lightgray;
+  border: 1px solid lightgray;
 }
 
 .stream_tab__instance:hover {
@@ -127,7 +127,7 @@
   background-color: #f7f7f7;
   left: 25px;
   top: 0px;
-  border: 3px dashed lightgray;  
+  border: 1px solid lightgray;  
 }
 
 .instance__show:hover {
