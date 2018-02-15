@@ -25,7 +25,10 @@ FormSelect.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
-  children: PropTypes.array.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]).isRequired,
 };
 
 export default FormSelect;

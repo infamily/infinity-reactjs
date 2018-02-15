@@ -121,17 +121,18 @@
 }
 
 .instance__show {
-  color: rgb(150, 149, 149);
+  color: rgb(44, 44, 44);
   padding: 0 5px;
   position: absolute;
-  background-color: #f7f7f7;
-  left: 25px;
-  top: 0px;
-  border: 1px solid lightgray;  
+  background-color: #fffb00;
+  top: 15px;
+  right: 25px;
+  border-radius: 5px;
 }
 
 .instance__show:hover {
   color: rgb(26, 26, 26);
+  background-color: #fdec6d;  
 }
 
 .instance__text {

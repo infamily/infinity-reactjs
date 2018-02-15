@@ -3,11 +3,14 @@ import langService from '../../../services/lang.service';
 import serverService from '../../../services/server.service';
 const withoutToken = axios.create();
 
+function getApi(server) {
+  const serverLink = 'https://' + server;
+  const isServerValid = server && serverService.api_servers.find(item => item === serverLink);
+  return isServerValid ? serverLink : serverService.api;
+}
 async function getTopic(id, server = null) {
   try {
-    const serverLink = 'https://' + server;
-    const isServerValid = server && serverService.api_servers.find(item => item === serverLink);
-    const api = isServerValid ? serverLink : serverService.api;
+    const api = getApi(server);
     
     const getTopic = lang => withoutToken.get(`${api}/topics/${id}/?lang=${lang || ''}`);
     const _topic = await getTopic(' ');
@@ -26,18 +29,21 @@ async function getTopic(id, server = null) {
   }
 }
 
-async function getChildren(id, lang) {
+async function getChildren(id, lang, server = null) {
   try {
-    const { data } = await withoutToken.get(`${serverService.api}/topics/?parents=${id}&lang=${lang}`);
+    const api = getApi(server);
+    const { data } = await withoutToken.get(`${api}/topics/?parents=${id}&lang=${lang}`);
     return data.results;
   } catch (e) {
     console.error(e);
   }
 }
 
-function getComments(id, lang) {
+function getComments(id, lang, server = null) {
+  const api = getApi(server);
+  
   return new Promise((resolve, reject) => {
-    withoutToken.get(`${serverService.api}/comments/?topic=${id}&lang=${lang}`)
+    withoutToken.get(`${api}/comments/?topic=${id}&lang=${lang}`)
       .then(function (response) {
         resolve(response.data.results);
       })

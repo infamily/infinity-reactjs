@@ -18,6 +18,7 @@ class ServerButton extends Component {
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
     setServer: PropTypes.func.isRequired,
+    signOut: PropTypes.func.isRequired,
     server: PropTypes.number.isRequired,
   };
 
@@ -27,6 +28,7 @@ class ServerButton extends Component {
     this.setState({
       server: index
     });
+    this.props.signOut(); // need to out, cause another server has no such token
     window.location.reload(false);
   }
 
