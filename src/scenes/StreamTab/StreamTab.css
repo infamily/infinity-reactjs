@@ -124,7 +124,7 @@
   color: rgb(44, 44, 44);
   padding: 0 5px;
   position: absolute;
-  background-color: #fffb00;
+  background-color: #cccccc;
   opacity: 0.8;
   bottom: 10px;
   left: 25px;
@@ -152,18 +152,18 @@
   writing-mode: vertical-rl; 
   padding: 10px 5px 10px 2px;
   color: #fff;
-  background-color: #5cb85c;
+  background-color: #76b976;
   /* border: 1px solid rgb(207, 207, 207); */
   border-radius: 5px 0 0 5px;
   z-index: 3;
   cursor: pointer;
   transition: all 0.25s ease-in-out;  
-  box-shadow: -3px 3px 3px rgb(109, 109, 109);  
+  box-shadow: -3px 3px 5px rgb(109, 109, 109);  
 }
 
 .stream_tab__toggle:hover {
   top: 57px;  
-  box-shadow: -6px 6px 10px rgb(109, 109, 109);  
+  box-shadow: -5px 6px 10px rgb(109, 109, 109);  
 }
 
 .stream_tab__full_icon {
