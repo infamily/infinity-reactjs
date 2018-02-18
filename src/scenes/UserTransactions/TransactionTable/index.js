@@ -15,7 +15,7 @@ export default class Transactions extends Component {
 
     const Row = ({ type, url }) => (
       <tr key={url}>
-        <td>{type === 0 ? 'Invested time' : 'Invested money'}</td>
+        <td>{type === 0 ? 'Time' : 'Money'}</td>
         <td><a href={url} target="_blank">{url}</a></td>
       </tr>
     );
