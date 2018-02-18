@@ -3,7 +3,7 @@ import Transition from 'react-transition-group/Transition';
 
 import FormSelect from 'components/FormSelect';
 import fullIcon from 'images/fullscreen.svg';
-import Instance from './Instance';
+import Instance from './Widgets';
 import InstanceModal from './InstanceModal';
 
 import { getSchemas, getInstances } from './services';
@@ -15,7 +15,7 @@ export default class StreamTab extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false,
+      isOpen: true,
       instances: [],
       instanceData: null,
       schemas: [],
@@ -31,6 +31,7 @@ export default class StreamTab extends Component {
     this.setState({
       schemas,
       instances,
+      activeSchema: schemas[2].url,
     });
   }
 
@@ -74,11 +75,12 @@ export default class StreamTab extends Component {
 
     const TabToggle = () => ( !isOpen &&
       <div className="stream_tab__toggle" onClick={this.open}>
-        Stream
+        Everything Tab
       </div>
     );
     
     const schemaData = instances ? instances.filter(item => item.schema === activeSchema) : [];
+    const schemaName = schemas.find(item => item.url === activeSchema);
     
     return (
       <div>
@@ -109,7 +111,12 @@ export default class StreamTab extends Component {
                 </div>
                 <div className="stream_tab__container">
                   {schemaData.map((item) => (
-                    <Instance data={item} key={item.url} showInstance={this.showInstance} />
+                    <Instance 
+                      data={item} 
+                      key={item.url} 
+                      showInstance={this.showInstance}
+                      schema={schemaName.name}
+                    />
                   ))}
                 </div>
               </div>

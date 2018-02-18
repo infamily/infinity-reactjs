@@ -102,7 +102,7 @@
 .stream_tab__instance {
   padding: 10px;
   margin: 10px;
-  max-height: 200px;
+  height: 200px;
   overflow-y: hidden;
   border: 1px solid lightgray;
 }
@@ -125,14 +125,18 @@
   padding: 0 5px;
   position: absolute;
   background-color: #fffb00;
-  top: 15px;
-  right: 25px;
+  opacity: 0.8;
+  bottom: 10px;
+  left: 25px;
   border-radius: 5px;
+  box-shadow: 1px 3px 5px rgb(109, 109, 109);
+  transition: all 0.25s ease-in-out;
 }
 
 .instance__show:hover {
-  color: rgb(26, 26, 26);
-  background-color: #fdec6d;  
+  opacity: 0.9;  
+  bottom: 15px;  
+  box-shadow: 3px 5px 10px rgb(109, 109, 109);
 }
 
 .instance__text {
@@ -141,16 +145,25 @@
 }
 
 .stream_tab__toggle {
+  text-transform: uppercase;
   position: fixed;
   top: 60px;
   right: 5px;
   writing-mode: vertical-rl; 
-  padding: 10px 5px 10px 5px;
-  border: 1px solid rgb(207, 207, 207);
-  background-color: rgb(243, 243, 243);
+  padding: 10px 5px 10px 2px;
+  color: #fff;
+  background-color: #5cb85c;
+  /* border: 1px solid rgb(207, 207, 207); */
   border-radius: 5px 0 0 5px;
   z-index: 3;
   cursor: pointer;
+  transition: all 0.25s ease-in-out;  
+  box-shadow: -3px 3px 3px rgb(109, 109, 109);  
+}
+
+.stream_tab__toggle:hover {
+  top: 57px;  
+  box-shadow: -6px 6px 10px rgb(109, 109, 109);  
 }
 
 .stream_tab__full_icon {

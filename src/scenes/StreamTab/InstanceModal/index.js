@@ -39,7 +39,6 @@ export default class InstanceModal extends Component {
           <Modal.Title id="contained-modal-title-lg">Created at: {moment(data.created_date).format('MMMM Do YYYY, h:mm:ss a')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>{data.identifiers}</h4>
           <Data />
         </Modal.Body>
         <Modal.Footer>
