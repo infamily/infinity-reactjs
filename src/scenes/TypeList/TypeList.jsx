@@ -7,10 +7,10 @@ import {
   InputGroup,
 } from 'react-bootstrap';
 
-import Menu from 'components/menu';
-import Language from 'components/lang_select';
+import Menu from 'components/Menu';
+import Language from 'components/LangSelect';
 import Loading from 'components/Loading'; 
-import Header from 'components/header'; 
+import Header from 'components/Header'; 
 import TypeItem from 'components/TypeItem'; 
 
 import { getTypes } from './services';

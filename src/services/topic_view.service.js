@@ -1,14 +1,13 @@
-import axios from 'axios'; // need to implement interceptor for token
+import axios from 'axios';
 import langService from './lang.service';
 import serverService from './server.service';
 
 class TopicViewService {
 
-  async createTopic(data, token) {
+  async createTopic(data) {
     const lang = langService.current;
     const { type, title, text, parents, categories, is_draft } = data;
     try {
-      const headers = { 'Authorization': 'Token ' + token };
       const parameters = {
         title: '.:' + lang + ':' + title,
         body: '.:' + lang + '\n' + text,
@@ -19,18 +18,17 @@ class TopicViewService {
         is_draft,
       };
 
-      const { data } = await axios.post(serverService.api + '/topics/', parameters, { headers });
+      const { data } = await axios.post(serverService.api + '/topics/', parameters);
       return data;
     } catch (e) {
       console.error(e);
     }
   }
 
-  async updateTopic(data, token) {
+  async updateTopic(data) {
     const lang = langService.current;
     const { type, title, text, parents, categories, id, is_draft } = data;
     try {
-      const headers = { 'Authorization': 'Token ' + token };
       const parameters = {
         title: '.:' + lang + ':' + title,
         body: '.:' + lang + '\n' + text,
@@ -41,17 +39,16 @@ class TopicViewService {
         is_draft,
       };
 
-      const { data } = await axios.patch(`${serverService.api}/topics/${id}/`, parameters, { headers });
+      const { data } = await axios.patch(`${serverService.api}/topics/${id}/`, parameters);
       return data;
     } catch (e) {
       console.error(e);
     }
   }
 
-  async deleteTopic(id, token) {
+  async deleteTopic(id) {
     try {
-      const headers = { 'Authorization': 'Token ' + token };
-      await axios.delete(`${serverService.api}/topics/${id}/`, { headers });
+      await axios.delete(`${serverService.api}/topics/${id}/`);
       return 'success';
     } catch (e) {
       console.error(e);

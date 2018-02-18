@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import serverService from 'services/server.service';
-import './App.css';
-
-import Home from 'scenes/home';
-import Topic from 'scenes/topic';
-import How from 'scenes/how';
-import What from 'scenes/what';
-import NotFound from 'scenes/notFound';
-import OtpLogin from 'scenes/otp-login';
-import TopicView from 'scenes/topic_view';
+import Home from 'scenes/Home';
+import Topic from 'scenes/Topic';
+import How from 'scenes/How';
+import What from 'scenes/What';
+import NotFound from 'scenes/NotFound';
+import OtpLogin from 'scenes/OtpLogin';
+import TopicView from 'scenes/TopicView';
 import TypeList from 'scenes/TypeList';
 import TypePage from 'scenes/TypeView';
-import UserTransactions from 'scenes/user_transactions';
+import UserTransactions from 'scenes/UserTransactions';
 import StreamTab from 'scenes/StreamTab';
+import './App.css';
 
 class App extends Component {
 
@@ -37,20 +36,15 @@ class App extends Component {
     const Routes = () => (
       <Switch>
         <Route exact path={"/"} component={Home} />
-        
         <Route path="/topic/:id/:server" component={Topic} />
         <Route path="/topic/:id" component={Topic} />
-        
         <Route path="/page/how" component={How} />
         <Route path="/page/what" component={What} />
         <Route path="/page/otp" component={OtpLogin} />
-        
         <Route path="/new-topic" component={TopicView} />
         <Route path="/edit/:id" component={TopicView} />
-
         <Route path="/types/:id" component={TypePage} />
         <Route path="/types/" component={TypeList} />
-        
         <Route path="/add-child/:p" component={TopicView} />
         <Route path="/user-transactions/:id" component={UserTransactions} />
         <Route component={NotFound} />

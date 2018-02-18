@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "img/*": ["src/img/*"],
+      "components/*": ["src/components/*"],
+      "services/*": ["src/services/*"],
+      "scenes/*": ["src/scenes/*"],
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}

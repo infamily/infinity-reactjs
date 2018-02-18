@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Balance from '../balance';
+import Balance from '../Balance';
 import ifIcon from './img/if.jpg';
 
 const Hours = ({ user }) => {

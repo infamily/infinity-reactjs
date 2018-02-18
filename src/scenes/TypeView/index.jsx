@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Menu from 'components/menu';
-import Language from 'components/lang_select';
+import Menu from 'components/Menu';
+import Language from 'components/LangSelect';
 import Loading from 'components/Loading'; 
 import TypeItem from 'components/TypeItem'; 
 

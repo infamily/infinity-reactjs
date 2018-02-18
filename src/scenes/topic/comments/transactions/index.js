@@ -19,7 +19,7 @@ export default class Transactions extends Component {
 
   async componentDidMount() {
     const { id, token } = this.props;
-    const data = await transactionService.getTransactions(id, token);
+    const data = await transactionService.getTransactions(id);
     const currencies = await transactionService.getCurrencies(token);
     
     const transactions = data.map(item => ({

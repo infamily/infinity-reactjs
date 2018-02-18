@@ -6,8 +6,8 @@ import topicService from './services/topics';
 import commentService from 'services/comment.service.js';
 
 import TopicBody from './TopicBody';
-import Menu from 'components/menu';
-import Language from 'components/lang_select';
+import Menu from 'components/Menu';
+import Language from 'components/LangSelect';
 import Loading from 'components/Loading';
 import CommentForm from './comment_form';
 import Comments from './comments';
@@ -113,9 +113,8 @@ class Topic extends Component {
   }
 
   edit = async (text) => {
-    const { token } = this.props.user;
     const id = this.state.comment_id;
-    const comment = await commentService.updateComment(id, text, token);
+    const comment = await commentService.updateComment(id, text);
 
     const comments = this.state.comments.map(item => {
       return item.id === id ? comment : item;
@@ -129,8 +128,7 @@ class Topic extends Component {
   }
 
   remove = async (id) => {
-    const { token } = this.props.user;
-    const status = await commentService.deleteComment(id, token);
+    const status = await commentService.deleteComment(id);
     const comments = this.state.comments.filter(comment => comment.id !== id);
     status === 'success' && this.setState({
       comments,
@@ -142,8 +140,7 @@ class Topic extends Component {
 
   create = async (text) => {
     const { url } = this.state.topic;
-    const { token } = this.props.user;
-    const comment = await commentService.createComment(url, text, token);
+    const comment = await commentService.createComment(url, text);
     const comments = [comment].concat(this.state.comments);
     this.setState({ 
       comments,

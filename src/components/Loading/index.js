@@ -1,5 +1,5 @@
 import React from 'react';
-import ifIcon from '../../img/if.jpg';
+import ifIcon from 'images/if.jpg';
 import './loading.css';
 
 export default () => (

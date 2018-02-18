@@ -10,8 +10,6 @@ class TransactionService {
     const { payment_amount, payment_currency } = data;
 
     try {
-      const headers = { 'Authorization': 'Token ' + user.token };
-      
       const parameters = {
         comment: comment.url,
         payment_amount,
@@ -19,23 +17,7 @@ class TransactionService {
         payment_sender: user.id,
       }; 
 
-      const { data } = await axios.post(serverService.api + '/transactions/', parameters, { headers });
-
-      return data;
-    } catch(e) {
-      console.error(e);
-    } 
-  }
-  
-  async updateTransaction(id, text, token) {
-    try {
-      const headers = { 'Authorization': 'Token ' + token };
-      const parameters = {
-        
-      }; 
-
-      const { data } = await axios.patch(`${serverService.api}/transactions/${id}/`, parameters, { headers });
-      data.text = text;
+      const { data } = await axios.post(serverService.api + '/transactions/', parameters);
 
       return data;
     } catch(e) {
@@ -45,8 +27,7 @@ class TransactionService {
 
   async deleteTransaction(id, data, comment, user) {
     try {
-      const headers = { 'Authorization': 'Token ' + user.token }; 
-      await axios.delete(`${serverService.api}/transactions/${id}/`, { headers });
+      await axios.delete(`${serverService.api}/transactions/${id}/`);
       return 'success';
     } catch(e) {
       console.error(e);

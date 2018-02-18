@@ -18,9 +18,9 @@ import configs from '../../configs';
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
 
-import Menu from 'components/menu';
-import Language from 'components/lang_select';
-import Flag from 'components/flag_toggle';
+import Menu from 'components/Menu';
+import Language from 'components/LangSelect';
+import Flag from 'components/FlagToggle';
 import FormSelect from 'components/FormSelect';
 
 import './topic_view.css';
@@ -167,7 +167,7 @@ class Topic extends Component {
 
   submitTopic = async (e) => {
     e.preventDefault();
-    const { user, match, clearTopic } = this.props;
+    const { match, clearTopic } = this.props;
     const { topic_title } = this.state;
     const edited_id = match.params.id;
 
@@ -180,7 +180,7 @@ class Topic extends Component {
     data.id = edited_id;
 
     const action = edited_id ? 'updateTopic' : 'createTopic';
-    const topic = await topicViewService[action](data, user.token);
+    const topic = await topicViewService[action](data);
     
     if (topic) {
       const { id } = topic;
@@ -200,9 +200,9 @@ class Topic extends Component {
   }
 
   deleteTopic = async () => {
-    const { user, match } = this.props;
+    const { match } = this.props;
     const edited_id = match.params.id;
-    const result = await topicViewService.deleteTopic(edited_id, user.token);
+    const result = await topicViewService.deleteTopic(edited_id);
     if (result === 'success') {
       this.props.history.push('/');
       window.location.reload(false);
