@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 import Loading from 'components/Loading';
 import './transactions.css';
 
-export default class Transactions extends Component {
+export default class Transactions extends PureComponent {
 
   static propTypes = {
     data: PropTypes.array,

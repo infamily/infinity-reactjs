@@ -58,7 +58,7 @@ class Topic extends Component {
 
     const comments = await topicService.getComments(id, topic.lang);
     const children = await topicService.getChildren(id, topic.lang);
-    const parents = await this.getParents(topic.parents);
+    const parents = await topicService.getParents(id, topic.lang);
 
     self.setState({
       topic,
@@ -67,18 +67,6 @@ class Topic extends Component {
       children,
     });
   }
-
-  async getParents(parents) {
-    const formatted = [];
-
-    for (let link of parents) {
-      const parednt_id = link.match(/topics\/(\d+)/)[1];
-      const { title, id, type } = await topicService.getTopic(parednt_id);
-      formatted.push({ title, id, type });
-    }
-
-    return formatted;
-  } 
 
   scrollToEdit() {
     const com_sec = this.refs.com_sec;
