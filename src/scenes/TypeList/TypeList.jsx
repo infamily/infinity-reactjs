@@ -7,14 +7,14 @@ import {
   InputGroup,
 } from 'react-bootstrap';
 
-import Menu from '../../components/menu';
-import Language from '../../components/lang_select';
-import Loading from '../../components/Loading'; 
-import Header from '../../components/header'; 
-import TypeItem from '../../components/TypeItem'; 
+import Menu from 'components/menu';
+import Language from 'components/lang_select';
+import Loading from 'components/Loading'; 
+import Header from 'components/header'; 
+import TypeItem from 'components/TypeItem'; 
 
 import { getTypes } from './services';
-import langService from '../../services/lang.service';
+import langService from 'services/lang.service';
 import './TypeList.css';
 
 class TypesList extends Component {

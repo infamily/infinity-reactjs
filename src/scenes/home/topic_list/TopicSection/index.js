@@ -4,7 +4,7 @@ import { Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as services from './services';
-import store_home from '../../services/home';
+import store_home from '../../services/store_home';
 import { badgeStyle } from './helpers';
 
 class TopicSection extends Component {

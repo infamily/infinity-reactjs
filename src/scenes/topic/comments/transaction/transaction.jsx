@@ -11,9 +11,9 @@ import {
 import Select from 'react-select';
 import './transaction.css';
 
-import commentService from '../../../../services/comment.service.js';
-import transactionService from '../../../../services/transaction.service';
-import langService from '../../../../services/lang.service';
+import commentService from 'services/comment.service.js';
+import transactionService from 'services/transaction.service';
+import langService from 'services/lang.service';
 import ProgressBar from '../progress_bar';
 import getMessages from './messages';
 const messages = getMessages(langService.current);

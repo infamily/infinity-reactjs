@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import badgeStyle from '../helpers/badge';
 import NewButton from '../NewButton';
 import Tags from '../tags';
-import Balance from '../../../components/balance';
+import Balance from 'components/balance';
 import configs from '../../../configs';
 
 import ReactHtmlParser from 'react-html-parser';

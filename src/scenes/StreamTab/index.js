@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Transition from 'react-transition-group/Transition';
 
-import FormSelect from '../../components/FormSelect';
+import FormSelect from 'components/FormSelect';
 import fullIcon from '../../img/fullscreen.svg';
 import Instance from './Instance';
 import InstanceModal from './InstanceModal';

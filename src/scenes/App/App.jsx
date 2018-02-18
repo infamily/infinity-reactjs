@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import serverService from '../../services/server.service';
+import serverService from 'services/server.service';
 import './App.css';
 
-import Home from '../home';
-import Topic from '../topic';
-import How from '../how';
-import What from '../what';
-import NotFound from '../notFound';
-import OtpLogin from '../otp-login';
-import TopicView from '../topic_view';
-import TypeList from '../TypeList';
-import TypePage from '../TypeView';
-import UserTransactions from '../user_transactions';
-import StreamTab from '../StreamTab';
+import Home from 'scenes/home';
+import Topic from 'scenes/topic';
+import How from 'scenes/how';
+import What from 'scenes/what';
+import NotFound from 'scenes/notFound';
+import OtpLogin from 'scenes/otp-login';
+import TopicView from 'scenes/topic_view';
+import TypeList from 'scenes/TypeList';
+import TypePage from 'scenes/TypeView';
+import UserTransactions from 'scenes/user_transactions';
+import StreamTab from 'scenes/StreamTab';
 
 class App extends Component {
 

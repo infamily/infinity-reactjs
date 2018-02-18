@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
-import langService from '../services/lang.service.js';
-import Language from '../components/lang_select';
-import Menu from '../components/menu'; 
+import langService from 'services/lang.service.js';
+import Language from 'components/lang_select';
+import Menu from 'components/menu'; 
 
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';

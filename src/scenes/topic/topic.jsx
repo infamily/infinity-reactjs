@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import topicService from './services/topics';
-import commentService from '../../services/comment.service.js';
+import commentService from 'services/comment.service.js';
 
 import TopicBody from './TopicBody';
-import Menu from '../../components/menu';
-import Language from '../../components/lang_select';
-import Loading from '../../components/Loading';
+import Menu from 'components/menu';
+import Language from 'components/lang_select';
+import Loading from 'components/Loading';
 import CommentForm from './comment_form';
 import Comments from './comments';
 

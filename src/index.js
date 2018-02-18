@@ -19,7 +19,7 @@ axios.interceptors.request.use(config => {
   const token = user && user.token;
   
   if (token && config.headers['Authorization'] !== null) {
-    config.headers['Authorization'] = `Token ${token}`
+    config.headers['Authorization'] = `Token ${token}`;
   }
   return config;
 });

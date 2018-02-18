@@ -1,5 +1,5 @@
 import axios from 'axios';
-import server from '../../../services/server.service';
+import server from 'services/server.service';
 
 async function getHistory(id) {
   try {

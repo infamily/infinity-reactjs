@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Table } from 'react-bootstrap';
 
-import transactionService from '../../../../services/transaction.service';
+import transactionService from 'services/transaction.service';
 import './transactions.css';
 
 export default class Transactions extends Component {

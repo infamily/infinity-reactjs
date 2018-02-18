@@ -1,5 +1,5 @@
 import axios from 'axios';
-import serverService from '../../../services/server.service';
+import serverService from 'services/server.service';
 
 export async function get(id) {
   try {

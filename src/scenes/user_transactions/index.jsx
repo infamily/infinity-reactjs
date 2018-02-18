@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import Menu from '../../components/menu';
-import Language from '../../components/lang_select';
+import Menu from 'components/menu';
+import Language from 'components/lang_select';
 import transactionService from './services';
 import TransctionTable from './TransctionTable';
 import './user_transactions.css'; 

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import langService from '../../../services/lang.service';
-import serverService from '../../../services/server.service';
+import langService from 'services/lang.service';
+import serverService from 'services/server.service';
 
 async function getTopic(id) {
   try {

@@ -10,15 +10,15 @@ import {
 } from 'react-bootstrap';
 
 import Topics from './topic_list';
-import Menu from '../../components/menu';
-import Language from '../../components/lang_select';
-import Flag from '../../components/flag_toggle';
-import Header from '../../components/header'; 
-import Loading from '../../components/Loading';
+import Menu from 'components/menu';
+import Language from 'components/lang_select';
+import Flag from 'components/flag_toggle';
+import Header from 'components/header'; 
+import Loading from 'components/Loading';
 
-import topicService from '../../services/topic.service';
-import langService from '../../services/lang.service';
-import store_home from './services/home';
+import topicService from 'services/topic.service';
+import langService from 'services/lang.service';
+import store_home from './services/store_home';
 import './home.css';
 
 class Home extends Component {

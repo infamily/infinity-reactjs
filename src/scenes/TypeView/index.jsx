@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Menu from '../../components/menu';
-import Language from '../../components/lang_select';
-import Loading from '../../components/Loading'; 
-import TypeItem from '../../components/TypeItem'; 
+import Menu from 'components/menu';
+import Language from 'components/lang_select';
+import Loading from 'components/Loading'; 
+import TypeItem from 'components/TypeItem'; 
 
 import { getType } from './services';
 
