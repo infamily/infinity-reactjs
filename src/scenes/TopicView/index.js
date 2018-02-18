@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TopicView from './topic_view';
-import { clearTopic, persistTopic } from '../../actions/persistedTopic';
+import { clearTopic, persistTopic } from 'actions/persistedTopic';
 
 function mapDispatchToProps(dispatch) {
   return {

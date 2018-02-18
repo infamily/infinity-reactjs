@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { clearComment, persistComment } from '../../../actions/persistedComment';
+import { clearComment, persistComment } from 'actions/persistedComment';
 import CommentForm from './comment_form';
 
 function mapDispatchToProps(dispatch) {

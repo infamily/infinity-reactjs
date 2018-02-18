@@ -11,6 +11,7 @@ class ServerService {
       'https://lt.wfx.io',
     ];
 
+    
     this.getDefault();
   }
 
@@ -55,6 +56,18 @@ class ServerService {
 
     if (num < 0 || num > api_servers.length) return;
     this.setDefault(num);
+  }
+  
+  changeServerByLink = (server) => {
+    const { api_servers } = this;
+    const num = api_servers.findIndex(item => item.includes(server));
+
+    if (num > -1) {
+      this.setDefault(num);
+      return num;
+    }
+
+    return null;
   }
   
   setDefault = (num) => {

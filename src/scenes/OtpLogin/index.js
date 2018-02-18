@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { signIn } from '../../actions/user';
+import { signIn } from 'actions/user';
 import OtpLogin from './otp-login';
 
 function mapStateToProps(state) {

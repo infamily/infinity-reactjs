@@ -13,6 +13,7 @@ import TypeList from 'scenes/TypeList';
 import TypePage from 'scenes/TypeView';
 import UserTransactions from 'scenes/UserTransactions';
 import StreamTab from 'scenes/StreamTab';
+import ConfigRoute from 'components/ConfigRoute';
 import './App.css';
 
 class App extends Component {
@@ -47,15 +48,16 @@ class App extends Component {
         <Route path="/types/" component={TypeList} />
         <Route path="/add-child/:p" component={TopicView} />
         <Route path="/user-transactions/:id" component={UserTransactions} />
-        <Route component={NotFound} />
+        <Route path="/:server/:lang/@" component={ConfigRoute} />
+        <Route component={NotFound} />     
       </Switch>
-    )
+    );
 
     return (
       <HashRouter>
         <div className="main_layout">
           <div className="app_container">
-            <Route path="/" component={Routes} />
+            <Route path="/" component={Routes} />       
           </div>
           {user && <StreamTab />}
         </div>

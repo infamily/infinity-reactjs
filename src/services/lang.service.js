@@ -1,5 +1,6 @@
-import texts from './content';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import texts from './content';
 import serverService from './server.service';
 
 class Language {
@@ -68,6 +69,11 @@ class Language {
     this.current = this.languages[num].lang;
     this.language = this.languages[num];
     await this.saveSetting(this.language);
+  }
+
+  changeLangByLink = async (lang) => {
+    const num = this.languages.findIndex(item => item.lang === lang);
+    num > -1 && await this.changeLang(num);
   }
 
   saveSetting(lang) {

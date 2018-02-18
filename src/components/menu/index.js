@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { signOut } from '../../actions/user';
+import { signOut } from 'actions/user';
 import Menu from './menu';
 
 function mapStateToProps(state) {
