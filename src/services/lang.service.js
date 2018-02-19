@@ -1,4 +1,3 @@
-import { connect } from 'react-redux';
 import axios from 'axios';
 import texts from './content';
 import serverService from './server.service';

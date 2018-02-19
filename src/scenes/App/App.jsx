@@ -34,30 +34,38 @@ class App extends Component {
     const { server, user } = this.props;
     if (server === null) return null;
 
-    const Routes = () => (
+    const Routes = ({ match }) => (
       <Switch>
-        <Route exact path={"/"} component={Home} />
-        <Route path="/topic/:id/:server" component={Topic} />
-        <Route path="/topic/:id" component={Topic} />
-        <Route path="/page/how" component={How} />
-        <Route path="/page/what" component={What} />
-        <Route path="/page/otp" component={OtpLogin} />
-        <Route path="/new-topic" component={TopicView} />
-        <Route path="/edit/:id" component={TopicView} />
-        <Route path="/types/:id" component={TypePage} />
-        <Route path="/types/" component={TypeList} />
-        <Route path="/add-child/:p" component={TopicView} />
-        <Route path="/user-transactions/:id" component={UserTransactions} />
-        <Route path="/:server/:lang/@" component={ConfigRoute} />
-        <Route component={NotFound} />     
+        <Route exact path={match.path} component={Home} />
+        <Route path={match.path + "topic/:id/:server"} component={Topic} />
+        <Route path={match.path + "topic/:id"} component={Topic} />
+        <Route path={match.path + "page/how"} component={How} />
+        <Route path={match.path + "page/what"} component={What} />
+        <Route path={match.path + "page/otp"} component={OtpLogin} />
+        <Route path={match.path + "new-topic"} component={TopicView} />
+        <Route path={match.path + "edit/:id"} component={TopicView} />
+        <Route path={match.path + "types/:id"} component={TypePage} />
+        <Route path={match.path + "types/"} component={TypeList} />
+        <Route path={match.path + "add-child/:p"} component={TopicView} />
+        <Route path={match.path + "user-transactions/:id"} component={UserTransactions} />
       </Switch>
+    );
+
+    const ConfigWrapper = ({ match }) => (
+      <ConfigRoute>
+        <Route path={match.path} component={Routes} />
+      </ConfigRoute>
     );
 
     return (
       <HashRouter>
         <div className="main_layout">
           <div className="app_container">
-            <Route path="/" component={Routes} />       
+            <Switch>
+              <Route path="/:server/:lang/@/" component={ConfigWrapper} />
+              <Route path="/" component={Routes} />
+              <Route component={NotFound} />
+            </Switch>
           </div>
           {user && <StreamTab />}
         </div>
