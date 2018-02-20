@@ -17,7 +17,6 @@ class ServerButton extends Component {
 
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
-    history: PropTypes.object.isRequired,
     setServer: PropTypes.func.isRequired,
     signIn: PropTypes.func.isRequired,
     server: PropTypes.number.isRequired,
@@ -25,7 +24,7 @@ class ServerButton extends Component {
   };
 
   changeServer = index => {
-    const { userServerData, setServer, signIn, history } = this.props;
+    const { userServerData, setServer, signIn } = this.props;
 
     // set new server
     setServer(index);

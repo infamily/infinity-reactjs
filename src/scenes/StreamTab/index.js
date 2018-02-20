@@ -4,7 +4,7 @@ import Transition from 'react-transition-group/Transition';
 import FormSelect from 'components/FormSelect';
 import fullIcon from 'images/fullscreen.svg';
 import Instance from './Widgets';
-import InstanceModal from './InstanceModal';
+import InstanceModal from './Modals';
 
 import { getSchemas, getInstances } from './services';
 import { transitionStyles } from './style';
@@ -122,7 +122,13 @@ export default class StreamTab extends Component {
             </div>
           )}
         </Transition>
-        <InstanceModal data={instanceData} show={!!instanceData} onHide={this.closeInstance} />
+        {schemaName && 
+          <InstanceModal 
+            data={instanceData} 
+            show={!!instanceData} 
+            schema={schemaName.name} 
+            onHide={this.closeInstance} 
+          />}
       </div>
     );
   }

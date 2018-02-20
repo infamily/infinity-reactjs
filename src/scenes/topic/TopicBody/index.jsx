@@ -36,10 +36,10 @@ const TopicBody = ({ topic, children, parents, user }) => {
       <EditTopic owner={topic.owner.username} id={topic.id} />
       
       <h1>
-      {topic.title}
-      <span className="topic__type" style={badgeStyle(topic.type)}>
-      {configs.topic_types[topic.type]}
-      </span>
+        {topic.title}
+        <span className="topic__type" style={badgeStyle(topic.type)}>
+          {configs.topic_types[topic.type]}
+        </span>
       </h1>
       <p className="topic__impact">
         Comunity contribution<span className="topic__match">{topic.matched}h</span>
