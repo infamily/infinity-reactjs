@@ -4,10 +4,11 @@
     "allowSyntheticDefaultImports": false,
     "baseUrl": "./",
     "paths": {
-      "img/*": ["src/img/*"],
+      "images/*": ["src/images/*"],
       "components/*": ["src/components/*"],
       "services/*": ["src/services/*"],
       "scenes/*": ["src/scenes/*"],
+      "configs/*": ["src/configs/*"],
     }
   },
   "exclude": ["node_modules", "build"]

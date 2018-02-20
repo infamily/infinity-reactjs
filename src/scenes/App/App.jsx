@@ -48,6 +48,7 @@ class App extends Component {
         <Route path={match.path + "types/"} component={TypeList} />
         <Route path={match.path + "add-child/:p"} component={TopicView} />
         <Route path={match.path + "user-transactions/:id"} component={UserTransactions} />
+        <Route component={NotFound} />        
       </Switch>
     );
 
@@ -64,7 +65,6 @@ class App extends Component {
             <Switch>
               <Route path="/:server/:lang/@/" component={ConfigWrapper} />
               <Route path="/" component={Routes} />
-              <Route component={NotFound} />
             </Switch>
           </div>
           {user && <StreamTab />}

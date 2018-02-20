@@ -11,10 +11,6 @@ import {
   ToggleButtonGroup,
   ToggleButton
 } from 'react-bootstrap';
-
-import topicViewService from 'services/topic_view.service';
-import topicService from './services';
-import configs from '../../configs';
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
 
@@ -22,7 +18,9 @@ import Menu from 'components/Menu';
 import Language from 'components/LangSelect';
 import Flag from 'components/FlagToggle';
 import FormSelect from 'components/FormSelect';
-
+import topicViewService from 'services/topic_view.service';
+import topicService from './services';
+import configs from 'configs';
 import './topic_view.css';
 
 class Topic extends Component {
@@ -184,8 +182,9 @@ class Topic extends Component {
     
     if (topic) {
       const { id } = topic;
-      const link = configs.server + '/topic/' + id + '/';
-      const text = <span>Your topic is available on: <Link to={'/topic/' + id}>{link}</Link></span>;
+      const linkText = configs.server + configs.linkBase + '/topic/' + id + '/';
+      const link = configs.linkBase + '/topic/' + id;
+      const text = <span>Your topic is available on: <Link to={link}>{linkText}</Link></span>;
       
       this.setState({
         success: true,

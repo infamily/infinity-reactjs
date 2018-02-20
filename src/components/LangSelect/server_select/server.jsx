@@ -17,19 +17,27 @@ class ServerButton extends Component {
 
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
+    history: PropTypes.object.isRequired,
     setServer: PropTypes.func.isRequired,
-    signOut: PropTypes.func.isRequired,
+    signIn: PropTypes.func.isRequired,
     server: PropTypes.number.isRequired,
+    userServerData: PropTypes.object.isRequired,
   };
 
   changeServer = index => {
-    this.props.setServer(index);
+    const { userServerData, setServer, signIn, history } = this.props;
+
+    // set new server
+    setServer(index);
     serverService.changeServer(index);
     this.setState({
       server: index
     });
-    this.props.signOut(); // need to out, cause another server has no such token
-    window.location.reload(false);
+
+    // switch user data
+    const serverData = userServerData[serverService.api] || null;
+    signIn(serverData);
+    window.location.replace('/');
   }
 
   render() {
@@ -45,7 +53,7 @@ class ServerButton extends Component {
         <div className="server_select__bullet" style={style(i)}> </div>
         {' ' + names[i]}
       </MenuItem>
-    })
+    });
 
     const Status = () => ( 
       <span>{names[server]}</span>

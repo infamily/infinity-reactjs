@@ -1,5 +1,7 @@
-import configs from '../../../../configs';
+import configs from 'configs';
 const { colors } = configs;
+
+export const linkBase = configs.linkBase;
 
 export const badgeStyle = (topic) => {
   const { children, parents, type } = topic;

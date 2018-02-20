@@ -1,19 +1,21 @@
 import { connect } from 'react-redux';
 import { setServer } from 'actions/server';
-import { signOut } from 'actions/user';
-import Server from './server';
+import { signIn } from 'actions/user';
+import { withRouter } from 'react-router';
+import ServerButton from './server';
 
 function mapStateToProps(state) {
   return {
-    server: state.server
+    server: state.server,
+    userServerData: state.userServerData,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     setServer: (index) => dispatch(setServer(index)),
-    signOut: () => dispatch(signOut()),
+    signIn: (user) => dispatch(signIn(user)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Server);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ServerButton));

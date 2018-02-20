@@ -3,10 +3,12 @@ import user from './user';
 import server from './server';
 import persistedComment from './persistedComment';
 import persistedTopic from './persistedTopic';
+import userServerData from './userServerData';
 
 export default combineReducers({
   user,
   server,
   persistedComment,
+  userServerData,
   persistedTopic,
 });

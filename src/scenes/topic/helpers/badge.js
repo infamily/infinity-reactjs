@@ -1,6 +1,8 @@
-import configs from '../../../configs';
+import configs from 'configs';
 
-export default (type) => {
+export const linkBase = configs.linkBase;
+
+export const badgeStyle = (type) => {
   return {
     backgroundColor: configs.colors[type]
   }

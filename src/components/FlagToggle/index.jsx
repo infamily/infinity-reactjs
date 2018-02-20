@@ -4,7 +4,7 @@ import {
   InputGroup,
   MenuItem
 } from 'react-bootstrap';
-import configs from '../../configs';
+import configs from 'configs';
 import './flag_toggle.css';
 
 const Flag = ({ setFlag, flag, dropup }) => {
