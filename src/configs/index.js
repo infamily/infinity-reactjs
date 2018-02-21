@@ -2,8 +2,8 @@ import serverService from 'services/server.service';
 import langService from 'services/lang.service';
 
 const getLink = () => {
-  const server = serverService.api.split('//')[1];
-  return `/${server}/${langService.current}/@`
+  const server = serverService.api && serverService.api.split('//')[1];
+  return `/${server}:${langService.current}/@`
 }
 
 export default {

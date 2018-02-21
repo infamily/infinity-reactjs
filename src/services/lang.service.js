@@ -71,6 +71,7 @@ class Language {
   }
 
   changeLangByLink = async (lang) => {
+    if (!lang) return;
     const num = this.languages.findIndex(item => item.lang === lang);
     num > -1 && await this.changeLang(num);
   }

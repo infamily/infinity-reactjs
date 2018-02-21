@@ -63,7 +63,7 @@ class App extends Component {
         <div className="main_layout">
           <div className="app_container">
             <Switch>
-              <Route path="/:server/:lang/@/" component={ConfigWrapper} />
+              <Route path="/:configs/@/" component={ConfigWrapper} />
               <Route path="/" component={Routes} />
             </Switch>
           </div>

@@ -68,9 +68,9 @@ class Topic extends Component {
     this.setState({
       all_categories: categories,
       id,
+      ...persistedTopic,
       ...editedData,
       ...parentData,
-      ...persistedTopic,
     });
   }
 

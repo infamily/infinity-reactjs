@@ -6,7 +6,9 @@ export default class ConfigRoute extends Component {
 
   async componentWillMount() {
     const { match, setServer, signIn, userServerData } = this.props;
-    const { server, lang } = match.params; // get configs
+    const { configs } = match.params; // get configs
+    const [server, lang] = configs.split(':');
+    console.log(server, lang, configs);
     
     // set configs
     const serverNum = serverService.changeServerByLink(server);

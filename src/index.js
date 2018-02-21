@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import axios from 'axios';
-
-import './index.css';
 import configureStore from './store';
 import App from './scenes/App';
 import serverService from './services/server.service';
+import './index.css';
 
 // import registerServiceWorker from './registerServiceWorker'; 
 // registerServiceWorker();

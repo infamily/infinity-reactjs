@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import Transition from 'react-transition-group/Transition';
-
 import FormSelect from 'components/FormSelect';
 import fullIcon from 'images/fullscreen.svg';
 import Instance from './Widgets';
 import InstanceModal from './Modals';
-
 import { getSchemas, getInstances } from './services';
 import { transitionStyles } from './style';
 import './StreamTab.css';
-
 
 export default class StreamTab extends Component {
   constructor() {
@@ -70,11 +67,11 @@ export default class StreamTab extends Component {
       activeSchema,
       instanceData,
       fullWidth } = this.state;
-    const fullStyle = fullWidth ? ' stream_tab--full' : '';
+    const fullStyle = fullWidth ? ' stream_ tab--full' : '';
 
     const TabToggle = () => ( !isOpen &&
       <div className="stream_tab__toggle" onClick={this.open}>
-        Everything Tab
+        Data
       </div>
     );
     

@@ -29,7 +29,7 @@ export default class InstanceModal extends Component {
       author,
       annotations, 
     } = data.data;
-
+    
     const Author = ({ item }) => (
       <a href={item.userlink} target="_blank">
         <i> {item.username} </i>
@@ -46,8 +46,8 @@ export default class InstanceModal extends Component {
         </div>
         
         <br />
-        <h4>Comments</h4>
         <div className="halfbakery_modal__comments">
+          {annotations.length && <h4>Comments</h4>}
           {annotations.map(item => (
             <p key={item.text.slice(0, 50)}>
               <Author item={item} />
