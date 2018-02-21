@@ -182,8 +182,8 @@ class Topic extends Component {
     
     if (topic) {
       const { id } = topic;
-      const linkText = configs.server + configs.linkBase + '/topic/' + id + '/';
-      const link = configs.linkBase + '/topic/' + id;
+      const linkText = configs.server + configs.linkBase() + '/topic/' + id + '/';
+      const link = configs.linkBase() + '/topic/' + id;
       const text = <span>Your topic is available on: <Link to={link}>{linkText}</Link></span>;
       
       this.setState({

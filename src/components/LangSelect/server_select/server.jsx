@@ -5,6 +5,7 @@ import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 import './server_select.css';
 import getMessages from './messages';
+import configs from 'configs';
 const messages = getMessages(langService.current);
 
 class ServerButton extends Component {
@@ -21,10 +22,11 @@ class ServerButton extends Component {
     signIn: PropTypes.func.isRequired,
     server: PropTypes.number.isRequired,
     userServerData: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   changeServer = index => {
-    const { userServerData, setServer, signIn } = this.props;
+    const { userServerData, setServer, signIn, history } = this.props;
 
     // set new server
     setServer(index);
@@ -36,7 +38,8 @@ class ServerButton extends Component {
     // switch user data
     const serverData = userServerData[serverService.api] || null;
     signIn(serverData);
-    window.location.replace('/');
+    history.push('/#' + configs.linkBase());
+    window.location.reload(false);
   }
 
   render() {

@@ -19,7 +19,7 @@ class Topics extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.topics !== nextProps.topics){
+    if (this.state.topics !== nextProps.topics) {
       this.setState({
         topics: nextProps.topics
       });

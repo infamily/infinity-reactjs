@@ -18,5 +18,5 @@ export default {
     '#AF9CC9',
     '#D76B99',
   ],
-  linkBase: getLink(),
+  linkBase: getLink,
 }

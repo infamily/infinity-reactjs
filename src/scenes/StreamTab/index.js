@@ -106,7 +106,7 @@ export default class StreamTab extends Component {
                   </FormSelect>
                 </div>
                 <div className="stream_tab__container">
-                  {schemaData.map((item) => (
+                  {schemaName && schemaData.map((item) => (
                     <Instance 
                       data={item} 
                       key={item.url} 
