@@ -49,6 +49,7 @@ class App extends Component {
         <Route path={match.path + "types/"} component={TypeList} />
         <Route path={match.path + "add-child/:p"} component={TopicView} />
         <Route path={match.path + "user-transactions/:id"} component={UserTransactions} />
+        <Route component={NotFound} />        
       </Switch>
     );
 
@@ -63,11 +64,9 @@ class App extends Component {
         <div className="main_layout">
           <div className="app_container">
             <Switch>
-              <Route path="/:configs/@/" component={ConfigWrapper} />
               <Redirect exact from="/" to={configs.linkBase()} />
+              <Route path="/:configs/@/" component={ConfigWrapper} />
               <Route path="/" component={Routes} />
-              <Route path="/:configs/" component={ConfigWrapper}/>
-              <Route component={NotFound} />
             </Switch>
           </div>
           {user && <StreamTab />}

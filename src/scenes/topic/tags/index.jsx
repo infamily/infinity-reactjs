@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
-import { badgeStyle, linkBase} from '../helpers/badge';
+import { badgeStyle } from '../helpers/badge';
+import configs from 'configs';
 import './tags.css';
 
 
 const Tag = ({ topic }) => (
-  <Link to={`${linkBase}/topic/${topic.id}`} key={topic.title} className="tags__item">
+  <Link to={`${configs.linkBase()}/topic/${topic.id}`} key={topic.title} className="tags__item">
     <Badge className="tags__badge" style={badgeStyle(topic.type)}>{' '}</Badge>
     {' ' + topic.title}
   </Link>

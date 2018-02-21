@@ -5,7 +5,6 @@ import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 import './server_select.css';
 import getMessages from './messages';
-import configs from 'configs';
 const messages = getMessages(langService.current);
 
 class ServerButton extends Component {
@@ -38,7 +37,7 @@ class ServerButton extends Component {
     // switch user data
     const serverData = userServerData[serverService.api] || null;
     signIn(serverData);
-    history.push('/#' + configs.linkBase());
+    history.push('/');
     window.location.reload(false);
   }
 

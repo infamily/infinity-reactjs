@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as services from './services';
 import store_home from '../../services/store_home';
-import { badgeStyle, linkBase } from './helpers';
+import configs from 'configs';
+import { badgeStyle } from './helpers';
 
 class TopicSection extends Component {
   constructor(props) {
@@ -80,7 +81,7 @@ class TopicSection extends Component {
         <EditTopic owner={topic.owner.username} id={topic.id} />
         <h2>
           <BadgePoint topic={topic} fromId={fromId} />
-          <Link to={linkBase + '/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
+          <Link to={configs.linkBase() + '/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
             {' ' + topic.title}
           </Link>
         </h2>

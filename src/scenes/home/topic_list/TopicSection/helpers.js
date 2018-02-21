@@ -1,11 +1,8 @@
 import configs from 'configs';
-const { colors } = configs;
-
-export const linkBase = configs.linkBase();
 
 export const badgeStyle = (topic) => {
   const { children, parents, type } = topic;
-  const color = colors[type];
+  const color = configs.colors[type];
   const empty = '#bfbfbf';
 
   const node = () => {
