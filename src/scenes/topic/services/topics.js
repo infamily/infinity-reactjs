@@ -33,7 +33,7 @@ async function getTopic(id, server = null) {
 async function getChildren(id, lang, server = null) {
   try {
     const api = getApi(server);
-    const { data } = await axiosNoToken.get(`${api}/topics/?children=${id}&lang=${lang}`);
+    const { data } = await axiosNoToken.get(`${api}/topics/?parents=${id}&lang=${lang}`);
     return data.results;
   } catch (e) {
     console.error(e);
@@ -43,7 +43,7 @@ async function getChildren(id, lang, server = null) {
 async function getParents(id, lang, server = null) {
   try {
     const api = getApi(server);
-    const { data } = await axiosNoToken.get(`${api}/topics/?parents=${id}&lang=${lang}`);
+    const { data } = await axiosNoToken.get(`${api}/topics/?children=${id}&lang=${lang}`);
     return data.results;
   } catch (e) {
     console.error(e);
