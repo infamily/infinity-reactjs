@@ -1,30 +1,30 @@
 export default {
   utils: {
     servers: {
-      'en': [
-        'Shanghai',
-        'Frankfurt',
-        'Vilnius',
-        'Local Fun',
-      ],
-      'cn': [
-        '上海',
-        '法兰克福',
-        '维尔纽斯',
-        '本地乐趣',
-      ],
-      'ru': [
-        'Шанхай',
-        'Франкфурт',
-        'Вильнюс',
-        'Песочница',
-      ],
-      'lt': [
-        'Šanchajus',
-        'Frankfurtas',
-        'Vilnius',
-        'Vietinis džiaugsmas',
-      ],
+      'en': {
+        'test.wefindx.io': 'Shanghai',
+        'test.wfx.io': 'Frankfurt',
+        'lt.wfx.io': 'Vilnius',
+        '0.0.0.0:8000': 'Local Fun',
+      },
+      'cn': {
+        'test.wefindx.io': '上海',
+        'test.wfx.io': '法兰克福',
+        'lt.wfx.io': '维尔纽斯',
+        '0.0.0.0:8000': '本地乐趣',
+      },
+      'ru': {
+        'test.wefindx.io': 'Шанхай',
+        'test.wfx.io': 'Франкфурт',
+        'lt.wfx.io': 'Вильнюс',
+        '0.0.0.0:8000': 'Песочница',
+      },
+      'lt': {
+        'test.wefindx.io': 'Šanchajus',
+        'test.wfx.io': 'Frankfurtas',
+        'lt.wfx.io': 'Vilnius',
+        '0.0.0.0:8000': 'Vietinis džiaugsmas',
+      },
     }
   },
   main: {

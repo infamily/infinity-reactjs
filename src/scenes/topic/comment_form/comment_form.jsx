@@ -45,7 +45,6 @@ class Comment extends Component {
     const { topic_id, persistComment } = this.props;
     const { text } = this.state;
     
-    console.log(topic_id, text);
     persistComment({ id: topic_id, body: text });
   }
 

@@ -1,8 +1,8 @@
 import { SET_SERVER } from '../actiontypes/server';
 
-export function setServer(index) {
+export function setServer(server) {
   return {
     type: SET_SERVER,
-    index,
+    server,
   }
 }

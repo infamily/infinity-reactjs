@@ -67,7 +67,7 @@ export default class StreamTab extends Component {
       activeSchema,
       instanceData,
       fullWidth } = this.state;
-    const fullStyle = fullWidth ? ' stream_ tab--full' : '';
+    const fullStyle = fullWidth ? ' stream_tab--full' : '';
 
     const TabToggle = () => ( !isOpen &&
       <div className="stream_tab__toggle" onClick={this.open}>

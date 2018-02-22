@@ -14,21 +14,22 @@ import TypeList from 'scenes/TypeList';
 import TypePage from 'scenes/TypeView';
 import UserTransactions from 'scenes/UserTransactions';
 import StreamTab from 'scenes/StreamTab';
-import ConfigRoute from 'components/ConfigRoute';
+import ConfigWrapper from 'components/ConfigWrapper';
 import './App.css';
 
 class App extends Component {
 
   static propTypes = {
     setServer: PropTypes.func.isRequired,
-    server: PropTypes.number,
+    server: PropTypes.string,
     user: PropTypes.object,
   };
   
   async componentWillMount() {
     await serverService.getDefault();
-    const index = serverService.index;
-    this.props.setServer(index);
+    const api = serverService.api;
+    
+    this.props.setServer(api);
   }
 
   render() {
@@ -53,10 +54,10 @@ class App extends Component {
       </Switch>
     );
 
-    const ConfigWrapper = ({ match }) => (
-      <ConfigRoute>
+    const ConfigRoute = ({ match }) => (
+      <ConfigWrapper>
         <Route path={match.path} component={Routes} />
-      </ConfigRoute>
+      </ConfigWrapper>
     );
 
     return (
@@ -65,7 +66,7 @@ class App extends Component {
           <div className="app_container">
             <Switch>
               <Redirect exact from="/" to={configs.linkBase()} />
-              <Route path="/:configs/@/" component={ConfigWrapper} />
+              <Route path="/:configs/@/" component={ConfigRoute} />
               <Route path="/" component={Routes} />
             </Switch>
           </div>

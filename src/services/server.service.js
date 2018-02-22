@@ -10,22 +10,20 @@ class ServerService {
       'https://test.wfx.io',
       'https://lt.wfx.io',
     ];
-
     
     this.getDefault();
   }
 
   async getDefault() {
     const raw = localStorage['state_if'];
+    const server = raw && JSON.parse(raw).server;
     
-    if (!raw) {
+    if (!server) {
       await this.getFastest();
       return;
     };
     
-    this.isLocal();
-    
-    const { server } = JSON.parse(raw);
+    this.isLocal(); // add local server in sandbox mode
     this.setDefault(server);
   }
 
@@ -37,44 +35,43 @@ class ServerService {
   }
 
   getFastest = async () => {
-    const promises = this.api_servers.map((api, i) => (
-      this.getResponse(api, i)
+    const promises = this.api_servers.map((api) => (
+      this.getResponse(api)
     ));
 
     const first = await Promise.race(promises);
     this.setDefault(first);
   }
 
-  getResponse = (api, index) => {
-    return new Promise(function (resolve, reject) {
-      axios.get(api).then(() => resolve(index));
+  getResponse = (api) => {
+    return new Promise((resolve) => {
+      axios.get(api).then(() => resolve(api));
     });
   }
   
-  changeServer(num) {
-    const { api_servers } = this;
-
-    if (num < 0 || num > api_servers.length) return;
-    this.setDefault(num);
+  changeServer(server) {
+    const index = this.api_servers.indexOf(server);
+    if (index < 0) return;
+    this.setDefault(server);
   }
   
-  changeServerByLink = (server) => {
-    const { api_servers } = this;
-    const num = api_servers.findIndex(item => item.includes(server));
-
-    if (num > -1) {
-      this.setDefault(num);
-      return num;
-    }
-
+  changeServerByLink = async (server) => {
+    const isValid = await this.checkIsServerAvailable(server);
+    if (isValid) return server;
     return null;
   }
-  
-  setDefault = (num) => {
-    const api = this.api_servers[num];
 
-    this.index = num;
-    this.api = api;
+  async checkIsServerAvailable(server) {
+    const url = 'https://' + server;
+    const noToken = axios.create();
+    const data = await noToken.get(url);
+    const isInfinity = JSON.stringify(data).includes('Infinity API');
+    console.log('Infinity API', isInfinity, server);
+    return isInfinity;
+  }
+  
+  setDefault = (server) => {
+    this.api = server;
   }
 }
 

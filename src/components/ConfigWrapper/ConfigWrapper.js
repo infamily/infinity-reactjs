@@ -8,7 +8,7 @@ export default class ConfigRoute extends Component {
   static propTypes = {
     setServer: PropTypes.func.isRequired,
     signIn: PropTypes.func.isRequired,
-    server: PropTypes.number.isRequired,
+    server: PropTypes.string.isRequired,
     userServerData: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
@@ -33,10 +33,10 @@ export default class ConfigRoute extends Component {
     const [server, lang] = configs.split(':');
 
     // set configs
-    const serverNum = serverService.changeServerByLink(server);
-    serverNum && setServer(serverNum);
+    const serverURL = await serverService.changeServerByLink(server);
+    serverURL && setServer(serverURL);
     await langService.changeLangByLink(lang);
-
+    
     // switch user data
     const serverData = userServerData[serverService.api] || null;
     signIn(serverData);

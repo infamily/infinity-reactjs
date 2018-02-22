@@ -19,20 +19,17 @@ class ServerButton extends Component {
     mobile: PropTypes.bool.isRequired,
     setServer: PropTypes.func.isRequired,
     signIn: PropTypes.func.isRequired,
-    server: PropTypes.number.isRequired,
+    server: PropTypes.string.isRequired,
     userServerData: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
   };
 
-  changeServer = index => {
+  changeServer = api => {
     const { userServerData, setServer, signIn, history } = this.props;
 
-    // set new server
-    setServer(index);
-    serverService.changeServer(index);
-    this.setState({
-      server: index
-    });
+    setServer(api); // set server in store
+    serverService.changeServer(api); // set server in service
+    this.setState({ server: api }); // set server in local state
 
     // switch user data
     const serverData = userServerData[serverService.api] || null;
@@ -41,23 +38,28 @@ class ServerButton extends Component {
     window.location.reload(false);
   }
 
+  getName = (api) => {
+    const names = langService.getServers();
+    const url = api.split('//')[1];
+    return names[url] || url;
+  }
+
   render() {
     const servers = serverService.api_servers;
-    const names = langService.getServers();
     const { mobile } = this.props;
     const { server } = this.state;
 
-    const style = (i) => server === i ? { backgroundColor: '#90B249' } : {};
+    const style = (api) => server === api ? { backgroundColor: '#90B249' } : {};
     
-    const Servers = () => servers.map((server, i) => {
-      return <MenuItem className="select-lang__link" key={server} eventKey={i} onSelect={this.changeServer}>
-        <div className="server_select__bullet" style={style(i)}> </div>
-        {' ' + names[i]}
+    const Servers = () => servers.map((api) => (
+      <MenuItem className="select-lang__link" key={api} eventKey={api} onSelect={this.changeServer}>
+        <div className="server_select__bullet" style={style(api)}> </div>
+        {' ' + this.getName(api)}
       </MenuItem>
-    });
+    ));
 
     const Status = () => ( 
-      <span>{names[server]}</span>
+      <span>{this.getName(server)}</span>
     );
       
     return (
@@ -67,8 +69,7 @@ class ServerButton extends Component {
         pullRight={true} 
         dropup 
         bsSize={mobile ? "small" : null}
-        title={<Status />} 
-        >
+        title={<Status />}>
         <MenuItem>{messages.server}</MenuItem>
         <MenuItem divider />
         <Servers />
