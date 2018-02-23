@@ -23,7 +23,7 @@ class Language extends Component {
   changeLanguage = (index) => {
     langService.changeLang(index);
     this.setLanguage();
-    window.location.reload(false);
+    window.location.replace('/');
   }
 
   setLanguage = () => {

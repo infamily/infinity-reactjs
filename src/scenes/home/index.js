@@ -3,7 +3,8 @@ import Home from './home';
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    server: state.server,
   }
 }
 

@@ -3,7 +3,6 @@ import axios from 'axios';
 class ServerService {
   constructor() {
     this.api = null;
-    this.index = null;
 
     this.api_servers = [
       'https://test.wefindx.io',
@@ -40,6 +39,7 @@ class ServerService {
     ));
 
     const first = await Promise.race(promises);
+    
     this.setDefault(first);
   }
 
@@ -56,18 +56,34 @@ class ServerService {
   }
   
   changeServerByLink = async (server) => {
-    const isValid = await this.checkIsServerAvailable(server);
-    if (isValid) return server;
+    const url = 'https://' + server;
+
+    // check if is known
+    const index = this.api_servers.indexOf(url);
+    if (index > -1) {
+      this.setDefault(url);
+      return url;
+    }
+
+    // check if is valid
+    const isValid = await this.checkIsServerAvailable(url);
+    if (isValid) {
+      this.setDefault(url);
+      return url;
+    }
+    
     return null;
   }
 
-  async checkIsServerAvailable(server) {
-    const url = 'https://' + server;
+  async checkIsServerAvailable(url) {
     const noToken = axios.create();
-    const data = await noToken.get(url);
-    const isInfinity = JSON.stringify(data).includes('Infinity API');
-    console.log('Infinity API', isInfinity, server);
-    return isInfinity;
+    try {
+      const { data } = await noToken.get(url);
+      const isInfinity = data.slice(0, 300).includes('Infinity API');
+      return isInfinity;
+    } catch (error) {
+      return false;
+    }
   }
   
   setDefault = (server) => {

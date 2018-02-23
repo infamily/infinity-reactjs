@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setServer: (index) => dispatch(setServer(index)),
+    setServer: (api) => dispatch(setServer(api)),
     signIn: (user) => dispatch(signIn(user)),
   }
 }

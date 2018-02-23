@@ -91,7 +91,7 @@ class TopicSection extends Component {
         </div>  
       </div>
     );
-
+    
     return (
       <section className={"topics__item " + draftStyle(topic)}>
         <TopicLine topic={topic} />

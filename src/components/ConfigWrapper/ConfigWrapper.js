@@ -21,17 +21,19 @@ export default class ConfigRoute extends Component {
   async componentWillReceiveProps(nextProps) {
     const getConfigs = (props) => props.match.params.configs;
     
-    if (getConfigs(this.props) !== getConfigs(nextProps)) {
-      await this.setParams();
+    //check for new configs
+    const nextConfigs = getConfigs(nextProps);
+    if (getConfigs(this.props) !== nextConfigs) {
+      await this.setParams(nextConfigs);
       window.location.reload(false);
     }
   }
 
-  setParams = async () => {
+  setParams = async (nextConfigs = null) => {
     const { match, setServer, signIn, userServerData } = this.props;
-    const { configs } = match.params; // get configs
+    const configs = nextConfigs || match.params.configs; // get configs
     const [server, lang] = configs.split(':');
-
+    
     // set configs
     const serverURL = await serverService.changeServerByLink(server);
     serverURL && setServer(serverURL);
