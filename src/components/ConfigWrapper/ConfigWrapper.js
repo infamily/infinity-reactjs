@@ -45,6 +45,7 @@ export default class ConfigRoute extends Component {
   }
   
   render() {
+    if (!this.props.server) return null;
     return <div>{this.props.children}</div>;
   }
 }

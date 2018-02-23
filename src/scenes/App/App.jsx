@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
-import serverService from 'services/server.service';
 import configs from 'configs';
 import Home from 'scenes/Home';
 import Topic from 'scenes/Topic';
@@ -15,26 +14,17 @@ import TypePage from 'scenes/TypeView';
 import UserTransactions from 'scenes/UserTransactions';
 import StreamTab from 'scenes/StreamTab';
 import ConfigWrapper from 'components/ConfigWrapper';
+import DefaultWrapper from 'components/DefaultWrapper';
 import './App.css';
 
 class App extends Component {
 
   static propTypes = {
-    setServer: PropTypes.func.isRequired,
-    server: PropTypes.string,
     user: PropTypes.object,
   };
-  
-  async componentWillMount() {
-    await serverService.getDefault();
-    const api = serverService.api;
-    
-    this.props.setServer(api);
-  }
 
   render() {
-    const { server, user } = this.props;
-    if (server === null) return null;
+    const { user } = this.props;
 
     const Routes = ({ match }) => (
       <Switch>
@@ -59,6 +49,12 @@ class App extends Component {
         <Route path={match.path} component={Routes} />
       </ConfigWrapper>
     );
+    
+    const DefaultRoute = ({ match }) => (
+      <DefaultWrapper>
+        <Route path={match.path} component={Routes} />
+      </DefaultWrapper>
+    );
 
     return (
       <HashRouter>
@@ -67,7 +63,7 @@ class App extends Component {
             <Switch>
               <Redirect exact from="/" to={configs.linkBase()} />
               <Route path="/:configs/@/" component={ConfigRoute} />
-              <Route path="/" component={Routes} />
+              <Route path="/" component={DefaultRoute} />
             </Switch>
           </div>
           {user && <StreamTab />}
