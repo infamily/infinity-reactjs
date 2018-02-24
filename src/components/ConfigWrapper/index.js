@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { setServer } from 'actions/server';
 import { signIn } from 'actions/user';
-import { withRouter } from 'react-router';
 import ConfigWrapper from './ConfigWrapper';
 
 function mapStateToProps(state) {

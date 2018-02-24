@@ -8,14 +8,20 @@
 
 
 .stream_tab {
-  padding: 10px;
   padding-top: 30px;
   height: 100vh;
+  position: relative;
   position: fixed;
-  overflow-y: auto;  
   width: 600px;
   border-left: 1px solid rgb(236, 236, 236);
   background-color: rgb(247, 247, 247); 
+}
+
+.stream_tab__scrollable {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 150px;
 }
 
 .stream_tab__container {
@@ -90,8 +96,7 @@
 }
 
 .stream_tab__select {
-  border: none;
-  background-color: inherit;
+  margin-top: 30px;
 }
 
 .stream_tab__instance-box {
@@ -105,10 +110,6 @@
   height: 200px;
   overflow-y: hidden;
   border: 1px solid lightgray;
-}
-
-.stream_tab__instance:hover {
-  overflow-y: auto;
 }
 
 .instance--hasdata:hover {

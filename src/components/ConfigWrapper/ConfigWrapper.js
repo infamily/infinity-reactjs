@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
+import Loading from 'components/Loading';
 
-export default class ConfigRoute extends Component {
+export default class ConfigWrapper extends Component {
 
   static propTypes = {
     setServer: PropTypes.func.isRequired,
     signIn: PropTypes.func.isRequired,
-    server: PropTypes.string.isRequired,
     userServerData: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
+    server: PropTypes.string,
   }; 
 
   async componentWillMount() {
@@ -45,7 +46,7 @@ export default class ConfigRoute extends Component {
   }
   
   render() {
-    if (!this.props.server) return null;
+    if (!this.props.server) return <Loading />;
     return <div>{this.props.children}</div>;
   }
 }

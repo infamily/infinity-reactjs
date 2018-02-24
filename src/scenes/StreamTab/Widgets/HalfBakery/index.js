@@ -15,11 +15,11 @@ export default class Instance extends Component {
   }
   
   show = () => {
-    this.setState({ end: 1000 })
+    // this.setState({ end: 1000 })
   }
 
   hide = () => {
-    this.setState({ end: 200 })
+    // this.setState({ end: 200 })
   }
 
   render() {

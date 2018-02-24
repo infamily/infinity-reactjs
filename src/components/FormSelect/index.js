@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import {
   FormGroup,
   FormControl,
-  ControlLabel,
+  InputGroup,
 } from 'react-bootstrap';
 
 const FormSelect = ({ name, label, action, value, children, ...rest }) => (
   <FormGroup controlId="formControlsSelect">
-    <ControlLabel>{label}</ControlLabel>
-    <FormControl
-      name={name}
-      componentClass="select"
-      value={value}
-      onChange={action}
-      {...rest}>
-      {children}
-    </FormControl>
+    <InputGroup>
+      <InputGroup.Addon>{label}</InputGroup.Addon>    
+      <FormControl
+        name={name}
+        componentClass="select"
+        value={value}
+        onChange={action}
+        {...rest}>
+        {children}
+      </FormControl>
+    </InputGroup>
   </FormGroup>
 );
 

@@ -1,0 +1,24 @@
+.data_field {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+.data_field__panel {
+  margin: 0;
+}
+
+.data_field__field {
+  margin-bottom: 10px;
+  min-height: 30px;
+  max-height: 100px;
+  max-width: 100%;
+}
+
+.data_field__show {
+  text-align: center;
+  border-radius: 0px;
+  width: 100%;
+  text-transform: uppercase;
+}

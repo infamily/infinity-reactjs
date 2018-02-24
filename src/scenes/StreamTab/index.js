@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Transition from 'react-transition-group/Transition';
 import FormSelect from 'components/FormSelect';
+import TabDataField from 'components/TabDataField';
 import fullIcon from 'images/fullscreen.svg';
 import Instance from './Widgets';
 import InstanceModal from './Modals';
@@ -12,7 +13,7 @@ export default class StreamTab extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false,
+      isOpen: true, //false,
       instances: [],
       instanceData: null,
       schemas: [],
@@ -74,6 +75,15 @@ export default class StreamTab extends Component {
         Data
       </div>
     );
+
+    const ControlButtons = () => (
+      <div className="stream_tab__buttons">
+        <span onClick={this.toggleFullScreen} className="stream_tab__full_icon">
+          <img src={fullIcon} alt="" />
+        </span>
+        <span onClick={this.close} className="stream_tab__close"></span>
+      </div>
+    );
     
     const schemaData = instances ? instances.filter(item => item.schema === activeSchema) : [];
     const schemaName = schemas && schemas.find(item => item.url === activeSchema);
@@ -89,32 +99,34 @@ export default class StreamTab extends Component {
               <div className={"stream_tab" + fullStyle} style={{
                 ...transitionStyles[state]
               }}>
-                <span onClick={this.close} className="stream_tab__close"></span>
-                <div onClick={this.toggleFullScreen} className="stream_tab__full_icon">
-                  <img src={fullIcon} alt=""/>
-                </div>
                 <div className="stream_tab__header">
-                  <FormSelect
-                    name="activeSchema"
-                    label="Schema"
-                    action={this.handleChange}
-                    value={activeSchema}
-                    className="stream_tab__select">
-                    {schemas ? schemas.map(
-                      (item) => <option value={item.url} key={item.url}>{item.name}</option>
-                    ) : []}
-                  </FormSelect>
+                  {isOpen && <ControlButtons />}                
+                  <div className="stream_tab__select">
+                    <FormSelect
+                      name="activeSchema"
+                      label="Schema"
+                      action={this.handleChange}
+                      value={activeSchema}
+                      >
+                      {schemas ? schemas.map(
+                        (item) => <option value={item.url} key={item.url}>{item.name}</option>
+                      ) : []}
+                    </FormSelect>
+                  </div>
                 </div>
-                <div className="stream_tab__container">
-                  {schemaName && schemaData.map((item) => (
-                    <Instance 
-                      data={item} 
-                      key={item.url} 
-                      showInstance={this.showInstance}
-                      schema={schemaName.name}
-                    />
-                  ))}
+                <div className="stream_tab__scrollable">
+                  <div className="stream_tab__container">
+                    {schemaName && schemaData.map((item) => (
+                      <Instance 
+                        data={item} 
+                        key={item.url} 
+                        showInstance={this.showInstance}
+                        schema={schemaName.name}
+                      />
+                    ))}
+                  </div>
                 </div>
+                <TabDataField />
               </div>
             </div>
           )}
