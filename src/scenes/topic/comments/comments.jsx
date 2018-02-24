@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
-import Transaction from './transaction';
+import TransactionBox from './TransactionBox';
 import Transactions from './transactions';
 import ProgressBar from './progress_bar';
 import Balance from 'components/Balance';
@@ -120,7 +120,7 @@ export default class Comments extends Component {
           <Comments />
           {
            transaction &&
-           <Transaction
+           <TransactionBox
              state={transaction}
              comment={invest_comment}
              investState={this.investState}

@@ -29,21 +29,25 @@ export default class Transaction extends Component {
       currency: 'HUR',
       in_hours: 1,
       currencies: [],
-      message: ''
+      message: '',
+      userQuota: 0,
+      isQuota: true,
     }
   }
 
   async componentWillMount() {
-    const { token } = this.props.user;
-    const data = await transactionService.getCurrencies(token);
+    const { comment } = this.props;
+    const data = await transactionService.getCurrencies();
+    const userBalance = await transactionService.getUserBalance(comment.owner.id);
     const currencies = data.map(item => {
       item.value = item.label;
       return item;
     });
     this.setState({
-      currencies
+      currencies,
+      userQuota: userBalance.quota_today,
     });
-    this.selectCurrency(currencies[2]); // select usd
+    this.selectCurrency(currencies[0]);
   }
 
   static propTypes = {
@@ -57,16 +61,10 @@ export default class Transaction extends Component {
   makeTransaction = async () => {
     const { user, comment } = this.props;
     const { payment_currency, payment_amount } = this.state;
-    if (payment_amount < 0) {
-      this.setState({
-        message: messages.error
-      });
-      return;
-    } else {
-      this.setState({
-        message: ""
-      });
-    }
+    const message = payment_amount < 0 ? messages.error : '';
+
+    this.setState({ message });
+    if (payment_amount < 0 ) return;
 
     const data = {
       payment_currency,
@@ -97,10 +95,23 @@ export default class Transaction extends Component {
     const { in_hours } = this.state;
     const { value } = e.target;
     const payment_inCurrency = this.inCurrency(value, in_hours);
+    this.checkQuota(value);
 
     this.setState({
       [e.target.name]: value,
-      payment_inCurrency
+      payment_inCurrency,
+    });
+  }
+
+  checkQuota(value) {
+    const { userQuota } = this.state;
+    const isQuota = userQuota >= value;
+    const message = isQuota ? '' : messages.quota_over;
+    console.log(value, userQuota, 'isQuota');
+
+    this.setState({
+      message,
+      isQuota,
     });
   }
 
@@ -114,7 +125,15 @@ export default class Transaction extends Component {
 
   render() {
     const { comment, state } = this.props;
-    const { currencies, currency, payment_amount, payment_inCurrency, symbol } = this.state;
+    const { 
+      currencies,
+      currency,
+      payment_amount,
+      payment_inCurrency,
+      symbol,
+      isQuota,
+      userQuota,
+    } = this.state;
 
     const Bar = () => {
       const invest = parseFloat(payment_amount);
@@ -122,7 +141,7 @@ export default class Transaction extends Component {
         <ProgressBar comment={comment} invest={invest}/>
       );
     }
-
+    
     return (
       <Modal show={state} className="transaction__modal">
         <Modal.Header>
@@ -150,6 +169,9 @@ export default class Transaction extends Component {
               />
             </InputGroup>
           </FormGroup>
+          <div className="transaction__quota">
+            <small>The daily quota for {comment.owner.username}: <strong>{userQuota}h</strong></small>
+          </div>
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Currency</ControlLabel>
             <Select
@@ -164,7 +186,7 @@ export default class Transaction extends Component {
           </Modal.Body>
         <Modal.Footer>
           <span className="transaction__error">{this.state.message + '  '}</span>
-          <Button onClick={this.makeTransaction}>Invest</Button>
+          <Button onClick={this.makeTransaction} disabled={!isQuota}>Invest</Button>
           <Button onClick={this.close}>Close</Button>
         </Modal.Footer>
       </Modal>

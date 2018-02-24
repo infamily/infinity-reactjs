@@ -6,14 +6,14 @@ import fullIcon from 'images/fullscreen.svg';
 import Instance from './Widgets';
 import InstanceModal from './Modals';
 import { getSchemas, getInstances } from './services';
-import { transitionStyles } from './style';
+import { transitionStyles } from './transition';
 import './StreamTab.css';
 
 export default class StreamTab extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: true, //false,
+      isOpen: false,
       instances: [],
       instanceData: null,
       schemas: [],

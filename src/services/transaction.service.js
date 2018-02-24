@@ -39,12 +39,23 @@ class TransactionService {
     
     try {
       const { data } = await axios.get(`${serverService.api}/currencies/`);
-      this.currencies = data;
+      const filtered = data.filter(item => item.enabled);
+      this.currencies = filtered;
       return data;
     } catch (e) {
       console.error(e);
     }
-  } 
+  }
+
+  async getUserBalance(id) {
+    try {
+      const { api } = serverService;
+      const { data } = await axios.get(api + '/user_balance/?id=' + id);
+      return data[0];
+    } catch (error) {
+      console.error(error);
+    }
+  }
   
   async getTransactions(id) {
     try {
