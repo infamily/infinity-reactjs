@@ -2,7 +2,7 @@ export default (lang) => {
   const messages = {
     en: {
       error: 'Incorrect amount of hours.',
-      quota_over: 'The daily quota is over for this user.',
+      quota_over: 'Your daily quota is over.',
     },
     ru: {
       error: 'Неверное колличество часов.',

@@ -31,14 +31,14 @@ export default class Transaction extends Component {
       currencies: [],
       message: '',
       userQuota: 0,
-      isQuota: true,
+      isQuota: false,
     }
   }
 
   async componentWillMount() {
-    const { comment } = this.props;
+    const { user } = this.props;
     const data = await transactionService.getCurrencies();
-    const userBalance = await transactionService.getUserBalance(comment.owner.id);
+    const userBalance = await transactionService.getUserBalance(user.id);
     const currencies = data.map(item => {
       item.value = item.label;
       return item;
@@ -48,6 +48,7 @@ export default class Transaction extends Component {
       userQuota: userBalance.quota_today,
     });
     this.selectCurrency(currencies[0]);
+    this.checkQuota();
   }
 
   static propTypes = {
@@ -133,6 +134,7 @@ export default class Transaction extends Component {
       symbol,
       isQuota,
       userQuota,
+      message,
     } = this.state;
 
     const Bar = () => {
@@ -170,7 +172,7 @@ export default class Transaction extends Component {
             </InputGroup>
           </FormGroup>
           <div className="transaction__quota">
-            <small>The daily quota for {comment.owner.username}: <strong>{userQuota}h</strong></small>
+            <small>Your daily quota is <strong>{userQuota}h</strong></small>
           </div>
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Currency</ControlLabel>
@@ -185,7 +187,7 @@ export default class Transaction extends Component {
           </FormGroup>
           </Modal.Body>
         <Modal.Footer>
-          <span className="transaction__error">{this.state.message + '  '}</span>
+          <span className="transaction__error">{message + '  '}</span>
           <Button onClick={this.makeTransaction} disabled={!isQuota}>Invest</Button>
           <Button onClick={this.close}>Close</Button>
         </Modal.Footer>
