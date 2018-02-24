@@ -1,0 +1,32 @@
+.main-menu {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+.main-menu--mobile {
+  display: none;
+}
+
+
+.main-menu__link {
+  margin: 0 20px;
+  display: block;
+  font-size: 20px;
+  color: #337ab7;
+  cursor: pointer;
+}
+
+.main-menu__link:hover { 
+  color: #000; 
+}
+
+@media screen and (max-width: 600px) {
+  .main-menu {
+    display: none;
+  }
+
+  .main-menu--mobile {
+    display: block;
+  }
+}

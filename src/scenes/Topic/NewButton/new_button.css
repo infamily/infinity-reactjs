@@ -1,0 +1,15 @@
+.new_btn {
+  padding: 0 5px;
+  border: 2px solid #5cb85c;
+  background-color: #5cb85c;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 5px;
+  margin-left: auto;
+}
+
+.new_btn:hover {
+  color: white;
+  background-color: #449d44;
+}
