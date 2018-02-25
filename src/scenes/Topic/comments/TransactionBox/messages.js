@@ -2,11 +2,11 @@ export default (lang) => {
   const messages = {
     en: {
       error: 'Incorrect amount of hours.',
-      quota_over: 'Your daily quota is over.',
+      quota_over: 'Your quota is lower than investment amount.',
     },
     ru: {
       error: 'Неверное колличество часов.',
-      quota_over: 'Сумма превышает лимит квоты для пользователя.',
+      quota_over: 'Ваша квота ниже суммы инвестиций.',
     },
   };
 

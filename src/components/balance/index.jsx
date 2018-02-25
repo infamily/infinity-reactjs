@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { get } from './service';
 import './balance.css';
-import { Link } from 'react-router-dom';
 
 class Balance extends Component {
   constructor() {

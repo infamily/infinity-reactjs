@@ -4,9 +4,16 @@
 
 .transaction__error {
   color: tomato;
+  display: inline-block;
+  padding: 5px;
 }
 
 .transaction__quota {
   margin-top: -10px;
   margin-bottom: 10px;
+}
+
+.transaction__credit {
+  text-transform: uppercase;
+  font-size: 14px;
 }
