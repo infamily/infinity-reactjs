@@ -117,8 +117,6 @@ export default class Transaction extends Component {
     const message = isQuota ? '' : messages.quota_over;
     const aboveNull = value > 0 ? value : 0;
     
-    console.log(value, userQuota, 'isQuota');
-
     this.setState({
       message,
       isQuota,
@@ -144,7 +142,6 @@ export default class Transaction extends Component {
       payment_amount,
       payment_inCurrency,
       symbol,
-      isQuota,
       userQuota,
       creditBar,
       message,
@@ -193,7 +190,7 @@ export default class Transaction extends Component {
             </InputGroup>
           </FormGroup>
           <div className="transaction__quota">
-            <small>Your daily quota is <strong>{userQuota}h</strong></small>
+            <small>Remaining today's quota <strong>{userQuota}h</strong></small>
           </div>
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Currency</ControlLabel>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Balance from '../Balance';
+import Balance from 'components/Balance';
 import ifIcon from './img/if.jpg';
 
 const Hours = ({ user }) => {
@@ -8,7 +8,7 @@ const Hours = ({ user }) => {
   
   return (
     <div className="home__balance">
-      <Balance id={user.id} />
+      <Balance id={user.id} showQuota={true}/>
     </div>
   );
 };

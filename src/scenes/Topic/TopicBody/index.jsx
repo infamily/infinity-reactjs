@@ -52,7 +52,7 @@ const TopicBody = ({ topic, children, parents, user }) => {
       
       <div className="topic__bottom">
         <span>{topic.owner.username}</span>
-        <Balance id={topic.owner.id} />
+        <Balance id={topic.owner.id} showQuota={false}/>
         <NewButton to={"/add-child/" + topic.id} title={'+ ' + child} />
       </div>
     </div>

@@ -105,7 +105,7 @@ export default class Comments extends Component {
             <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
             <div className="comment__owner">
               <span>{owner.username}</span>
-              <Balance id={owner.id} />
+              <Balance id={owner.id} showQuota={false}/>
             </div>
           </div>
 

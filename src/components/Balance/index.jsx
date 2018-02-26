@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import TooltipOverlay from 'components/TooltipOverlay';
 import { get } from './service';
 import './balance.css';
 
@@ -19,23 +20,36 @@ class Balance extends Component {
   async componentWillMount() {
     const { id } = this.props;
     const data = await get(id);
-    const balance = data !== undefined ? data.balance : -1;
-    const hours = parseFloat(balance).toFixed(2);
-    this.setState({ hours });
+    const isData = data !== undefined;
+    const balance = isData ? data.balance : -1;
+    const quota = isData ? data.quota_today : -1;
+    const parse = (data) => parseFloat(data).toFixed(2);
+
+    this.setState({ 
+      hours: parse(balance),
+      quota: parse(quota),
+     });
   }
 
   render() {
-    const { hours } = this.state;
-    const { id } = this.props;
-    
+    const { hours, quota } = this.state;
+    const { id, showQuota } = this.props;
+
     if (!hours || hours < 0) return null;
 
     return (
       <Link to={"/user-transactions/" + id}>
         <div className="balance__hours">
-          <span className="balance__counter"> {this.state.hours}h </span>
+        <TooltipOverlay text="Balance" placement="bottom">
+          <strong className="balance__counter">{hours}h</strong>
+        </TooltipOverlay> 
+          {showQuota && 
+            <TooltipOverlay text="Remaining today's quota" placement="bottom">
+              <span className="balance__quota">{quota}h</span>
+            </TooltipOverlay>
+          }
         </div>
-      </Link>
+      </Link> 
     );
   }
 };
