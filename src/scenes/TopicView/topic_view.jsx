@@ -18,6 +18,7 @@ import Menu from 'components/Menu';
 import Language from 'components/LangSelect';
 import Flag from 'components/FlagToggle';
 import FormSelect from 'components/FormSelect';
+import { PopupModal } from './PopupModal';
 import topicViewService from 'services/topic_view.service';
 import topicService from './services';
 import configs from 'configs';
@@ -254,7 +255,7 @@ class Topic extends Component {
       }
     });
     
-    state === 'success' && this.props.history.push('/');
+    state === 'success' && window.location.replace('/');
   }
 
   setFlag = key => {
@@ -284,7 +285,9 @@ class Topic extends Component {
       flag,
       all_categories, 
       all_types,
-      message
+      message,
+      error,
+      success,
     } = this.state;
     const { user } = this.props;
 
@@ -314,24 +317,9 @@ class Topic extends Component {
       : <Button type="submit">Create</Button>;
     };
 
-    const PopUp = ({ state }) =>
+    const DeletePopup = ({ isOpen, name }) =>
       <div >
-        <Modal show={this.state[state]} className="topic_view__modal">
-          <Modal.Header>
-            <Modal.Title>{message.title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {message.text}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => this.closeModal(state)}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      </div>; 
-
-    const DeletePopup = ({ state }) =>
-      <div >
-        <Modal show={this.state[state]} className="topic_view__modal">
+        <Modal show={isOpen} className="topic_view__modal">
           <Modal.Header>
             <Modal.Title>Confirmation</Modal.Title>
           </Modal.Header>
@@ -340,7 +328,7 @@ class Topic extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.deleteTopic}>Delete</Button>
-            <Button onClick={() => this.closeModal(state)}>Close</Button>
+            <Button onClick={() => this.closeModal(name)}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>;
@@ -419,9 +407,9 @@ class Topic extends Component {
             <Buttons />
             </form>
           </div>
-        <PopUp state="error"/>
-        <PopUp state="success"/>
-        <DeletePopup state="delete"/>
+        <PopupModal isOpen={error} name="error" message={message}/>
+        <PopupModal isOpen={success} name="success" message={message}/>
+        <DeletePopup isOpen={this.state['delete']} name="delete"/>
         <Language />
         <Menu page='Menu'/>
       </div>
