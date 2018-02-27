@@ -407,8 +407,8 @@ class Topic extends Component {
             <Buttons />
             </form>
           </div>
-        <PopupModal isOpen={error} name="error" message={message}/>
-        <PopupModal isOpen={success} name="success" message={message}/>
+        <PopupModal isOpen={error} name="error" message={message} closeModal={this.closeModal} />
+        <PopupModal isOpen={success} name="success" message={message} closeModal={this.closeModal} />
         <DeletePopup isOpen={this.state['delete']} name="delete"/>
         <Language />
         <Menu page='Menu'/>
