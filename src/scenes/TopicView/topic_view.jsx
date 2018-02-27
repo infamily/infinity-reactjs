@@ -185,7 +185,11 @@ class Topic extends Component {
       const { id } = topic;
       const linkText = configs.server + configs.linkBase() + '/topic/' + id + '/';
       const link = configs.linkBase() + '/topic/' + id;
-      const text = <span>Your topic is available on: <Link to={link}>{linkText}</Link></span>;
+      const text = (
+        <span onClick={this.refresh}>Your topic is available on: 
+          <Link to={link}>{linkText}</Link>
+        </span>
+      );
       
       this.setState({
         success: true,
@@ -205,8 +209,12 @@ class Topic extends Component {
     const result = await topicViewService.deleteTopic(edited_id);
     if (result === 'success') {
       this.props.history.push('/');
-      window.location.reload(false);
+      this.refresh();
     };
+  }
+
+  refresh() {
+    window.location.reload(false);    
   }
   
   getTopics = async (input, callback) => {
