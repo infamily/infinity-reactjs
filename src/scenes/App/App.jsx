@@ -15,6 +15,7 @@ import UserTransactions from 'scenes/UserTransactions';
 import StreamTab from 'scenes/StreamTab';
 import ConfigWrapper from 'components/ConfigWrapper';
 import DefaultWrapper from 'components/DefaultWrapper';
+import ProgramToggle from 'components/ProgramToggle';
 import './App.css';
 
 class App extends Component {
@@ -60,6 +61,7 @@ class App extends Component {
       <HashRouter>
         <div className="main_layout">
           <div className="app_container">
+            <ProgramToggle />
             <Switch>
               <Redirect exact from="/" to={configs.linkBase()} />
               <Route path="/:configs/@/" component={ConfigRoute} />

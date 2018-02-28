@@ -1,0 +1,19 @@
+
+.program_toggle {
+  text-transform: uppercase;
+  font-size: 12px;
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  padding: 3px 5px;
+  color: #fff;
+  background-color: #5cb85c;
+  border-radius: 0 0 5px 5px;
+  z-index: 3;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;  
+}
+
+.program_toggle:hover {
+  background-color: #449d44;  
+}
