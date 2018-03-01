@@ -5,9 +5,9 @@
   position: absolute;
   top: 0px;
   left: 15px;
-  padding: 3px 5px;
+  padding: 3px 5px; 
   color: #fff;
-  background-color: #5cb85c;
+  background-color: #76b976 ;
   border-radius: 0 0 5px 5px;
   z-index: 3;
   cursor: pointer;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import TooltipOverlay from 'components/TooltipOverlay';
 import { get } from './service';
 import './balance.css';
@@ -37,7 +38,8 @@ class Balance extends Component {
     if (!hours || hours < 0) return null;
 
     return (
-      <div className="balance__hours">
+      <Link to={"/user-transactions/" + id}>
+        <div className="balance__hours">
         <TooltipOverlay text="Balance" placement="bottom">
           <strong className="balance__counter">{hours}h</strong>
         </TooltipOverlay> 
@@ -46,7 +48,8 @@ class Balance extends Component {
               <span className="balance__quota">{quota}h</span>
             </TooltipOverlay>
           }
-      </div>
+        </div>
+      </Link> 
     );
   }
 };
