@@ -28,23 +28,31 @@ class TopicSection extends Component {
   }
 
   expand = async (topic, fromId) => {
-    this.setState({ [topic.id + 'loading']: true })
     const id = topic.id;
-    const children = await services.getChildren(id);
-    const parents = await services.getParents(id);
-    const filter = (arr) => arr.filter(item => item.id !== fromId);    
-    
-    if(!this.state[id]) {
-      this.setState({
-        [id]: filter(children),
-        [id + 'parents']: filter(parents),
-        [topic.id + 'loading']: false,
-      });
-    } else {
-      this.setState({
-        [topic.id + 'loading']: false,
-      });
+    const hasInState = this.state[id];
+     
+    if (!hasInState) {
+      await this.setData(id, fromId);
+      return;
     }
+    
+    this.setState(prevState => ({
+      [id + 'open']: !prevState[id + 'open'],
+      [id + 'loading']: false,
+    }));
+  }
+  
+  setData = async (id, fromId) => {
+    this.setState({ [id + 'loading']: true })
+    
+    const children = await services.getChildren(id);
+    const filter = (arr) => arr.filter(item => item.id !== fromId);
+
+    this.setState({
+      [id]: filter(children),
+      [id + 'open']: true,
+      [id + 'loading']: false,
+    });
   }
 
   render() {
@@ -52,9 +60,9 @@ class TopicSection extends Component {
     
     const BadgePoint = ({ topic, fromId }) => {
       const loading = this.state[topic.id + 'loading'] ? ' point_pulse' : '';
-      const { children, parents } = topic;
+      const { children } = topic;
       
-      if (children.length || parents.length) {
+      if (children.length) {
         return (
           <Badge 
             onClick={() => this.expand(topic, fromId)} 
@@ -72,25 +80,26 @@ class TopicSection extends Component {
       }
     }
 
-    const TopicLine = ({ topic, fromId }) => (
-      <div>
-        <div className="topic_list__step">
-          {this.state[topic.id + 'parents'] && this.state[topic.id + 'parents'].map(item => (<TopicLine topic={item} fromId={topic.id} key={'_' + item.id} />))}
-        </div>
-        
-        <EditTopic owner={topic.owner.username} id={topic.id} />
-        <h2>
-          <BadgePoint topic={topic} fromId={fromId} />
-          <Link to={configs.linkBase() + '/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
-            {' ' + topic.title}
-          </Link>
-        </h2>
+    const TopicLine = ({ topic, fromId }) => {
+      const children = this.state[topic.id];
+      const isExpanded = this.state[topic.id + 'open'] && children;
 
-        <div className="topic_list__step">
-          {this.state[topic.id] && this.state[topic.id].map(item => (<TopicLine topic={item} key={'_' + item.id} fromId={topic.id} />))}
-        </div>  
-      </div>
-    );
+      return (
+        <div>
+          <EditTopic owner={topic.owner.username} id={topic.id} />
+          <h2>
+            <BadgePoint topic={topic} fromId={fromId} />
+            <Link to={configs.linkBase() + '/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
+              {' ' + topic.title}
+            </Link>
+          </h2>
+
+          <div className="topic_list__step">
+            {isExpanded && children.map(item => (<TopicLine topic={item} key={'_' + item.id} fromId={topic.id} />))}
+          </div>  
+        </div>
+      )
+    };
     
     return (
       <section className={"topics__item " + draftStyle(topic)}>
