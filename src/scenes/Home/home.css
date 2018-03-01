@@ -7,10 +7,6 @@
   padding: 1px;
 }
 
-.topics__item:hover {
-  transform: scale(1.01);
-}
-
 .topics__title {
   margin-right: auto;
 }

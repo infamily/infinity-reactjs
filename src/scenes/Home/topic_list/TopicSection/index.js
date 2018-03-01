@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import * as services from './services';
 import store_home from '../../services/store_home';
 import configs from 'configs';
-import { badgeStyle } from './helpers';
+import { badgeStyle, getBorder } from './helpers';
 
 class TopicSection extends Component {
   constructor(props) {
@@ -81,21 +81,22 @@ class TopicSection extends Component {
     }
 
     const TopicLine = ({ topic, fromId }) => {
-      const children = this.state[topic.id];
-      const isExpanded = this.state[topic.id + 'open'] && children;
+      const id = topic.id;
+      const children = this.state[id];
+      const isExpanded = this.state[id + 'open'] && children;
 
       return (
         <div>
-          <EditTopic owner={topic.owner.username} id={topic.id} />
-          <h2>
+          <EditTopic owner={topic.owner.username} id={id} />
+          <h2 className="topic_list__title">
             <BadgePoint topic={topic} fromId={fromId} />
-            <Link to={configs.linkBase() + '/topic/' + topic.id} onClick={this.saveScroll} className="topics__item-title" data-id={topic.id}>
+            <Link to={configs.linkBase() + '/topic/' + id} onClick={this.saveScroll} className="topics__item-title" data-id={id}>
               {' ' + topic.title}
             </Link>
           </h2>
 
-          <div className="topic_list__step">
-            {isExpanded && children.map(item => (<TopicLine topic={item} key={'_' + item.id} fromId={topic.id} />))}
+          <div className="topic_list__step" style={getBorder(topic)}>
+            {isExpanded && children.map(item => (<TopicLine topic={item} key={'_' + item.id} fromId={id} />))}
           </div>  
         </div>
       )

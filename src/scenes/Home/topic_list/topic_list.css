@@ -1,3 +1,11 @@
+.topic_list__title:hover {
+  transition: transform 0.25s ease-in-out;
+}
+
+.topic_list__title:hover {
+  transform: scale(1.01);
+}
+
 .topic_list__edit {
   float: right;
   margin: 20px 5px 0;
@@ -21,7 +29,6 @@
   font-size: 12px;
   margin-left: 5px;
   padding-left: 15px;
-  border-left: 2px dashed lightgray;
 }
 
 .topic_section__badge {
