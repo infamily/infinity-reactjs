@@ -2,7 +2,7 @@ import axios from 'axios';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 
-export async function getParents(id) {
+export async function getChildren(id) {
   const lang = langService.current;
   try {
     const { data } = await axios.get(`${serverService.api}/topics/?parents=${id}&lang=${lang}`);
@@ -12,7 +12,7 @@ export async function getParents(id) {
   }
 }
 
-export async function getChildren(id) {
+export async function getParents(id) {
   const lang = langService.current;
   try {
     const { data } = await axios.get(`${serverService.api}/topics/?children=${id}&lang=${lang}`);

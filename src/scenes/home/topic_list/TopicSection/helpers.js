@@ -6,9 +6,9 @@ export const badgeStyle = (topic) => {
   const empty = '#bfbfbf';
 
   const node = () => {
-    if (children.length && parents.length) return 3; // has all
-    if (children.length) return 2; // has only children
-    if (parents.length) return 1; // has only parents
+    if (parents.length && children.length) return 3; // has all
+    if (parents.length) return 2; // has only parents
+    if (children.length) return 1; // has only children
     return 0; // no leafs
   }
 
