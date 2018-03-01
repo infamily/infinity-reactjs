@@ -37,7 +37,6 @@ class ServerButton extends Component {
     signIn(serverData);
     const url = api.split('//')[1];
     history.push('/' + url + '/@');
-    // window.location.reload(false);
   }
 
   getName = (api) => {

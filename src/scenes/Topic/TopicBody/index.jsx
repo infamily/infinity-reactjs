@@ -42,7 +42,7 @@ const TopicBody = ({ topic, children, parents, user }) => {
         </span>
       </h1>
       <p className="topic__impact">
-        Comunity contribution<span className="topic__match">{topic.matched}h</span>
+        Community contribution<span className="topic__match">{topic.matched}h</span>
       </p>
       <i>{topic.is_draft ? <p>draft</p> : ''}</i>
       
