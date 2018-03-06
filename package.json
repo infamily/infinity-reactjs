@@ -19,6 +19,7 @@
     "react-router-redux": "^4.0.8",
     "react-select": "^1.1.0",
     "react-sortable-tree": "^1.8.1",
+    "react-stripe-checkout": "^2.6.3",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",

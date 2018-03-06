@@ -19,4 +19,5 @@ export default {
     '#D76B99',
   ],
   linkBase: getLink,
+  stripeKey: 'pk_test_YNkIMdMLnwHG3ML2RDXwf44b',
 }

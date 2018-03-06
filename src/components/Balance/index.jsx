@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TooltipOverlay from 'components/TooltipOverlay';
-import { get } from './service';
+import { get } from './services';
 import './balance.css';
 
 class Balance extends Component {
@@ -22,7 +22,7 @@ class Balance extends Component {
     const data = await get(id);
     const isData = data !== undefined;
     const balance = isData ? data.balance : -1;
-    const quota = isData ? data.quota_today : -1;
+    const quota = isData ? data.credit : -1;
     const parse = (data) => parseFloat(data).toFixed(2);
 
     this.setState({ 
@@ -44,7 +44,7 @@ class Balance extends Component {
           <strong className="balance__counter">{hours}h</strong>
         </TooltipOverlay> 
           {showQuota && 
-            <TooltipOverlay text="Remaining today's quota" placement="bottom">
+            <TooltipOverlay text="Remaining quota" placement="bottom">
               <span className="balance__quota">{quota}h</span>
             </TooltipOverlay>
           }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { 
   Button,
   FormGroup,
@@ -10,13 +9,13 @@ import {
   Modal 
 } from 'react-bootstrap';
 import Select from 'react-select';
-import './transaction.css';
-
+import StripeCheckout from 'components/StripeCheckout';
 import commentService from 'services/comment.service.js';
 import transactionService from 'services/transaction.service';
 import langService from 'services/lang.service';
 import ProgressBar from '../progress_bar';
 import getMessages from './messages';
+import './transaction.css';
 const messages = getMessages(langService.current);
 
 export default class Transaction extends Component {
@@ -47,7 +46,7 @@ export default class Transaction extends Component {
     });
     
     this.setState({
-      userQuota: userBalance.quota_today,
+      userQuota: userBalance.credit,
     });
 
     const payment_amount = this.checkQuota(comment.remains);
@@ -155,11 +154,13 @@ export default class Transaction extends Component {
     }
     
     const CreditBar = () => (
-      <Link to="/">
-        <Button className="transaction__credit" bsStyle="success" bsSize="large" block>
-          Buy more credit here
+      <StripeCheckout 
+        amount={20000}        
+        ComponentClass={() => (
+         <Button className="transaction__credit" bsStyle="success" bsSize="large" block>
+          Buy credit with card
         </Button>
-      </Link>
+      )} />
     );
 
     return (
