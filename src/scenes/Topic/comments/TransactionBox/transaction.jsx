@@ -9,7 +9,7 @@ import {
   Modal 
 } from 'react-bootstrap';
 import Select from 'react-select';
-import StripeCheckout from 'components/StripeCheckout';
+import PayCheckout from 'components/PayCheckout';
 import commentService from 'services/comment.service.js';
 import transactionService from 'services/transaction.service';
 import langService from 'services/lang.service';
@@ -154,13 +154,14 @@ export default class Transaction extends Component {
     }
     
     const CreditBar = () => (
-      <StripeCheckout 
+      <PayCheckout 
         amount={20000}        
-        ComponentClass={() => (
-         <Button className="transaction__credit" bsStyle="success" bsSize="large" block>
-          Buy credit with card
-        </Button>
-      )} />
+        ButtonComponent={() => (
+          <Button className="transaction__credit" bsStyle="success" bsSize="large" block>
+            Buy credit with card
+          </Button>
+        )} 
+      />
     );
 
     return (

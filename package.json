@@ -6,10 +6,14 @@
   "dependencies": {
     "add": "^2.0.6",
     "axios": "^0.17.1",
-    "moment": "^2.20.1",
+    "create-react-class": "^15.6.3",
+    "moment": "^2.21.0",
+    "node-sass-chokidar": "^1.0.1",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
+    "react-credit-card": "^0.20.0",
+    "react-credit-cards": "^0.7.0",
     "react-dom": "^16.1.1",
     "react-html-parser": "^2.0.1",
     "react-infinite-scroller": "^1.1.2",
@@ -18,7 +22,6 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "react-select": "^1.1.0",
-    "react-sortable-tree": "^1.8.1",
     "react-stripe-checkout": "^2.6.3",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
@@ -33,10 +36,12 @@
     "react-scripts": "1.0.17"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start&npm run watch-css",
     "build": "react-scripts build",
     "deploy": "npm run build&&gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   }
 }

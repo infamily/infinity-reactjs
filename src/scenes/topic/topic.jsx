@@ -11,6 +11,7 @@ import Language from 'components/LangSelect';
 import Loading from 'components/Loading';
 import CommentForm from './comment_form';
 import Comments from './comments';
+import PayCheckout from 'components/PayCheckout';
 
 import './topic.css';
 
@@ -171,6 +172,14 @@ class Topic extends Component {
           />
           <Language />
           <Menu page='Menu'/>
+           <PayCheckout 
+            amount={20000}        
+            ButtonComponent={() => (
+              <div className="transaction__credit" bsStyle="success" bsSize="large" block>
+                Buy credit with card
+              </div>
+            )} 
+          />
         </div>
       </div>
     );
