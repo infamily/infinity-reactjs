@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Cards from 'react-credit-cards';
 import Modal from 'components/Modal';
+import Payment from './Payment';
 import { postPayment } from './services.js';
 import {
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
-  formatFormData,
+  defaultState,
 } from './helpers';
 import 'react-credit-cards/es/styles-compiled.css';
 import './PayCheckout.css';
@@ -16,18 +17,21 @@ export default class PayCheckout extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: true,
-      number: '',
-      name: '',
-      expiry: '',
-      cvc: '',
-      focused: '',
-      issuer: '',
+      isOpen: false,
+      ...defaultState,
     };
   }
 
   static propTypes = {
     ButtonComponent: PropTypes.func.isRequired,
+  }
+
+  postPayment = async () => {
+    this.setState({ loading: true });
+    const response = await postPayment(this.state);
+    console.log(response, 'response');
+    this.setState({ ...defaultState });
+    this.handleOpen();
   }
 
   handleOpen = () => {
@@ -60,29 +64,30 @@ export default class PayCheckout extends Component {
     this.setState({ [target.name]: target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const { issuer } = this.state;
-    const formData = [...e.target.elements]
-      .filter(d => d.name)
-      .reduce((acc, d) => {
-        acc[d.name] = d.value;
-        return acc;
-      }, {});
-
-    this.setState({ formData });
+    await this.postPayment();
     this.form.reset();
   };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
 
   render() {
     const { 
       ButtonComponent,
-      ...rest
     } = this.props;
+
     const { 
-      isOpen
+      isOpen,
+      currency,
+      amount,
     } = this.state;
 
+    const ButtonText = () => <span>PAY {amount || 0} {currency}</span>;
     return (
       <div>
         <Modal isOpen={isOpen} close={this.handleOpen}>
@@ -109,60 +114,82 @@ export default class PayCheckout extends Component {
                 onFocus={this.handleInputFocus}
               />
             </div>
-            <div className="form-group">
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                placeholder="Name"
-                required
-                onChange={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    placeholder="Name"
+                    required
+                    onChange={this.handleInputChange}
+                    onFocus={this.handleInputFocus}
+                  />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    name="expiry"
+                    className="form-control"
+                    placeholder="MM/YY"
+                    pattern="\d\d/\d\d"
+                    required
+                    onChange={this.handleInputChange}
+                    onFocus={this.handleInputFocus}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="form-group">
-              <input
-                type="tel"
-                name="expiry"
-                className="form-control"
-                placeholder="MM/YY"
-                pattern="\d\d/\d\d"
-                required
-                onChange={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    name="cvc"
+                    className="form-control"
+                    placeholder="CVC"
+                    pattern="\d{3,4}"
+                    required
+                    onChange={this.handleInputChange}
+                    onFocus={this.handleInputFocus}
+                  />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    name="zip"
+                    className="form-control"
+                    placeholder="ZIP"
+                    pattern="\d{4,12}"
+                    required
+                    onChange={this.handleInputChange}
+                    onFocus={this.handleInputFocus}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="form-group">
-              <input
-                type="tel"
-                name="cvc"
-                className="form-control"
-                placeholder="CVC"
-                pattern="\d{3,4}"
-                required
-                onChange={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="tel"
-                name="cvc"
-                className="form-control"
-                placeholder="ZIP"
-                pattern="\d{3,4}"
-                required
-                onChange={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
-            </div>
+            <Payment 
+              amount={this.state.amount}
+              description={this.state.description}
+              currency={this.state.currency} 
+              handleChange={this.handleChange}
+            />
             <input type="hidden" name="issuer" value={this.state.issuer} />
             <div className="form-actions">
-              <button className="btn btn-primary btn-block">PAY</button>
+              <button className="btn btn-primary btn-block">
+                {this.state.loading ? '...' : <ButtonText />}
+              </button>
             </div>
           </form>
         </Modal>
-        <ButtonComponent onClick={this.handleOpen} />
+        <div onClick={this.handleOpen}>
+          <ButtonComponent />
+        </div>
       </div>
     )
   }

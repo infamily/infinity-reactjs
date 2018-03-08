@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 
-export default ({ isOpen, close, children }) => {
+const ModalComponent = ({ isOpen, close, children }) => {
   return (
     <Modal show={isOpen}>
       <Modal.Body>
@@ -15,6 +15,9 @@ export default ({ isOpen, close, children }) => {
   );
 }
 
-// Modal.propTypes = {
+ModalComponent.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  close: PropTypes.func.isRequired,
+}
 
-// }
+export default ModalComponent;

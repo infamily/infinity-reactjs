@@ -59,6 +59,16 @@ export function formatExpirationDate(value) {
   return clearValue;
 }
 
-export function formatFormData(data) {
-  return Object.keys(data).map(d => `${d}: ${data[d]}`);
-}
+export const defaultState = {
+  number: '',
+  name: '',
+  expiry: '',
+  cvc: '',
+  zip: '',
+  description: '',
+  amount: '10',
+  currency: 'USD',
+  focused: '',
+  issuer: '',
+  loading: false,
+};
