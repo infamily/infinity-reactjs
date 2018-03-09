@@ -68,7 +68,6 @@ export default class PayCheckout extends Component {
     e.preventDefault();
     this.setState({ loading: true });
     const response = await postPayment(this.state, 1); // 1 = stripe
-    console.log(response, 'response');
     if (response.data) {
       this.setState({ ...defaultState });
       this.form.reset();      
