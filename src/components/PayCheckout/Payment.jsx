@@ -38,6 +38,7 @@ export default class Payment extends Component {
               type="number"
               placeholder="Amount"
               min="0"
+              max="999"
               name="amount"
               className="form-control"
               value={this.props.amount}

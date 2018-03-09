@@ -1,7 +1,7 @@
 import axios from 'axios';
 import serverService from 'services/server.service';
 
-export async function postPayment(data) {
+export async function postPayment(data, platform) {
   try {
     const { api } = serverService;
     const [exp_month, exp_year] = data.expiry.split('/');
@@ -17,12 +17,14 @@ export async function postPayment(data) {
       "description": data.description,
     };
 
-    const response = await axios.post(api + '/payments', {
-      data: formatted,
+    const response = await axios.post(api + '/payments/', {
+      request: formatted,
+      platform: platform,
+      provider: platform,
     });
 
-    return response;
+    return { data: response };
   } catch (error) {
-    console.error(error);
+    return { data: null, error };
   }
 }

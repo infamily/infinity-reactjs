@@ -18,6 +18,7 @@ export default class PayCheckout extends Component {
     super();
     this.state = {
       isOpen: false,
+      buttonText: '',
       ...defaultState,
     };
   }
@@ -26,12 +27,11 @@ export default class PayCheckout extends Component {
     ButtonComponent: PropTypes.func.isRequired,
   }
 
-  postPayment = async () => {
-    this.setState({ loading: true });
-    const response = await postPayment(this.state);
-    console.log(response, 'response');
-    this.setState({ ...defaultState });
-    this.handleOpen();
+  showMessage = (buttonText) => {
+    this.setState({ buttonText });
+    setTimeout(() => {
+      this.setState({ buttonText: '' });
+    }, 3000);
   }
 
   handleOpen = () => {
@@ -66,8 +66,17 @@ export default class PayCheckout extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    await this.postPayment();
-    this.form.reset();
+    this.setState({ loading: true });
+    const response = await postPayment(this.state, 1); // 1 = stripe
+    console.log(response, 'response');
+    if (response.data) {
+      this.setState({ ...defaultState });
+      this.form.reset();      
+      this.handleOpen();
+    } else {
+      this.setState({ loading: false });
+      this.showMessage(response.error.message || 'Server error. Try again.');
+    }
   };
 
   handleChange = e => {
@@ -85,9 +94,10 @@ export default class PayCheckout extends Component {
       isOpen,
       currency,
       amount,
+      buttonText,
     } = this.state;
 
-    const ButtonText = () => <span>PAY {amount || 0} {currency}</span>;
+    const ButtonText = () => buttonText ? buttonText : <span>PAY {amount || 0} {currency}</span>;
     return (
       <div>
         <Modal isOpen={isOpen} close={this.handleOpen}>
@@ -106,6 +116,7 @@ export default class PayCheckout extends Component {
               <input
                 type="tel"
                 name="number"
+                value={this.state.number}
                 className="form-control"
                 placeholder="Card Number"
                 pattern="[\d| ]{16,22}"
@@ -120,6 +131,7 @@ export default class PayCheckout extends Component {
                   <input
                     type="text"
                     name="name"
+                    value={this.state.name}
                     className="form-control"
                     placeholder="Name"
                     required
@@ -133,6 +145,7 @@ export default class PayCheckout extends Component {
                   <input
                     type="tel"
                     name="expiry"
+                    value={this.state.expiry}
                     className="form-control"
                     placeholder="MM/YY"
                     pattern="\d\d/\d\d"
@@ -149,6 +162,7 @@ export default class PayCheckout extends Component {
                   <input
                     type="tel"
                     name="cvc"
+                    value={this.state.cvc}
                     className="form-control"
                     placeholder="CVC"
                     pattern="\d{3,4}"
@@ -163,6 +177,7 @@ export default class PayCheckout extends Component {
                   <input
                     type="tel"
                     name="zip"
+                    value={this.state.zip}
                     className="form-control"
                     placeholder="ZIP"
                     pattern="\d{4,12}"

@@ -59,12 +59,25 @@ export function formatExpirationDate(value) {
   return clearValue;
 }
 
+// export const defaultState = {
+//   number: '',
+//   name: '',
+//   expiry: '',
+//   cvc: '',
+//   zip: '',
+//   description: '',
+//   amount: '10',
+//   currency: 'USD',
+//   focused: '',
+//   issuer: '',
+//   loading: false,
+// };
 export const defaultState = {
-  number: '',
-  name: '',
-  expiry: '',
-  cvc: '',
-  zip: '',
+  number: '4242424242424242',
+  name: 'A B',
+  expiry: '12/12',
+  cvc: '1234',
+  zip: '1234',
   description: '',
   amount: '10',
   currency: 'USD',
