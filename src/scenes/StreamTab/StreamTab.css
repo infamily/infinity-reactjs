@@ -1,21 +1,5 @@
 
-/* Tab Layout -- Start */
-
-.tab_container {
-  width: 600px;
-  position: relative;
-}
-
-
-.stream_tab {
-  padding-top: 30px;
-  height: 100vh;
-  position: relative;
-  position: fixed;
-  width: 600px;
-  border-left: 1px solid rgb(236, 236, 236);
-  background-color: rgb(247, 247, 247); 
-}
+/* StreamTab Layout -- Start */
 
 .stream_tab__scrollable {
   width: 100%;
@@ -32,40 +16,7 @@
   justify-content: space-between;
 }
 
-@media (max-width: 1000px) {
-  .tab_container {
-    width: 400px;
-  }
-
-  .stream_tab {
-    width: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .tab_container {
-    width: 300px;    
-  }
-
-  .stream_tab {
-    width: 300px;    
-  }
-}
-
 @media (max-width: 600px) {
-  .tab_container {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 2;
-  }
-
-  .stream_tab {
-    width: 100%;
-  }
-
   .stream_tab__container {
     display: block;
     word-wrap: break-word;
@@ -76,17 +27,10 @@
   }
 }
 
-.stream_tab--full {
-  width: 100%;
-  top: 0;
-  right: 0;
-  z-index: 2;  
-}
-
-/* Tab Layout -- End */
+/* StreamTab Layout -- End */
 
 
-/* Tab Content -- Start */
+/* StreamTab Content -- Start */
 
 .stream_tab__header {
   font-weight: 200;

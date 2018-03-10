@@ -17,6 +17,7 @@ import ConfigWrapper from 'components/ConfigWrapper';
 import DefaultWrapper from 'components/DefaultWrapper';
 import ProgramToggle from 'components/ProgramToggle';
 import TabToggle from 'components/TabToggle';
+import TabPanel from 'scenes/TabPanel';
 import './App.css';
 
 class App extends Component {
@@ -49,28 +50,24 @@ class App extends Component {
 
     const TabRoutes = ({ match }) => (
       <Switch>
-        <Route path={match.path + "split/stream"} component={user && StreamTab} />
+        <Route path={match.path + "split/stream"} component={user && TabWrapper(StreamTab)} />
       </Switch>
     );
 
-    const ConfigRoute = ({ match }) => (
-      <div className="main_layout">
-        <div className="app_container">
-          <ConfigWrapper>
-            <Route path={match.path} component={Routes} />
-          </ConfigWrapper>
-        </div>
-        <Route path={match.path} component={TabRoutes} />
-      </div>
+    // TabWrapper creates the animated panel for panel content
+    const TabWrapper = (component) => (props) => (
+      <TabPanel TabPanelContent={component} {...props} />
     );
-    
-    const DefaultRoute = ({ match }) => (
+
+    // SetWrapper defines whether need to set new configs(by Wrapper prop)
+    const SetWrapper = (Wrapper) => ({ match }) => (
       <div className="main_layout">
         <div className="app_container">
-          <DefaultWrapper>
+          <Wrapper>
             <Route path={match.path} component={Routes} />
-          </DefaultWrapper>
+          </Wrapper>
         </div>
+        <TabToggle match={match} />
         <Route path={match.path} component={TabRoutes} />
       </div>
     );
@@ -79,11 +76,10 @@ class App extends Component {
       <HashRouter>
         <div>
           <ProgramToggle />
-          <TabToggle />
           <Switch>
             <Redirect exact from="/" to={configs.linkBase()} />
-            <Route path="/:configs/@/" component={ConfigRoute} />
-            <Route path="/" component={DefaultRoute} />
+            <Route path="/:configs/@/" component={SetWrapper(ConfigWrapper)} />
+            <Route path="/" component={SetWrapper(DefaultWrapper)} />
           </Switch>
         </div>
       </HashRouter>
