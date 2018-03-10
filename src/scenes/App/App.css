@@ -49,6 +49,17 @@ a:hover {
   color: black;
 }
 
+a:active,
+a:focus {
+  text-decoration: none;
+  color: lightblue;
+}
+
+a:visited {
+  text-decoration: none;
+  color: lightslategray;
+}
+
 .main { 
   font-family: 'Courier New',Courier,'Lucida Sans Typewriter','Lucida Typewriter',monospace;
   margin-top: 10px;

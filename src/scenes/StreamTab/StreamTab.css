@@ -3,7 +3,7 @@
 
 .stream_tab__scrollable {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 150px);
   overflow-y: auto;
   padding-bottom: 150px;
 }

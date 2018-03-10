@@ -50,7 +50,8 @@ class App extends Component {
 
     const TabRoutes = ({ match }) => (
       <Switch>
-        <Route path={match.path + "split/stream"} component={user && TabWrapper(StreamTab)} />
+        <Route path={match.path + "split/topic/:id"} component={TabWrapper(Topic)} />
+        <Route path={match.path + "split/data"} component={user && TabWrapper(StreamTab)} />
       </Switch>
     );
 
@@ -67,7 +68,7 @@ class App extends Component {
             <Route path={match.path} component={Routes} />
           </Wrapper>
         </div>
-        <TabToggle match={match} />
+        {user && <TabToggle match={match} />}
         <Route path={match.path} component={TabRoutes} />
       </div>
     );

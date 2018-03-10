@@ -5,7 +5,7 @@ import configs from 'configs';
 import './TabToggle.css';
 
 const TabComponent = () => (
-  <Link to={configs.linkBase() + "/split/stream"}>
+  <Link to={configs.linkBase() + "/split/data"}>
     <div className="tab_toggle">
       Data
     </div>
@@ -14,7 +14,7 @@ const TabComponent = () => (
 
 const TabToggle = ({ match }) => (
   <Switch>
-    <Route exact path={match.path + "split/stream"} component={null} />
+    <Route exact path={match.path + "split/data"} component={null} />
     <Route exact path={match.path} component={TabComponent} />
   </Switch>
 )

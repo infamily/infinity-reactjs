@@ -7,6 +7,7 @@ import * as services from './services';
 import store_home from '../../services/store_home';
 import configs from 'configs';
 import { badgeStyle, getBorder } from './helpers';
+import TopicLink from 'images/topic_link.jpg';
 
 class TopicSection extends Component {
   constructor(props) {
@@ -84,14 +85,19 @@ class TopicSection extends Component {
       const id = topic.id;
       const children = this.state[id];
       const isExpanded = this.state[id + 'open'] && children;
-
+      const tabLink = configs.linkBase() + '/split/topic/' + id;
+      const fullLink = configs.linkBase() + '/topic/' + id;
+      
       return (
         <div>
           <EditTopic owner={topic.owner.username} id={id} />
           <h2 className="topic_list__title">
             <BadgePoint topic={topic} fromId={fromId} />
-            <Link to={configs.linkBase() + '/topic/' + id} onClick={this.saveScroll} className="topics__item-title" data-id={id}>
+            <Link to={tabLink} onClick={this.saveScroll} className="topics__item-title" data-id={id}>
               {' ' + topic.title}
+            </Link>
+            <Link to={fullLink}>
+              <img src={TopicLink} className="topic_section__icon" alt="infinity link" />
             </Link>
           </h2>
 

@@ -7,11 +7,11 @@
 .tab_container {
   padding-top: 30px;
   height: 100vh;
-  position: relative;
   position: fixed;
   width: 600px;
   border-left: 1px solid rgb(236, 236, 236);
-  background-color: rgb(247, 247, 247); 
+  background-color: rgb(247, 247, 247);
+  overflow-y: auto;
 }
 
 .tab_container--full {

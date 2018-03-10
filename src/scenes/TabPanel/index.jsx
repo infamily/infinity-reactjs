@@ -52,7 +52,12 @@ export default class TabPanel extends Component {
               <div className={"tab_container" + fullStyle} style={{
                 ...transitionStyles[state]
               }}>
-                <TabPanelContent close={this.close} toggleFullScreen={this.toggleFullScreen}/>
+                <TabPanelContent 
+                  isOpen={isOpen} 
+                  close={this.close} 
+                  toggleFullScreen={this.toggleFullScreen}
+                  {...this.props}
+                />
               </div>
             </div>
           )}

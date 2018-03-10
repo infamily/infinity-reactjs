@@ -20,6 +20,7 @@ export default class StreamTab extends Component {
   }
 
   static propTypes = {
+    isOpen: PropTypes.bool.isRequired,
     close: PropTypes.func.isRequired,
     toggleFullScreen: PropTypes.func.isRequired,
   }
@@ -50,7 +51,6 @@ export default class StreamTab extends Component {
 
   render() {
     const { 
-      isOpen,
       schemas,
       instances,
       activeSchema,
@@ -69,17 +69,17 @@ export default class StreamTab extends Component {
     const schemaData = instances ? instances.filter(item => item.schema === activeSchema) : [];
     const schemaName = schemas && schemas.find(item => item.url === activeSchema);
     
-    const TabPanelContent = () => (
+    return (
       <div>
         <div className="stream_tab__header">
-          <ControlButtons />               
+          {this.props.isOpen && <ControlButtons />}
           <div className="stream_tab__select">
             <FormSelect
               name="activeSchema"
               label="Schema"
               action={this.handleChange}
               value={activeSchema}
-              >
+            >
               {schemas ? schemas.map(
                 (item) => <option value={item.url} key={item.url}>{item.name}</option>
               ) : []}
@@ -89,29 +89,23 @@ export default class StreamTab extends Component {
         <div className="stream_tab__scrollable">
           <div className="stream_tab__container">
             {schemaName && schemaData.map((item) => (
-              <Instance 
-                data={item} 
-                key={item.url} 
+              <Instance
+                data={item}
+                key={item.url}
                 showInstance={this.showInstance}
                 schema={schemaName.name}
               />
             ))}
           </div>
+          <TabDataField />
         </div>
-        <TabDataField />
-          {schemaName && 
-          <InstanceModal 
-            data={instanceData} 
-            show={!!instanceData} 
-            schema={schemaName.name} 
-            onHide={this.closeInstance} 
+        {schemaName &&
+          <InstanceModal
+            data={instanceData}
+            show={!!instanceData}
+            schema={schemaName.name}
+            onHide={this.closeInstance}
           />}
-      </div>
-    );
-
-    return (
-      <div>
-        <TabPanelContent />
       </div>
     );
   }
