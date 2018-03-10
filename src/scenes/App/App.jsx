@@ -16,6 +16,7 @@ import StreamTab from 'scenes/StreamTab';
 import ConfigWrapper from 'components/ConfigWrapper';
 import DefaultWrapper from 'components/DefaultWrapper';
 import ProgramToggle from 'components/ProgramToggle';
+import TabToggle from 'components/TabToggle';
 import './App.css';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
     const Routes = ({ match }) => (
       <Switch>
         <Route exact path={match.path} component={Home} />
+        <Route path={match.path + "split"} component={Home} />
         <Route path={match.path + "topic/:id/:server"} component={Topic} />
         <Route path={match.path + "topic/:id"} component={Topic} />
         <Route path={match.path + "page/how"} component={How} />
@@ -45,30 +47,44 @@ class App extends Component {
       </Switch>
     );
 
+    const TabRoutes = ({ match }) => (
+      <Switch>
+        <Route path={match.path + "split/stream"} component={user && StreamTab} />
+      </Switch>
+    );
+
     const ConfigRoute = ({ match }) => (
-      <ConfigWrapper>
-        <Route path={match.path} component={Routes} />
-      </ConfigWrapper>
+      <div className="main_layout">
+        <div className="app_container">
+          <ConfigWrapper>
+            <Route path={match.path} component={Routes} />
+          </ConfigWrapper>
+        </div>
+        <Route path={match.path} component={TabRoutes} />
+      </div>
     );
     
     const DefaultRoute = ({ match }) => (
-      <DefaultWrapper>
-        <Route path={match.path} component={Routes} />
-      </DefaultWrapper>
+      <div className="main_layout">
+        <div className="app_container">
+          <DefaultWrapper>
+            <Route path={match.path} component={Routes} />
+          </DefaultWrapper>
+        </div>
+        <Route path={match.path} component={TabRoutes} />
+      </div>
     );
 
     return (
       <HashRouter>
-        <div className="main_layout">
-          <div className="app_container">
-            <ProgramToggle />
-            <Switch>
-              <Redirect exact from="/" to={configs.linkBase()} />
-              <Route path="/:configs/@/" component={ConfigRoute} />
-              <Route path="/" component={DefaultRoute} />
-            </Switch>
-          </div>
-          {user && <StreamTab />}
+        <div>
+          <ProgramToggle />
+          <TabToggle />
+          <Switch>
+            <Redirect exact from="/" to={configs.linkBase()} />
+            <Route path="/:configs/@/" component={ConfigRoute} />
+            <Route path="/" component={DefaultRoute} />
+          </Switch>
         </div>
       </HashRouter>
     );

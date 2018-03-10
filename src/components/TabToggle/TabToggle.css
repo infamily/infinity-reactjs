@@ -1,0 +1,20 @@
+.tab_toggle {
+  text-transform: uppercase;
+  position: fixed;
+  top: 60px;
+  right: 5px;
+  writing-mode: vertical-rl; 
+  padding: 10px 5px 10px 2px;
+  color: #fff;
+  background-color: #76b976;
+  border-radius: 5px 0 0 5px;
+  z-index: 3;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;  
+  box-shadow: -3px 3px 5px rgb(109, 109, 109);  
+}
+
+.tab_toggle:hover {
+  top: 57px;  
+  box-shadow: -5px 6px 10px rgb(109, 109, 109);  
+}

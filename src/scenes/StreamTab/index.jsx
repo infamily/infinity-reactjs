@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Transition from 'react-transition-group/Transition';
+import configs from 'configs';
 import FormSelect from 'components/FormSelect';
 import TabDataField from 'components/TabDataField';
-import fullIcon from 'images/fullscreen.svg';
 import Instance from './Widgets';
 import InstanceModal from './Modals';
 import { getSchemas, getInstances } from './services';
 import { transitionStyles } from './transition';
+import fullIcon from 'images/fullscreen.svg';
 import './StreamTab.css';
 
 export default class StreamTab extends Component {
@@ -32,6 +33,10 @@ export default class StreamTab extends Component {
     });
   }
 
+  componentDidMount() {
+    this.open();    
+  }
+
   toggleFullScreen = () => {
     this.setState((prevState => (
       { fullWidth: !prevState.fullWidth }
@@ -44,6 +49,7 @@ export default class StreamTab extends Component {
 
   close = () => {
     this.setState({ isOpen: false });
+    setTimeout(() => this.props.history.push(configs.linkBase() + '/'), 500);
   }
 
   handleChange = e => {
@@ -70,12 +76,6 @@ export default class StreamTab extends Component {
       fullWidth } = this.state;
     const fullStyle = fullWidth ? ' stream_tab--full' : '';
 
-    const TabToggle = () => ( !isOpen &&
-      <div className="stream_tab__toggle" onClick={this.open}>
-        Data
-      </div>
-    );
-
     const ControlButtons = () => (
       <div className="stream_tab__buttons">
         <span onClick={this.toggleFullScreen} className="stream_tab__full_icon">
@@ -90,7 +90,6 @@ export default class StreamTab extends Component {
     
     return (
       <div>
-        <TabToggle />
         <Transition in={isOpen} timeout={0}>
           {(state) => (
             <div className="tab_container" style={{
