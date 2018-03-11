@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
 import configs from 'configs';
 import Transition from 'react-transition-group/Transition';
+import StreamTab from 'scenes/StreamTab';
+import Topic from 'scenes/Topic';
 import { transitionStyles } from './transition';
 import './TabPanel.css';
 
@@ -15,7 +18,7 @@ export default class TabPanel extends Component {
   }
 
   static propTypes = {
-    TabPanelContent: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
@@ -38,9 +41,26 @@ export default class TabPanel extends Component {
   }
 
   render() {
-    const { TabPanelContent } = this.props;
+    const { user, match } = this.props;
     const { isOpen, fullWidth } = this.state;
     const fullStyle = fullWidth ? ' tab_container--full' : '';
+    
+    const TabWrapper = (TabPanelContent) => (props) => (
+      <TabPanelContent
+        isOpen={isOpen}
+        close={this.close}
+        toggleFullScreen={this.toggleFullScreen}
+        {...props}
+      />
+    );
+
+    const StreamComponent = () => user && (
+      <StreamTab
+        isOpen={isOpen}
+        close={this.close}
+        toggleFullScreen={this.toggleFullScreen}
+      />
+    );
 
     return (
       <div>
@@ -52,12 +72,10 @@ export default class TabPanel extends Component {
               <div className={"tab_container" + fullStyle} style={{
                 ...transitionStyles[state]
               }}>
-                <TabPanelContent 
-                  isOpen={isOpen} 
-                  close={this.close} 
-                  toggleFullScreen={this.toggleFullScreen}
-                  {...this.props}
-                />
+                <Switch>
+                  <Route path={match.path + "/topic/:id"} component={TabWrapper(Topic)} />
+                  <Route path={match.path + "/data"} render={StreamComponent} />
+                </Switch>
               </div>
             </div>
           )}

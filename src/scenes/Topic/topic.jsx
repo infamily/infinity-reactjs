@@ -30,6 +30,11 @@ class Topic extends Component {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     user: PropTypes.object,
+    close: PropTypes.func, // when it tab mode
+  };
+
+  static defaultProps = { 
+    close: null,
   };
 
   async componentWillMount() {
@@ -136,16 +141,21 @@ class Topic extends Component {
   }
 
   render() {
+    const { close } = this.props;
     const { topic, comments, parents, children } = this.state;
     const user = this.props.user;
     
     if (!topic.id) return <Loading />;
 
+    const HomeButton = () => (close
+      ? <div onClick={close} className="nav__back">&#10094; Home</div>
+      : <NavLink to="/" className="nav__back">&#10094; Home</NavLink>
+    );
+
     return (
       <div className="main">
         <div className="topics__content-item" style={{display: 'block'}}>
-          <NavLink to="/" className="nav__back">&#10094; Home</NavLink>
-
+          <HomeButton />
           <TopicBody 
             topic={topic}
             children={children}

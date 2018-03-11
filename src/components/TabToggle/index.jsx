@@ -15,6 +15,7 @@ const TabComponent = () => (
 const TabToggle = ({ match }) => (
   <Switch>
     <Route exact path={match.path + "split/data"} component={null} />
+    <Route path={match.path + "split/topic"} component={TabComponent} />
     <Route exact path={match.path} component={TabComponent} />
   </Switch>
 )

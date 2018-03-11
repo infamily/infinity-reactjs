@@ -5,20 +5,49 @@
 }
 
 .tab_container {
-  padding-top: 30px;
   height: 100vh;
   position: fixed;
   width: 600px;
   border-left: 1px solid rgb(236, 236, 236);
-  background-color: rgb(247, 247, 247);
+  background-color:#fff;
   overflow-y: auto;
 }
 
 .tab_container--full {
-  width: 100%;
+  width: 100% !important;
   top: 0;
   right: 0;
   z-index: 2;  
+}
+
+@media (min-width: 2400px) {
+  .tab_layout {
+    width: 1200px;
+  }
+
+  .tab_container {
+    width: 1200px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .tab_layout {
+    width: 800px;
+  }
+
+  .tab_container {
+    width: 800px;
+  }
+}
+
+@media (min-width: 1200) {
+  .tab_layout {
+    width: 600px;
+  }
+
+  .tab_container {
+    width: 600px;
+  }
 }
 
 @media (max-width: 1000px) {

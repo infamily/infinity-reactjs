@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormSelect from 'components/FormSelect';
 import TabDataField from 'components/TabDataField';
+import Loading from 'components/Loading';
 import Instance from './Widgets';
 import InstanceModal from './Modals';
 import { getSchemas, getInstances } from './services';
@@ -14,7 +15,7 @@ export default class StreamTab extends Component {
     this.state = {
       instances: [],
       instanceData: null,
-      schemas: [],
+      schemas: null,
       activeSchema: 'null',
     }
   }
@@ -57,6 +58,8 @@ export default class StreamTab extends Component {
       instanceData,
     } = this.state;
 
+    if (!schemas) return <Loading />;
+
     const ControlButtons = () => (
       <div className="stream_tab__buttons">
         <span onClick={this.props.toggleFullScreen} className="stream_tab__full_icon">
@@ -70,7 +73,7 @@ export default class StreamTab extends Component {
     const schemaName = schemas && schemas.find(item => item.url === activeSchema);
     
     return (
-      <div>
+      <div className="stream_tab__bg">
         <div className="stream_tab__header">
           {this.props.isOpen && <ControlButtons />}
           <div className="stream_tab__select">

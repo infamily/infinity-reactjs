@@ -12,7 +12,6 @@ import TopicView from 'scenes/TopicView';
 import TypeList from 'scenes/TypeList';
 import TypePage from 'scenes/TypeView';
 import UserTransactions from 'scenes/UserTransactions';
-import StreamTab from 'scenes/StreamTab';
 import ConfigWrapper from 'components/ConfigWrapper';
 import DefaultWrapper from 'components/DefaultWrapper';
 import ProgramToggle from 'components/ProgramToggle';
@@ -48,18 +47,6 @@ class App extends Component {
       </Switch>
     );
 
-    const TabRoutes = ({ match }) => (
-      <Switch>
-        <Route path={match.path + "split/topic/:id"} component={TabWrapper(Topic)} />
-        <Route path={match.path + "split/data"} component={user && TabWrapper(StreamTab)} />
-      </Switch>
-    );
-
-    // TabWrapper creates the animated panel for panel content
-    const TabWrapper = (component) => (props) => (
-      <TabPanel TabPanelContent={component} {...props} />
-    );
-
     // SetWrapper defines whether need to set new configs(by Wrapper prop)
     const SetWrapper = (Wrapper) => ({ match }) => (
       <div className="main_layout">
@@ -69,7 +56,7 @@ class App extends Component {
           </Wrapper>
         </div>
         {user && <TabToggle match={match} />}
-        <Route path={match.path} component={TabRoutes} />
+        <Route path={match.path + "split"} component={TabPanel} />
       </div>
     );
 

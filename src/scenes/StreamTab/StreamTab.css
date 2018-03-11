@@ -1,5 +1,8 @@
 
 /* StreamTab Layout -- Start */
+.stream_tab__bg {
+  background-color: #f7f7f7;
+}
 
 .stream_tab__scrollable {
   width: 100%;
@@ -34,9 +37,8 @@
 
 .stream_tab__header {
   font-weight: 200;
-  padding: 10px;
+  padding: 30px 15px;
   margin: 0 auto;
-  margin-top: 15px;
 }
 
 .stream_tab__select {
@@ -93,7 +95,7 @@
   position: absolute;
   cursor: pointer;
   right: 60px;
-  top: 36px;
+  top: 26px;
   opacity: 0.2;
 }
 
@@ -105,7 +107,7 @@
   position: absolute;
   cursor: pointer;
   right: 20px;
-  top: 32px;
+  top: 22px;
   width: 32px;
   height: 32px;
   opacity: 0.3;
