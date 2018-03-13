@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TooltipOverlay from 'components/TooltipOverlay';
+import QuotaBox from 'scenes/QuotaBox';
 import { get } from './services';
 import './balance.css';
 
@@ -9,7 +10,8 @@ class Balance extends Component {
   constructor() {
     super();
     this.state = {
-      hours: null
+      hours: null,
+      isOpenQuotaBox: false,
     };
   }
 
@@ -31,25 +33,46 @@ class Balance extends Component {
      });
   }
 
+  handleOpen = () => {
+    this.setState((prevState) => ({
+      isOpenQuotaBox: !prevState.isOpenQuotaBox,
+    }))
+  }
+
   render() {
-    const { hours, quota } = this.state;
+    const { hours, quota, isOpenQuotaBox } = this.state;
     const { id, showQuota } = this.props;
 
     if (!hours || hours < 0) return null;
 
     return (
-      <Link to={"/user-transactions/" + id}>
-        <div className="balance__hours">
-        <TooltipOverlay text="Balance" placement="bottom">
-          <strong className="balance__counter">{hours}h</strong>
-        </TooltipOverlay> 
-          {showQuota && 
-            <TooltipOverlay text="Remaining quota" placement="bottom">
-              <span className="balance__quota">{quota}h</span>
-            </TooltipOverlay>
-          }
-        </div>
-      </Link> 
+      <div className="balance__hours">
+        <Link to={"/user-investment/" + id}>
+          <TooltipOverlay text="Balance" placement="bottom">
+            <strong className="balance__counter">{hours}h</strong>
+          </TooltipOverlay>
+        </Link> 
+        {showQuota &&
+          <TooltipOverlay 
+            text="Remaining quota" 
+            placement="bottom" 
+            onClick={this.handleOpen}>
+            <span 
+              onClick={this.handleOpen}            
+              className="balance__quota">
+              {quota}h
+            </span>
+          </TooltipOverlay>
+        }
+        {showQuota &&
+          <QuotaBox
+            handleOpen={this.handleOpen}
+            isOpen={isOpenQuotaBox}
+            hours={quota}
+            id={id}
+          />}
+      </div>
+      
     );
   }
 };

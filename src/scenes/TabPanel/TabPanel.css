@@ -1,13 +1,13 @@
 
 .tab_layout {
-  width: 600px;
+  width: 1200px;
   position: relative;
 }
 
 .tab_container {
   height: 100vh;
   position: fixed;
-  width: 600px;
+  width: 1200px;
   border-left: 1px solid rgb(236, 236, 236);
   background-color:#fff;
   overflow-y: auto;
@@ -20,33 +20,33 @@
   z-index: 2;  
 }
 
-@media (min-width: 2400px) {
+@media (max-width: 2000px) {
   .tab_layout {
-    width: 1200px;
+    width: 700px;
   }
 
   .tab_container {
-    width: 1200px;
+    width: 700px;
   }
 }
 
-@media (min-width: 1600px) {
-  .tab_layout {
-    width: 800px;
-  }
-
-  .tab_container {
-    width: 800px;
-  }
-}
-
-@media (min-width: 1200) {
+@media (max-width: 1600) {
   .tab_layout {
     width: 600px;
   }
 
   .tab_container {
     width: 600px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .tab_layout {
+    width: 500px;
+  }
+
+  .tab_container {
+    width: 500px;
   }
 }
 
@@ -57,6 +57,16 @@
 
   .tab_container {
     width: 400px;
+  }
+}
+
+@media (max-width: 800px) {
+  .tab_layout {
+    width: 300px;
+  }
+
+  .tab_container {
+    width: 300px;
   }
 }
 

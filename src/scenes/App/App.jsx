@@ -42,7 +42,7 @@ class App extends Component {
         <Route path={match.path + "types/:id"} component={TypePage} />
         <Route path={match.path + "types/"} component={TypeList} />
         <Route path={match.path + "add-child/:p"} component={TopicView} />
-        <Route path={match.path + "user-transactions/:id"} component={UserTransactions} />
+        <Route path={match.path + "user-investment/:id"} component={UserTransactions} />
         <Route component={NotFound} />        
       </Switch>
     );

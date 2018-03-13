@@ -36,7 +36,7 @@ export default class UserTransactions extends Component {
     return (
       <div className="main">
         <NavLink to="/" className="nav__back">&#10094; Home</NavLink>
-        <h1 className="user_contribution__header">Transactions by {balance.username}</h1>
+        <h1 className="user_contribution__header">Investment by {balance.username}</h1>
         <TransactionTable data={data} />
         <Language />
         <Menu page='Menu' />
