@@ -3,7 +3,10 @@ import langService from 'services/lang.service';
 
 const getLink = () => {
   const server = serverService.api && serverService.api.split('//')[1];
-  return `/${server}:${langService.current}/@`
+  const organization = server && server.split('inf.')[1];
+  const serverName = organization || server;
+
+  return `/${serverName}:${langService.current}/@`
 }
 
 export default {

@@ -66,13 +66,26 @@ class ServerService {
     }
 
     // check if is valid
-    const isValid = await this.checkIsServerAvailable(url);
-    if (isValid) {
+    const isValidServer = await this.checkIsServerAvailable(url);
+    if (isValidServer) {
       this.setDefault(url);
       return url;
     }
-    
+
+    // check if is organization
+    const organizationServer = await this.checkOrganization(server);
+    if (organizationServer) {
+      this.setDefault(organizationServer);
+      return organizationServer;
+    }
+
     return null;
+  }
+  
+  async checkOrganization(server) {
+    const url = 'https://inf.' + server;
+    const isValidServer = await this.checkIsServerAvailable(url);
+    return isValidServer && url;    
   }
 
   async checkIsServerAvailable(url) {
@@ -80,6 +93,7 @@ class ServerService {
     try {
       const { data } = await noToken.get(url);
       const isInfinity = data.slice(0, 300).includes('Infinity API');
+      console.log(url, isInfinity, data.slice(0, 300))
       return isInfinity;
     } catch (error) {
       return false;

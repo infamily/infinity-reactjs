@@ -10,7 +10,7 @@ class Balance extends Component {
   constructor() {
     super();
     this.state = {
-      history: null,
+      history: [],
     };
   }
 
@@ -33,7 +33,7 @@ class Balance extends Component {
     const hoursText = hours === 1 ? 'hour' : 'hours';
     const quotaDescription = 'Review the topics and support authors you like.';
 
-    const History = () => (history && 
+    const History = () => (history[0] && 
       <div className="quota_box__history">
         <p><strong>Payment History</strong></p>
         <div className="quota_box__history_list">
