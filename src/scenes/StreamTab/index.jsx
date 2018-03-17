@@ -5,15 +5,17 @@ import TabDataField from 'components/TabDataField';
 import Loading from 'components/Loading';
 import Instance from './Widgets';
 import InstanceModal from './Modals';
-import { getSchemas, getInstances } from './services';
+import { getSchemas, getInstance } from './services';
 import fullIcon from 'images/fullscreen.svg';
 import './StreamTab.css';
+
+const getId = (url) => url.match(/schemas\/(\d+)/)[1];
 
 export default class StreamTab extends Component {
   constructor() {
     super();
     this.state = {
-      instances: [],
+      instances: null,
       instanceData: null,
       schemas: null,
       activeSchema: 'null',
@@ -28,7 +30,8 @@ export default class StreamTab extends Component {
 
   async componentWillMount() {
     const schemas = await getSchemas();
-    const instances = await getInstances();
+    const id = getId(schemas[0].url);
+    const instances = await getInstance(id);
     
     this.setState({
       schemas,
@@ -36,10 +39,18 @@ export default class StreamTab extends Component {
     });
   }
 
-  handleChange = e => {
+  loadInstances = async (url) => {
+    const instances = await getInstance(getId(url));
+    this.setState({ instances });
+  }
+  
+  changeSchema = async e => {
+    const url = e.target.value;
     this.setState({
-      [e.target.name]: e.target.value
+      activeSchema: url,
+      instances: null,
     });
+    this.loadInstances(url);    
   }
 
   showInstance = (data) => {
@@ -68,8 +79,20 @@ export default class StreamTab extends Component {
         <span onClick={this.props.close} className="stream_tab__close"></span>
       </div>
     );
-    
-    const schemaData = instances ? instances.filter(item => item.schema === activeSchema) : [];
+
+    const Instances = () => (
+      <div className="stream_tab__container">
+        {instances.map((item) => (
+          <Instance
+            data={item}
+            key={item.url}
+            showInstance={this.showInstance}
+            schema={schemaName.name}
+          />
+        ))}
+      </div>
+    );
+        
     const schemaName = schemas && schemas.find(item => item.url === activeSchema);
     
     return (
@@ -80,26 +103,16 @@ export default class StreamTab extends Component {
             <FormSelect
               name="activeSchema"
               label="Schema"
-              action={this.handleChange}
-              value={activeSchema}
-            >
-              {schemas ? schemas.map(
-                (item) => <option value={item.url} key={item.url}>{item.name}</option>
-              ) : []}
+              action={this.changeSchema}
+              value={activeSchema}>
+              {schemas.map((item) => (
+                <option value={item.url} key={item.url}>{item.name}</option>
+              ))}
             </FormSelect>
           </div>
         </div>
         <div className="stream_tab__scrollable">
-          <div className="stream_tab__container">
-            {schemaName && schemaData.map((item) => (
-              <Instance
-                data={item}
-                key={item.url}
-                showInstance={this.showInstance}
-                schema={schemaName.name}
-              />
-            ))}
-          </div>
+          {instances ? <Instances /> : <Loading />}
           <TabDataField />
         </div>
         {schemaName &&

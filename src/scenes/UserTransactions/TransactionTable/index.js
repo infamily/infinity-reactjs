@@ -12,10 +12,11 @@ export default class Transactions extends PureComponent {
 
   render() {
     const { data } = this.props;
-
+    const types = ['Time', 'Money'];
+    
     const Row = ({ type, url }) => (
       <tr key={url}>
-        <td>{type === 0 ? 'Time' : 'Money'}</td>
+        <td>{types[type] || 'None'}</td>
         <td>
           <a href={url} target="_blank">{url}</a>
         </td>

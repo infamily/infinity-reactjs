@@ -6,29 +6,18 @@ export async function getSchemas() {
   const lang = langService.current;
   try {
     const { data } = await axios.get(`${serverService.api}/schemas/?lang=${lang}`);
-
-    const NullSchema = {
-      name: 'None',
-      url: 'null',
-    };
-    const withNull = [NullSchema].concat(data.results);
-    return withNull;
+    return data.results;
   } catch (e) {
     console.error(e);
     return null;    
   }
 }
 
-export async function getInstances() {
+export async function getInstance(id) {
   const lang = langService.current;
   try {
-    const { data } = await axios.get(`${serverService.api}/instances/?lang=${lang}`);
-    const formatted = data.results.map(item => {
-      if (item.schema === null) item.schema = 'null';
-      return item;
-    });
-
-    return formatted;
+    const { data } = await axios.get(`${serverService.api}/instances/?schema=${id}&lang=${lang}`);
+    return data.results;
   } catch (e) {
     console.error(e);
     return null;        
