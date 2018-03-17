@@ -41,8 +41,10 @@ class ServerButton extends Component {
 
   getName = (api) => {
     const names = langService.getServers();
-    const url = api.split('//')[1];
-    return names[url] || url;
+    const server = api.split('//')[1];
+    const organization = api.split('inf.')[1];
+    const name = organization || server;
+    return names[name] || name;
   }
 
   render() {
@@ -58,11 +60,7 @@ class ServerButton extends Component {
         {' ' + this.getName(api)}
       </MenuItem>
     ));
-
-    const Status = () => ( 
-      <span>{this.getName(server)}</span>
-    );
-      
+    
     return (
       <DropdownButton 
         id="dropdown-server"
@@ -70,7 +68,7 @@ class ServerButton extends Component {
         pullRight={true} 
         dropup 
         bsSize={mobile ? "small" : null}
-        title={<Status />}>
+        title={this.getName(server)}>
         <MenuItem>{messages.server}</MenuItem>
         <MenuItem divider />
         <Servers />

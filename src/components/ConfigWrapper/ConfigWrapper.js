@@ -5,6 +5,12 @@ import serverService from 'services/server.service';
 import Loading from 'components/Loading';
 
 export default class ConfigWrapper extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: false,
+    }
+  }
 
   static propTypes = {
     setServer: PropTypes.func.isRequired,
@@ -25,6 +31,7 @@ export default class ConfigWrapper extends Component {
     //check for new configs
     const nextConfigs = getConfigs(nextProps);
     if (getConfigs(this.props) !== nextConfigs) {
+      this.setLoading(true);
       await this.setParams(nextConfigs);
       window.location.reload(false);
     }
@@ -44,9 +51,13 @@ export default class ConfigWrapper extends Component {
     const serverData = userServerData[serverService.api] || null;
     signIn(serverData);
   }
+
+  setLoading(bool) {
+    this.setState({ loading: bool });
+  }
   
   render() {
-    if (!this.props.server) return <Loading />;
+    if (this.state.loading || !this.props.server) return <Loading />;
     return <div>{this.props.children}</div>;
   }
 }

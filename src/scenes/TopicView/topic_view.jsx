@@ -187,7 +187,7 @@ class Topic extends Component {
       const link = configs.linkBase() + '/topic/' + id;
       const text = (
         <span onClick={this.refresh}>Your topic is available on: 
-          <Link to={link}>{linkText}</Link>
+          <Link to={link}> {linkText}</Link>
         </span>
       );
       

@@ -93,7 +93,6 @@ class ServerService {
     try {
       const { data } = await noToken.get(url);
       const isInfinity = data.slice(0, 300).includes('Infinity API');
-      console.log(url, isInfinity, data.slice(0, 300))
       return isInfinity;
     } catch (error) {
       return false;

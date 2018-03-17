@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { ButtonGroup , DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from 'services/lang.service';
-import ServerButton from './server_select';
-
+import ServerButton from './ServerSelect';
 import './lang_select.css';
 
 class Language extends Component {
