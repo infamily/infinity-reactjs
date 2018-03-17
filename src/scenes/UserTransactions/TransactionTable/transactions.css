@@ -28,3 +28,7 @@
 .transactions__table {
   text-align: center;
 }
+
+.investments__sell {
+  margin-left: 15px;
+}
