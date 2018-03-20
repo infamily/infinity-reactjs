@@ -10,6 +10,7 @@
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
     "react-credit-cards": "^0.7.0",
+    "react-document-meta": "^2.1.2",
     "react-dom": "^16.1.1",
     "react-html-parser": "^2.0.1",
     "react-infinite-scroller": "^1.1.2",

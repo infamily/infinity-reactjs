@@ -1,8 +1,17 @@
+.loading {
+  text-align: center;
+}
+
 .loading__img {
   max-width: 60px;
   display: block;
   margin: 0 auto;
   margin-top: 5%;
+}
+
+.loading__text {
+  color: lightgrey;
+  padding-top: 20px;
 }
 
 .pulse {

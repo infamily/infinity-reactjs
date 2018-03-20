@@ -33,7 +33,7 @@ class Balance extends Component {
     const hoursText = hours === 1 ? 'hour' : 'hours';
     const quotaDescription = 'Review the topics and support authors you like.';
 
-    const History = () => (history[0] && 
+    const History = () => (
       <div className="quota_box__history">
         <p><strong>Payment History</strong></p>
         <div className="quota_box__history_list">
@@ -52,7 +52,7 @@ class Balance extends Component {
           <p className="quota_box__text"> Your quota is </p>
           <h1 className="quota_box__header">{hours} {hoursText}</h1>
           <p className="quota_box__description" >{quotaDescription}</p>
-          <History />
+          {history[0] && <History />}
         </div>
         <PayCheckout
           ButtonComponent={() => (

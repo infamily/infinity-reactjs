@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-
-import topicService from './services/topics';
-import commentService from 'services/comment.service.js';
-
+import DocumentMeta from 'react-document-meta';
 import TopicBody from './TopicBody';
 import Menu from 'components/Menu';
 import Language from 'components/LangSelect';
 import Loading from 'components/Loading';
 import CommentForm from './comment_form';
 import Comments from './comments';
+import topicService from './services/topics';
+import commentService from 'services/comment.service.js';
 import './topic.css';
 
 class Topic extends Component {
@@ -144,8 +143,16 @@ class Topic extends Component {
     const { close } = this.props;
     const { topic, comments, parents, children } = this.state;
     const user = this.props.user;
-    
+
     if (!topic.id) return <Loading />;
+    
+    const meta = {
+      title: topic.title,
+      description: topic.body,
+      meta: {
+        charset: 'utf-8',
+      }
+    };
 
     const HomeButton = () => (close
       ? <div onClick={close} className="nav__back">&#10094; Home</div>
@@ -153,37 +160,39 @@ class Topic extends Component {
     );
 
     return (
-      <div className="main">
-        <div className="topics__content-item" style={{display: 'block'}}>
-          <HomeButton />
-          <TopicBody 
-            topic={topic}
-            children={children}
-            parents={parents}
-            user={user}
-          />
-          <div ref="com_sec">
-            <CommentForm
-              create={this.create}
-              edit={this.edit}
-              clear={this.clear}
-              text={this.state.comment_text}
-              id={this.state.comment_id}
-              topic_id={this.state.topic.id}
+      <DocumentMeta {...meta}>
+        <div className="main">
+          <div className="topics__content-item" style={{display: 'block'}}>
+            <HomeButton />
+            <TopicBody 
+              topic={topic}
+              children={children}
+              parents={parents}
+              user={user}
             />
+            <div ref="com_sec">
+              <CommentForm
+                create={this.create}
+                edit={this.edit}
+                clear={this.clear}
+                text={this.state.comment_text}
+                id={this.state.comment_id}
+                topic_id={this.state.topic.id}
+              />
+            </div>
+            <Comments 
+              comments={comments}
+              startToEdit={this.startToEdit}
+              reply={this.reply}
+              remove={this.remove}
+            />
+            <Language />
+            <Menu page='Menu'/>
           </div>
-          <Comments 
-            comments={comments}
-            startToEdit={this.startToEdit}
-            reply={this.reply}
-            remove={this.remove}
-          />
-          <Language />
-          <Menu page='Menu'/>
         </div>
-      </div>
-    );
+      </DocumentMeta>
+      );
+    }
   }
-}
-
-export default Topic; 
+  
+  export default Topic; 

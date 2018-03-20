@@ -41,6 +41,7 @@ class ServerService {
     const first = await Promise.race(promises);
     
     this.setDefault(first);
+    return first;
   }
 
   getResponse = (api) => {
@@ -78,14 +79,15 @@ class ServerService {
       this.setDefault(organizationServer);
       return organizationServer;
     }
-
+    
     return null;
   }
   
   async checkOrganization(server) {
     const url = 'https://inf.' + server;
     const isValidServer = await this.checkIsServerAvailable(url);
-    return isValidServer && url;    
+    const link = isValidServer ? url : null;
+    return link;    
   }
 
   async checkIsServerAvailable(url) {
@@ -95,7 +97,7 @@ class ServerService {
       const isInfinity = data.slice(0, 300).includes('Infinity API');
       return isInfinity;
     } catch (error) {
-      return false;
+      return null;
     }
   }
   

@@ -8,7 +8,8 @@ export default class ConfigWrapper extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false,
+      loading: true,
+      serverName: 'the server',
     }
   }
 
@@ -23,6 +24,7 @@ export default class ConfigWrapper extends Component {
 
   async componentWillMount() {
     await this.setParams();
+    this.setLoading(false);    
   }
 
   async componentWillReceiveProps(nextProps) {
@@ -33,7 +35,7 @@ export default class ConfigWrapper extends Component {
     if (getConfigs(this.props) !== nextConfigs) {
       this.setLoading(true);
       await this.setParams(nextConfigs);
-      window.location.reload(false);
+      window.location.reload(false);      
     }
   }
 
@@ -41,6 +43,7 @@ export default class ConfigWrapper extends Component {
     const { match, setServer, signIn, userServerData } = this.props;
     const configs = nextConfigs || match.params.configs; // get configs
     const [server, lang] = configs.split(':');
+    this.setState({ serverName: server });
     
     // set configs
     const serverURL = await serverService.changeServerByLink(server);
@@ -57,7 +60,10 @@ export default class ConfigWrapper extends Component {
   }
   
   render() {
-    if (this.state.loading || !this.props.server) return <Loading />;
+    if (this.state.loading || !this.props.server) {
+      return <Loading text={`Connecting ${this.state.serverName}...`}/>;
+    }
+
     return <div>{this.props.children}</div>;
   }
 }

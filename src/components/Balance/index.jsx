@@ -62,8 +62,7 @@ class Balance extends Component {
               className="balance__quota">
               {quota}h
             </span>
-          </TooltipOverlay>
-        }
+          </TooltipOverlay>}
         {showQuota &&
           <QuotaBox
             handleOpen={this.handleOpen}

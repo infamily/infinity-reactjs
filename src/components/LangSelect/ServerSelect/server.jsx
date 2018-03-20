@@ -30,13 +30,13 @@ class ServerButton extends Component {
     setServer(api); // set server in store
     serverService.changeServer(api); // set server in service
     this.setState({ server: api }); // set server in local state
-    console.log(api, 'api');
     
     // switch user data
     const serverData = userServerData[serverService.api] || null;
     signIn(serverData);
     const url = api.split('//')[1];
     history.push('/' + url + '/@');
+    window.location.reload();
   }
 
   getName = (api) => {

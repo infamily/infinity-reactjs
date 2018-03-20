@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ButtonGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap'; 
-
+import configs from 'configs';
 import './menu.css'; 
 
 class Menu extends Component {
@@ -46,7 +46,7 @@ class Menu extends Component {
       <div className={mobile ? "main-menu main-menu--mobile" : "main-menu"}>
         <ButtonGroup>
           <DropdownButton title={title} dropup bsSize={mobile ? "small" : null} id="dropdown-size-large">
-            <Link to="/" className="main-menu__link">Home </Link>
+            <Link to={configs.linkBase()} className="main-menu__link">Home</Link>
             <Link to="/page/what" className="main-menu__link">What?</Link>
             <Link to="/page/how" className="main-menu__link">How?</Link>
             <MenuItem divider />
