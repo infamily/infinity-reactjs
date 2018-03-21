@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import Menu from 'components/Menu';
-import Language from 'components/LangSelect';
+import MenuBar from 'scenes/MenuBar';
 import transactionService from './services';
 import TransactionTable from './TransactionTable';
 import './user_transactions.css'; 
@@ -38,8 +37,7 @@ export default class UserTransactions extends Component {
         <NavLink to="/" className="nav__back">&#10094; Home</NavLink>
         <h1 className="user_contribution__header">Investment by {balance.username}</h1>
         <TransactionTable data={data} />
-        <Language />
-        <Menu page='Menu' />
+        <MenuBar page='Menu' />
       </div>
     );
   }

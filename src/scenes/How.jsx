@@ -1,7 +1,6 @@
 import React, { Component } from 'react'; 
 import langService from 'services/lang.service.js'; 
-import Menu from 'components/Menu';
-import Language from 'components/LangSelect';
+import MenuBar from 'scenes/MenuBar';
 
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
@@ -18,8 +17,7 @@ class How extends Component {
     return (
       <div className="main">
         <Content/>
-        <Menu page='How?'/>
-        <Language />
+        <MenuBar page='How?'/>
       </div>
     );
   }

@@ -17,6 +17,7 @@ class Menu extends Component {
     match: PropTypes.object.isRequired,
     signOut: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    mobile: PropTypes.bool.isRequired,
     user: PropTypes.object,
   }; 
 
@@ -39,33 +40,30 @@ class Menu extends Component {
     const title = this.getName(this.props.user) || this.state.page;
 
     const NewTopic = ({ mobile }) => isNew 
-      ? <Button bsStyle="success" onClick={this.new} bsSize={mobile ? "small" : null}>New Topic</Button> 
+      ? <Button bsStyle="success" onClick={this.new} bsSize={mobile ? "small" : null}>
+        {mobile ? 'New' : 'New Topic'}
+      </Button> 
       : null;
 
     const MainMenu = ({ mobile }) => (
-      <div className={mobile ? "main-menu main-menu--mobile" : "main-menu"}>
-        <ButtonGroup>
-          <DropdownButton title={title} dropup bsSize={mobile ? "small" : null} id="dropdown-size-large">
-            <Link to={configs.linkBase()} className="main-menu__link">Home</Link>
-            <Link to="/page/what" className="main-menu__link">What?</Link>
-            <Link to="/page/how" className="main-menu__link">How?</Link>
-            <MenuItem divider />
-            {
-              this.props.user
-                ? <div className="main-menu__link" onClick={this.signOut}>Sign Out</div>
-                : <Link to="/page/otp" className="main-menu__link">Sign In</Link>
-            }
-          </DropdownButton>
-          <NewTopic mobile={mobile}/>
-        </ButtonGroup>
-      </div>
+      <ButtonGroup className={mobile ? "main-menu main-menu--mobile" : "main-menu"}>
+        <DropdownButton title={title} dropup bsSize={mobile ? "small" : null} id="dropdown-size-large">
+          <Link to={configs.linkBase()} className="main-menu__link">Home</Link>
+          <Link to="/page/what" className="main-menu__link">What?</Link>
+          <Link to="/page/how" className="main-menu__link">How?</Link>
+          <MenuItem divider />
+          {
+            this.props.user
+              ? <div className="main-menu__link" onClick={this.signOut}>Sign Out</div>
+              : <Link to="/page/otp" className="main-menu__link">Sign In</Link>
+          }
+        </DropdownButton>
+        <NewTopic mobile={mobile}/>
+      </ButtonGroup>
     );
 
     return (
-      <div>
-       <MainMenu mobile={true} />
-       <MainMenu mobile={false} />
-      </div>      
+      <MainMenu mobile={this.props.mobile} />
     );
   }
 }

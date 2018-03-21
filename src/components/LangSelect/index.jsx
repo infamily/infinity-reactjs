@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ButtonGroup , DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from 'services/lang.service';
 import ServerButton from './ServerSelect';
@@ -12,6 +13,10 @@ class Language extends Component {
       languages: []
     }
   }
+
+  static propTypes = {
+    mobile: PropTypes.bool.isRequired,
+  }; 
 
   async componentDidMount() {
     await langService.loadLanguages();
@@ -42,27 +47,22 @@ class Language extends Component {
       );
     });
 
-    const LangMenu = ({ mobile }) =>
-      <div className={mobile ? "select-lang select-lang--mobile" : "select-lang"}>
-        <ButtonGroup>
-          <DropdownButton
-            id="dropdown-language"
-            title={this.state.lang} 
-            pullRight={true} 
-            bsSize={mobile ? "small" : null} 
-            dropup
-          >
-            <Languages />
-          </DropdownButton>
-          <ServerButton mobile={mobile}/>
-        </ButtonGroup>
-      </div>;
+    const LangMenu = ({ mobile }) => (
+      <ButtonGroup className={mobile ? "select-lang select-lang--mobile" : "select-lang"}>
+        <DropdownButton
+          id="dropdown-language"
+          title={this.state.lang} 
+          pullRight={true} 
+          bsSize={mobile ? "small" : null} 
+          dropup>
+          <Languages />
+        </DropdownButton>
+        <ServerButton mobile={mobile}/>
+      </ButtonGroup>
+    );
 
     return (
-      <div>
-        <LangMenu mobile={true} />
-        <LangMenu mobile={false} />
-      </div>
+      <LangMenu mobile={this.props.mobile} />
     );
   }
 }

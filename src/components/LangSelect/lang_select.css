@@ -20,6 +20,7 @@
   }
 
   .select-lang--mobile {
-    display: block;
+    display: flex;
+    position: initial;    
   }
 }

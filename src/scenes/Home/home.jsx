@@ -10,8 +10,7 @@ import {
 } from 'react-bootstrap';
 
 import Topics from './topic_list';
-import Menu from 'components/Menu';
-import Language from 'components/LangSelect';
+import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import Header from 'components/Header'; 
 import Loading from 'components/Loading';
@@ -150,8 +149,7 @@ class Home extends Component {
           </InfiniteScroll>
         </div>
         
-        <Menu page='Home'/>
-        <Language/>
+        <MenuBar page='Home'/>
       </div>
     );
   }

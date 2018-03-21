@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Menu from 'components/Menu';
-import Language from 'components/LangSelect';
+import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading'; 
 import TypeItem from 'components/TypeItem'; 
 
@@ -38,8 +37,7 @@ class TypesList extends Component {
           ? <h4>No such type =(</h4>
           : <TypeItem type={type}/>}
         
-        <Menu page='Home'/>
-        <Language/>
+        <MenuBar page='Home'/>
       </div>
     );
   }

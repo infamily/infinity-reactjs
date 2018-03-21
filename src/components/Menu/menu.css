@@ -27,6 +27,7 @@
   }
 
   .main-menu--mobile {
-    display: block;
+    display: flex;
+    position: initial;
   }
 }

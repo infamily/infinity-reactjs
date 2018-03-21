@@ -1,5 +1,5 @@
 import React, { Component } from 'react';  
-import Menu from 'components/Menu';
+import MenuBar from 'scenes/MenuBar';
 
 class NotFound extends Component {
 
@@ -8,7 +8,7 @@ class NotFound extends Component {
     return (
       <div className="main">
         <h1>404. No such content. ):</h1>
-        <Menu page='Menu'/>
+        <MenuBar page='Menu'/>
       </div>
     );
   }

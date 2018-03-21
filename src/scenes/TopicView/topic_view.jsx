@@ -14,8 +14,7 @@ import {
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
 
-import Menu from 'components/Menu';
-import Language from 'components/LangSelect';
+import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import FormSelect from 'components/FormSelect';
 import { PopupModal } from './PopupModal';
@@ -418,8 +417,8 @@ class Topic extends Component {
         <PopupModal isOpen={error} name="error" message={message} closeModal={this.closeModal} />
         <PopupModal isOpen={success} name="success" message={message} closeModal={this.closeModal} />
         <DeletePopup isOpen={this.state['delete']} name="delete"/>
-        <Language />
-        <Menu page='Menu'/>
+        
+        <MenuBar page='Menu'/>
       </div>
     );
   }

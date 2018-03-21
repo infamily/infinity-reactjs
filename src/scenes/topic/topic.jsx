@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import DocumentMeta from 'react-document-meta';
 import TopicBody from './TopicBody';
-import Menu from 'components/Menu';
-import Language from 'components/LangSelect';
+import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
 import CommentForm from './comment_form';
 import Comments from './comments';
@@ -186,8 +185,7 @@ class Topic extends Component {
               reply={this.reply}
               remove={this.remove}
             />
-            <Language />
-            <Menu page='Menu'/>
+            <MenuBar page='Menu'/>
           </div>
         </div>
       </DocumentMeta>

@@ -7,8 +7,7 @@ import {
   InputGroup,
 } from 'react-bootstrap';
 
-import Menu from 'components/Menu';
-import Language from 'components/LangSelect';
+import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading'; 
 import Header from 'components/Header'; 
 import TypeItem from 'components/TypeItem'; 
@@ -77,8 +76,7 @@ class TypesList extends Component {
             .map(item => <TypeItem className="types__item" type={item} key={item.url}/>)}
         </div>
         
-        <Menu page='Home'/>
-        <Language/>
+        <MenuBar page='Home'/>
       </div>
     );
   }
