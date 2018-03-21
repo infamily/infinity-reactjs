@@ -3,32 +3,44 @@ import PropTypes from 'prop-types';
 import Modal from 'components/Modal';
 import PayCheckout from 'components/PayCheckout';
 import { Button, ListGroupItem, ListGroup } from 'react-bootstrap';
-import { getHistory } from './services';
+import { getHistory, getQuota } from './services';
 import './QuotaBox.css';
+
+const parse = (data) => parseFloat(data).toFixed(2);
 
 class Balance extends Component {
   constructor() {
     super();
     this.state = {
       history: [],
+      hours: null,
     };
   }
 
   static propTypes = {
-    hours: PropTypes.string.isRequired,
     isOpen: PropTypes.bool.isRequired,
     handleOpen: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,    
   }
 
   async componentWillMount() {
+   await this.updateData();
+  }
+
+  updateData = async () => {
     const { id } = this.props;
     const history = await getHistory(id);
-    this.setState({ history });
+    const { credit } = await getQuota(id);
+    
+    this.setState({ 
+      history,
+      hours: parse(credit)
+    });
   }
 
   render() {
-    const { hours, isOpen, handleOpen } = this.props;
+    const { hours } = this.state;
+    const { isOpen, handleOpen } = this.props;
     const { history } = this.state;
     const hoursText = hours === 1 ? 'hour' : 'hours';
     const quotaDescription = 'Review the topics and support authors you like.';
@@ -55,6 +67,7 @@ class Balance extends Component {
           {history[0] && <History />}
         </div>
         <PayCheckout
+          updateData={this.updateData}
           ButtonComponent={() => (
             <Button className="quota_box__button" bsStyle="success" bsSize="large" block>
               Buy credit with card

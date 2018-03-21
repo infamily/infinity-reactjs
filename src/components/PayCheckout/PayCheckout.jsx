@@ -25,6 +25,8 @@ export default class PayCheckout extends Component {
 
   static propTypes = {
     ButtonComponent: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
+    updateData: PropTypes.func,
   }
 
   showMessage = (buttonText) => {
@@ -68,11 +70,11 @@ export default class PayCheckout extends Component {
     e.preventDefault();
     this.setState({ loading: true });
     const response = await postPayment(this.state, 1); // 1 = stripe
-    console.log(response, 'response');
     if (response.data) {
       this.setState({ ...defaultState });
       this.form.reset();      
       this.handleOpen();
+      this.props.updateData && this.props.updateData();
     } else {
       this.setState({ loading: false });
       this.showMessage(response.error.message || 'Server error. Try again.');

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 import Loading from 'components/Loading';
+import configs from 'configs';
 
 export default class ConfigWrapper extends Component {
   constructor() {
@@ -35,7 +36,7 @@ export default class ConfigWrapper extends Component {
     if (getConfigs(this.props) !== nextConfigs) {
       this.setLoading(true);
       await this.setParams(nextConfigs);
-      window.location.reload(false);      
+      window.location.reload(false);
     }
   }
 
@@ -43,16 +44,25 @@ export default class ConfigWrapper extends Component {
     const { match, setServer, signIn, userServerData } = this.props;
     const configs = nextConfigs || match.params.configs; // get configs
     const [server, lang] = configs.split(':');
+    await this.checkLanguage(lang);
     this.setState({ serverName: server });
     
     // set configs
     const serverURL = await serverService.changeServerByLink(server);
     serverURL && setServer(serverURL);
-    await langService.changeLangByLink(lang);
     
     // switch user data
     const serverData = userServerData[serverService.api] || null;
     signIn(serverData);
+  }
+
+  checkLanguage = async (lang) => {
+    if (!lang) {
+      const link = configs.linkBase();
+      this.props.history.replace(link);
+    } else {
+      await langService.changeLangByLink(lang);
+    }
   }
 
   setLoading(bool) {

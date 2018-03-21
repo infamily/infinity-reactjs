@@ -5,11 +5,18 @@ import langService from 'services/lang.service';
 import ServerButton from './ServerSelect';
 import './lang_select.css';
 
+const getLangName = (mobile) => {
+  const langServ = langService.language;
+  const short = langServ.lang.toUpperCase();
+  const lang = !mobile ? langServ.name : short;
+  return lang;
+}
+
 class Language extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      lang: langService.language.name,
+      lang: getLangName(props.mobile),
       languages: []
     }
   }
@@ -31,10 +38,8 @@ class Language extends Component {
   }
 
   setLanguage = () => {
-    const lang = langService.language;
-    const short = lang.lang.toUpperCase();
     this.setState({
-      lang: !this.props.mobile ? lang.name : short,
+      lang: getLangName(this.props.mobile),
     });
   }
 

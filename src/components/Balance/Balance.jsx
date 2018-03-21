@@ -20,6 +20,10 @@ class Balance extends Component {
   }
 
   async componentWillMount() {
+    await this.updateState();
+  }
+
+  async updateState() {
     const { id } = this.props;
     const data = await get(id);
     const isData = data !== undefined;
@@ -67,7 +71,6 @@ class Balance extends Component {
           <QuotaBox
             handleOpen={this.handleOpen}
             isOpen={isOpenQuotaBox}
-            hours={quota}
             id={id}
           />}
       </div>
