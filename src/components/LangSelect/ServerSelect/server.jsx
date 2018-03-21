@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
+import serverImg from 'images/server.png';
 import './server_select.css';
 import getMessages from './messages';
 const messages = getMessages(langService.current);
@@ -60,7 +61,10 @@ class ServerButton extends Component {
         {' ' + this.getName(api)}
       </MenuItem>
     ));
-    
+    const Icon = () => (
+      <img src={serverImg} className="server_select__img" alt="server"/>
+    );
+
     return (
       <DropdownButton 
         id="dropdown-server"
@@ -68,7 +72,7 @@ class ServerButton extends Component {
         pullRight={true} 
         dropup 
         bsSize={mobile ? "small" : null}
-        title={this.getName(server)}>
+        title={mobile ? <Icon /> : this.getName(server)}>
         <MenuItem>{messages.server}</MenuItem>
         <MenuItem divider />
         <Servers />

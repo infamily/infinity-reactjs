@@ -32,8 +32,9 @@ class Language extends Component {
 
   setLanguage = () => {
     const lang = langService.language;
+    const short = lang.lang.toUpperCase();
     this.setState({
-      lang: lang.name
+      lang: !this.props.mobile ? lang.name : short,
     });
   }
 

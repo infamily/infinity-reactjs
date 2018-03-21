@@ -13,7 +13,7 @@ export default class MenuBar extends Component {
     const { page } = this.props;
 
     const Bar = ({ mobile }) => (
-      <div className={mobile && 'nav_bar'}>
+      <div className={mobile ? 'nav_bar' : 'nav_bar--hide'}>
         <Menu page={page} mobile={mobile} />
         <LangSelect mobile={mobile} />
       </div>
