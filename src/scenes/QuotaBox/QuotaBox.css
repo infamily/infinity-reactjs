@@ -9,7 +9,7 @@
 }
 
 .quota_box__history_list {
-  max-height: 300px;
+  max-height: 200px;
   overflow-y: auto;
 }
 .quota_box__history {

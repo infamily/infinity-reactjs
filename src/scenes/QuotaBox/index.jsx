@@ -3,44 +3,45 @@ import PropTypes from 'prop-types';
 import Modal from 'components/Modal';
 import PayCheckout from 'components/PayCheckout';
 import { Button, ListGroupItem, ListGroup } from 'react-bootstrap';
-import { getHistory, getQuota } from './services';
+import { getHistory } from './services';
 import './QuotaBox.css';
 
-const parse = (data) => parseFloat(data).toFixed(2);
-
-class Balance extends Component {
+class QuotaBox extends Component {
   constructor() {
     super();
     this.state = {
       history: [],
-      hours: null,
     };
   }
 
   static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
     handleOpen: PropTypes.func.isRequired,
-    id: PropTypes.number.isRequired,    
+    updateData: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    hours: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
   }
 
   async componentWillMount() {
-   await this.updateData();
+   await this.updateQuotaBox();
+  }
+  
+  updateData = async () => {
+    await this.props.updateData();
+    await this.updateQuotaBox();
   }
 
-  updateData = async () => {
+  updateQuotaBox = async () => {
     const { id } = this.props;
     const history = await getHistory(id);
-    const { credit } = await getQuota(id);
     
     this.setState({ 
       history,
-      hours: parse(credit)
     });
   }
 
   render() {
-    const { hours } = this.state;
-    const { isOpen, handleOpen } = this.props;
+    const { hours, isOpen, handleOpen } = this.props;
     const { history } = this.state;
     const hoursText = hours === 1 ? 'hour' : 'hours';
     const quotaDescription = 'Review the topics and support authors you like.';
@@ -67,7 +68,7 @@ class Balance extends Component {
           {history[0] && <History />}
         </div>
         <PayCheckout
-          updateData={this.updateData}
+          updateOuterData={this.updateData}
           ButtonComponent={() => (
             <Button className="quota_box__button" bsStyle="success" bsSize="large" block>
               Buy credit with card
@@ -79,4 +80,4 @@ class Balance extends Component {
   }
 };
 
-export default Balance;
+export default QuotaBox;

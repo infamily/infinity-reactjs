@@ -20,10 +20,14 @@ class Balance extends Component {
   }
 
   async componentWillMount() {
-    await this.updateState();
+    await this.updateBalanceState();
+  }
+  
+  updateData = async () => {
+    await this.updateBalanceState();
   }
 
-  async updateState() {
+  async updateBalanceState() {
     const { id } = this.props;
     const data = await get(id);
     const isData = data !== undefined;
@@ -70,8 +74,10 @@ class Balance extends Component {
         {showQuota &&
           <QuotaBox
             handleOpen={this.handleOpen}
+            updateData={this.updateData}
             isOpen={isOpenQuotaBox}
             id={id}
+            hours={quota}
           />}
       </div>
       

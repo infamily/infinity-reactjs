@@ -26,7 +26,7 @@ export default class PayCheckout extends Component {
   static propTypes = {
     ButtonComponent: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
-    updateData: PropTypes.func,
+    updateOuterData: PropTypes.func,
   }
 
   showMessage = (buttonText) => {
@@ -74,7 +74,7 @@ export default class PayCheckout extends Component {
       this.setState({ ...defaultState });
       this.form.reset();      
       this.handleOpen();
-      this.props.updateData && this.props.updateData();
+      this.props.updateOuterData && this.props.updateOuterData();
     } else {
       this.setState({ loading: false });
       this.showMessage(response.error.message || 'Server error. Try again.');
