@@ -82,19 +82,17 @@ export default class StreamTab extends Component {
 
     const Instances = () => (
       <div className="stream_tab__container">
-        {instances.map((item) => (
+        {activeSchema && instances.map((item) => (
           <Instance
             data={item}
             key={item.url}
             showInstance={this.showInstance}
-            schema={schemaName.name}
+            schema={activeSchema.name}
           />
         ))}
       </div>
     );
         
-    const schemaName = schemas && schemas.find(item => item.url === activeSchema);
-    
     return (
       <div className="stream_tab__bg">
         <div className="stream_tab__header">
@@ -115,11 +113,11 @@ export default class StreamTab extends Component {
           {instances ? <Instances /> : <Loading />}
           <TabDataField />
         </div>
-        {schemaName &&
+        {activeSchema &&
           <InstanceModal
             data={instanceData}
             show={!!instanceData}
-            schema={schemaName.name}
+            schema={activeSchema.name}
             onHide={this.closeInstance}
           />}
       </div>
