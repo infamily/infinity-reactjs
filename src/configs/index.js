@@ -17,7 +17,7 @@ export default {
     '#CD6B7F',
     '#90B249',
     '#56BFC5',
-    '#2E5B96',
+    '#FF9955',
     '#AF9CC9',
     '#D76B99',
   ],
