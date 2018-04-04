@@ -2,26 +2,26 @@ export default {
   utils: {
     servers: {
       'en': {
-        'test.wefindx.io': 'Shanghai',
-        'test.wfx.io': 'Frankfurt',
+        'wefindx.io': 'Shanghai',
+        'wefindx.com': 'Frankfurt',
         'lt.wfx.io': 'Vilnius',
         '0.0.0.0:8000': 'Local Fun',
       },
       'cn': {
-        'test.wefindx.io': '上海',
-        'test.wfx.io': '法兰克福',
+        'wefindx.io': '上海',
+        'wefindx.com': '法兰克福',
         'lt.wfx.io': '维尔纽斯',
         '0.0.0.0:8000': '本地乐趣',
       },
       'ru': {
-        'test.wefindx.io': 'Шанхай',
-        'test.wfx.io': 'Франкфурт',
+        'wefindx.io': 'Шанхай',
+        'wefindx.com': 'Франкфурт',
         'lt.wfx.io': 'Вильнюс',
         '0.0.0.0:8000': 'Песочница',
       },
       'lt': {
-        'test.wefindx.io': 'Šanchajus',
-        'test.wfx.io': 'Frankfurtas',
+        'wefindx.io': 'Šanchajus',
+        'wefindx.com': 'Frankfurtas',
         'lt.wfx.io': 'Vilnius',
         '0.0.0.0:8000': 'Vietinis džiaugsmas',
       },
@@ -115,7 +115,7 @@ export default {
       'Just write a comment about it, include tag [Link]. This will make the comment appear in the special section for links.',
       '<h2>What if I claimed too much time in one comment, and now want to divide it into Steps?</h2>',
       'Use keyword [Step] inside the comment to divide time claims into bulleted enumeration of parts. This will create Steps, and a visual links to the original comment at the top of each Step, allowing for further dicussion about each of the steps within the Comment.',
-      
+
       '<h2>Time claims? What are they?</h2>',
       '<h2>How do you make sure that tracked records about time and assets are not tampered with?</h2>',
       'We store time, money, and transaction data in a network of blockchaindb.',
