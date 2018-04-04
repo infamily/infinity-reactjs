@@ -5,23 +5,23 @@ class ServerService {
     this.api = null;
 
     this.api_servers = [
-      'https://test.wefindx.io',
-      'https://test.wfx.io',
+      'https://wefindx.io',
+      'https://wefindx.com',
       'https://lt.wfx.io',
     ];
-    
+
     this.getDefault();
   }
 
   async getDefault() {
     const raw = localStorage['state_if'];
     const server = raw && JSON.parse(raw).server;
-    
+
     if (!server) {
       await this.getFastest();
       return;
     };
-    
+
     this.isLocal(); // add local server in sandbox mode
     this.setDefault(server);
   }
@@ -30,7 +30,7 @@ class ServerService {
     const isLocal = window.location.hostname === 'localhost';
     const server = 'http://0.0.0.0:8000';
     const isIncluded = this.api_servers.indexOf(server) > -1;
-    if (isLocal && !isIncluded) this.api_servers.push(server);    
+    if (isLocal && !isIncluded) this.api_servers.push(server);
   }
 
   getFastest = async () => {
@@ -39,7 +39,7 @@ class ServerService {
     ));
 
     const first = await Promise.race(promises);
-    
+
     this.setDefault(first);
     return first;
   }
@@ -49,13 +49,13 @@ class ServerService {
       axios.get(api).then(() => resolve(api));
     });
   }
-  
+
   changeServer(server) {
     const index = this.api_servers.indexOf(server);
     if (index < 0) return;
     this.setDefault(server);
   }
-  
+
   changeServerByLink = async (server) => {
     const url = 'https://' + server;
 
@@ -79,15 +79,15 @@ class ServerService {
       this.setDefault(organizationServer);
       return organizationServer;
     }
-    
+
     return null;
   }
-  
+
   async checkOrganization(server) {
     const url = 'https://inf.' + server;
     const isValidServer = await this.checkIsServerAvailable(url);
     const link = isValidServer ? url : null;
-    return link;    
+    return link;
   }
 
   async checkIsServerAvailable(url) {
@@ -100,7 +100,7 @@ class ServerService {
       return null;
     }
   }
-  
+
   setDefault = (server) => {
     this.api = server;
   }
