@@ -4,6 +4,7 @@ import Modal from 'components/Modal';
 import PayCheckout from 'components/PayCheckout';
 import { Button, ListGroupItem, ListGroup } from 'react-bootstrap';
 import { getHistory } from './services';
+
 import './QuotaBox.css';
 
 class QuotaBox extends Component {
@@ -16,9 +17,8 @@ class QuotaBox extends Component {
 
   static propTypes = {
     handleOpen: PropTypes.func.isRequired,
-    updateData: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    hours: PropTypes.number.isRequired,
+    hours: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }
 
@@ -27,7 +27,6 @@ class QuotaBox extends Component {
   }
   
   updateData = async () => {
-    await this.props.updateData();
     await this.updateQuotaBox();
   }
 

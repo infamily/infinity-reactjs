@@ -12,3 +12,10 @@ export function signOut() {
     type: UserActionTypes.SIGNED_OUT
   }
 }
+
+export function setBalance(data) {
+  return {
+    type: UserActionTypes.SET_BALANCE,
+    data
+  }
+}

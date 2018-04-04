@@ -104,6 +104,15 @@ class ServerService {
   setDefault = (server) => {
     this.api = server;
   }
+
+  get = async (url) => {
+    try {
+      const { data } = await axios.get(this.api + url);
+      return { data: data, error: null };
+    } catch (error) {
+      return { data: null, error };
+    }
+  }
 }
 
 const serverService = new ServerService();

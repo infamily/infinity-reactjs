@@ -4,10 +4,12 @@ import server from './server';
 import persistedComment from './persistedComment';
 import persistedTopic from './persistedTopic';
 import userServerData from './userServerData';
+import balance from './userBalance';
 
 export default combineReducers({
   user,
   server,
+  balance,
   persistedComment,
   userServerData,
   persistedTopic,

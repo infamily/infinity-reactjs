@@ -4,6 +4,7 @@ import Cards from 'react-credit-cards';
 import Modal from 'components/Modal';
 import Payment from './Payment';
 import { postPayment } from './services.js';
+import { getUserBalance } from 'services/user.service';
 import {
   formatCreditCardNumber,
   formatCVC,
@@ -26,6 +27,8 @@ export default class PayCheckout extends Component {
   static propTypes = {
     ButtonComponent: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    setBalance: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
     updateOuterData: PropTypes.func,
   }
 
@@ -70,7 +73,12 @@ export default class PayCheckout extends Component {
     e.preventDefault();
     this.setState({ loading: true });
     const response = await postPayment(this.state, 1); // 1 = stripe
+
     if (response.data) {
+      const { user } = this.props;      
+      const { data } = await getUserBalance(user.id);
+      this.props.setBalance(data); // update global store
+
       this.setState({ ...defaultState });
       this.form.reset();      
       this.handleOpen();

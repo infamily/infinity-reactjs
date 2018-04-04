@@ -23,7 +23,7 @@ export async function postPayment(data, platform) {
       provider: platform,
     });
 
-    return { data: response };
+    return { data: response, error: null };
   } catch (error) {
     return { data: null, error };
   }

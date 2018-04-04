@@ -12,6 +12,7 @@ import Select from 'react-select';
 import PayCheckout from 'components/PayCheckout';
 import commentService from 'services/comment.service.js';
 import transactionService from 'services/transaction.service';
+import { getUserBalance } from 'services/user.service';
 import langService from 'services/lang.service';
 import ProgressBar from '../progress_bar';
 import getMessages from './messages';
@@ -39,14 +40,14 @@ export default class Transaction extends Component {
   async componentWillMount() {
     const { user, comment } = this.props;
     const data = await transactionService.getCurrencies();
-    const userBalance = await transactionService.getUserBalance(user.id);
+    const balance = await getUserBalance(user.id);
     const currencies = data.map(item => {
       item.value = item.label;
       return item;
     });
     
     this.setState({
-      userQuota: userBalance.credit,
+      userQuota: balance.data.credit,
     });
 
     const payment_amount = this.checkQuota(comment.remains);
@@ -60,6 +61,7 @@ export default class Transaction extends Component {
   static propTypes = {
     user: PropTypes.object,
     investState: PropTypes.func.isRequired,
+    setBalance: PropTypes.func.isRequired,
     updateComments: PropTypes.func.isRequired,
     state: PropTypes.bool.isRequired,
     comment: PropTypes.object.isRequired,
@@ -82,6 +84,8 @@ export default class Transaction extends Component {
     await transactionService.createTransaction(data, comment, user);
     const updated = await commentService.getComment(comment.id);
     this.props.updateComments(updated);
+    const balance = await getUserBalance(user.id);
+    this.props.setBalance(balance.data); // update global store
   }
 
   selectCurrency = item => {
@@ -155,7 +159,6 @@ export default class Transaction extends Component {
     
     const CreditBar = () => (
       <PayCheckout 
-        amount={20000}        
         ButtonComponent={() => (
           <Button className="transaction__credit" bsStyle="success" bsSize="large" block>
             Buy credit with card

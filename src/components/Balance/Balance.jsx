@@ -3,44 +3,31 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TooltipOverlay from 'components/TooltipOverlay';
 import QuotaBox from 'scenes/QuotaBox';
-import { get } from './services';
+import { getUserBalance } from 'services/user.service';
 import './balance.css';
+
+const parseNum = (num) => parseFloat(num).toFixed(2);
 
 class Balance extends Component {
   constructor() {
     super();
     this.state = {
-      hours: null,
       isOpenQuotaBox: false,
     };
   }
 
   static propTypes = {
+    setBalance: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
+    balance: PropTypes.object,
   }
 
   async componentWillMount() {
-    await this.updateBalanceState();
+    const { id, setBalance } = this.props;
+    const { data } = await getUserBalance(id);
+    setBalance(data);
   }
   
-  updateData = async () => {
-    await this.updateBalanceState();
-  }
-
-  async updateBalanceState() {
-    const { id } = this.props;
-    const data = await get(id);
-    const isData = data !== undefined;
-    const balance = isData ? data.balance : -1;
-    const quota = isData ? data.credit : -1;
-    const parse = (data) => parseFloat(data).toFixed(2);
-
-    this.setState({ 
-      hours: parse(balance),
-      quota: parse(quota),
-     });
-  }
-
   handleOpen = () => {
     this.setState((prevState) => ({
       isOpenQuotaBox: !prevState.isOpenQuotaBox,
@@ -48,10 +35,13 @@ class Balance extends Component {
   }
 
   render() {
-    const { hours, quota, isOpenQuotaBox } = this.state;
-    const { id, showQuota } = this.props;
-
-    if (!hours || hours < 0) return null;
+    const { isOpenQuotaBox } = this.state;
+    const { user, showQuota, balance, id } = this.props;
+    
+    if (!balance) return null;
+    
+    const hours = parseNum(balance.balance);
+    const quota = parseNum(balance.credit);
 
     return (
       <div className="balance__hours">
@@ -74,13 +64,11 @@ class Balance extends Component {
         {showQuota &&
           <QuotaBox
             handleOpen={this.handleOpen}
-            updateData={this.updateData}
             isOpen={isOpenQuotaBox}
             id={id}
             hours={quota}
           />}
       </div>
-      
     );
   }
 };
