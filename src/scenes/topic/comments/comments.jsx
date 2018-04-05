@@ -4,7 +4,8 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import TransactionBox from './TransactionBox';
 import Transactions from './transactions';
 import ProgressBar from './progress_bar';
-import Balance from 'components/Balance';
+import Balance from 'components/Balance/Balance';
+import UserBalance from 'components/Balance/UserBalance';
 import './comments.css';
 
 import ReactHtmlParser from 'react-html-parser';
@@ -81,7 +82,7 @@ export default class Comments extends Component {
     }
     
     const Comments = () => comments.map(comment => {
-      const { 
+      const {
         id, 
         text, 
         owner,
@@ -105,10 +106,11 @@ export default class Comments extends Component {
             <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
             <div className="comment__owner">
               <span>{owner.username}</span>
-              <Balance id={owner.id} showQuota={false}/>
+              {user.id === owner.id 
+                ? <UserBalance id={owner.id} showQuota={false}/>
+                : <Balance id={owner.id}/>}
             </div>
           </div>
-
         </div>
       );
     });

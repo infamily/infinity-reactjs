@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Balance from 'components/Balance';
+import UserBalance from 'components/Balance/UserBalance';
 import './Header.css';
 
 const Hours = ({ user }) => {
@@ -8,7 +8,7 @@ const Hours = ({ user }) => {
   
   return (
     <div className="header__balance">
-      <Balance id={user.id} showQuota={true}/>
+      <UserBalance id={user.id} showQuota={true}/>
     </div>
   );
 };

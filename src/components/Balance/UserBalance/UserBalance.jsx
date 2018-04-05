@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import TooltipOverlay from 'components/TooltipOverlay';
 import QuotaBox from 'scenes/QuotaBox';
 import { getUserBalance } from 'services/user.service';
-import './balance.css';
+import '../balance.css';
 
 const parseNum = (num) => parseFloat(num).toFixed(2);
 
-class Balance extends Component {
+class UserBalance extends Component {
   constructor() {
     super();
     this.state = {
@@ -19,6 +19,7 @@ class Balance extends Component {
   static propTypes = {
     setBalance: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
+    showQuota: PropTypes.bool.isRequired,
     balance: PropTypes.object,
   }
 
@@ -36,7 +37,7 @@ class Balance extends Component {
 
   render() {
     const { isOpenQuotaBox } = this.state;
-    const { user, showQuota, balance, id } = this.props;
+    const { balance, id, showQuota } = this.props;
     
     if (!balance) return null;
     
@@ -49,7 +50,7 @@ class Balance extends Component {
           <TooltipOverlay text="Balance" placement="bottom">
             <strong className="balance__counter">{hours}h</strong>
           </TooltipOverlay>
-        </Link> 
+        </Link>
         {showQuota &&
           <TooltipOverlay 
             text="Remaining quota" 
@@ -73,4 +74,4 @@ class Balance extends Component {
   }
 };
 
-export default Balance;
+export default UserBalance;

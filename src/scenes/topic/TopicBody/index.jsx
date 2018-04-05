@@ -5,7 +5,8 @@ import { Button } from 'react-bootstrap';
 import { badgeStyle } from '../helpers/badge';
 import NewButton from '../NewButton';
 import Tags from '../tags';
-import Balance from 'components/Balance';
+import Balance from 'components/Balance/Balance';
+import UserBalance from 'components/Balance/UserBalance';
 import configs from 'configs';
 
 import ReactHtmlParser from 'react-html-parser';
@@ -52,7 +53,9 @@ const TopicBody = ({ topic, children, parents, user }) => {
       
       <div className="topic__bottom">
         <span>{topic.owner.username}</span>
-        <Balance id={topic.owner.id} showQuota={false}/>
+        {topic.id === user.id
+          ? <UserBalance id={topic.owner.id} showQuota={false}/>
+          : <Balance id={topic.owner.id}/>}
         <NewButton to={"/add-child/" + topic.id} title={'+ ' + child} />
       </div>
     </div>

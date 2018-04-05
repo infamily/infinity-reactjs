@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { setBalance } from 'actions/user';
-import Balance from './Balance';
+import UserBalance from './UserBalance';
 
 function mapStateToProps(state) {
   return {
@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Balance));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserBalance));
