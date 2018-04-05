@@ -190,7 +190,6 @@ export default class PayCheckout extends Component {
                     value={this.state.zip}
                     className="form-control"
                     placeholder="ZIP"
-                    pattern="\d{4,12}"
                     required
                     onChange={this.handleInputChange}
                     onFocus={this.handleInputFocus}
