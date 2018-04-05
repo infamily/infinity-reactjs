@@ -3,27 +3,23 @@ export default {
     servers: {
       'en': {
         'wefindx.io': 'Shanghai',
-        'wefindx.com': 'Frankfurt',
-        'lt.wfx.io': 'Vilnius',
+        'wefindx.com': 'Dublin',
         '0.0.0.0:8000': 'Local Fun',
       },
       'cn': {
         'wefindx.io': '上海',
-        'wefindx.com': '法兰克福',
-        'lt.wfx.io': '维尔纽斯',
+        'wefindx.com': '都柏林',
         '0.0.0.0:8000': '本地乐趣',
       },
       'ru': {
         'wefindx.io': 'Шанхай',
-        'wefindx.com': 'Франкфурт',
-        'lt.wfx.io': 'Вильнюс',
+        'wefindx.com': 'Дублин',
         '0.0.0.0:8000': 'Песочница',
       },
       'lt': {
         'wefindx.io': 'Šanchajus',
-        'wefindx.com': 'Frankfurtas',
-        'lt.wfx.io': 'Vilnius',
-        '0.0.0.0:8000': 'Vietinis džiaugsmas',
+        'wefindx.com': 'Dublinas',
+        '0.0.0.0:8000': 'Vietinis',
       },
     }
   },
