@@ -6,8 +6,7 @@ class ServerService {
 
     this.api_servers = [
       'https://wefindx.io',
-      'https://wefindx.com',
-      'https://lt.wfx.io',
+      'https://inf.wefindx.com',
     ];
 
     this.getDefault();
