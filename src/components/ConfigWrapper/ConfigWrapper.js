@@ -41,25 +41,34 @@ export default class ConfigWrapper extends Component {
   }
 
   setParams = async (nextConfigs = null) => {
-    const { match, setServer, signIn, userServerData } = this.props;
-    const configs = nextConfigs || match.params.configs; // get configs
-    const [server, lang] = configs.split(':');
+    const { match, history, setServer, signIn, userServerData } = this.props;
+    const params = nextConfigs || match.params.configs; // get configs
+    const [server, lang] = params.split(':');
     await this.checkLanguage(lang);
     this.setState({ serverName: server });
     
     // set configs
     const serverURL = await serverService.changeServerByLink(server);
-    serverURL && setServer(serverURL);
+    const api = serverService.api;
+    if (serverURL) {
+      setServer(serverURL);
+    } else if (api) {
+      const link = configs.linkBase();
+      history.replace(link);
+    } else {
+      history.push('/'); // no valid server. let's get it (DefaultWrapper)
+    }
     
     // switch user data
-    const serverData = userServerData[serverService.api] || null;
+    const serverData = userServerData[api] || null;
     signIn(serverData);
   }
 
   checkLanguage = async (lang) => {
     if (!lang) {
+      const { history } = this.props;
       const link = configs.linkBase();
-      this.props.history.replace(link);
+      history.replace(link);
     } else {
       await langService.changeLangByLink(lang);
     }
@@ -71,7 +80,7 @@ export default class ConfigWrapper extends Component {
   
   render() {
     if (this.state.loading || !this.props.server) {
-      return <Loading text={`Connecting ${this.state.serverName}...`}/>;
+      return <Loading text={`Connecting ${this.state.serverName}...`} />;
     }
 
     return <div>{this.props.children}</div>;

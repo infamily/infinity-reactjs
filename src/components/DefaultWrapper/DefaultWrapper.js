@@ -13,6 +13,8 @@ export default class ConfigRoute extends Component {
 
   async componentWillMount() {
     await serverService.getDefault();
+    console.log(serverService.api);
+    
     this.props.setServer(serverService.api);
   }
 

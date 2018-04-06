@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import configureStore from './store';
 import App from './scenes/App';
-import serverService from './services/server.service';
 import './index.css';
 
 // import registerServiceWorker from './registerServiceWorker'; 
@@ -23,11 +22,9 @@ axios.interceptors.request.use(config => {
   return config;
 });
 
-serverService.getDefault().then(() => {
-  ReactDOM.render(
-    <Provider store={store} >
-      <App />
-    </Provider>,
-  document.getElementById('root'));
-});
+ReactDOM.render(
+  <Provider store={store} >
+    <App />
+  </Provider>,
+document.getElementById('root'));
 

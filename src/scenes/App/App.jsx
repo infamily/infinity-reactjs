@@ -26,7 +26,7 @@ class App extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, server } = this.props;
 
     const Routes = ({ match }) => (
       <Switch>
@@ -65,7 +65,7 @@ class App extends Component {
         <div>
           <ProgramToggle />
           <Switch>
-            <Redirect exact from="/" to={configs.linkBase()} />
+            {server && <Redirect exact from="/" to={configs.linkBase()} />}
             <Route path="/:configs/@/" component={SetWrapper(ConfigWrapper)} />
             <Route path="/" component={SetWrapper(DefaultWrapper)} />
           </Switch>
