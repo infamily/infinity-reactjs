@@ -9,6 +9,7 @@ import CommentForm from './comment_form';
 import Comments from './comments';
 import topicService from './services/topics';
 import commentService from 'services/comment.service.js';
+import configs from 'configs';
 import './topic.css';
 
 class Topic extends Component {
@@ -155,7 +156,7 @@ class Topic extends Component {
 
     const HomeButton = () => (close
       ? <div onClick={close} className="nav__back">&#10094; Home</div>
-      : <NavLink to="/" className="nav__back">&#10094; Home</NavLink>
+      : <NavLink to={configs.linkBase()} className="nav__back">&#10094; Home</NavLink>
     );
 
     return (

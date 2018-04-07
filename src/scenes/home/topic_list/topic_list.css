@@ -1,5 +1,5 @@
-.topic_list__title:hover {
-  transition: transform 0.25s ease-in-out;
+.topic_list__title {
+  transition: transform 0.25s ease-out;
 }
 
 .topic_list__title:hover {
@@ -61,10 +61,13 @@
 
 .topic_section__icon {
   display: inline-block;
-  width: 0.7em;
-  height: 0.7em;
+  width: 0.6em;
+  height: 0.6em;
   margin-left: 5px;
-  opacity: 0.6;
+}
+
+.topic_section__icon:hover {
+  transform: scale(1.1);
 }
 
 .point_pulse {

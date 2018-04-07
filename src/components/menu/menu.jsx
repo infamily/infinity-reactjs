@@ -49,8 +49,8 @@ class Menu extends Component {
       <ButtonGroup className={mobile ? "main-menu main-menu--mobile" : "main-menu"}>
         <DropdownButton title={title} dropup bsSize={mobile ? "small" : null} id="dropdown-size-large">
           <Link to={configs.linkBase()} className="main-menu__link">Home</Link>
-          <Link to="/page/what" className="main-menu__link">What?</Link>
-          <Link to="/page/how" className="main-menu__link">How?</Link>
+          <Link to={configs.linkBase() + "/page/what"} className="main-menu__link">What?</Link>
+          <Link to={configs.linkBase() + "/page/how"} className="main-menu__link">How?</Link>
           <MenuItem divider />
           {
             this.props.user

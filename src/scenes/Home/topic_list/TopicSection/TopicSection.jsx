@@ -7,7 +7,7 @@ import * as services from './services';
 import store_home from '../../services/store_home';
 import configs from 'configs';
 import { badgeStyle, getBorder } from './helpers';
-import TopicLink from 'images/topic_link.jpg';
+import linkImg from 'images/topic_link.png';
 
 class TopicSection extends Component {
   constructor(props) {
@@ -99,7 +99,7 @@ class TopicSection extends Component {
               {' ' + topic.title}
             </Link>
             <Link to={fullLink}>
-              <img src={TopicLink} className="topic_section__icon" alt="infinity link" />
+              <img src={linkImg} className="topic_section__icon" alt="infinity link" />
             </Link>
           </h2>
 

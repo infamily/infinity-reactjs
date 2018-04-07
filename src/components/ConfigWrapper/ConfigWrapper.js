@@ -52,9 +52,6 @@ export default class ConfigWrapper extends Component {
     const api = serverService.api;
     if (serverURL) {
       setServer(serverURL);
-    } else if (api) {
-      const link = configs.linkBase();
-      history.replace(link);
     } else {
       history.push('/'); // no valid server. let's get it (DefaultWrapper)
     }

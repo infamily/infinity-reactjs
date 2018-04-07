@@ -55,7 +55,7 @@ class App extends Component {
             <Route path={match.path} component={Routes} />
           </Wrapper>
         </div>
-        {user && <TabToggle match={match} />}
+        {(user && server) && <TabToggle match={match} />}
         <Route path={match.path + "split"} component={TabPanel} />
       </div>
     );

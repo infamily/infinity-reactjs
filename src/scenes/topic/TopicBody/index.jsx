@@ -13,10 +13,10 @@ import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
 var mdConverter = new showdown.Converter();
 
-
 const TopicBody = ({ topic, children, parents, user }) => {
   if (!topic.title) return null;
-
+  const isOwner = user && (topic.owner.id === user.id);
+  
   const getChild = (type_id) => {
     const child_type = type_id + 1;
     const type = child_type < configs.topic_types.length ? child_type : type_id;
@@ -25,8 +25,7 @@ const TopicBody = ({ topic, children, parents, user }) => {
 
   const child = getChild(topic.type);
 
-  const EditTopic = ({ owner, id }) => {
-    const isOwner = user && (owner === user.username);
+  const EditTopic = ({ isOwner, id }) => {
     if (!isOwner) return null;
     return <Link to={'/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>;
   }
@@ -34,7 +33,7 @@ const TopicBody = ({ topic, children, parents, user }) => {
   return (
     <div className="topic__container">
 
-      <EditTopic owner={topic.owner.username} id={topic.id} />
+      <EditTopic isOwner={isOwner} id={topic.id} />
       
       <h1>
         {topic.title}
@@ -53,7 +52,7 @@ const TopicBody = ({ topic, children, parents, user }) => {
       
       <div className="topic__bottom">
         <span>{topic.owner.username}</span>
-        {topic.id === user.id
+        {isOwner
           ? <UserBalance id={topic.owner.id} showQuota={false}/>
           : <Balance id={topic.owner.id}/>}
         <NewButton to={"/add-child/" + topic.id} title={'+ ' + child} />
