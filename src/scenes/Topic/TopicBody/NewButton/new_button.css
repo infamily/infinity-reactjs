@@ -5,11 +5,14 @@
   color: white;
   border-radius: 5px;
   font-size: 14px;
-  margin: 5px;
-  margin-left: auto;
 }
 
 .new_btn:hover {
   color: white;
   background-color: #449d44;
+}
+
+.new_btn:active,
+.new_btn:focus {
+  color: white;
 }

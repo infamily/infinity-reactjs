@@ -43,10 +43,10 @@ class Topics extends Component {
       
       return isOwner
         ? <ButtonGroup className="topic_list__edit">
-          <Link to={"/edit/" + id + "/"}>
-            <Button bsSize="xsmall" className="topic_list__btn">&#9998;</Button>
-          </Link>
-        </ButtonGroup> 
+            <Link to={"/edit/" + id + "/"}>
+              <Button bsSize="xsmall" className="topic_list__btn">&#9998;</Button>
+            </Link>
+          </ButtonGroup> 
         : null;
     }
 

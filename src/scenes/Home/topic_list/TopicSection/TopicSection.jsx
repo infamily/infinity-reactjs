@@ -90,19 +90,23 @@ class TopicSection extends Component {
       
       return (
         <div>
-          <EditTopic owner={topic.owner.username} id={id} />
+          <EditTopic owner={topic.owner.username} id={id} />        
           <h2 className="topic_list__title">
             <BadgePoint topic={topic} fromId={fromId} />
             <Link 
               to={tabLink} 
-              onClick={this.saveScroll} className="topics__item-title" data-id={id}>
+              onClick={this.saveScroll}
+              className="topics__item-title" 
+              data-id={id}>
               {' ' + topic.title}
             </Link>
-            <Link to={fullLink}>
+            <Link 
+              to={fullLink}
+              onClick={this.saveScroll}>
               <img src={linkImg} className="topic_section__icon" alt="infinity link" />
             </Link>
           </h2>
-
+          
           <div className="topic_list__step" style={getBorder(topic)}>
             {isExpanded && children.map(item => (<TopicLine topic={item} key={'_' + item.id} fromId={id} />))}
           </div>  

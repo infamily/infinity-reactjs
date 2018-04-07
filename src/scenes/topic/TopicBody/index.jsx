@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { badgeStyle } from '../helpers/badge';
-import NewButton from '../NewButton';
+import NewButton from './NewButton';
 import Tags from '../tags';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
@@ -51,10 +51,12 @@ const TopicBody = ({ topic, children, parents, user }) => {
       <Tags title="Children" items={children} />
       
       <div className="topic__bottom">
-        <span>{topic.owner.username}</span>
-        {isOwner
-          ? <UserBalance id={topic.owner.id} showQuota={false}/>
-          : <Balance id={topic.owner.id}/>}
+        <div>
+          <span>{topic.owner.username}</span>
+          {isOwner
+            ? <UserBalance id={topic.owner.id} showQuota={false}/>
+            : <Balance id={topic.owner.id}/>}
+        </div>
         <NewButton to={"/add-child/" + topic.id} title={'+ ' + child} />
       </div>
     </div>

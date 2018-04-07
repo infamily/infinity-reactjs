@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './new_button.css';
 
 const NewButton = ({ title, to }) => (
-  <Link to={to} className="new_btn">{title}</Link>
+  <Link to={to}><span className="new_btn">{title}</span></Link>
 );
 
 NewButton.propTypes = {

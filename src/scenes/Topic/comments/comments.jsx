@@ -72,8 +72,8 @@ export default class Comments extends Component {
                   <Button onClick={() => this.props.reply(owner.username)}>Reply</Button>
                   {
                     Boolean(remains) 
-                    ? <Button onClick={() => this.investState(comment)}>Invest {remains}$h</Button> 
-                    : null
+                      ? <Button onClick={() => this.investState(comment)}>Invest {remains}$h</Button> 
+                      : null
                   }
                 </ButtonGroup>
           }
@@ -96,7 +96,8 @@ export default class Comments extends Component {
       const Progress = () => (claimed_hours || assumed_hours) ?
         <ProgressBar comment={comment} />
         : null;
-
+        
+      const isOwner = user && user.id === owner.id;
       return (
         <div key={id} className="comment__section">
           <div>{content}</div>
@@ -106,7 +107,7 @@ export default class Comments extends Component {
             <Buttons owner={owner} id={id} remains={remains} comment={comment}/>
             <div className="comment__owner">
               <span>{owner.username}</span>
-              {user.id === owner.id 
+              {isOwner
                 ? <UserBalance id={owner.id} showQuota={false}/>
                 : <Balance id={owner.id}/>}
             </div>
@@ -120,15 +121,13 @@ export default class Comments extends Component {
         <div>
           <h3>Comments</h3>
           <Comments />
-          {
-           transaction &&
+          {transaction &&
            <TransactionBox
              state={transaction}
              comment={invest_comment}
              investState={this.investState}
              updateComments={this.updateComments}
-           />
-          }
+           />}
         </div>
       );
     } else {

@@ -50,6 +50,7 @@ export default class ConfigWrapper extends Component {
     // set configs
     const serverURL = await serverService.changeServerByLink(server);
     const api = serverService.api;
+    
     if (serverURL) {
       setServer(serverURL);
     } else {
