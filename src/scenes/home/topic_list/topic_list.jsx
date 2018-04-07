@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TopicSection from './TopicSection';
@@ -42,11 +41,11 @@ class Topics extends Component {
       const isOwner = user && (owner === user.username);
       
       return isOwner
-        ? <ButtonGroup className="topic_list__edit">
+        ? <div className="topic_list__edit">
             <Link to={"/edit/" + id + "/"}>
-              <Button bsSize="xsmall" className="topic_list__btn">&#9998;</Button>
+              <div className="topic_list__btn">&#9998;</div>
             </Link>
-          </ButtonGroup> 
+          </div> 
         : null;
     }
 

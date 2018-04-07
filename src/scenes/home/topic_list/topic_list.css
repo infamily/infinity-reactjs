@@ -8,10 +8,19 @@
 
 .topic_list__edit {
   float: right;
+  z-index: 1;
 }
 
 .topic_list__btn {
-  border-radius: 10px;
+  border-radius: 100px;
+  padding: 3px;
+  border: 1px solid lightgray;
+  z-index: 5;
+  font-size: 0.7em;
+}
+
+.topic_list__btn:hover {
+  transform: scale(1.1);
 }
 
 .topic_list__draft {

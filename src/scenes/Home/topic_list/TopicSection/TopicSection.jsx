@@ -90,8 +90,8 @@ class TopicSection extends Component {
       
       return (
         <div>
-          <EditTopic owner={topic.owner.username} id={id} />        
           <h2 className="topic_list__title">
+            <EditTopic owner={topic.owner.username} id={id} />
             <BadgePoint topic={topic} fromId={fromId} />
             <Link 
               to={tabLink} 

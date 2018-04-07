@@ -15,7 +15,8 @@
 }
 
 .otp__input {
-  padding: 20px;
+  height: auto;
+  padding: 10px;
   font-size: 18px;  
 }
 
