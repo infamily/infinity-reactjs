@@ -30,13 +30,18 @@ export default class StreamTab extends Component {
 
   async componentWillMount() {
     const schemas = await getSchemas();
-    if (schemas) {
+    if (schemas.length) {
       const id = getId(schemas[0].url);
       const instances = await getInstance(id);
       
       this.setState({
         schemas,
         instances,
+      });
+    } else {
+      this.setState({
+        schemas: [],
+        instances: [],
       });
     }
   }
