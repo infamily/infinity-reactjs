@@ -107,7 +107,7 @@ class ServerService {
   get = async (url) => {
     try {
       const { data } = await axios.get(this.api + url);
-      return { data: data, error: null };
+      return { data, error: null };
     } catch (error) {
       return { data: null, error };
     }

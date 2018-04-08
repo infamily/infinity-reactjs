@@ -25,7 +25,7 @@ export default class ConfigWrapper extends Component {
 
   async componentWillMount() {
     await this.setParams();
-    this.setLoading(false);    
+    this.setLoading(false);
   }
 
   async componentWillReceiveProps(nextProps) {
@@ -34,6 +34,8 @@ export default class ConfigWrapper extends Component {
     //check for new configs
     const nextConfigs = getConfigs(nextProps);
     if (getConfigs(this.props) !== nextConfigs) {
+      console.log('???', 'params', new Date())
+      
       this.setLoading(true);
       await this.setParams(nextConfigs);
       window.location.reload(false);
@@ -47,18 +49,24 @@ export default class ConfigWrapper extends Component {
     await this.checkLanguage(lang);
     this.setState({ serverName: server });
     
-    // set configs
-    const serverURL = await serverService.changeServerByLink(server);
-    const api = serverService.api;
-    
-    if (serverURL) {
-      setServer(serverURL);
-    } else {
-      history.push('/'); // no valid server. let's get it (DefaultWrapper)
+    // check configs
+    const prevAPI = serverService.api;    
+    const newURL = await serverService.changeServerByLink(server);
+    const API = serverService.api;
+
+    // no valid server
+    if (!newURL && !API) {
+      history.push('/'); // get the nearest server (DefaultWrapper)
+      return;
+    }
+
+    // new API is provided    
+    if (prevAPI !== API) {
+      setServer(newURL); // set configs
     }
     
-    // switch user data
-    const serverData = userServerData[api] || null;
+    // switch user authorization data
+    const serverData = userServerData[API] || null;
     signIn(serverData);
   }
 
