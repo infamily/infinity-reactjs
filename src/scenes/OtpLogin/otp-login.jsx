@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import otpService from './services';
 import errorService from './services/error';
 import helpers from './services/helpers';
-import ifIcon from './img/if.png';
+import MenuBar from 'scenes/MenuBar'; 
+import EmailView from './EmailView'; 
+import ifIcon from 'images/if.png';
 import './otp-login.css'; 
 
 export default class OtpLogin extends Component {
@@ -13,19 +15,13 @@ export default class OtpLogin extends Component {
 
     this.state = {
       view: 'view',
-      email: '',
-      captcha_0: '',
-      captcha_1: '',
-      password: '',
-      captcha: {
-        key: '',
-        image_url: ''
-      },
       popUp: {
         state: false,
         title: '',
         text: ''
-      }
+      },
+      email: '',
+      password: '',
     };
   }
 
@@ -37,70 +33,6 @@ export default class OtpLogin extends Component {
     user: PropTypes.object,
   }; 
 
-  componentDidMount() {
-    !this.state.captcha.key && this.refresh();
-  } 
-
-  refresh = async(e) => {
-    e && e.preventDefault();
-    try {
-      const data = await otpService.getCaptcha();
-      this.updateCaptcha(data);
-    } catch(e) {
-      this.setPopUp({
-        title: 'Network Error',
-        text: e,
-      });
-    }
-  }
-
-  updateCaptcha(data) {
-    if (data['key']) {
-      const image_url = otpService.getImage(data);
-      
-      this.setState({
-        view: 'email',
-        captcha_0: data.key,
-        captcha_1: '',
-        captcha: {
-          key: data.key,
-          image_url,
-        }
-      });
-    }
-  }
-
-  onEmailSubmit = async (ev) => {
-    ev.preventDefault(); 
-    
-    try {
-      const { email, captcha_0, captcha_1 } = this.state;
-      if (!email || !captcha_1) {
-        this.setPopUp({
-          title: 'Sign In Error',
-          text: 'All fields should be fill out.'
-        });
-        return;
-      }
-      const captcha = {
-        hashkey: captcha_0,
-        response: captcha_1,
-      };
-
-      const params = { email, captcha };
-      await otpService.signUp(params);
-      
-      this.setState({
-        view: 'login',
-      });
-    } catch(e) {
-      const text = errorService.getErrorMessage(e.response.data);
-      this.setPopUp({
-        title: 'Sign Up Error',
-        text: text || 'Something went wrong. Try again.',
-      });
-    }
-  }
 
   login = async (e) => {
     e.preventDefault();
@@ -179,20 +111,28 @@ export default class OtpLogin extends Component {
     this.setState({
       [e.target.name]: e.target.value
     }); 
+  }
+
+  changeEmail = (email) => {
+    this.setState({
+      email,
+    }); 
+  }
+
+  changeView = (view) => {
+    this.setState({
+      view,
+    }); 
   } 
 
   render() {
     const { 
-      view, 
-      email, 
-      captcha_0, 
-      captcha_1, 
-      captcha, 
-      password, 
-      popUp
+      popUp,
+      view,
+      password,
     } = this.state;
 
-    const PopUp = () => 
+    const PopUp = () => (
       <div >
         <Modal show={popUp.state} className="otp__modal">
           <Modal.Header>
@@ -205,58 +145,20 @@ export default class OtpLogin extends Component {
             <Button onClick={this.resetPopUp}>Close</Button> 
           </Modal.Footer> 
         </Modal>
-      </div>;
+      </div>
+    );
     
-    switch(view) {
-      case 'email': {
-        return (
+    return (
+      <div>
+        <PopUp />      
+        <EmailView 
+          view={view} 
+          changeView={this.changeView} 
+          setPopUp={this.setPopUp}
+          changeEmail={this.changeEmail}          
+        />
+        {view !== 'login' ? null : (
           <div>
-            <PopUp />
-            <img src={ifIcon} className="otp__logo" alt="infinity"/>
-            <div className="center-block otp__box"> 
-              <h1 className="otp__header">Sign In</h1>
-              <form onSubmit={this.onEmailSubmit}>
-                <div className="form-group">
-                  <input 
-                    className="form-control otp__input"
-                    name="email" 
-                    type="email" 
-                    required
-                    placeholder="E-mail address"
-                    value={email} 
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div id="div_id_captcha" className="form-group">
-                  <div className="row">
-                    <div className="col-md-8">
-                      <input name="captcha_0" type="hidden" value={captcha_0} required />
-                      <input 
-                        className="form-control otp__input"
-                        value={captcha_1} 
-                        name="captcha_1" 
-                        spellCheck="false"
-                        placeholder="Captcha"
-                        required 
-                        onChange={this.handleChange}
-                      />
-                      </div>
-                      <div className="otp__captcha">
-                        <img src={captcha.image_url} alt="captcha" />
-                        <a className="primaryAction btn otp__btn" onClick={this.refresh} >&#8634;</a>
-                      </div>
-                    </div>
-                </div>
-                <button type="submit" className="primaryAction btn btn-lg otp__btn">CONTINUE</button>
-              </form>
-            </div>   
-          </div>
-        ); 
-      }
-      case 'login': {
-        return(
-          <div>
-            <PopUp />          
             <Alert bsStyle="info" className="otp__alert">
               <strong>One time password</strong> has been send to your email.
             </Alert>
@@ -264,13 +166,13 @@ export default class OtpLogin extends Component {
             <div className="center-block otp__box">
               <form>
                 <div className="form-group">
-                  <input 
-                    className="form-control otp__input" 
-                    value={password} 
-                    name="password" 
+                  <input
+                    className="form-control otp__input"
+                    value={password}
+                    name="password"
                     type="password"
-                    placeholder="One time password"                    
-                    required 
+                    placeholder="One time password"
+                    required
                     onChange={this.handleChange}
                   />
                 </div>
@@ -279,11 +181,9 @@ export default class OtpLogin extends Component {
               </form>
             </div>
           </div>
-        );
-      }
-
-      default:
-        return null;
-    } 
+        )}
+        <MenuBar />
+      </div>
+    );
   }
 }

@@ -118,8 +118,8 @@ class Home extends Component {
     const { title, button } = this.state.content;
     const { flag, topics } = this.state;
     const { user } = this.props;
-    const isVisible = this.hasMore && 'home--hidden';
     const hasMore = this.hasMore();
+    const isVisible = hasMore && 'home--hidden';
 
     if (topics === null) return <Loading />;
 
