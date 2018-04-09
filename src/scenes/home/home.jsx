@@ -145,7 +145,7 @@ class Home extends Component {
     const hasMore = this.hasMore();
     const isVisible = hasMore && 'home--hidden';
 
-    if (topics === null || loading) return <Loading />;
+    if (topics === null) return <Loading />;
 
     return (
       <div className="main">
@@ -163,13 +163,16 @@ class Home extends Component {
         </form>
         <TopicViewToggle onChangeTopicView={this.onChangeTopicView} topicView={topicView} />
         <div className="topics__content">
-          <InfiniteScroll
-            pageStart={1}
-            loadMore={this.loadMore}
-            hasMore={hasMore}
-            loader={<div className={isVisible}>Loading ...</div>}>
-            <Topics topics={topics}/>
-          </InfiniteScroll>
+          {loading 
+            ? <Loading />
+            : <InfiniteScroll
+                pageStart={1}
+                loadMore={this.loadMore}
+                hasMore={hasMore}
+                loader={<div className={isVisible}>Loading ...</div>}>
+                <Topics topics={topics}/>
+              </InfiniteScroll>
+          }
         </div>
         <MenuBar page='Home'/>
       </div>
