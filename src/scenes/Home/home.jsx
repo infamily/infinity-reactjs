@@ -14,6 +14,7 @@ import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import Header from 'components/Header'; 
 import Loading from 'components/Loading';
+import TopicViewToggle from './TopicViewToggle';
 
 import topicService from 'services/topic.service';
 import langService from 'services/lang.service';
@@ -29,6 +30,7 @@ class Home extends Component {
       page: store_home.home_page || 1,
       flag: store_home.flag || 0,
       query: '',
+      topicView: 1, 
       topics: null,
       last_pack: [],
       loading: false,
@@ -40,11 +42,11 @@ class Home extends Component {
   }; 
 
   async componentWillMount() {
-    const { page, flag } = this.state;
+    const { page, flag, topicView } = this.state;
     let { fromPage, topics } = topicService;
 
     if (fromPage !== page && !topics.length) {
-      topics = await topicService.setTopics(flag);
+      topics = await topicService.getTopics(flag, topicView);
     }
 
     this.setState({ topics, last_pack: topics});
@@ -55,18 +57,19 @@ class Home extends Component {
     scrollTo && window.scrollTo(0, scrollTo)
   }
 
-  makeSearch = e => {
+  makeSearch = async (e) => {
     e.preventDefault();
-    const { query, flag } = this.state;
-    const self = this;
-
-    topicService.search(query, flag).then(topics => {
-      self.setState({
+    const { query, flag, topicView } = this.state;
+    try {
+      const topics = await topicService.search(query, flag, topicView);
+      this.setState({
         topics: topics,
         last_pack: topics,
         page: 1,
-      });
-    });
+      }); 
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   hasMore = () => {
@@ -75,7 +78,7 @@ class Home extends Component {
   }
 
   loadMore = () => {
-    const { page, topics, flag, last_pack } = this.state;
+    const { page, topics, flag, last_pack, topicView } = this.state;
     const self = this;
     const next = page + 1;
     
@@ -83,7 +86,7 @@ class Home extends Component {
 
     store_home.home_page = next;
 
-    topicService.getPage(next, flag).then(newTopics => {
+    topicService.getPage(next, flag, topicView).then(newTopics => {
       const main_pack = topics.concat(newTopics);
 
       topicService.topics = main_pack;
@@ -102,12 +105,33 @@ class Home extends Component {
     store_home.flag = key;
 
     flag !== key &&
-      topicService.setTopics(key).then(topics => {
+      topicService.getTopics(key).then(topics => {
         self.setState({
           flag: key,
           topics,
         });
       }); 
+  }
+
+  onChangeTopicView = async (topicView) => {
+    const { flag } = this.state;
+     this.setState({
+        loading: true,
+      });
+    try {
+      const topics = await topicService.getTopics(flag, topicView);
+      this.setState({
+        topicView,
+        topics: topics,
+        last_pack: topics,
+        page: 1,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    this.setState({
+      loading: false,
+    });
   }
 
   handleChange = e => {
@@ -116,17 +140,16 @@ class Home extends Component {
 
   render() {
     const { title, button } = this.state.content;
-    const { flag, topics } = this.state;
+    const { flag, topics, topicView, loading } = this.state;
     const { user } = this.props;
     const hasMore = this.hasMore();
     const isVisible = hasMore && 'home--hidden';
 
-    if (topics === null) return <Loading />;
+    if (topics === null || loading) return <Loading />;
 
     return (
       <div className="main">
         <Header user={user} title={title}/>
-
         <form onSubmit={this.makeSearch}>
           <FormGroup >
             <InputGroup>
@@ -138,7 +161,7 @@ class Home extends Component {
             </InputGroup>
           </FormGroup>
         </form>
-
+        <TopicViewToggle onChangeTopicView={this.onChangeTopicView} topicView={topicView} />
         <div className="topics__content">
           <InfiniteScroll
             pageStart={1}
@@ -148,7 +171,6 @@ class Home extends Component {
             <Topics topics={topics}/>
           </InfiniteScroll>
         </div>
-        
         <MenuBar page='Home'/>
       </div>
     );

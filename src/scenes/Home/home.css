@@ -20,6 +20,11 @@
   vertical-align: middle;
 }
 
+.view_toggle__img {
+  max-width: 20px;
+  margin-left: 5px;
+}
+
 @media (max-width: 401px) {
   .topics__title {
     margin-right: initial;
