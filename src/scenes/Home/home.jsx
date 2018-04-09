@@ -100,12 +100,12 @@ class Home extends Component {
 
   setFlag = key => {
     const self = this;
-    const { flag } = this.state;
+    const { flag, topicView } = this.state;
     
     store_home.flag = key;
 
     flag !== key &&
-      topicService.getTopics(key).then(topics => {
+      topicService.getTopics(key, topicView).then(topics => {
         self.setState({
           flag: key,
           topics,
@@ -120,6 +120,7 @@ class Home extends Component {
       });
     try {
       const topics = await topicService.getTopics(flag, topicView);
+      
       this.setState({
         topicView,
         topics: topics,
