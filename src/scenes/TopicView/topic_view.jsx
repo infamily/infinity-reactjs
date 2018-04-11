@@ -11,6 +11,7 @@ import {
   ToggleButtonGroup,
   ToggleButton
 } from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip';
 import Select from 'react-select';
 import 'react-select/dist/react-select.min.css';
 
@@ -18,6 +19,7 @@ import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import FormSelect from 'components/FormSelect';
 import { PopupModal } from './PopupModal';
+import SelectOption from './SelectOption';
 import topicViewService from 'services/topic_view.service';
 import topicService from './services';
 import configs from 'configs';
@@ -279,6 +281,11 @@ class Topic extends Component {
       is_draft: value
     });
   }
+
+  onFocusActionList = (val) => {
+    console.log(val);
+    console.log('here we are');
+  }
   
   render() {
     const { 
@@ -305,8 +312,8 @@ class Topic extends Component {
     });
     
     const categories = all_categories.map(item => {
-      const { name, url } = item;
-      return { value: name, label: name, url }
+      const { name, url, definition } = item;
+      return { value: name, label: name, url, definition }
     });
 
     const Buttons = () => {
@@ -362,6 +369,8 @@ class Topic extends Component {
                 value={topic_categories}
                 options={categories}
                 onChange={this.selectCategory}
+                // onFocus={this.onFocusActionList}
+                optionRenderer={SelectOption}
               />
             </FormGroup>
             <FormGroup>
@@ -417,7 +426,7 @@ class Topic extends Component {
         <PopupModal isOpen={error} name="error" message={message} closeModal={this.closeModal} />
         <PopupModal isOpen={success} name="success" message={message} closeModal={this.closeModal} />
         <DeletePopup isOpen={this.state['delete']} name="delete"/>
-        
+        <ReactTooltip />
         <MenuBar page='Menu'/>
       </div>
     );

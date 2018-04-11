@@ -75,10 +75,17 @@ async function getCategories(categories) {
   return formatted;
 }
 
+export async function getType(id) {
+  const lang = langService.current;
+  const { data } = await serverService.get(`/types/${id}/?lang=${lang}`);
+  return data;
+}
+
 export default {
   getCategory,
   getTopic,
   getParents,
   getCategories,
   addParent,
+  getType,
 }

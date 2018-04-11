@@ -5,7 +5,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "moment": "^2.21.0",
+    "moment": "^2.22.0",
+    "payment": "^2.3.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
@@ -20,6 +21,7 @@
     "react-router-redux": "^4.0.8",
     "react-select": "^1.1.0",
     "react-stripe-checkout": "^2.6.3",
+    "react-tooltip": "^3.4.2",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",

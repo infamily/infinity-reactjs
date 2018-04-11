@@ -1,0 +1,7 @@
+.category_select__option {
+  padding: 10px;
+}
+
+.category_select__option:hover {
+  background-color: rgba(0,126,255,.08);
+}
