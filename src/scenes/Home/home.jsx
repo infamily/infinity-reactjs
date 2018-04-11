@@ -89,7 +89,7 @@ class Home extends Component {
     topicService.getPage(next, flag, topicView).then(newTopics => {
       const main_pack = topics.concat(newTopics);
 
-      topicService.topics = main_pack;
+      topicService.topics = main_pack; // pile up topics
       self.setState({
         topics: main_pack,
         last_pack: topics,
@@ -120,7 +120,7 @@ class Home extends Component {
       });
     try {
       const topics = await topicService.getTopics(flag, topicView);
-      
+
       this.setState({
         topicView,
         topics: topics,

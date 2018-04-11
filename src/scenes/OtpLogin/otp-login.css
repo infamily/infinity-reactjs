@@ -17,7 +17,8 @@
 .otp__input {
   height: auto;
   padding: 10px;
-  font-size: 18px;  
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .otp__captcha {

@@ -22,7 +22,7 @@ const TopicViewToggle = ({ topicView, onChangeTopicView }) => {
         </ToggleButton>
         <ToggleButton value={0}>
           <TooltipOverlay text="Display all topics" placement="bottom">
-            <span>Sequence</span>  
+            <span>List</span>  
           </TooltipOverlay>          
         </ToggleButton>
       </ToggleButtonGroup>

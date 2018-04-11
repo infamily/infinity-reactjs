@@ -28,8 +28,7 @@ class Topics extends Component {
   render() {
     const { user } = this.props;
     const { topics } = this.state;
-
-    const draftStyle = topic => { 
+    const draftStyle = topic => {
       if (!topic.is_draft) return '';
       if (!user) return 'topic_list__hide';
 
@@ -49,19 +48,15 @@ class Topics extends Component {
         : null;
     }
 
-    const List = () =>
-      topics.map(topic => (
-        <TopicSection
-          key={topic.id}
-          topic={topic} 
-          draftStyle={draftStyle} 
-          EditTopic={EditTopic} 
-        />
-      ));
-
     return (
       <div className="topics__list">
-        <List />
+        {topics.map(topic => topic && (
+          <TopicSection
+            key={topic.id}
+            topic={topic}
+            draftStyle={draftStyle}
+            EditTopic={EditTopic}
+          />))}
       </div>
     );
   }

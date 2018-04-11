@@ -149,7 +149,7 @@ export default class OtpLogin extends Component {
     );
     
     return (
-      <div>
+      <div className="main">
         <PopUp />      
         <EmailView 
           view={view} 

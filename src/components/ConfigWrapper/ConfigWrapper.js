@@ -46,15 +46,15 @@ export default class ConfigWrapper extends Component {
     const { match, history, setServer, signIn, userServerData } = this.props;
     const params = nextConfigs || match.params.configs; // get configs
     const [server, lang] = params.split(':');
-    await this.checkLanguage(lang);
     this.setState({ serverName: server });
     
     // check configs
     const prevAPI = serverService.api;    
     const newURL = await serverService.changeServerByLink(server);
     const API = serverService.api;
-
     // no valid server
+
+    console.log(server, newURL)
     if (!newURL && !API) {
       history.push('/'); // get the nearest server (DefaultWrapper)
       return;
@@ -68,6 +68,9 @@ export default class ConfigWrapper extends Component {
     // switch user authorization data
     const serverData = userServerData[API] || null;
     signIn(serverData);
+
+    // set language
+    await this.checkLanguage(lang);    
   }
 
   checkLanguage = async (lang) => {
