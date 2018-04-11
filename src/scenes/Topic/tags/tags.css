@@ -14,15 +14,6 @@
   margin: 5px;
 }
 
-.tags__title {
-  border: 2px solid gainsboro;
-  border-radius: 5px;
-  padding: 0 5px;
-  margin-right: 2px;
-  font-size: 14px;
-  margin-right: 5px;
-}
-
 .tags__badge {
   font-size: 11px;
   padding: 5px;

@@ -7,6 +7,7 @@ import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
 import CommentForm from './comment_form';
 import Comments from './comments';
+import { getCategories } from './helpers';
 import topicService from './services/topics';
 import commentService from 'services/comment.service.js';
 import configs from 'configs';
@@ -20,6 +21,7 @@ class Topic extends Component {
       comments: [],
       parents: [],
       children: [],
+      categories: [],
       comment_id: 0,  
       comment_text: '',
     }
@@ -29,7 +31,7 @@ class Topic extends Component {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     user: PropTypes.object,
-    close: PropTypes.func, // when it tab mode
+    close: PropTypes.func, // tab mode
   };
 
   static defaultProps = { 
@@ -37,21 +39,19 @@ class Topic extends Component {
   };
 
   async componentWillMount() {
-    const { match: { params } } = this.props;
-    const id = params.id;
+    const { id } = this.props.match.params;
     await this.loadTopicData(id);
   }
 
   async componentWillReceiveProps(nextProps) {
-    const id = props => props.match.params.id;
-    const solve = id(this.props) !== id(nextProps);
-    solve && await this.loadTopicData(id(nextProps));
+    const getId = props => props.match.params.id;
+    // check if new topic is provided
+    const solve = getId(this.props) !== getId(nextProps);
+    solve && await this.loadTopicData(getId(nextProps));
   }
 
   loadTopicData = async (id) => {
-    const self = this;
-    const { match: { params } } = this.props;
-    const server = params.server;
+    const { server } = this.props.match.params;
     const topic = await topicService.getTopic(id, server);
 
     if (!topic) {
@@ -59,15 +59,18 @@ class Topic extends Component {
       return;
     }
 
-    const comments = await topicService.getComments(id, topic.lang);
-    const children = await topicService.getChildren(id, topic.lang);
-    const parents = await topicService.getParents(id, topic.lang);
+    const { lang } = topic;
+    const comments = await topicService.getComments(id, lang);
+    const children = await topicService.getChildren(id, lang);
+    const parents = await topicService.getParents(id, lang);
+    const categories = getCategories(topic);
 
-    self.setState({
+    this.setState({
       topic,
       comments,
       parents,
       children,
+      categories,
     });
   }
 
@@ -140,9 +143,8 @@ class Topic extends Component {
   }
 
   render() {
-    const { close } = this.props;
-    const { topic, comments, parents, children } = this.state;
-    const user = this.props.user;
+    const { close, user } = this.props;
+    const { topic, comments, parents, children, categories } = this.state;
 
     if (!topic.id) return <Loading />;
     
@@ -168,6 +170,7 @@ class Topic extends Component {
               topic={topic}
               children={children}
               parents={parents}
+              categories={categories}
               user={user}
             />
             <div ref="com_sec">

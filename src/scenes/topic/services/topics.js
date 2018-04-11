@@ -3,15 +3,9 @@ import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 const axiosNoToken = axios.create(); // to get data from other servers
 
-function getApi(server) {
-  const serverLink = 'https://' + server;
-  const isServerValid = server && serverService.api_servers.find(item => item === serverLink);
-  return isServerValid ? serverLink : serverService.api;
-}
-
-async function getTopic(id, server = null) {
+async function getTopic(id) {
   try {
-    const api = getApi(server);
+    const api = serverService.api;
     
     const getTopic = lang => axiosNoToken.get(`${api}/topics/${id}/?lang=${lang || ''}`);
     const _topic = await getTopic(' ');
@@ -30,9 +24,9 @@ async function getTopic(id, server = null) {
   }
 }
 
-async function getChildren(id, lang, server = null) {
+async function getChildren(id, lang) {
   try {
-    const api = getApi(server);
+    const api = serverService.api;
     const { data } = await axiosNoToken.get(`${api}/topics/?parents=${id}&lang=${lang}`);
     return data.results;
   } catch (e) {
@@ -40,9 +34,9 @@ async function getChildren(id, lang, server = null) {
   }
 }
 
-async function getParents(id, lang, server = null) {
+async function getParents(id, lang) {
   try {
-    const api = getApi(server);
+    const api = serverService.api;
     const { data } = await axiosNoToken.get(`${api}/topics/?children=${id}&lang=${lang}`);
     return data.results;
   } catch (e) {
@@ -50,19 +44,14 @@ async function getParents(id, lang, server = null) {
   }
 }
 
-function getComments(id, lang, server = null) {
-  const api = getApi(server);
-  
-  return new Promise((resolve, reject) => {
-    axiosNoToken.get(`${api}/comments/?topic=${id}&lang=${lang}`)
-      .then(function (response) {
-        resolve(response.data.results);
-      })
-      .catch(function (error) {
-        console.error(error);
-        reject(error);
-      });
-  });
+async function getComments(id, lang) {
+  try {
+    const api = serverService.api;
+    const { data } = await axiosNoToken.get(`${api}/comments/?topic=${id}&lang=${lang}`);
+    return data.results;
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 export default {

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { badgeStyle } from '../helpers/badge';
 import NewButton from './NewButton';
+import Categories from './Categories';
 import Tags from '../tags';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
@@ -13,7 +14,7 @@ import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
 var mdConverter = new showdown.Converter();
 
-const TopicBody = ({ topic, children, parents, user }) => {
+const TopicBody = ({ topic, children, parents, user, categories }) => {
   if (!topic.title) return null;
   const isOwner = user && (topic.owner.id === user.id);
   
@@ -41,6 +42,8 @@ const TopicBody = ({ topic, children, parents, user }) => {
           {configs.topic_types[topic.type]}
         </span>
       </h1>
+      <Categories categories={categories} />
+     
       <p className="topic__impact">
         Community contribution<span className="topic__match">{topic.matched}h</span>
       </p>
@@ -67,6 +70,7 @@ TopicBody.propTypes = {
   topic: PropTypes.object.isRequired,
   children: PropTypes.array.isRequired,
   parents: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
   user: PropTypes.object,
 };
 

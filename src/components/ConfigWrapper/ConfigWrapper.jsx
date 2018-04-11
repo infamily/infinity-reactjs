@@ -34,8 +34,6 @@ export default class ConfigWrapper extends Component {
     //check for new configs
     const nextConfigs = getConfigs(nextProps);
     if (getConfigs(this.props) !== nextConfigs) {
-      console.log('???', 'params', new Date())
-      
       this.setLoading(true);
       await this.setParams(nextConfigs);
       window.location.reload(false);
@@ -54,7 +52,6 @@ export default class ConfigWrapper extends Component {
     const API = serverService.api;
     // no valid server
 
-    console.log(server, newURL)
     if (!newURL && !API) {
       history.push('/'); // get the nearest server (DefaultWrapper)
       return;
