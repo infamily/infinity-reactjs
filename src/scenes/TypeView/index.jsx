@@ -23,6 +23,7 @@ class TypesList extends Component {
     const { match: { params } } = this.props;
     
     const type = await getType(params.id);
+    type.id = ''; // to types on click
     this.setState({ type });
   }
 

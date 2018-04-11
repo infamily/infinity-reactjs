@@ -7,7 +7,6 @@ const Categories = ({ categories }) => {
 
   return (
     <p>
-      <span className="tags__title">Categories</span>
       {categories.map(item => (
         <span className="topic__category" key={item.id}>
           <Link to={'/types/' + item.id}>{item.name}</Link>
