@@ -34,8 +34,8 @@ class TransactionService {
     }
   }
 
-  async getCurrencies() {
-    if (this.currencies) return this.currencies;
+  getCurrencies = async () => {
+    if (this.currencies && this.currencies.length) return this.currencies;
     
     try {
       const { data } = await axios.get(`${serverService.api}/currencies/`);

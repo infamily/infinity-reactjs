@@ -12,6 +12,7 @@ export default class Payment extends Component {
   }
 
   async componentWillMount() {
+    console.log('run')
     const data = await transactionService.getCurrencies();
     const currencies = data.map(item => item.label);
     this.setState({ currencies });

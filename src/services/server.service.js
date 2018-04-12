@@ -108,12 +108,11 @@ class ServerService {
 
   getPaymentAuthorization = async () => {
     if (this.paymentAuthorization === null) {
-      // const authorization = await this.get('/get-url');
-      // return authorization;
-      return false;
-    } else {
-      return this.paymentAuthorization;
+      // this.paymentAuthorization = await this.get('/get-url');
+      return true;
     }
+
+    return this.paymentAuthorization;
   }
 
   get = async (url) => {
