@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import TooltipOverlay from 'components/TooltipOverlay';
 import QuotaBox from 'scenes/QuotaBox';
 import { getUserBalance } from 'services/user.service';
+import serverService from 'services/server.service';
 import '../balance.css';
 
 const parseNum = (num) => parseFloat(num).toFixed(2);
@@ -13,6 +14,7 @@ class UserBalance extends Component {
     super();
     this.state = {
       isOpenQuotaBox: false,
+      isPayment: false,
     };
   }
 
@@ -24,9 +26,14 @@ class UserBalance extends Component {
   }
 
   async componentWillMount() {
-    const { id, setBalance } = this.props;
-    const { data } = await getUserBalance(id);
-    setBalance(data);
+    const isPayment = await serverService.getPaymentAuthorization();
+    this.setState({ isPayment });
+    
+    if (isPayment) {
+      const { id, setBalance } = this.props;
+      const { data } = await getUserBalance(id);
+      setBalance(data);
+    }
   }
   
   handleOpen = () => {
@@ -36,10 +43,10 @@ class UserBalance extends Component {
   }
 
   render() {
-    const { isOpenQuotaBox } = this.state;
+    const { isOpenQuotaBox, isPayment } = this.state;
     const { balance, id, showQuota } = this.props;
     
-    if (!balance) return null;
+    if (!balance || !isPayment) return null;
     
     const hours = parseNum(balance.balance);
     const quota = parseNum(balance.credit);

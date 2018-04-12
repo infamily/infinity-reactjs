@@ -3,6 +3,7 @@ import axios from 'axios';
 class ServerService {
   constructor() {
     this.api = null;
+    this.paymentAuthorization = null;
 
     this.api_servers = [
       'https://wefindx.io',
@@ -102,6 +103,17 @@ class ServerService {
 
   setDefault = (server) => {
     this.api = server;
+    this.paymentAuthorization = null;
+  }
+
+  getPaymentAuthorization = async () => {
+    if (this.paymentAuthorization === null) {
+      // const authorization = await this.get('/get-url');
+      // return authorization;
+      return false;
+    } else {
+      return this.paymentAuthorization;
+    }
   }
 
   get = async (url) => {

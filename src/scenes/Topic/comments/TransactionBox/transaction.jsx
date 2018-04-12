@@ -12,6 +12,7 @@ import Select from 'react-select';
 import PayCheckout from 'components/PayCheckout';
 import commentService from 'services/comment.service.js';
 import transactionService from 'services/transaction.service';
+import serverService from 'services/server.service';
 import { getUserBalance } from 'services/user.service';
 import langService from 'services/lang.service';
 import ProgressBar from '../progress_bar';
@@ -39,6 +40,7 @@ export default class Transaction extends Component {
 
   async componentWillMount() {
     const { user, comment } = this.props;
+    const isPayment = await serverService.getPaymentAuthorization();    
     const data = await transactionService.getCurrencies();
     const balance = await getUserBalance(user.id);
     const currencies = data.map(item => {
@@ -48,6 +50,7 @@ export default class Transaction extends Component {
     
     this.setState({
       userQuota: balance.data.credit,
+      isPayment,
     });
 
     const payment_amount = this.checkQuota(comment.remains);
@@ -148,6 +151,7 @@ export default class Transaction extends Component {
       userQuota,
       creditBar,
       message,
+      isPayment,
     } = this.state;
 
     const Bar = () => {
@@ -157,7 +161,7 @@ export default class Transaction extends Component {
       );
     }
     
-    const CreditBar = () => (
+    const CreditBar = () => ( isPayment &&
       <PayCheckout 
         ButtonComponent={() => (
           <Button className="transaction__credit" bsStyle="success" bsSize="large" block>
