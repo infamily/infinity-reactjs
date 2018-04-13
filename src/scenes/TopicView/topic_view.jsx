@@ -13,9 +13,9 @@ import {
 } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
 import Select from 'react-select';
-import ReactQuill from 'react-quill';
 import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
+import TextEditor from 'components/TextEditor/TopicEditor';
 import FormSelect from 'components/FormSelect';
 import { PopupModal } from './PopupModal';
 import SelectOption from './SelectOption';
@@ -24,7 +24,6 @@ import topicService from './services';
 import configs from 'configs';
 import './topic_view.css';
 import 'react-select/dist/react-select.min.css';
-import 'react-quill/dist/quill.snow.css';
 
 class Topic extends Component {
   constructor(props) {
@@ -238,12 +237,6 @@ class Topic extends Component {
     });
   }
 
-  handleEditorChange = (html) => {
-    this.setState({
-      topic_text: html,
-    });
-  }
-
   selectCategory = item => {
     item && this.setState({
       topic_categories: item
@@ -288,6 +281,12 @@ class Topic extends Component {
       is_draft: value
     });
   }
+
+  handleTopicText = (html) => {
+    this.setState({
+      topic_text: html,
+    });
+  }
   
   render() {
     const { 
@@ -309,10 +308,6 @@ class Topic extends Component {
 
     const type = all_types[topic_type] || "idea";
 
-    const Types = () => all_types.map((item, i) => {
-      return <option value={i} key={item}>{item}</option>;
-    });
-    
     const categories = all_categories.map(item => {
       const { name, url, definition } = item;
       return { value: name, label: name, url, definition }
@@ -358,7 +353,9 @@ class Topic extends Component {
               label="Type" 
               action={this.handleChange} 
               value={topic_type}>
-              <Types />              
+              {all_types.map((item, i) => {
+                return <option value={i} key={item}>{item}</option>;
+              })}        
             </FormSelect>
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>Category</ControlLabel> 
@@ -386,10 +383,9 @@ class Topic extends Component {
                 onChange={this.handleChange}
                 placeholder="Enter title"
               />
-              <ReactQuill
-                className="topic_view__text"
+              <TextEditor 
                 value={topic_text}
-                onChange={this.handleEditorChange}
+                handleValue={this.handleTopicText}
                 placeholder={"Enter your " + type.toLowerCase()}
               />
             </FormGroup>

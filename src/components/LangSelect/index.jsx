@@ -25,8 +25,8 @@ class Language extends Component {
     mobile: PropTypes.bool.isRequired,
   }; 
 
-  async componentDidMount() {
-    await langService.loadLanguages();
+  async componentWillMount() {
+    // await langService.loadLanguages();
     this.setState({ languages: langService.languages })
     this.setLanguage();
   }
