@@ -13,8 +13,7 @@ import {
 } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
 import Select from 'react-select';
-import 'react-select/dist/react-select.min.css';
-
+import ReactQuill from 'react-quill';
 import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import FormSelect from 'components/FormSelect';
@@ -24,6 +23,8 @@ import topicViewService from 'services/topic_view.service';
 import topicService from './services';
 import configs from 'configs';
 import './topic_view.css';
+import 'react-select/dist/react-select.min.css';
+import 'react-quill/dist/quill.snow.css';
 
 class Topic extends Component {
   constructor(props) {
@@ -237,6 +238,12 @@ class Topic extends Component {
     });
   }
 
+  handleEditorChange = (html) => {
+    this.setState({
+      topic_text: html,
+    });
+  }
+
   selectCategory = item => {
     item && this.setState({
       topic_categories: item
@@ -280,11 +287,6 @@ class Topic extends Component {
     this.setState({
       is_draft: value
     });
-  }
-
-  onFocusActionList = (val) => {
-    console.log(val);
-    console.log('here we are');
   }
   
   render() {
@@ -369,7 +371,6 @@ class Topic extends Component {
                 value={topic_categories}
                 options={categories}
                 onChange={this.selectCategory}
-                // onFocus={this.onFocusActionList}
                 optionRenderer={SelectOption}
               />
             </FormGroup>
@@ -385,14 +386,11 @@ class Topic extends Component {
                 onChange={this.handleChange}
                 placeholder="Enter title"
               />
-              <FormControl
-                componentClass="textarea"
-                className="comment__text"
-                rows="10"
-                name="topic_text"
-                placeholder={"Enter your " + type.toLowerCase()}               
+              <ReactQuill
+                className="topic_view__text"
                 value={topic_text}
-                onChange={this.handleChange}
+                onChange={this.handleEditorChange}
+                placeholder={"Enter your " + type.toLowerCase()}
               />
             </FormGroup>
             <FormGroup controlId="formControlsSelect">
