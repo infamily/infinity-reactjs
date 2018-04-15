@@ -5,6 +5,7 @@ import MenuBar from 'scenes/MenuBar';
 import ReactHtmlParser from 'react-html-parser';
 import showdown from 'showdown';
 var mdConverter = new showdown.Converter();
+// import { Markdown } from 'react-showdown';
 
 class How extends Component {
 

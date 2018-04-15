@@ -21,6 +21,7 @@ import { PopupModal } from './PopupModal';
 import SelectOption from './SelectOption';
 import topicViewService from 'services/topic_view.service';
 import topicService from './services';
+import { getMarkdown } from './helpers';
 import configs from 'configs';
 import './topic_view.css';
 import 'react-select/dist/react-select.min.css';
@@ -147,8 +148,8 @@ class Topic extends Component {
 
     return {
       type: topic_type,
-      title: topic_title,
-      text: topic_text,
+      title: getMarkdown(topic_title),
+      text: getMarkdown(topic_text),
       is_draft,    
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
