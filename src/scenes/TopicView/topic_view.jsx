@@ -15,6 +15,7 @@ import ReactTooltip from 'react-tooltip';
 import Select from 'react-select';
 import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
+import Loading from 'components/Loading';
 import TextEditor from 'components/TextEditor/TopicEditor';
 import FormSelect from 'components/FormSelect';
 import { PopupModal } from './PopupModal';
@@ -22,6 +23,7 @@ import SelectOption from './SelectOption';
 import topicViewService from 'services/topic_view.service';
 import topicService from './services';
 import { getMarkdown } from './helpers';
+import { makeRawHtml } from 'services/common.services';
 import configs from 'configs';
 import './topic_view.css';
 import 'react-select/dist/react-select.min.css';
@@ -44,12 +46,12 @@ class Topic extends Component {
       error: false,
       success: false,
       delete: false,
+      isLoading: true,
       message: {
         title: '',
         text: '',
       }
     }
-
   }
 
   static propTypes = {
@@ -63,6 +65,7 @@ class Topic extends Component {
     const { user, match, persistedTopic } = this.props;
     const id = match.params.id;
     const parent = match.params.p;
+    this.setLoading(true);
 
     const categories = await topicViewService.getCategories();
     const editedData = (user && id) ? await this.getTopicData(id) : {};
@@ -74,7 +77,12 @@ class Topic extends Component {
       ...persistedTopic,
       ...editedData,
       ...parentData,
+      isLoading: false,
     });
+  }
+
+  setLoading = (bool) => {
+    this.setState({ isLoading: bool });
   }
 
   async setParent(id) {
@@ -105,7 +113,7 @@ class Topic extends Component {
     return {
       topic_type: topic.type,
       topic_title: topic.title,
-      topic_text: topic.body,
+      topic_text: makeRawHtml(topic.body),
       is_draft: topic.is_draft,
       topic_categories,
       topic_parents,
@@ -148,11 +156,11 @@ class Topic extends Component {
 
     return {
       type: topic_type,
-      title: getMarkdown(topic_title),
+      title: topic_title,
       text: getMarkdown(topic_text),
-      is_draft,    
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
+      is_draft,
     };
   }
 
@@ -304,8 +312,11 @@ class Topic extends Component {
       message,
       error,
       success,
+      isLoading,
     } = this.state;
     const { user } = this.props;
+
+    if (isLoading) return <Loading />;
 
     const type = all_types[topic_type] || "idea";
 
@@ -344,6 +355,11 @@ class Topic extends Component {
           </Modal.Footer>
         </Modal>
       </div>;
+
+    const getPlaceHolder = () => {
+      // 'Enter your ' + type.toLowerCase()
+      return 'Share your ideas';
+    };
 
     return (
       <div className="main">
@@ -387,7 +403,7 @@ class Topic extends Component {
               <TextEditor 
                 value={topic_text}
                 handleValue={this.handleTopicText}
-                placeholder={"Enter your " + type.toLowerCase()}
+                placeholder={getPlaceHolder()}
               />
             </FormGroup>
             <FormGroup controlId="formControlsSelect">

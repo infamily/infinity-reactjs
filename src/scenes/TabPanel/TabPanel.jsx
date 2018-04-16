@@ -5,6 +5,7 @@ import configs from 'configs';
 import Transition from 'react-transition-group/Transition';
 import StreamTab from 'scenes/StreamTab';
 import Topic from 'scenes/Topic';
+import TopicView from 'scenes/TopicView';
 import { transitionStyles } from './transition';
 import './TabPanel.css';
 
@@ -73,6 +74,7 @@ export default class TabPanel extends Component {
                 ...transitionStyles[state]
               }}>
                 <Switch>
+                  <Route path={match.path + "/new-topic"} component={TabWrapper(TopicView)} />
                   <Route path={match.path + "/topic/:id"} component={TabWrapper(Topic)} />
                   <Route path={match.path + "/data"} render={StreamComponent} />
                 </Switch>

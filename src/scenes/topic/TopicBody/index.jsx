@@ -8,11 +8,8 @@ import Categories from './Categories';
 import Tags from '../tags';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
+import { makeHtml } from 'services/common.services';
 import configs from 'configs';
-
-import ReactHtmlParser from 'react-html-parser';
-import showdown from 'showdown';
-var mdConverter = new showdown.Converter();
 
 const TopicBody = ({ topic, children, parents, user, categories }) => {
   if (!topic.title) return null;
@@ -50,7 +47,7 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       <i>{topic.is_draft ? <p>draft</p> : ''}</i>
       
       <Tags title="Parents" items={parents} />
-      <div className="topic__body">{ReactHtmlParser(mdConverter.makeHtml(topic.body))}</div>
+      <div className="topic__body">{makeHtml(topic.body)}</div>
       <Tags title="Children" items={children} />
       
       <div className="topic__bottom">

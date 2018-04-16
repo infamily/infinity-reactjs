@@ -1,10 +1,7 @@
 import React, { Component } from 'react'; 
 import langService from 'services/lang.service.js';
 import MenuBar from 'scenes/MenuBar';
-
-import ReactHtmlParser from 'react-html-parser';
-import showdown from 'showdown';
-var mdConverter = new showdown.Converter();
+import { makeHtml } from 'services/common.services';
 
 class What extends Component {  
   
@@ -12,7 +9,7 @@ class What extends Component {
     const rowHtml = langService.whatContent().reduce((line, newline) => {
       return line + newline;
     });
-    const Content = () => ReactHtmlParser(mdConverter.makeHtml(rowHtml)); 
+    const Content = () => makeHtml(rowHtml); 
     
     return (
       <div className="main">

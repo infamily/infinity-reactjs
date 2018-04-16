@@ -26,7 +26,7 @@ class Menu extends Component {
   }
 
   new = () => {
-    this.props.history.push('/new-topic'); 
+    this.props.history.push(configs.linkBase() + '/split/new-topic'); 
   }
 
   getName(user) {
@@ -34,9 +34,8 @@ class Menu extends Component {
     return name;
   }
 
-
   render() {
-    const isNew = this.props.location.pathname !== "/new-topic";
+    const isNew = !this.props.location.pathname.includes("new-topic");
     const title = this.getName(this.props.user) || this.state.page;
 
     const NewTopic = ({ mobile }) => isNew 

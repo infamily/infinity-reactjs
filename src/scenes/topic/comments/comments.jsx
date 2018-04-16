@@ -6,11 +6,8 @@ import Transactions from './transactions';
 import ProgressBar from './progress_bar';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
+import { makeHtml } from 'services/common.services';
 import './comments.css';
-
-import ReactHtmlParser from 'react-html-parser';
-import showdown from 'showdown';
-var mdConverter = new showdown.Converter();
 
 export default class Comments extends Component {
   constructor(props) {
@@ -91,8 +88,6 @@ export default class Comments extends Component {
         remains
       } = comment;
 
-      const content = ReactHtmlParser(mdConverter.makeHtml(text));
-
       const Progress = () => (claimed_hours || assumed_hours) ?
         <ProgressBar comment={comment} />
         : null;
@@ -100,7 +95,7 @@ export default class Comments extends Component {
       const isOwner = user && user.id === owner.id;
       return (
         <div key={id} className="comment__section">
-          <div>{content}</div>
+          <div>{makeHtml(text)}</div>
           <Progress />
           <Transactions id={id} />
           <div className="comments__actions">
