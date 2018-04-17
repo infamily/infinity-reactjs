@@ -4,6 +4,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './TextEditor.css';
 
+
 class TopicEditor extends PureComponent {
   static propTypes = {
     handleValue: PropTypes.func.isRequired,
