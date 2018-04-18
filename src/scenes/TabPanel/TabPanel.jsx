@@ -74,6 +74,7 @@ export default class TabPanel extends Component {
                 ...transitionStyles[state]
               }}>
                 <Switch>
+                  <Route path={match.path + "/edit/:id"} component={TabWrapper(TopicView)} />                
                   <Route path={match.path + "/new-topic"} component={TabWrapper(TopicView)} />
                   <Route path={match.path + "/topic/:id"} component={TabWrapper(Topic)} />
                   <Route path={match.path + "/data"} render={StreamComponent} />

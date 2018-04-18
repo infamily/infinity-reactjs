@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TopicSection from './TopicSection';
+import configs from 'configs';
 import './topic_list.css'; 
 
 class Topics extends Component {
@@ -38,10 +39,10 @@ class Topics extends Component {
 
     const EditTopic = ({ owner, id }) => {
       const isOwner = user && (owner === user.username);
-      
+
       return isOwner
         ? <div className="topic_list__edit">
-            <Link to={"/edit/" + id + "/"}>
+          <Link to={configs.linkBase() + "/split/edit/" + id + "/"}>
               <div className="topic_list__btn">&#9998;</div>
             </Link>
           </div> 

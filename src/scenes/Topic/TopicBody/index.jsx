@@ -25,7 +25,7 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
 
   const EditTopic = ({ isOwner, id }) => {
     if (!isOwner) return null;
-    return <Link to={'/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>;
+    return <Link to={configs.linkBase() + '/split/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>;
   }
 
   return (

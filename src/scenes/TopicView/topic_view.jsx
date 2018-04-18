@@ -356,9 +356,8 @@ class Topic extends Component {
         </Modal>
       </div>;
 
-    const getPlaceHolder = () => {
-      // 'Enter your ' + type.toLowerCase()
-      return 'Share your ideas';
+    const getPlaceHolder = (type) => {
+      return 'Share your ' + type.toLowerCase()
     };
 
     return (
@@ -398,12 +397,12 @@ class Topic extends Component {
                 label="Title"
                 value={topic_title}
                 onChange={this.handleChange}
-                placeholder="Enter title"
+                placeholder="Topic title"
               />
               <TextEditor 
                 value={topic_text}
                 handleValue={this.handleTopicText}
-                placeholder={getPlaceHolder()}
+                placeholder={getPlaceHolder(type)}
               />
             </FormGroup>
             <FormGroup controlId="formControlsSelect">
