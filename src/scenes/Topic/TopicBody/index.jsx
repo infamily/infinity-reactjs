@@ -30,6 +30,7 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
 
   const isSplit = window.location.href.includes('/split');
   const DraftTag = () => topic.is_draft ? <i>:draft</i> : '';
+  const childLink = configs.linkBase() + '/split/add-child/' + topic.id;
 
   return (
     <div className="topic__container">
@@ -64,7 +65,7 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
             ? <UserBalance id={topic.owner.id} showQuota={false}/>
             : <Balance id={topic.owner.id}/>}
         </div>
-        <NewButton to={"/add-child/" + topic.id} title={'+ ' + child} />
+        <NewButton to={childLink} title={'+ ' + child} />
       </div>
     </div>
   );
