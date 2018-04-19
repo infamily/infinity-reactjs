@@ -67,17 +67,6 @@
   transform: scale(1.2);
 }
 
-.topic_section__icon {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-left: 5px;
-}
-
-.topic_section__icon:hover {
-  transform: scale(1.1);
-}
-
 .point_pulse {
 	animation: point_pulse 1s infinite;
   transform-origin:70% 70%;

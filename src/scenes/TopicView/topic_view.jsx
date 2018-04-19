@@ -176,7 +176,7 @@ class Topic extends Component {
 
   submitTopic = async (e) => {
     e.preventDefault();
-    const { match, clearTopic } = this.props;
+    const { match } = this.props;
     const { topic_title } = this.state;
     const edited_id = match.params.id;
 
@@ -192,25 +192,31 @@ class Topic extends Component {
     const topic = await topicViewService[action](data);
     
     if (topic) {
-      const { id } = topic;
-      const linkText = configs.server + configs.linkBase() + '/topic/' + id + '/';
-      const link = configs.linkBase() + '/topic/' + id;
-      const text = (
-        <span onClick={this.refresh}>Your topic is available on: 
-          <Link to={link}> {linkText}</Link>
-        </span>
-      );
-      
-      this.setState({
-        success: true,
-        message: {
-          title: 'Success',
-          text
-        }
-      });
-
-      clearTopic();
+      // this.showSuccessMessage(topic);
+      const link = configs.linkBase() + '/split/topic/' + topic.id;
+      this.props.history.push(link);
     }
+  }
+
+  showSuccessMessage = (topic) => {
+    const { id } = topic;
+    const linkText = configs.server + configs.linkBase() + '/topic/' + id + '/';
+    const link = configs.linkBase() + '/split/topic/' + id;
+    const PopUpText = (
+      <span onClick={this.refresh}>Your topic is available on:
+        <Link to={link}> {linkText}</Link>
+      </span>
+    );
+
+    this.setState({
+      success: true,
+      message: {
+        title: 'Success',
+        text: PopUpText,
+      }
+    });
+
+    this.props.clearTopic();
   }
 
   deleteTopic = async () => {
@@ -232,7 +238,7 @@ class Topic extends Component {
     const { results } = await topicViewService.search(input, flag);
     const options = results.map(topic => {
       const { title, url } = topic;
-      return { label: title, value: title, url }
+      return { label: title, value: title, url };
     });
 
     callback(null, {
@@ -273,7 +279,7 @@ class Topic extends Component {
       }
     });
     
-    state === 'success' && window.location.replace('/');
+    state === 'success' && window.location.replace('/'); // update topics = true
   }
 
   setFlag = key => {
@@ -334,7 +340,7 @@ class Topic extends Component {
 
       return this.state.id
       ? <div>
-          <Button type="submit">Edit</Button>
+          <Button type="submit">Save</Button>
           <Button className="topic_view__btn" onClick={() => this.showPopUp('delete')}>Delete</Button>
         </div>
       : <Button type="submit">Create</Button>;

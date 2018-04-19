@@ -54,7 +54,7 @@ class Home extends Component {
 
   componentDidMount() {
     const scrollTo = store_home.home_scroll;
-    scrollTo && window.scrollTo(0, scrollTo)
+    scrollTo && window.scrollTo(0, scrollTo);
   }
 
   makeSearch = async (e) => {

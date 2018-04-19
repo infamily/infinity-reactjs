@@ -7,7 +7,6 @@ import * as services from './services';
 import store_home from '../../services/store_home';
 import configs from 'configs';
 import { badgeStyle, getBorder } from './helpers';
-import linkImg from 'images/topic_link.png';
 
 class TopicSection extends Component {
   constructor(props) {
@@ -86,7 +85,6 @@ class TopicSection extends Component {
       const children = this.state[id];
       const isExpanded = this.state[id + 'open'] && children;
       const tabLink = configs.linkBase() + '/split/topic/' + id;
-      const fullLink = configs.linkBase() + '/topic/' + id;
       
       return (
         <div>
@@ -99,11 +97,6 @@ class TopicSection extends Component {
               className="topics__item-title" 
               data-id={id}>
               {' ' + topic.title}
-            </Link>
-            <Link 
-              to={fullLink}
-              onClick={this.saveScroll}>
-              <img src={linkImg} className="topic_section__icon" alt="infinity link" />
             </Link>
           </h2>
           

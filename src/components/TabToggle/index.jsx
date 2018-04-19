@@ -7,6 +7,7 @@ import './TabToggle.css';
 const TabComponent = () => (
   <Link to={configs.linkBase() + "/split/data"}>
     <div className="tab_toggle">
+      <span className="tab_toggle__sign">&#10094;</span> 
       Objects
     </div>
   </Link>

@@ -96,3 +96,14 @@
   font-size: 14px;
   margin-right: 5px;
 }
+
+.topic__link_icon {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 5px;
+}
+
+.topic__link_icon:hover {
+  transform: scale(1.1);
+}

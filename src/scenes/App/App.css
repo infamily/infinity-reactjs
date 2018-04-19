@@ -89,3 +89,10 @@ a:visited {
   padding-top: 10px;
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  .nav__back {
+    display: flex;
+    justify-content: space-around;
+  }
+}

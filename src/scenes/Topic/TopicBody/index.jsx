@@ -28,15 +28,23 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
     return <Link to={configs.linkBase() + '/split/edit/' + id + '/'} className="topic__edit"> <Button>Edit</Button></Link>;
   }
 
+  const isSplit = window.location.href.includes('/split');
+  const DraftTag = () => topic.is_draft ? <i>:draft</i> : '';
+
   return (
     <div className="topic__container">
 
       <EditTopic isOwner={isOwner} id={topic.id} />
       
       <h1>
-        {topic.title}
+        {isSplit
+          ? <Link to={configs.linkBase() + '/topic/' + topic.id}>
+            {topic.title}
+          </Link>
+          : <span>{topic.title}</span>}
         <span className="topic__type" style={badgeStyle(topic.type)}>
           {configs.topic_types[topic.type]}
+          <DraftTag />
         </span>
       </h1>
       <Categories categories={categories} />
@@ -44,7 +52,6 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       <p className="topic__impact">
         Community contribution<span className="topic__match">{topic.matched}h</span>
       </p>
-      <i>{topic.is_draft ? <p>draft</p> : ''}</i>
       
       <Tags title="Parents" items={parents} />
       <div className="topic__body">{makeHtml(topic.body)}</div>
