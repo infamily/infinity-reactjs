@@ -58,6 +58,9 @@ class Topic extends Component {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     persistedTopic: PropTypes.object.isRequired,
+    persistTopic: PropTypes.func.isRequired,
+    clearTopic: PropTypes.func.isRequired,
+    setUpdateTopicList: PropTypes.func.isRequired,
     user: PropTypes.object,
   };
 
@@ -193,6 +196,7 @@ class Topic extends Component {
     
     if (topic) {
       // this.showSuccessMessage(topic);
+      this.props.setUpdateTopicList(true);
       const link = configs.linkBase() + '/split/topic/' + topic.id;
       this.props.history.push(link);
     }
@@ -223,9 +227,10 @@ class Topic extends Component {
     const { match } = this.props;
     const edited_id = match.params.id;
     const result = await topicViewService.deleteTopic(edited_id);
+    
     if (result === 'success') {
-      this.props.history.push('/');
-      this.refresh();
+      this.props.setUpdateTopicList(true);      
+      this.props.history.push(configs.linkBase());
     };
   }
 

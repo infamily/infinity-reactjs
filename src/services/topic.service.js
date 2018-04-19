@@ -48,6 +48,11 @@ class TopicService {
       logger(error);
     }
   }
+
+  resetState = () => {
+    topicService.fromPage = null;
+    topicService.topics = [];
+  }
 }
 
 const topicService = new TopicService();

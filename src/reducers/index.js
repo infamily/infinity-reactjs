@@ -5,6 +5,7 @@ import persistedComment from './persistedComment';
 import persistedTopic from './persistedTopic';
 import userServerData from './userServerData';
 import balance from './userBalance';
+import shouldUpdateTopicList from './updateTopicList';
 
 export default combineReducers({
   user,
@@ -13,4 +14,5 @@ export default combineReducers({
   persistedComment,
   userServerData,
   persistedTopic,
+  shouldUpdateTopicList,
 });

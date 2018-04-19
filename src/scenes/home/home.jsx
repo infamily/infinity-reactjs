@@ -39,17 +39,38 @@ class Home extends Component {
 
   static propTypes = {
     user: PropTypes.object,
+    setUpdateTopicList: PropTypes.func.isRequired,
+    shouldUpdateTopicList: PropTypes.object.isRequired,
   }; 
 
   async componentWillMount() {
+    await this.updateListState();
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    if(nextProps.shouldUpdateTopicList) {
+      this.props.setUpdateTopicList(false);
+      
+      // clear state to get new topics
+      topicService.resetState();
+      await this.updateListState();
+    }
+  }
+  
+  updateListState = async () => {
     const { page, flag, topicView } = this.state;
     let { fromPage, topics } = topicService;
 
     if (fromPage !== page && !topics.length) {
+      this.setState({ loading: true });      
       topics = await topicService.getTopics(flag, topicView);
     }
 
-    this.setState({ topics, last_pack: topics});
+    this.setState({ 
+      topics,
+      last_pack: topics,
+      loading: false,
+    });
   }
 
   componentDidMount() {
