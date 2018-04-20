@@ -5,4 +5,4 @@ export function setUpdateTopicList(bool) {
     type: SHOULD_UPDATE,
     bool,
   }
-}
+};
