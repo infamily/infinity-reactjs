@@ -22,20 +22,20 @@ class Topic extends Component {
       parents: [],
       children: [],
       categories: [],
-      comment_id: 0,  
-      comment_text: '',
-    }
+      comment_id: 0,
+      comment_text: ''
+    };
   }
 
-  static propTypes = { 
+  static propTypes = {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     user: PropTypes.object,
-    close: PropTypes.func, // tab mode
+    close: PropTypes.func // tab mode
   };
 
-  static defaultProps = { 
-    close: null,
+  static defaultProps = {
+    close: null
   };
 
   async componentWillMount() {
@@ -47,10 +47,10 @@ class Topic extends Component {
     const getId = props => props.match.params.id;
     // check if new topic is provided
     const solve = getId(this.props) !== getId(nextProps);
-    solve && await this.loadTopicData(getId(nextProps));
+    solve && (await this.loadTopicData(getId(nextProps)));
   }
 
-  loadTopicData = async (id) => {
+  loadTopicData = async id => {
     const { server } = this.props.match.params;
     const topic = await topicService.getTopic(id, server);
 
@@ -70,103 +70,110 @@ class Topic extends Component {
       comments,
       parents,
       children,
-      categories,
+      categories
     });
-  }
+  };
 
   scrollToEdit() {
     const com_sec = this.refs.com_sec;
     const position = com_sec.getBoundingClientRect().top;
-    position < 0 && com_sec.scrollIntoView(); 
+    position < 0 && com_sec.scrollIntoView();
   }
 
-  startToEdit = (id) => {
+  startToEdit = id => {
     const comment = this.state.comments.find(comment => comment.id === id);
     this.setState({
       comment_id: id,
-      comment_text: comment.text,
+      comment_text: comment.text
     });
 
-    this.scrollToEdit();     
-  }
-  
-  reply = (name) => {
-    const response = `[${name}], `
+    this.scrollToEdit();
+  };
+
+  reply = name => {
+    const response = `[${name}], `;
     this.setState({
       comment_text: response
     });
 
     this.scrollToEdit();
-  }
+  };
 
   clear() {
     this.setState({
       comment_id: 0,
-      comment_text: '',
+      comment_text: ''
     });
   }
 
-  edit = async (text) => {
+  edit = async text => {
     const id = this.state.comment_id;
     const comment = await commentService.updateComment(id, text);
 
     const comments = this.state.comments.map(item => {
       return item.id === id ? comment : item;
     });
-    
-    this.setState({ 
+
+    this.setState({
       comments,
       comment_id: 0,
-      comment_text: '',
+      comment_text: ''
     });
-  }
+  };
 
-  remove = async (id) => {
+  remove = async id => {
     const status = await commentService.deleteComment(id);
     const comments = this.state.comments.filter(comment => comment.id !== id);
-    status === 'success' && this.setState({
-      comments,
-      comment_text: '',
-      comment_id: 0,
-    });
+    status === 'success' &&
+      this.setState({
+        comments,
+        comment_text: '',
+        comment_id: 0
+      });
     this.clear();
-  }
+  };
 
-  create = async (text) => {
+  create = async text => {
     const { url } = this.state.topic;
     const comment = await commentService.createComment(url, text);
     const comments = [comment].concat(this.state.comments);
-    this.setState({ 
+    this.setState({
       comments,
-      comment_text: '',    
+      comment_text: ''
     });
-  }
+  };
 
   render() {
     const { close, user } = this.props;
     const { topic, comments, parents, children, categories } = this.state;
 
     if (!topic.id) return <Loading />;
-    
+
     const meta = {
       title: topic.title,
       description: topic.body,
       meta: {
-        charset: 'utf-8',
+        charset: 'utf-8'
       }
     };
 
-    const HomeButton = () => (close
-      ? <div onClick={close} className="nav__back">&#10094; Home</div>
-      : <NavLink to={configs.linkBase()} className="nav__back">&#10094; Home</NavLink>
-    );
+    const HomeButton = () =>
+      close ? (
+        <div onClick={close} className="nav__back">
+          &#10094; Home
+        </div>
+      ) : (
+        <NavLink to={configs.linkBase()} className="nav__back">
+          &#10094; Home
+        </NavLink>
+      );
 
     return (
       <DocumentMeta {...meta}>
         <div className="main">
-          <div className="topics__content-item" style={{display: 'block'}}>
+          <div className="topics__content-item" style={{ display: 'block' }}>
             <HomeButton />
-            <TopicBody 
+            <TopicBody
               topic={topic}
               children={children}
               parents={parents}
@@ -183,18 +190,18 @@ class Topic extends Component {
                 topic_id={this.state.topic.id}
               />
             </div>
-            <Comments 
+            <Comments
               comments={comments}
               startToEdit={this.startToEdit}
               reply={this.reply}
               remove={this.remove}
             />
-            <MenuBar page='Menu'/>
+            <MenuBar page="Menu" />
           </div>
         </div>
       </DocumentMeta>
-      );
-    }
+    );
   }
-  
-  export default Topic; 
+}
+
+export default Topic;

@@ -14,7 +14,7 @@ export default class TabPanel extends Component {
     super();
     this.state = {
       isOpen: false,
-      fullWidth: false,      
+      fullWidth: false,
     }
   }
 
@@ -45,7 +45,7 @@ export default class TabPanel extends Component {
     const { user, match } = this.props;
     const { isOpen, fullWidth } = this.state;
     const fullStyle = fullWidth ? ' tab_container--full' : '';
-    
+
     const TabWrapper = (TabPanelContent) => (props) => (
       <TabPanelContent
         isOpen={isOpen}
@@ -74,8 +74,8 @@ export default class TabPanel extends Component {
                 ...transitionStyles[state]
               }}>
                 <Switch>
-                  <Route path={match.path + "/add-child/:p"} component={TabWrapper(TopicView)} />                
-                  <Route path={match.path + "/edit/:id"} component={TabWrapper(TopicView)} />                
+                  <Route path={match.path + "/add-child/:p"} component={TabWrapper(TopicView)} />
+                  <Route path={match.path + "/edit/:id"} component={TabWrapper(TopicView)} />
                   <Route path={match.path + "/new-topic"} component={TabWrapper(TopicView)} />
                   <Route path={match.path + "/topic/:id"} component={TabWrapper(Topic)} />
                   <Route path={match.path + "/data"} render={StreamComponent} />

@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 import MenuBar from 'scenes/MenuBar';
 import transactionService from './services';
 import TransactionTable from './TransactionTable';
-import './user_transactions.css'; 
+import './user_transactions.css';
 
 export default class UserTransactions extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       data: null,
@@ -24,10 +24,10 @@ export default class UserTransactions extends Component {
     const data = await transactionService.getHistory(match.params.id);
     const balance = await transactionService.getBalance(match.params.id);
     this.setState({ data, balance });
-  } 
+  }
 
   render() {
-    const { 
+    const {
       data,
       balance,
     } = this.state;
