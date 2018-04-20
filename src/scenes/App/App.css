@@ -5,25 +5,25 @@
 @media only screen and (min-width: 768px) {
   /* tablets and desktop */
   .app_container {
-    max-width: 90%; 
+    max-width: 90%;
     margin: 0 auto;
-  };
+  }
 }
 
 @media only screen and (max-width: 767px) {
   /* phones */
   .app_container {
-    max-width: 95%; 
+    max-width: 95%;
     margin: 0 auto;
-  };
+  }
 }
 
 @media only screen and (max-width: 767px) and (orientation: portrait) {
   /* portrait phones */
-  .app_container { 
+  .app_container {
     width: 97%;
     padding: 10px;
-  };
+  }
 }
 
 .app_container {
@@ -42,7 +42,7 @@
 
 select {
   font-size: 25px;
-} 
+}
 
 a:hover {
   text-decoration: none;
@@ -60,8 +60,9 @@ a:visited {
   color: lightslategray;
 }
 
-.main { 
-  font-family: 'Courier New',Courier,'Lucida Sans Typewriter','Lucida Typewriter',monospace;
+.main {
+  font-family: 'Courier New', Courier, 'Lucida Sans Typewriter',
+    'Lucida Typewriter', monospace;
   margin-top: 10px;
 }
 
@@ -72,7 +73,7 @@ a:visited {
 
 .main h2 {
   font-size: 1.5em;
-  margin-top: 16px;  
+  margin-top: 16px;
 }
 
 /* common */
@@ -82,7 +83,7 @@ a:visited {
   bottom: 5px;
   left: 5px;
   padding: 5px;
-  background-color:grey;
+  background-color: grey;
 }
 
 .nav__back {
@@ -95,4 +96,11 @@ a:visited {
     display: flex;
     justify-content: space-around;
   }
+}
+
+/* reset bootstrap z-index */
+.input-group .form-control,
+.input-group-btn:last-child > .btn,
+.btn-group > .btn.active {
+  z-index: 0;
 }

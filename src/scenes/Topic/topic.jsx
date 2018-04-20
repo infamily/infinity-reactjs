@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import DocumentMeta from 'react-document-meta';
-import TopicBody from './TopicBody';
 import MenuBar from 'scenes/MenuBar';
+import TopicView from 'scenes/TopicView';
 import Loading from 'components/Loading';
+import commentService from 'services/comment.service';
+import configs from 'configs';
+import TopicBody from './TopicBody';
 import CommentForm from './comment_form';
 import Comments from './comments';
 import { getCategories } from './helpers';
 import topicService from './services/topics';
-import commentService from 'services/comment.service.js';
-import configs from 'configs';
+import NewButton from './NewButton';
 import './topic.css';
+
+const getChild = type_id => {
+  const child_type = type_id + 1;
+  const type = child_type < configs.topic_types.length ? child_type : type_id;
+  return configs.topic_types[type];
+};
 
 class Topic extends Component {
   constructor(props) {
@@ -23,7 +31,8 @@ class Topic extends Component {
       children: [],
       categories: [],
       comment_id: 0,
-      comment_text: ''
+      comment_text: '',
+      addChildSection: false
     };
   }
 
@@ -110,9 +119,9 @@ class Topic extends Component {
     const id = this.state.comment_id;
     const comment = await commentService.updateComment(id, text);
 
-    const comments = this.state.comments.map(item => {
-      return item.id === id ? comment : item;
-    });
+    const comments = this.state.comments.map(
+      item => (item.id === id ? comment : item)
+    );
 
     this.setState({
       comments,
@@ -124,7 +133,7 @@ class Topic extends Component {
   remove = async id => {
     const status = await commentService.deleteComment(id);
     const comments = this.state.comments.filter(comment => comment.id !== id);
-    status === 'success' &&
+    if (status === 'success')
       this.setState({
         comments,
         comment_text: '',
@@ -143,9 +152,22 @@ class Topic extends Component {
     });
   };
 
+  handleEditSection = () => {
+    this.setState(prevState => ({
+      addChildSection: !prevState.addChildSection
+    }));
+  };
+
   render() {
     const { close, user } = this.props;
-    const { topic, comments, parents, children, categories } = this.state;
+    const {
+      topic,
+      comments,
+      parents,
+      children,
+      categories,
+      addChildSection
+    } = this.state;
 
     if (!topic.id) return <Loading />;
 
@@ -168,6 +190,18 @@ class Topic extends Component {
         </NavLink>
       );
 
+    // const childLink = `${configs.linkBase()}/split/add-child/${topic.id}`;
+    const newButtonText = !addChildSection
+      ? `+ ${getChild(topic.type)}`
+      : 'Close';
+
+    const EditTopicSection = () =>
+      addChildSection ? (
+        <div className="topic__edit_section">
+          <TopicView parent={topic.id} />
+        </div>
+      ) : null;
+
     return (
       <DocumentMeta {...meta}>
         <div className="main">
@@ -175,11 +209,14 @@ class Topic extends Component {
             <HomeButton />
             <TopicBody
               topic={topic}
-              children={children}
               parents={parents}
               categories={categories}
               user={user}
-            />
+            >
+              {children}
+            </TopicBody>
+            <NewButton action={this.handleEditSection} title={newButtonText} />
+            <EditTopicSection />
             <div ref="com_sec">
               <CommentForm
                 create={this.create}

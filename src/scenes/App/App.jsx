@@ -20,9 +20,8 @@ import TabPanel from 'scenes/TabPanel';
 import './App.css';
 
 class App extends Component {
-
   static propTypes = {
-    user: PropTypes.object,
+    user: PropTypes.object
   };
 
   render() {
@@ -31,32 +30,35 @@ class App extends Component {
     const Routes = ({ match }) => (
       <Switch>
         <Route exact path={match.path} component={Home} />
-        <Route path={match.path + "split"} component={Home} />
-        <Route path={match.path + "topic/:id/:server"} component={Topic} />
-        <Route path={match.path + "topic/:id"} component={Topic} />
-        <Route path={match.path + "page/how"} component={How} />
-        <Route path={match.path + "page/what"} component={What} />
-        <Route path={match.path + "page/otp"} component={OtpLogin} />
-        <Route path={match.path + "new-topic"} component={TopicView} />
-        <Route path={match.path + "edit/:id"} component={TopicView} />
-        <Route path={match.path + "types/:id"} component={TypePage} />
-        <Route path={match.path + "types/"} component={TypeList} />
-        <Route path={match.path + "add-child/:p"} component={TopicView} />
-        <Route path={match.path + "user-investment/:id"} component={UserTransactions} />
-        <Route component={NotFound} />        
+        <Route path={`${match.path}split`} component={Home} />
+        <Route path={`${match.path}topic/:id/:server`} component={Topic} />
+        <Route path={`${match.path}topic/:id`} component={Topic} />
+        <Route path={`${match.path}page/how`} component={How} />
+        <Route path={`${match.path}page/what`} component={What} />
+        <Route path={`${match.path}page/otp`} component={OtpLogin} />
+        <Route path={`${match.path}new-topic`} component={TopicView} />
+        <Route path={`${match.path}edit/:eId`} component={TopicView} />
+        <Route path={`${match.path}types/:id`} component={TypePage} />
+        <Route path={`${match.path}types/`} component={TypeList} />
+        <Route path={`${match.path}add-child/:p`} component={TopicView} />
+        <Route
+          path={`${match.path}user-investment/:id`}
+          component={UserTransactions}
+        />
+        <Route component={NotFound} />
       </Switch>
     );
 
     // SetWrapper defines whether need to set new configs(by Wrapper prop)
-    const SetWrapper = (Wrapper) => ({ match }) => (
+    const SetWrapper = Wrapper => ({ match }) => (
       <div className="main_layout">
         <div className="app_container">
           <Wrapper>
             <Route path={match.path} component={Routes} />
           </Wrapper>
         </div>
-        {(user && server) && <TabToggle match={match} />}
-        <Route path={match.path + "split"} component={TabPanel} />
+        {user && server && <TabToggle match={match} />}
+        <Route path={`${match.path}split`} component={TabPanel} />
       </div>
     );
 

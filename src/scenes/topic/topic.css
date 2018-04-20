@@ -23,7 +23,6 @@
   margin-bottom: 70px;
 }
 
-
 .topic__type {
   margin: 0 10px;
   border-radius: 5px;
@@ -50,15 +49,20 @@
   font-size: 16px;
 }
 
-.topic__category {
-  margin-right: 5px;
+.topic__edit_section {
+  padding: 10px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 150px;
 }
 
 .topic__match {
   color: #000;
   font-size: 13px;
   margin: 0 auto;
-  display: inline-block;  
+  display: inline-block;
   min-width: 25px;
   text-align: center;
   margin: 0 5px;

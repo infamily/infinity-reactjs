@@ -14,13 +14,13 @@ export default class TabPanel extends Component {
     super();
     this.state = {
       isOpen: false,
-      fullWidth: false,
-    }
+      fullWidth: false
+    };
   }
 
   static propTypes = {
-    history: PropTypes.object.isRequired,
-  }
+    history: PropTypes.object.isRequired
+  };
 
   componentDidMount() {
     this.open();
@@ -28,25 +28,23 @@ export default class TabPanel extends Component {
 
   open = () => {
     this.setState({ isOpen: true });
-  }
+  };
 
   close = () => {
     this.setState({ isOpen: false });
-    setTimeout(() => this.props.history.push(configs.linkBase() + '/'), 300);
-  }
+    setTimeout(() => this.props.history.push(`${configs.linkBase()}/`), 300);
+  };
 
   toggleFullScreen = () => {
-    this.setState((prevState => (
-      { fullWidth: !prevState.fullWidth }
-    )));
-  }
+    this.setState(prevState => ({ fullWidth: !prevState.fullWidth }));
+  };
 
   render() {
     const { user, match } = this.props;
     const { isOpen, fullWidth } = this.state;
     const fullStyle = fullWidth ? ' tab_container--full' : '';
 
-    const TabWrapper = (TabPanelContent) => (props) => (
+    const TabWrapper = TabPanelContent => props => (
       <TabPanelContent
         isOpen={isOpen}
         close={this.close}
@@ -55,36 +53,48 @@ export default class TabPanel extends Component {
       />
     );
 
-    const StreamComponent = () => user && (
-      <StreamTab
-        isOpen={isOpen}
-        close={this.close}
-        toggleFullScreen={this.toggleFullScreen}
-      />
-    );
+    const StreamComponent = () =>
+      user && (
+        <StreamTab
+          isOpen={isOpen}
+          close={this.close}
+          toggleFullScreen={this.toggleFullScreen}
+        />
+      );
 
     return (
       <div>
         <Transition in={isOpen} timeout={0}>
-          {(state) => (
-            <div className="tab_layout" style={{
-              ...transitionStyles[state]
-            }}>
-              <div className={"tab_container" + fullStyle} style={{
-                ...transitionStyles[state]
-              }}>
+          {state => (
+            <div className="tab_layout" style={{ ...transitionStyles[state] }}>
+              <div
+                className={`tab_container${fullStyle}`}
+                style={{ ...transitionStyles[state] }}
+              >
                 <Switch>
-                  <Route path={match.path + "/add-child/:p"} component={TabWrapper(TopicView)} />
-                  <Route path={match.path + "/edit/:id"} component={TabWrapper(TopicView)} />
-                  <Route path={match.path + "/new-topic"} component={TabWrapper(TopicView)} />
-                  <Route path={match.path + "/topic/:id"} component={TabWrapper(Topic)} />
-                  <Route path={match.path + "/data"} render={StreamComponent} />
+                  <Route
+                    path={`${match.path}/add-child/:p`}
+                    component={TabWrapper(TopicView)}
+                  />
+                  <Route
+                    path={`${match.path}/edit/:eId`}
+                    component={TabWrapper(TopicView)}
+                  />
+                  <Route
+                    path={`${match.path}/new-topic`}
+                    component={TabWrapper(TopicView)}
+                  />
+                  <Route
+                    path={`${match.path}/topic/:id`}
+                    component={TabWrapper(Topic)}
+                  />
+                  <Route path={`${match.path}/data`} render={StreamComponent} />
                 </Switch>
               </div>
             </div>
           )}
         </Transition>
       </div>
-    )
+    );
   }
 }

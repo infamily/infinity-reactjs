@@ -5,9 +5,9 @@ import configs from 'configs';
 import './TabToggle.css';
 
 const TabComponent = () => (
-  <Link to={configs.linkBase() + "/split/data"}>
+  <Link to={`${configs.linkBase()}/split/data`}>
     <div className="tab_toggle">
-      <span className="tab_toggle__sign">&#10094;</span> 
+      <span className="tab_toggle__sign">&#10094;</span>
       Objects
     </div>
   </Link>
@@ -15,14 +15,14 @@ const TabComponent = () => (
 
 const TabToggle = ({ match }) => (
   <Switch>
-    <Route exact path={match.path + "split/data"} component={null} />
-    <Route path={match.path + "split/topic"} component={TabComponent} />
+    <Route exact path={`${match.path}split/data`} component={null} />
+    <Route path={`${match.path}split/topic`} component={TabComponent} />
     <Route exact path={match.path} component={TabComponent} />
   </Switch>
-)
+);
 
 TabToggle.propTypes = {
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 export default TabToggle;

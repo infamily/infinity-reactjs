@@ -6,14 +6,14 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     server: state.server,
-    shouldUpdateTopicList: state.shouldUpdateTopicList,
-  }
+    shouldUpdateTopicList: state.shouldUpdateTopicList
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setUpdateTopicList: (bool) => dispatch(setUpdateTopicList(bool)),
-  }
+    setUpdateTopicList: bool => dispatch(setUpdateTopicList(bool))
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
