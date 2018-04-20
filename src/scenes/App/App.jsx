@@ -17,6 +17,7 @@ import DefaultWrapper from 'components/DefaultWrapper';
 import ProgramToggle from 'components/ProgramToggle';
 import TabToggle from 'components/TabToggle';
 import TabPanel from 'scenes/TabPanel';
+import NoServer from 'scenes/NoServer';
 import './App.css';
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
         <Route path={`${match.path}types/:id`} component={TypePage} />
         <Route path={`${match.path}types/`} component={TypeList} />
         <Route path={`${match.path}add-child/:p`} component={TopicView} />
+        <Route path={`${match.path}no-server`} component={NoServer} />
         <Route
           path={`${match.path}user-investment/:id`}
           component={UserTransactions}
