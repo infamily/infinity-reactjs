@@ -5,22 +5,19 @@ class ServerService {
     this.api = null;
     this.paymentAuthorization = null;
 
-    this.api_servers = [
-      'https://wefindx.io',
-      'https://inf.wefindx.com',
-    ];
+    this.api_servers = ['https://wefindx.io', 'https://inf.wefindx.com'];
 
     this.getDefault();
   }
 
   async getDefault() {
-    const raw = localStorage['state_if'];
+    const raw = localStorage.state_if;
     const server = raw && JSON.parse(raw).server;
 
     if (!server) {
       await this.getFastest();
       return;
-    };
+    }
 
     this.isLocal(); // add local server in sandbox mode
     this.setDefault(server);
@@ -31,24 +28,21 @@ class ServerService {
     const server = 'http://0.0.0.0:8000';
     const isIncluded = this.api_servers.indexOf(server) > -1;
     if (isLocal && !isIncluded) this.api_servers.push(server);
-  }
+  };
 
   getFastest = async () => {
-    const promises = this.api_servers.map((api) => (
-      this.getResponse(api)
-    ));
+    const promises = this.api_servers.map(api => this.getResponse(api));
 
     const first = await Promise.race(promises);
 
     this.setDefault(first);
     return first;
-  }
+  };
 
-  getResponse = (api) => {
-    return new Promise((resolve) => {
-      axios.get(api).then(() => resolve(api));
-    });
-  }
+  getResponse = async api => {
+    await axios.get(api);
+    return api;
+  };
 
   changeServer(server) {
     const index = this.api_servers.indexOf(server);
@@ -56,8 +50,8 @@ class ServerService {
     this.setDefault(server);
   }
 
-  changeServerByLink = async (server) => {
-    const url = 'https://' + server;
+  changeServerByLink = async server => {
+    const url = `https://${server}`;
 
     // check if is known
     const index = this.api_servers.indexOf(url);
@@ -81,10 +75,10 @@ class ServerService {
     }
 
     return null;
-  }
+  };
 
   async checkOrganization(server) {
-    const url = 'https://inf.' + server;
+    const url = `https://inf.${server}`;
     const isValidServer = await this.checkIsServerAvailable(url);
     const link = isValidServer ? url : null;
     return link;
@@ -101,10 +95,10 @@ class ServerService {
     }
   }
 
-  setDefault = (server) => {
+  setDefault = server => {
     this.api = server;
     this.paymentAuthorization = null;
-  }
+  };
 
   getPaymentAuthorization = async () => {
     if (this.paymentAuthorization === null) {
@@ -113,16 +107,16 @@ class ServerService {
     }
 
     return this.paymentAuthorization;
-  }
+  };
 
-  get = async (url) => {
+  get = async url => {
     try {
       const { data } = await axios.get(this.api + url);
       return { data, error: null };
     } catch (error) {
       return { data: null, error };
     }
-  }
+  };
 }
 
 const serverService = new ServerService();

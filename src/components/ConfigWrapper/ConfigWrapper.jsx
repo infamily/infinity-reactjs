@@ -8,10 +8,7 @@ import configs from 'configs';
 export default class ConfigWrapper extends Component {
   constructor() {
     super();
-    this.state = {
-      loading: true,
-      serverName: 'the server'
-    };
+    this.state = { loading: true, serverName: 'the server' };
   }
 
   static propTypes = {
@@ -20,6 +17,7 @@ export default class ConfigWrapper extends Component {
     userServerData: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
+    children: PropTypes.object.isRequired,
     server: PropTypes.string
   };
 
@@ -36,35 +34,42 @@ export default class ConfigWrapper extends Component {
     if (getConfigs(this.props) !== nextConfigs) {
       this.setLoading(true);
       await this.setParams(nextConfigs);
-      window.location.reload(false);
     }
   }
 
   setParams = async (nextConfigs = null) => {
-    const { match, history, setServer, signIn, userServerData } = this.props;
+    const {
+      match,
+      history,
+      setServer,
+      signIn,
+      userServerData,
+      server
+    } = this.props;
     const params = nextConfigs || match.params.configs; // get configs
-    const [server, lang] = params.split(':');
-    this.setState({ serverName: server });
+    const [serverName, lang] = params.split(':');
+    this.setState({ serverName });
 
     // check configs
-    const prevAPI = serverService.api;
-    const newURL = await serverService.changeServerByLink(server);
+    const prevAPI = server;
+    const newURL = await serverService.changeServerByLink(serverName);
     const API = serverService.api;
-    // no valid server
 
+    // no valid serverName
     if (!newURL && !API) {
-      history.push('/'); // get the nearest server (DefaultWrapper)
+      history.push('/'); // get the nearest serverName (DefaultWrapper)
       return;
     }
 
+    // provided invalid server
     if (!newURL && API) {
-      const link = `${configs.linkBase()}/no-server?server=${server}`;
+      const link = `${configs.linkBase()}/no-server?server=${serverName}`;
       history.push(link); // show NoServer page
       return;
     }
 
     // new API is provided
-    if (prevAPI !== API) {
+    if (newURL && prevAPI !== API) {
       setServer(newURL); // set configs
     }
 
@@ -74,6 +79,15 @@ export default class ConfigWrapper extends Component {
 
     // set language
     await this.checkLanguage(lang);
+
+    if (newURL && nextConfigs) {
+      this.setLoading(true);
+      window.location.reload(false);
+    }
+  };
+
+  setLoading = bool => {
+    this.setState({ loading: bool });
   };
 
   checkLanguage = async lang => {
@@ -84,10 +98,6 @@ export default class ConfigWrapper extends Component {
       await langService.changeLangByLink(lang);
     }
   };
-
-  setLoading(bool) {
-    this.setState({ loading: bool });
-  }
 
   render() {
     if (this.state.loading || !this.props.server) {
