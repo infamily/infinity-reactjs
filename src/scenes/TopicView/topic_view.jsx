@@ -159,7 +159,7 @@ class TopicView extends Component {
     e.preventDefault();
     const { match } = this.props;
     const { topic_title } = this.state;
-    const edited_id = match.params.id;
+    const edited_id = match.params.eId;
 
     if (!topic_title.trim()) {
       this.showError();
@@ -204,7 +204,7 @@ class TopicView extends Component {
 
   deleteTopic = async () => {
     const { match } = this.props;
-    const edited_id = match.params.id;
+    const edited_id = match.params.eId;
     const result = await topicViewService.deleteTopic(edited_id);
 
     if (result === 'success') {
@@ -304,6 +304,13 @@ class TopicView extends Component {
     });
   };
 
+  goBack = () => {
+    const { push } = this.props.history;
+    const { eId } = this.props.match.params;
+    const link = eId ? `/split/topic/${eId}` : '';
+    push(`${configs.linkBase()}${link}`);
+  };
+
   render() {
     const {
       topic_type,
@@ -335,8 +342,8 @@ class TopicView extends Component {
     const Buttons = () => {
       if (!user)
         return (
-          <div onClick={this.persistTopic}>
-            <p>
+          <div>
+            <p onClick={this.persistTopic}>
               <Link to="/page/otp">Sign in</Link> to post a topic.
             </p>
           </div>
@@ -344,16 +351,19 @@ class TopicView extends Component {
 
       return this.state.id ? (
         <div>
-          <Button type="submit">Save</Button>
+          <Button onClick={this.goBack} className="topic_view__back">
+            &#10094; Back
+          </Button>
+          <Button type="submit"> &#9873; Save</Button>
           <Button
             className="topic_view__btn"
             onClick={() => this.showPopUp('delete')}
           >
-            Delete
+            &#10006; Delete
           </Button>
         </div>
       ) : (
-        <Button type="submit">Create</Button>
+        <Button type="submit">&#9873; Create</Button>
       );
     };
 

@@ -1,19 +1,21 @@
 .new_btn {
   /* border: 2px solid #ffffff; */
+  border: none;
   background-color: #fff;
   color: black;
-  border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-}
-
-.new_btn:hover {
   outline: none;
-  background-color: #dfe2df;
 }
 
 .new_btn:active,
 .new_btn:focus {
   background-color: #fff;
   outline: none;
+  border: none;
+}
+
+.new_btn:hover {
+  outline: none;
+  background-color: #dfe2df;
 }

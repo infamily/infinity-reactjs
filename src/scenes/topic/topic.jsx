@@ -6,6 +6,7 @@ import MenuBar from 'scenes/MenuBar';
 import TopicView from 'scenes/TopicView';
 import Loading from 'components/Loading';
 import commentService from 'services/comment.service';
+import { Panel } from 'react-bootstrap';
 import configs from 'configs';
 import TopicBody from './TopicBody';
 import CommentForm from './comment_form';
@@ -195,13 +196,6 @@ class Topic extends Component {
       ? `+ ${getChild(topic.type)}`
       : 'Close';
 
-    const EditTopicSection = () =>
-      addChildSection ? (
-        <div className="topic__edit_section">
-          <TopicView parent={topic.id} />
-        </div>
-      ) : null;
-
     return (
       <DocumentMeta {...meta}>
         <div className="main">
@@ -215,8 +209,21 @@ class Topic extends Component {
             >
               {children}
             </TopicBody>
-            <NewButton action={this.handleEditSection} title={newButtonText} />
-            <EditTopicSection />
+            <div className="topic__edit_section">
+              <NewButton
+                action={this.handleEditSection}
+                title={newButtonText}
+              />
+              <Panel
+                id="collapsible-data-panel"
+                expanded={addChildSection}
+                className="topic__edit_panel"
+                collapsible
+                defaultExpanded={false}
+              >
+                <TopicView parent={topic.id} />
+              </Panel>
+            </div>
             <div ref="com_sec">
               <CommentForm
                 create={this.create}

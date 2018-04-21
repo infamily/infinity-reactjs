@@ -9,7 +9,7 @@
   "parser": "babel-eslint",
   "extends": ["airbnb", "prettier", "prettier/react"],
   "rules": {
-    "camelcase": 2,
+    "camelcase": 1,
     "dot-notation": 2,
     "linebreak-style": 0,
     "prettier/prettier": [
