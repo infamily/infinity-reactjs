@@ -54,11 +54,11 @@ class ServerService {
     const url = `https://${server}`;
 
     // check if is known
-    const index = this.api_servers.indexOf(url);
-    if (index > -1) {
-      this.setDefault(url);
-      return url;
-    }
+    // const index = this.api_servers.indexOf(url);
+    // if (index > -1) {
+    //   this.setDefault(url);
+    //   return url;
+    // }
 
     // check if is valid
     const isValidServer = await this.checkIsServerAvailable(url);
@@ -84,7 +84,7 @@ class ServerService {
     return link;
   }
 
-  async checkIsServerAvailable(url) {
+  checkIsServerAvailable = async url => {
     const noToken = axios.create();
     try {
       const { data } = await noToken.get(url);
@@ -93,7 +93,7 @@ class ServerService {
     } catch (error) {
       return null;
     }
-  }
+  };
 
   setDefault = server => {
     this.api = server;
