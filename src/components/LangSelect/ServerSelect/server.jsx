@@ -35,24 +35,10 @@ class ServerButton extends Component {
   };
 
   changeServer = api => {
-    const {
-      // userServerData, setServer, signIn,
-      history
-    } = this.props;
-
-    // that code isn't required more. Test and delete...
-
-    // setServer(api); // set server in store
-    // serverService.changeServer(api); // set server in service
-    // this.setState({ server: api }); // set server in local state
-
-    // // switch user data
-    // const serverData = userServerData[serverService.api] || null;
-    // signIn(serverData);
+    const { history } = this.props;
 
     const url = api.split('//')[1];
     history.push(`/${url}/@`);
-    // window.location.replace(`${configs.server}/${url}/@`);
   };
 
   render() {

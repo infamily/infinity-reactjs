@@ -191,7 +191,6 @@ class Topic extends Component {
         </NavLink>
       );
 
-    // const childLink = `${configs.linkBase()}/split/add-child/${topic.id}`;
     const newButtonText = !addChildSection
       ? `+ ${getChild(topic.type)}`
       : 'Close';
