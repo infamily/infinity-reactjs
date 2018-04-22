@@ -18,13 +18,13 @@ import Loading from 'components/Loading';
 import TextEditor from 'components/TextEditor/TopicEditor';
 import FormSelect from 'components/FormSelect';
 import topicViewService from 'services/topic_view.service';
-import { makeRawHtml } from 'services/common.services';
+// import { makeRawHtml } from 'services/common.services';
 import configs from 'configs';
 import 'react-select/dist/react-select.min.css';
 import { PopupModal } from './PopupModal';
 import SelectOption from './SelectOption';
 import topicService from './services';
-import { getMarkdown } from './helpers';
+// import { getMarkdown } from './helpers';
 import './topic_view.css';
 
 class TopicView extends Component {
@@ -116,7 +116,7 @@ class TopicView extends Component {
     return {
       topic_type: topic.type,
       topic_title: topic.title,
-      topic_text: makeRawHtml(topic.body),
+      topic_text: topic.body,
       is_draft: topic.is_draft,
       topic_categories,
       topic_parents
@@ -138,7 +138,7 @@ class TopicView extends Component {
     return {
       type: topic_type,
       title: topic_title,
-      text: getMarkdown(topic_text),
+      text: topic_text.toString('markdown'), // editor method
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
       is_draft
@@ -152,6 +152,24 @@ class TopicView extends Component {
         title: 'Submit error',
         text: 'Topic title is required.'
       }
+    });
+  };
+
+  setFlag = key => {
+    const { flag } = this.state;
+    if (flag !== key) this.setState({ flag: key });
+  };
+
+  getTopics = async (input, callback) => {
+    const { flag } = this.state;
+    const { results } = await topicViewService.search(input, flag);
+    const options = results.map(topic => {
+      const { title, url } = topic;
+      return { label: title, value: title, url };
+    });
+
+    callback(null, {
+      options
     });
   };
 
@@ -213,21 +231,8 @@ class TopicView extends Component {
     }
   };
 
-  refresh() {
+  refresh = () => {
     window.location.reload(false);
-  }
-
-  getTopics = async (input, callback) => {
-    const { flag } = this.state;
-    const { results } = await topicViewService.search(input, flag);
-    const options = results.map(topic => {
-      const { title, url } = topic;
-      return { label: title, value: title, url };
-    });
-
-    callback(null, {
-      options
-    });
   };
 
   handleChange = e => {
@@ -265,11 +270,6 @@ class TopicView extends Component {
     if (state === 'success') window.location.replace('/');
   };
 
-  setFlag = key => {
-    const { flag } = this.state;
-    if (flag !== key) this.setState({ flag: key });
-  };
-
   persistTopic = () => {
     const {
       topic_type,
@@ -298,9 +298,9 @@ class TopicView extends Component {
     });
   };
 
-  handleTopicText = html => {
+  handleTopicText = value => {
     this.setState({
-      topic_text: html
+      topic_text: value
     });
   };
 
