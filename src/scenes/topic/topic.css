@@ -23,11 +23,11 @@
   margin-bottom: 70px;
 }
 
-.topic__type {
-  margin: 0 10px;
-  border-radius: 5px;
-  color: white;
+.topic__draft {
+  margin: 5px 10px;
+  border-radius: 3px;
   padding: 3px;
+  background-color: rgb(247, 247, 247);
   font-size: 14px;
 }
 
@@ -114,4 +114,11 @@
 .topic__edit_panel {
   border: none;
   margin-bottom: 0px;
+}
+
+.topic__category {
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 0;
+  padding: 1px 10px;
 }

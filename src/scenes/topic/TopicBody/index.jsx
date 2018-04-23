@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
+import TopicInfo from 'components/Balance/TopicInfo';
 import { makeHtml } from 'services/common.services';
 import configs from 'configs';
-import { badgeStyle } from '../helpers/badge';
+import { badgeStyle, getColor } from '../helpers/badge';
 import Categories from './Categories';
 import Tags from '../tags';
 
@@ -35,7 +36,14 @@ const TopicBody = ({
   };
 
   const isSplit = window.location.href.includes('/split');
-  const DraftTag = () => (topic.is_draft ? <i>:draft</i> : '');
+  const DraftTag = () =>
+    topic.is_draft ? (
+      <span className="topic__draft">
+        <i>draft</i>
+      </span>
+    ) : (
+      ''
+    );
 
   return (
     <div className="topic__container">
@@ -49,18 +57,14 @@ const TopicBody = ({
         ) : (
           <span>{topic.title}</span>
         )}
-        <span className="topic__type" style={badgeStyle(topic.type)}>
-          {configs.topic_types[topic.type]}
-          <DraftTag />
-        </span>
+        <DraftTag />
       </h1>
+      <TopicInfo
+        type={configs.topic_types[topic.type]}
+        hours={topic.matched}
+        color={getColor(topic)}
+      />
       <Categories categories={categories} />
-
-      <p className="topic__impact">
-        Community contribution<span className="topic__match">
-          {topic.matched}h
-        </span>
-      </p>
 
       <Tags title="Parents" items={parents} />
       <div className="topic__body">{makeHtml(topic.body)}</div>

@@ -8,16 +8,16 @@ const Categories = ({ categories }) => {
   return (
     <p>
       {categories.map(item => (
-        <span className="topic__category" key={item.id}>
-          <Link to={'/types/' + item.id}>{item.name}</Link>
+        <span className="topic__category topic__draft" key={item.id}>
+          <Link to={`/types/${item.id}`}>{item.name}</Link>
         </span>
       ))}
     </p>
   );
-}
+};
 
 Categories.propTypes = {
-  categories: PropTypes.array.isRequired,
-}
+  categories: PropTypes.array.isRequired
+};
 
 export default Categories;

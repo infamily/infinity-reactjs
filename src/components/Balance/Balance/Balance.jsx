@@ -10,13 +10,13 @@ class Balance extends Component {
     super();
     this.state = {
       hours: null,
-      isOpenQuotaBox: false,
+      isOpenQuotaBox: false
     };
   }
 
   static propTypes = {
-    id: PropTypes.number.isRequired,
-  }
+    id: PropTypes.number.isRequired
+  };
 
   async componentWillMount() {
     await this.updateBalanceState();
@@ -25,12 +25,12 @@ class Balance extends Component {
   async updateBalanceState() {
     const { id } = this.props;
     const { data } = await getUserBalance(id);
-    const balance = (data !== null) ? data.balance : -1;
-    const parse = (data) => parseFloat(data).toFixed(2);
+    const balance = data !== null ? data.balance : -1;
+    const parse = data => parseFloat(data).toFixed(2);
 
-    this.setState({ 
-      hours: parse(balance),
-     });
+    this.setState({
+      hours: parse(balance)
+    });
   }
 
   render() {
@@ -40,8 +40,8 @@ class Balance extends Component {
     if (!hours || hours < 0) return null;
 
     return (
-      <div className="balance__hours">
-        <Link to={"/user-investment/" + id}>
+      <div className="balance__hours balance__only">
+        <Link to={`/user-investment/${id}`}>
           <TooltipOverlay text="Balance" placement="bottom">
             <strong className="balance__counter">{hours}h</strong>
           </TooltipOverlay>
@@ -49,6 +49,6 @@ class Balance extends Component {
       </div>
     );
   }
-};
+}
 
 export default Balance;
