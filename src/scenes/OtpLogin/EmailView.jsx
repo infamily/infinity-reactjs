@@ -6,6 +6,10 @@ import ifIcon from 'images/if.png';
 import otpService from './services';
 import errorService from './services/error';
 
+const initialState = {
+  captcha_1: ''
+};
+
 export default class EmailView extends Component {
   constructor() {
     super();
@@ -13,7 +17,6 @@ export default class EmailView extends Component {
       email: '',
       captcha_0: '',
       captcha_1: '',
-      password: '',
       captcha: {
         key: '',
         image_url: ''
@@ -92,7 +95,7 @@ export default class EmailView extends Component {
 
       const params = { email, captcha };
       await otpService.signUp(params);
-
+      this.setState({ ...initialState });
       this.props.changeEmail(email);
       this.props.changeView('login');
     } catch (error) {

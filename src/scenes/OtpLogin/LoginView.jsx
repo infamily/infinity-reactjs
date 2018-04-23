@@ -12,18 +12,13 @@ export default class LoginView extends Component {
   static propTypes = {
     view: PropTypes.string.isRequired,
     login: PropTypes.func.isRequired,
-    changeView: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
     changePassword: PropTypes.func.isRequired
   };
 
   submit = () => {
     const { password } = this.state;
-    this.props.changePassword(password);
-    this.login.login();
-  };
-
-  goBack = () => {
-    this.props.changeView('email');
+    this.props.login(password);
   };
 
   handleChange = e => {
@@ -31,8 +26,10 @@ export default class LoginView extends Component {
       [e.target.name]: e.target.value
     });
   };
+
   render() {
     const { password } = this.state;
+    const { goBack } = this.props;
 
     if (this.props.view !== 'login') return null;
 
@@ -51,14 +48,12 @@ export default class LoginView extends Component {
                 name="password"
                 type="password"
                 placeholder="One time password"
+                autoComplete="off"
                 required
                 onChange={this.handleChange}
               />
             </div>
-            <button
-              className="primaryAction btn otp__btn"
-              onClick={this.goBack}
-            >
+            <button className="primaryAction btn otp__btn" onClick={goBack}>
               Resend code
             </button>
             <button className="btn btn-primary otp__btn" onClick={this.submit}>

@@ -12,7 +12,7 @@ const getContainerStyle = color => ({
 class TopicInfo extends PureComponent {
   static propTypes = {
     type: PropTypes.string.isRequired,
-    hours: PropTypes.string.isRequired,
+    hours: PropTypes.number.isRequired,
     color: PropTypes.string.isRequired
   };
 

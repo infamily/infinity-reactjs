@@ -16,11 +16,7 @@ export default class OtpLogin extends Component {
       view: 'view',
       email: '',
       password: '',
-      popUp: {
-        state: false,
-        title: '',
-        text: ''
-      }
+      popUp: { state: false, title: '', text: '' }
     };
   }
 
@@ -32,11 +28,9 @@ export default class OtpLogin extends Component {
     user: PropTypes.object
   };
 
-  login = async e => {
-    e.preventDefault();
-
+  login = async password => {
     try {
-      const { password, email } = this.state;
+      const { email } = this.state;
       if (!password) {
         this.setPopUp({
           title: 'Sign In Error',
@@ -44,10 +38,7 @@ export default class OtpLogin extends Component {
         });
         return;
       }
-      const params = {
-        one_time_password: password,
-        email
-      };
+      const params = { one_time_password: password, email };
 
       const raw = await otpService.userLogin(params);
       const data = helpers.formatUserData(raw);
@@ -68,6 +59,10 @@ export default class OtpLogin extends Component {
         });
       }
     }
+  };
+
+  goBack = () => {
+    this.changeView('email');
   };
 
   redirectTo = () => {
@@ -106,21 +101,15 @@ export default class OtpLogin extends Component {
   };
 
   changeEmail = email => {
-    this.setState({
-      email
-    });
+    this.setState({ email });
   };
 
   changePassword = password => {
-    this.setState({
-      password
-    });
+    this.setState({ password });
   };
 
   changeView = view => {
-    this.setState({
-      view
-    });
+    this.setState({ view });
   };
 
   render() {
@@ -151,7 +140,7 @@ export default class OtpLogin extends Component {
         />
         <LoginView
           view={view}
-          changeView={this.changeView}
+          goBack={this.goBack}
           login={this.login}
           changePassword={this.changePassword}
         />
