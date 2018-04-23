@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CheckBox from 'components/CheckBox';
+import ifIcon from 'images/if.png';
 import otpService from './services';
 import errorService from './services/error';
-import ifIcon from 'images/if.png';
 
 export default class EmailView extends Component {
   constructor() {
@@ -19,7 +19,7 @@ export default class EmailView extends Component {
         image_url: ''
       },
       tosAgreement: false,
-      tosError: false,
+      tosError: false
     };
   }
 
@@ -27,14 +27,14 @@ export default class EmailView extends Component {
     view: PropTypes.string.isRequired,
     setPopUp: PropTypes.func.isRequired,
     changeView: PropTypes.func.isRequired,
-    changeEmail: PropTypes.func.isRequired,
-  }
+    changeEmail: PropTypes.func.isRequired
+  };
 
   componentDidMount() {
     !this.state.captcha.key && this.refresh();
   }
 
-  refresh = async (e) => {
+  refresh = async e => {
     e && e.preventDefault();
     try {
       const data = await otpService.getCaptcha();
@@ -42,13 +42,13 @@ export default class EmailView extends Component {
     } catch (e) {
       this.setPopUp({
         title: 'Network Error',
-        text: e,
+        text: e
       });
     }
-  }
+  };
 
   updateCaptcha(data) {
-    if (data['key']) {
+    if (data.key) {
       const image_url = otpService.getImage(data);
 
       this.setState({
@@ -56,18 +56,18 @@ export default class EmailView extends Component {
         captcha_1: '',
         captcha: {
           key: data.key,
-          image_url,
+          image_url
         }
       });
-      this.props.changeView('email');      
+      this.props.changeView('email');
     }
   }
 
-  setPopUp = (params) => {
+  setPopUp = params => {
     this.props.setPopUp(params);
-  }
+  };
 
-  onEmailSubmit = async (e) => {
+  onEmailSubmit = async e => {
     e.preventDefault();
 
     try {
@@ -87,7 +87,7 @@ export default class EmailView extends Component {
 
       const captcha = {
         hashkey: captcha_0,
-        response: captcha_1,
+        response: captcha_1
       };
 
       const params = { email, captcha };
@@ -99,29 +99,29 @@ export default class EmailView extends Component {
       const text = errorService.getErrorMessage(error.response.data);
       this.setPopUp({
         title: 'Sign Up Error',
-        text: text || 'Something went wrong. Try again.',
+        text: text || 'Something went wrong. Try again.'
       });
     }
-  }
+  };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   handleToS = () => {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       tosAgreement: !prevState.tosAgreement,
-      tosError: false,
+      tosError: false
     }));
-  }
+  };
 
   handleToSError = () => {
     this.setState({
-      tosError: true,
+      tosError: true
     });
-  } 
+  };
 
   render() {
     const {
@@ -130,7 +130,7 @@ export default class EmailView extends Component {
       captcha_1,
       captcha,
       tosAgreement,
-      tosError,
+      tosError
     } = this.state;
 
     if (this.props.view !== 'email') return null;
@@ -155,7 +155,12 @@ export default class EmailView extends Component {
             <div id="div_id_captcha" className="form-group">
               <div className="row">
                 <div className="col-md-8">
-                  <input name="captcha_0" type="hidden" value={captcha_0} required />
+                  <input
+                    name="captcha_0"
+                    type="hidden"
+                    value={captcha_0}
+                    required
+                  />
                   <input
                     className="form-control otp__input"
                     value={captcha_1}
@@ -168,18 +173,26 @@ export default class EmailView extends Component {
                 </div>
                 <div className="otp__captcha">
                   <img src={captcha.image_url} alt="captcha" />
-                  <a className="primaryAction btn otp__btn" onClick={this.refresh} >&#8634;</a>
+                  <a
+                    className="primaryAction btn otp__btn"
+                    onClick={this.refresh}
+                  >
+                    &#8634;
+                  </a>
                 </div>
               </div>
             </div>
             <div onClick={this.handleToS}>
-              <CheckBox
-                value={tosAgreement}
-                error={tosError}>
-                <span>I have read and agree to the <Link to="#">Terms of Service</Link></span>
+              <CheckBox value={tosAgreement} error={tosError}>
+                <span>
+                  I have read and agree to the{' '}
+                  <Link to="#">Terms of Service</Link>
+                </span>
               </CheckBox>
             </div>
-            <button type="submit" className="primaryAction btn btn-lg otp__btn">CONTINUE</button>
+            <button type="submit" className="primaryAction btn btn-lg otp__btn">
+              CONTINUE
+            </button>
           </form>
         </div>
       </div>

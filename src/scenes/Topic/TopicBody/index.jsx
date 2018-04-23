@@ -7,7 +7,7 @@ import UserBalance from 'components/Balance/UserBalance';
 import TopicInfo from 'components/Balance/TopicInfo';
 import { makeHtml } from 'services/common.services';
 import configs from 'configs';
-import { badgeStyle, getColor } from '../helpers/badge';
+import { getColor } from '../helpers/badge';
 import Categories from './Categories';
 import Tags from '../tags';
 
@@ -85,6 +85,7 @@ const TopicBody = ({
 };
 
 TopicBody.propTypes = {
+  handleEditSection: PropTypes.func.isRequired,
   topic: PropTypes.object.isRequired,
   children: PropTypes.array.isRequired,
   parents: PropTypes.array.isRequired,
