@@ -11,14 +11,7 @@ import { getColor } from '../helpers/badge';
 import Categories from './Categories';
 import Tags from '../tags';
 
-const TopicBody = ({
-  topic,
-  children,
-  parents,
-  user,
-  categories,
-  handleEditSection
-}) => {
+const TopicBody = ({ topic, children, parents, user, categories }) => {
   if (!topic.title) return null;
   const isOwner = user && topic.owner.id === user.id;
 
@@ -85,7 +78,6 @@ const TopicBody = ({
 };
 
 TopicBody.propTypes = {
-  handleEditSection: PropTypes.func.isRequired,
   topic: PropTypes.object.isRequired,
   children: PropTypes.array.isRequired,
   parents: PropTypes.array.isRequired,

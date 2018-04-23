@@ -22,7 +22,7 @@ class StatefulEditor extends Component {
   render() {
     return (
       <RichTextEditor
-        // className="text_editor"
+        className="text_editor"
         value={this.state.value}
         onChange={this.onChange}
         placeholder={this.props.placeholder}
