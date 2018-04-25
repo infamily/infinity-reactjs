@@ -4,14 +4,14 @@ import DefaultWrapper from './DefaultWrapper';
 
 function mapStateToProps(state) {
   return {
-    server: state.server,
-  }
+    server: state.server
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setServer: (api) => dispatch(setServer(api)),
-  }
+    setServer: api => dispatch(setServer(api))
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DefaultWrapper);

@@ -5,3 +5,11 @@
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   min-height: 200px;
 }
+
+.editor__btn {
+  border: none !important;
+}
+
+.editor__btn > button {
+  border: none !important;
+}

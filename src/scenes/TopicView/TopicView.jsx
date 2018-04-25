@@ -25,7 +25,7 @@ import { PopupModal } from './PopupModal';
 import SelectOption from './SelectOption';
 import topicService from './services';
 // import { getMarkdown } from './helpers';
-import './topic_view.css';
+import './TopicView.css';
 
 class TopicView extends Component {
   static propTypes = {

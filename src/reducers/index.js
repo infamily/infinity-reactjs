@@ -6,13 +6,15 @@ import persistedTopic from './persistedTopic';
 import userServerData from './userServerData';
 import balance from './userBalance';
 import shouldUpdateTopicList from './updateTopicList';
+import scenes from './scenesReducer';
 
 export default combineReducers({
   user,
   server,
+  userServerData,
   balance,
   persistedComment,
-  userServerData,
   persistedTopic,
   shouldUpdateTopicList,
+  scenes
 });

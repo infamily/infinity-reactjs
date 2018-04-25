@@ -4,12 +4,11 @@ import Loading from 'components/Loading';
 import serverService from 'services/server.service';
 
 export default class ConfigRoute extends Component {
-
   static propTypes = {
     setServer: PropTypes.func.isRequired,
     server: PropTypes.string,
-    user: PropTypes.object,
-  }; 
+    user: PropTypes.object
+  };
 
   async componentWillMount() {
     await serverService.getDefault();

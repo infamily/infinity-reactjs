@@ -93,7 +93,7 @@ export default class ConfigWrapper extends Component {
   checkLanguage = async lang => {
     if (!lang) {
       const { history } = this.props;
-      history.replace(configs.linkBase());
+      history.push(configs.linkBase());
     } else {
       await langService.changeLangByLink(lang);
     }
