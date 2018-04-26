@@ -8,7 +8,7 @@ const Categories = ({ categories }) => {
   return (
     <p>
       {categories.map(item => (
-        <span className="topic__category topic__draft" key={item.id}>
+        <span className="topic__draft topic__category" key={item.id}>
           <Link to={`/types/${item.id}`}>{item.name}</Link>
         </span>
       ))}

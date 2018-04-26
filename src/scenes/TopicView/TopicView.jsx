@@ -18,13 +18,11 @@ import Loading from 'components/Loading';
 import TextEditor from 'components/TextEditor/TopicEditor';
 import FormSelect from 'components/FormSelect';
 import topicViewService from 'services/topic_view.service';
-// import { makeRawHtml } from 'services/common.services';
 import configs from 'configs';
 import 'react-select/dist/react-select.min.css';
 import { PopupModal } from './PopupModal';
 import SelectOption from './SelectOption';
 import topicService from './services';
-// import { getMarkdown } from './helpers';
 import './TopicView.css';
 
 class TopicView extends Component {
@@ -105,10 +103,10 @@ class TopicView extends Component {
     const topic = await topicService.getTopic(id);
 
     // redirect if isn't owner
-    if (!topic || topic.owner.username !== user.username) {
-      history.push('/new-topic');
-      return {};
-    }
+    // if (!topic || topic.owner.username !== user.username) {
+    //   history.push('/new-topic');
+    //   return {};
+    // }
 
     const topic_parents = await topicService.getParents(topic.parents);
     const topic_categories = await topicService.getCategories(topic.categories);

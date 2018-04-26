@@ -1,4 +1,5 @@
 .text_editor {
+  font-family: inherit;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -6,10 +7,24 @@
   min-height: 200px;
 }
 
-.editor__btn {
-  border: none !important;
+.text_editor__toolbar {
+  border-bottom: 0px;
 }
 
-.editor__btn > button {
-  border: none !important;
+.text_editor__toolbar select {
+  border-color: #fff;
+}
+
+.text_editor__toolbar div > span::after {
+  content: '\21F3';
+  position: absolute;
+  top: 2px;
+  right: 20px;
+  transform: scale(1.2);
+  z-index: 2;
+  border-color: black;
+}
+
+.text_editor__toolbar button {
+  border: none;
 }
