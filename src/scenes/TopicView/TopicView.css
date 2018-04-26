@@ -11,6 +11,7 @@
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
+  z-index: 11; /* compatibility with the text editor */
 }
 
 .topic_view__modal {
