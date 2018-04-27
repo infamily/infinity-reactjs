@@ -15,7 +15,7 @@ const Tag = ({ topic }) => (
     <Badge className="tags__badge" style={badgeStyle(topic.type)}>
       {' '}
     </Badge>
-    {` ${  topic.title}`}
+    {` ${topic.title}`}
   </Link>
 );
 
