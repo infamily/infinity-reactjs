@@ -27,4 +27,13 @@
 
 .text_editor__toolbar button {
   border: none;
+  /* background: transparent; */
+}
+
+.text_editor__toolbar button:hover {
+  background: rgb(224, 224, 224);
+}
+
+.text_editor__toolbar button:active {
+  background: inherit;
 }
