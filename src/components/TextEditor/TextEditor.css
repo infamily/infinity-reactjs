@@ -19,9 +19,11 @@
 
 .text_editor__toolbar select {
   border-color: #fff;
+  border-right-width: 5px;
+  padding-right: 20px;
 }
 
-.text_editor__toolbar div > span::after {
+/* .text_editor__toolbar div > span::after {
   content: '\2195';
   position: absolute;
   font-weight: bold;
@@ -30,7 +32,7 @@
   transform: scale(1.3);
   z-index: 2;
   border-color: black;
-}
+} */
 
 .text_editor__toolbar button {
   border: none;

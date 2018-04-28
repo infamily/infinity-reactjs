@@ -103,10 +103,10 @@ class TopicView extends Component {
     const topic = await topicService.getTopic(id);
 
     // redirect if isn't owner
-    // if (!topic || topic.owner.username !== user.username) {
-    //   history.push('/new-topic');
-    //   return {};
-    // }
+    if (!topic || topic.owner.username !== user.username) {
+      history.push('/new-topic');
+      return {};
+    }
 
     const topic_parents = await topicService.getParents(topic.parents);
     const topic_categories = await topicService.getCategories(topic.categories);
