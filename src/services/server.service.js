@@ -54,11 +54,11 @@ class ServerService {
     const url = `https://${server}`;
 
     // check if is known
-    // const index = this.api_servers.indexOf(url);
-    // if (index > -1) {
-    //   this.setDefault(url);
-    //   return url;
-    // }
+    const index = this.api_servers.indexOf(url);
+    if (index > -1) {
+      this.setDefault(url);
+      return url;
+    }
 
     // check if is valid
     const isValidServer = await this.checkIsServerAvailable(url);
@@ -88,8 +88,6 @@ class ServerService {
     const noToken = axios.create();
     try {
       const { data } = await noToken.get(`${url}/signature/`);
-      console.log(url);
-      console.log(data.service);
       const isInfinity = data && data.service === 'infinity';
 
       return isInfinity;

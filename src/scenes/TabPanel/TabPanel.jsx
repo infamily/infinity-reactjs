@@ -40,7 +40,10 @@ export default class TabPanel extends Component {
   };
 
   render() {
-    const { user, match } = this.props;
+    const {
+      user,
+      match: { path }
+    } = this.props;
     const { isOpen, fullWidth } = this.state;
     const fullStyle = fullWidth ? ' tab_container--full' : '';
 
@@ -73,22 +76,26 @@ export default class TabPanel extends Component {
               >
                 <Switch>
                   <Route
-                    path={`${match.path}/add-child/:p`}
+                    path={`${path}/add-child/:p`}
                     component={TabWrapper(TopicView)}
                   />
                   <Route
-                    path={`${match.path}/edit/:eId`}
+                    path={`${path}/edit/:eId`}
                     component={TabWrapper(TopicView)}
                   />
                   <Route
-                    path={`${match.path}/new-topic`}
+                    path={`${path}/new-topic`}
                     component={TabWrapper(TopicView)}
                   />
                   <Route
-                    path={`${match.path}/topic/:id`}
+                    path={`${path}topic/:id/comment/:commentId`}
                     component={TabWrapper(Topic)}
                   />
-                  <Route path={`${match.path}/data`} render={StreamComponent} />
+                  <Route
+                    path={`${path}/topic/:id`}
+                    component={TabWrapper(Topic)}
+                  />
+                  <Route path={`${path}/data`} render={StreamComponent} />
                 </Switch>
               </div>
             </div>

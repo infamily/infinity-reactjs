@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
-import TransactionBox from './TransactionBox';
-import Transactions from './transactions';
-import ProgressBar from './progress_bar';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
 import { makeHtml } from 'services/common.services';
+import TransactionBox from './TransactionBox';
+import Transactions from './transactions';
+import ProgressBar from './progress_bar';
 import './comments.css';
 
 export default class Comments extends Component {
@@ -21,11 +21,19 @@ export default class Comments extends Component {
 
   static propTypes = {
     user: PropTypes.object,
+    match: PropTypes.object.isRequired,
     comments: PropTypes.array.isRequired,
     startToEdit: PropTypes.func.isRequired,
     reply: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired
   };
+
+  componentDidMount() {
+    const { commentId } = this.props.match.params;
+    const comment =
+      commentId && document.getElementById(`comment-${commentId}`);
+    if (comment) comment.scrollIntoView();
+  }
 
   componentWillReceiveProps(nextProps) {
     this.props.comments !== nextProps.comments &&
@@ -47,9 +55,7 @@ export default class Comments extends Component {
       item => (item.id === comment.id ? comment : item)
     );
 
-    this.setState({
-      comments: updatedList
-    });
+    this.setState({ comments: updatedList });
   };
 
   render() {
@@ -99,7 +105,7 @@ export default class Comments extends Component {
 
         const isOwner = user && user.id === owner.id;
         return (
-          <div key={id} className="comment__section" name={`comment-${id}`}>
+          <div key={id} id={`comment-${id}`} className="comment__section">
             <div>{makeHtml(text)}</div>
             <Progress />
             <Transactions id={id} />
