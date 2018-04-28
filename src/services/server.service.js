@@ -87,8 +87,11 @@ class ServerService {
   checkIsServerAvailable = async url => {
     const noToken = axios.create();
     try {
-      const { data } = await noToken.get(url);
-      const isInfinity = data.slice(0, 300).includes('Infinity API');
+      const { data } = await noToken.get(`${url}/signature/`);
+      console.log(url);
+      console.log(data.service);
+      const isInfinity = data && data.service === 'infinity';
+
       return isInfinity;
     } catch (error) {
       return null;
