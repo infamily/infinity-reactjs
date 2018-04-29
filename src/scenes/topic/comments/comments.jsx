@@ -69,19 +69,22 @@ export default class Comments extends Component {
     return link;
   };
 
-  addNotification = () => {
+  addNotification = (message, level) => {
     this.refs.notificationSystem.addNotification({
-      message: 'The link has been copied to clipboard',
-      level: 'success',
+      message,
+      level,
       position: 'tc'
     });
   };
 
   copyToClipboard = async comment => {
     const link = this.getCommentPermaLink(comment);
-    console.log(link);
-    this.addNotification();
-    await navigator.clipboard.writeText(link);
+    try {
+      await navigator.clipboard.writeText(link);
+      this.addNotification('The link has been copied to clipboard', 'success');
+    } catch (error) {
+      this.addNotification("The link hasn't been copied", 'error');
+    }
   };
 
   render() {
@@ -146,6 +149,7 @@ export default class Comments extends Component {
                 <TooltipOverlay
                   text={this.getCommentPermaLink(id)}
                   placement="bottom"
+                  delayHide={5000}
                 >
                   <img
                     onClick={() => this.copyToClipboard(id)}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import './Tooltip.css';
 
-const TooltipOverlay = ({ children, text, placement }) => {
+const TooltipOverlay = ({ children, text, placement, ...rest }) => {
   const tooltip = (
     <Tooltip id="tooltip">
       <strong className="tooltip__text">{text}</strong>
@@ -11,7 +11,7 @@ const TooltipOverlay = ({ children, text, placement }) => {
   );
 
   return (
-    <OverlayTrigger placement={placement} overlay={tooltip}>
+    <OverlayTrigger placement={placement} overlay={tooltip} {...rest}>
       <div className="tooltip_overlay">{children}</div>
     </OverlayTrigger>
   );
@@ -19,7 +19,8 @@ const TooltipOverlay = ({ children, text, placement }) => {
 
 TooltipOverlay.propTypes = {
   text: PropTypes.string.isRequired,
-  placement: PropTypes.string.isRequired
+  placement: PropTypes.string.isRequired,
+  children: PropTypes.array.isRequired
 };
 
 export default TooltipOverlay;
