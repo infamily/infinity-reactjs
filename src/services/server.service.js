@@ -40,7 +40,7 @@ class ServerService {
   };
 
   getResponse = async api => {
-    await axios.get(api);
+    await axios.get(`${api}/signature/`);
     return api;
   };
 
