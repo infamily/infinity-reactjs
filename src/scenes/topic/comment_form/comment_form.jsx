@@ -10,8 +10,8 @@ class Comment extends Component {
     super(props);
     this.state = {
       text: props.text || '',
-      editing: Boolean(props.id),
-    }
+      editing: Boolean(props.id)
+    };
   }
 
   static propTypes = {
@@ -23,7 +23,7 @@ class Comment extends Component {
     persistedComment: PropTypes.object.isRequired,
     topic_id: PropTypes.number.isRequired,
     text: PropTypes.string,
-    user: PropTypes.object,
+    user: PropTypes.object
   };
 
   componentWillReceiveProps(nextProps) {
@@ -31,7 +31,7 @@ class Comment extends Component {
     if (text !== this.props.text) {
       this.setState({
         text: text || '',
-        editing: Boolean(id),
+        editing: Boolean(id)
       });
     }
   }
@@ -44,13 +44,13 @@ class Comment extends Component {
   persistComment = () => {
     const { topic_id, persistComment } = this.props;
     const { text } = this.state;
-    
+
     persistComment({ id: topic_id, body: text });
-  }
+  };
 
   checkPersisted() {
     const { persistedComment, topic_id } = this.props;
-    
+
     if (persistedComment.id === topic_id) {
       this.setState({ text: persistedComment.body });
     }
@@ -60,54 +60,57 @@ class Comment extends Component {
     e.preventDefault();
     const { editing, text } = this.state;
     if (!text) return;
-    
-    editing
-    ? this.props.edit(text)
-    : this.props.create(text);
+
+    editing ? this.props.edit(text) : this.props.create(text);
 
     this.props.clearComment();
     this.setState({ text: '' });
-  }
+  };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  } 
+  };
 
   render() {
     const { user, clear } = this.props;
     const { text, editing } = this.state;
 
     const Buttons = () => {
-      if (!user) 
+      if (!user)
         return (
           <div className="comment_form__signin">
-            <p onClick={this.persistComment}><Link to="/page/otp">Sign in</Link> to leave a comment.</p>
+            <p onClick={this.persistComment}>
+              <Link to="/page/otp">Sign in</Link> to leave a comment.
+            </p>
           </div>
         );
 
-      return editing ?
+      return editing ? (
         <div>
-          <Button type="submit">Edit</Button>
-          <Button onClick={clear} bsSize="xsmall" className="comment__btn">Cancel</Button>
+          <Button type="submit">Save</Button>
+          <Button onClick={clear} bsSize="xsmall" className="comment__btn">
+            Cancel
+          </Button>
         </div>
-        : <Button type="submit">Submit</Button>;
-    }
-    
+      ) : (
+        <Button type="submit">Submit</Button>
+      );
+    };
 
     return (
       <div className="comment_form__section">
         <form onSubmit={this.submitComment}>
           <FormGroup controlId="formControlsTextarea">
             <ControlLabel>Leave your comment</ControlLabel>
-            <FormControl 
+            <FormControl
               componentClass="textarea"
-              ref={(ip) => this.myInp = ip}
+              ref={ip => (this.myInp = ip)}
               className="comment__text"
               rows="4"
-              name="text" 
-              value={text} 
+              name="text"
+              value={text}
               onChange={this.handleChange}
             />
           </FormGroup>
@@ -118,4 +121,4 @@ class Comment extends Component {
   }
 }
 
-export default Comment; 
+export default Comment;

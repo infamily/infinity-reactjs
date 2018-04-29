@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
+import NotificationSystem from 'react-notification-system';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
+import TooltipOverlay from 'components/TooltipOverlay';
 import { makeHtml } from 'services/common.services';
+import clipIcon from 'images/Topic/clip.svg';
+import configs from 'configs';
 import TransactionBox from './TransactionBox';
 import Transactions from './transactions';
 import ProgressBar from './progress_bar';
@@ -29,6 +33,7 @@ export default class Comments extends Component {
   };
 
   componentDidMount() {
+    // this.notificationSystem = this.refs.notificationSystem;
     const { commentId } = this.props.match.params;
     const comment =
       commentId && document.getElementById(`comment-${commentId}`);
@@ -56,6 +61,27 @@ export default class Comments extends Component {
     );
 
     this.setState({ comments: updatedList });
+  };
+
+  getCommentPermaLink = comment => {
+    const { id } = this.props.match.params;
+    const link = `${configs.getServer()}/topic/${id}/comment/${comment}`;
+    return link;
+  };
+
+  addNotification = () => {
+    this.refs.notificationSystem.addNotification({
+      message: 'The link has been copied to clipboard',
+      level: 'success',
+      position: 'tc'
+    });
+  };
+
+  copyToClipboard = async comment => {
+    const link = this.getCommentPermaLink(comment);
+    console.log(link);
+    this.addNotification();
+    await navigator.clipboard.writeText(link);
   };
 
   render() {
@@ -117,6 +143,17 @@ export default class Comments extends Component {
                 comment={comment}
               />
               <div className="comment__owner">
+                <TooltipOverlay
+                  text={this.getCommentPermaLink(id)}
+                  placement="bottom"
+                >
+                  <img
+                    onClick={() => this.copyToClipboard(id)}
+                    src={clipIcon}
+                    alt="clip icon"
+                    className="comment__section__link"
+                  />
+                </TooltipOverlay>
                 <span>{owner.username}</span>
                 {isOwner ? (
                   <UserBalance id={owner.id} showQuota={false} />
@@ -142,6 +179,7 @@ export default class Comments extends Component {
               updateComments={this.updateComments}
             />
           )}
+          <NotificationSystem ref="notificationSystem" />
         </div>
       );
     }

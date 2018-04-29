@@ -5,3 +5,8 @@
 .tooltip_overlay {
   display: inline;
 }
+
+.tooltip__text {
+  max-width: 40em;
+  word-wrap: break-word;
+}

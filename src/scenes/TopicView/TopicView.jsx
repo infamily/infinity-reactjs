@@ -198,7 +198,7 @@ class TopicView extends Component {
 
   showSuccessMessage = topic => {
     const { id } = topic;
-    const linkText = `${configs.server + configs.linkBase()}/topic/${id}/`;
+    const linkText = `${configs.getServer()}/topic/${id}/`;
     const link = `${configs.linkBase()}/split/topic/${id}`;
     const PopUpText = (
       <span onClick={this.refresh}>
@@ -302,7 +302,7 @@ class TopicView extends Component {
     });
   };
 
-  goBack = () => {
+  goToTopic = () => {
     const { push } = this.props.history;
     const { eId } = this.props.match.params;
     const link = eId ? `/split/topic/${eId}` : '';
@@ -327,6 +327,7 @@ class TopicView extends Component {
       isLoading
     } = this.state;
     const { user } = this.props;
+    const { goBack } = this.props.history;
 
     if (isLoading) return <Loading />;
 
@@ -347,11 +348,15 @@ class TopicView extends Component {
           </div>
         );
 
+      const BackButton = ({ action, ...rest }) => (
+        <Button onClick={action} {...rest}>
+          &#10094; Back
+        </Button>
+      );
+
       return this.state.id ? (
         <div>
-          <Button onClick={this.goBack} className="topic_view__back">
-            &#10094; Back
-          </Button>
+          <BackButton action={this.goToTopic} className="topic_view__back" />
           <Button type="submit"> &#9873; Save</Button>
           <Button
             className="topic_view__btn"
@@ -361,7 +366,10 @@ class TopicView extends Component {
           </Button>
         </div>
       ) : (
-        <Button type="submit">&#9873; Create</Button>
+        <div>
+          <BackButton action={goBack} className="topic_view__back" />
+          <Button type="submit">&#9873; Create</Button>
+        </div>
       );
     };
 
