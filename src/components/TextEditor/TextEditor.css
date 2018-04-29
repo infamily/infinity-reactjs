@@ -8,13 +8,18 @@
   overflow-y: hidden;
 }
 
-.text_editor__toolbar {
-  border-bottom: 0px;
-  font-family: inherit;
+/* fix rte ol */
+.text_editor ol {
+  margin-left: 20px;
 }
 
 .text_editor__disabled {
   display: none;
+}
+
+.text_editor__toolbar {
+  border-bottom: 0px;
+  font-family: inherit;
 }
 
 .text_editor__toolbar select {
@@ -34,4 +39,9 @@
 
 .text_editor__toolbar button:active {
   background: inherit;
+}
+
+/* change default style of the link placeholder  */
+.text_editor__toolbar input[placeholder="https://example.com/"]::placeholder {
+  color: transparent;
 }
