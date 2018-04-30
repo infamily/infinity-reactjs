@@ -62,7 +62,7 @@ class UserBalance extends Component {
           <TooltipOverlay
             text="Remaining quota"
             placement="bottom"
-            onClick={this.handleOpen}
+            // onClick={this.handleOpen}
           >
             <span onClick={this.handleOpen} className="balance__quota">
               {quota}h
