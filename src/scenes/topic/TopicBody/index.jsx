@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
 import TopicInfo from 'components/Balance/TopicInfo';
+import ClipButton from 'scenes/Topic/ClipButton';
 import { makeHtml } from 'services/common.services';
 import configs from 'configs';
 import { getColor } from '../helpers/badge';
@@ -28,7 +29,6 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
     );
   };
 
-  const isSplit = window.location.href.includes('/split');
   const DraftTag = () =>
     topic.is_draft ? (
       <span className="topic__draft">
@@ -43,13 +43,10 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       <EditTopic isOwner={isOwner} id={topic.id} />
 
       <h1>
-        {isSplit ? (
-          <Link to={`${configs.linkBase()}/topic/${topic.id}`}>
-            {topic.title}
-          </Link>
-        ) : (
-          <span>{topic.title}</span>
-        )}
+        {topic.title}
+        <Link to={`${configs.linkBase()}/topic/${topic.id}`}>
+          <ClipButton />
+        </Link>
         <DraftTag />
       </h1>
       <TopicInfo

@@ -208,11 +208,8 @@ class Topic extends Component {
             >
               {children}
             </TopicBody>
+            <NewButton action={this.handleEditSection} title={newButtonText} />
             <div className="topic__edit_section">
-              <NewButton
-                action={this.handleEditSection}
-                title={newButtonText}
-              />
               <Panel
                 id="collapsible-data-panel"
                 expanded={addChildSection}

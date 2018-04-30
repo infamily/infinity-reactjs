@@ -5,8 +5,8 @@ import NotificationSystem from 'react-notification-system';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
 import TooltipOverlay from 'components/TooltipOverlay';
+import ClipButton from 'scenes/Topic/ClipButton';
 import { makeHtml } from 'services/common.services';
-import clipIcon from 'images/Topic/clip.svg';
 import configs from 'configs';
 import TransactionBox from './TransactionBox';
 import Transactions from './transactions';
@@ -151,12 +151,7 @@ export default class Comments extends Component {
                   placement="bottom"
                   delayHide={5000}
                 >
-                  <img
-                    onClick={() => this.copyToClipboard(id)}
-                    src={clipIcon}
-                    alt="clip icon"
-                    className="comment__section__link"
-                  />
+                  <ClipButton action={() => this.copyToClipboard(id)} />
                 </TooltipOverlay>
                 <span>{owner.username}</span>
                 {isOwner ? (
