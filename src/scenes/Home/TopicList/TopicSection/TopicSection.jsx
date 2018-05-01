@@ -94,18 +94,16 @@ class TopicSection extends Component {
       return (
         <div>
           <div className="topic_list__item">
-            {
-              // <TopicEditButton topic={topic} user={user} />
-              // <BadgePoint topic={topic} fromId={fromId} />
-              // <Link
-              //   to={tabLink}
-              //   onClick={this.saveScroll}
-              //   className="topics__item-title"
-              //   data-id={id}
-              // >
-              // </Link>
-            }
-            <TopicSectionView topic={topic} view="title/card" />
+            <TopicEditButton topic={topic} user={user} />
+            <BadgePoint topic={topic} fromId={fromId} />
+            <Link
+              to={tabLink}
+              onClick={this.saveScroll}
+              className="topics__item-title"
+              data-id={id}
+            >
+              <TopicSectionView topic={topic} view="title/card" />
+            </Link>
           </div>
           <div className="topic_list__step" style={getBorder(topic)}>
             {isExpanded &&

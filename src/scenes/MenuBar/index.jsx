@@ -7,7 +7,7 @@ import './MenuBar.css';
 export default class MenuBar extends Component {
   static propTypes = {
     page: PropTypes.string
-  }
+  };
 
   render() {
     const { page } = this.props;
