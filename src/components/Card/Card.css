@@ -3,7 +3,7 @@
   border-radius: 0.25rem 0.25rem 0 0;
   border-bottom: none;
   padding: 10px;
-  background-color: rgba(0, 255, 255, 0.11);
+  background-color: rgba(143, 143, 143, 0.11);
 }
 
 .card__description {
@@ -12,4 +12,13 @@
   border-top: none;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+.card__text {
+  /* word-wrap: break-word;
+  text-overflow: ellipsis;
+  max-width: 75ch; */
+  overflow: hidden;
+  max-height: 200px;
+  padding-bottom: 5px;
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { 
+import {
   Button,
   FormGroup,
   FormControl,
   ControlLabel,
-  InputGroup,  
-  Modal 
+  InputGroup,
+  Modal
 } from 'react-bootstrap';
 import Select from 'react-select';
 import PayCheckout from 'components/PayCheckout';
@@ -15,9 +15,10 @@ import transactionService from 'services/transaction.service';
 import serverService from 'services/server.service';
 import { getUserBalance } from 'services/user.service';
 import langService from 'services/lang.service';
-import ProgressBar from '../progress_bar';
+import ProgressBar from 'components/TopicProgressBar';
 import getMessages from './messages';
 import './transaction.css';
+
 const messages = getMessages(langService.current);
 
 export default class Transaction extends Component {
@@ -34,29 +35,29 @@ export default class Transaction extends Component {
       message: '',
       userQuota: 0,
       isQuota: false,
-      creditBar: false,
-    }
+      creditBar: false
+    };
   }
 
   async componentWillMount() {
     const { user, comment } = this.props;
-    const isPayment = await serverService.getPaymentAuthorization();    
+    const isPayment = await serverService.getPaymentAuthorization();
     const data = await transactionService.getCurrencies();
     const balance = await getUserBalance(user.id);
     const currencies = data.map(item => {
       item.value = item.label;
       return item;
     });
-    
+
     this.setState({
       userQuota: balance.data.credit,
-      isPayment,
+      isPayment
     });
 
     const payment_amount = this.checkQuota(comment.remains);
     this.setState({
       currencies,
-      payment_amount,
+      payment_amount
     });
     this.selectCurrency(currencies[0]);
   }
@@ -67,7 +68,7 @@ export default class Transaction extends Component {
     setBalance: PropTypes.func.isRequired,
     updateComments: PropTypes.func.isRequired,
     state: PropTypes.bool.isRequired,
-    comment: PropTypes.object.isRequired,
+    comment: PropTypes.object.isRequired
   };
 
   makeTransaction = async () => {
@@ -76,7 +77,7 @@ export default class Transaction extends Component {
     const message = payment_amount < 0 ? messages.error : '';
 
     this.setState({ message });
-    if (payment_amount < 0 ) return;
+    if (payment_amount < 0) return;
 
     const data = {
       payment_currency,
@@ -89,21 +90,22 @@ export default class Transaction extends Component {
     this.props.updateComments(updated);
     const balance = await getUserBalance(user.id);
     this.props.setBalance(balance.data); // update global store
-  }
+  };
 
   selectCurrency = item => {
     const { payment_amount } = this.state;
     const { value, id, in_hours } = item;
     const payment_inCurrency = this.inCurrency(payment_amount, in_hours);
 
-    item && this.setState({
-      currency: value,
-      payment_currency: id,
-      symbol: value,
-      in_hours: in_hours,
-      payment_inCurrency
-    });
-  }
+    item &&
+      this.setState({
+        currency: value,
+        payment_currency: id,
+        symbol: value,
+        in_hours,
+        payment_inCurrency
+      });
+  };
 
   handleChange = e => {
     const { in_hours } = this.state;
@@ -113,28 +115,28 @@ export default class Transaction extends Component {
 
     this.setState({
       [e.target.name]: checked,
-      payment_inCurrency,
+      payment_inCurrency
     });
-  }
+  };
 
   checkQuota(value) {
     const { userQuota } = this.state;
     const isQuota = userQuota > value;
     const message = isQuota ? '' : messages.quota_over;
     const aboveNull = value > 0 ? value : 0;
-    
+
     this.setState({
       message,
       isQuota,
-      creditBar: !isQuota,
+      creditBar: !isQuota
     });
 
     return isQuota ? aboveNull : userQuota;
   }
 
   close = () => {
-    this.props.investState({}, window.scrollY)
-  }
+    this.props.investState({}, window.scrollY);
+  };
 
   inCurrency(value, in_hours) {
     return (value / in_hours).toFixed(2);
@@ -142,7 +144,7 @@ export default class Transaction extends Component {
 
   render() {
     const { comment, state } = this.props;
-    const { 
+    const {
       currencies,
       currency,
       payment_amount,
@@ -151,33 +153,37 @@ export default class Transaction extends Component {
       userQuota,
       creditBar,
       message,
-      isPayment,
+      isPayment
     } = this.state;
 
     const Bar = () => {
       const invest = parseFloat(payment_amount);
-      return (
-        <ProgressBar comment={comment} invest={invest}/>
+      return <ProgressBar comment={comment} invest={invest} />;
+    };
+
+    const CreditBar = () =>
+      isPayment && (
+        <PayCheckout
+          ButtonComponent={() => (
+            <Button
+              className="transaction__credit"
+              bsStyle="success"
+              bsSize="large"
+              block
+            >
+              Buy credit with card
+            </Button>
+          )}
+        />
       );
-    }
-    
-    const CreditBar = () => ( isPayment &&
-      <PayCheckout 
-        ButtonComponent={() => (
-          <Button className="transaction__credit" bsStyle="success" bsSize="large" block>
-            Buy credit with card
-          </Button>
-        )} 
-      />
-    );
 
     return (
       <Modal show={state} className="transaction__modal">
         <Modal.Header>
           <Modal.Title>Receiver: {comment.owner.username}</Modal.Title>
         </Modal.Header>
-          <Modal.Body>
-          <Bar/>
+        <Modal.Body>
+          <Bar />
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Amount</ControlLabel>
             <InputGroup>
@@ -199,7 +205,9 @@ export default class Transaction extends Component {
             </InputGroup>
           </FormGroup>
           <div className="transaction__quota">
-            <small>Remaining today's quota <strong>{userQuota}h</strong></small>
+            <small>
+              Remaining today's quota <strong>{userQuota}h</strong>
+            </small>
           </div>
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Currency</ControlLabel>
@@ -213,9 +221,9 @@ export default class Transaction extends Component {
             />
           </FormGroup>
           {creditBar && <CreditBar />}
-          </Modal.Body>
+        </Modal.Body>
         <Modal.Footer>
-          <span className="transaction__error">{message + '  '}</span>
+          <span className="transaction__error">{`${message}  `}</span>
           <Button onClick={this.makeTransaction}>Invest</Button>
           <Button onClick={this.close}>Close</Button>
         </Modal.Footer>

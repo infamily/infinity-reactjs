@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import TopicSection from './TopicSection';
-import configs from 'configs';
+// import { Link } from 'react-router-dom';
+// import configs from 'configs';
 import './TopicList.css';
 
 class Topics extends Component {

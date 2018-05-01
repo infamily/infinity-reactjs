@@ -9,3 +9,11 @@
 .progress_bar__over {
   background-color: #5ed091;
 }
+
+.progress_bar__preview {
+  height: 5px;
+  margin-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  border-radius: 0px;
+}

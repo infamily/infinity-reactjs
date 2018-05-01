@@ -5,12 +5,12 @@ import NotificationSystem from 'react-notification-system';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
 import TooltipOverlay from 'components/TooltipOverlay';
+import ProgressBar from 'components/TopicProgressBar';
 import ClipButton from 'scenes/Topic/ClipButton';
 import { makeHtml } from 'services/common.services';
 import configs from 'configs';
 import TransactionBox from './TransactionBox';
 import Transactions from './transactions';
-import ProgressBar from './progress_bar';
 import './comments.css';
 
 export default class Comments extends Component {
