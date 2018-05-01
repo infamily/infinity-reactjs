@@ -14,14 +14,6 @@ const makeHexDim = (inputHex, opacity) => {
   return result;
 };
 
-const formatText = text =>
-  text.length > 75
-    ? text
-        .substring(0, 100)
-        .trim()
-        .concat('...')
-    : text;
-
 export const CardItem = ({ title, body, time, color, topic }) => (
   <div className="col-sm-6 col-md-6 col-lg-6 mt-4 mb-6">
     <div className="card__item card card-inverse card-info">

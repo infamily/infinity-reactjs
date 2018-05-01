@@ -31,6 +31,7 @@ class Language {
     this.language = this.languages[0];
 
     this.loadLanguages();
+    this.setDefault();
   }
 
   loadLanguages = async () => {
@@ -39,16 +40,15 @@ class Language {
     const { data } = await axios.get(`${server}/language_names/`);
     const filtered = data.filter(lang => lang.enabled);
     this.languages = filtered;
-    this.setDefault();
   };
 
   setDefault() {
     // get lang from localStorage
-    const set = this.getSetting();
+    const storedLang = this.getSetting();
 
-    if (set) {
-      this.current = set.lang.lang;
-      this.language = set.lang;
+    if (storedLang) {
+      this.current = storedLang.lang;
+      this.language = storedLang;
     } else {
       const browser_language = navigator.language || navigator.userLanguage;
       let default_language = browser_language.substr(0, 2).toLowerCase();
@@ -56,7 +56,7 @@ class Language {
         default_language = 'cn';
       }
 
-      const lang = this.languages.find(lang => lang.lang === default_language);
+      const lang = this.languages.find(item => item.lang === default_language);
 
       if (lang) {
         this.current = lang.lang;
@@ -65,11 +65,11 @@ class Language {
     }
   }
 
-  async changeLang(num) {
+  changeLang = async num => {
     this.current = this.languages[num].lang;
     this.language = this.languages[num];
     await this.saveSetting(this.language);
-  }
+  };
 
   changeLangByLink = async lang => {
     if (!lang) return;
@@ -86,9 +86,7 @@ class Language {
     if (!raw) return null;
 
     const lang = JSON.parse(raw);
-    return {
-      lang
-    };
+    return lang;
   }
 
   getServers() {
