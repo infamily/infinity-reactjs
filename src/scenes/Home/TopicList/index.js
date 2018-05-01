@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import TopicList from './topic_list';
+import TopicList from './TopicList';
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
-  }
+    user: state.user
+  };
 }
 
 export default connect(mapStateToProps, null)(TopicList);

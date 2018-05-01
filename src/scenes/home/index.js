@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { setUpdateTopicList } from 'actions/topicList';
-import Home from './home';
+import Home from './Home';
 
 function mapStateToProps(state) {
   return {

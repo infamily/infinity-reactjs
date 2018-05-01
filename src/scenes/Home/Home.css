@@ -1,0 +1,32 @@
+.topics__content {
+  min-height: calc(100vh - 100px);
+}
+
+.topics__item {
+  transition: all 0.25s ease;
+  padding: 1px;
+}
+
+.topics__title {
+  margin-right: auto;
+}
+
+.home--hidden {
+  display: none;
+}
+
+.home__logo {
+  max-width: 30px;
+  vertical-align: middle;
+}
+
+.view_toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 401px) {
+  .topics__title {
+    margin-right: initial;
+  }
+}

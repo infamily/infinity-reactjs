@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
-
 import { FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
-
-import Topics from './topic_list';
+import Topics from './TopicList';
 import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import Header from 'components/Header';
 import Loading from 'components/Loading';
 import TopicViewToggle from './TopicViewToggle';
-
 import topicService from 'services/topic.service';
 import langService from 'services/lang.service';
 import store_home from './services/store_home';
-import './home.css';
+import './Home.css';
 
 class Home extends Component {
   constructor() {

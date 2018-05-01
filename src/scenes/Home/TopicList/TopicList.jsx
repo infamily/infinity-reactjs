@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TopicSection from './TopicSection';
 import configs from 'configs';
-import './topic_list.css'; 
+import './TopicList.css';
 
 class Topics extends Component {
   constructor(props) {
     super(props);
     this.state = {
       topics: props.topics
-    }
+    };
   }
+  static defaultProps = {
+    user: null
+  };
 
   static propTypes = {
     topics: PropTypes.array.isRequired,
@@ -37,27 +40,18 @@ class Topics extends Component {
       return isOwner ? 'topic_list__draft' : 'topic_list__hide';
     };
 
-    const EditTopic = ({ owner, id }) => {
-      const isOwner = user && (owner === user.username);
-
-      return isOwner
-        ? <div className="topic_list__edit">
-          <Link to={configs.linkBase() + "/split/edit/" + id + "/"}>
-              <div className="topic_list__btn">&#9998;</div>
-            </Link>
-          </div> 
-        : null;
-    }
-
     return (
       <div className="topics__list">
-        {topics.map(topic => topic && (
-          <TopicSection
-            key={topic.id}
-            topic={topic}
-            draftStyle={draftStyle}
-            EditTopic={EditTopic}
-          />))}
+        {topics.map(
+          topic =>
+            topic && (
+              <TopicSection
+                key={topic.id}
+                topic={topic}
+                draftStyle={draftStyle}
+              />
+            )
+        )}
       </div>
     );
   }
