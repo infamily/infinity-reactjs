@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
 import { FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
-import Topics from './TopicList';
 import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import Header from 'components/Header';
 import Loading from 'components/Loading';
-import TopicViewToggle from './TopicViewToggle';
 import topicService from 'services/topic.service';
 import langService from 'services/lang.service';
+import Topics from './TopicList';
+import TopicViewToggle from './TopicViewToggle';
 import store_home from './services/store_home';
 import './Home.css';
 
@@ -39,6 +39,11 @@ class Home extends Component {
     await this.updateListState();
   }
 
+  componentDidMount() {
+    const scrollTo = store_home.home_scroll;
+    if (scrollTo) window.scrollTo(0, scrollTo);
+  }
+
   async componentWillReceiveProps(nextProps) {
     if (nextProps.shouldUpdateTopicList) {
       this.props.setUpdateTopicList(false);
@@ -48,42 +53,6 @@ class Home extends Component {
       await this.updateListState();
     }
   }
-
-  updateListState = async () => {
-    const { page, flag, topicView } = this.state;
-    let { fromPage, topics } = topicService;
-
-    if (fromPage !== page && !topics.length) {
-      this.setState({ loading: true });
-      topics = await topicService.getTopics(flag, topicView);
-    }
-
-    this.setState({
-      topics,
-      last_pack: topics,
-      loading: false
-    });
-  };
-
-  componentDidMount() {
-    const scrollTo = store_home.home_scroll;
-    scrollTo && window.scrollTo(0, scrollTo);
-  }
-
-  makeSearch = async e => {
-    e.preventDefault();
-    const { query, flag, topicView } = this.state;
-    try {
-      const topics = await topicService.search(query, flag, topicView);
-      this.setState({
-        topics,
-        last_pack: topics,
-        page: 1
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   hasMore = () => {
     const { last_pack } = this.state;
@@ -111,21 +80,6 @@ class Home extends Component {
     });
   };
 
-  setFlag = key => {
-    const self = this;
-    const { flag, topicView } = this.state;
-
-    store_home.flag = key;
-
-    flag !== key &&
-      topicService.getTopics(key, topicView).then(topics => {
-        self.setState({
-          flag: key,
-          topics
-        });
-      });
-  };
-
   onChangeTopicView = async topicView => {
     const { flag } = this.state;
     this.setState({
@@ -144,6 +98,52 @@ class Home extends Component {
       console.log(error);
     }
     this.setState({
+      loading: false
+    });
+  };
+
+  setFlag = key => {
+    const self = this;
+    const { flag, topicView } = this.state;
+
+    store_home.flag = key;
+
+    flag !== key &&
+      topicService.getTopics(key, topicView).then(topics => {
+        self.setState({
+          flag: key,
+          topics
+        });
+      });
+  };
+
+  makeSearch = async e => {
+    e.preventDefault();
+    const { query, flag, topicView } = this.state;
+    try {
+      const topics = await topicService.search(query, flag, topicView);
+      this.setState({
+        topics,
+        last_pack: topics,
+        page: 1
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  updateListState = async () => {
+    const { page, flag, topicView } = this.state;
+    let { fromPage, topics } = topicService;
+
+    if (fromPage !== page && !topics.length) {
+      this.setState({ loading: true });
+      topics = await topicService.getTopics(flag, topicView);
+    }
+
+    this.setState({
+      topics,
+      last_pack: topics,
       loading: false
     });
   };
