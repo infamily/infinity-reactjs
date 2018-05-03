@@ -23,6 +23,7 @@ class Home extends Component {
       flag: store_home.flag || 0,
       query: '',
       topicView: 1,
+      view: 'grid', // (title/grid)
       topics: null,
       last_pack: [],
       loading: false
@@ -152,9 +153,15 @@ class Home extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleTopicView = () => {
+    const { view } = this.state;
+    const newView = view === 'title' ? 'grid' : 'title';
+    this.setState({ view: newView });
+  };
+
   render() {
     const { title, button } = this.state.content;
-    const { flag, topics, topicView, loading } = this.state;
+    const { flag, topics, topicView, loading, view } = this.state;
     const { user } = this.props;
     const hasMore = this.hasMore();
     const isVisible = hasMore && 'home--hidden';
@@ -182,8 +189,11 @@ class Home extends Component {
         </form>
         <TopicViewToggle
           onChangeTopicView={this.onChangeTopicView}
+          handleTopicView={this.handleTopicView}
           topicView={topicView}
+          view={view}
         />
+
         <div className="topics__content">
           {loading ? (
             <Loading />
@@ -192,9 +202,13 @@ class Home extends Component {
               pageStart={1}
               loadMore={this.loadMore}
               hasMore={hasMore}
-              loader={<div className={isVisible}>Loading ...</div>}
+              loader={
+                <div className={isVisible} style={{ clear: 'both' }}>
+                  Loading ...
+                </div>
+              }
             >
-              <Topics topics={topics} />
+              <Topics topics={topics} view={view} />
             </InfiniteScroll>
           )}
         </div>

@@ -1,23 +1,32 @@
+.card__item {
+  margin-bottom: 10px;
+}
+
 .card__title {
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem 0.25rem 0 0;
+  border-radius: 0.5rem 0.5rem 0 0;
   border-bottom: none;
-  padding: 10px;
+  padding: 1px 10px;
+  padding-bottom: 10px;
   background-color: rgba(143, 143, 143, 0.11);
+}
+
+.card__title a {
+  color: white;
+}
+
+.card__title a:hover {
+  color: white;
 }
 
 .card__description {
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0 0 0.25rem 0.25rem;
+  border-radius: 0 0 0.5rem 0.5rem;
   border-top: none;
   padding: 10px;
-  margin-bottom: 10px;
 }
 
 .card__text {
-  /* word-wrap: break-word;
-  text-overflow: ellipsis;
-  max-width: 75ch; */
   overflow: hidden;
   max-height: 200px;
   padding-bottom: 5px;

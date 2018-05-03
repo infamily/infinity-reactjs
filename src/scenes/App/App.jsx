@@ -16,7 +16,6 @@ import ConfigWrapper from 'components/ConfigWrapper';
 import DefaultWrapper from 'components/DefaultWrapper';
 import ProgramToggle from 'components/ProgramToggle';
 import TabToggle from 'components/TabToggle';
-import Card from 'components/Card';
 import TabPanel from 'scenes/TabPanel';
 import NoServer from 'scenes/NoServer';
 import './App.css';
@@ -33,7 +32,6 @@ class App extends PureComponent {
       <Switch>
         <Route exact path={path} component={Home} />
         <Route path={`${path}split`} component={Home} />
-        <Route path={`${path}card`} component={Card} />
         <Route path={`${path}topic/:id/comment/:commentId`} component={Topic} />
         <Route path={`${path}topic/:id`} component={Topic} />
         <Route path={`${path}page/how`} component={How} />

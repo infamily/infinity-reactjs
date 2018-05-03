@@ -149,7 +149,6 @@ export default class Comments extends Component {
                 <TooltipOverlay
                   text={this.getCommentPermaLink(id)}
                   placement="bottom"
-                  delayHide={5000}
                 >
                   <ClipButton action={() => this.copyToClipboard(id)} />
                 </TooltipOverlay>

@@ -25,6 +25,16 @@
   justify-content: flex-end;
 }
 
+.view_toggle__grid_btn {
+  margin-right: 5px;
+  text-transform: capitalize;
+}
+
+.view_toggle__grid_btn:focus,
+.view_toggle__grid_btn:active {
+  outline: 0;
+}
+
 @media (max-width: 401px) {
   .topics__title {
     margin-right: initial;
