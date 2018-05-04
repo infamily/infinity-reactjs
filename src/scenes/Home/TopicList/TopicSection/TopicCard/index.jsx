@@ -19,9 +19,9 @@ const makeHexDim = (inputHex, opacity) => {
 const getTopicLink = id => `${configs.linkBase()}/split/topic/${id}`;
 const getColor = type => configs.colors[type];
 const makeGradient = hex =>
-  `linear-gradient(to bottom, ${hex} 80%, rgba(255,0,0,0))`;
+  `linear-gradient(to bottom, ${hex} 90%, rgba(255,0,0,0))`;
 const getTitleStyle = color => ({
-  background: makeGradient(makeHexDim(color, 75))
+  background: makeGradient(makeHexDim(color, 35))
 });
 
 export default function TopicCard({ topic }) {

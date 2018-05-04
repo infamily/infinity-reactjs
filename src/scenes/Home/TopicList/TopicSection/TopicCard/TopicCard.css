@@ -12,11 +12,11 @@
 }
 
 .card__title a {
-  color: white;
+  /* color: white; */
 }
 
 .card__title a:hover {
-  color: white;
+  /* color: white; */
 }
 
 .card__description {
