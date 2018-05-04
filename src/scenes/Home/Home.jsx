@@ -103,19 +103,18 @@ class Home extends Component {
     });
   };
 
-  setFlag = key => {
-    const self = this;
+  setFlag = async key => {
     const { flag, topicView } = this.state;
 
     store_home.flag = key;
 
-    flag !== key &&
-      topicService.getTopics(key, topicView).then(topics => {
-        self.setState({
-          flag: key,
-          topics
-        });
+    if (flag !== key) {
+      const topics = await topicService.getTopics(key, topicView);
+      this.setState({
+        flag: key,
+        topics
       });
+    }
   };
 
   makeSearch = async e => {
@@ -153,10 +152,8 @@ class Home extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleTopicView = () => {
-    const { view } = this.state;
-    const newView = view === 'title' ? 'grid' : 'title';
-    this.setState({ view: newView });
+  handleGridView = value => {
+    this.setState({ view: value });
   };
 
   render() {
@@ -167,33 +164,35 @@ class Home extends Component {
     const isVisible = hasMore && 'home--hidden';
 
     if (topics === null) return <Loading />;
+    const fullStyle = view === 'grid' && ' main--full';
 
     return (
-      <div className="main">
-        <Header user={user} title={title} />
-        <form onSubmit={this.makeSearch}>
-          <FormGroup>
-            <InputGroup>
-              <Flag setFlag={this.setFlag} flag={flag} />
-              <FormControl
-                type="search"
-                name="query"
-                value={this.state.query}
-                onChange={this.handleChange}
-              />
-              <InputGroup.Button>
-                <Button type="submit">{button}</Button>
-              </InputGroup.Button>
-            </InputGroup>
-          </FormGroup>
-        </form>
-        <TopicViewToggle
-          onChangeTopicView={this.onChangeTopicView}
-          handleTopicView={this.handleTopicView}
-          topicView={topicView}
-          view={view}
-        />
-
+      <div className={`main ${fullStyle}`}>
+        <div className="home__head">
+          <Header user={user} title={title} />
+          <form onSubmit={this.makeSearch}>
+            <FormGroup>
+              <InputGroup>
+                <Flag setFlag={this.setFlag} flag={flag} />
+                <FormControl
+                  type="search"
+                  name="query"
+                  value={this.state.query}
+                  onChange={this.handleChange}
+                />
+                <InputGroup.Button>
+                  <Button type="submit">{button}</Button>
+                </InputGroup.Button>
+              </InputGroup>
+            </FormGroup>
+          </form>
+          <TopicViewToggle
+            onChangeTopicView={this.onChangeTopicView}
+            handleTopicView={this.handleGridView}
+            topicView={topicView}
+            view={view}
+          />
+        </div>
         <div className="topics__content">
           {loading ? (
             <Loading />

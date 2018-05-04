@@ -61,6 +61,7 @@ class TopicSection extends Component {
 
   render() {
     const { user, view } = this.props;
+    const isLineView = view === 'line';
 
     const BadgePoint = ({ topic, fromId }) => {
       const loading = this.state[`${topic.id}loading`] ? ' point_pulse' : '';
@@ -100,7 +101,7 @@ class TopicSection extends Component {
       return (
         <div className="topic_list__item">
           <TopicEditButton topic={topic} user={user} />
-          {view === 'title' ? (
+          {isLineView ? (
             <TitleView topic={topic} fromId={fromId} />
           ) : (
             <TopicCard topic={topic} />
@@ -116,8 +117,9 @@ class TopicSection extends Component {
     };
 
     const draftStyle = getDraftStyle(this.props.topic);
+    const gridStyle = !isLineView && 'topics__item--grid';
     return (
-      <section className={`topics__item ${draftStyle}`}>
+      <section className={`topics__item ${draftStyle} ${gridStyle}`}>
         <TopicLine topic={this.props.topic} />
       </section>
     );

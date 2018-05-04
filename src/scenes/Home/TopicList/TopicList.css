@@ -1,6 +1,7 @@
 .topic_list__item {
   transition: transform 0.25s ease-out;
   margin: 10px 0;
+  /* height: 100%; */
 }
 
 .topic_list__item:hover {

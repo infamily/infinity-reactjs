@@ -28,8 +28,9 @@ class Topics extends Component {
     const { topics } = this.state;
     const { view } = this.props;
 
+    const gridView = view === 'grid' && 'topics__list--grid';
     return (
-      <div className="topics__list">
+      <div className={gridView}>
         {topics.map(
           topic =>
             topic && <TopicSection key={topic.id} topic={topic} view={view} />

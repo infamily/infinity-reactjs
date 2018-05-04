@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ToggleButtonGroup, ToggleButton, Button } from 'react-bootstrap';
+import {
+  ToggleButtonGroup,
+  ToggleButton // , Button
+} from 'react-bootstrap';
 import TooltipOverlay from 'components/TooltipOverlay';
 
 const TopicViewToggle = ({
@@ -10,15 +13,38 @@ const TopicViewToggle = ({
   view
 }) => (
   <div className="view_toggle">
-    <TooltipOverlay text="Click to change Title/Grid view" placement="bottom">
-      <Button
-        className="view_toggle__grid_btn"
-        onClick={handleTopicView}
-        bsSize="xsmall"
-      >
-        {view}
-      </Button>
-    </TooltipOverlay>
+    {
+      // <TooltipOverlay text="Click to change Title/Grid view" placement="bottom">
+      //   <Button
+      //     className="view_toggle__grid_btn"
+      //     onClick={handleTopicView}
+      //     bsSize="xsmall"
+      //   >
+      //     {view}
+      //   </Button>
+      // </TooltipOverlay>
+    }
+    <small className="view_toggle__label">View:</small>
+    <ToggleButtonGroup
+      type="radio"
+      bsSize="xsmall"
+      className="view_toggle__grid_toggle"
+      name="options"
+      value={view}
+      onChange={handleTopicView}
+    >
+      <small className="view_toggle__label">Source:</small>
+      <ToggleButton value="line">
+        <TooltipOverlay text="Display as lines" placement="bottom">
+          <span>Tree</span>
+        </TooltipOverlay>
+      </ToggleButton>
+      <ToggleButton value="grid">
+        <TooltipOverlay text="Display as Grid" placement="bottom">
+          <span>Grid</span>
+        </TooltipOverlay>
+      </ToggleButton>
+    </ToggleButtonGroup>
     <ToggleButtonGroup
       type="radio"
       bsSize="xsmall"
@@ -28,12 +54,12 @@ const TopicViewToggle = ({
     >
       <ToggleButton value={1}>
         <TooltipOverlay text="Display only top-level topics" placement="bottom">
-          <span>Tree</span>
+          <span>Top-Level</span>
         </TooltipOverlay>
       </ToggleButton>
       <ToggleButton value={0}>
         <TooltipOverlay text="Display all topics" placement="bottom">
-          <span>List</span>
+          <span>All</span>
         </TooltipOverlay>
       </ToggleButton>
     </ToggleButtonGroup>

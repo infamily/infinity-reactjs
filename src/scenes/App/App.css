@@ -30,7 +30,6 @@
   overflow-x: hidden;
   font-size: 16px;
   padding: 10px;
-  max-width: 600px;
   flex-grow: 1;
 }
 
@@ -64,6 +63,12 @@ a:visited {
   font-family: 'Courier New', Courier, 'Lucida Sans Typewriter',
     'Lucida Typewriter', monospace;
   margin-top: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.main--full {
+  max-width: 100%;
 }
 
 .main h1 {

@@ -22,7 +22,13 @@ import './App.css';
 
 class App extends PureComponent {
   static propTypes = {
-    user: PropTypes.object
+    user: PropTypes.object,
+    server: PropTypes.string
+  };
+
+  static defaultProps = {
+    user: null,
+    server: null
   };
 
   render() {

@@ -5,16 +5,12 @@
   font-size: 14px;
   cursor: pointer;
   outline: none;
-  border-left: 2px solid #dfe2df;
-  border-right: 2px solid #dfe2df;
 }
 
 .new_btn:active,
 .new_btn:focus {
   background-color: #fff;
   outline: none;
-  border-left: 2px solid #dfe2df;
-  border-right: 2px solid #dfe2df;
 }
 
 .new_btn:hover {
