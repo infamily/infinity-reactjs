@@ -39,6 +39,12 @@
   vertical-align: middle;
 }
 
+.home__settings {
+  display: flex;
+  justify-content: space-between;
+  max-height: 30px;
+}
+
 .view_toggle {
   display: flex;
   justify-content: flex-end;
@@ -55,5 +61,9 @@
 @media (max-width: 401px) {
   .topics__title {
     margin-right: initial;
+  }
+
+  .home__settings {
+    display: inline;
   }
 }

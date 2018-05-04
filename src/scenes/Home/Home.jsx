@@ -10,6 +10,7 @@ import topicService from 'services/topic.service';
 import langService from 'services/lang.service';
 import Topics from './TopicList';
 import TopicViewToggle from './TopicViewToggle';
+import SettingsButton from './SettingsButton';
 import store_home from './services/store_home';
 import './Home.css';
 
@@ -26,6 +27,7 @@ class Home extends Component {
       view: 'grid', // (title/grid)
       topics: null,
       last_pack: [],
+      showSettings: true,
       loading: false
     };
   }
@@ -156,9 +158,13 @@ class Home extends Component {
     this.setState({ view: value });
   };
 
+  handleSettings = () => {
+    this.setState(prevState => ({ showSettings: !prevState.showSettings }));
+  };
+
   render() {
     const { title, button } = this.state.content;
-    const { flag, topics, topicView, loading, view } = this.state;
+    const { flag, topics, topicView, loading, view, showSettings } = this.state;
     const { user } = this.props;
     const hasMore = this.hasMore();
     const isVisible = hasMore && 'home--hidden';
@@ -186,12 +192,17 @@ class Home extends Component {
               </InputGroup>
             </FormGroup>
           </form>
-          <TopicViewToggle
-            onChangeTopicView={this.onChangeTopicView}
-            handleTopicView={this.handleGridView}
-            topicView={topicView}
-            view={view}
-          />
+          <div className="home__settings">
+            <SettingsButton action={this.handleSettings} />
+            {showSettings && (
+              <TopicViewToggle
+                onChangeTopicView={this.onChangeTopicView}
+                handleTopicView={this.handleGridView}
+                topicView={topicView}
+                view={view}
+              />
+            )}
+          </div>
         </div>
         <div className="topics__content">
           {loading ? (

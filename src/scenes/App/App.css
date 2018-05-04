@@ -104,6 +104,17 @@ a:visited {
   }
 }
 
+.main__icon_btn {
+  max-width: 15px;
+  margin: 0 10px;
+  opacity: 0.7;
+}
+
+.main__icon_btn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 /* reset bootstrap z-index */
 .input-group .form-control,
 .input-group-btn:last-child > .btn,
