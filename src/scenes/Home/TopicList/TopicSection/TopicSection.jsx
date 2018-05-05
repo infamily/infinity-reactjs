@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import TopicCard from './TopicCard';
 import TopicEditButton from './TopicEditButton';

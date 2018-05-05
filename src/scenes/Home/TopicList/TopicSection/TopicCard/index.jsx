@@ -4,7 +4,6 @@ import { makeHtml } from 'services/common.services';
 import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
 import { Link } from 'react-router-dom';
 import configs from 'configs';
-// import TopicEditButton from '../TopicEditButton';
 import './TopicCard.css';
 
 const makeHexDim = (inputHex, opacity) => {
@@ -18,10 +17,9 @@ const makeHexDim = (inputHex, opacity) => {
 };
 const getTopicLink = id => `${configs.linkBase()}/split/topic/${id}`;
 const getColor = type => configs.colors[type];
-const makeGradient = hex =>
-  `linear-gradient(to bottom, ${hex} 90%, rgba(255,0,0,0))`;
 const getTitleStyle = color => ({
-  background: makeGradient(makeHexDim(color, 35))
+  borderLeft: `3px solid ${makeHexDim(color, 85)}`
+  // backgroundColor: `${makeHexDim(color, 25)}`
 });
 
 export default function TopicCard({ topic }) {
@@ -30,18 +28,18 @@ export default function TopicCard({ topic }) {
   const time = 'Feb 15, 2018';
 
   return (
-    <div className="card__item">
-      <div className="card__title" style={getTitleStyle(color)}>
-        <Link to={getTopicLink(id)}>
+    <Link to={getTopicLink(id)}>
+      <div className="card__item" style={getTitleStyle(color)}>
+        <div className="card__title">
           <h4>{title}</h4>
-        </Link>
+        </div>
+        <div className="card__description">
+          <div className="card__text">{makeHtml(body)}</div>
+          <small>{time}</small>
+        </div>
+        <PreviewTopicBar topic={topic} />
       </div>
-      <div className="card__description">
-        <div className="card__text">{makeHtml(body)}</div>
-        <small>{time}</small>
-      </div>
-      <PreviewTopicBar topic={topic} />
-    </div>
+    </Link>
   );
 }
 

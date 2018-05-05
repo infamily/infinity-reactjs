@@ -16,17 +16,7 @@
 }
 
 .topics__item--grid {
-  flex-basis: 300px;
-  flex-grow: 1;
-  margin: 0 5px;
-  width: calc(50% - 10px);
 }
-
-/* @media (max-width: 1201px) {
-  .topics__item--grid {
-    width: calc(50% - 10px);
-  }
-} */
 
 @media (max-width: 401px) {
   .topics__item--grid {

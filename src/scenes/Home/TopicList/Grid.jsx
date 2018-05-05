@@ -1,26 +1,28 @@
-import React, { Component } from 'react';
-import Masonry from 'react-masonry-component';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import Masonry from 'react-masonry-css';
 
-const masonryOptions = {
-  transitionDuration: 0
-};
+class Grid extends PureComponent {
+  static propTypes = {
+    children: PropTypes.array.isRequired
+  };
 
-const Grid = ({ children }) => (
-  // const childElements = this.props.elements.map(element => (
-  //     <li className="image-element-class">
-  //       <img src={element.src} />
-  //     </li>
-  //   ));
-  <Masonry
-    className="my-gallery-class" // default ''
-    elementType="div" // default 'div'
-    options={masonryOptions} // default {}
-    disableImagesLoaded={false} // default false
-    updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-    // imagesLoadedOptions={imagesLoadedOptions} // default {}
-  >
-    {children}
-  </Masonry>
-);
+  render() {
+    const { children } = this.props;
+    const isSplit = window.location.href.includes('/split');
+    const breakpoints = !isSplit
+      ? { default: 2, 800: 2, 500: 1 }
+      : { default: 2, 1000: 1 };
+    return (
+      <Masonry
+        breakpointCols={breakpoints}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {children}
+      </Masonry>
+    );
+  }
+}
 
 export default Grid;

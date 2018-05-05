@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import clipIcon from 'images/Topic/clip.svg';
 import nextIcon from 'images/Topic/next.svg';
@@ -19,7 +19,7 @@ ClipButton.defaultProps = { action: null };
 export function NextButton({ action }) {
   return (
     <img
-      onClick={action}
+      // onClick={action}
       src={nextIcon}
       alt="clip icon"
       className="main__icon_btn"
@@ -27,4 +27,4 @@ export function NextButton({ action }) {
   );
 }
 NextButton.propTypes = { action: PropTypes.func };
-NextButton.defaultProps = { action: null };
+NextButton.defaultProps = { action: () => null };
