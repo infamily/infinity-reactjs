@@ -3,56 +3,62 @@ import serverService from './server.service';
 
 const getParams = (flag, view) => {
   const f = flag || '';
-  const params = `lang=${langService.current}&type=${f}&type__not=0&parents__isnull=${view}`;
+  const viewParam = view ? `&parents__isnull=${view}` : '';
+  const params = `lang=${
+    langService.current
+  }&type=${f}&type__not=0${viewParam}`;
   return params;
-}
+};
 
-const logger = (err) => {
+const logger = err => {
   console.log(err);
-}
+};
 
 class TopicService {
   constructor() {
     this.topics = [];
-    this.fromPage = 0; 
+    this.fromPage = 0;
   }
 
   async getTopics(flag, view) {
-    const { data, error } = await serverService.get(`/topics/?${getParams(flag, view)}`)
+    const { data, error } = await serverService.get(
+      `/topics/?${getParams(flag, view)}`
+    );
     if (data) {
       this.topics = data.results;
-      this.fromPage = 1;        
-      return data.results; 
-    } else {
-      logger(error);
+      this.fromPage = 1;
+      return data.results;
     }
+    logger(error);
   }
 
   async getPage(page, flag, view) {
-    const { data, error } = await serverService.get(`/topics/?page=${page}&${getParams(flag, view)}`)
+    const { data, error } = await serverService.get(
+      `/topics/?page=${page}&${getParams(flag, view)}`
+    );
     if (data) {
       this.fromPage = page;
       this.topics = data.results;
       return data.results;
-    } else {
-      logger(error);
     }
+    logger(error);
   }
 
   async search(query, flag, view) {
-    const { data, error } = await serverService.get(`/topics/?search=${query}&${getParams(flag, view)}`)
+    const { data, error } = await serverService.get(
+      `/topics/?search=${query}&${getParams(flag, view)}`
+    );
     if (data) {
       this.topics = data.results;
       return data.results;
-    } else {
-      logger(error);
     }
+    logger(error);
   }
 
   resetState = () => {
-    topicService.fromPage = null;
-    topicService.topics = [];
-  }
+    this.fromPage = null;
+    this.topics = [];
+  };
 }
 
 const topicService = new TopicService();
