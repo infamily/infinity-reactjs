@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import settingsIcon from 'images/settings.svg';
 
-export default class ClipButton extends PureComponent {
+export default class SettingsButton extends PureComponent {
   static propTypes = { action: PropTypes.func.isRequired };
 
   render() {

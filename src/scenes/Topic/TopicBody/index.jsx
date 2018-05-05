@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
 import TopicInfo from 'components/Balance/TopicInfo';
-import ClipButton from 'scenes/Topic/ClipButton';
+import { NextButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
 import configs from 'configs';
 import { getColor } from '../helpers/badge';
@@ -45,7 +45,7 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       <h1>
         {topic.title}
         <Link to={`${configs.linkBase()}/topic/${topic.id}`}>
-          <ClipButton />
+          <NextButton />
         </Link>
         <DraftTag />
       </h1>

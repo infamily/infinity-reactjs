@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TopicSection from './TopicSection';
+import Grid from './Grid';
 import './TopicList.css';
 
 class Topics extends Component {
@@ -27,16 +28,13 @@ class Topics extends Component {
   render() {
     const { topics } = this.state;
     const { view } = this.props;
-
-    const gridView = view === 'grid' && 'topics__list--grid';
-    return (
-      <div className={gridView}>
-        {topics.map(
-          topic =>
-            topic && <TopicSection key={topic.id} topic={topic} view={view} />
-        )}
-      </div>
+    const elements = topics.map(
+      topic =>
+        topic && <TopicSection key={topic.id} topic={topic} view={view} />
     );
+
+    if (view === 'grid') return <Grid>{elements}</Grid>;
+    return <div>{elements}</div>;
   }
 }
 

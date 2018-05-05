@@ -6,7 +6,7 @@ import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
 import TooltipOverlay from 'components/TooltipOverlay';
 import ProgressBar from 'components/TopicProgressBar';
-import ClipButton from 'scenes/Topic/ClipButton';
+import { ClipButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
 import configs from 'configs';
 import TransactionBox from './TransactionBox';

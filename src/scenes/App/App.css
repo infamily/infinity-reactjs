@@ -64,7 +64,9 @@ a:visited {
     'Lucida Typewriter', monospace;
   margin-top: 10px;
   max-width: 600px;
+  padding: 5px;
   margin: 0 auto;
+  overflow: hidden; /* to hide scrollbar on gid-view change */
 }
 
 .main--full {
