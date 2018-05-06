@@ -1,5 +1,6 @@
 .topics__content {
   min-height: calc(100vh - 100px);
+  overflow-anchor: none; /* infinity scroll fix */
 }
 
 .topics__list--grid {
@@ -29,7 +30,7 @@
   max-width: 600px;
 }
 
-.home__loader {
+.home__hide {
   display: none;
 }
 

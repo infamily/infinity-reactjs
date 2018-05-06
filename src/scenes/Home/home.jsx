@@ -6,6 +6,7 @@ import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import Header from 'components/Header';
 import Loading from 'components/Loading';
+import LoadingElements from 'components/Loading/LoadingElements';
 import topicService from 'services/topic.service';
 import langService from 'services/lang.service';
 import Topics from './TopicList';
@@ -63,7 +64,6 @@ class Home extends Component {
   };
 
   loadMore = () => {
-    return;
     const { page, topics, flag, last_pack, topicView } = this.state;
     const self = this;
     const next = page + 1;
@@ -167,6 +167,7 @@ class Home extends Component {
     const { title, button } = this.state.content;
     const { flag, topics, topicView, loading, view, showSettings } = this.state;
     const { user } = this.props;
+    const hasMore = this.hasMore();
 
     if (topics === null) return <Loading />;
     const fullStyle = view === 'grid' && ' main--full';
@@ -211,7 +212,7 @@ class Home extends Component {
               pageStart={1}
               loadMore={this.loadMore}
               hasMore={hasMore}
-              loader={<div key={0}>Loading ...</div>}
+              loader={<LoadingElements key={0} style={{ clear: 'both' }} />}
             >
               <Topics topics={topics} view={view} />
             </InfiniteScroll>
