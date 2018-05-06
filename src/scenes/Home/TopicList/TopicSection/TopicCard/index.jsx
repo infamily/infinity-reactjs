@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeHtml } from 'services/common.services';
+import { makePreviewHtml } from 'services/common.services';
 import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
 import { Link } from 'react-router-dom';
 import configs from 'configs';
@@ -34,7 +34,7 @@ export default function TopicCard({ topic }) {
           <h4>{title}</h4>
         </div>
         <div className="card__description">
-          <div className="card__text">{makeHtml(body)}</div>
+          <div className="card__text">{makePreviewHtml(body)}</div>
           <small>{time}</small>
         </div>
         <PreviewTopicBar topic={topic} />

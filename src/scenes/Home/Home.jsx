@@ -25,7 +25,7 @@ class Home extends Component {
       query: '',
       topicView: 1,
       view: 'grid', // line/grid
-      topics: null,
+      topics: [],
       last_pack: [],
       showSettings: true,
       loading: false
@@ -59,10 +59,11 @@ class Home extends Component {
 
   hasMore = () => {
     const { last_pack } = this.state;
-    return last_pack.length >= 25;
+    return last_pack.length >= 25; // fixed? (1)
   };
 
   loadMore = () => {
+    return;
     const { page, topics, flag, last_pack, topicView } = this.state;
     const self = this;
     const next = page + 1;
@@ -77,7 +78,7 @@ class Home extends Component {
       topicService.topics = main_pack; // pile up topics
       self.setState({
         topics: main_pack,
-        last_pack: topics,
+        last_pack: newTopics, // fixed? (2)
         page: next
       });
     });
@@ -166,8 +167,6 @@ class Home extends Component {
     const { title, button } = this.state.content;
     const { flag, topics, topicView, loading, view, showSettings } = this.state;
     const { user } = this.props;
-    const hasMore = this.hasMore();
-    const isVisible = hasMore && 'home--hidden';
 
     if (topics === null) return <Loading />;
     const fullStyle = view === 'grid' && ' main--full';
@@ -212,11 +211,7 @@ class Home extends Component {
               pageStart={1}
               loadMore={this.loadMore}
               hasMore={hasMore}
-              loader={
-                <div className={isVisible} style={{ clear: 'both' }}>
-                  Loading ...
-                </div>
-              }
+              loader={<div key={0}>Loading ...</div>}
             >
               <Topics topics={topics} view={view} />
             </InfiniteScroll>
