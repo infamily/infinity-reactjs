@@ -1,14 +1,21 @@
 import TurndownService from 'turndown';
+
 const turndownService = new TurndownService();
-const clearTags = (str) => str.replace(/<p><br><\/p>/gi, '<br/>'); //Quill syntax replacement
+const clearTags = str => str.replace(/<p><br><\/p>/gi, '<br/>'); // Quill syntax replacement
 
 turndownService.addRule('clearSpaces', {
   filter: 'p',
-  replacement: function (content) {
-    return content + '<br/>';
+  replacement(content) {
+    return `${content}<br/>`;
   }
 });
 
-export const getMarkdown = (html) => {
-  return turndownService.turndown(clearTags(html));
-} 
+export const getMarkdown = html => turndownService.turndown(clearTags(html));
+
+export const parseCategories = array =>
+  array.map(item => {
+    const { name, url, definition } = item;
+    return { value: name, label: name, url, definition };
+  });
+
+export const getTypeId = link => link.match(/types\/(\d+)/)[1];

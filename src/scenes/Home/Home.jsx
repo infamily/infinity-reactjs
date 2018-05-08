@@ -25,7 +25,7 @@ class Home extends Component {
       flag: store_home.flag || 0,
       query: '',
       topicView: 1,
-      view: 'grid', // line/grid
+      view: 'grid', // params: line | grid
       topics: [],
       last_pack: [],
       showSettings: true,
@@ -57,32 +57,6 @@ class Home extends Component {
       await this.updateListState();
     }
   }
-
-  hasMore = () => {
-    const { last_pack } = this.state;
-    return last_pack.length >= 25; // fixed? (1)
-  };
-
-  loadMore = () => {
-    const { page, topics, flag, last_pack, topicView } = this.state;
-    const self = this;
-    const next = page + 1;
-
-    if (last_pack < 25) return;
-
-    store_home.home_page = next;
-
-    topicService.getPage(next, flag, topicView).then(newTopics => {
-      const main_pack = topics.concat(newTopics);
-
-      topicService.topics = main_pack; // pile up topics
-      self.setState({
-        topics: main_pack,
-        last_pack: newTopics, // fixed? (2)
-        page: next
-      });
-    });
-  };
 
   onChangeTopicView = async topicView => {
     const { flag } = this.state;
@@ -118,6 +92,32 @@ class Home extends Component {
         topics
       });
     }
+  };
+
+  loadMore = () => {
+    const { page, topics, flag, last_pack, topicView } = this.state;
+    const self = this;
+    const next = page + 1;
+
+    if (last_pack < 25) return;
+
+    store_home.home_page = next;
+
+    topicService.getPage(next, flag, topicView).then(newTopics => {
+      const main_pack = topics.concat(newTopics);
+
+      topicService.topics = main_pack; // pile up topics
+      self.setState({
+        topics: main_pack,
+        last_pack: newTopics,
+        page: next
+      });
+    });
+  };
+
+  hasMore = () => {
+    const { last_pack } = this.state;
+    return last_pack && last_pack.length >= 25;
   };
 
   makeSearch = async e => {
@@ -186,6 +186,16 @@ class Home extends Component {
                   value={this.state.query}
                   onChange={this.handleChange}
                 />
+                <div className="home_input__settings_btn">
+                  <SettingsButton action={this.handleSettings} />
+                </div>
+                {
+                  //   <InputGroup.Button>
+                  //   <Button onClick={this.handleSettings}>
+                  //     <SettingsButton action={null} />
+                  //   </Button>
+                  // </InputGroup.Button>
+                }
                 <InputGroup.Button>
                   <Button type="submit">{button}</Button>
                 </InputGroup.Button>
@@ -193,7 +203,6 @@ class Home extends Component {
             </FormGroup>
           </form>
           <div className="home__settings">
-            <SettingsButton action={this.handleSettings} />
             {showSettings && (
               <TopicViewToggle
                 onChangeTopicView={this.onChangeTopicView}

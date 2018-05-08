@@ -107,7 +107,7 @@ a:visited {
 }
 
 .main__icon_btn {
-  max-width: 15px;
+  width: 15px;
   margin: 0 10px;
   opacity: 0.7;
 }

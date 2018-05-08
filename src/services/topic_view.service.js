@@ -3,79 +3,104 @@ import langService from './lang.service';
 import serverService from './server.service';
 
 class TopicViewService {
-
-  async createTopic(data) {
+  createTopic = async data => {
     const lang = langService.current;
     const { type, title, text, parents, categories, is_draft } = data;
     try {
       const parameters = {
-        title: '.:' + lang + ':' + title,
-        body: '.:' + lang + '\n' + text,
-        languages: [lang],
-        type, 
-        parents,
-        categories,
-        is_draft,
-      };
-
-      const { data } = await axios.post(serverService.api + '/topics/', parameters);
-      return data;
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  async updateTopic(data) {
-    const lang = langService.current;
-    const { type, title, text, parents, categories, id, is_draft } = data;
-    try {
-      const parameters = {
-        title: '.:' + lang + ':' + title,
-        body: '.:' + lang + '\n' + text,
+        title: `.:${lang}:${title}`,
+        body: `.:${lang}\n${text}`,
         languages: [lang],
         type,
         parents,
         categories,
-        is_draft,
+        is_draft
       };
 
-      const { data } = await axios.patch(`${serverService.api}/topics/${id}/`, parameters);
+      const { data } = await axios.post(
+        `${serverService.api}/topics/`,
+        parameters
+      );
       return data;
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
-  async deleteTopic(id) {
+  updateTopic = async data => {
+    const lang = langService.current;
+    const { type, title, text, parents, categories, id, is_draft } = data;
+    try {
+      const parameters = {
+        title: `.:${lang}:${title}`,
+        body: `.:${lang}\n${text}`,
+        languages: [lang],
+        type,
+        parents,
+        categories,
+        is_draft
+      };
+
+      const { data } = await axios.patch(
+        `${serverService.api}/topics/${id}/`,
+        parameters
+      );
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  deleteTopic = async id => {
     try {
       await axios.delete(`${serverService.api}/topics/${id}/`);
       return 'success';
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
-  async search(query, flag) {
+  search = async (query, flag) => {
     const { current } = langService;
     const f = flag || '';
-     
+
     try {
-      const { data } = await axios.get(`${serverService.api}/topics/?search=${query}&lang=${current}&type=${f}`); 
+      const { data } = await axios.get(
+        `${serverService.api}/topics/?search=${query}&lang=${current}&type=${f}`
+      );
       return data;
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
-  } 
+  };
 
-  async getCategories() {
+  getCategories = async () => {
     try {
       const { current } = langService;
-      const categories = await axios.get(`${serverService.api}/types/?category=1&is_category=1&lang=${current}`);
+      const categories = await axios.get(
+        `${
+          serverService.api
+        }/types/?category=1&is_category=1&parents__isnull=1&lang=${current}`
+      );
       return categories.data;
     } catch (e) {
       console.error(e);
     }
-  } 
+  };
+
+  getSubCategoriesById = async id => {
+    try {
+      const { current } = langService;
+      const categories = await axios.get(
+        `${
+          serverService.api
+        }/types/?is_category=1&parents=${id}&lang=${current}`
+      );
+      return categories.data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
 }
 
 const topicViewService = new TopicViewService();

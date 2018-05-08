@@ -14,17 +14,8 @@ const TopicViewToggle = ({
 }) => (
   <div className="view_toggle">
     {
-      // <TooltipOverlay text="Click to change Title/Grid view" placement="bottom">
-      //   <Button
-      //     className="view_toggle__grid_btn"
-      //     onClick={handleTopicView}
-      //     bsSize="xsmall"
-      //   >
-      //     {view}
-      //   </Button>
-      // </TooltipOverlay>
+      // <small className="view_toggle__label">View:</small>
     }
-    <small className="view_toggle__label">View:</small>
     <ToggleButtonGroup
       type="radio"
       bsSize="xsmall"
@@ -33,7 +24,9 @@ const TopicViewToggle = ({
       value={view}
       onChange={handleTopicView}
     >
-      <small className="view_toggle__label">Source:</small>
+      {
+        // <small className="view_toggle__label">Source:</small>
+      }
       <ToggleButton value="line">
         <TooltipOverlay text="Display as lines" placement="bottom">
           <span>Tree</span>

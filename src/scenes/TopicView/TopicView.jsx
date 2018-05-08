@@ -23,6 +23,7 @@ import 'react-select/dist/react-select.min.css';
 import { PopupModal } from './PopupModal';
 import SelectOption from './SelectOption';
 import topicService from './services';
+import { parseCategories } from './helpers';
 import './TopicView.css';
 
 class TopicView extends Component {
@@ -333,10 +334,7 @@ class TopicView extends Component {
 
     const type = all_types[topic_type] || 'idea';
 
-    const categories = all_categories.map(item => {
-      const { name, url, definition } = item;
-      return { value: name, label: name, url, definition };
-    });
+    const categories = parseCategories(all_categories);
 
     const Buttons = () => {
       if (!user)
@@ -417,7 +415,8 @@ class TopicView extends Component {
                 value={topic_categories}
                 options={categories}
                 onChange={this.selectCategory}
-                optionRenderer={SelectOption}
+                // optionRenderer={SelectOption}
+                optionComponent={SelectOption}
               />
             </FormGroup>
             <FormGroup>

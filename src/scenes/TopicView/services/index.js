@@ -4,7 +4,8 @@ import serverService from 'services/server.service';
 
 async function getTopic(id) {
   try {
-    const getTopic = lang => axios.get(`${serverService.api}/topics/${id}/?lang=${lang || ''}`);
+    const getTopic = lang =>
+      axios.get(`${serverService.api}/topics/${id}/?lang=${lang || ''}`);
     const _topic = await getTopic(' ');
 
     const { current } = langService;
@@ -21,11 +22,13 @@ async function getTopic(id) {
   }
 }
 
-
 async function getCategory(id) {
   try {
-    const getCategory = lang => axios.get(`${serverService.api}/types/${id}/?category=1&lang=${lang || ''}`);
-    const _category = await getCategory(' ');
+    const getCategoryByLang = lang =>
+      axios.get(
+        `${serverService.api}/types/${id}/?category=1&lang=${lang || ''}`
+      );
+    const _category = await getCategoryByLang(' ');
 
     const { current } = langService;
     const { languages } = _category.data;
@@ -33,7 +36,7 @@ async function getCategory(id) {
     const index = languages.indexOf(current);
     const lang = languages[index > -1 ? index : 0];
 
-    const { data } = await getCategory(lang);
+    const { data } = await getCategoryByLang(lang);
     data.lang = lang;
     return data;
   } catch (e) {
@@ -44,7 +47,7 @@ async function getCategory(id) {
 async function getParents(parents) {
   const formatted = [];
 
-  for (let link of parents) {
+  for (const link of parents) {
     const id = link.match(/topics\/(\d+)/)[1];
     const topic = await getTopic(id);
     const { title, url } = topic;
@@ -65,9 +68,9 @@ async function addParent(id) {
 async function getCategories(categories) {
   const formatted = [];
 
-  for (let link of categories) {
-    const id = link.match(/types\/(\d+)/)[1];
-    const category = await getCategory(id);
+  for (const link of categories) {
+    const getTypeId = link => link.match(/types\/(\d+)/)[1];
+    const category = await getCategory(getTypeId(link));
     const { name, url } = category;
     formatted.push({ label: name, value: name, url });
   }
@@ -87,5 +90,5 @@ export default {
   getParents,
   getCategories,
   addParent,
-  getType,
-}
+  getType
+};
