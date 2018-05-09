@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makePreviewHtml } from 'services/common.services';
 import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import configs from 'configs';
 import './TopicCard.css';
@@ -23,26 +22,28 @@ const getTitleStyle = color => ({
   // backgroundColor: `${makeHexDim(color, 25)}`
 });
 
-export default function TopicCard({ topic }) {
+export default function TopicCard({ topic, history }) {
   const { title, body, id, type, created_date } = topic;
   const color = getColor(type);
   const time = moment(created_date).format('MMMM Do YYYY');
   // 'Feb 15, 2018';
-
+  const goToTopic = () => history.push(getTopicLink(id));
   return (
-    <Link to={getTopicLink(id)}>
-      <div className="card__item" style={getTitleStyle(color)}>
-        <div className="card__title">
-          <h4 className="card__title-text">{title}</h4>
-        </div>
-        <div className="card__description">
-          <div className="card__text">{makePreviewHtml(body)}</div>
-          <br />
-          <small>{time}</small>
-        </div>
-        <PreviewTopicBar topic={topic} />
+    <div
+      className="card__item"
+      style={getTitleStyle(color)}
+      onClick={goToTopic}
+    >
+      <div className="card__title">
+        <h4 className="card__title-text">{title}</h4>
       </div>
-    </Link>
+      <div className="card__description">
+        <div className="card__text">{makePreviewHtml(body)}</div>
+        <br />
+        <small>{time}</small>
+      </div>
+      <PreviewTopicBar topic={topic} />
+    </div>
   );
 }
 

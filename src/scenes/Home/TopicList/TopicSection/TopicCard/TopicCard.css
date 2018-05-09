@@ -2,6 +2,7 @@
   margin-bottom: 10px;
   border-radius: 6px;
   box-shadow: 2px 5px 7px rgb(216, 216, 216);
+  cursor: pointer;
 }
 
 .card__item:hover {

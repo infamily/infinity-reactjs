@@ -24,6 +24,7 @@ class TopicSection extends Component {
   static propTypes = {
     topic: PropTypes.object.isRequired,
     view: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired,
     user: PropTypes.object
   };
 
@@ -60,7 +61,7 @@ class TopicSection extends Component {
   };
 
   render() {
-    const { user, view } = this.props;
+    const { user, view, history } = this.props;
     const isLineView = view === 'line';
 
     const BadgePoint = ({ topic, fromId }) => {
@@ -104,7 +105,7 @@ class TopicSection extends Component {
           {isLineView ? (
             <TitleView topic={topic} fromId={fromId} />
           ) : (
-            <TopicCard topic={topic} />
+            <TopicCard topic={topic} history={history} />
           )}
           <div className="topic_list__step" style={getBorder(topic)}>
             {isExpanded &&
