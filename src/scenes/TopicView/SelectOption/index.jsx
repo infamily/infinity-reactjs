@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
+import classNames from 'classnames';
 import LoadingElements from 'components/Loading/LoadingElements';
 import topicViewService from 'services/topic_view.service';
 import { parseCategories, getTypeId } from '../helpers';
@@ -16,26 +17,64 @@ const SelectOptionItem = ({ option, onSelect }) => {
   };
 
   return (
-    <div
-      className="category_select__option category_select__sub_option"
-      data-tip={definition}
-      data-for={value}
-    >
-      <option onClick={handleMouseDown} value={value}>
-        {label}
-      </option>
+    <div className="category_select__option category_select__sub_option">
+      <div className="category_select__option_label">
+        <option
+          data-tip={definition}
+          data-for={value}
+          onClick={handleMouseDown}
+          value={value}
+        >
+          {label}
+        </option>
+      </div>
       <ReactTooltip id={value} />
     </div>
   );
 };
 
+const SubCatigoriesList = ({ subCatigories, onSelect }) =>
+  subCatigories && subCatigories.length ? (
+    subCatigories.map(item => (
+      <SelectOptionItem option={item} key={item.url} onSelect={onSelect} />
+    ))
+  ) : (
+    <div className="category_select__no_subs">No more subcategories</div>
+  );
+
 class SelectOption extends Component {
   constructor() {
     super();
-    this.state = { subCatigories: [], showSubs: true, loading: false };
+    this.state = { subCatigories: null, showSubs: false, loading: false };
   }
 
+  static propTypes = {
+    option: PropTypes.shape({
+      value: PropTypes.string,
+      object: PropTypes.string,
+      url: PropTypes.string,
+      definition: PropTypes.string
+    }).isRequired,
+    onSelect: PropTypes.func.isRequired
+  };
+
+  handleMouseDown = event => {
+    event.preventDefault();
+    event.stopPropagation();
+    const { option, onSelect } = this.props;
+    onSelect(option, event);
+  };
+
   expandSubs = async () => {
+    const { subCatigories } = this.state;
+
+    if (subCatigories) {
+      this.setState(prevState => ({
+        showSubs: !prevState.showSubs
+      }));
+      return;
+    }
+
     const { option } = this.props;
     const { url } = option;
     const id = getTypeId(url);
@@ -43,48 +82,54 @@ class SelectOption extends Component {
       loading: true
     });
     const subs = await topicViewService.getSubCategoriesById(id);
-    const subCatigories = [option].concat(parseCategories(subs));
+    const catigories = parseCategories(subs || []);
     this.setState({
-      subCatigories,
-      loading: false
+      subCatigories: catigories,
+      loading: false,
+      showSubs: true
     });
   };
 
   render() {
-    const { option } = this.props;
+    const { option, onSelect } = this.props;
     const { subCatigories, showSubs, loading } = this.state;
     const { value, label, definition } = option;
 
     return (
       <div>
         <div
-          className="category_select__option"
-          data-tip={definition}
-          data-for={value}
+          className={classNames('category_select__option', {
+            'category_select__option--expanded': showSubs
+          })}
         >
-          <option onClick={this.expandSubs} value={value}>
-            {label}
-          </option>
+          <div
+            className="category_select__option_label"
+            onClick={this.handleMouseDown}
+          >
+            <option data-tip={definition} data-for={value} value={value}>
+              {label}
+            </option>
+          </div>
+          <div
+            className={classNames('category_select__option_more', {
+              'category_select__option_more--expanded': showSubs
+            })}
+            onClick={this.expandSubs}
+          >
+            more
+          </div>
           <ReactTooltip id={value} />
         </div>
         {loading && <LoadingElements size={42} />}
-        {showSubs &&
-          subCatigories.map(item => (
-            <SelectOptionItem option={item} onSelect={this.props.onSelect} />
-          ))}
+        {showSubs && (
+          <SubCatigoriesList
+            subCatigories={subCatigories}
+            onSelect={onSelect}
+          />
+        )}
       </div>
     );
   }
 }
-
-SelectOption.propsTypes = {
-  option: PropTypes.objectOf({
-    value: PropTypes.string.isRequired,
-    object: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    definition: PropTypes.string.isRequired
-  }),
-  onSelect: PropTypes.func.isRequired
-};
 
 export default SelectOption;

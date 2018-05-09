@@ -1,13 +1,48 @@
 .category_select__option {
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .category_select__option:hover {
   background-color: rgba(0, 126, 255, 0.08);
 }
 
+.category_select__option--expanded {
+  background-color: rgba(0, 128, 255, 0.288) !important;
+}
+
+.category_select__option_label {
+  cursor: pointer !important;
+}
+
 .category_select__sub_option {
   padding: 5px;
   margin-left: 15px;
-  border-left: 1px solid gray;
+  border-left: 3px solid rgba(0, 128, 255, 0.288);
+}
+
+.category_select__no_subs {
+  padding: 10px;
+  margin-left: 15px;
+  border-left: 3px solid rgba(219, 219, 219, 0.596);
+}
+
+.category_select__option_more {
+  background-color: rgba(0, 126, 255, 0.08);
+  border-radius: 2px;
+  border: 1px solid #c2e0ff;
+  border: 1px solid rgba(0, 126, 255, 0.24);
+  color: #007eff;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.category_select__option_more--expanded {
+  background-color: rgb(223, 233, 255);
+}
+
+/* react-select library fix */
+.Select-value-label {
+  display: inline !important;
 }
