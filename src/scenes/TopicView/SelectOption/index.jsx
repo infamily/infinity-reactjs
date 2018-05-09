@@ -1,3 +1,5 @@
+// component isn't using (wait to be implemented)
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';

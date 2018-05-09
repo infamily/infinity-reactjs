@@ -210,15 +210,17 @@ class Topic extends Component {
             </TopicBody>
             <NewButton action={this.handleEditSection} title={newButtonText} />
             <div className="topic__edit_section">
-              <Panel
-                id="collapsible-data-panel"
-                expanded={addChildSection}
-                className="topic__edit_panel"
-                collapsible
-                defaultExpanded={false}
-              >
-                <TopicView parent={topic.id} />
-              </Panel>
+              {addChildSection && (
+                <Panel
+                  id="collapsible-data-panel"
+                  expanded={addChildSection}
+                  className="topic__edit_panel"
+                  collapsible
+                  defaultExpanded={false}
+                >
+                  <TopicView parent={topic.id} loaderElements />
+                </Panel>
+              )}
             </div>
             <div ref="com_sec">
               <CommentForm

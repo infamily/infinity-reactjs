@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makePreviewHtml } from 'services/common.services';
 import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import configs from 'configs';
 import './TopicCard.css';
 
@@ -23,18 +24,20 @@ const getTitleStyle = color => ({
 });
 
 export default function TopicCard({ topic }) {
-  const { title, body, id, type } = topic;
+  const { title, body, id, type, created_date } = topic;
   const color = getColor(type);
-  const time = 'Feb 15, 2018';
+  const time = moment(created_date).format('MMMM Do YYYY');
+  // 'Feb 15, 2018';
 
   return (
     <Link to={getTopicLink(id)}>
       <div className="card__item" style={getTitleStyle(color)}>
         <div className="card__title">
-          <h4>{title}</h4>
+          <h4 className="card__title-text">{title}</h4>
         </div>
         <div className="card__description">
           <div className="card__text">{makePreviewHtml(body)}</div>
+          <br />
           <small>{time}</small>
         </div>
         <PreviewTopicBar topic={topic} />

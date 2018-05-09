@@ -15,29 +15,19 @@ import Select from 'react-select';
 import MenuBar from 'scenes/MenuBar';
 import Flag from 'components/FlagToggle';
 import Loading from 'components/Loading';
+import LoadingElements from 'components/Loading/LoadingElements';
 import TextEditor from 'components/TextEditor/TopicEditor';
 import FormSelect from 'components/FormSelect';
 import topicViewService from 'services/topic_view.service';
 import configs from 'configs';
 import 'react-select/dist/react-select.min.css';
 import { PopupModal } from './PopupModal';
-import SelectOption from './SelectOption';
+import SelectOption from './SelectOption/Option';
 import topicService from './services';
 import { parseCategories } from './helpers';
 import './TopicView.css';
 
 class TopicView extends Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    persistedTopic: PropTypes.object.isRequired,
-    persistTopic: PropTypes.func.isRequired,
-    clearTopic: PropTypes.func.isRequired,
-    setUpdateTopicList: PropTypes.func.isRequired,
-    user: PropTypes.object,
-    parent: PropTypes.number
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +52,22 @@ class TopicView extends Component {
       }
     };
   }
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    persistedTopic: PropTypes.object.isRequired,
+    persistTopic: PropTypes.func.isRequired,
+    loaderElements: PropTypes.bool,
+    clearTopic: PropTypes.func.isRequired,
+    setUpdateTopicList: PropTypes.func.isRequired,
+    user: PropTypes.object,
+    parent: PropTypes.number
+  };
+
+  static defaultProps = {
+    loaderElements: false
+  };
 
   async componentWillMount() {
     const { user, match, persistedTopic, parent } = this.props;
@@ -327,10 +333,10 @@ class TopicView extends Component {
       success,
       isLoading
     } = this.state;
-    const { user } = this.props;
-    const { goBack } = this.props.history;
+    const { user, loaderElements, history } = this.props;
+    const { goBack } = history;
 
-    if (isLoading) return <Loading />;
+    if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
 
     const type = all_types[topic_type] || 'idea';
 
@@ -415,8 +421,7 @@ class TopicView extends Component {
                 value={topic_categories}
                 options={categories}
                 onChange={this.selectCategory}
-                // optionRenderer={SelectOption}
-                optionComponent={SelectOption}
+                optionRenderer={SelectOption}
               />
             </FormGroup>
             <FormGroup>

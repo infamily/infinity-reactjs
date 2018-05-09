@@ -174,6 +174,9 @@ class Home extends Component {
 
     return (
       <div className={`main ${fullStyle}`}>
+        {
+          // to do: separate FormGroup and Topics components (performance)
+        }
         <div className="home__head">
           <Header user={user} title={title} />
           <form onSubmit={this.makeSearch}>
@@ -189,13 +192,6 @@ class Home extends Component {
                 <div className="home_input__settings_btn">
                   <SettingsButton action={this.handleSettings} />
                 </div>
-                {
-                  //   <InputGroup.Button>
-                  //   <Button onClick={this.handleSettings}>
-                  //     <SettingsButton action={null} />
-                  //   </Button>
-                  // </InputGroup.Button>
-                }
                 <InputGroup.Button>
                   <Button type="submit">{button}</Button>
                 </InputGroup.Button>
@@ -213,6 +209,7 @@ class Home extends Component {
             )}
           </div>
         </div>
+
         <div className="topics__content">
           {loading ? (
             <Loading />
@@ -221,7 +218,7 @@ class Home extends Component {
               pageStart={1}
               loadMore={this.loadMore}
               hasMore={hasMore}
-              loader={<LoadingElements key={0} style={{ clear: 'both' }} />}
+              loader={<LoadingElements key={0} />}
             >
               <Topics topics={topics} view={view} />
             </InfiniteScroll>
