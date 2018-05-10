@@ -21,7 +21,8 @@
     "semi": [2, "always"],
     "semicolons": true,
     "quotes": "off",
-    "import": ["error", "never", { "packages": "always" }]
+    "import": ["warn", "never", { "packages": "always" }],
+    "react/sort-comp": 0
   },
   "plugins": ["react", "prettier", "jsx-a11y", "import"],
   "settings": {

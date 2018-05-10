@@ -30,6 +30,11 @@ export default class TopicCard extends Component {
     this.state = { topic: props.topic };
   }
 
+  static propTypes = {
+    topic: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
   goToTopic = e => {
     e.stopPropagation();
     const { history } = this.props;
@@ -85,7 +90,3 @@ export default class TopicCard extends Component {
     );
   }
 }
-
-TopicCard.propTypes = {
-  topic: PropTypes.object.isRequired
-};
