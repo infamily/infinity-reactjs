@@ -1,3 +1,4 @@
+import axios from 'axios';
 import langService from './lang.service';
 import serverService from './server.service';
 
@@ -54,6 +55,28 @@ class TopicService {
     }
     logger(error);
   }
+
+  getTopic = async id => {
+    try {
+      const api = serverService.api;
+      const axiosNoToken = axios.create();
+      const getTopic = lang =>
+        axiosNoToken.get(`${api}/topics/${id}/?lang=${lang || ''}`);
+      const _topic = await getTopic(' ');
+
+      const { current } = langService;
+      const { languages } = _topic.data;
+
+      const index = languages.indexOf(current);
+      const lang = languages[index > -1 ? index : 0];
+
+      const { data } = await getTopic(lang);
+      data.lang = lang;
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   resetState = () => {
     this.fromPage = null;

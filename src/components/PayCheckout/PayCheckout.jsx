@@ -86,7 +86,7 @@ export default class PayCheckout extends Component {
       this.setState({ ...defaultState });
       this.form.reset();
       this.handleOpen();
-      this.props.updateOuterData && this.props.updateOuterData();
+      this.props.updateOuterData && this.props.updateOuterData(response.data);
     } else {
       this.setState({ loading: false });
       this.showMessage(response.error.message || 'Server error. Try again.');

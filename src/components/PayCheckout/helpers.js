@@ -17,19 +17,19 @@ export function formatCreditCardNumber(value) {
     case 'amex':
       nextValue = `${clearValue.slice(0, 4)} ${clearValue.slice(
         4,
-        10,
+        10
       )} ${clearValue.slice(10, 15)}`;
       break;
     case 'dinersclub':
       nextValue = `${clearValue.slice(0, 4)} ${clearValue.slice(
         4,
-        10,
+        10
       )} ${clearValue.slice(10, 14)}`;
       break;
     default:
       nextValue = `${clearValue.slice(0, 4)} ${clearValue.slice(
         4,
-        8,
+        8
       )} ${clearValue.slice(8, 12)} ${clearValue.slice(12, 19)}`;
       break;
   }
@@ -70,7 +70,7 @@ export const defaultState = {
   currency: 'USD',
   focused: '',
   issuer: '',
-  loading: false,
+  loading: false
 };
 
 // export const defaultState = {
