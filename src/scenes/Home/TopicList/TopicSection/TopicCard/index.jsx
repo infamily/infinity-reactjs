@@ -32,7 +32,8 @@ export default function TopicCard({ topic, history }) {
     e.stopPropagation();
     history.push(getTopicLink(id));
   };
-  const hours = parseFloat(matched + funds).toFixed(2);
+  const hours = parseFloat(parseFloat(matched + funds).toFixed(2));
+  // const isHours = Boolean(matched + funds);
   return (
     <div className="card__item" style={getTitleStyle(color)}>
       <div className="card__title" onClick={goToTopic}>
@@ -46,7 +47,11 @@ export default function TopicCard({ topic, history }) {
           ButtonComponent={() => (
             <div>
               <small className="card__data__hours">{hours}h</small>
-              <Button bsStyle="warning" bsSize="xsmall">
+              <Button
+                className="card__data__btn"
+                bsStyle="warning"
+                bsSize="xsmall"
+              >
                 Fund
               </Button>
             </div>
