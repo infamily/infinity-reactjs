@@ -2,7 +2,6 @@
   margin-bottom: 10px;
   border-radius: 6px;
   box-shadow: 2px 5px 7px rgb(216, 216, 216);
-  cursor: pointer;
 }
 
 .card__item:hover {
@@ -17,14 +16,24 @@
 .card__title {
   padding: 1px 10px;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .card__description {
   padding: 10px;
+  cursor: pointer;
 }
 
 .card__text {
   overflow: hidden;
   max-height: 200px;
   padding-bottom: 5px;
+}
+
+.card__data__hours {
+  padding: 0 5px;
+  background-color: #fff;
+  border-bottom: 2px solid #f0ad4e;
+  border-radius: 2px;
+  margin: 0 10px;
 }

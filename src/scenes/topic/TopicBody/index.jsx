@@ -15,7 +15,6 @@ import Tags from '../tags';
 const TopicBody = ({ topic, children, parents, user, categories }) => {
   if (!topic.title) return null;
   const isOwner = user && topic.owner.id === user.id;
-
   const EditTopic = ({ isOwner, id }) => {
     if (!isOwner) return null;
     return (
@@ -38,6 +37,9 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       ''
     );
 
+  const { matched, funds } = topic;
+  const hours = parseFloat(parseFloat(matched + funds).toFixed(2));
+
   return (
     <div className="topic__container">
       <EditTopic isOwner={isOwner} id={topic.id} />
@@ -51,7 +53,7 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       </h1>
       <TopicInfo
         type={configs.topic_types[topic.type]}
-        hours={topic.matched}
+        hours={hours}
         color={getColor(topic)}
       />
       <Categories categories={categories} />

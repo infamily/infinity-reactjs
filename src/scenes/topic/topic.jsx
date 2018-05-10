@@ -33,7 +33,8 @@ class Topic extends Component {
       categories: [],
       comment_id: 0,
       comment_text: '',
-      addChildSection: false
+      addChildSection: false, // for panel
+      showChildSection: false // for first data pulling
     };
   }
 
@@ -155,7 +156,8 @@ class Topic extends Component {
 
   handleEditSection = () => {
     this.setState(prevState => ({
-      addChildSection: !prevState.addChildSection
+      addChildSection: !prevState.addChildSection,
+      showChildSection: true
     }));
   };
 
@@ -167,7 +169,8 @@ class Topic extends Component {
       parents,
       children,
       categories,
-      addChildSection
+      addChildSection,
+      showChildSection
     } = this.state;
 
     if (!topic.id) return <Loading />;
@@ -210,7 +213,7 @@ class Topic extends Component {
             </TopicBody>
             <NewButton action={this.handleEditSection} title={newButtonText} />
             <div className="topic__edit_section">
-              {addChildSection && (
+              {showChildSection && (
                 <Panel
                   id="collapsible-data-panel"
                   expanded={addChildSection}

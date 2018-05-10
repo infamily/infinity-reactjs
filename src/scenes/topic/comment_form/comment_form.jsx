@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import SignInLine from 'components/SignInLine';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 
 import './comment_form.css';
@@ -80,10 +80,8 @@ class Comment extends Component {
     const Buttons = () => {
       if (!user)
         return (
-          <div className="comment_form__signin">
-            <p onClick={this.persistComment}>
-              <Link to="/page/otp">Sign in</Link> to leave a comment.
-            </p>
+          <div onClick={this.persistComment}>
+            <SignInLine text="to leave a comment" />
           </div>
         );
 

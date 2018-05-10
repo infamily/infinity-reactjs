@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Cards from 'react-credit-cards';
 import Modal from 'components/Modal';
+import SignInLine from 'components/SignInLine';
 import Payment from './Payment';
 import { postPayment } from './services.js';
 import { getUserBalance } from 'services/user.service';
@@ -9,7 +10,7 @@ import {
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
-  defaultState,
+  defaultState
 } from './helpers';
 import 'react-credit-cards/es/styles-compiled.css';
 import './PayCheckout.css';
@@ -17,33 +18,35 @@ import './PayCheckout.css';
 export default class PayCheckout extends Component {
   constructor() {
     super();
-    this.state = {
-      isOpen: false,
-      buttonText: '',
-      ...defaultState,
-    };
+    this.state = { isOpen: false, buttonText: '', ...defaultState };
   }
+
+  static defaultProps = {
+    topicUrl: '',
+    updateOuterData: null
+  };
 
   static propTypes = {
     ButtonComponent: PropTypes.func.isRequired,
+    topicUrl: PropTypes.string,
     history: PropTypes.object.isRequired,
     setBalance: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    updateOuterData: PropTypes.func,
-  }
+    updateOuterData: PropTypes.func
+  };
 
-  showMessage = (buttonText) => {
+  showMessage = buttonText => {
     this.setState({ buttonText });
     setTimeout(() => {
       this.setState({ buttonText: '' });
     }, 3000);
-  }
+  };
 
   handleOpen = () => {
-    this.setState((prevState) => ({
-      isOpen: !prevState.isOpen,
-    }))
-  }
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }));
+  };
 
   handleCallback = ({ issuer }, isValid) => {
     if (isValid) {
@@ -52,9 +55,7 @@ export default class PayCheckout extends Component {
   };
 
   handleInputFocus = ({ target }) => {
-    this.setState({
-      focused: target.name,
-    });
+    this.setState({ focused: target.name });
   };
 
   handleInputChange = ({ target }) => {
@@ -66,21 +67,24 @@ export default class PayCheckout extends Component {
       target.value = formatCVC(target.value);
     }
 
-    this.setState({ [target.name]: target.value });
+    this.setState({
+      [target.name]: target.value
+    });
   };
 
-  handleSubmit = async (e) => {
+  handleSubmit = async e => {
     e.preventDefault();
     this.setState({ loading: true });
-    const response = await postPayment(this.state, 1); // 1 = stripe
+    const { topicUrl } = this.props;
+    const response = await postPayment(this.state, 1, topicUrl); // 1 = stripe
 
     if (response.data) {
-      const { user } = this.props;      
+      const { user } = this.props;
       const { data } = await getUserBalance(user.id);
       this.props.setBalance(data); // update global store
 
       this.setState({ ...defaultState });
-      this.form.reset();      
+      this.form.reset();
       this.handleOpen();
       this.props.updateOuterData && this.props.updateOuterData();
     } else {
@@ -91,23 +95,21 @@ export default class PayCheckout extends Component {
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
-  }
+  };
 
   render() {
-    const { 
-      ButtonComponent,
-    } = this.props;
+    const { ButtonComponent, user } = this.props;
 
-    const { 
-      isOpen,
-      currency,
-      amount,
-      buttonText,
-    } = this.state;
+    const { isOpen, currency, amount, buttonText } = this.state;
+    const ButtonText = () =>
+      buttonText || (
+        <span>
+          PAY {amount || 0} {currency}
+        </span>
+      );
 
-    const ButtonText = () => buttonText ? buttonText : <span>PAY {amount || 0} {currency}</span>;
     return (
       <div>
         <Modal isOpen={isOpen} close={this.handleOpen}>
@@ -119,7 +121,7 @@ export default class PayCheckout extends Component {
               cvc={this.state.cvc}
               focused={this.state.focused}
             />
-            <br/>
+            <br />
           </div>
           <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -197,24 +199,30 @@ export default class PayCheckout extends Component {
                 </div>
               </div>
             </div>
-            <Payment 
+            <Payment
               amount={this.state.amount}
               description={this.state.description}
-              currency={this.state.currency} 
+              currency={this.state.currency}
               handleChange={this.handleChange}
             />
             <input type="hidden" name="issuer" value={this.state.issuer} />
-            <div className="form-actions">
-              <button className="btn btn-primary btn-block">
-                {this.state.loading ? '...' : <ButtonText />}
-              </button>
-            </div>
+            {user ? (
+              <div className="form-actions">
+                <button className="btn btn-primary btn-block">
+                  {this.state.loading ? '...' : <ButtonText />}
+                </button>
+              </div>
+            ) : (
+              <div className="pay_checkout__signin">
+                <SignInLine text="to fund the project" />
+              </div>
+            )}
           </form>
         </Modal>
         <div onClick={this.handleOpen}>
           <ButtonComponent />
         </div>
       </div>
-    )
+    );
   }
 }

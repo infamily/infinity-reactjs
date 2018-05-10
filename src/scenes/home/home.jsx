@@ -25,9 +25,9 @@ class Home extends Component {
       flag: store_home.flag || 0,
       query: '',
       topicView: 1,
-      view: 'grid', // params: line | grid
       topics: [],
       last_pack: [],
+      view: 'grid', // params: line | grid
       showSettings: true,
       loading: false
     };

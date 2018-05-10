@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PayCheckout from 'components/PayCheckout';
+import { Button } from 'components/Layout';
 import { makePreviewHtml } from 'services/common.services';
 import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
 import moment from 'moment';
@@ -23,21 +25,35 @@ const getTitleStyle = color => ({
 });
 
 export default function TopicCard({ topic, history }) {
-  const { title, body, id, type, created_date } = topic;
+  const { title, body, id, type, created_date, matched, funds, url } = topic;
   const color = getColor(type);
   const time = moment(created_date).format('MMMM Do YYYY');
-  // 'Feb 15, 2018';
-  const goToTopic = () => history.push(getTopicLink(id));
+  const goToTopic = e => {
+    e.stopPropagation();
+    history.push(getTopicLink(id));
+  };
+  const hours = parseFloat(matched + funds).toFixed(2);
   return (
-    <div
-      className="card__item"
-      style={getTitleStyle(color)}
-      onClick={goToTopic}
-    >
-      <div className="card__title">
+    <div className="card__item" style={getTitleStyle(color)}>
+      <div className="card__title" onClick={goToTopic}>
         <h4 className="card__title-text">{title}</h4>
       </div>
-      <div className="card__description">
+      <div className="card__data">
+        <PayCheckout
+          topicUrl={
+            url // updateOuterData={this.updateData}
+          }
+          ButtonComponent={() => (
+            <div>
+              <small className="card__data__hours">{hours}h</small>
+              <Button bsStyle="warning" bsSize="xsmall">
+                Fund
+              </Button>
+            </div>
+          )}
+        />
+      </div>
+      <div className="card__description" onClick={goToTopic}>
         <div className="card__text">{makePreviewHtml(body)}</div>
         <br />
         <small>{time}</small>

@@ -3,3 +3,8 @@
     display: none;
   }
 }
+
+.pay_checkout__signin {
+  display: flex;
+  justify-content: space-around;
+}
