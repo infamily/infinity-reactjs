@@ -1,21 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ToggleButtonGroup,
-  ToggleButton // , Button
-} from 'react-bootstrap';
+import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import TooltipOverlay from 'components/TooltipOverlay';
 
-const TopicViewToggle = ({
-  topicView,
+const TopicSourceToggle = ({
+  topicSource,
   onChangeTopicView,
   handleTopicView,
   view
 }) => (
   <div className="view_toggle">
-    {
-      // <small className="view_toggle__label">View:</small>
-    }
     <ToggleButtonGroup
       type="radio"
       bsSize="xsmall"
@@ -24,9 +18,6 @@ const TopicViewToggle = ({
       value={view}
       onChange={handleTopicView}
     >
-      {
-        // <small className="view_toggle__label">Source:</small>
-      }
       <ToggleButton value="line">
         <TooltipOverlay text="Display as lines" placement="bottom">
           <span>Tree</span>
@@ -42,7 +33,7 @@ const TopicViewToggle = ({
       type="radio"
       bsSize="xsmall"
       name="options"
-      value={topicView}
+      value={topicSource}
       onChange={onChangeTopicView}
     >
       <ToggleButton value={1}>
@@ -59,11 +50,11 @@ const TopicViewToggle = ({
   </div>
 );
 
-TopicViewToggle.propTypes = {
-  topicView: PropTypes.number.isRequired,
+TopicSourceToggle.propTypes = {
+  topicSource: PropTypes.number.isRequired,
   view: PropTypes.string.isRequired,
   onChangeTopicView: PropTypes.func.isRequired,
   handleTopicView: PropTypes.func.isRequired
 };
 
-export default TopicViewToggle;
+export default TopicSourceToggle;

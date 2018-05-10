@@ -23,6 +23,7 @@ class Home extends Component {
 
   static propTypes = {
     user: PropTypes.object,
+    view: PropTypes.string.isRequired,
     setUpdateTopicList: PropTypes.func.isRequired,
     shouldUpdateTopicList: PropTypes.bool.isRequired
   };
@@ -47,13 +48,13 @@ class Home extends Component {
   }
 
   updateListState = async () => {
-    const { page, flag, topicView } = this.state;
+    const { page, flag, topicSource } = this.state;
     const { fromPage } = topicService;
     let { topics } = topicService;
 
     if (fromPage !== page && !topics.length) {
-      this.setState({ loading: true });
-      topics = await topicService.getTopics(flag, topicView);
+      this.setLoading(true);
+      topics = await topicService.getTopics(flag, topicSource);
     }
 
     this.setState({
@@ -64,14 +65,14 @@ class Home extends Component {
   };
 
   loadMore = async () => {
-    const { page, topics, flag, last_pack, topicView } = this.state;
+    const { page, topics, flag, last_pack, topicSource } = this.state;
     const next = page + 1;
 
     if (last_pack < 25) return;
 
     store_home.home_page = next;
 
-    const newTopics = await topicService.getPage(next, flag, topicView);
+    const newTopics = await topicService.getPage(next, flag, topicSource);
     const main_pack = topics.concat(newTopics);
 
     topicService.topics = main_pack; // pile up topics
@@ -91,9 +92,13 @@ class Home extends Component {
     this.setState({ topics, last_pack: topics });
   };
 
+  setLoading = bool => {
+    this.setState({ loading: bool });
+  };
+
   render() {
-    const { user } = this.state;
-    const { topics, loading, view } = this.state;
+    const { view, user } = this.props;
+    const { topics, loading } = this.state;
     const hasMore = this.hasMore();
 
     if (topics === null) return <Loading />;
@@ -104,7 +109,11 @@ class Home extends Component {
         {
           // to do: separate FormGroup and Topics components (performance)
         }
-        <HomePanel user={user} updateTopicList={this.updateTopicList} />
+        <HomePanel
+          user={user}
+          updateTopicList={this.updateTopicList}
+          setLoading={this.setLoading}
+        />
         <div className="topics__content">
           {loading ? (
             <Loading />

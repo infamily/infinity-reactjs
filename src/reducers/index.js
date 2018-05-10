@@ -7,7 +7,7 @@ import userServerData from './userServerData';
 import balance from './userBalance';
 import settings from './settings';
 import shouldUpdateTopicList from './updateTopicList';
-// import scenes from './scenesReducer';
+import scenes from './scenesReducer';
 
 export default combineReducers({
   user,
@@ -17,5 +17,6 @@ export default combineReducers({
   persistedComment,
   persistedTopic,
   shouldUpdateTopicList,
-  settings
+  settings,
+  scenes
 });

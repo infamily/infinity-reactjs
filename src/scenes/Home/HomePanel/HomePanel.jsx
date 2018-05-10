@@ -6,7 +6,7 @@ import Header from 'components/Header';
 import langService from 'services/lang.service';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
-import TopicViewToggle from './TopicViewToggle';
+import TopicSourceToggle from './TopicSourceToggle';
 import SettingsButton from './SettingsButton';
 
 export default class componentName extends Component {
@@ -15,54 +15,51 @@ export default class componentName extends Component {
     this.state = {
       search: langService.current,
       content: langService.homeContent(),
-      page: store_home.home_page || 1,
-      flag: store_home.flag || 0,
-      query: '',
-      topicView: 1,
       showSettings: true
     };
   }
 
+  static defaultProps = { user: null };
+
   static propTypes = {
-    updateTopicList: PropTypes.object,
-    view: PropTypes.string.isRequired,
-    updateTopicList: PropTypes.func.isRequired
+    user: PropTypes.object,
+    updateTopicList: PropTypes.func.isRequired,
+    setLoading: PropTypes.func.isRequired,
+    view: PropTypes.string.isRequired
   };
 
-  onChangeTopicView = async topicView => {
+  onChangeTopicView = async topicSource => {
     const { flag } = this.state;
-    this.setState({ loading: true });
+    this.props.setLoading(true);
     try {
-      const topics = await topicService.getTopics(flag, topicView);
-
+      const topics = await topicService.getTopics(flag, topicSource);
+      this.props.updateTopicList(topics);
       this.setState({
-        topicView,
-        topics,
-        last_pack: topics,
+        topicSource,
         page: 1
       });
     } catch (error) {
       console.log(error);
     }
-    this.setState({ loading: false });
+    this.props.setLoading(false);
   };
 
   setFlag = async key => {
-    const { flag, topicView } = this.state;
+    const { flag, topicSource } = this.state;
 
     store_home.flag = key;
 
     if (flag !== key) {
-      const topics = await topicService.getTopics(key, topicView);
+      const topics = await topicService.getTopics(key, topicSource);
       this.setState({ flag: key, topics });
     }
   };
 
   makeSearch = async e => {
     e.preventDefault();
-    const { query, flag, topicView } = this.state;
+    const { query, flag, topicSource } = this.state;
     try {
-      const topics = await topicService.search(query, flag, topicView);
+      const topics = await topicService.search(query, flag, topicSource);
       this.setState({
         topics,
         last_pack: topics,
@@ -92,7 +89,7 @@ export default class componentName extends Component {
   render() {
     const { user, view } = this.props;
     const { title, button } = this.state.content;
-    const { flag, topicView, showSettings } = this.state;
+    const { flag, topicSource, showSettings } = this.state;
 
     return (
       <div className="home__head">
@@ -118,10 +115,10 @@ export default class componentName extends Component {
         </form>
         <div className="home__settings">
           {showSettings && (
-            <TopicViewToggle
+            <TopicSourceToggle
               onChangeTopicView={this.onChangeTopicView}
               handleTopicView={this.handleGridView}
-              topicView={topicView}
+              topicView={topicSource}
               view={view}
             />
           )}
