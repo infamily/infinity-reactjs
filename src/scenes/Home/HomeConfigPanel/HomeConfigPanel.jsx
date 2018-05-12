@@ -87,10 +87,10 @@ export default class componentName extends Component {
   };
 
   render() {
-    const { user } = this.props;
-    const { view } = this.props.homeParams;
-    const { title, button } = this.state.content;
-    const { flag, topicSource, showSettings } = this.state;
+    const { user, homeParams } = this.props;
+    const { showSettings, content } = this.state;
+    const { view, flag, topicSource } = homeParams;
+    const { title, button } = content;
 
     return (
       <div className="home__head">
@@ -119,7 +119,7 @@ export default class componentName extends Component {
             <TopicSourceToggle
               onChangeTopicView={this.onChangeTopicView}
               handleTopicView={this.handleGridView}
-              topicView={topicSource}
+              topicSource={topicSource}
               view={view}
             />
           )}
