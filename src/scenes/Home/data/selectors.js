@@ -1,5 +1,6 @@
-export const getQuery = ({ scenes }) => scenes.Home.query;
-export const getPage = ({ scenes }) => scenes.Home.page;
-export const getFlag = ({ scenes }) => scenes.Home.flag;
-export const getView = ({ scenes }) => scenes.Home.view;
-export const getTopicSource = ({ scenes }) => scenes.Home.topicSource;
+// export const getQuery = ({ scenes }) => scenes.home.query;
+// export const getPage = ({ scenes }) => scenes.home.page;
+// export const getFlag = ({ scenes }) => scenes.home.flag;
+// export const getView = ({ scenes }) => scenes.home.view;
+// export const getTopicSource = ({ scenes }) => scenes.home.topicSource;
+export const getHomeParams = ({ scenes }) => scenes.home;

@@ -5,15 +5,14 @@ import Flag from 'components/FlagToggle';
 import Header from 'components/Header';
 import langService from 'services/lang.service';
 import topicService from 'services/topic.service';
-import store_home from './services/store_home';
-import TopicSourceToggle from './TopicSourceToggle';
-import SettingsButton from './SettingsButton';
+import store_home from '../services/store_home';
+import TopicSourceToggle from '../TopicSourceToggle';
+import SettingsButton from '../SettingsButton';
 
 export default class componentName extends Component {
   constructor() {
     super();
     this.state = {
-      search: langService.current,
       content: langService.homeContent(),
       showSettings: true
     };
@@ -25,7 +24,8 @@ export default class componentName extends Component {
     user: PropTypes.object,
     updateTopicList: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
-    view: PropTypes.string.isRequired
+    changeHomeParams: PropTypes.func.isRequired,
+    homeParams: PropTypes.object.isRequired
   };
 
   onChangeTopicView = async topicSource => {
@@ -34,7 +34,7 @@ export default class componentName extends Component {
     try {
       const topics = await topicService.getTopics(flag, topicSource);
       this.props.updateTopicList(topics);
-      this.setState({
+      this.props.changeHomeParams({
         topicSource,
         page: 1
       });
@@ -51,7 +51,8 @@ export default class componentName extends Component {
 
     if (flag !== key) {
       const topics = await topicService.getTopics(key, topicSource);
-      this.setState({ flag: key, topics });
+      this.props.updateTopicList(topics);
+      this.props.changeHomeParams({ flag: key });
     }
   };
 
@@ -60,9 +61,8 @@ export default class componentName extends Component {
     const { query, flag, topicSource } = this.state;
     try {
       const topics = await topicService.search(query, flag, topicSource);
-      this.setState({
-        topics,
-        last_pack: topics,
+      this.props.updateTopicList(topics);
+      this.props.changeHomeParams({
         page: 1
       });
     } catch (error) {
@@ -77,7 +77,7 @@ export default class componentName extends Component {
   };
 
   handleGridView = value => {
-    this.setState({ view: value });
+    this.props.changeHomeParams({ view: value });
   };
 
   handleSettings = () => {
@@ -87,7 +87,8 @@ export default class componentName extends Component {
   };
 
   render() {
-    const { user, view } = this.props;
+    const { user } = this.props;
+    const { view } = this.props.homeParams;
     const { title, button } = this.state.content;
     const { flag, topicSource, showSettings } = this.state;
 

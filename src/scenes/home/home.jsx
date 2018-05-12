@@ -7,7 +7,7 @@ import LoadingElements from 'components/Loading/LoadingElements';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
 import Topics from './TopicList';
-import HomePanel from './HomePanel';
+import HomeConfigPanel from './HomeConfigPanel';
 import './Home.css';
 
 class Home extends Component {
@@ -16,16 +16,16 @@ class Home extends Component {
     this.state = {
       loading: false,
       topics: [],
-      last_pack: [],
-      view: 'grid' // params: line | grid
+      last_pack: []
     };
   }
 
   static propTypes = {
     user: PropTypes.object,
-    view: PropTypes.string.isRequired,
     setUpdateTopicList: PropTypes.func.isRequired,
-    shouldUpdateTopicList: PropTypes.bool.isRequired
+    shouldUpdateTopicList: PropTypes.bool.isRequired,
+    changeHomeParams: PropTypes.func.isRequired,
+    homeParams: PropTypes.object.isRequired
   };
 
   async componentWillMount() {
@@ -48,7 +48,7 @@ class Home extends Component {
   }
 
   updateListState = async () => {
-    const { page, flag, topicSource } = this.state;
+    const { page, flag, topicSource } = this.props.homeParams;
     const { fromPage } = topicService;
     let { topics } = topicService;
 
@@ -65,7 +65,8 @@ class Home extends Component {
   };
 
   loadMore = async () => {
-    const { page, topics, flag, last_pack, topicSource } = this.state;
+    const { topics, last_pack } = this.state;
+    const { page, flag, topicSource } = this.props.homeParams;
     const next = page + 1;
 
     if (last_pack < 25) return;
@@ -78,9 +79,9 @@ class Home extends Component {
     topicService.topics = main_pack; // pile up topics
     this.setState({
       topics: main_pack,
-      last_pack: newTopics,
-      page: next
+      last_pack: newTopics
     });
+    this.props.changeHomeParams({ page: next });
   };
 
   hasMore = () => {
@@ -97,7 +98,8 @@ class Home extends Component {
   };
 
   render() {
-    const { view, user } = this.props;
+    const { user } = this.props;
+    const { view } = this.props.homeParams;
     const { topics, loading } = this.state;
     const hasMore = this.hasMore();
 
@@ -106,10 +108,7 @@ class Home extends Component {
 
     return (
       <div className={`main ${fullStyle}`}>
-        {
-          // to do: separate FormGroup and Topics components (performance)
-        }
-        <HomePanel
+        <HomeConfigPanel
           user={user}
           updateTopicList={this.updateTopicList}
           setLoading={this.setLoading}
