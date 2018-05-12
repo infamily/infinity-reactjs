@@ -1,0 +1,17 @@
+.topic_fund_data {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.topic_fund_data__hours {
+  padding: 0 5px;
+  background-color: #fff;
+  border-bottom: 2px solid #f0ad4e;
+  border-radius: 2px;
+}
+
+.topic_fund_data__btn {
+  margin: 0 10px;
+}

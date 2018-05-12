@@ -6,13 +6,13 @@ const Categories = ({ categories }) => {
   if (!categories[0]) return null;
 
   return (
-    <p>
+    <div className="topic__categories">
       {categories.map(item => (
         <span className="topic__draft topic__category" key={item.id}>
           <Link to={`/types/${item.id}`}>{item.name}</Link>
         </span>
       ))}
-    </p>
+    </div>
   );
 };
 

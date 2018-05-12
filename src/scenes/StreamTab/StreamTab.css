@@ -1,4 +1,3 @@
-
 /* StreamTab Layout -- Start */
 .stream_tab__bg {
   background-color: #f7f7f7;
@@ -32,7 +31,6 @@
 
 /* StreamTab Layout -- End */
 
-
 /* StreamTab Content -- Start */
 
 .stream_tab__header {
@@ -47,7 +45,7 @@
 
 .stream_tab__instance-box {
   position: relative;
-  flex: 1 250px;  
+  flex: 1 250px;
 }
 
 .stream_tab__instance {
@@ -55,7 +53,10 @@
   margin: 10px;
   height: 200px;
   overflow-y: hidden;
-  border: 1px solid lightgray;
+  border-left: 2px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 2px 5px 7px rgb(216, 216, 216);
 }
 
 .instance--hasdata:hover {
@@ -64,7 +65,7 @@
 }
 
 .instance--nodata:hover {
-  border-color: rgb(236, 177, 177);  
+  border-color: rgb(236, 177, 177);
 }
 
 .instance__show {
@@ -81,14 +82,14 @@
 }
 
 .instance__show:hover {
-  opacity: 0.9;  
-  bottom: 15px;  
+  opacity: 0.9;
+  bottom: 15px;
   box-shadow: 3px 5px 10px rgb(109, 109, 109);
 }
 
 .instance__text {
   color: rgb(163, 163, 163);
-  font-style: italic; 
+  font-style: italic;
 }
 
 .stream_tab__full_icon {
@@ -117,7 +118,8 @@
   opacity: 1;
 }
 
-.stream_tab__close:before, .stream_tab__close:after {
+.stream_tab__close:before,
+.stream_tab__close:after {
   position: absolute;
   left: 15px;
   content: ' ';

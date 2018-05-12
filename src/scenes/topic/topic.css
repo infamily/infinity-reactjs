@@ -26,8 +26,8 @@
 .topic__draft {
   margin: 5px 10px;
   border-radius: 3px;
-  padding: 3px;
-  background-color: rgb(247, 247, 247);
+  padding: 5px;
+  background-color: rgb(238, 238, 238);
   font-size: 14px;
 }
 
@@ -121,4 +121,29 @@
   margin-right: 5px;
   margin-left: 0;
   padding: 1px 10px;
+}
+
+.topic__categories {
+  display: inline;
+  margin-left: 5px;
+}
+
+.topic__type {
+  color: #fff;
+  font-size: 13px;
+  margin: 0 auto;
+  display: inline-block;
+  min-width: 25px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgb(118, 185, 118);
+  border: 1px solid rgb(118, 185, 118);
+  border-radius: 2px;
+  margin-bottom: 5px;
+  padding: 0 5px;
+}
+
+.topic__fund_data {
+  display: flex;
+  justify-content: space-around;
 }

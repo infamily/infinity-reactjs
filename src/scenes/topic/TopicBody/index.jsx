@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
-import TopicInfo from 'components/Balance/TopicInfo';
+import TopicFundData from 'components/TopicFundData';
 import { NextButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
 import configs from 'configs';
-import { getColor } from '../helpers/badge';
+import TopicType from './TopicType';
 import Categories from './Categories';
+import { getColor } from '../helpers/badge';
 import Tags from '../tags';
 
 const TopicBody = ({ topic, children, parents, user, categories }) => {
@@ -51,14 +52,18 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
         </Link>
         <DraftTag />
       </h1>
-      <TopicInfo
+
+      <TopicType
         type={configs.topic_types[topic.type]}
-        hours={hours}
         color={getColor(topic)}
       />
       <Categories categories={categories} />
-
       <Tags title="Parents" items={parents} />
+
+      <div className="topic__fund_data">
+        <TopicFundData topic={topic} />
+      </div>
+
       <div className="topic__body">{makeHtml(topic.body)}</div>
       <Tags title="Children" items={children} />
 

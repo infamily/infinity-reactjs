@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import DocumentMeta from 'react-document-meta';
 import MenuBar from 'scenes/MenuBar';
 import TopicView from 'scenes/TopicView';
+import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
 import Loading from 'components/Loading';
 import commentService from 'services/comment.service';
 import { Panel } from 'react-bootstrap';
@@ -211,6 +212,8 @@ class Topic extends Component {
             >
               {children}
             </TopicBody>
+            <PreviewTopicBar topic={topic} />
+            <br />
             <NewButton action={this.handleEditSection} title={newButtonText} />
             <div className="topic__edit_section">
               {showChildSection && (

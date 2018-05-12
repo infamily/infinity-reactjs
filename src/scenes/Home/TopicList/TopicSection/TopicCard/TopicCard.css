@@ -30,13 +30,6 @@
   padding-bottom: 5px;
 }
 
-.card__data__hours {
-  padding: 0 5px;
-  background-color: #fff;
-  border-bottom: 2px solid #f0ad4e;
-  border-radius: 2px;
-  margin: 0 10px;
-}
-.card__data__btn {
+.card__data {
   margin: 0 10px;
 }
