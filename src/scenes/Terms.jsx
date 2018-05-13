@@ -22,7 +22,7 @@ class Terms extends Component {
     const { terms } = this.state;
     const Content = () => (
       <div>
-        <h1>Terms of service</h1>
+        {terms === '...' && <h1>Terms of service</h1>}
         <p>{makeHtml(terms)}</p>
       </div>
     );
