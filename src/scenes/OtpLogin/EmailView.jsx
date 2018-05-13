@@ -185,12 +185,16 @@ export default class EmailView extends Component {
                 </div>
               </div>
             </div>
-            <div onClick={this.handleToS}>
-              <CheckBox value={tosAgreement} error={tosError}>
-                <span>
+            <div>
+              <CheckBox
+                value={tosAgreement}
+                error={tosError}
+                action={this.handleToS}
+              >
+                <span onClick={this.handleToS}>
                   I have read and agree to the{' '}
-                  <Link to="#">Terms of Service</Link>
                 </span>
+                <Link to="/terms">Terms of Service</Link>
               </CheckBox>
             </div>
             <button type="submit" className="primaryAction btn btn-lg otp__btn">

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import serverService from 'services/server.service';
 import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
+import { makeHtml } from 'services/common.services';
 
 class Terms extends Component {
   constructor() {
@@ -22,7 +23,7 @@ class Terms extends Component {
     const Content = () => (
       <div>
         <h1>Terms of service</h1>
-        <p>{terms}</p>
+        <p>{makeHtml(terms)}</p>
       </div>
     );
     return (
