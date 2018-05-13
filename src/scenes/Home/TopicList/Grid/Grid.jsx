@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css';
+import './Grid.css';
 
 const breakpoints = splitState =>
   !splitState ? { default: 3, 800: 2, 500: 1 } : { default: 2, 1000: 1 };

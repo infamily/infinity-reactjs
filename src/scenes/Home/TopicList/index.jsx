@@ -28,10 +28,12 @@ class Topics extends Component {
   render() {
     const { topics } = this.state;
     const { view } = this.props;
-    const elements = topics.map(
-      topic =>
-        topic && <TopicSection key={topic.id} topic={topic} view={view} />
-    );
+    const elements =
+      topics &&
+      topics.map(
+        topic =>
+          topic && <TopicSection key={topic.id} topic={topic} view={view} />
+      );
 
     if (view === 'grid') return <Grid>{elements}</Grid>;
     return <div>{elements}</div>;

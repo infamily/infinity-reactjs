@@ -10,7 +10,7 @@ const TopicFundData = ({ topic, updateData }) => {
   return (
     <div className="topic_fund_data">
       <TooltipOverlay
-        text="Amount of hours reserved for that topic"
+        text="The number of hours reserved for the topic"
         placement="bottom"
       >
         <small className="topic_fund_data__hours">{hours}h</small>

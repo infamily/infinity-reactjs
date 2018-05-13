@@ -18,6 +18,7 @@ import ProgramToggle from 'components/ProgramToggle';
 import TabToggle from 'components/TabToggle';
 import TabPanel from 'scenes/TabPanel';
 import NoServer from 'scenes/NoServer';
+import Terms from 'scenes/Terms';
 import './App.css';
 
 class App extends PureComponent {
@@ -48,6 +49,7 @@ class App extends PureComponent {
         <Route path={`${path}types/:id`} component={TypePage} />
         <Route path={`${path}types/`} component={TypeList} />
         <Route path={`${path}add-child/:p`} component={TopicView} />
+        <Route path={`${path}terms`} component={Terms} />
         <Route path={`${path}no-server`} component={NoServer} />
         <Route
           path={`${path}user-investment/:id`}

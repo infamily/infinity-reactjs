@@ -2,12 +2,12 @@
   overflow: hidden;
   height: auto;
   margin: 20px 0;
-  max-height: 45px; 
+  max-height: 45px;
   transition: max-height 0.7s ease;
 }
 
 .tags__tag-box:hover {
-  max-height: 600px; 
+  max-height: 600px;
 }
 
 .tags__item {
