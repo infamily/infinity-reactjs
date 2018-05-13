@@ -51,7 +51,7 @@ export default class TopicCard extends Component {
 
   render() {
     const { topic } = this.state;
-    const { title, body, type, created_date, funds, url } = topic;
+    const { title, body, type, created_date } = topic;
     const color = getColor(type);
     const time = moment(created_date).format('MMMM Do YYYY');
     return (

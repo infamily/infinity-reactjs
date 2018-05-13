@@ -15,7 +15,7 @@ import Comments from './comments';
 import { getCategories } from './helpers';
 import topicService from './services/topics';
 import NewButton from './NewButton';
-import './topic.css';
+import './Topic.css';
 
 const getChild = type_id => {
   const child_type = type_id + 1;
@@ -63,8 +63,7 @@ class Topic extends Component {
   }
 
   loadTopicData = async id => {
-    const { server } = this.props.match.params;
-    const topic = await topicService.getTopic(id, server);
+    const topic = await topicService.getTopic(id);
 
     if (!topic) {
       this.props.history.push('/404');
@@ -83,6 +82,14 @@ class Topic extends Component {
       parents,
       children,
       categories
+    });
+  };
+
+  updateTopic = async () => {
+    const { id } = this.props.match.params;
+    const topic = await topicService.getTopic(id);
+    this.setState({
+      topic
     });
   };
 
@@ -209,6 +216,7 @@ class Topic extends Component {
               parents={parents}
               categories={categories}
               user={user}
+              updateTopic={this.updateTopic}
             >
               {children}
             </TopicBody>

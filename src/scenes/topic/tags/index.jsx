@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
-import { badgeStyle } from '../helpers/badge';
 import configs from 'configs';
-import './tags.css';
+import { badgeStyle } from '../helpers/badge';
+import './Tags.css';
 
 const Tag = ({ topic }) => (
   <Link

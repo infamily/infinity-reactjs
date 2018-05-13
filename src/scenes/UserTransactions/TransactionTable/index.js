@@ -3,29 +3,32 @@ import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 import Loading from 'components/Loading';
 import { Button } from 'react-bootstrap';
-import './transactions.css';
+import './Transactions.css';
 
 export default class Transactions extends PureComponent {
   static propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.array
   };
 
   render() {
     const { data } = this.props;
     const types = ['Time', 'Money'];
-    
+
     const Row = ({ type, url }) => (
       <tr key={url}>
         <td>{types[type] || 'None'}</td>
         <td>
-          <a href={url} target="_blank">{url}</a>
+          <a href={url} target="_blank">
+            {url}
+          </a>
         </td>
         <td>
           <Button
             bsSize="xsmall"
             bsStyle="success"
             disabled
-            className="investments__sell">
+            className="investments__sell"
+          >
             Sell
           </Button>
         </td>
@@ -41,12 +44,10 @@ export default class Transactions extends PureComponent {
           <tr>
             <th>Type</th>
             <th>Contribution</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
-        <tbody>
-          {data.map(item => Row(item))}
-        </tbody>
+        <tbody>{data.map(item => Row(item))}</tbody>
       </Table>
     );
   }

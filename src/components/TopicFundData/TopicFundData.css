@@ -10,6 +10,7 @@
   background-color: #fff;
   border-bottom: 2px solid #f0ad4e;
   border-radius: 2px;
+  cursor: default;
 }
 
 .topic_fund_data__btn {

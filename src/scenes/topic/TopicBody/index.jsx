@@ -11,9 +11,16 @@ import configs from 'configs';
 import TopicType from './TopicType';
 import Categories from './Categories';
 import { getColor } from '../helpers/badge';
-import Tags from '../tags';
+import Tags from '../Tags';
 
-const TopicBody = ({ topic, children, parents, user, categories }) => {
+const TopicBody = ({
+  topic,
+  children,
+  parents,
+  user,
+  categories,
+  updateTopic
+}) => {
   if (!topic.title) return null;
   const isOwner = user && topic.owner.id === user.id;
   const EditTopic = ({ isOwner, id }) => {
@@ -38,9 +45,6 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       ''
     );
 
-  const { matched, funds } = topic;
-  const hours = parseFloat(parseFloat(matched + funds).toFixed(2));
-
   return (
     <div className="topic__container">
       <EditTopic isOwner={isOwner} id={topic.id} />
@@ -61,7 +65,7 @@ const TopicBody = ({ topic, children, parents, user, categories }) => {
       <Tags title="Parents" items={parents} />
 
       <div className="topic__fund_data">
-        <TopicFundData topic={topic} />
+        <TopicFundData topic={topic} updateData={updateTopic} />
       </div>
 
       <div className="topic__body">{makeHtml(topic.body)}</div>
@@ -86,6 +90,7 @@ TopicBody.propTypes = {
   children: PropTypes.array.isRequired,
   parents: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,
+  updateTopic: PropTypes.func.isRequired,
   user: PropTypes.object
 };
 

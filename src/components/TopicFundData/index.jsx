@@ -2,13 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PayCheckout from 'components/PayCheckout';
 import { Button } from 'components/Layout';
+import TooltipOverlay from 'components/TooltipOverlay';
 import './TopicFundData.css';
 
 const TopicFundData = ({ topic, updateData }) => {
   const hours = parseFloat(parseFloat(topic.funds).toFixed(2));
   return (
     <div className="topic_fund_data">
-      <small className="topic_fund_data__hours">{hours}h</small>
+      <TooltipOverlay
+        text="Amount of hours reserved for that topic"
+        placement="bottom"
+      >
+        <small className="topic_fund_data__hours">{hours}h</small>
+      </TooltipOverlay>
       <PayCheckout
         topicUrl={topic.url}
         updateOuterData={updateData}

@@ -4,20 +4,20 @@ import { NavLink } from 'react-router-dom';
 import MenuBar from 'scenes/MenuBar';
 import transactionService from './services';
 import TransactionTable from './TransactionTable';
-import './user_transactions.css';
+import './UserTransactions.css';
 
 export default class UserTransactions extends Component {
   constructor() {
     super();
     this.state = {
       data: null,
-      balance: {},
-    }
+      balance: {}
+    };
   }
 
   static propTypes = {
-    match: PropTypes.object.isRequired,
-  }
+    match: PropTypes.object.isRequired
+  };
 
   async componentWillMount() {
     const { match } = this.props;
@@ -27,17 +27,18 @@ export default class UserTransactions extends Component {
   }
 
   render() {
-    const {
-      data,
-      balance,
-    } = this.state;
+    const { data, balance } = this.state;
 
     return (
       <div className="main">
-        <NavLink to="/" className="nav__back">&#10094; Home</NavLink>
-        <h1 className="user_contribution__header">Investment by {balance.username}</h1>
+        <NavLink to="/" className="nav__back">
+          &#10094; Home
+        </NavLink>
+        <h1 className="user_contribution__header">
+          Investment by {balance.username}
+        </h1>
         <TransactionTable data={data} />
-        <MenuBar page='Menu' />
+        <MenuBar page="Menu" />
       </div>
     );
   }

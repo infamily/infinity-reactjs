@@ -1,0 +1,22 @@
+.tags__tag-box {
+  overflow: hidden;
+  height: auto;
+  margin: 20px 0;
+  max-height: 45px;
+  transition: max-height 0.7s ease;
+}
+
+.tags__tag-box:hover {
+  max-height: 600px;
+}
+
+.tags__item {
+  margin: 5px;
+}
+
+.tags__badge {
+  font-size: 11px;
+  padding: 5px;
+  text-align: center;
+  background-color: #bfbfbf;
+}
