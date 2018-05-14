@@ -15,6 +15,7 @@ class Home extends Component {
     super();
     this.state = {
       loading: false,
+      page: 1,
       topics: [],
       last_pack: []
     };
@@ -48,49 +49,52 @@ class Home extends Component {
   }
 
   updateListState = async () => {
-    const { page, flag, topicSource } = this.props.homeParams;
-    const { fromPage } = topicService;
-    let { topics } = topicService;
+    const { page } = this.state;
+    const { flag, topicSource } = this.props.homeParams;
+    const { fromPage, topics } = topicService;
+    console.log(topics, 'fromPage', fromPage);
+    let topicData = { results: topics, count: null };
 
     if (fromPage !== page && !topics.length) {
       this.setLoading(true);
-      topics = await topicService.getTopics(flag, topicSource);
+      topicData = await topicService.getTopics(flag, topicSource);
     }
 
+    this.updateHomeTopics(topicData);
     this.setState({
-      topics,
-      last_pack: topics,
       loading: false
     });
   };
 
   loadMore = async () => {
-    const { topics, last_pack } = this.state;
-    const { page, flag, topicSource } = this.props.homeParams;
+    const { topics, count, page } = this.state;
+    const { flag, topicSource } = this.props.homeParams;
     const next = page + 1;
 
-    if (last_pack < 25) return;
-
-    store_home.home_page = next;
+    if (count === topics.length) return;
 
     const newTopics = await topicService.getPage(next, flag, topicSource);
     const main_pack = topics.concat(newTopics);
-
     topicService.topics = main_pack; // pile up topics
+
     this.setState({
       topics: main_pack,
-      last_pack: newTopics
+      page: next
     });
-    this.props.changeHomeParams({ page: next });
   };
 
   hasMore = () => {
-    const { last_pack } = this.state;
-    return last_pack && last_pack.length >= 25;
+    const { count, topics } = this.state;
+    console.log(topics.length, 'count', count);
+    return topics.length < count;
   };
 
-  updateTopicList = topics => {
-    this.setState({ topics, last_pack: topics });
+  updateHomeTopics = data => {
+    this.setState({
+      topics: data.results,
+      count: data.count,
+      page: 1
+    });
   };
 
   setLoading = bool => {
@@ -110,7 +114,7 @@ class Home extends Component {
       <div className={`main ${fullStyle}`}>
         <HomeConfigPanel
           user={user}
-          updateTopicList={this.updateTopicList}
+          updateHomeTopics={this.updateHomeTopics}
           setLoading={this.setLoading}
         />
         <div className="topics__content">

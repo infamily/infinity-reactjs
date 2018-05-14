@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CheckBox from 'components/CheckBox';
 import ifIcon from 'images/if.png';
-import otpService from './services';
-import errorService from './services/error';
+import otpService from 'scenes/OtpLogin/services';
+import errorService from 'scenes/OtpLogin/services/error';
 
 const initialState = {
   captcha_1: ''

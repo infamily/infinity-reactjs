@@ -53,7 +53,7 @@
   margin: 10px;
   height: 200px;
   overflow-y: hidden;
-  border-left: 2px solid lightgray;
+  border-top: 3px solid lightgray;
   border-radius: 5px;
   background-color: white;
   box-shadow: 2px 5px 7px rgb(216, 216, 216);

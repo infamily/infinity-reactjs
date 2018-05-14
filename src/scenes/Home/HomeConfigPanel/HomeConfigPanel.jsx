@@ -5,7 +5,6 @@ import Flag from 'components/FlagToggle';
 import Header from 'components/Header';
 import langService from 'services/lang.service';
 import topicService from 'services/topic.service';
-import store_home from '../services/store_home';
 import TopicSourceToggle from '../TopicSourceToggle';
 import SettingsButton from '../SettingsButton';
 
@@ -14,7 +13,8 @@ export default class componentName extends Component {
     super();
     this.state = {
       content: langService.homeContent(),
-      showSettings: true
+      showSettings: true,
+      query: ''
     };
   }
 
@@ -22,21 +22,20 @@ export default class componentName extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    updateTopicList: PropTypes.func.isRequired,
+    updateHomeTopics: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
     changeHomeParams: PropTypes.func.isRequired,
     homeParams: PropTypes.object.isRequired
   };
 
   onChangeTopicView = async topicSource => {
-    const { flag } = this.state;
+    const { flag } = this.props.homeParams;
     this.props.setLoading(true);
     try {
-      const topics = await topicService.getTopics(flag, topicSource);
-      this.props.updateTopicList(topics);
+      const topicData = await topicService.getTopics(flag, topicSource);
+      this.props.updateHomeTopics(topicData);
       this.props.changeHomeParams({
-        topicSource,
-        page: 1
+        topicSource
       });
     } catch (error) {
       console.log(error);
@@ -45,26 +44,23 @@ export default class componentName extends Component {
   };
 
   setFlag = async key => {
-    const { flag, topicSource } = this.state;
-
-    store_home.flag = key;
+    const { flag, topicSource } = this.props.homeParams;
 
     if (flag !== key) {
-      const topics = await topicService.getTopics(key, topicSource);
-      this.props.updateTopicList(topics);
+      const topicData = await topicService.getTopics(key, topicSource);
+      this.props.updateHomeTopics(topicData);
       this.props.changeHomeParams({ flag: key });
     }
   };
 
   makeSearch = async e => {
     e.preventDefault();
-    const { query, flag, topicSource } = this.state;
+    const { flag, topicSource } = this.props.homeParams;
+    const { query } = this.state;
+
     try {
       const topics = await topicService.search(query, flag, topicSource);
-      this.props.updateTopicList(topics);
-      this.props.changeHomeParams({
-        page: 1
-      });
+      this.props.updateHomeTopics(topics);
     } catch (error) {
       console.log(error);
     }

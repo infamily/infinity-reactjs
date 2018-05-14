@@ -23,7 +23,8 @@ export default class PayCheckout extends Component {
 
   static defaultProps = {
     topicUrl: '',
-    updateOuterData: null
+    updateOuterData: null,
+    user: null
   };
 
   static propTypes = {
@@ -31,7 +32,7 @@ export default class PayCheckout extends Component {
     topicUrl: PropTypes.string,
     history: PropTypes.object.isRequired,
     setBalance: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     updateOuterData: PropTypes.func
   };
 

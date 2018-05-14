@@ -165,7 +165,7 @@ class TopicView extends Component {
     if (flag !== key) this.setState({ flag: key });
   };
 
-  getTopics = async (input, callback) => {
+  loadTopics = async (input, callback) => {
     const { flag } = this.state;
     const { results } = await topicViewService.search(input, flag);
     const options = results.map(topic => {
@@ -452,7 +452,7 @@ class TopicView extends Component {
                   resetValue=""
                   multi
                   value={topic_parents}
-                  loadOptions={this.getTopics}
+                  loadOptions={this.loadTopics}
                   onChange={this.selectParents}
                 />
               </InputGroup>

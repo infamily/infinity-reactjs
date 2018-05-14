@@ -28,7 +28,7 @@ class TopicService {
     if (data) {
       this.topics = data.results;
       this.fromPage = 1;
-      return data.results;
+      return data;
     }
     logger(error);
   }
