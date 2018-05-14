@@ -51,7 +51,8 @@ class Language {
       this.language = storedLang;
     } else {
       const browser_language = navigator.language || navigator.userLanguage;
-      let default_language = browser_language.substr(0, 2).toLowerCase();
+      let default_language =
+        browser_language && browser_language.substr(0, 2).toLowerCase();
       if (default_language === 'zh') {
         default_language = 'cn';
       }

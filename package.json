@@ -20,7 +20,6 @@
     "react-infinite-scroller": "^1.1.2",
     "react-intl": "^2.4.0",
     "react-markdown-editor": "^0.6.2",
-    "react-masonry-component": "^6.2.0",
     "react-masonry-css": "^1.0.11",
     "react-notification-system": "^0.2.17",
     "react-quill": "^1.2.7",
@@ -44,6 +43,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -52,6 +54,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
     "gh-pages": "^1.1.0",
+    "jest-localstorage-mock": "^2.2.0",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
     "react-scripts": "1.0.17"

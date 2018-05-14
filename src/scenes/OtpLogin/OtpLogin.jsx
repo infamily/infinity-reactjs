@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import otpService from './services';
-import errorService from './services/error';
-import helpers from './services/helpers';
 import MenuBar from 'scenes/MenuBar';
 import EmailView from './EmailView';
 import LoginView from './LoginView';
+import errorService from './services/error';
+import helpers from './services/helpers';
+import otpService from './services';
 import './OtpLogin.css';
 
 export default class OtpLogin extends Component {
@@ -15,7 +15,6 @@ export default class OtpLogin extends Component {
     this.state = {
       view: 'view',
       email: '',
-      password: '',
       popUp: { state: false, title: '', text: '' }
     };
   }
