@@ -33,8 +33,8 @@ export default class EmailView extends Component {
     changeEmail: PropTypes.func.isRequired
   };
 
-  componentDidMount() {
-    !this.state.captcha.key && this.refresh();
+  componentWillMount() {
+    if (!this.state.captcha.key) this.refresh();
   }
 
   refresh = async e => {
@@ -95,6 +95,7 @@ export default class EmailView extends Component {
 
       const params = { email, captcha };
       await otpService.signUp(params);
+
       this.setState({ ...initialState });
       this.props.changeEmail(email);
       this.props.changeView('login');
@@ -143,7 +144,7 @@ export default class EmailView extends Component {
         <img src={ifIcon} className="otp__logo" alt="infinity" />
         <div className="center-block otp__box">
           <h1 className="otp__header">Sign In</h1>
-          <form onSubmit={this.onEmailSubmit}>
+          <form onSubmit={this.onEmailSubmit} testId="emailSubmitForm">
             <div className="form-group">
               <input
                 className="form-control otp__input"
@@ -191,7 +192,7 @@ export default class EmailView extends Component {
                 error={tosError}
                 action={this.handleToS}
               >
-                <span onClick={this.handleToS}>
+                <span onClick={this.handleToS} testId="tosText">
                   I have read and agree to the{' '}
                 </span>
                 <Link to="/terms">Terms of Service</Link>

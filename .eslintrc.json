@@ -1,7 +1,8 @@
 {
   "env": {
     "es6": true,
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "parserOptions": {
     "sourceType": "module"
@@ -24,7 +25,7 @@
     "import": ["warn", "never", { "packages": "always" }],
     "react/sort-comp": 0
   },
-  "plugins": ["react", "prettier", "jsx-a11y", "import"],
+  "plugins": ["react", "prettier", "jsx-a11y", "import", "jest"],
   "settings": {
     "import/resolver": {
       "node": {
