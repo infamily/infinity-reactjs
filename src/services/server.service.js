@@ -10,18 +10,17 @@ class ServerService {
     // this.getDefault();
   }
 
-  async getDefault() {
+  getDefault = async () => {
     const raw = localStorage.state_if;
-    const server = raw && JSON.parse(raw).server;
+    let server = raw && JSON.parse(raw).server;
 
     if (!server) {
-      await this.getFastest();
-      return;
+      server = await this.getFastest();
     }
 
     this.isLocal(); // add local server in sandbox mode
     this.setDefault(server);
-  }
+  };
 
   isLocal = () => {
     const isLocal = window.location.hostname === 'localhost';
@@ -32,10 +31,7 @@ class ServerService {
 
   getFastest = async () => {
     const promises = this.api_servers.map(api => this.getResponse(api));
-
     const first = await Promise.race(promises);
-
-    this.setDefault(first);
     return first;
   };
 

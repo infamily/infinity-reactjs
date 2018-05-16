@@ -19,6 +19,7 @@ import TabToggle from 'components/TabToggle';
 import TabPanel from 'scenes/TabPanel';
 import NoServer from 'scenes/NoServer';
 import Terms from 'scenes/Terms';
+import serverService from 'services/server.service';
 import './App.css';
 
 class App extends PureComponent {
@@ -37,6 +38,7 @@ class App extends PureComponent {
 
     const Routes = ({ match: { path } }) => (
       <Switch>
+        {server && <Redirect exact from="/" to={configs.linkBase()} />}
         <Route exact path={path} component={Home} />
         <Route path={`${path}split`} component={Home} />
         <Route path={`${path}topic/:id/comment/:commentId`} component={Topic} />
@@ -76,12 +78,13 @@ class App extends PureComponent {
       </div>
     );
 
+    // const hasServer = server && serverService.api;
+
     return (
       <HashRouter>
         <div>
           <ProgramToggle />
           <Switch>
-            {server && <Redirect exact from="/" to={configs.linkBase()} />}
             <Route path="/:configs/@/" component={SetWrapper(ConfigWrapper)} />
             <Route path="/" component={SetWrapper(DefaultWrapper)} />
           </Switch>

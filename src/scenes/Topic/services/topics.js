@@ -5,12 +5,12 @@ import topicService from 'services/topic.service';
 const axiosNoToken = axios.create(); // to get data from other servers
 
 const getTopic = async id => topicService.getTopic(id);
+const getApi = () => serverService.api;
 
 async function getChildren(id, lang) {
   try {
-    const api = serverService.api;
     const { data } = await axiosNoToken.get(
-      `${api}/topics/?parents=${id}&lang=${lang}`
+      `${getApi()}/topics/?parents=${id}&lang=${lang}`
     );
     return data.results;
   } catch (e) {
@@ -20,9 +20,8 @@ async function getChildren(id, lang) {
 
 async function getParents(id, lang) {
   try {
-    const api = serverService.api;
     const { data } = await axiosNoToken.get(
-      `${api}/topics/?children=${id}&lang=${lang}`
+      `${getApi()}/topics/?children=${id}&lang=${lang}`
     );
     return data.results;
   } catch (e) {
@@ -32,9 +31,8 @@ async function getParents(id, lang) {
 
 async function getComments(id, lang) {
   try {
-    const api = serverService.api;
     const { data } = await axiosNoToken.get(
-      `${api}/comments/?topic=${id}&lang=${lang}`
+      `${getApi()}/comments/?topic=${id}&lang=${lang}`
     );
     return data.results;
   } catch (e) {

@@ -1,8 +1,14 @@
 import serverService from 'services/server.service';
 import langService from 'services/lang.service';
 
+const getApi = () => {
+  const { api } = serverService;
+  return api;
+};
 const getLink = () => {
-  const server = serverService.api && serverService.api.split('//')[1];
+  const api = getApi();
+
+  const server = api && api.split('//')[1];
   const organization = server && server.split('inf.')[1];
   const serverName = organization || server;
 

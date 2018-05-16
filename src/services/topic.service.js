@@ -15,6 +15,8 @@ const logger = err => {
   console.log(err);
 };
 
+const getApi = () => serverService.api;
+
 class TopicService {
   constructor() {
     this.topics = [];
@@ -58,10 +60,9 @@ class TopicService {
 
   getTopic = async id => {
     try {
-      const api = serverService.api;
       const axiosNoToken = axios.create();
       const getTopicByLang = lang =>
-        axiosNoToken.get(`${api}/topics/${id}/?lang=${lang || ''}`);
+        axiosNoToken.get(`${getApi()}/topics/${id}/?lang=${lang || ''}`);
       const _topic = await getTopicByLang(' ');
 
       const { current } = langService;

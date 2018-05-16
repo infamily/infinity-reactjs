@@ -13,10 +13,11 @@ turndownService.addRule('clearSpaces', {
 export const getMarkdown = html => turndownService.turndown(clearTags(html));
 
 export const parseCategories = array =>
-  array &&
-  array.map(item => {
-    const { name, url, definition } = item;
-    return { value: name, label: name, url, definition };
-  });
+  !array
+    ? []
+    : array.map(item => {
+        const { name, url, definition } = item;
+        return { value: name, label: name, url, definition };
+      });
 
 export const getTypeId = link => link.match(/types\/(\d+)/)[1];

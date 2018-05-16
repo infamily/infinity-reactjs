@@ -24,6 +24,9 @@
 
 .text_editor__toolbar select {
   border-color: #fff;
+}
+.text_editor__toolbar select {
+  border-color: #fff;
   border-right-width: 5px;
   padding-right: 20px;
 }
