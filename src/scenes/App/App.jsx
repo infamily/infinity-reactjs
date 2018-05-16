@@ -67,8 +67,12 @@ class App extends PureComponent {
             <Route path={match.path} component={Routes} />
           </Wrapper>
         </div>
-        {user && server && <TabToggle match={match} />}
-        <Route path={`${match.path}split`} component={TabPanel} />
+        {server && (
+          <div>
+            <TabToggle match={match} show={!!user} />
+            <Route path={`${match.path}split`} component={TabPanel} />
+          </div>
+        )}
       </div>
     );
 

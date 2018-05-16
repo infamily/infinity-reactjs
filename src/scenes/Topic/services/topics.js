@@ -1,5 +1,4 @@
 import axios from 'axios';
-import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 import topicService from 'services/topic.service';
 

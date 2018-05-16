@@ -23,10 +23,16 @@ class Home extends Component {
 
   static propTypes = {
     user: PropTypes.object,
+    server: PropTypes.string,
     setUpdateTopicList: PropTypes.func.isRequired,
     shouldUpdateTopicList: PropTypes.bool.isRequired,
     changeHomeParams: PropTypes.func.isRequired,
     homeParams: PropTypes.object.isRequired
+  };
+
+  static defaultProps = {
+    user: null,
+    server: null
   };
 
   async componentWillMount() {
@@ -52,7 +58,6 @@ class Home extends Component {
     const { page } = this.state;
     const { flag, topicSource } = this.props.homeParams;
     const { fromPage, topics } = topicService;
-    console.log(topics, 'fromPage', fromPage);
     let topicData = { results: topics, count: null };
 
     if (fromPage !== page && !topics.length) {
@@ -85,7 +90,6 @@ class Home extends Component {
 
   hasMore = () => {
     const { count, topics } = this.state;
-    console.log(topics.length, 'count', count);
     return topics.length < count;
   };
 
@@ -102,12 +106,12 @@ class Home extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, server } = this.props;
     const { view } = this.props.homeParams;
     const { topics, loading } = this.state;
     const hasMore = this.hasMore();
 
-    if (topics === null) return <Loading />;
+    if (topics === null || !server) return <Loading />;
     const fullStyle = view === 'grid' && ' main--full';
 
     return (

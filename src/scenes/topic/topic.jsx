@@ -42,12 +42,15 @@ class Topic extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    server: PropTypes.string,
     user: PropTypes.object,
     close: PropTypes.func // tab mode
   };
 
   static defaultProps = {
-    close: null
+    close: null,
+    user: null,
+    server: null
   };
 
   async componentWillMount() {
@@ -59,7 +62,7 @@ class Topic extends Component {
     const getId = props => props.match.params.id;
     // check if new topic is provided
     const solve = getId(this.props) !== getId(nextProps);
-    solve && (await this.loadTopicData(getId(nextProps)));
+    if (solve) await this.loadTopicData(getId(nextProps));
   }
 
   loadTopicData = async id => {
@@ -170,7 +173,7 @@ class Topic extends Component {
   };
 
   render() {
-    const { close, user } = this.props;
+    const { close, user, server } = this.props;
     const {
       topic,
       comments,
@@ -181,7 +184,7 @@ class Topic extends Component {
       showChildSection
     } = this.state;
 
-    if (!topic.id) return <Loading />;
+    if (!topic.id || !server) return <Loading />;
 
     const meta = {
       title: topic.title,

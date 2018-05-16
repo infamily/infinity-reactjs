@@ -13,16 +13,22 @@ const TabComponent = () => (
   </Link>
 );
 
-const TabToggle = ({ match }) => (
-  <Switch>
-    <Route exact path={`${match.path}split/data`} component={null} />
-    <Route path={`${match.path}split/topic`} component={TabComponent} />
-    <Route exact path={match.path} component={TabComponent} />
-  </Switch>
-);
+const TabToggle = ({ match, show }) =>
+  show && (
+    <Switch>
+      <Route exact path={`${match.path}split/data`} component={null} />
+      <Route path={`${match.path}split/topic`} component={TabComponent} />
+      <Route exact path={match.path} component={TabComponent} />
+    </Switch>
+  );
 
 TabToggle.propTypes = {
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  show: PropTypes.bool
+};
+
+TabToggle.defaultProps = {
+  show: false
 };
 
 export default TabToggle;
