@@ -1,30 +1,11 @@
 import axios from 'axios';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
+import topicService from 'services/topic.service';
 
 const axiosNoToken = axios.create(); // to get data from other servers
 
-async function getTopic(id) {
-  try {
-    const api = serverService.api;
-
-    const getTopic = lang =>
-      axiosNoToken.get(`${api}/topics/${id}/?lang=${lang || ''}`);
-    const _topic = await getTopic(' ');
-
-    const { current } = langService;
-    const { languages } = _topic.data;
-
-    const index = languages.indexOf(current);
-    const lang = languages[index > -1 ? index : 0];
-
-    const { data } = await getTopic(lang);
-    data.lang = lang;
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-}
+const getTopic = async id => topicService.getTopic(id);
 
 async function getChildren(id, lang) {
   try {

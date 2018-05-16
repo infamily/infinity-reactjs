@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import EmailView from './index';
-import { wrap } from 'module';
 
 configure({ adapter: new Adapter() });
 
@@ -27,7 +25,7 @@ describe('<EmailView />', () => {
 
   test('calls componentWillMount', () => {
     jest.spyOn(EmailView.prototype, 'componentWillMount');
-    const wrapper = shallow(<EmailView {...props} />);
+    shallow(<EmailView {...props} />);
     expect(EmailView.prototype.componentWillMount.mock.calls.length).toBe(1);
   });
 
@@ -50,12 +48,17 @@ describe('<EmailView />', () => {
   test('submits the form', () => {
     const wrapper = shallow(<EmailView {...props} />);
 
-    const emailInput = updateInput(wrapper, 'email', 'tony@stark.com');
-    const captcha_1Input = updateInput(wrapper, 'captcha_1', 'braaa');
+    updateInput(wrapper, 'email', 'tony@stark.com');
+    updateInput(wrapper, 'captcha_1', 'braaa');
     wrapper.find('[testId="tosText"]').simulate('click');
     wrapper
       .find('[testId="emailSubmitForm"]')
       .simulate('submit', { preventDefault: () => {} });
-    // expect(props.changeEmail).toHaveBeenCalledWith('tony@stark.com');
+    expect(props.changeEmail).toHaveBeenCalledWith('tony@stark.com');
+  });
+
+  test('matches snapshot', () => {
+    const wrapper = shallow(<EmailView {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

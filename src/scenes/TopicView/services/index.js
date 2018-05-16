@@ -1,26 +1,9 @@
 import axios from 'axios';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
+import topicService from 'services/topic.service';
 
-async function getTopic(id) {
-  try {
-    const getTopic = lang =>
-      axios.get(`${serverService.api}/topics/${id}/?lang=${lang || ''}`);
-    const _topic = await getTopic(' ');
-
-    const { current } = langService;
-    const { languages } = _topic.data;
-
-    const index = languages.indexOf(current);
-    const lang = languages[index > -1 ? index : 0];
-
-    const { data } = await getTopic(lang);
-    data.lang = lang;
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-}
+const getTopic = async id => topicService.getTopic(id);
 
 async function getCategory(id) {
   try {
@@ -78,7 +61,7 @@ async function getCategories(categories) {
   return formatted;
 }
 
-export async function getType(id) {
+async function getType(id) {
   const lang = langService.current;
   const { data } = await serverService.get(`/types/${id}/?lang=${lang}`);
   return data;

@@ -13,7 +13,7 @@ export default class OtpLogin extends Component {
   constructor() {
     super();
     this.state = {
-      view: 'view',
+      view: 'view', // email || login
       email: '',
       popUp: { state: false, title: '', text: '' }
     };

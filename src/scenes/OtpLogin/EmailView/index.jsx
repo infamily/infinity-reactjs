@@ -93,11 +93,11 @@ export default class EmailView extends Component {
         response: captcha_1
       };
 
+      this.props.changeEmail(email);
       const params = { email, captcha };
       await otpService.signUp(params);
 
       this.setState({ ...initialState });
-      this.props.changeEmail(email);
       this.props.changeView('login');
     } catch (error) {
       const text = errorService.getErrorMessage(error.response.data);

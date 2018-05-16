@@ -60,9 +60,9 @@ class TopicService {
     try {
       const api = serverService.api;
       const axiosNoToken = axios.create();
-      const getTopic = lang =>
+      const getTopicByLang = lang =>
         axiosNoToken.get(`${api}/topics/${id}/?lang=${lang || ''}`);
-      const _topic = await getTopic(' ');
+      const _topic = await getTopicByLang(' ');
 
       const { current } = langService;
       const { languages } = _topic.data;
@@ -70,7 +70,7 @@ class TopicService {
       const index = languages.indexOf(current);
       const lang = languages[index > -1 ? index : 0];
 
-      const { data } = await getTopic(lang);
+      const { data } = await getTopicByLang(lang);
       data.lang = lang;
       return data;
     } catch (e) {
