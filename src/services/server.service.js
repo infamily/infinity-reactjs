@@ -47,14 +47,14 @@ class ServerService {
   }
 
   changeServerByLink = async server => {
-    const url = `https://${server}`;
+    const url = server.includes('https') ? server : `https://${server}`;
 
     // check if is known
-    const index = this.api_servers.indexOf(url);
-    if (index > -1) {
-      this.setDefault(url);
-      return url;
-    }
+    // const index = this.api_servers.indexOf(url);
+    // if (index > -1) {
+    //   this.setDefault(url);
+    //   return url;
+    // }
 
     // check if is valid
     const isValidServer = await this.checkIsServerAvailable(url);

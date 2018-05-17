@@ -19,7 +19,6 @@ import TabToggle from 'components/TabToggle';
 import TabPanel from 'scenes/TabPanel';
 import NoServer from 'scenes/NoServer';
 import Terms from 'scenes/Terms';
-import serverService from 'services/server.service';
 import './App.css';
 
 class App extends PureComponent {
@@ -77,8 +76,6 @@ class App extends PureComponent {
         )}
       </div>
     );
-
-    // const hasServer = server && serverService.api;
 
     return (
       <HashRouter>

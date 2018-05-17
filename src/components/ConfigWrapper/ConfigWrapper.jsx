@@ -23,7 +23,10 @@ export default class ConfigWrapper extends Component {
 
   async componentWillMount() {
     const { server } = this.props;
-    if (server) serverService.setDefault(server);
+    const { setDefault, changeServerByLink } = serverService;
+
+    const isValid = server && (await changeServerByLink(server));
+    if (isValid) setDefault(server);
     await this.setParams();
     this.setLoading(false);
   }
@@ -62,6 +65,7 @@ export default class ConfigWrapper extends Component {
       history.push('/'); // get the nearest serverName (DefaultWrapper)
       return;
     }
+
     // provided invalid server
     if (!newURL && API) {
       const link = `${configs.linkBase()}/no-server?server=${serverName}`;
@@ -72,16 +76,16 @@ export default class ConfigWrapper extends Component {
     // new API is provided
     if (newURL && prevAPI !== API) {
       setServer(newURL); // set configs
-      return;
+
+      // switch user authorization data
+      const serverData = userServerData[API] || null;
+      signIn(serverData);
     }
 
-    // switch user authorization data
-    const serverData = userServerData[API] || null;
-    signIn(serverData);
-
-    // set language
+    // check language in configs
     await this.checkLanguage(lang);
 
+    // new configs were passed by url
     if (newURL && nextConfigs) {
       this.setLoading(true);
       window.location.reload(false);
