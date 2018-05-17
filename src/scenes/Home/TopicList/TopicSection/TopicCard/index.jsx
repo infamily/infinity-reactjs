@@ -41,6 +41,18 @@ export default class TopicCard extends Component {
       topic: { id }
     } = this.state;
     history.push(getTopicLink(id));
+    this.scrollToCard();
+  };
+
+  scrollToCard = () => {
+    const { topic } = this.state;
+
+    setTimeout(() => {
+      const card = document.getElementById(`card-${topic.id}`);
+      if (card) {
+        card.scrollIntoView();
+      }
+    }, 1000);
   };
 
   updateData = async () => {
@@ -55,7 +67,11 @@ export default class TopicCard extends Component {
     const color = getColor(type);
     const time = moment(created_date).format('MMMM Do YYYY');
     return (
-      <div className="card__item" style={getTitleStyle(color)}>
+      <div
+        id={`card-${topic.id}`}
+        className="card__item"
+        style={getTitleStyle(color)}
+      >
         <div className="card__title" onClick={this.goToTopic}>
           <h4 className="card__title-text">{title}</h4>
         </div>

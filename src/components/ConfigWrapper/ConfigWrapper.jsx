@@ -22,11 +22,6 @@ export default class ConfigWrapper extends Component {
   };
 
   async componentWillMount() {
-    const { server } = this.props;
-    const { setDefault, changeServerByLink } = serverService;
-
-    const isValid = server && (await changeServerByLink(server));
-    if (isValid) setDefault(server);
     await this.setParams();
     this.setLoading(false);
   }

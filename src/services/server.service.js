@@ -7,12 +7,13 @@ class ServerService {
 
     this.api_servers = ['https://wefindx.io', 'https://inf.wefindx.com'];
 
-    // this.getDefault();
+    this.getDefault();
   }
 
   getDefault = async () => {
     const raw = localStorage.state_if;
     let server = raw && JSON.parse(raw).server;
+    server = await this.changeServerByLink(server);
 
     if (!server) {
       server = await this.getFastest();

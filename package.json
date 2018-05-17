@@ -33,6 +33,7 @@
     "react-tinymce": "^0.7.0",
     "react-tooltip": "^3.4.2",
     "react-transition-group": "^2.2.1",
+    "react-virtualized": "^9.19.0",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",

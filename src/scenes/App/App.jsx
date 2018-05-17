@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import configs from 'configs';
@@ -19,9 +19,15 @@ import TabToggle from 'components/TabToggle';
 import TabPanel from 'scenes/TabPanel';
 import NoServer from 'scenes/NoServer';
 import Terms from 'scenes/Terms';
+import serverService from 'services/server.service';
 import './App.css';
 
-class App extends PureComponent {
+class App extends Component {
+  async componentWillMount() {
+    const { server } = this.props;
+    if (server) serverService.setDefault(server);
+  }
+
   static propTypes = {
     user: PropTypes.object,
     server: PropTypes.string
