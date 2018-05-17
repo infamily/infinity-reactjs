@@ -48,6 +48,7 @@ class ServerService {
   }
 
   changeServerByLink = async server => {
+    if (!server) return null;
     const url = server.includes('https') ? server : `https://${server}`;
 
     // check if is known
