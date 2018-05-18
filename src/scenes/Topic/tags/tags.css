@@ -10,6 +10,15 @@
   max-height: 600px;
 }
 
+.tags__title {
+  border-radius: 2px;
+  padding: 0 5px;
+  margin-right: 2px;
+  font-size: 14px;
+  margin-right: 5px;
+  border-bottom: 2px solid #bfbfbf;
+}
+
 .tags__item {
   margin: 5px;
 }

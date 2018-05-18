@@ -48,7 +48,6 @@ const TopicBody = ({
   return (
     <div className="topic__container">
       <EditTopic isOwner={isOwner} id={topic.id} />
-
       <h1>
         {topic.title}
         <Link to={`${configs.linkBase()}/topic/${topic.id}`}>
@@ -56,21 +55,19 @@ const TopicBody = ({
         </Link>
         <DraftTag />
       </h1>
-
-      <TopicType
-        type={configs.topic_types[topic.type]}
-        color={getColor(topic)}
-      />
-      <Categories categories={categories} />
+      <div className="topic__tags">
+        <TopicType
+          type={configs.topic_types[topic.type]}
+          color={getColor(topic)}
+        />
+        <Categories categories={categories} />
+      </div>
       <Tags title="Parents" items={parents} />
-
       <div className="topic__fund_data">
         <TopicFundData topic={topic} updateData={updateTopic} />
       </div>
-
       <div className="topic__body">{makeHtml(topic.body)}</div>
       <Tags title="Children" items={children} />
-
       <div className="topic__bottom">
         <div>
           <span>{topic.owner.username}</span>

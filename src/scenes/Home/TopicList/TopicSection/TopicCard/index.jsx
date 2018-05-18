@@ -41,7 +41,7 @@ export default class TopicCard extends Component {
       topic: { id }
     } = this.state;
     history.push(getTopicLink(id));
-    this.scrollToCard();
+    // this.scrollToCard();
   };
 
   scrollToCard = () => {

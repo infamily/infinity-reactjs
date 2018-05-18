@@ -23,15 +23,19 @@ const getChild = type_id => {
   return configs.topic_types[type];
 };
 
+const initalMeta = {
+  comments: [],
+  parents: [],
+  children: [],
+  categories: []
+};
+
 class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
       topic: {},
-      comments: [],
-      parents: [],
-      children: [],
-      categories: [],
+      ...initalMeta,
       comment_id: 0,
       comment_text: '',
       addChildSection: false, // for panel
@@ -72,6 +76,11 @@ class Topic extends Component {
       this.props.history.push('/404');
       return;
     }
+
+    this.setState({
+      topic,
+      ...initalMeta
+    });
 
     const { lang } = topic;
     const comments = await topicService.getComments(id, lang);
