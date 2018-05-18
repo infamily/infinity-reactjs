@@ -87,7 +87,7 @@ class TopicSection extends Component {
     };
 
     const TitleView = ({ topic, fromId }) => (
-      <div>
+      <div className="topic_list__title-box">
         <BadgePoint topic={topic} fromId={fromId} />
         <Link to={getTopicLink(topic.id)} onClick={this.saveScroll}>
           <h2 className="topic_list__title">{` ${topic.title}`}</h2>

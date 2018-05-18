@@ -117,6 +117,13 @@ a:visited {
   cursor: pointer;
 }
 
+.main__shadow_box {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /* reset bootstrap z-index */
 .input-group .form-control,
 .input-group-btn:last-child > .btn,
@@ -137,7 +144,7 @@ a:visited {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(138, 206, 149);
+  background: rgb(190, 190, 190);
 }
 
 /* Handle on hover */

@@ -235,7 +235,7 @@ class Topic extends Component {
             <PreviewTopicBar topic={topic} />
             <br />
             <NewButton action={this.handleEditSection} title={newButtonText} />
-            <div className="topic__edit_section">
+            <div className="main__shadow_box">
               {showChildSection && (
                 <Panel
                   id="collapsible-data-panel"

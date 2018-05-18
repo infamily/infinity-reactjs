@@ -18,13 +18,12 @@ import Loading from 'components/Loading';
 import LoadingElements from 'components/Loading/LoadingElements';
 import TextEditor from 'components/TextEditor/TopicEditor';
 import FormSelect from 'components/FormSelect';
+import CategorySelect from 'components/CategorySelect';
 import topicViewService from 'services/topic_view.service';
 import configs from 'configs';
 import 'react-select/dist/react-select.min.css';
 import { PopupModal } from './PopupModal';
-import SelectOption from './SelectOption/Option';
 import topicService from './services';
-import { parseCategories } from './helpers';
 import './TopicView.css';
 
 class TopicView extends Component {
@@ -32,7 +31,6 @@ class TopicView extends Component {
     super(props);
     this.state = {
       all_types: configs.topic_types,
-      all_categories: [],
       flag: 0,
       id: null,
 
@@ -75,13 +73,11 @@ class TopicView extends Component {
     const parentId = p || parent;
     this.setLoading(true);
 
-    const categories = await topicViewService.getCategories();
     const editedData = user && eId ? await this.getTopicData(eId) : {};
     const parentData = parentId ? await this.setParent(parentId) : {};
 
     this.setState({
       isLoading: false,
-      all_categories: categories,
       id: eId,
       ...persistedTopic,
       ...editedData,
@@ -326,7 +322,6 @@ class TopicView extends Component {
       is_draft,
 
       flag,
-      all_categories,
       all_types,
       message,
       error,
@@ -339,8 +334,6 @@ class TopicView extends Component {
     if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
 
     const type = all_types[topic_type] || 'idea';
-
-    const categories = parseCategories(all_categories);
 
     const Buttons = () => {
       if (!user)
@@ -412,16 +405,9 @@ class TopicView extends Component {
             </FormSelect>
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>Category</ControlLabel>
-              <Select
-                className="topic_view__select"
-                name="topic_categories"
-                clearable={false}
-                resetValue={categories[0]}
-                multi
+              <CategorySelect
                 value={topic_categories}
-                options={categories}
-                onChange={this.selectCategory}
-                optionRenderer={SelectOption}
+                action={this.selectCategory}
               />
             </FormGroup>
             <FormGroup>

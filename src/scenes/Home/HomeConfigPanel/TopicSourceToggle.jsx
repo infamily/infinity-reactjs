@@ -12,7 +12,7 @@ const TopicSourceToggle = ({
   <div className="view_toggle">
     <ToggleButtonGroup
       type="radio"
-      bsSize="xsmall"
+      bsSize="small"
       className="view_toggle__grid_toggle"
       name="options"
       value={view}
@@ -31,7 +31,7 @@ const TopicSourceToggle = ({
     </ToggleButtonGroup>
     <ToggleButtonGroup
       type="radio"
-      bsSize="xsmall"
+      bsSize="small"
       name="options"
       value={topicSource}
       onChange={onChangeTopicView}

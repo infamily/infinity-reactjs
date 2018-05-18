@@ -1,0 +1,30 @@
+.home_input__settings_btn {
+  position: absolute;
+  background-color: white;
+  right: 80px;
+  top: 5px;
+  z-index: 1;
+}
+
+.home__settings_panel {
+  border: none;
+  margin-bottom: 0;
+}
+
+.settings__category {
+  /* max-width: 200px; */
+  margin: 10px 0;
+}
+
+.view_toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.view_toggle__grid_toggle {
+  margin-right: 5px;
+}
+
+.view_toggle__label {
+  margin: 0 5px;
+}

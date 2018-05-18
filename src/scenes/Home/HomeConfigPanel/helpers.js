@@ -1,3 +1,12 @@
+export function makeCategoriesArray(categories) {
+  const array = categories.map(item => {
+    const id = item.url.match(/types\/(.*)\//)[1];
+    return id;
+  });
+
+  return array;
+}
+
 export function getQueryParameters(search) {
   if (!search) return {};
 

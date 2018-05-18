@@ -1,10 +1,15 @@
 .topic_list__item {
   /* transition: transform 0.25s ease-out; */
   margin: 10px 0;
+  position: relative;
 }
 
 .topic_list__item:hover {
   transform: scale(1.01);
+}
+
+.topic_list__title-box {
+  padding-right: 20px;
 }
 
 .topic_list__title {
@@ -14,7 +19,9 @@
 }
 
 .topic_list__edit {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
   height: 25px;
   width: 25px;
   border-radius: 50%;

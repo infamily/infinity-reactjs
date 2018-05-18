@@ -49,14 +49,6 @@
   font-size: 16px;
 }
 
-.topic__edit_section {
-  /* padding: 10px; */
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .topic__match {
   color: #000;
   font-size: 13px;

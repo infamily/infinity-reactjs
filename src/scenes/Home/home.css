@@ -39,23 +39,6 @@
   vertical-align: middle;
 }
 
-.home__settings {
-  height: 30px;
-}
-
-.view_toggle {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.view_toggle__grid_toggle {
-  margin-right: 5px;
-}
-
-.view_toggle__label {
-  margin: 0 5px;
-}
-
 @media (max-width: 401px) {
   .topics__title {
     margin-right: initial;
@@ -64,12 +47,4 @@
   .home__settings {
     display: inline;
   }
-}
-
-.home_input__settings_btn {
-  position: absolute;
-  background-color: white;
-  right: 80px;
-  top: 5px;
-  z-index: 1;
 }
