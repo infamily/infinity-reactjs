@@ -76,6 +76,7 @@ class Home extends Component {
     const { flag, topicSource } = this.props.homeParams;
     const next = page + 1;
 
+    if (!topics) return;
     if (count === topics.length) return;
 
     const newTopics = await topicService.getPage(next, flag, topicSource);
