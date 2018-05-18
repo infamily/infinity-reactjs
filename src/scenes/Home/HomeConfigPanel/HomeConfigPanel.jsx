@@ -22,7 +22,8 @@ export default class componentName extends Component {
     super();
     this.state = {
       content: langService.homeContent(),
-      showSettings: true,
+      showSettings: false,
+      categories: [],
       query: ''
     };
   }
@@ -39,8 +40,8 @@ export default class componentName extends Component {
   };
 
   updateSearchParams = () => {
-    const { view, flag, topicSource, categories } = this.props.homeParams;
-    const { query } = this.state;
+    const { view, flag, topicSource } = this.props.homeParams;
+    const { query, categories } = this.state;
 
     console.log(getQueryParameters(this.props.location.search));
     const categoriesArray = makeCategoriesArray(categories);
@@ -108,18 +109,18 @@ export default class componentName extends Component {
     }));
   };
 
-  selectCategory = item => {
+  selectCategory = async item => {
     if (item) {
-      this.props.changeHomeParams({ categories: item });
-      console.log(this.props.homeParams.categories);
+      await this.setState({ categories: item });
+      console.log('here', this.props.homeParams.categories);
       this.updateSearchParams();
     }
   };
 
   render() {
     const { user, homeParams } = this.props;
-    const { showSettings, content } = this.state;
-    const { view, flag, topicSource, categories } = homeParams;
+    const { showSettings, content, categories } = this.state;
+    const { view, flag, topicSource } = homeParams;
     const { title, button } = content;
 
     return (

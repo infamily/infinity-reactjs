@@ -3,8 +3,7 @@ import { CHANGE_HOME_PARAMS } from './actiontypes';
 const initialState = {
   flag: 0,
   view: 'grid', // line | grid
-  topicSource: 1,
-  categories: []
+  topicSource: 1
 };
 
 export default (state = initialState, action) => {
