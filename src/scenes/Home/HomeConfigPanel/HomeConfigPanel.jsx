@@ -7,6 +7,7 @@ import langService from 'services/lang.service';
 import topicService from 'services/topic.service';
 import TopicSourceToggle from '../TopicSourceToggle';
 import SettingsButton from '../SettingsButton';
+import { getQueryParameters } from '../helpers';
 
 export default class componentName extends Component {
   constructor() {
@@ -25,7 +26,17 @@ export default class componentName extends Component {
     updateHomeTopics: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
     changeHomeParams: PropTypes.func.isRequired,
-    homeParams: PropTypes.object.isRequired
+    homeParams: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
+  updateSearchParams = () => {
+    const { view, flag, topicSource } = this.props.homeParams;
+    console.log(getQueryParameters(this.props.location.search));
+
+    const { query } = this.state;
+    const search = `?query=${query}&flag=${flag}&view=${view}&topicSource=${topicSource}`;
+    this.props.history.push({ search });
   };
 
   onChangeTopicView = async topicSource => {
@@ -37,6 +48,7 @@ export default class componentName extends Component {
       this.props.changeHomeParams({
         topicSource
       });
+      this.updateSearchParams();
     } catch (error) {
       console.log(error);
     }
@@ -48,8 +60,10 @@ export default class componentName extends Component {
 
     if (flag !== key) {
       const topicData = await topicService.getTopics(key, topicSource);
+      this.setState({ query: '' });
       this.props.updateHomeTopics(topicData);
       this.props.changeHomeParams({ flag: key });
+      this.updateSearchParams();
     }
   };
 
@@ -61,6 +75,7 @@ export default class componentName extends Component {
     try {
       const topics = await topicService.search(query, flag, topicSource);
       this.props.updateHomeTopics(topics);
+      this.updateSearchParams();
     } catch (error) {
       console.log(error);
     }
@@ -74,6 +89,7 @@ export default class componentName extends Component {
 
   handleGridView = value => {
     this.props.changeHomeParams({ view: value });
+    this.updateSearchParams();
   };
 
   handleSettings = () => {

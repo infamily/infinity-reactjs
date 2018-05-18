@@ -4,7 +4,7 @@ import TopicSection from './TopicSection';
 import Grid from './Grid';
 import './TopicList.css';
 
-class Topics extends Component {
+class TopicList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,8 +12,12 @@ class Topics extends Component {
     };
   }
 
+  static defaultProps = {
+    children: null
+  };
+
   static propTypes = {
-    topics: PropTypes.array.isRequired,
+    topics: PropTypes.array,
     view: PropTypes.string.isRequired
   };
 
@@ -40,4 +44,4 @@ class Topics extends Component {
   }
 }
 
-export default Topics;
+export default TopicList;

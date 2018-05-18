@@ -5,7 +5,7 @@ import DocumentMeta from 'react-document-meta';
 import MenuBar from 'scenes/MenuBar';
 import TopicView from 'scenes/TopicView';
 import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
-import Loading from 'components/Loading';
+import Loading from 'components/Loading/LoadingElements';
 import commentService from 'services/comment.service';
 import { Panel } from 'react-bootstrap';
 import configs from 'configs';

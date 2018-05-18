@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { changeHomeParams } from '../data/actions';
 import { getHomeParams } from '../data/selectors';
 import HomeConfigPanel from './HomeConfigPanel';
@@ -19,4 +20,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeConfigPanel);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HomeConfigPanel)
+);
