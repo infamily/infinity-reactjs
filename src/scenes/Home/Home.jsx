@@ -7,6 +7,7 @@ import LoadingElements from 'components/Loading/LoadingElements';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
 import Topics from './TopicList';
+import { makeCategoriesArray } from './helpers';
 import HomeConfigPanel from './HomeConfigPanel';
 import './Home.css';
 
@@ -56,30 +57,39 @@ class Home extends Component {
 
   updateListState = async () => {
     const { page } = this.state;
-    const { flag, topicSource } = this.props.homeParams;
+    const { flag, topicSource, categories } = this.props.homeParams;
     const { fromPage, topics } = topicService;
     let topicData = { results: topics, count: null };
 
     if (fromPage !== page && !topics.length) {
       this.setLoading(true);
-      topicData = await topicService.getTopics(flag, topicSource);
+      const categoryParams = makeCategoriesArray(categories);
+      topicData = await topicService.getTopics(
+        flag,
+        topicSource,
+        categoryParams
+      );
     }
 
     this.updateHomeTopics(topicData);
-    this.setState({
-      loading: false
-    });
+    this.setLoading(false);
   };
 
   loadMore = async () => {
     const { topics, count, page } = this.state;
-    const { flag, topicSource } = this.props.homeParams;
+    const { flag, topicSource, categories } = this.props.homeParams;
     const next = page + 1;
 
     if (!topics) return;
     if (count === topics.length) return;
 
-    const newTopics = await topicService.getPage(next, flag, topicSource);
+    const categoryParams = makeCategoriesArray(categories);
+    const newTopics = await topicService.getPage(
+      next,
+      flag,
+      topicSource,
+      categoryParams
+    );
     const main_pack = topics.concat(newTopics);
     topicService.topics = main_pack; // pile up topics
 
@@ -95,11 +105,32 @@ class Home extends Component {
   };
 
   updateHomeTopics = data => {
+    if (data) {
+      this.setState({
+        topics: data.results,
+        count: data.count,
+        page: 1
+      });
+    }
+  };
+
+  // to do: leave only one way to update state (updateHomeTopicsByParams)
+  updateHomeTopicsByParams = async () => {
+    const { flag, topicSource, categories } = this.props.homeParams;
+    const categoryParams = makeCategoriesArray(categories);
+
+    this.setLoading(true);
+    const data = await topicService.getTopics(
+      flag,
+      topicSource,
+      categoryParams
+    );
     this.setState({
       topics: data.results,
       count: data.count,
       page: 1
     });
+    this.setLoading(false);
   };
 
   setLoading = bool => {
@@ -120,6 +151,7 @@ class Home extends Component {
         <HomeConfigPanel
           user={user}
           updateHomeTopics={this.updateHomeTopics}
+          updateHomeTopicsByParams={this.updateHomeTopicsByParams}
           setLoading={this.setLoading}
         />
         <div className="topics__content">

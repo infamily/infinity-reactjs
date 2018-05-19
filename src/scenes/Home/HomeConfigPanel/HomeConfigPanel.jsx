@@ -14,7 +14,7 @@ import langService from 'services/lang.service';
 import topicService from 'services/topic.service';
 import TopicSourceToggle from './TopicSourceToggle';
 import SettingsButton from './SettingsButton';
-import { getQueryParameters, makeCategoriesArray } from './helpers';
+import { getQueryParameters, makeCategoriesArray } from '../helpers';
 import './HomeConfigPanel.css';
 
 export default class componentName extends Component {
@@ -22,8 +22,7 @@ export default class componentName extends Component {
     super();
     this.state = {
       content: langService.homeContent(),
-      showSettings: false,
-      categories: [],
+      showSettings: true,
       query: ''
     };
   }
@@ -33,6 +32,7 @@ export default class componentName extends Component {
   static propTypes = {
     user: PropTypes.object,
     updateHomeTopics: PropTypes.func.isRequired,
+    updateHomeTopicsByParams: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
     changeHomeParams: PropTypes.func.isRequired,
     homeParams: PropTypes.object.isRequired,
@@ -40,51 +40,44 @@ export default class componentName extends Component {
   };
 
   updateSearchParams = () => {
-    const { view, flag, topicSource } = this.props.homeParams;
-    const { query, categories } = this.state;
+    const { view, flag, topicSource, categories } = this.props.homeParams;
+    const { query } = this.state;
 
     console.log(getQueryParameters(this.props.location.search));
     const categoriesArray = makeCategoriesArray(categories);
-
     const search = `?query=${query}&flag=${flag}&view=${view}&topicSource=${topicSource}&categories=${categoriesArray}`;
     this.props.history.push({ search });
   };
 
   onChangeTopicView = async topicSource => {
-    const { flag } = this.props.homeParams;
-    this.props.setLoading(true);
-    try {
-      const topicData = await topicService.getTopics(flag, topicSource);
-      this.props.updateHomeTopics(topicData);
-      this.props.changeHomeParams({
-        topicSource
-      });
-      this.updateSearchParams();
-    } catch (error) {
-      console.log(error);
-    }
-    this.props.setLoading(false);
+    await this.props.changeHomeParams({ topicSource });
+    await this.props.updateHomeTopicsByParams();
+    this.updateSearchParams();
   };
 
   setFlag = async key => {
-    const { flag, topicSource } = this.props.homeParams;
-
+    const { flag } = this.props.homeParams;
     if (flag !== key) {
-      const topicData = await topicService.getTopics(key, topicSource);
       this.setState({ query: '' });
-      this.props.updateHomeTopics(topicData);
-      this.props.changeHomeParams({ flag: key });
+      await this.props.changeHomeParams({ flag: key });
+      await this.props.updateHomeTopicsByParams();
       this.updateSearchParams();
     }
   };
 
   makeSearch = async e => {
     e.preventDefault();
-    const { flag, topicSource } = this.props.homeParams;
+    const { flag, topicSource, categories } = this.props.homeParams;
     const { query } = this.state;
+    const categoryParams = makeCategoriesArray(categories);
 
     try {
-      const topics = await topicService.search(query, flag, topicSource);
+      const topics = await topicService.search(
+        query,
+        flag,
+        topicSource,
+        categoryParams
+      );
       this.props.updateHomeTopics(topics);
       this.updateSearchParams();
     } catch (error) {
@@ -111,16 +104,16 @@ export default class componentName extends Component {
 
   selectCategory = async item => {
     if (item) {
-      await this.setState({ categories: item });
-      console.log('here', this.props.homeParams.categories);
+      await this.props.changeHomeParams({ categories: item });
+      await this.props.updateHomeTopicsByParams();
       this.updateSearchParams();
     }
   };
 
   render() {
     const { user, homeParams } = this.props;
-    const { showSettings, content, categories } = this.state;
-    const { view, flag, topicSource } = homeParams;
+    const { showSettings, content } = this.state;
+    const { view, flag, topicSource, categories } = homeParams;
     const { title, button } = content;
 
     return (
