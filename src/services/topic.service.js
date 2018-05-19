@@ -61,7 +61,7 @@ class TopicService {
     );
     if (data) {
       this.topics = data.results;
-      return data.results;
+      return data;
     }
     logger(error);
     return null;

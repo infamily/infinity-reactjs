@@ -43,7 +43,7 @@ export default class componentName extends Component {
     const { view, flag, topicSource, categories } = this.props.homeParams;
     const { query } = this.state;
 
-    console.log(getQueryParameters(this.props.location.search));
+    // console.log(getQueryParameters(this.props.location.search));
     const categoriesArray = makeCategoriesArray(categories);
     const search = `?query=${query}&flag=${flag}&view=${view}&topicSource=${topicSource}&categories=${categoriesArray}`;
     this.props.history.push({ search });
@@ -72,13 +72,13 @@ export default class componentName extends Component {
     const categoryParams = makeCategoriesArray(categories);
 
     try {
-      const topics = await topicService.search(
+      const data = await topicService.search(
         query,
         flag,
         topicSource,
         categoryParams
       );
-      this.props.updateHomeTopics(topics);
+      this.props.updateHomeTopics(data);
       this.updateSearchParams();
     } catch (error) {
       console.log(error);
