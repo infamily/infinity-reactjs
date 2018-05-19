@@ -72,6 +72,7 @@ export default class componentName extends Component {
     const categoryParams = makeCategoriesArray(categories);
 
     try {
+      await this.props.changeHomeParams({ topicSource: 0 });
       const data = await topicService.search(
         query,
         flag,
