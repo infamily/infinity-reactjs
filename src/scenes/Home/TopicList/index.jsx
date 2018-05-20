@@ -39,6 +39,14 @@ class TopicList extends Component {
           topic && <TopicSection key={topic.id} topic={topic} view={view} />
       );
 
+    if (!topics[0])
+      return (
+        <div>
+          <br />
+          <p>No topics. Try to change filter parameters.</p>
+        </div>
+      );
+
     if (view === 'grid') return <Grid>{elements}</Grid>;
     return <div>{elements}</div>;
   }
