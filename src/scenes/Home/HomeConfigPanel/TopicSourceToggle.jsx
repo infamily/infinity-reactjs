@@ -10,43 +10,55 @@ const TopicSourceToggle = ({
   view
 }) => (
   <div className="view_toggle">
-    <ToggleButtonGroup
-      type="radio"
-      bsSize="small"
-      className="view_toggle__grid_toggle"
-      name="options"
-      value={view}
-      onChange={handleTopicView}
-    >
-      <ToggleButton value="line">
-        <TooltipOverlay text="Display as lines" placement="bottom">
-          <span>Tree</span>
-        </TooltipOverlay>
-      </ToggleButton>
-      <ToggleButton value="grid">
-        <TooltipOverlay text="Display as Grid" placement="bottom">
-          <span>Grid</span>
-        </TooltipOverlay>
-      </ToggleButton>
-    </ToggleButtonGroup>
-    <ToggleButtonGroup
-      type="radio"
-      bsSize="small"
-      name="options"
-      value={topicSource}
-      onChange={onChangeTopicView}
-    >
-      <ToggleButton value={1}>
-        <TooltipOverlay text="Display only top-level topics" placement="bottom">
-          <span>Top-Level</span>
-        </TooltipOverlay>
-      </ToggleButton>
-      <ToggleButton value={0}>
-        <TooltipOverlay text="Display all topics" placement="bottom">
-          <span>All</span>
-        </TooltipOverlay>
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <p className="view_toggle__label">Filter</p>
+    <div>
+      <span className="view_toggle__label">
+        <small>View:</small>
+      </span>
+      <ToggleButtonGroup
+        type="radio"
+        bsSize="small"
+        className="view_toggle__grid_toggle"
+        name="options"
+        value={view}
+        onChange={handleTopicView}
+      >
+        <ToggleButton value="line">
+          <TooltipOverlay text="Display as lines" placement="bottom">
+            <span>Tree</span>
+          </TooltipOverlay>
+        </ToggleButton>
+        <ToggleButton value="grid">
+          <TooltipOverlay text="Display as Grid" placement="bottom">
+            <span>Grid</span>
+          </TooltipOverlay>
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <span className="view_toggle__label">
+        <small>Source:</small>
+      </span>
+      <ToggleButtonGroup
+        type="radio"
+        bsSize="small"
+        name="options"
+        value={topicSource}
+        onChange={onChangeTopicView}
+      >
+        <ToggleButton value={1}>
+          <TooltipOverlay
+            text="Display only top-level topics"
+            placement="bottom"
+          >
+            <span>Top-Level</span>
+          </TooltipOverlay>
+        </ToggleButton>
+        <ToggleButton value={0}>
+          <TooltipOverlay text="Display all topics" placement="bottom">
+            <span>All</span>
+          </TooltipOverlay>
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </div>
   </div>
 );
 

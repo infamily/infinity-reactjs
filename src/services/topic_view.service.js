@@ -3,6 +3,12 @@ import langService from './lang.service';
 import serverService from './server.service';
 
 class TopicViewService {
+  constructor() {
+    this.categoriesByLang = {
+      [langService.current]: null
+    };
+  }
+
   createTopic = async data => {
     const lang = langService.current;
     const { type, title, text, parents, categories, is_draft } = data;
@@ -75,15 +81,32 @@ class TopicViewService {
   };
 
   getCategories = async () => {
+    const { current } = langService;
+    const categories = this.categoriesByLang[current];
+    if (categories) return categories;
+
     try {
-      const { current } = langService;
-      const categories = await axios.get(
+      const res = await axios.get(
         `${serverService.api}/types/?category=1&is_category=1&lang=${current}` //&parents__isnull=1
       );
-      return categories.data;
+
+      this.categoriesByLang[current] = res.data;
+      return res.data;
     } catch (e) {
       console.error(e);
     }
+  };
+
+  getCategoriesByIds = async categoryIds => {
+    const allCategories = await this.getCategories();
+    const formatted = categoryIds.map(id => {
+      const categoryObject = allCategories.find(category =>
+        category.url.includes(id)
+      );
+      const { name, url, definition } = categoryObject;
+      return { label: name, value: name, url, definition };
+    });
+    return formatted;
   };
 
   getSubCategoriesById = async id => {

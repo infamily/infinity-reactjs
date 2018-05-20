@@ -7,7 +7,8 @@ import LoadingElements from 'components/Loading/LoadingElements';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
 import Topics from './TopicList';
-import { makeCategoriesArray } from './helpers';
+import topicViewService from 'services/topic_view.service';
+import { validateHomeParams, makeCategoriesArray } from './helpers';
 import HomeConfigPanel from './HomeConfigPanel';
 import './Home.css';
 
@@ -37,7 +38,12 @@ class Home extends Component {
   };
 
   async componentWillMount() {
-    await this.updateListState();
+    const { search } = this.props.location;
+    const validParams = validateHomeParams(search);
+
+    validParams
+      ? await this.setFilterBySearchQuery(validParams)
+      : await this.updateListState();
   }
 
   componentDidMount() {
@@ -54,6 +60,37 @@ class Home extends Component {
       await this.updateListState();
     }
   }
+
+  setFilterBySearchQuery = async validParams => {
+    const { flag, topicSource, categories, query, view } = validParams;
+
+    const homeParams = {};
+    if (view) homeParams.view = view;
+    if (flag) homeParams.flag = flag;
+    if (topicSource) homeParams.topicSource = topicSource;
+    if (categories)
+      homeParams.categories = await topicViewService.getCategoriesByIds(
+        categories
+      );
+
+    await this.props.changeHomeParams({ ...homeParams });
+    if (query) await this.makeSearch(query);
+    else await this.updateHomeTopicsByParams();
+  };
+
+  makeSearch = async query => {
+    const { flag, topicSource, categories } = this.props.homeParams;
+    const categoryParams = makeCategoriesArray(categories);
+
+    await this.props.changeHomeParams({ topicSource: 0 });
+    const data = await topicService.search(
+      query,
+      flag,
+      topicSource,
+      categoryParams
+    );
+    this.updateHomeTopics(data);
+  };
 
   updateListState = async () => {
     const { page } = this.state;
@@ -114,7 +151,6 @@ class Home extends Component {
     }
   };
 
-  // to do: leave only one way to update state (updateHomeTopicsByParams)
   updateHomeTopicsByParams = async () => {
     const { flag, topicSource, categories } = this.props.homeParams;
     const categoryParams = makeCategoriesArray(categories);
@@ -150,7 +186,7 @@ class Home extends Component {
       <div className={`main ${fullStyle}`}>
         <HomeConfigPanel
           user={user}
-          updateHomeTopics={this.updateHomeTopics}
+          makeSearch={this.makeSearch}
           updateHomeTopicsByParams={this.updateHomeTopicsByParams}
           setLoading={this.setLoading}
         />

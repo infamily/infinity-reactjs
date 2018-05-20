@@ -11,10 +11,9 @@ import Flag from 'components/FlagToggle';
 import Header from 'components/Header';
 import CategorySelect from 'components/CategorySelect';
 import langService from 'services/lang.service';
-import topicService from 'services/topic.service';
 import TopicSourceToggle from './TopicSourceToggle';
 import SettingsButton from './SettingsButton';
-import { getQueryParameters, makeCategoriesArray } from '../helpers';
+import { parseSearchParameters, makeCategoriesArray } from '../helpers';
 import './HomeConfigPanel.css';
 
 export default class componentName extends Component {
@@ -31,26 +30,32 @@ export default class componentName extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    updateHomeTopics: PropTypes.func.isRequired,
     updateHomeTopicsByParams: PropTypes.func.isRequired,
+    makeSearch: PropTypes.func.isRequired,
     setLoading: PropTypes.func.isRequired,
     changeHomeParams: PropTypes.func.isRequired,
     homeParams: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired
   };
 
   updateSearchParams = () => {
     const { view, flag, topicSource, categories } = this.props.homeParams;
     const { query } = this.state;
 
-    // console.log(getQueryParameters(this.props.location.search));
     const categoriesArray = makeCategoriesArray(categories);
-    const search = `?query=${query}&flag=${flag}&view=${view}&topicSource=${topicSource}&categories=${categoriesArray}`;
+
+    let search = `?flag=${flag}&view=${view}&topicSource=${topicSource}`;
+    if (query) search += `&query=${query}`;
+    if (categories.length) search += `&categories=${categoriesArray}`;
+
     this.props.history.push({ search });
   };
 
   onChangeTopicView = async topicSource => {
-    await this.props.changeHomeParams({ topicSource });
+    await this.props.changeHomeParams({
+      topicSource
+    });
     await this.props.updateHomeTopicsByParams();
     this.updateSearchParams();
   };
@@ -59,31 +64,20 @@ export default class componentName extends Component {
     const { flag } = this.props.homeParams;
     if (flag !== key) {
       this.setState({ query: '' });
-      await this.props.changeHomeParams({ flag: key });
+      await this.props.changeHomeParams({
+        flag: key,
+        topicSource: 0
+      });
       await this.props.updateHomeTopicsByParams();
       this.updateSearchParams();
     }
   };
 
-  makeSearch = async e => {
+  onSearchSubmit = e => {
     e.preventDefault();
-    const { flag, topicSource, categories } = this.props.homeParams;
     const { query } = this.state;
-    const categoryParams = makeCategoriesArray(categories);
-
-    try {
-      await this.props.changeHomeParams({ topicSource: 0 });
-      const data = await topicService.search(
-        query,
-        flag,
-        topicSource,
-        categoryParams
-      );
-      this.props.updateHomeTopics(data);
-      this.updateSearchParams();
-    } catch (error) {
-      console.log(error);
-    }
+    this.props.makeSearch(query);
+    this.updateSearchParams();
   };
 
   handleChange = e => {
@@ -92,8 +86,10 @@ export default class componentName extends Component {
     });
   };
 
-  handleGridView = value => {
-    this.props.changeHomeParams({ view: value });
+  handleGridView = async value => {
+    await this.props.changeHomeParams({
+      view: value
+    });
     this.updateSearchParams();
   };
 
@@ -105,7 +101,9 @@ export default class componentName extends Component {
 
   selectCategory = async item => {
     if (item) {
-      await this.props.changeHomeParams({ categories: item });
+      await this.props.changeHomeParams({
+        categories: item
+      });
       await this.props.updateHomeTopicsByParams();
       this.updateSearchParams();
     }
@@ -120,7 +118,7 @@ export default class componentName extends Component {
     return (
       <div className="home__head">
         <Header user={user} title={title} />
-        <form onSubmit={this.makeSearch}>
+        <form onSubmit={this.onSearchSubmit}>
           <FormGroup>
             <InputGroup>
               <Flag setFlag={this.setFlag} flag={flag} />
