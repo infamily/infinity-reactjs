@@ -16,12 +16,12 @@ import SettingsButton from './SettingsButton';
 import { parseSearchParameters, makeCategoriesArray } from '../helpers';
 import './HomeConfigPanel.css';
 
-export default class componentName extends Component {
+export default class HomeConfigPanel extends Component {
   constructor() {
     super();
     this.state = {
       content: langService.homeContent(),
-      showSettings: true,
+      showSettings: false,
       query: ''
     };
   }
