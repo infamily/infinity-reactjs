@@ -19,7 +19,8 @@ class Home extends Component {
       loading: false,
       page: 1,
       topics: [],
-      last_pack: []
+      last_pack: [],
+      initalQuery: ''
     };
   }
 
@@ -40,10 +41,12 @@ class Home extends Component {
   async componentWillMount() {
     const { search } = this.props.location;
     const validParams = validateHomeParams(search);
+    this.setLoading(true);
 
     validParams
       ? await this.setFilterBySearchQuery(validParams)
       : await this.updateListState();
+    this.setLoading(false);
   }
 
   componentDidMount() {
@@ -74,15 +77,17 @@ class Home extends Component {
       );
 
     await this.props.changeHomeParams({ ...homeParams });
-    if (query) await this.makeSearch(query);
-    else await this.updateHomeTopicsByParams();
+    if (query) {
+      await this.makeSearch(query);
+    } else await this.updateHomeTopicsByParams();
   };
 
   makeSearch = async query => {
-    const { flag, topicSource, categories } = this.props.homeParams;
+    const { flag, categories } = this.props.homeParams;
     const categoryParams = makeCategoriesArray(categories);
 
-    await this.props.changeHomeParams({ topicSource: 0 });
+    const topicSource = 0; // show all topics
+    await this.props.changeHomeParams({ topicSource });
     const data = await topicService.search(
       query,
       flag,

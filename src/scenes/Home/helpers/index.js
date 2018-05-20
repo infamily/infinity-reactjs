@@ -1,6 +1,6 @@
 // makeCategoriesArray convert select objects to an ids array
 export function makeCategoriesArray(categories) {
-  if (!categories.length) return [];
+  if (!categories || !categories.length) return [];
 
   const array = categories.filter(item => item.url).map(item => {
     const id = item.url.match(/types\/(.*)\//)[1];
@@ -29,7 +29,7 @@ export function parseSearchParameters(search) {
 export const validateCategoryString = str => {
   const array = str.split(',');
   return array
-    ? array.map(item => parseInt(item)).filter(item => !isNaN(item))
+    ? array.map(item => parseInt(item, 10)).filter(item => !isNaN(item))
     : [];
 };
 
@@ -46,13 +46,13 @@ const validateSearchParams = obj => {
   const params = {};
 
   if (flag) {
-    const flagParam = parseInt(flag);
+    const flagParam = parseInt(flag, 10);
     const isValid = !isNaN(flagParam) && flagParam < 6 && flagParam >= 0;
     if (isValid) params.flag = flagParam;
   }
 
   if (topicSource) {
-    const sourceNum = parseInt(topicSource);
+    const sourceNum = parseInt(topicSource, 10);
     if (sourceNum === 1 || sourceNum === 0) params.topicSource = sourceNum;
   }
 

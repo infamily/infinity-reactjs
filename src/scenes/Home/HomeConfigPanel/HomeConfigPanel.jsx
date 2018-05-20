@@ -13,7 +13,7 @@ import CategorySelect from 'components/CategorySelect';
 import langService from 'services/lang.service';
 import TopicSourceToggle from './TopicSourceToggle';
 import SettingsButton from './SettingsButton';
-import { parseSearchParameters, makeCategoriesArray } from '../helpers';
+import { validateHomeParams, makeCategoriesArray } from '../helpers';
 import './HomeConfigPanel.css';
 
 export default class HomeConfigPanel extends Component {
@@ -38,6 +38,13 @@ export default class HomeConfigPanel extends Component {
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired
   };
+
+  async componentWillMount() {
+    const { search } = this.props.location;
+    const validParams = validateHomeParams(search);
+    const query = validParams && validParams.query;
+    if (query) this.setState({ query });
+  }
 
   updateSearchParams = () => {
     const { view, flag, topicSource, categories } = this.props.homeParams;

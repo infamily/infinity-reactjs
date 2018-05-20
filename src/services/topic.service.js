@@ -5,7 +5,7 @@ import serverService from './server.service';
 const getParams = (flag, view, categories) => {
   const f = flag || '';
   const categoryParams = getCatergoryString(categories);
-  const viewParam = view ? `&parents__isnull=${view}` : '';
+  const viewParam = parseInt(view, 10) ? `&parents__isnull=${view}` : '';
   const params = `lang=${
     langService.current
   }&type=${f}&type__not=0${viewParam}${categoryParams}`;
