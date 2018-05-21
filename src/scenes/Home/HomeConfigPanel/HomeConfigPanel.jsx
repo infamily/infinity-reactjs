@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import {
   FormGroup,
   FormControl,
@@ -10,17 +11,16 @@ import {
 import Flag from 'components/FlagToggle';
 import Header from 'components/Header';
 import CategorySelect from 'components/CategorySelect';
-import langService from 'services/lang.service';
 import TopicSourceToggle from './TopicSourceToggle';
 import SettingsButton from './SettingsButton';
 import { validateHomeParams, makeCategoriesArray } from '../helpers';
+import messages from './messages';
 import './HomeConfigPanel.css';
 
 export default class HomeConfigPanel extends Component {
   constructor() {
     super();
     this.state = {
-      content: langService.homeContent(),
       showSettings: false,
       query: ''
     };
@@ -118,13 +118,12 @@ export default class HomeConfigPanel extends Component {
 
   render() {
     const { user, homeParams } = this.props;
-    const { showSettings, content } = this.state;
+    const { showSettings } = this.state;
     const { view, flag, topicSource, categories } = homeParams;
-    const { title, button } = content;
 
     return (
       <div className="home__head">
-        <Header user={user} title={title} />
+        <Header user={user} />
         <form onSubmit={this.onSearchSubmit}>
           <FormGroup>
             <InputGroup>
@@ -139,7 +138,9 @@ export default class HomeConfigPanel extends Component {
                 <SettingsButton action={this.handleSettings} />
               </div>
               <InputGroup.Button>
-                <Button type="submit">{button}</Button>
+                <Button type="submit">
+                  <FormattedMessage {...messages.search} />
+                </Button>
               </InputGroup.Button>
             </InputGroup>
           </FormGroup>
@@ -162,7 +163,9 @@ export default class HomeConfigPanel extends Component {
               <CategorySelect
                 value={categories}
                 action={this.selectCategory}
-                placeholder="Select categories..."
+                placeholder={
+                  <FormattedMessage {...messages.selectPlaceholder} />
+                }
               />
             </div>
           </div>

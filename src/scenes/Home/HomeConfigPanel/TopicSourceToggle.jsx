@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import TooltipOverlay from 'components/TooltipOverlay';
+import messages from './messages';
 
 const TopicSourceToggle = ({
   topicSource,
@@ -10,11 +12,15 @@ const TopicSourceToggle = ({
   view
 }) => (
   <div className="view_toggle">
-    <p className="view_toggle__label">Filter</p>
+    <p className="view_toggle__label">
+      <FormattedMessage {...messages.filter} />
+    </p>
     <div>
       <div className="view_toggle__section">
         <span className="view_toggle__label">
-          <small>View:</small>
+          <small>
+            <FormattedMessage {...messages.view} />
+          </small>
         </span>
         <ToggleButtonGroup
           type="radio"
@@ -26,19 +32,25 @@ const TopicSourceToggle = ({
         >
           <ToggleButton value="line">
             <TooltipOverlay text="Display as lines" placement="bottom">
-              <span>Tree</span>
+              <span>
+                <FormattedMessage {...messages.tree} />
+              </span>
             </TooltipOverlay>
           </ToggleButton>
           <ToggleButton value="grid">
             <TooltipOverlay text="Display as Grid" placement="bottom">
-              <span>Grid</span>
+              <span>
+                <FormattedMessage {...messages.grid} />
+              </span>
             </TooltipOverlay>
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className="view_toggle__section">
         <span className="view_toggle__label">
-          <small>Source:</small>
+          <small>
+            <FormattedMessage {...messages.source} />
+          </small>
         </span>
         <ToggleButtonGroup
           type="radio"
@@ -52,12 +64,16 @@ const TopicSourceToggle = ({
               text="Display only top-level topics"
               placement="bottom"
             >
-              <span>Top-Level</span>
+              <span>
+                <FormattedMessage {...messages.topLevel} />
+              </span>
             </TooltipOverlay>
           </ToggleButton>
           <ToggleButton value={0}>
             <TooltipOverlay text="Display all topics" placement="bottom">
-              <span>All</span>
+              <span>
+                <FormattedMessage {...messages.all} />
+              </span>
             </TooltipOverlay>
           </ToggleButton>
         </ToggleButtonGroup>

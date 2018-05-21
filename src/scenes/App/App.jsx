@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { IntlProvider } from 'react-intl';
 import configs from 'configs';
 import Home from 'scenes/Home';
 import Topic from 'scenes/Topic';
@@ -20,6 +21,8 @@ import TabPanel from 'scenes/TabPanel';
 import NoServer from 'scenes/NoServer';
 import Terms from 'scenes/Terms';
 import serverService from 'services/server.service';
+import langService from 'services/lang.service';
+import { translationMessages } from '../../i18n';
 import './App.css';
 
 class App extends Component {
@@ -40,7 +43,6 @@ class App extends Component {
 
   render() {
     const { user, server } = this.props;
-
     const Routes = ({ match: { path } }) => (
       <Switch>
         {server && <Redirect exact from="/" to={configs.linkBase()} />}
@@ -83,16 +85,26 @@ class App extends Component {
       </div>
     );
 
+    const lang = langService.current;
     return (
-      <HashRouter>
-        <div>
-          <ProgramToggle />
-          <Switch>
-            <Route path="/:configs/@/" component={SetWrapper(ConfigWrapper)} />
-            <Route path="/" component={SetWrapper(DefaultWrapper)} />
-          </Switch>
-        </div>
-      </HashRouter>
+      <IntlProvider
+        locale={lang}
+        key={lang}
+        messages={translationMessages[lang]}
+      >
+        <HashRouter>
+          <div>
+            <ProgramToggle />
+            <Switch>
+              <Route
+                path="/:configs/@/"
+                component={SetWrapper(ConfigWrapper)}
+              />
+              <Route path="/" component={SetWrapper(DefaultWrapper)} />
+            </Switch>
+          </div>
+        </HashRouter>
+      </IntlProvider>
     );
   }
 }

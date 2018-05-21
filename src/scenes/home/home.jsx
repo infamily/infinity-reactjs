@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
+import { FormattedMessage } from 'react-intl';
 import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
 import LoadingElements from 'components/Loading/LoadingElements';
+import topicViewService from 'services/topic_view.service';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
 import Topics from './TopicList';
-import topicViewService from 'services/topic_view.service';
 import { validateHomeParams, makeCategoriesArray } from './helpers';
 import HomeConfigPanel from './HomeConfigPanel';
+import messages from './messages';
 import './Home.css';
 
 class Home extends Component {
@@ -18,9 +20,7 @@ class Home extends Component {
     this.state = {
       loading: false,
       page: 1,
-      topics: [],
-      last_pack: [],
-      initalQuery: ''
+      topics: []
     };
   }
 
@@ -209,7 +209,7 @@ class Home extends Component {
             </InfiniteScroll>
           )}
         </div>
-        <MenuBar page="Home" />
+        <MenuBar page={<FormattedMessage {...messages.MenuBar} />} />
       </div>
     );
   }

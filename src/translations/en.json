@@ -1,0 +1,16 @@
+{
+  "infinity.components.Header.title": "Infinity Family",
+  "infinity.components.Header.subtitle":
+    "Open chats and projects to realise global goals",
+  "infinity.secenes.Home.HomeConfigPanel.search": "Search",
+  "infinity.secenes.Home.HomeConfigPanel.selectPlaceholder":
+    "Select categories...",
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Filter",
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.view": "View",
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.source": "Source",
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.tree": "Tree",
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "Grid",
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
+    "Top-Level",
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.all": "All"
+}
