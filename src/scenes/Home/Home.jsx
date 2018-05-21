@@ -209,7 +209,7 @@ class Home extends Component {
             </InfiniteScroll>
           )}
         </div>
-        <MenuBar page={<FormattedMessage {...messages.MenuBar} />} />
+        <MenuBar page={<FormattedMessage {...messages.menuTitle} />} />
       </div>
     );
   }

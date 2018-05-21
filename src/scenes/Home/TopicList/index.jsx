@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import messages from 'scenes/Home/messages';
 import TopicSection from './TopicSection';
 import Grid from './Grid';
 import './TopicList.css';
@@ -13,7 +15,7 @@ class TopicList extends Component {
   }
 
   static defaultProps = {
-    children: null
+    topics: null
   };
 
   static propTypes = {
@@ -39,13 +41,15 @@ class TopicList extends Component {
           topic && <TopicSection key={topic.id} topic={topic} view={view} />
       );
 
-    // if (!topics || !topics[0])
-    //   return (
-    //     <div>
-    //       <br />
-    //       <p>No topics. Try to change filter parameters.</p>
-    //     </div>
-    //   );
+    if (!topics || !topics.length)
+      return (
+        <div>
+          <br />
+          <p>
+            <FormattedMessage {...messages.noTopics} />
+          </p>
+        </div>
+      );
 
     if (view === 'grid') return <Grid>{elements}</Grid>;
     return <div>{elements}</div>;

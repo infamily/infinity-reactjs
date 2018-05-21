@@ -4,6 +4,7 @@ import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
 import TopicFundData from 'components/TopicFundData';
 import { makePreviewHtml } from 'services/common.services';
 import topicService from 'services/topic.service';
+import langSerice from 'services/lang.service';
 import moment from 'moment';
 import configs from 'configs';
 import './TopicCard.css';
@@ -65,7 +66,9 @@ export default class TopicCard extends Component {
     const { topic } = this.state;
     const { title, body, type, created_date } = topic;
     const color = getColor(type);
-    const time = moment(created_date).format('MMMM Do YYYY');
+    const time = moment(created_date)
+      .locale(langSerice.current)
+      .format('MMMM Do YYYY');
     return (
       <div
         id={`card-${topic.id}`}

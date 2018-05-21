@@ -2,6 +2,9 @@
   "infinity.components.Header.title": "Infinity Family",
   "infinity.components.Header.subtitle":
     "Open chats and projects to realise global goals",
+  "infinity.secenes.Home.Menu.title": "Home",
+  "infinity.secenes.Home.TopicList.noTopics":
+    "No topics. Try to change filter parameters.",
   "infinity.secenes.Home.HomeConfigPanel.search": "Search",
   "infinity.secenes.Home.HomeConfigPanel.selectPlaceholder":
     "Select categories...",
