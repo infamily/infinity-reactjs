@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
 import ifIcon from 'images/if.png';
+import messages from './messages';
 
 export default class LoginView extends Component {
   constructor() {
@@ -36,7 +38,7 @@ export default class LoginView extends Component {
     return (
       <div>
         <Alert bsStyle="info" className="otp__alert">
-          <strong>One time password</strong> has been send to your email.
+          <FormattedHTMLMessage {...messages.otpHasBeenSent} />
         </Alert>
         <img src={ifIcon} className="otp__logo" alt="infinity" />
         <div className="center-block otp__box">
@@ -54,10 +56,10 @@ export default class LoginView extends Component {
               />
             </div>
             <button className="primaryAction btn otp__btn" onClick={goBack}>
-              Resend code
+              <FormattedMessage {...messages.resend} />
             </button>
             <button className="btn btn-primary otp__btn" onClick={this.submit}>
-              Submit
+              <FormattedMessage {...messages.submit} />
             </button>
           </div>
         </div>

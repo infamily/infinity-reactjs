@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import CheckBox from 'components/CheckBox';
 import ifIcon from 'images/if.png';
 import otpService from 'scenes/OtpLogin/services';
-import errorService from 'scenes/OtpLogin/services/error';
+import { getErrorMessage } from '../helpers';
+import messages from '../messages';
 
 const initialState = {
   captcha_1: ''
@@ -38,14 +40,14 @@ export default class EmailView extends Component {
   }
 
   refresh = async e => {
-    e && e.preventDefault();
+    if (e) e.preventDefault();
     try {
       const data = await otpService.getCaptcha();
       this.updateCaptcha(data);
-    } catch (e) {
+    } catch (err) {
       this.setPopUp({
-        title: 'Network Error',
-        text: e
+        title: <FormattedMessage {...messages.serverErrTitle} />,
+        text: err
       });
     }
   };
@@ -77,8 +79,8 @@ export default class EmailView extends Component {
       const { email, captcha_0, captcha_1, tosAgreement } = this.state;
       if (!email || !captcha_1) {
         this.setPopUp({
-          title: 'Sign In Error',
-          text: 'All fields should be fill out.'
+          title: <FormattedMessage {...messages.signInErrorTitle} />,
+          text: <FormattedMessage {...messages.allFilledOut} />
         });
         return;
       }
@@ -100,10 +102,10 @@ export default class EmailView extends Component {
       this.setState({ ...initialState });
       this.props.changeView('login');
     } catch (error) {
-      const text = errorService.getErrorMessage(error.response.data);
+      const formattedText = getErrorMessage(error.response.data);
       this.setPopUp({
-        title: 'Sign Up Error',
-        text: text || 'Something went wrong. Try again.'
+        title: <FormattedMessage {...messages.signInErrorTitle} />,
+        text: <FormattedMessage {...formattedText} />
       });
     }
   };
@@ -146,15 +148,19 @@ export default class EmailView extends Component {
           <h1 className="otp__header">Sign In</h1>
           <form onSubmit={this.onEmailSubmit} testId="emailSubmitForm">
             <div className="form-group">
-              <input
-                className="form-control otp__input"
-                name="email"
-                type="email"
-                required
-                placeholder="E-mail address"
-                value={email}
-                onChange={this.handleChange}
-              />
+              <FormattedMessage {...messages.emailPlaceholder}>
+                {msg => (
+                  <input
+                    className="form-control otp__input"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder={msg}
+                    value={email}
+                    onChange={this.handleChange}
+                  />
+                )}
+              </FormattedMessage>
             </div>
             <div id="div_id_captcha" className="form-group">
               <div className="row">
@@ -165,15 +171,19 @@ export default class EmailView extends Component {
                     value={captcha_0}
                     required
                   />
-                  <input
-                    className="form-control otp__input"
-                    value={captcha_1}
-                    name="captcha_1"
-                    spellCheck="false"
-                    placeholder="Captcha"
-                    required
-                    onChange={this.handleChange}
-                  />
+                  <FormattedMessage {...messages.captchaPlaceholder}>
+                    {msg => (
+                      <input
+                        className="form-control otp__input"
+                        value={captcha_1}
+                        name="captcha_1"
+                        spellCheck="false"
+                        placeholder={msg}
+                        required
+                        onChange={this.handleChange}
+                      />
+                    )}
+                  </FormattedMessage>
                 </div>
                 <div className="otp__captcha">
                   <img src={captcha.image_url} alt="captcha" />
@@ -193,13 +203,15 @@ export default class EmailView extends Component {
                 action={this.handleToS}
               >
                 <span onClick={this.handleToS} testId="tosText">
-                  I have read and agree to the{' '}
+                  <FormattedMessage {...messages.tosRead} />{' '}
                 </span>
-                <Link to="/terms">Terms of Service</Link>
+                <Link to="/terms">
+                  <FormattedMessage {...messages.tos} />
+                </Link>
               </CheckBox>
             </div>
             <button type="submit" className="primaryAction btn btn-lg otp__btn">
-              CONTINUE
+              <FormattedMessage {...messages.continue} />
             </button>
           </form>
         </div>

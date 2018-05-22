@@ -85,7 +85,10 @@ class App extends Component {
       </div>
     );
 
-    const lang = langService.current;
+    const { current } = langService;
+    const cnFix = current === 'cn' && 'zh';
+    const lang = cnFix || current;
+
     return (
       <IntlProvider
         locale={lang}

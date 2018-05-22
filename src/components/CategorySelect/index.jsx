@@ -58,7 +58,7 @@ CategorySelect.defaultProps = {
 };
 
 CategorySelect.propTypes = {
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.object,
   action: PropTypes.func.isRequired,
   value: PropTypes.array.isRequired
 };

@@ -6,7 +6,7 @@ import './MenuBar.css';
 
 export default class MenuBar extends Component {
   static propTypes = {
-    page: PropTypes.string
+    page: PropTypes.object
   };
 
   render() {
@@ -21,7 +21,7 @@ export default class MenuBar extends Component {
 
     return (
       <div>
-        <Bar mobile={true} />
+        <Bar mobile />
         <Bar mobile={false} />
       </div>
     );

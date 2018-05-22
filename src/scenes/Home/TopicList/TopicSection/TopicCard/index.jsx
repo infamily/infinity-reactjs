@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedDate } from 'react-intl';
 import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
 import TopicFundData from 'components/TopicFundData';
 import { makePreviewHtml } from 'services/common.services';
 import topicService from 'services/topic.service';
-import langSerice from 'services/lang.service';
-import moment from 'moment';
 import configs from 'configs';
 import './TopicCard.css';
 
@@ -66,9 +65,6 @@ export default class TopicCard extends Component {
     const { topic } = this.state;
     const { title, body, type, created_date } = topic;
     const color = getColor(type);
-    const time = moment(created_date)
-      .locale(langSerice.current)
-      .format('MMMM Do YYYY');
     return (
       <div
         id={`card-${topic.id}`}
@@ -84,7 +80,14 @@ export default class TopicCard extends Component {
         <div className="card__description" onClick={this.goToTopic}>
           <div className="card__text">{makePreviewHtml(body)}</div>
           <br />
-          <small>{time}</small>
+          <small>
+            <FormattedDate
+              value={created_date}
+              month="long"
+              year="numeric"
+              day="numeric"
+            />
+          </small>
         </div>
         <PreviewTopicBar topic={topic} />
       </div>

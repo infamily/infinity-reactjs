@@ -1,15 +1,21 @@
 import { addLocaleData } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import deLocaleData from 'react-intl/locale-data/de';
+import ltLocaleData from 'react-intl/locale-data/lt';
 import ruLocaleData from 'react-intl/locale-data/ru';
+import zhLocaleData from 'react-intl/locale-data/zh';
 
 import enTranslationMessages from './translations/en.json';
 import deTranslationMessages from './translations/de.json';
 import ruTranslationMessages from './translations/ru.json';
 
-addLocaleData(enLocaleData);
-addLocaleData(deLocaleData);
-addLocaleData(ruLocaleData);
+addLocaleData([
+  ...enLocaleData,
+  ...deLocaleData,
+  ...ltLocaleData,
+  ...ruLocaleData,
+  ...zhLocaleData
+]);
 
 export const appLocales = ['en', 'de', 'ru'];
 export const DEFAULT_LOCALE = 'en';

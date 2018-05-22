@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import MenuBar from 'scenes/MenuBar';
 import EmailView from './EmailView';
 import LoginView from './LoginView';
-import errorService from './services/error';
-import helpers from './services/helpers';
+import { formatUserData, getErrorMessage } from './helpers';
 import otpService from './services';
+import messages from './messages';
 import './OtpLogin.css';
 
 export default class OtpLogin extends Component {
@@ -32,29 +33,29 @@ export default class OtpLogin extends Component {
       const { email } = this.state;
       if (!password) {
         this.setPopUp({
-          title: 'Sign In Error',
-          text: 'The filed should be fill out.'
+          title: <FormattedMessage {...messages.signInErrorTitle} />,
+          text: <FormattedMessage {...messages.signInErrorfillOut} />
         });
         return;
       }
       const params = { one_time_password: password, email };
 
       const raw = await otpService.userLogin(params);
-      const data = helpers.formatUserData(raw);
+      const data = formatUserData(raw);
 
       this.props.signIn(data);
       this.redirectTo();
     } catch (e) {
       if (e.response.status === 400) {
         this.setPopUp({
-          title: 'Sign In Error',
-          text: 'Wrong code. Try again.'
+          title: <FormattedMessage {...messages.signInErrorTitle} />,
+          text: <FormattedMessage {...messages.signInErrorWrongCode} />
         });
       } else {
-        const text = errorService.getErrorMessage(e.response.data);
+        const formattedData = getErrorMessage(e.response.data);
         this.setPopUp({
-          title: 'Something went wrong.',
-          text
+          title: <FormattedMessage {...messages.commonErrorTitle} />,
+          text: <FormattedMessage {...formattedData} />
         });
       }
     }
@@ -72,7 +73,7 @@ export default class OtpLogin extends Component {
       path = `/topic/${persistedComment.id}`;
     }
 
-    if (persistedTopic.hasOwnProperty('topic_title')) {
+    if (persistedTopic.topic_title) {
       path = '/new-topic';
     }
 
@@ -101,10 +102,6 @@ export default class OtpLogin extends Component {
 
   changeEmail = email => {
     this.setState({ email });
-  };
-
-  changePassword = password => {
-    this.setState({ password });
   };
 
   changeView = view => {

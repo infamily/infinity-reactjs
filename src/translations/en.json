@@ -15,5 +15,24 @@
   "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "Grid",
   "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
     "Top-Level",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.all": "All"
+  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.all": "All",
+  "infinity.secenes.OtpLogin.commonErrorTitle": "Error",
+  "infinity.secenes.OtpLogin.commonErrorText": "Something went wrong. Try again.",
+  "infinity.secenes.OtpLogin.signInError": "SignIn Error",
+  "infinity.secenes.OtpLogin.invalidCaptcha": "Invalid captcha. Try again.",
+  "infinity.secenes.OtpLogin.signInErrorfillOut": "The field should be filled out.",
+  "infinity.secenes.OtpLogin.signInErrorWrongCode": "Wrong code. Try again.",
+  "infinity.secenes.OtpLogin.EmailView.invalidEmail": "Your organization is not a member of this server. Enter a valid email address.",
+  "infinity.secenes.OtpLogin.EmailView.serverErrTitle": "Server Error",
+  "infinity.secenes.OtpLogin.EmailView.allFilledOut": "All fields should be filled out.",
+  "infinity.secenes.OtpLogin.EmailView.emailPlaceholder": "E-mail address",
+  "infinity.secenes.OtpLogin.EmailView.captchaPlaceholder": "Captcha",
+  "infinity.secenes.OtpLogin.EmailView.tosRead": "I have read and agree to the",
+  "infinity.secenes.OtpLogin.EmailView.tos": "Terms of Service",
+  "infinity.secenes.OtpLogin.EmailView.continue": "Continue",
+  "infinity.secenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
+      "<strong>One time password</strong> has been send to your email.",
+  "infinity.secenes.OtpLogin.LoginView.resend": "Resend code",
+  "infinity.secenes.OtpLogin.LoginView.submit": "Submit"
+  }
 }
