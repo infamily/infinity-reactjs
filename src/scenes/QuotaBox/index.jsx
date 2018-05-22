@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import Modal from 'components/Modal';
 import PayCheckout from 'components/PayCheckout';
 import { Button, ListGroupItem, ListGroup } from 'react-bootstrap';
 import { getHistory } from './services';
+import messages from './messages';
 
 import './QuotaBox.css';
 
@@ -42,18 +44,25 @@ class QuotaBox extends Component {
   render() {
     const { hours, isOpen, handleOpen } = this.props;
     const { history } = this.state;
-    const hoursText = hours === 1 ? 'hour' : 'hours';
-    const quotaDescription = 'Review the topics and support projects you like.';
+    const hoursNum = parseFloat(hours);
 
     const History = () => (
       <div className="quota_box__history">
         <p>
-          <strong>Payment History</strong>
+          <strong>
+            <FormattedMessage {...messages.history} />
+          </strong>
         </p>
         <div className="quota_box__history_list">
           <ListGroup>
             {history.map(item => (
-              <ListGroupItem key={item.id}>{item.hours} hours</ListGroupItem>
+              <ListGroupItem key={item.id}>
+                {item.hours}{' '}
+                <FormattedMessage
+                  {...messages.countableHours}
+                  values={{ count: item.hours }}
+                />
+              </ListGroupItem>
             ))}
           </ListGroup>
         </div>
@@ -63,11 +72,19 @@ class QuotaBox extends Component {
     return (
       <Modal isOpen={isOpen} close={handleOpen}>
         <div className="quota_box">
-          <p className="quota_box__text"> Your quota is </p>
+          <p className="quota_box__text">
+            <FormattedMessage {...messages.yourQuota} />
+          </p>
           <h1 className="quota_box__header">
-            {hours} {hoursText}
+            {hoursNum}{' '}
+            <FormattedMessage
+              {...messages.countableHours}
+              values={{ count: hoursNum }}
+            />
           </h1>
-          <p className="quota_box__description">{quotaDescription}</p>
+          <p className="quota_box__description">
+            <FormattedMessage {...messages.quotaDescription} />
+          </p>
           {history[0] && <History />}
         </div>
         <PayCheckout
@@ -79,7 +96,7 @@ class QuotaBox extends Component {
               bsSize="large"
               block
             >
-              Buy credit with card
+              <FormattedMessage {...messages.buy} />
             </Button>
           )}
         />

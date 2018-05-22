@@ -25,6 +25,13 @@ import langService from 'services/lang.service';
 import { translationMessages } from '../../i18n';
 import './App.css';
 
+const getLang = () => {
+  // due to lang set was changed(zh to cn)
+  const { current } = langService;
+  const cnFix = current === 'cn' && 'zh';
+  return cnFix || current;
+};
+
 class App extends Component {
   async componentWillMount() {
     const { server } = this.props;
@@ -85,10 +92,7 @@ class App extends Component {
       </div>
     );
 
-    const { current } = langService;
-    const cnFix = current === 'cn' && 'zh';
-    const lang = cnFix || current;
-
+    const lang = getLang();
     return (
       <IntlProvider
         locale={lang}
