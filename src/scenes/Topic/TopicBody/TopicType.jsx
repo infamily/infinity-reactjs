@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import TooltipOverlay from 'components/TooltipOverlay';
+import { FormattedMessage } from 'react-intl';
+import messages from 'scenes/Topic/messages';
 
 const getContainerStyle = color => ({
   border: `1px solid ${color}`,
@@ -18,7 +20,10 @@ class TopicInfo extends PureComponent {
 
     return (
       <div className="topic__type" style={getContainerStyle(color)}>
-        <TooltipOverlay text="Topic type" placement="bottom">
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.topicType} />}
+          placement="bottom"
+        >
           <strong className="">{type}</strong>
         </TooltipOverlay>
       </div>

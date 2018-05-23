@@ -8,10 +8,12 @@ import TooltipOverlay from 'components/TooltipOverlay';
 import ProgressBar from 'components/TopicProgressBar';
 import { ClipButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
+import { FormattedMessage } from 'react-intl';
+import messages from 'scenes/Topic/messages';
 import configs from 'configs';
 import TransactionBox from './TransactionBox';
-import Transactions from './transactions';
-import './comments.css';
+import Transactions from './Transactions';
+import './Comments.css';
 
 export default class Comments extends Component {
   constructor(props) {
@@ -33,7 +35,6 @@ export default class Comments extends Component {
   };
 
   componentDidMount() {
-    // this.notificationSystem = this.refs.notificationSystem;
     const { commentId } = this.props.match.params;
     const comment =
       commentId && document.getElementById(`comment-${commentId}`);
@@ -41,10 +42,11 @@ export default class Comments extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.comments !== nextProps.comments &&
+    if (this.props.comments !== nextProps.comments) {
       this.setState({
         comments: nextProps.comments
       });
+    }
   }
 
   investState = comment => {
@@ -70,7 +72,7 @@ export default class Comments extends Component {
   };
 
   addNotification = (message, level) => {
-    this.refs.notificationSystem.addNotification({
+    this.notificationSystem.addNotification({
       message,
       level,
       position: 'tc'
@@ -81,9 +83,12 @@ export default class Comments extends Component {
     const link = this.getCommentPermaLink(comment);
     try {
       await navigator.clipboard.writeText(link);
-      this.addNotification('The link has been copied to clipboard', 'success');
+      this.addNotification(
+        <FormattedMessage {...messages.success} />,
+        'success'
+      );
     } catch (error) {
-      this.addNotification("The link hasn't been copied", 'error');
+      this.addNotification(<FormattedMessage {...messages.error} />, 'error');
     }
   };
 
@@ -104,11 +109,11 @@ export default class Comments extends Component {
           ) : (
             <ButtonGroup bsSize="xsmall">
               <Button onClick={() => this.props.reply(owner.username)}>
-                Reply
+                <FormattedMessage {...messages.reply} />
               </Button>
               {remains ? (
                 <Button onClick={() => this.investState(comment)}>
-                  Invest {remains}$h
+                  <FormattedMessage {...messages.invest} /> {remains}$h
                 </Button>
               ) : null}
             </ButtonGroup>
@@ -116,7 +121,7 @@ export default class Comments extends Component {
         </ButtonGroup>
       );
 
-    const Comments = () =>
+    const CommentsContainer = () =>
       comments.map(comment => {
         const {
           id,
@@ -167,8 +172,10 @@ export default class Comments extends Component {
     if (comments.length) {
       return (
         <div>
-          <h3>Comments</h3>
-          <Comments />
+          <h3>
+            <FormattedMessage {...messages.commentsTitle} />
+          </h3>
+          <CommentsContainer />
           {transaction && (
             <TransactionBox
               state={transaction}
@@ -177,7 +184,11 @@ export default class Comments extends Component {
               updateComments={this.updateComments}
             />
           )}
-          <NotificationSystem ref="notificationSystem" />
+          <NotificationSystem
+            ref={c => {
+              this.notificationSystem = c;
+            }}
+          />
         </div>
       );
     }

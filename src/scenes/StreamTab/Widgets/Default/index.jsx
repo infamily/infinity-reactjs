@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import configs from 'configs';
+import Show from '../Show';
 
 export default class Instance extends Component {
   constructor() {
@@ -13,14 +14,6 @@ export default class Instance extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     showInstance: PropTypes.func.isRequired
-  };
-
-  show = () => {
-    this.setState({ end: 1000 });
-  };
-
-  hide = () => {
-    this.setState({ end: 200 });
   };
 
   render() {
@@ -38,21 +31,12 @@ export default class Instance extends Component {
           <span className="instance__text">{data.description}</span>
         </div>
       ) : (
-        <pre onMouseOver={this.show} onMouseLeave={this.hide}>
+        <pre>
           <code className="json">
             {JSON.stringify(data, null, 2).slice(0, end)}
           </code>
         </pre>
       );
-
-    const Show = () => (
-      <p
-        onClick={() => hasData && showInstance(data)}
-        className="instance__show"
-      >
-        SHOW
-      </p>
-    );
 
     return (
       <div className="stream_tab__instance-box">
@@ -60,7 +44,7 @@ export default class Instance extends Component {
           className={`stream_tab__instance instance--${hoverStyle}`}
           style={objectStyle}
         >
-          {hasData ? <Show /> : null}
+          {hasData ? <Show action={() => showInstance(data)} /> : null}
           <Body />
         </div>
       </div>

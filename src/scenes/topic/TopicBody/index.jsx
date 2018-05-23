@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Balance from 'components/Balance/Balance';
@@ -7,10 +8,11 @@ import UserBalance from 'components/Balance/UserBalance';
 import TopicFundData from 'components/TopicFundData';
 import { NextButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
+import messages from 'scenes/Topic/messages';
 import configs from 'configs';
 import TopicType from './TopicType';
 import Categories from './Categories';
-import { getColor } from '../helpers/badge';
+import { getColor } from '../helpers';
 import Tags from '../Tags';
 
 const TopicBody = ({
@@ -31,7 +33,9 @@ const TopicBody = ({
         className="topic__edit"
       >
         {' '}
-        <Button>Edit</Button>
+        <Button>
+          <FormattedMessage {...messages.edit} />
+        </Button>
       </Link>
     );
   };
@@ -39,7 +43,9 @@ const TopicBody = ({
   const DraftTag = () =>
     topic.is_draft ? (
       <span className="topic__draft">
-        <i>draft</i>
+        <i>
+          <FormattedMessage {...messages.draft} />
+        </i>
       </span>
     ) : (
       ''

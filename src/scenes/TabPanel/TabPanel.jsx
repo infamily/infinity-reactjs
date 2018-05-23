@@ -12,14 +12,21 @@ import './TabPanel.css';
 export default class TabPanel extends Component {
   constructor() {
     super();
-    this.state = {
-      isOpen: false,
-      fullWidth: false
-    };
+    this.state = { isOpen: false, fullWidth: false };
   }
 
+  static defultProps = {
+    user: null
+  };
+
   static propTypes = {
-    history: PropTypes.object.isRequired
+    user: PropTypes.object,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
+    }).isRequired,
+    match: PropTypes.shape({
+      path: PropTypes.string.isRequired
+    }).isRequired
   };
 
   componentDidMount() {
@@ -31,12 +38,15 @@ export default class TabPanel extends Component {
   };
 
   close = () => {
+    const { push } = this.props.history;
     this.setState({ isOpen: false });
-    setTimeout(() => this.props.history.push(`${configs.linkBase()}/`), 300);
+    setTimeout(() => push(`${configs.linkBase()}/`), 300);
   };
 
   toggleFullScreen = () => {
-    this.setState(prevState => ({ fullWidth: !prevState.fullWidth }));
+    this.setState(prevState => ({
+      fullWidth: !prevState.fullWidth
+    }));
   };
 
   render() {

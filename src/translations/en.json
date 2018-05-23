@@ -2,48 +2,76 @@
   "infinity.components.Header.title": "Infinity Family",
   "infinity.components.Header.subtitle":
     "Open chats and projects to realise global goals",
-  "infinity.secenes.Home.Menu.title": "Home",
-  "infinity.secenes.Home.TopicList.noTopics":
+  "infinity.scenes.Home.Menu.title": "Home",
+  "infinity.scenes.Home.TopicList.noTopics":
     "No topics. Try to change filter parameters.",
-  "infinity.secenes.Home.HomeConfigPanel.search": "Search",
-  "infinity.secenes.Home.HomeConfigPanel.selectPlaceholder":
+  "infinity.scenes.Home.HomeConfigPanel.search": "Search",
+  "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder":
     "Select categories...",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Filter",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.view": "View",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.source": "Source",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.tree": "Tree",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "Grid",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Filter",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.view": "View",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.source": "Source",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.tree": "Tree",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "Grid",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
     "Top-Level",
-  "infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.all": "All",
-  "infinity.secenes.OtpLogin.commonErrorTitle": "Error",
-  "infinity.secenes.OtpLogin.commonErrorText":
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all": "All",
+  "infinity.scenes.OtpLogin.commonErrorTitle": "Error",
+  "infinity.scenes.OtpLogin.commonErrorText":
     "Something went wrong. Try again.",
-  "infinity.secenes.OtpLogin.signInError": "SignIn Error",
-  "infinity.secenes.OtpLogin.invalidCaptcha": "Invalid captcha. Try again.",
-  "infinity.secenes.OtpLogin.signInErrorfillOut":
+  "infinity.scenes.OtpLogin.signInError": "SignIn Error",
+  "infinity.scenes.OtpLogin.invalidCaptcha": "Invalid captcha. Try again.",
+  "infinity.scenes.OtpLogin.signInErrorfillOut":
     "The field should be filled out.",
-  "infinity.secenes.OtpLogin.signInErrorWrongCode": "Wrong code. Try again.",
-  "infinity.secenes.OtpLogin.EmailView.invalidEmail":
+  "infinity.scenes.OtpLogin.signInErrorWrongCode": "Wrong code. Try again.",
+  "infinity.scenes.OtpLogin.EmailView.invalidEmail":
     "Your organization is not a member of this server. Enter a valid email address.",
-  "infinity.secenes.OtpLogin.EmailView.serverErrTitle": "Server Error",
-  "infinity.secenes.OtpLogin.EmailView.allFilledOut":
+  "infinity.scenes.OtpLogin.EmailView.serverErrTitle": "Server Error",
+  "infinity.scenes.OtpLogin.EmailView.allFilledOut":
     "All fields should be filled out.",
-  "infinity.secenes.OtpLogin.EmailView.emailPlaceholder": "E-mail address",
-  "infinity.secenes.OtpLogin.EmailView.captchaPlaceholder": "Captcha",
-  "infinity.secenes.OtpLogin.EmailView.tosRead": "I have read and agree to the",
-  "infinity.secenes.OtpLogin.EmailView.tos": "Terms of Service",
-  "infinity.secenes.OtpLogin.EmailView.continue": "Continue",
-  "infinity.secenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
+  "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "E-mail address",
+  "infinity.scenes.OtpLogin.EmailView.captchaPlaceholder": "Captcha",
+  "infinity.scenes.OtpLogin.EmailView.tosRead": "I have read and agree to the",
+  "infinity.scenes.OtpLogin.EmailView.tos": "Terms of Service",
+  "infinity.scenes.OtpLogin.EmailView.continue": "Continue",
+  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
     "<strong>One time password</strong> has been send to your email.",
-  "infinity.secenes.OtpLogin.LoginView.resend": "Resend code",
-  "infinity.secenes.OtpLogin.LoginView.submit": "Submit",
-  "infinity.secenes.QuotaBox.buy": "Buy credit with card",
-  "infinity.secenes.QuotaBox.history": "Payment History",
-  "infinity.secenes.QuotaBox.quotaDescription":
+  "infinity.scenes.OtpLogin.LoginView.resend": "Resend code",
+  "infinity.scenes.OtpLogin.LoginView.submit": "Submit",
+  "infinity.scenes.QuotaBox.buy": "Buy credit with card",
+  "infinity.scenes.QuotaBox.history": "Payment History",
+  "infinity.scenes.QuotaBox.quotaDescription":
     "Review the topics and support projects you like.",
-  "infinity.secenes.QuotaBox.countableHours":
+  "infinity.scenes.QuotaBox.countableHours.COUNT":
     "{count, plural, =0 {No available quota.} one {hour} other {hours}}",
-  "infinity.secenes.QuotaBox.amounfOfHours": "hours",
-  "infinity.secenes.QuotaBox.yourQuota": "Your quota is"
+  "infinity.scenes.QuotaBox.amounfOfHours": "hours",
+  "infinity.scenes.QuotaBox.yourQuota": "Your quota is",
+  "infinity.scenes.StreamTab.Widgets.show": "Show",
+  "infinity.scenes.StreamTab.Modals.createdAt": "Created at:",
+  "infinity.scenes.Topic.Menu.title": "Menu",
+  "infinity.scenes.Topic.homeButton": "Home",
+  "infinity.scenes.Topic.close": "Close",
+  "infinity.scenes.Topic.TopicBody.edit": "Edit",
+  "infinity.scenes.Topic.TopicBody.draft": "draft",
+  "infinity.scenes.Topic.TopicBody.topicType": "Topic type",
+  "infinity.scenes.Topic.Comments.commentsTitle": "draft",
+  "infinity.scenes.Topic.Comments.reply": "Reply",
+  "infinity.scenes.Topic.Comments.error": "Error",
+  "infinity.scenes.Topic.Comments.success": "Success",
+  "infinity.scenes.Topic.Comments.investment": "Investment",
+  "infinity.scenes.Topic.Comments.invest": "Invest",
+  "infinity.scenes.Topic.TransactionBox.buy": "Buy credit with card",
+  "infinity.scenes.Topic.TransactionBox.invalidHours": "Incorrect amount of hours.",
+  "infinity.scenes.Topic.TransactionBox.quotaOver": "The quota limit is reached.",
+  "infinity.scenes.Topic.TransactionBox.remaining": "Remaining today's quota",
+  "infinity.scenes.Topic.TransactionBox.amount": "Amount",
+  "infinity.scenes.Topic.TransactionBox.receiver": "Receiver:",
+  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: no available quota.} one {hour} other {hours}}",
+  "infinity.scenes.Topic.TransactionBox.currency": "Currency",
+  "infinity.scenes.Topic.CommentForm.cancel": "Cancel",
+  "infinity.scenes.Topic.CommentForm.save": "Save",
+  "infinity.scenes.Topic.CommentForm.toLeaveComment": "to leave a comment.",
+  "infinity.scenes.Topic.CommentForm.submit": "Submit",
+  "infinity.scenes.Topic.CommentForm.leaveComment": "Leave your comment"
+  }
 }

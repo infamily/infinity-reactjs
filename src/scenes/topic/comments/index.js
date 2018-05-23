@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Comments from './comments';
 import { withRouter } from 'react-router';
+import Comments from './Comments';
 
 function mapStateToProps(state) {
   return {

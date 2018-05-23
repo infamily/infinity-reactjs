@@ -2,39 +2,39 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   search: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.search',
+    id: 'infinity.scenes.Home.HomeConfigPanel.search',
     defaultMessage: 'Search'
   },
   selectPlaceholder: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.selectPlaceholder',
+    id: 'infinity.scenes.Home.HomeConfigPanel.selectPlaceholder',
     defaultMessage: 'Select categories...'
   },
   filter: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.filter',
+    id: 'infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter',
     defaultMessage: 'Filter'
   },
   view: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.view',
+    id: 'infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.view',
     defaultMessage: 'View'
   },
   source: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.source',
+    id: 'infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.source',
     defaultMessage: 'Source'
   },
   tree: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.tree',
+    id: 'infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.tree',
     defaultMessage: 'Tree'
   },
   grid: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.grid',
+    id: 'infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.grid',
     defaultMessage: 'Grid'
   },
   topLevel: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel',
+    id: 'infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel',
     defaultMessage: 'Top-Level'
   },
   all: {
-    id: 'infinity.secenes.Home.HomeConfigPanel.TopicSourceToggle.all',
+    id: 'infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all',
     defaultMessage: 'All'
   }
 });

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SignInLine from 'components/SignInLine';
 import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import messages from 'scenes/Topic/messages';
+import './CommentForm.css';
 
-import './comment_form.css';
-
-class Comment extends Component {
+class CommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +15,14 @@ class Comment extends Component {
     };
   }
 
+  static defaultProps = {
+    id: null,
+    text: null,
+    user: null
+  };
+
   static propTypes = {
+    id: PropTypes.string,
     edit: PropTypes.func.isRequired,
     create: PropTypes.func.isRequired,
     clear: PropTypes.func.isRequired,
@@ -38,7 +46,7 @@ class Comment extends Component {
 
   componentDidMount() {
     this.checkPersisted();
-    this.props.text && this.refs.field.focus();
+    if (this.props.text) this.field.focus();
   }
 
   persistComment = () => {
@@ -60,9 +68,8 @@ class Comment extends Component {
     e.preventDefault();
     const { editing, text } = this.state;
     if (!text) return;
-
-    editing ? this.props.edit(text) : this.props.create(text);
-
+    const action = editing ? 'edit' : 'create';
+    this.props[action](text);
     this.props.clearComment();
     this.setState({ text: '' });
   };
@@ -81,19 +88,25 @@ class Comment extends Component {
       if (!user)
         return (
           <div onClick={this.persistComment}>
-            <SignInLine text="to leave a comment" />
+            <SignInLine
+              text={<FormattedMessage {...messages.toLeaveComment} />}
+            />
           </div>
         );
 
       return editing ? (
         <div>
-          <Button type="submit">Save</Button>
+          <Button type="submit">
+            <FormattedMessage {...messages.save} />
+          </Button>
           <Button onClick={clear} bsSize="xsmall" className="comment__btn">
-            Cancel
+            <FormattedMessage {...messages.cancel} />
           </Button>
         </div>
       ) : (
-        <Button type="submit">Submit</Button>
+        <Button type="submit">
+          <FormattedMessage {...messages.submit} />
+        </Button>
       );
     };
 
@@ -101,10 +114,14 @@ class Comment extends Component {
       <div className="comment_form__section">
         <form onSubmit={this.submitComment}>
           <FormGroup controlId="formControlsTextarea">
-            <ControlLabel>Leave your comment</ControlLabel>
+            <ControlLabel>
+              <FormattedMessage {...messages.leaveComment} />
+            </ControlLabel>
             <FormControl
               componentClass="textarea"
-              ref={ip => (this.myInp = ip)}
+              ref={c => {
+                this.field = c;
+              }}
               className="comment__text"
               rows="4"
               name="text"
@@ -119,4 +136,4 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+export default CommentForm;

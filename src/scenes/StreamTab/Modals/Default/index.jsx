@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { Button, Modal } from 'react-bootstrap';
+import { FormattedMessage, FormattedDate } from 'react-intl';
+import messages from 'scenes/StreamTab/messages';
 
-export default class InstanceModal extends Component {
+export default class InstanceModal extends PureComponent {
   static propTypes = {
     show: PropTypes.bool.isRequired,
     onHide: PropTypes.func.isRequired,
@@ -18,8 +19,8 @@ export default class InstanceModal extends Component {
     const { data, show, onHide } = this.props;
 
     const Data = () =>
-      Object.keys(data.data).map((item, i) => (
-        <pre key={i}>
+      Object.keys(data.data).map(item => (
+        <pre key={item}>
           <code className="json">
             {JSON.stringify(data.data[item], null, 2)}
           </code>
@@ -37,8 +38,13 @@ export default class InstanceModal extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-lg">
-            Created at:{' '}
-            {moment(data.created_date).format('MMMM Do YYYY, h:mm:ss a')}
+            <FormattedMessage {...messages.createdAt} />{' '}
+            <FormattedDate
+              value={data.created_date}
+              month="long"
+              year="numeric"
+              day="numeric"
+            />
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

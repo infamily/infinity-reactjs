@@ -83,7 +83,7 @@
 
 .instance__show:hover {
   opacity: 0.9;
-  bottom: 15px;
+  bottom: 12px;
   box-shadow: 3px 5px 10px rgb(109, 109, 109);
 }
 

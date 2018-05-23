@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Show from '../Show';
 
 export default class Instance extends Component {
   constructor() {
@@ -14,19 +15,11 @@ export default class Instance extends Component {
     showInstance: PropTypes.func.isRequired
   };
 
-  show = () => {
-    // this.setState({ end: 1000 })
-  };
-
-  hide = () => {
-    // this.setState({ end: 200 })
-  };
-
   render() {
     const { end } = this.state;
     const { data, showInstance } = this.props;
     const hasData = Object.keys(data.data).length; // check for instance data
-    const hoverStyle = hasData ? ' instance--hasdata' : ' instance--nodata';
+    const hoverStyle = hasData ? 'instance--hasdata' : 'instance--nodata';
 
     const Body = () =>
       data.data.title && data.data.body ? (
@@ -35,26 +28,17 @@ export default class Instance extends Component {
           <span className="instance__text">{data.data.body}</span>
         </div>
       ) : (
-        <pre onMouseOver={this.show} onMouseLeave={this.hide}>
+        <pre>
           <code className="json">
             {JSON.stringify(data, null, 2).slice(0, end)}
           </code>
         </pre>
       );
 
-    const Show = () => (
-      <p
-        onClick={() => hasData && showInstance(data)}
-        className="instance__show"
-      >
-        SHOW
-      </p>
-    );
-
     return (
       <div className="stream_tab__instance-box">
-        <div className={'stream_tab__instance' + hoverStyle}>
-          {hasData ? <Show /> : null}
+        <div className={`stream_tab__instance ${hoverStyle}`}>
+          {hasData ? <Show action={() => showInstance(data)} /> : null}
           <Body />
         </div>
       </div>

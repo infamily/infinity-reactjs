@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import DocumentMeta from 'react-document-meta';
 import MenuBar from 'scenes/MenuBar';
@@ -10,11 +11,12 @@ import commentService from 'services/comment.service';
 import { Panel } from 'react-bootstrap';
 import configs from 'configs';
 import TopicBody from './TopicBody';
-import CommentForm from './comment_form';
-import Comments from './comments';
+import CommentForm from './CommentForm';
+import Comments from './Comments';
 import { getCategories } from './helpers';
 import topicService from './services/topics';
 import NewButton from './NewButton';
+import messages from './messages';
 import './Topic.css';
 
 const getChild = type_id => {
@@ -106,13 +108,12 @@ class Topic extends Component {
   };
 
   scrollToEdit() {
-    const com_sec = this.refs.com_sec;
-    const position = com_sec.getBoundingClientRect().top;
-    position < 0 && com_sec.scrollIntoView();
+    const position = this.com_sec.getBoundingClientRect().top;
+    if (position < 0) this.com_sec.scrollIntoView();
   }
 
   startToEdit = id => {
-    const comment = this.state.comments.find(comment => comment.id === id);
+    const comment = this.state.comments.find(item => item.id === id);
     this.setState({
       comment_id: id,
       comment_text: comment.text
@@ -206,17 +207,19 @@ class Topic extends Component {
     const HomeButton = () =>
       close ? (
         <div onClick={close} className="nav__back">
-          &#10094; Home
+          &#10094; <FormattedMessage {...messages.homeButton} />
         </div>
       ) : (
         <NavLink to={configs.linkBase()} className="nav__back">
-          &#10094; Home
+          &#10094; <FormattedMessage {...messages.homeButton} />
         </NavLink>
       );
 
-    const newButtonText = !addChildSection
-      ? `+ ${getChild(topic.type)}`
-      : 'Close';
+    const newButtonText = !addChildSection ? (
+      `+ ${getChild(topic.type)}`
+    ) : (
+      <FormattedMessage {...messages.close} />
+    );
 
     return (
       <DocumentMeta {...meta}>
@@ -248,7 +251,11 @@ class Topic extends Component {
                 </Panel>
               )}
             </div>
-            <div ref="com_sec">
+            <div
+              ref={c => {
+                this.com_sec = c;
+              }}
+            >
               <CommentForm
                 create={this.create}
                 edit={this.edit}
@@ -264,7 +271,7 @@ class Topic extends Component {
               reply={this.reply}
               remove={this.remove}
             />
-            <MenuBar page="Menu" />
+            <MenuBar page={<FormattedMessage {...messages.menuTitle} />} />
           </div>
         </div>
       </DocumentMeta>

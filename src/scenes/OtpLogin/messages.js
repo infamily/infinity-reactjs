@@ -2,73 +2,73 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   commonErrorTitle: {
-    id: 'infinity.secenes.OtpLogin.commonErrorTitle',
+    id: 'infinity.scenes.OtpLogin.commonErrorTitle',
     defaultMessage: 'Error'
   },
   commonErrorText: {
-    id: 'infinity.secenes.OtpLogin.commonErrorText',
+    id: 'infinity.scenes.OtpLogin.commonErrorText',
     defaultMessage: 'Something went wrong. Try again.'
   },
   signInErrorTitle: {
-    id: 'infinity.secenes.OtpLogin.signInError',
+    id: 'infinity.scenes.OtpLogin.signInError',
     defaultMessage: 'SignIn Error'
   },
   invalidCaptcha: {
-    id: 'infinity.secenes.OtpLogin.invalidCaptcha',
+    id: 'infinity.scenes.OtpLogin.invalidCaptcha',
     defaultMessage: 'Invalid captcha. Try again.'
   },
   signInErrorfillOut: {
-    id: 'infinity.secenes.OtpLogin.signInErrorfillOut',
+    id: 'infinity.scenes.OtpLogin.signInErrorfillOut',
     defaultMessage: 'The field should be filled out.'
   },
   signInErrorWrongCode: {
-    id: 'infinity.secenes.OtpLogin.signInErrorWrongCode',
+    id: 'infinity.scenes.OtpLogin.signInErrorWrongCode',
     defaultMessage: 'Wrong code. Try again.'
   },
   invalidMemberByEmail: {
-    id: 'infinity.secenes.OtpLogin.EmailView.invalidEmail',
+    id: 'infinity.scenes.OtpLogin.EmailView.invalidEmail',
     defaultMessage:
       'Your organization is not a member of this server. Enter a valid email address.'
   },
   serverErrTitle: {
-    id: 'infinity.secenes.OtpLogin.EmailView.serverErrTitle',
+    id: 'infinity.scenes.OtpLogin.EmailView.serverErrTitle',
     defaultMessage: 'Server Error'
   },
   allFilledOut: {
-    id: 'infinity.secenes.OtpLogin.EmailView.allFilledOut',
+    id: 'infinity.scenes.OtpLogin.EmailView.allFilledOut',
     defaultMessage: 'All fields should be filled out.'
   },
   emailPlaceholder: {
-    id: 'infinity.secenes.OtpLogin.EmailView.emailPlaceholder',
+    id: 'infinity.scenes.OtpLogin.EmailView.emailPlaceholder',
     defaultMessage: 'E-mail address'
   },
   captchaPlaceholder: {
-    id: 'infinity.secenes.OtpLogin.EmailView.captchaPlaceholder',
+    id: 'infinity.scenes.OtpLogin.EmailView.captchaPlaceholder',
     defaultMessage: 'Captcha'
   },
   tosRead: {
-    id: 'infinity.secenes.OtpLogin.EmailView.tosRead',
+    id: 'infinity.scenes.OtpLogin.EmailView.tosRead',
     defaultMessage: 'I have read and agree to the'
   },
   tos: {
-    id: 'infinity.secenes.OtpLogin.EmailView.tos',
+    id: 'infinity.scenes.OtpLogin.EmailView.tos',
     defaultMessage: 'Terms of Service'
   },
   continue: {
-    id: 'infinity.secenes.OtpLogin.EmailView.continue',
+    id: 'infinity.scenes.OtpLogin.EmailView.continue',
     defaultMessage: 'Continue'
   },
   otpHasBeenSent: {
-    id: 'infinity.secenes.OtpLogin.LoginView.HTML.otpHasBeenSent',
+    id: 'infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent',
     defaultMessage:
       '<strong>One time password</strong> has been send to your email.'
   },
   resend: {
-    id: 'infinity.secenes.OtpLogin.LoginView.resend',
+    id: 'infinity.scenes.OtpLogin.LoginView.resend',
     defaultMessage: 'Resend code'
   },
   submit: {
-    id: 'infinity.secenes.OtpLogin.LoginView.submit',
+    id: 'infinity.scenes.OtpLogin.LoginView.submit',
     defaultMessage: 'Submit'
   }
 });
