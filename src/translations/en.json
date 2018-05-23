@@ -61,17 +61,41 @@
   "infinity.scenes.Topic.Comments.investment": "Investment",
   "infinity.scenes.Topic.Comments.invest": "Invest",
   "infinity.scenes.Topic.TransactionBox.buy": "Buy credit with card",
-  "infinity.scenes.Topic.TransactionBox.invalidHours": "Incorrect amount of hours.",
-  "infinity.scenes.Topic.TransactionBox.quotaOver": "The quota limit is reached.",
+  "infinity.scenes.Topic.TransactionBox.invalidHours":
+    "Incorrect amount of hours.",
+  "infinity.scenes.Topic.TransactionBox.quotaOver":
+    "The quota limit is reached.",
   "infinity.scenes.Topic.TransactionBox.remaining": "Remaining today's quota",
   "infinity.scenes.Topic.TransactionBox.amount": "Amount",
   "infinity.scenes.Topic.TransactionBox.receiver": "Receiver:",
-  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: no available quota.} one {hour} other {hours}}",
+  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT":
+    "{count, plural, =0 {: no available quota.} one {hour} other {hours}}",
   "infinity.scenes.Topic.TransactionBox.currency": "Currency",
   "infinity.scenes.Topic.CommentForm.cancel": "Cancel",
   "infinity.scenes.Topic.CommentForm.save": "Save",
   "infinity.scenes.Topic.CommentForm.toLeaveComment": "to leave a comment.",
   "infinity.scenes.Topic.CommentForm.submit": "Submit",
-  "infinity.scenes.Topic.CommentForm.leaveComment": "Leave your comment"
-  }
+  "infinity.scenes.Topic.CommentForm.leaveComment": "Leave your comment",
+  "infinity.scenes.TopicView.Menu.title": "Menu",
+  "infinity.scenes.TopicView.submitErrorText": "Topic title is required.",
+  "infinity.scenes.TopicView.submitError": "Submit Error",
+  "infinity.scenes.TopicView.success": "Success",
+  "infinity.scenes.TopicView.available": "Your topic is available on:",
+  "infinity.scenes.TopicView.back": "Back",
+  "infinity.scenes.TopicView.toPost": "to post a topic.",
+  "infinity.scenes.TopicView.save": "Save",
+  "infinity.scenes.TopicView.create": "Create",
+  "infinity.scenes.TopicView.confirmation": "Confirmation",
+  "infinity.scenes.TopicView.deleteConfirmation":
+    "Are you sure want to delete this topic?",
+  "infinity.scenes.TopicView.close": "Close",
+  "infinity.scenes.TopicView.delete": "Delete",
+  "infinity.scenes.TopicView.textPlaceholder": "Share your ideas...",
+  "infinity.scenes.TopicView.typeLabel": "Type",
+  "infinity.scenes.TopicView.categoryLabel": "Category",
+  "infinity.scenes.TopicView.topicTitleLabel": "What's on your mind?",
+  "infinity.scenes.TopicView.topicTitle": "Topic Title",
+  "infinity.scenes.TopicView.parents": "Parents",
+  "infinity.scenes.TopicView.draft": "Draft",
+  "infinity.scenes.TopicView.public": "Public"
 }

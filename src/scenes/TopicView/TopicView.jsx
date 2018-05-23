@@ -19,10 +19,13 @@ import LoadingElements from 'components/Loading/LoadingElements';
 import TextEditor from 'components/TextEditor/TopicEditor';
 import FormSelect from 'components/FormSelect';
 import CategorySelect from 'components/CategorySelect';
+import SignInLine from 'components/SignInLine';
 import topicViewService from 'services/topic_view.service';
+import { FormattedMessage } from 'react-intl';
 import configs from 'configs';
 import 'react-select/dist/react-select.min.css';
-import { PopupModal } from './PopupModal';
+import messages from './messages';
+import PopupModal from './PopupModal';
 import topicService from './services';
 import './TopicView.css';
 
@@ -150,8 +153,8 @@ class TopicView extends Component {
     this.setState({
       error: true,
       message: {
-        title: 'Submit error',
-        text: 'Topic title is required.'
+        title: <FormattedMessage {...messages.submitError} />,
+        text: <FormattedMessage {...messages.submitErrorText} />
       }
     });
   };
@@ -205,7 +208,7 @@ class TopicView extends Component {
     const link = `${configs.linkBase()}/split/topic/${id}`;
     const PopUpText = (
       <span onClick={this.refresh}>
-        Your topic is available on:
+        <FormattedMessage {...messages.available} />
         <Link to={link}> {linkText}</Link>
       </span>
     );
@@ -213,7 +216,7 @@ class TopicView extends Component {
     this.setState({
       success: true,
       message: {
-        title: 'Success',
+        title: <FormattedMessage {...messages.success} />,
         text: PopUpText
       }
     });
@@ -333,39 +336,40 @@ class TopicView extends Component {
 
     if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
 
-    const type = all_types[topic_type] || 'idea';
-
     const Buttons = () => {
       if (!user)
         return (
-          <div>
-            <p onClick={this.persistTopic}>
-              <Link to="/page/otp">Sign in</Link> to post a topic.
-            </p>
+          <div onClick={this.persistTopic}>
+            <SignInLine text={<FormattedMessage {...messages.toPost} />} />
           </div>
         );
 
       const BackButton = ({ action, ...rest }) => (
         <Button onClick={action} {...rest}>
-          &#10094; Back
+          &#10094; <FormattedMessage {...messages.back} />
         </Button>
       );
 
       return this.state.id ? (
         <div>
           <BackButton action={this.goToTopic} className="topic_view__back" />
-          <Button type="submit"> &#9873; Save</Button>
+          <Button type="submit">
+            {' '}
+            &#9873; <FormattedMessage {...messages.save} />
+          </Button>
           <Button
             className="topic_view__btn"
             onClick={() => this.showPopUp('delete')}
           >
-            &#10006; Delete
+            &#10006; <FormattedMessage {...messages.delete} />
           </Button>
         </div>
       ) : (
         <div>
           <BackButton action={goBack} className="topic_view__back" />
-          <Button type="submit">&#9873; Create</Button>
+          <Button type="submit">
+            &#9873; <FormattedMessage {...messages.create} />
+          </Button>
         </div>
       );
     };
@@ -374,18 +378,28 @@ class TopicView extends Component {
       <div>
         <Modal show={isOpen} className="topic_view__modal">
           <Modal.Header>
-            <Modal.Title>Confirmation</Modal.Title>
+            <Modal.Title>
+              <FormattedMessage {...messages.deleteConfirmation} />
+            </Modal.Title>
           </Modal.Header>
-          <Modal.Body>Are you sure want to delete this topic?</Modal.Body>
+          <Modal.Body>
+            <FormattedMessage {...messages.deleteConfirmation} />
+          </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.deleteTopic}>Delete</Button>
-            <Button onClick={() => this.closeModal(name)}>Close</Button>
+            <Button onClick={this.deleteTopic}>
+              <FormattedMessage {...messages.delete} />
+            </Button>
+            <Button onClick={() => this.closeModal(name)}>
+              <FormattedMessage {...messages.close} />
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
     );
 
-    const getPlaceHolder = type => `Share your ${type.toLowerCase()}`;
+    const getPlaceHolder = () => (
+      <FormattedMessage {...messages.textPlaceholder} />
+    );
 
     return (
       <div className="main">
@@ -393,7 +407,7 @@ class TopicView extends Component {
           <form onSubmit={this.submitTopic}>
             <FormSelect
               name="topic_type"
-              label="Type"
+              label={<FormattedMessage {...messages.typeLabel} />}
               action={this.handleChange}
               value={topic_type}
             >
@@ -404,32 +418,42 @@ class TopicView extends Component {
               ))}
             </FormSelect>
             <FormGroup controlId="formControlsSelect">
-              <ControlLabel>Category</ControlLabel>
+              <ControlLabel>
+                <FormattedMessage {...messages.categoryLabel} />
+              </ControlLabel>
               <CategorySelect
                 value={topic_categories}
                 action={this.selectCategory}
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>What's on your mind?</ControlLabel>
-              <FormControl
-                id="formControlsText"
-                className="topic_view__field"
-                type="text"
-                name="topic_title"
-                label="Title"
-                value={topic_title}
-                onChange={this.handleChange}
-                placeholder="Topic title"
-              />
+              <ControlLabel>
+                <FormattedMessage {...messages.topicTitleLabel} />
+              </ControlLabel>
+              <FormattedMessage {...messages.topicTitle}>
+                {mes => (
+                  <FormControl
+                    id="formControlsText"
+                    className="topic_view__field"
+                    type="text"
+                    name="topic_title"
+                    label="Title"
+                    value={topic_title}
+                    onChange={this.handleChange}
+                    placeholder={mes}
+                  />
+                )}
+              </FormattedMessage>
               <TextEditor
                 value={topic_text}
                 handleValue={this.handleTopicText}
-                placeholder={getPlaceHolder(type)}
+                placeholder={getPlaceHolder()}
               />
             </FormGroup>
             <FormGroup controlId="formControlsSelect">
-              <ControlLabel>Parents</ControlLabel>
+              <ControlLabel>
+                <FormattedMessage {...messages.parents} />
+              </ControlLabel>
               <InputGroup>
                 <Flag setFlag={this.setFlag} flag={flag} dropup />
                 <Select.Async
@@ -450,8 +474,12 @@ class TopicView extends Component {
               value={is_draft}
               onChange={this.onChangeDraft}
             >
-              <ToggleButton value={false}>Public</ToggleButton>
-              <ToggleButton value>Draft</ToggleButton>
+              <ToggleButton value={false}>
+                <FormattedMessage {...messages.public} />
+              </ToggleButton>
+              <ToggleButton value>
+                <FormattedMessage {...messages.draft} />
+              </ToggleButton>
             </ToggleButtonGroup>
             <br />
             <br />
@@ -471,7 +499,7 @@ class TopicView extends Component {
           closeModal={this.closeModal}
         />
         <DeletePopup isOpen={this.state.delete} name="delete" />
-        <MenuBar page="Menu" />
+        <MenuBar page={<FormattedMessage {...messages.menuTitle} />} />
       </div>
     );
   }

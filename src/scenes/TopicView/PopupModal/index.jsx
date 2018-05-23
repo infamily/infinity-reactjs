@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import messages from '../messages';
 
-export const PopupModal = ({ isOpen, name, message, closeModal }) => (
+const PopupModal = ({ isOpen, name, message, closeModal }) => (
   <div>
     <Modal show={isOpen} className="topic_view__modal">
       <Modal.Header>
@@ -10,7 +12,9 @@ export const PopupModal = ({ isOpen, name, message, closeModal }) => (
       </Modal.Header>
       <Modal.Body>{message.text}</Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => closeModal(name)}>Close</Button>
+        <Button onClick={() => closeModal(name)}>
+          <FormattedMessage {...messages.close} />
+        </Button>
       </Modal.Footer>
     </Modal>
   </div>
@@ -22,3 +26,5 @@ PopupModal.propTypes = {
   name: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired
 };
+
+export default PopupModal;
