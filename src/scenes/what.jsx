@@ -12,7 +12,7 @@ const What = () => {
   return (
     <div className="main">
       <Content />
-      <MenuBar page="What?" />
+      <MenuBar />
     </div>
   );
 };

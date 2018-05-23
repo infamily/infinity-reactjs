@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import Loading from 'components/Loading';
-import { Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import messages from '../messages';
 import './Transactions.css';
 
 export default class Transactions extends PureComponent {
@@ -12,11 +13,14 @@ export default class Transactions extends PureComponent {
 
   render() {
     const { data } = this.props;
-    const types = ['Time', 'Money'];
+    const types = [
+      <FormattedMessage {...messages.time} />,
+      <FormattedMessage {...messages.money} />
+    ];
 
     const Row = ({ type, url }) => (
       <tr key={url}>
-        <td>{types[type] || 'None'}</td>
+        <td>{types[type] || <FormattedMessage {...messages.none} />}</td>
         <td>
           <a href={url} target="_blank">
             {url}
@@ -29,21 +33,30 @@ export default class Transactions extends PureComponent {
             disabled
             className="investments__sell"
           >
-            Sell
+            <FormattedMessage {...messages.sell} />
           </Button>
         </td>
       </tr>
     );
 
     if (!data) return <Loading />;
-    if (!data.length) return <span>Empty :(</span>;
+    if (!data.length)
+      return (
+        <span>
+          <FormattedMessage {...messages.empty} /> )=
+        </span>
+      );
 
     return (
       <Table responsive striped condensed hover>
         <thead>
           <tr>
-            <th>Type</th>
-            <th>Contribution</th>
+            <th>
+              <FormattedMessage {...messages.type} />
+            </th>
+            <th>
+              <FormattedMessage {...messages.contribution} />
+            </th>
             <th />
           </tr>
         </thead>

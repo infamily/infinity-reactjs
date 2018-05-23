@@ -27,7 +27,7 @@ export default defineMessages({
   },
   commentsTitle: {
     id: 'infinity.scenes.Topic.Comments.commentsTitle',
-    defaultMessage: 'draft'
+    defaultMessage: 'Comments'
   },
   reply: {
     id: 'infinity.scenes.Topic.Comments.reply',
@@ -92,7 +92,7 @@ export default defineMessages({
   },
   toLeaveComment: {
     id: 'infinity.scenes.Topic.CommentForm.toLeaveComment',
-    defaultMessage: 'to leave a comment.'
+    defaultMessage: 'to leave a comment'
   },
   submit: {
     id: 'infinity.scenes.Topic.CommentForm.submit',

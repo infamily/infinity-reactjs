@@ -3,6 +3,8 @@ import serverService from 'services/server.service';
 import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
 import { makeHtml } from 'services/common.services';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 class Terms extends Component {
   constructor() {
@@ -22,14 +24,18 @@ class Terms extends Component {
     const { terms } = this.state;
     const Content = () => (
       <div>
-        {terms === '...' && <h1>Terms of service</h1>}
+        {terms === '...' && (
+          <h1>
+            <FormattedMessage {...messages.tos} />
+          </h1>
+        )}
         <p>{makeHtml(terms)}</p>
       </div>
     );
     return (
       <div className="main">
         {terms ? <Content /> : <Loading />}
-        <MenuBar page="What?" />
+        <MenuBar />
       </div>
     );
   }

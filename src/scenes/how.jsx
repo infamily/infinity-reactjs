@@ -1,22 +1,21 @@
-import React, { Component } from 'react'; 
+import React, { PureComponent } from 'react';
 import MenuBar from 'scenes/MenuBar';
-import langService from 'services/lang.service.js'; 
+import langService from 'services/lang.service';
 import { makeHtml } from 'services/common.services';
 
-class How extends Component {
-
+class How extends PureComponent {
   render() {
-    const raw = langService.howContent().reduce((line, newline) => {
-      return line + newline;
-    });
-    
+    const raw = langService
+      .howContent()
+      .reduce((line, newline) => line + newline);
+
     return (
       <div className="main">
         {makeHtml(raw)}
-        <MenuBar page='How?'/>
+        <MenuBar />
       </div>
     );
   }
 }
 
-export default How; 
+export default How;

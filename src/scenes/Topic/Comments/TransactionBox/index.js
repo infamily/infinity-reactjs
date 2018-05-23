@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Transaction from './transaction';
 import { setBalance } from 'actions/user';
+import Transaction from './TransactionBox';
 
 function mapStateToProps(state) {
   return {

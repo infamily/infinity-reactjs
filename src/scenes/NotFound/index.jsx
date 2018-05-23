@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuBar from 'scenes/MenuBar';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 const NotFound = props => (
   <div className="main">
     <h2>{props.text} -_-</h2>
-    <MenuBar page="Menu" />
+    <MenuBar />
   </div>
 );
 
@@ -14,7 +16,7 @@ NotFound.propTypes = {
 };
 
 NotFound.defaultProps = {
-  text: '404. No such content.'
+  text: <FormattedMessage {...messages.noContent} />
 };
 
 export default NotFound;

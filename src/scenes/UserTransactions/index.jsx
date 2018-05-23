@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import MenuBar from 'scenes/MenuBar';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import transactionService from './services';
 import TransactionTable from './TransactionTable';
 import './UserTransactions.css';
@@ -32,13 +34,13 @@ export default class UserTransactions extends Component {
     return (
       <div className="main">
         <NavLink to="/" className="nav__back">
-          &#10094; Home
+          &#10094; <FormattedMessage {...messages.homeLink} />
         </NavLink>
         <h1 className="user_contribution__header">
-          Investment by {balance.username}
+          <FormattedMessage {...messages.by} /> {balance.username}
         </h1>
         <TransactionTable data={data} />
-        <MenuBar page="Menu" />
+        <MenuBar />
       </div>
     );
   }
