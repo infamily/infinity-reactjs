@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import Cards from 'react-credit-cards';
 import Modal from 'components/Modal';
+import LoadingElements from 'components/Loading/LoadingElements';
 import SignInLine from 'components/SignInLine';
-import Payment from './Payment';
-import { postPayment } from './services.js';
 import { getUserBalance } from 'services/user.service';
+import 'react-credit-cards/es/styles-compiled.css';
+import messages from './messages';
+import Payment from './Payment';
 import {
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
   defaultState
 } from './helpers';
-import 'react-credit-cards/es/styles-compiled.css';
+import { postPayment } from './services';
 import './PayCheckout.css';
 
 export default class PayCheckout extends Component {
@@ -76,7 +79,7 @@ export default class PayCheckout extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     this.setState({ loading: true });
-    const { topicUrl } = this.props;
+    const { topicUrl, updateOuterData } = this.props;
     const response = await postPayment(this.state, 1, topicUrl); // 1 = stripe
 
     if (response.data) {
@@ -87,10 +90,12 @@ export default class PayCheckout extends Component {
       this.setState({ ...defaultState });
       this.form.reset();
       this.handleOpen();
-      this.props.updateOuterData && this.props.updateOuterData(response.data);
+      if (updateOuterData) updateOuterData(response.data);
     } else {
       this.setState({ loading: false });
-      this.showMessage(response.error.message || 'Server error. Try again.');
+      this.showMessage(
+        response.error.message || <FormattedMessage {...messages.serverError} />
+      );
     }
   };
 
@@ -106,8 +111,8 @@ export default class PayCheckout extends Component {
     const { isOpen, currency, amount, buttonText } = this.state;
     const ButtonText = () =>
       buttonText || (
-        <span>
-          PAY {amount || 0} {currency}
+        <span className="pay_checkout__pay">
+          <FormattedMessage {...messages.pay} /> {amount || 0} {currency}
         </span>
       );
 
@@ -126,77 +131,97 @@ export default class PayCheckout extends Component {
           </div>
           <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <input
-                type="tel"
-                name="number"
-                value={this.state.number}
-                className="form-control"
-                placeholder="Card Number"
-                pattern="[\d| ]{16,22}"
-                required
-                onChange={this.handleInputChange}
-                onFocus={this.handleInputFocus}
-              />
+              <FormattedMessage {...messages.card}>
+                {msg => (
+                  <input
+                    type="tel"
+                    name="number"
+                    value={this.state.number}
+                    className="form-control"
+                    placeholder={msg}
+                    pattern="[\d| ]{16,22}"
+                    required
+                    onChange={this.handleInputChange}
+                    onFocus={this.handleInputFocus}
+                  />
+                )}
+              </FormattedMessage>
             </div>
             <div className="row">
               <div className="col-lg-6">
                 <div className="form-group">
-                  <input
-                    type="text"
-                    name="name"
-                    value={this.state.name}
-                    className="form-control"
-                    placeholder="Name"
-                    required
-                    onChange={this.handleInputChange}
-                    onFocus={this.handleInputFocus}
-                  />
+                  <FormattedMessage {...messages.name}>
+                    {msg => (
+                      <input
+                        type="text"
+                        name="name"
+                        value={this.state.name}
+                        className="form-control"
+                        placeholder={msg}
+                        required
+                        onChange={this.handleInputChange}
+                        onFocus={this.handleInputFocus}
+                      />
+                    )}
+                  </FormattedMessage>
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="form-group">
-                  <input
-                    type="tel"
-                    name="expiry"
-                    value={this.state.expiry}
-                    className="form-control"
-                    placeholder="MM/YY"
-                    pattern="\d\d/\d\d"
-                    required
-                    onChange={this.handleInputChange}
-                    onFocus={this.handleInputFocus}
-                  />
+                  <FormattedMessage {...messages.date}>
+                    {msg => (
+                      <input
+                        type="tel"
+                        name="expiry"
+                        value={this.state.expiry}
+                        className="form-control"
+                        placeholder={msg}
+                        pattern="\d\d/\d\d"
+                        required
+                        onChange={this.handleInputChange}
+                        onFocus={this.handleInputFocus}
+                      />
+                    )}
+                  </FormattedMessage>
                 </div>
               </div>
             </div>
             <div className="row">
               <div className="col-lg-6">
                 <div className="form-group">
-                  <input
-                    type="tel"
-                    name="cvc"
-                    value={this.state.cvc}
-                    className="form-control"
-                    placeholder="CVC"
-                    pattern="\d{3,4}"
-                    required
-                    onChange={this.handleInputChange}
-                    onFocus={this.handleInputFocus}
-                  />
+                  <FormattedMessage {...messages.cvc}>
+                    {msg => (
+                      <input
+                        type="tel"
+                        name="cvc"
+                        value={this.state.cvc}
+                        className="form-control"
+                        placeholder={msg}
+                        pattern="\d{3,4}"
+                        required
+                        onChange={this.handleInputChange}
+                        onFocus={this.handleInputFocus}
+                      />
+                    )}
+                  </FormattedMessage>
                 </div>
               </div>
               <div className="col-lg-6">
                 <div className="form-group">
-                  <input
-                    type="tel"
-                    name="zip"
-                    value={this.state.zip}
-                    className="form-control"
-                    placeholder="ZIP"
-                    required
-                    onChange={this.handleInputChange}
-                    onFocus={this.handleInputFocus}
-                  />
+                  <FormattedMessage {...messages.zip}>
+                    {msg => (
+                      <input
+                        type="tel"
+                        name="zip"
+                        value={this.state.zip}
+                        className="form-control"
+                        placeholder={msg}
+                        required
+                        onChange={this.handleInputChange}
+                        onFocus={this.handleInputFocus}
+                      />
+                    )}
+                  </FormattedMessage>
                 </div>
               </div>
             </div>
@@ -210,12 +235,16 @@ export default class PayCheckout extends Component {
             {user ? (
               <div className="form-actions">
                 <button className="btn btn-primary btn-block">
-                  {this.state.loading ? '...' : <ButtonText />}
+                  {this.state.loading ? (
+                    <LoadingElements size={20} />
+                  ) : (
+                    <ButtonText />
+                  )}
                 </button>
               </div>
             ) : (
               <div className="pay_checkout__signin">
-                <SignInLine text="to fund the project" />
+                <SignInLine text={<FormattedMessage {...messages.toFund} />} />
               </div>
             )}
           </form>

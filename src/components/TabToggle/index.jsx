@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { Route, Switch, Link } from 'react-router-dom';
 import configs from 'configs';
+import messages from './messages';
 import './TabToggle.css';
 
 const TabComponent = () => (
   <Link to={`${configs.linkBase()}/split/data`}>
     <div className="tab_toggle">
       <span className="tab_toggle__sign">&#10094;</span>
-      Objects
+      <FormattedMessage {...messages.objects} />
     </div>
   </Link>
 );

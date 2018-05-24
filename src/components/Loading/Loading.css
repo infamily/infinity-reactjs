@@ -1,0 +1,33 @@
+.loading {
+  text-align: center;
+}
+
+.loading__img {
+  max-width: 60px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+.loading__text {
+  color: lightgrey;
+  padding-top: 20px;
+}
+
+.pulse {
+  animation: pulse_animation 1s infinite;
+  transform-origin: 70% 70%;
+  animation-timing-function: linear;
+}
+
+@keyframes pulse_animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

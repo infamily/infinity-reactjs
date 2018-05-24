@@ -4,9 +4,16 @@ import Loading from 'components/Loading';
 import serverService from 'services/server.service';
 
 export default class ConfigRoute extends Component {
+  static defaultProps = {
+    server: null,
+    children: null,
+    user: null
+  };
+
   static propTypes = {
     setServer: PropTypes.func.isRequired,
     server: PropTypes.string,
+    children: PropTypes.object,
     user: PropTypes.object
   };
 

@@ -3,19 +3,28 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ButtonGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap';
 import configs from 'configs';
-import './menu.css';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+import './Menu.css';
 
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: props.page || 'Menu'
+      page: props.page || <FormattedMessage {...messages.menuDefautlTitle} />
     };
   }
 
+  static defaultProps = {
+    page: null,
+    user: null
+  };
+
   static propTypes = {
     match: PropTypes.object.isRequired,
+    page: PropTypes.number,
     signOut: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     mobile: PropTypes.bool.isRequired,
     user: PropTypes.object
@@ -26,16 +35,17 @@ class Menu extends Component {
   };
 
   new = () => {
-    this.props.history.push(`${configs.linkBase()  }/split/new-topic`);
+    this.props.history.push(`${configs.linkBase()}/split/new-topic`);
   };
 
-  getName(user) {
+  getName = user => {
     const name = user && user.username;
     return name;
-  }
+  };
 
   render() {
-    const isNew = !this.props.location.pathname.includes('new-topic');
+    const { pathname } = this.props.location;
+    const isNew = !pathname.includes('new-topic');
     const title = this.getName(this.props.user) || this.state.page;
 
     const NewTopic = ({ mobile }) =>
@@ -45,7 +55,11 @@ class Menu extends Component {
           onClick={this.new}
           bsSize={mobile ? 'small' : null}
         >
-          {mobile ? 'New' : 'New Topic'}
+          {mobile ? (
+            <FormattedMessage {...messages.new} />
+          ) : (
+            <FormattedMessage {...messages.newTopic} />
+          )}
         </Button>
       ) : null;
 
@@ -60,28 +74,28 @@ class Menu extends Component {
           id="dropdown-size-large"
         >
           <Link to={configs.linkBase()} className="main-menu__link">
-            Home
+            <FormattedMessage {...messages.home} />
           </Link>
           <Link
-            to={`${configs.linkBase()  }/page/what`}
+            to={`${configs.linkBase()}/page/what`}
             className="main-menu__link"
           >
-            What?
+            <FormattedMessage {...messages.what} />
           </Link>
           <Link
-            to={`${configs.linkBase()  }/page/how`}
+            to={`${configs.linkBase()}/page/how`}
             className="main-menu__link"
           >
-            How?
+            <FormattedMessage {...messages.how} />
           </Link>
           <MenuItem divider />
           {this.props.user ? (
             <div className="main-menu__link" onClick={this.signOut}>
-              Sign Out
+              <FormattedMessage {...messages.signOut} />
             </div>
           ) : (
             <Link to="/page/otp" className="main-menu__link">
-              Sign In
+              <FormattedMessage {...messages.signIn} />
             </Link>
           )}
         </DropdownButton>

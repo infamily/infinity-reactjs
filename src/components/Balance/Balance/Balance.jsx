@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import TooltipOverlay from 'components/TooltipOverlay';
 import { getUserBalance } from 'services/user.service';
+import messages from '../messages';
 import '../balance.css';
 
 class Balance extends Component {
@@ -42,8 +44,16 @@ class Balance extends Component {
     return (
       <div className="balance__hours balance__only">
         <Link to={`/user-investment/${id}`}>
-          <TooltipOverlay text="Balance" placement="bottom">
-            <strong className="balance__counter">{hours}h</strong>
+          <TooltipOverlay
+            text={<FormattedMessage {...messages.balanceTooltip} />}
+            placement="bottom"
+          >
+            <strong className="balance__counter">
+              <FormattedMessage
+                id="infinity.common.shortCountableHours.COUNT"
+                values={{ count: hours }}
+              />
+            </strong>
           </TooltipOverlay>
         </Link>
       </div>

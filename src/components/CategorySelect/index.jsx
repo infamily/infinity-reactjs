@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 import topicViewService from 'services/topic_view.service';
 import LoadingElements from 'components/Loading/LoadingElements';
+import { FormattedMessage } from 'react-intl';
 import 'react-select/dist/react-select.min.css';
+import messages from './messages';
 import SelectOption from './SelectOption/Option';
 
 const parseCategories = array =>
@@ -37,6 +39,9 @@ export default class CategorySelect extends Component {
     if (!all_categories) return <LoadingElements size={20} />;
 
     const categories = parseCategories(all_categories);
+    const SelectPlaceholder = () =>
+      placeholder || <FormattedMessage {...messages.selectPlaceholder} />;
+
     return (
       <Select
         className="topic_view__select"
@@ -44,7 +49,7 @@ export default class CategorySelect extends Component {
         resetValue={categories[0]}
         options={categories}
         optionRenderer={SelectOption}
-        placeholder={placeholder || 'Select...'}
+        placeholder={<SelectPlaceholder />}
         multi
         value={value}
         onChange={action}

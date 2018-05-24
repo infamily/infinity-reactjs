@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { FormControl, Button, Panel } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import './TabDataField.css';
 
 export default class TabDataField extends Component {
@@ -40,24 +42,35 @@ export default class TabDataField extends Component {
           collapsible
           defaultExpanded={false}
         >
-          <FormControl
-            id="formControlsText"
-            className="data_field__field"
-            type="text"
-            componentClass="textarea"
-            name="text"
-            label="Data"
-            value={text}
-            onChange={this.handleChange}
-            placeholder="Put your data here"
-          />
-          <Button onClick={this.send}>Send</Button>
+          <FormattedMessage {...messages.putData}>
+            {msg => (
+              <FormControl
+                id="formControlsText"
+                className="data_field__field"
+                type="text"
+                componentClass="textarea"
+                name="text"
+                label="Data"
+                value={text}
+                onChange={this.handleChange}
+                placeholder={msg}
+              />
+            )}
+          </FormattedMessage>
+          <Button onClick={this.send}>
+            <FormattedMessage {...messages.send} />
+          </Button>
         </Panel>
         <Button
           onClick={this.handleOpen}
           className="btn-success data_field__show"
         >
-          {isOpen ? 'Close' : 'Show'} Data Field
+          {isOpen ? (
+            <FormattedMessage {...messages.close} />
+          ) : (
+            <FormattedMessage {...messages.show} />
+          )}{' '}
+          <FormattedMessage {...messages.dataField} />
         </Button>
       </div>
     );

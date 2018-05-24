@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 import Loading from 'components/Loading';
+import { FormattedMessage } from 'react-intl';
 import configs from 'configs';
+import messages from './messages';
 
 export default class ConfigWrapper extends Component {
   constructor() {
@@ -102,7 +104,16 @@ export default class ConfigWrapper extends Component {
 
   render() {
     if (this.state.loading || !this.props.server) {
-      return <Loading text={`Connecting ${this.state.serverName}...`} />;
+      return (
+        <Loading
+          text={
+            <FormattedMessage
+              {...messages.connecting}
+              values={{ server: this.state.serverName }}
+            />
+          }
+        />
+      );
     }
     return <div>{this.props.children}</div>;
   }

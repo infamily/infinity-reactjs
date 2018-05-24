@@ -1,3 +1,5 @@
+// component isn't using (probably won't)
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
@@ -6,28 +8,25 @@ import langService from 'services/lang.service';
 import { postPayment } from './services';
 
 export default class TakeMoney extends Component {
-  onToken = async (token) => {
+  onToken = async token => {
     await postPayment(token);
-  }
+  };
 
   static propTypes = {
-    ComponentClass: PropTypes.func.isRequired,
-  }
+    ComponentClass: PropTypes.func.isRequired
+  };
 
   render() {
-    const { 
-      ComponentClass,
-      ...rest
-    } = this.props;
+    const { ComponentClass, ...rest } = this.props;
     return (
       <StripeCheckout
         token={this.onToken}
         locale={langService.current}
         stripeKey={configs.stripeKey}
-        { ...rest }
+        {...rest}
       >
-        <ComponentClass/>
+        <ComponentClass />
       </StripeCheckout>
-    )
+    );
   }
 }

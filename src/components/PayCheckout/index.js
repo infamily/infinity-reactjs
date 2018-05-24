@@ -1,18 +1,20 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import PayCheckout from './PayCheckout';
 import { setBalance } from 'actions/user';
+import PayCheckout from './PayCheckout';
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    user: state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setBalance: (data) => dispatch(setBalance(data)),
+    setBalance: data => dispatch(setBalance(data))
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PayCheckout));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PayCheckout)
+);

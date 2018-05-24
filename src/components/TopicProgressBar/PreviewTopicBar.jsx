@@ -1,6 +1,8 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { ProgressBar } from 'react-bootstrap';
 import './TopicProgressBar.css';
+import messages from './messages';
 
 export default ({ topic }) => {
   const { matched, declared } = topic;
@@ -15,14 +17,16 @@ export default ({ topic }) => {
       <ProgressBar
         bsStyle="success"
         now={matched}
-        label={`${matched}$h INVESTED`}
+        label={`${matched}$h ${<FormattedMessage {...messages.invested} />}`}
         key={1}
         max={all}
       />
       <ProgressBar
         bsStyle="warning"
         now={remains}
-        label={`${remains.toFixed(2)}h CLAIMED`}
+        label={`${remains.toFixed(2)}h ${(
+          <FormattedMessage {...messages.claimed} />
+        )}`}
         key={2}
         max={all}
       />

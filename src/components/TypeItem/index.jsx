@@ -1,10 +1,9 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const TopicItem = ({ type }) => (
-  <Link to={'/types/' + type.id}>
+  <Link to={`/types/${type.id}`}>
     <section>
       <h2>{type.name}</h2>
       <p>{type.definition}</p>
@@ -13,7 +12,7 @@ const TopicItem = ({ type }) => (
 );
 
 TopicItem.propTypes = {
-  type: PropTypes.object.isRequired,
+  type: PropTypes.object.isRequired
 };
 
 export default TopicItem;

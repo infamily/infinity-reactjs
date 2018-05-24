@@ -5,14 +5,16 @@ import UserBalance from './UserBalance';
 
 function mapStateToProps(state) {
   return {
-    balance: state.balance,
+    balance: state.balance
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setBalance: (data) => dispatch(setBalance(data)),
+    setBalance: data => dispatch(setBalance(data))
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserBalance));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(UserBalance)
+);

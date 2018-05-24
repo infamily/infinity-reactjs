@@ -1,12 +1,8 @@
-export default (lang) => {
-  const messages = {
-    en: {
-      server: 'Server',
-    },
-    ru: {
-      server: 'Сервер',
-    },
-  };
-  
-  return messages[lang] || messages.en;
-};
+import { defineMessages } from 'react-intl';
+
+export default defineMessages({
+  server: {
+    id: 'infinity.components.ServerSelect.server',
+    defaultMessage: 'Server'
+  }
+});

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import PayCheckout from 'components/PayCheckout';
 import { Button } from 'components/Layout';
 import TooltipOverlay from 'components/TooltipOverlay';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import './TopicFundData.css';
 
 const TopicFundData = ({ topic, updateData }) => {
@@ -10,7 +12,7 @@ const TopicFundData = ({ topic, updateData }) => {
   return (
     <div className="topic_fund_data">
       <TooltipOverlay
-        text="The number of hours reserved for the topic"
+        text={<FormattedMessage {...messages.topicFundTooltip} />}
         placement="bottom"
       >
         <small className="topic_fund_data__hours">{hours}h</small>
@@ -24,7 +26,7 @@ const TopicFundData = ({ topic, updateData }) => {
             bsStyle="warning"
             bsSize="xsmall"
           >
-            Fund
+            <FormattedMessage {...messages.fund} />
           </Button>
         )}
       />

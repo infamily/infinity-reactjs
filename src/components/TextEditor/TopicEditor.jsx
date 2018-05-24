@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RichTextEditor from 'react-rte';
 import debounce from 'lodash/debounce';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import './TextEditor.css';
 
 class StatefulEditor extends Component {
@@ -33,23 +35,42 @@ class StatefulEditor extends Component {
         'BLOCK_TYPE_DROPDOWN'
       ],
       INLINE_STYLE_BUTTONS: [
-        { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
-        { label: 'Italic', style: 'ITALIC' },
         {
-          label: 'Underline',
+          label: <FormattedMessage {...messages.bold} />,
+          style: 'BOLD',
+          className: 'custom-css-class'
+        },
+        { label: <FormattedMessage {...messages.italic} />, style: 'ITALIC' },
+        {
+          label: <FormattedMessage {...messages.underline} />,
           style: 'UNDERLINE',
           className: 'text_editor__disabled'
         }
       ],
       BLOCK_TYPE_DROPDOWN: [
-        { label: 'Normal', style: 'unstyled' },
-        { label: 'Heading 1', style: 'header-one' },
-        { label: 'Heading 2', style: 'header-two' },
-        { label: 'Heading 3', style: 'header-three' }
+        { label: <FormattedMessage {...messages.normal} />, style: 'unstyled' },
+        {
+          label: <FormattedMessage {...messages.heading1} />,
+          style: 'header-one'
+        },
+        {
+          label: <FormattedMessage {...messages.heading2} />,
+          style: 'header-two'
+        },
+        {
+          label: <FormattedMessage {...messages.heading3} />,
+          style: 'header-three'
+        }
       ],
       BLOCK_TYPE_BUTTONS: [
-        { label: 'UL', style: 'unordered-list-item' },
-        { label: 'OL', style: 'ordered-list-item' }
+        {
+          label: <FormattedMessage {...messages.ul} />,
+          style: 'unordered-list-item'
+        },
+        {
+          label: <FormattedMessage {...messages.ol} />,
+          style: 'ordered-list-item'
+        }
       ]
     };
     return (

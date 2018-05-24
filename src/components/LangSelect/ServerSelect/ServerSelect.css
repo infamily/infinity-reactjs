@@ -1,4 +1,3 @@
-
 .server_select__bullet {
   font-size: 11px;
   display: inline-block;
@@ -19,7 +18,7 @@
   .server_select__btn {
     display: none;
   }
-  
+
   .server_select__img {
     width: 13px;
   }

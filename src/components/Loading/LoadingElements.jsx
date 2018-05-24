@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './LoadingElements.css';
 
-export default ({ size }) => {
+// to do: make it more flexible
+const LoadingElements = ({ size }) => {
   const style = size ? { fontSize: `${size}px` } : {};
   return (
     <p
@@ -14,3 +16,13 @@ export default ({ size }) => {
     </p>
   );
 };
+
+LoadingElements.defaultProps = {
+  size: null
+};
+
+LoadingElements.propTypes = {
+  size: PropTypes.number
+};
+
+export default LoadingElements;

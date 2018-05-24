@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 import serverImg from 'images/server.png';
-import getMessages from './messages';
-import './server_select.css';
-
-const messages = getMessages(langService.current);
+import messages from './messages';
+import './ServerSelect.css';
 
 const getName = api => {
   const names = langService.getServers();
@@ -75,7 +74,9 @@ class ServerButton extends Component {
         bsSize={mobile ? 'small' : null}
         title={mobile ? <Icon /> : getName(server)}
       >
-        <MenuItem>{messages.server}</MenuItem>
+        <MenuItem>
+          <FormattedMessage {...messages.server} />
+        </MenuItem>
         <MenuItem divider />
         <Servers />
       </DropdownButton>

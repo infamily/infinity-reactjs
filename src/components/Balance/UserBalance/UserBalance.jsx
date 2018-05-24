@@ -5,6 +5,8 @@ import TooltipOverlay from 'components/TooltipOverlay';
 import QuotaBox from 'scenes/QuotaBox';
 import { getUserBalance } from 'services/user.service';
 import serverService from 'services/server.service';
+import { FormattedMessage } from 'react-intl';
+import messages from '../messages';
 import '../balance.css';
 
 const parseNum = num => parseFloat(num).toFixed(2);
@@ -54,18 +56,28 @@ class UserBalance extends Component {
     return (
       <div className="balance__hours balance__only">
         <Link to={`/user-investment/${id}`}>
-          <TooltipOverlay text="Balance" placement="bottom">
-            <strong className="balance__counter">{hours}h</strong>
+          <TooltipOverlay
+            text={<FormattedMessage {...messages.balanceTooltip} />}
+            placement="bottom"
+          >
+            <strong className="balance__counter">
+              <FormattedMessage
+                id="infinity.common.shortCountableHours.COUNT"
+                values={{ count: hours }}
+              />
+            </strong>
           </TooltipOverlay>
         </Link>
         {showQuota && (
           <TooltipOverlay
-            text="Remaining quota"
+            text={<FormattedMessage {...messages.remainingQuotaTooltip} />}
             placement="bottom"
-            // onClick={this.handleOpen}
           >
             <span onClick={this.handleOpen} className="balance__quota">
-              {quota}h
+              <FormattedMessage
+                id="infinity.common.shortCountableHours.COUNT"
+                values={{ count: quota }}
+              />
             </span>
           </TooltipOverlay>
         )}

@@ -7,15 +7,17 @@ import ConfigWrapper from './ConfigWrapper';
 function mapStateToProps(state) {
   return {
     server: state.server,
-    userServerData: state.userServerData,
-  }
+    userServerData: state.userServerData
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setServer: (api) => dispatch(setServer(api)),
-    signIn: (user) => dispatch(signIn(user)),
-  }
+    setServer: api => dispatch(setServer(api)),
+    signIn: user => dispatch(signIn(user))
+  };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConfigWrapper));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ConfigWrapper)
+);

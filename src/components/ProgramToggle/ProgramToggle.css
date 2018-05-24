@@ -1,10 +1,9 @@
-
 .program_toggle {
   font-size: 14px;
   position: fixed;
-  padding: 5px; 
+  padding: 5px;
   color: #fff;
-  background-color: #76b976 ;
+  background-color: #76b976;
   border-radius: 0 5px 5px 0;
   z-index: 3;
   cursor: pointer;
@@ -16,11 +15,15 @@
 
 .program_toggle:hover {
   background-color: #449d44;
-  left: 0px;  
+  left: 0px;
 }
 
 .program_toggle__sign {
   font-size: 16px;
   margin-left: 15px;
   margin-right: 5px;
+}
+
+.program_toggle__label {
+  text-transform: uppercase;
 }

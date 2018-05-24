@@ -18,7 +18,7 @@ const TooltipOverlay = ({ children, text, placement, ...rest }) => {
 };
 
 TooltipOverlay.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.object.isRequired,
   placement: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired
 };

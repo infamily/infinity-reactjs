@@ -1,5 +1,7 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 import './TopicProgressBar.css';
 
 export default ({ comment, invest }) => {
@@ -31,28 +33,34 @@ export default ({ comment, invest }) => {
       <ProgressBar
         bsStyle="success"
         now={pay}
-        label={`${pay}$h INVESTED`}
+        label={`${pay}$h  ${<FormattedMessage {...messages.invested} />}`}
         key={1}
         max={all}
       />
       <ProgressBar
         bsStyle="warning"
         now={claimed}
-        label={`${claimed.toFixed(2)}h CLAIMED`}
+        label={`${claimed.toFixed(2)}h  ${(
+          <FormattedMessage {...messages.claimed} />
+        )}`}
         key={2}
         max={all}
       />
       <ProgressBar
         className="progress_bar__assumed"
         now={assumed}
-        label={`${assumed.toFixed(2)}h ASSUMED`}
+        label={`${assumed.toFixed(2)}h  ${(
+          <FormattedMessage {...messages.assumed} />
+        )}`}
         key={3}
         max={all}
       />
       <ProgressBar
         className="progress_bar__over"
         now={overpay}
-        label={`${overpay.toFixed(2)}$h OVERPAY`}
+        label={`${overpay.toFixed(2)}$h  ${(
+          <FormattedMessage {...messages.overpay} />
+        )}`}
         key={4}
         max={all}
       />
