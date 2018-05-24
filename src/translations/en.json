@@ -46,6 +46,7 @@
     "{count, plural, =0 {No available quota.} one {hour} other {hours}}",
   "infinity.scenes.QuotaBox.amounfOfHours": "hours",
   "infinity.scenes.QuotaBox.yourQuota": "Your quota is",
+  "infinity.scenes.StreamTab.schema": "Schema",
   "infinity.scenes.StreamTab.Widgets.show": "Show",
   "infinity.scenes.StreamTab.Modals.createdAt": "Created at:",
   "infinity.scenes.Topic.Menu.title": "Menu",
@@ -86,6 +87,7 @@
   "infinity.scenes.TopicView.save": "Save",
   "infinity.scenes.TopicView.create": "Create",
   "infinity.scenes.TopicView.confirmation": "Confirmation",
+  "infinity.scenes.TopicView.select": "Select...",
   "infinity.scenes.TopicView.deleteConfirmation":
     "Are you sure want to delete this topic?",
   "infinity.scenes.TopicView.close": "Close",
@@ -116,7 +118,10 @@
     "{count, number}{count, plural, =0 {''} one {h} other {h}}",
   "infinity.components.Balance.balanceTooltip": "Balance",
   "infinity.components.Balance.remainingQuotaTooltip": "Remaining quota",
-  "infinity.components.CategorySelect.selectPlaceholder": "Select...",
+  "infinity.common.Select.selectPlaceholder": "Select...",
+  "infinity.common.Select.loadingPlaceholder": "Loading...",
+  "infinity.common.Select.searchPromptText": "Type to search",
+  "infinity.common.Select.noResultsText": "No results found",
   "infinity.components.FlagToggle.all": "All",
   "infinity.components.ServerSelect.server": "Server",
   "infinity.components.Menu.newTopic": "New Topic",
@@ -162,5 +167,12 @@
   "infinity.components.TopicProgressBar.assumed": "Assumed",
   "infinity.components.TopicProgressBar.overpay": "Overpay",
   "infinity.components.TopicProgressBar.claimed": "Claimed",
-  "infinity.components.TopicProgressBar.ivested": "Invested"
+  "infinity.components.TopicProgressBar.ivested": "Invested",
+  "infinity.common.configs.all": "All",
+  "infinity.common.configs.need": "Need",
+  "infinity.common.configs.goal": "Goal",
+  "infinity.common.configs.idea": "Idea",
+  "infinity.common.configs.plan": "Plan",
+  "infinity.common.configs.step": "Step",
+  "infinity.common.configs.task": "Task"
 }

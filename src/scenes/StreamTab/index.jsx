@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage, FormattedDate } from 'react-intl';
 import FormSelect from 'components/FormSelect';
 import TabDataField from 'components/TabDataField';
 import Loading from 'components/Loading';
@@ -7,6 +8,7 @@ import fullIcon from 'images/fullscreen.svg';
 import Instance from './Widgets';
 import InstanceModal from './Modals';
 import { getSchemas, getInstance } from './services';
+import messages from './messages';
 import './StreamTab.css';
 
 const getId = url => url.match(/schemas\/(\d+)/)[1];
@@ -106,7 +108,7 @@ export default class StreamTab extends Component {
           <div className="stream_tab__select">
             <FormSelect
               name="activeSchema"
-              label="Schema"
+              label={<FormattedMessage {...messages.schema} />}
               action={this.changeSchema}
               value={activeSchema}
             >

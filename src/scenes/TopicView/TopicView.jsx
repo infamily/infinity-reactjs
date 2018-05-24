@@ -461,6 +461,16 @@ class TopicView extends Component {
                   name="topic_categories"
                   resetValue=""
                   multi
+                  placeholder={<FormattedMessage {...messages.select} />}
+                  noResultsText={
+                    <FormattedMessage id="infinity.common.Select.noResultsText" />
+                  }
+                  searchPromptText={
+                    <FormattedMessage id="infinity.common.Select.searchPromptText" />
+                  }
+                  loadingPlaceholder={
+                    <FormattedMessage id="infinity.common.Select.loadingPlaceholder" />
+                  }
                   value={topic_parents}
                   loadOptions={this.loadTopics}
                   onChange={this.selectParents}

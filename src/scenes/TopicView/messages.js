@@ -57,6 +57,10 @@ export default defineMessages({
     id: 'infinity.scenes.TopicView.textPlaceholder',
     defaultMessage: 'Share your ideas...'
   },
+  select: {
+    id: 'infinity.scenes.TopicView.select',
+    defaultMessage: 'Select...'
+  },
   typeLabel: {
     id: 'infinity.scenes.TopicView.typeLabel',
     defaultMessage: 'Type'

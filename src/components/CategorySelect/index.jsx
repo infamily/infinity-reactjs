@@ -50,6 +50,11 @@ export default class CategorySelect extends Component {
         options={categories}
         optionRenderer={SelectOption}
         placeholder={<SelectPlaceholder />}
+        noResultsText={<FormattedMessage {...messages.noResultsText} />}
+        searchPromptText={<FormattedMessage {...messages.searchPromptText} />}
+        loadingPlaceholder={
+          <FormattedMessage {...messages.loadingPlaceholder} />
+        }
         multi
         value={value}
         onChange={action}
