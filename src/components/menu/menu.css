@@ -8,7 +8,6 @@
   display: none;
 }
 
-
 .main-menu__link {
   margin: 0 20px;
   display: block;
@@ -17,8 +16,8 @@
   cursor: pointer;
 }
 
-.main-menu__link:hover { 
-  color: #000; 
+.main-menu__link:hover {
+  color: #000;
 }
 
 @media screen and (max-width: 600px) {
