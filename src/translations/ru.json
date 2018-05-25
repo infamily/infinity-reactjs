@@ -13,6 +13,7 @@
     "Отобразить как карточки",
   "infinity.scenes.Home.HomeConfigPanel.topPlaceholder":
     "Показать только посты верхнего уровня",
+  "infinity.scenes.Home.HomeConfigPanel.allPlaceholder": "Показать все посты",
   "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder":
     "Выберете категории...",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Фильтр",
