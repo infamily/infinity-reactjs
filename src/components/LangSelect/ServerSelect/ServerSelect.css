@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .server_select__btn {
+  .server_select__btn--full {
     display: none;
   }
 

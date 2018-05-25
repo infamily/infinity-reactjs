@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RichTextEditor from 'react-rte';
 import debounce from 'lodash/debounce';
-import { FormattedMessage } from 'react-intl';
+import { intlShape, injectIntl } from 'react-intl';
 import messages from './messages';
 import './TextEditor.css';
 
@@ -10,7 +10,8 @@ class StatefulEditor extends Component {
   static propTypes = {
     handleValue: PropTypes.func.isRequired,
     placeholder: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired
+    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+    intl: intlShape.isRequired
   };
 
   state = {
@@ -27,6 +28,7 @@ class StatefulEditor extends Component {
   }, 1000);
 
   render() {
+    const { intl } = this.props;
     const toolbarConfig = {
       display: [
         'INLINE_STYLE_BUTTONS',
@@ -36,39 +38,42 @@ class StatefulEditor extends Component {
       ],
       INLINE_STYLE_BUTTONS: [
         {
-          label: <FormattedMessage {...messages.bold} />,
+          label: intl.formatMessage({ ...messages.bold }),
           style: 'BOLD',
           className: 'custom-css-class'
         },
-        { label: <FormattedMessage {...messages.italic} />, style: 'ITALIC' },
+        { label: intl.formatMessage({ ...messages.italic }), style: 'ITALIC' },
         {
-          label: <FormattedMessage {...messages.underline} />,
+          label: intl.formatMessage({ ...messages.underline }),
           style: 'UNDERLINE',
           className: 'text_editor__disabled'
         }
       ],
       BLOCK_TYPE_DROPDOWN: [
-        { label: <FormattedMessage {...messages.normal} />, style: 'unstyled' },
         {
-          label: <FormattedMessage {...messages.heading1} />,
+          label: intl.formatMessage({ ...messages.normal }),
+          style: 'unstyled'
+        },
+        {
+          label: intl.formatMessage({ ...messages.heading1 }),
           style: 'header-one'
         },
         {
-          label: <FormattedMessage {...messages.heading2} />,
+          label: intl.formatMessage({ ...messages.heading2 }),
           style: 'header-two'
         },
         {
-          label: <FormattedMessage {...messages.heading3} />,
+          label: intl.formatMessage({ ...messages.heading3 }),
           style: 'header-three'
         }
       ],
       BLOCK_TYPE_BUTTONS: [
         {
-          label: <FormattedMessage {...messages.ul} />,
+          label: intl.formatMessage({ ...messages.ul }),
           style: 'unordered-list-item'
         },
         {
-          label: <FormattedMessage {...messages.ol} />,
+          label: intl.formatMessage({ ...messages.ol }),
           style: 'ordered-list-item'
         }
       ]
@@ -86,4 +91,4 @@ class StatefulEditor extends Component {
   }
 }
 
-export default StatefulEditor;
+export default injectIntl(StatefulEditor);

@@ -1,5 +1,4 @@
-
-.nav_bar {
+.nav_bar--mobile {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -11,6 +10,7 @@
   flex-wrap: nowrap;
 }
 
-.nav_bar--hide {
-  position: none;
+.nav_bar {
+  z-index: 12; /* solve compatibility with Select(TopicView, react-select)  */
+  position: relative;
 }

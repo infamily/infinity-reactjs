@@ -216,11 +216,11 @@ class Topic extends Component {
       );
 
     const newButtonText = !addChildSection ? (
-      `+ ${getChild(topic.type)}`
+      getChild(topic.type)
     ) : (
       <FormattedMessage {...messages.close} />
     );
-
+    // const newButtonText = `+ ${childText}`;
     return (
       <DocumentMeta {...meta}>
         <div className="main">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from 'services/lang.service';
@@ -68,7 +69,10 @@ class ServerButton extends Component {
     return (
       <DropdownButton
         id="dropdown-server"
-        className={mobile ? 'server_select__btn--mobile' : 'server_select__btn'}
+        className={classnames({
+          'server_select__btn--mobile': mobile,
+          'server_select__btn--full': !mobile
+        })}
         pullRight
         dropup
         bsSize={mobile ? 'small' : null}

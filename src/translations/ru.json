@@ -77,7 +77,7 @@
   "infinity.scenes.Topic.CommentForm.toLeaveComment":
     "чтобы оставить комментарий",
   "infinity.scenes.Topic.CommentForm.submit": "Отправить",
-  "infinity.scenes.Topic.CommentForm.leaveComment": "Оставте свой комментарий",
+  "infinity.scenes.Topic.CommentForm.leaveComment": "Оставьте свой комментарий",
   "infinity.scenes.TopicView.Menu.title": "Меню",
   "infinity.scenes.TopicView.submitErrorText":
     "Заголовок обязателен к заполнению.",
@@ -166,7 +166,7 @@
   "infinity.components.TextEditor.heading3": "Заголовок 3",
   "infinity.components.TopicFundData.topicFundTooltip":
     "Количество зарезервированные часов для реализации проекта",
-  "infinity.components.TopicFundData.fund": "Вложить",
+  "infinity.components.TopicFundData.fund": "Вклад",
   "infinity.components.TopicProgressBar.assumed": "Предологается",
   "infinity.components.TopicProgressBar.overpay": "Дополнительно",
   "infinity.components.TopicProgressBar.claimed": "Отработано",

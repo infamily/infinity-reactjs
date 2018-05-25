@@ -32,7 +32,6 @@ const TopicBody = ({
         to={`${configs.linkBase()}/split/edit/${id}/`}
         className="topic__edit"
       >
-        {' '}
         <Button>
           <FormattedMessage {...messages.edit} />
         </Button>

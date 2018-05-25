@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { ButtonGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap';
 import configs from 'configs';
@@ -65,7 +66,7 @@ class Menu extends Component {
 
     const MainMenu = ({ mobile }) => (
       <ButtonGroup
-        className={mobile ? 'main-menu main-menu--mobile' : 'main-menu'}
+        className={classNames('main-menu', { 'main-menu--mobile': mobile })}
       >
         <DropdownButton
           title={title}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import langService from 'services/lang.service';
 import configs from 'configs';
@@ -60,7 +61,9 @@ class Language extends Component {
 
     const LangMenu = ({ mobile }) => (
       <ButtonGroup
-        className={mobile ? 'select-lang select-lang--mobile' : 'select-lang'}
+        className={classNames('select-lang', {
+          'select-lang--mobile': mobile
+        })}
       >
         <DropdownButton
           id="dropdown-language"
