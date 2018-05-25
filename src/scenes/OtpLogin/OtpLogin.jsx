@@ -119,7 +119,9 @@ export default class OtpLogin extends Component {
           </Modal.Header>
           <Modal.Body>{popUp.text}</Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.resetPopUp}>Close</Button>
+            <Button onClick={this.resetPopUp}>
+              <FormattedMessage id="infinity.common.buttons.close" />
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>

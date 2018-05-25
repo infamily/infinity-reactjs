@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { Button, Modal } from 'react-bootstrap';
 
-export default class InstanceModal extends Component {
+export default class InstanceModal extends PureComponent {
   static propTypes = {
     show: PropTypes.bool.isRequired,
     onHide: PropTypes.func.isRequired,
@@ -71,7 +72,9 @@ export default class InstanceModal extends Component {
           <Body />
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={onHide}>Close</Button>
+          <Button onClick={onHide}>
+            <FormattedMessage id="infinity.common.buttons.close" />
+          </Button>
         </Modal.Footer>
       </Modal>
     );

@@ -177,6 +177,7 @@
   "infinity.components.TopicProgressBar.overpay": "Overpay",
   "infinity.components.TopicProgressBar.claimed": "Claimed",
   "infinity.components.TopicProgressBar.invested": "Invested",
+  "infinity.common.buttons.close": "Close",
   "infinity.common.configs.all": "All",
   "infinity.common.configs.need": "Need",
   "infinity.common.configs.goal": "Goal",

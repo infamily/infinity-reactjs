@@ -51,7 +51,9 @@ export default class InstanceModal extends PureComponent {
           <Data />
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={onHide}>Close</Button>
+          <Button onClick={onHide}>
+            <FormattedMessage id="infinity.common.buttons.close" />
+          </Button>
         </Modal.Footer>
       </Modal>
     );

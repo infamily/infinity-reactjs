@@ -20,6 +20,7 @@ const makeHexDim = (inputHex, opacity) => {
 const getTopicLink = id => `${configs.linkBase()}/split/topic/${id}`;
 const getColor = type => configs.colors[type];
 const getTitleStyle = color => ({
+  // border: `1px solid ${makeHexDim(color, 85)}`,
   borderLeft: `3px solid ${makeHexDim(color, 85)}`
 });
 
