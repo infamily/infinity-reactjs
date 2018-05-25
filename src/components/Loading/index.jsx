@@ -14,8 +14,12 @@ const Loading = ({ text }) => (
   </div>
 );
 
+Loading.defaultProps = {
+  text: null
+};
+
 Loading.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default Loading;

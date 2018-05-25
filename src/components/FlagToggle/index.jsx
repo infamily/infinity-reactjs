@@ -17,7 +17,7 @@ const Flag = ({ setFlag, flag, dropup }) => {
       dropup={dropup}
     >
       {flags.map((type, i) => (
-        <MenuItem key={type} eventKey={i} onSelect={setFlag}>
+        <MenuItem key={i} eventKey={i} onSelect={setFlag}>
           {type}
         </MenuItem>
       ))}
@@ -31,7 +31,7 @@ Flag.defaultProps = {
 
 Flag.propTypes = {
   setFlag: PropTypes.func.isRequired,
-  flag: PropTypes.string.isRequired,
+  flag: PropTypes.number.isRequired,
   dropup: PropTypes.bool
 };
 

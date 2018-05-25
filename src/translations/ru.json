@@ -6,6 +6,13 @@
   "infinity.scenes.Home.TopicList.noTopics":
     "Нет постов. Пропробуйте изменить фильтр.",
   "infinity.scenes.Home.HomeConfigPanel.search": "Поиск",
+  "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder": "Фильтр",
+  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder":
+    "Отобразить как заголовки (дерево)",
+  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder":
+    "Отобразить как карточки",
+  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder":
+    "Показать только посты верхнего уровня",
   "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder":
     "Выберете категории...",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Фильтр",
@@ -39,7 +46,7 @@
     "<strong>Одноразовый пароль</strong> был отпрален на ваш e-mail.",
   "infinity.scenes.OtpLogin.LoginView.resend": "Отправить код снова.",
   "infinity.scenes.OtpLogin.LoginView.submit": "Отправить",
-  "infinity.scenes.QuotaBox.buy": "Купить банковской картой",
+  "infinity.scenes.QuotaBox.buy": "Оплатить банковской картой",
   "infinity.scenes.QuotaBox.history": "История оплат",
   "infinity.scenes.QuotaBox.quotaDescription":
     "Просмотрите проекты и выберете те, которые Вам нравятся.",
@@ -61,8 +68,8 @@
   "infinity.scenes.Topic.Comments.error": "Ошибка",
   "infinity.scenes.Topic.Comments.success": "Успешно",
   "infinity.scenes.Topic.Comments.investment": "Инвестиции",
-  "infinity.scenes.Topic.Comments.invest": "Инвестировать",
-  "infinity.scenes.Topic.TransactionBox.buy": "Купить банковской картой",
+  "infinity.scenes.Topic.Comments.invest": "Внести",
+  "infinity.scenes.Topic.TransactionBox.buy": "Оплатить банковской картой",
   "infinity.scenes.Topic.TransactionBox.invalidHours":
     "Неверное количество часов.",
   "infinity.scenes.Topic.TransactionBox.quotaOver": "Достигнул лимит квоты.",
@@ -124,6 +131,7 @@
   "infinity.common.Select.loadingPlaceholder": "Загрузка...",
   "infinity.common.Select.searchPromptText": "Начните печатать для поиска",
   "infinity.common.Select.noResultsText": "Нет результатов",
+  "infinity.components.ConfigWrapper.connecting": "Соединение с {server}...",
   "infinity.components.FlagToggle.all": "Все",
   "infinity.components.ServerSelect.server": "Сервер",
   "infinity.components.Menu.newTopic": "Новый пост",
@@ -169,8 +177,8 @@
   "infinity.components.TopicFundData.fund": "Вклад",
   "infinity.components.TopicProgressBar.assumed": "Предологается",
   "infinity.components.TopicProgressBar.overpay": "Дополнительно",
-  "infinity.components.TopicProgressBar.claimed": "Отработано",
-  "infinity.components.TopicProgressBar.ivested": "Инвестированно",
+  "infinity.components.TopicProgressBar.claimed": "Утвержденно",
+  "infinity.components.TopicProgressBar.invested": "Инвестированно",
   "infinity.common.configs.all": "Все",
   "infinity.common.configs.need": "Запрос",
   "infinity.common.configs.goal": "Цель",

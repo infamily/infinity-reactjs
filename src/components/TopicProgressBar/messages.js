@@ -13,8 +13,8 @@ export default defineMessages({
     id: 'infinity.components.TopicProgressBar.claimed',
     defaultMessage: 'Claimed'
   },
-  ivested: {
-    id: 'infinity.components.TopicProgressBar.ivested',
+  invested: {
+    id: 'infinity.components.TopicProgressBar.invested',
     defaultMessage: 'Invested'
   }
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedDate } from 'react-intl';
-import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
+import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import TopicFundData from 'components/TopicFundData';
 import { makePreviewHtml } from 'services/common.services';
 import topicService from 'services/topic.service';
@@ -89,7 +89,7 @@ export default class TopicCard extends Component {
             />
           </small>
         </div>
-        <PreviewTopicBar topic={topic} />
+        <PreviewProgressBar topic={topic} />
       </div>
     );
   }

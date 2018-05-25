@@ -1,10 +1,10 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { intlShape, injectIntl } from 'react-intl';
 import { ProgressBar } from 'react-bootstrap';
 import './TopicProgressBar.css';
 import messages from './messages';
 
-export default ({ topic }) => {
+const PreviewProgressBar = ({ topic, intl }) => {
   const { matched, declared } = topic;
 
   if (!declared) return null;
@@ -17,19 +17,21 @@ export default ({ topic }) => {
       <ProgressBar
         bsStyle="success"
         now={matched}
-        label={`${matched}$h ${<FormattedMessage {...messages.invested} />}`}
+        label={`${matched}$h ${intl.formatMessage({ ...messages.invested })}`}
         key={1}
         max={all}
       />
       <ProgressBar
         bsStyle="warning"
         now={remains}
-        label={`${remains.toFixed(2)}h ${(
-          <FormattedMessage {...messages.claimed} />
-        )}`}
+        label={`${remains.toFixed(2)}h ${intl.formatMessage({
+          ...messages.claimed
+        })}`}
         key={2}
         max={all}
       />
     </ProgressBar>
   );
 };
+
+export default injectIntl(PreviewProgressBar);

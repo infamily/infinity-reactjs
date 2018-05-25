@@ -6,6 +6,12 @@
   "infinity.scenes.Home.TopicList.noTopics":
     "No topics. Try to change filter parameters.",
   "infinity.scenes.Home.HomeConfigPanel.search": "Search",
+  "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder": "Filter Options",
+  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder": "Display as lines",
+  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder": "Display as Grid",
+  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder":
+    "Display only top-level topics",
+  "infinity.scenes.Home.HomeConfigPanel.allPlaceholder": "Display all topics",
   "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder":
     "Select categories...",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Filter",
@@ -122,6 +128,7 @@
   "infinity.common.Select.loadingPlaceholder": "Loading...",
   "infinity.common.Select.searchPromptText": "Type to search",
   "infinity.common.Select.noResultsText": "No results found",
+  "infinity.components.ConfigWrapper.connecting": "Connecting {server}...",
   "infinity.components.FlagToggle.all": "All",
   "infinity.components.ServerSelect.server": "Server",
   "infinity.components.Menu.newTopic": "New Topic",
@@ -167,7 +174,7 @@
   "infinity.components.TopicProgressBar.assumed": "Assumed",
   "infinity.components.TopicProgressBar.overpay": "Overpay",
   "infinity.components.TopicProgressBar.claimed": "Claimed",
-  "infinity.components.TopicProgressBar.ivested": "Invested",
+  "infinity.components.TopicProgressBar.invested": "Invested",
   "infinity.common.configs.all": "All",
   "infinity.common.configs.need": "Need",
   "infinity.common.configs.goal": "Goal",

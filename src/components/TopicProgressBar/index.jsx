@@ -1,10 +1,10 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { intlShape, injectIntl } from 'react-intl';
 import messages from './messages';
 import './TopicProgressBar.css';
 
-export default ({ comment, invest }) => {
+const TopicProgressBar = ({ comment, invest, intl }) => {
   const { claimed_hours, assumed_hours, matched, donated, remains } = comment;
 
   if (!remains) return null;
@@ -33,37 +33,39 @@ export default ({ comment, invest }) => {
       <ProgressBar
         bsStyle="success"
         now={pay}
-        label={`${pay}$h  ${<FormattedMessage {...messages.invested} />}`}
+        label={`${pay}$h  ${intl.formatMessage({ ...messages.invested })}`}
         key={1}
         max={all}
       />
       <ProgressBar
         bsStyle="warning"
         now={claimed}
-        label={`${claimed.toFixed(2)}h  ${(
-          <FormattedMessage {...messages.claimed} />
-        )}`}
+        label={`${claimed.toFixed(2)}h  ${intl.formatMessage({
+          ...messages.claimed
+        })}`}
         key={2}
         max={all}
       />
       <ProgressBar
         className="progress_bar__assumed"
         now={assumed}
-        label={`${assumed.toFixed(2)}h  ${(
-          <FormattedMessage {...messages.assumed} />
-        )}`}
+        label={`${assumed.toFixed(2)}h  ${intl.formatMessage({
+          ...messages.assumed
+        })}`}
         key={3}
         max={all}
       />
       <ProgressBar
         className="progress_bar__over"
         now={overpay}
-        label={`${overpay.toFixed(2)}$h  ${(
-          <FormattedMessage {...messages.overpay} />
-        )}`}
+        label={`${overpay.toFixed(2)}$h  ${intl.formatMessage({
+          ...messages.overpay
+        })}`}
         key={4}
         max={all}
       />
     </ProgressBar>
   );
 };
+
+export default injectIntl(TopicProgressBar);

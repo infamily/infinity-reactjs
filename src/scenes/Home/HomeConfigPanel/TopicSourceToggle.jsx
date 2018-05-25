@@ -31,14 +31,20 @@ const TopicSourceToggle = ({
           onChange={handleTopicView}
         >
           <ToggleButton value="line">
-            <TooltipOverlay text="Display as lines" placement="bottom">
+            <TooltipOverlay
+              text={<FormattedMessage {...messages.treePlaceholder} />}
+              placement="bottom"
+            >
               <span>
                 <FormattedMessage {...messages.tree} />
               </span>
             </TooltipOverlay>
           </ToggleButton>
           <ToggleButton value="grid">
-            <TooltipOverlay text="Display as Grid" placement="bottom">
+            <TooltipOverlay
+              text={<FormattedMessage {...messages.gridPlaceholder} />}
+              placement="bottom"
+            >
               <span>
                 <FormattedMessage {...messages.grid} />
               </span>
@@ -61,7 +67,7 @@ const TopicSourceToggle = ({
         >
           <ToggleButton value={1}>
             <TooltipOverlay
-              text="Display only top-level topics"
+              text={<FormattedMessage {...messages.topPlaceholder} />}
               placement="bottom"
             >
               <span>
@@ -70,7 +76,10 @@ const TopicSourceToggle = ({
             </TooltipOverlay>
           </ToggleButton>
           <ToggleButton value={0}>
-            <TooltipOverlay text="Display all topics" placement="bottom">
+            <TooltipOverlay
+              text={<FormattedMessage {...messages.allPlaceholder} />}
+              placement="bottom"
+            >
               <span>
                 <FormattedMessage {...messages.all} />
               </span>

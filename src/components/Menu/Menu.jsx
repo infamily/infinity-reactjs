@@ -23,7 +23,7 @@ class Menu extends Component {
 
   static propTypes = {
     match: PropTypes.object.isRequired,
-    page: PropTypes.number,
+    page: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     signOut: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,

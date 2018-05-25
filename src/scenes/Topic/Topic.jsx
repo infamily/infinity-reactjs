@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import DocumentMeta from 'react-document-meta';
 import MenuBar from 'scenes/MenuBar';
 import TopicView from 'scenes/TopicView';
-import PreviewTopicBar from 'components/TopicProgressBar/PreviewTopicBar';
+import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import Loading from 'components/Loading/LoadingElements';
 import commentService from 'services/comment.service';
 import { Panel } from 'react-bootstrap';
@@ -216,11 +216,11 @@ class Topic extends Component {
       );
 
     const newButtonText = !addChildSection ? (
-      getChild(topic.type)
+      <span>+ {getChild(topic.type)}</span>
     ) : (
       <FormattedMessage {...messages.close} />
     );
-    // const newButtonText = `+ ${childText}`;
+
     return (
       <DocumentMeta {...meta}>
         <div className="main">
@@ -235,7 +235,7 @@ class Topic extends Component {
             >
               {children}
             </TopicBody>
-            <PreviewTopicBar topic={topic} />
+            <PreviewProgressBar topic={topic} />
             <br />
             <NewButton action={this.handleEditSection} title={newButtonText} />
             <div className="main__shadow_box">

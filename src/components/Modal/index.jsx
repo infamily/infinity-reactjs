@@ -18,7 +18,7 @@ const ModalComponent = ({ isOpen, close, children }) => (
 );
 
 ModalComponent.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
   isOpen: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired
 };
