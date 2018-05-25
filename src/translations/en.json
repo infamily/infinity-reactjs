@@ -22,10 +22,11 @@
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
     "Top-Level",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all": "All",
+  "infinity.scenes.OtpLogin.signInTitle": "Sign In",
   "infinity.scenes.OtpLogin.commonErrorTitle": "Error",
   "infinity.scenes.OtpLogin.commonErrorText":
     "Something went wrong. Try again.",
-  "infinity.scenes.OtpLogin.signInError": "SignIn Error",
+  "infinity.scenes.OtpLogin.signInErrorTitle": "SignIn Error",
   "infinity.scenes.OtpLogin.invalidCaptcha": "Invalid captcha. Try again.",
   "infinity.scenes.OtpLogin.signInErrorfillOut":
     "The field should be filled out.",
@@ -37,6 +38,7 @@
     "All fields should be filled out.",
   "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "E-mail address",
   "infinity.scenes.OtpLogin.EmailView.captchaPlaceholder": "Captcha",
+  "infinity.scenes.OtpLogin.EmailView.otpPlaceholder": "One time password",
   "infinity.scenes.OtpLogin.EmailView.tosRead": "I have read and agree to the",
   "infinity.scenes.OtpLogin.EmailView.tos": "Terms of Service",
   "infinity.scenes.OtpLogin.EmailView.continue": "Continue",
@@ -89,7 +91,7 @@
   "infinity.scenes.TopicView.success": "Success",
   "infinity.scenes.TopicView.available": "Your topic is available on:",
   "infinity.scenes.TopicView.back": "Back",
-  "infinity.scenes.TopicView.toPost": "to post a topic.",
+  "infinity.scenes.TopicView.toPost": "to post a topic",
   "infinity.scenes.TopicView.save": "Save",
   "infinity.scenes.TopicView.create": "Create",
   "infinity.scenes.TopicView.confirmation": "Confirmation",

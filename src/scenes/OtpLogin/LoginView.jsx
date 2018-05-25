@@ -44,16 +44,20 @@ export default class LoginView extends Component {
         <div className="center-block otp__box">
           <div>
             <div className="form-group">
-              <input
-                className="form-control otp__input"
-                value={password}
-                name="password"
-                type="password"
-                placeholder="One time password"
-                autoComplete="off"
-                required
-                onChange={this.handleChange}
-              />
+              <FormattedMessage {...messages.otpPlaceholder}>
+                {msg => (
+                  <input
+                    className="form-control otp__input"
+                    value={password}
+                    name="password"
+                    type="password"
+                    placeholder={msg}
+                    autoComplete="off"
+                    required
+                    onChange={this.handleChange}
+                  />
+                )}
+              </FormattedMessage>
             </div>
             <button className="primaryAction btn otp__btn" onClick={goBack}>
               <FormattedMessage {...messages.resend} />

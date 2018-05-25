@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  signInTitle: {
+    id: 'infinity.scenes.OtpLogin.signInTitle',
+    defaultMessage: 'Sign In'
+  },
   commonErrorTitle: {
     id: 'infinity.scenes.OtpLogin.commonErrorTitle',
     defaultMessage: 'Error'
@@ -10,7 +14,7 @@ export default defineMessages({
     defaultMessage: 'Something went wrong. Try again.'
   },
   signInErrorTitle: {
-    id: 'infinity.scenes.OtpLogin.signInError',
+    id: 'infinity.scenes.OtpLogin.signInErrorTitle',
     defaultMessage: 'SignIn Error'
   },
   invalidCaptcha: {
@@ -45,6 +49,10 @@ export default defineMessages({
   captchaPlaceholder: {
     id: 'infinity.scenes.OtpLogin.EmailView.captchaPlaceholder',
     defaultMessage: 'Captcha'
+  },
+  otpPlaceholder: {
+    id: 'infinity.scenes.OtpLogin.EmailView.otpPlaceholder',
+    defaultMessage: 'One time password'
   },
   tosRead: {
     id: 'infinity.scenes.OtpLogin.EmailView.tosRead',

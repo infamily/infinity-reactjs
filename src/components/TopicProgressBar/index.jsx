@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ProgressBar } from 'react-bootstrap';
 import { intlShape, injectIntl } from 'react-intl';
 import messages from './messages';
@@ -19,10 +20,10 @@ const TopicProgressBar = ({ comment, invest, intl }) => {
 
   const total = countTotal();
   const need = total_time - total;
-  const _claimed = need - parseFloat(assumed_hours);
-  const _assumed = parseFloat(assumed_hours);
-  const claimed = _claimed >= 0 ? _claimed : 0;
-  const assumed = need < _assumed ? need : _assumed;
+  const parsedClaimed = need - parseFloat(assumed_hours);
+  const parsedAssumed = parseFloat(assumed_hours);
+  const claimed = parsedClaimed >= 0 ? parsedClaimed : 0;
+  const assumed = need < parsedAssumed ? need : parsedAssumed;
 
   const all = total > total_time ? total : total_time;
   const overpay = total > total_time ? total - total_time : 0;
@@ -66,6 +67,12 @@ const TopicProgressBar = ({ comment, invest, intl }) => {
       />
     </ProgressBar>
   );
+};
+
+TopicProgressBar.propTypes = {
+  intl: intlShape.isRequired,
+  invest: PropTypes.number.isRequired,
+  comment: PropTypes.object.isRequired
 };
 
 export default injectIntl(TopicProgressBar);

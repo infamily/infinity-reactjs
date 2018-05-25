@@ -23,28 +23,30 @@
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
     "Родительские посты",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all": "Все",
+  "infinity.scenes.OtpLogin.signInTitle": "Вход",
   "infinity.scenes.OtpLogin.commonErrorTitle": "Ошибка =(",
   "infinity.scenes.OtpLogin.commonErrorText":
     "Что-то пошло не так. Попробуйте снова.",
-  "infinity.scenes.OtpLogin.signInError": "Ошибка входы",
+  "infinity.scenes.OtpLogin.signInErrorTitle": "Ошибка входа",
   "infinity.scenes.OtpLogin.invalidCaptcha": "Неверный код. Попробуйте снова.",
   "infinity.scenes.OtpLogin.signInErrorfillOut": "Поле должно быть заполнено.",
   "infinity.scenes.OtpLogin.signInErrorWrongCode":
     "Неверный код. Попробуйте снова.",
   "infinity.scenes.OtpLogin.EmailView.invalidEmail":
-    "Достуа вашей огранизации запрещен. Введите другой e-mail.",
+    "У вашей огранизации еще нет доступа. Введите другой e-mail.",
   "infinity.scenes.OtpLogin.EmailView.serverErrTitle": "Ошибка сервера",
   "infinity.scenes.OtpLogin.EmailView.allFilledOut":
     "Все поля должны быть заполнены.",
   "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "E-mail",
   "infinity.scenes.OtpLogin.EmailView.captchaPlaceholder": "Код",
+  "infinity.scenes.OtpLogin.EmailView.otpPlaceholder": "Одноразовый пароль",
   "infinity.scenes.OtpLogin.EmailView.tosRead":
     "Я ознакомился и согласен с документом:",
   "infinity.scenes.OtpLogin.EmailView.tos": "Условия использования",
   "infinity.scenes.OtpLogin.EmailView.continue": "Продолжить",
   "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
     "<strong>Одноразовый пароль</strong> был отпрален на ваш e-mail.",
-  "infinity.scenes.OtpLogin.LoginView.resend": "Отправить код снова.",
+  "infinity.scenes.OtpLogin.LoginView.resend": "Отправить код снова",
   "infinity.scenes.OtpLogin.LoginView.submit": "Отправить",
   "infinity.scenes.QuotaBox.buy": "Оплатить банковской картой",
   "infinity.scenes.QuotaBox.history": "История оплат",

@@ -145,7 +145,9 @@ export default class EmailView extends Component {
       <div>
         <img src={ifIcon} className="otp__logo" alt="infinity" />
         <div className="center-block otp__box">
-          <h1 className="otp__header">Sign In</h1>
+          <h1 className="otp__header">
+            <FormattedMessage {...messages.signInTitle} />
+          </h1>
           <form onSubmit={this.onEmailSubmit} testId="emailSubmitForm">
             <div className="form-group">
               <FormattedMessage {...messages.emailPlaceholder}>

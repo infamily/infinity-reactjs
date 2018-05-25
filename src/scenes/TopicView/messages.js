@@ -27,7 +27,7 @@ export default defineMessages({
   },
   toPost: {
     id: 'infinity.scenes.TopicView.toPost',
-    defaultMessage: 'to post a topic.'
+    defaultMessage: 'to post a topic'
   },
   save: {
     id: 'infinity.scenes.TopicView.save',

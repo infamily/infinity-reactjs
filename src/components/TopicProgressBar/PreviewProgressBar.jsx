@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { intlShape, injectIntl } from 'react-intl';
 import { ProgressBar } from 'react-bootstrap';
 import './TopicProgressBar.css';
@@ -32,6 +33,11 @@ const PreviewProgressBar = ({ topic, intl }) => {
       />
     </ProgressBar>
   );
+};
+
+PreviewProgressBar.propTypes = {
+  intl: intlShape.isRequired,
+  topic: PropTypes.object.isRequired
 };
 
 export default injectIntl(PreviewProgressBar);
