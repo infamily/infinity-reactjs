@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Modal, Button } from 'react-bootstrap';
-import messages from './messages';
 
 const ModalComponent = ({ isOpen, close, children }) => (
   <Modal show={isOpen}>
@@ -11,7 +10,7 @@ const ModalComponent = ({ isOpen, close, children }) => (
     </Modal.Body>
     <Modal.Footer>
       <Button onClick={close}>
-        <FormattedMessage {...messages.close} />
+        <FormattedMessage id="infinity.common.buttons.close" />
       </Button>
     </Modal.Footer>
   </Modal>

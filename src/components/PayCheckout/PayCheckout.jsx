@@ -129,7 +129,12 @@ export default class PayCheckout extends Component {
             />
             <br />
           </div>
-          <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}>
+          <form
+            ref={c => {
+              this.form = c;
+            }}
+            onSubmit={this.handleSubmit}
+          >
             <div className="form-group">
               <FormattedMessage {...messages.card}>
                 {msg => (

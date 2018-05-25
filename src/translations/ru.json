@@ -182,6 +182,7 @@
   "infinity.components.TopicProgressBar.overpay": "Дополнительно",
   "infinity.components.TopicProgressBar.claimed": "Утвержденно",
   "infinity.components.TopicProgressBar.invested": "Инвестированно",
+  "infinity.common.buttons.close": "Закрыть",
   "infinity.common.configs.all": "Все",
   "infinity.common.configs.need": "Запрос",
   "infinity.common.configs.goal": "Цель",
