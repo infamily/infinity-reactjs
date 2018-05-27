@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import messages from 'scenes/Home/messages';
 import TopicSection from './TopicSection';
-import Grid from './Grid';
+import Grid from './Grid/ComplexGrid';
+// import Grid from './Grid/VirtGrid';
+// import Grid from './Grid';
+// import Grid from './GridTemplate';
 import './TopicList.css';
 
 class TopicList extends Component {
@@ -51,7 +54,12 @@ class TopicList extends Component {
         </div>
       );
 
-    if (view === 'grid') return <Grid>{elements}</Grid>;
+    if (view === 'grid')
+      return (
+        <div className="full_height">
+          <Grid>{elements}</Grid>
+        </div>
+      );
     return <div>{elements}</div>;
   }
 }

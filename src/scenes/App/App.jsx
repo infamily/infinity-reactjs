@@ -77,8 +77,8 @@ class App extends Component {
 
     // SetWrapper defines whether need to set new configs(by Wrapper prop)
     const SetWrapper = Wrapper => ({ match }) => (
-      <div className="main_layout">
-        <div className="app_container">
+      <div className="main_layout full_height">
+        <div className="app_container full_height">
           <Wrapper>
             <Route path={match.path} component={Routes} />
           </Wrapper>
@@ -100,7 +100,7 @@ class App extends Component {
         messages={translationMessages[lang]}
       >
         <HashRouter>
-          <div>
+          <div className="full_height">
             <ProgramToggle />
             <Switch>
               <Route

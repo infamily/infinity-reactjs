@@ -8,7 +8,7 @@ import LoadingElements from 'components/Loading/LoadingElements';
 import topicViewService from 'services/topic_view.service';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
-import Topics from './TopicList';
+import TopicList from './TopicList';
 import { validateHomeParams, makeCategoriesArray } from './helpers';
 import HomeConfigPanel from './HomeConfigPanel';
 import messages from './messages';
@@ -143,6 +143,7 @@ class Home extends Component {
 
   hasMore = () => {
     const { count, topics } = this.state;
+    // return false;
     return topics && topics.length < count;
   };
 
@@ -188,24 +189,25 @@ class Home extends Component {
     const fullStyle = view === 'grid' && ' main--full';
 
     return (
-      <div className={`main ${fullStyle}`}>
+      <div className={`main ${fullStyle} full_height`}>
         <HomeConfigPanel
           user={user}
           makeSearch={this.makeSearch}
           updateHomeTopicsByParams={this.updateHomeTopicsByParams}
           setLoading={this.setLoading}
         />
-        <div className="topics__content">
+        <div className="topics__content full_height">
           {loading ? (
             <Loading />
           ) : (
             <InfiniteScroll
               pageStart={1}
               loadMore={this.loadMore}
+              className="full_height"
               hasMore={hasMore}
               loader={<LoadingElements key={0} />}
             >
-              <Topics topics={topics} view={view} />
+              <TopicList topics={topics} view={view} />
             </InfiniteScroll>
           )}
         </div>

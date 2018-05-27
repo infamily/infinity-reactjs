@@ -1,22 +1,22 @@
-export const transitionStyles = {
+export default {
   entering: {
-    position: 'absolute',
+    // position: 'fixed',
     width: '0px',
     transform: 'translate(100%)'
   },
   entered: {
     // position: 'relative',
     transform: 'none',
-    transition: 'transform, width 250ms ease-in-out'
+    transition: 'width 250ms ease-in-out'
   },
   exiting: {
-    position: 'absolute',
+    // position: 'fixed',
     transform: 'translate(0%)'
   },
   exited: {
     // position: 'relative',
     width: '0px',
     transform: 'translate(100%)',
-    transition: 'transform, width 250ms ease-in-out'
+    transition: 'width 250ms ease-in-out'
   }
 };

@@ -115,6 +115,6 @@ export default class ConfigWrapper extends Component {
         />
       );
     }
-    return <div>{this.props.children}</div>;
+    return <div className="full_height">{this.props.children}</div>;
   }
 }

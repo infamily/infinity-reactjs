@@ -6,7 +6,7 @@ import Transition from 'react-transition-group/Transition';
 import StreamTab from 'scenes/StreamTab';
 import Topic from 'scenes/Topic';
 import TopicView from 'scenes/TopicView';
-import { transitionStyles } from './transition';
+import transitionStyles from './transition';
 import './TabPanel.css';
 
 export default class TabPanel extends Component {

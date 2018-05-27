@@ -33,6 +33,10 @@
   flex-grow: 1;
 }
 
+.full_height {
+  height: 100%;
+}
+
 .main_layout {
   display: flex;
   flex-direction: row;
