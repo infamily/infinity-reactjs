@@ -29,7 +29,7 @@ export default class GridExample extends Component {
       height: 300,
       gutterSize: 10,
       overscanByPixels: 0,
-      windowScrollerEnabled: true
+      windowScrollerEnabled: false
     };
 
     this.cellRenderer = this.cellRenderer.bind(this);
@@ -86,49 +86,55 @@ export default class GridExample extends Component {
     this.masonry.recomputeCellPositions();
   }
 
-  renderAutoSizer({ height, scrollTop, isScrolling }) {
+  renderAutoSizer({ height, scrollTop }) {
     this.height = height;
     this.scrollTop = scrollTop;
-    this.isScrolling = isScrolling;
 
     const { overscanByPixels } = this.state;
 
     return (
       <AutoSizer
-        disableHeight
-        height={height}
+        // disableHeight
+        // height={height}
         onResize={this.onResize}
-        overscanByPixels={overscanByPixels}
-        scrollTop={this.scrollTop}
+        // overscanByPixels={overscanByPixels}
+        // scrollTop={this.scrollTop}
       >
         {this.renderMasonry}
       </AutoSizer>
     );
   }
 
-  renderMasonry({ width }) {
+  renderMasonry({ width, height }) {
     this.width = width;
-    // this.height = height;
+    this.height = height;
+    console.log('height', height);
 
     this.calculateColumnCount();
     this.initCellPositioner();
 
-    const { height, overscanByPixels, windowScrollerEnabled } = this.state;
+    const {
+      // height,
+      overscanByPixels,
+      windowScrollerEnabled
+    } = this.state;
     const { children } = this.props;
     // const stateHeight = this.state.height;
 
     return (
       <Masonry
-        // autoHeight={windowScrollerEnabled}
-        cellCount={children.length}
+        cellCount={
+          children.length // autoHeight={windowScrollerEnabled}
+        }
         cellMeasurerCache={this.cache}
         cellPositioner={this.cellPositioner}
         cellRenderer={this.cellRenderer}
-        height={windowScrollerEnabled ? this.height : height}
+        height={
+          height // height={windowScrollerEnabled ? this.height : height}
+        }
         overscanByPixels={overscanByPixels}
         ref={this.setMasonryRef}
         scrollTop={this.scrollTop}
-        isScrolling={this.isScrolling}
         width={width}
       />
     );
@@ -176,6 +182,6 @@ export default class GridExample extends Component {
       child = this.renderAutoSizer({ height });
     }
 
-    return <div>{child}</div>;
+    return <div className="full_height">{child}</div>;
   }
 }

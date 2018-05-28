@@ -67,6 +67,7 @@ export default class TopicCard extends Component {
     const { topic } = this.state;
     const { title, body, type, created_date } = topic;
     const color = getColor(type);
+    const text = toPlain(body);
     return (
       <div
         id={`card-${topic.id}`}
@@ -80,7 +81,7 @@ export default class TopicCard extends Component {
           <TopicFundData topic={topic} updateData={this.updateData} />
         </div>
         <div className="card__description" onClick={this.goToTopic}>
-          <div className="card__text">{toPlain(body)}</div>
+          <div className="card__text">{text.slice(0, 300)}</div>
           <br />
           <small>
             <FormattedDate
