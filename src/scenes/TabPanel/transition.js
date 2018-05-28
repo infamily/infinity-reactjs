@@ -1,6 +1,6 @@
 export default {
   entering: {
-    // position: 'fixed',
+    position: 'fixed',
     width: '0px',
     transform: 'translate(100%)'
   },
@@ -10,7 +10,7 @@ export default {
     transition: 'width 250ms ease-in-out'
   },
   exiting: {
-    // position: 'fixed',
+    position: 'fixed',
     transform: 'translate(0%)'
   },
   exited: {

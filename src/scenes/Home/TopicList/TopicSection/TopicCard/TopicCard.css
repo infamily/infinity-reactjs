@@ -1,13 +1,8 @@
 .card__item {
-  margin-bottom: 10px;
   border-radius: 6px;
   border: 1px solid rgb(216, 216, 216);
   box-shadow: 2px 5px 7px rgb(216, 216, 216);
   overflow: hidden;
-}
-
-.card__item:hover {
-  margin-bottom: 10px;
 }
 
 .card__title-text {

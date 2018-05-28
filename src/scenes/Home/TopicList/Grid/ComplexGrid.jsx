@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import {
   CellMeasurer,
@@ -10,7 +10,7 @@ import {
 } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
-export default class GridExample extends PureComponent {
+export default class GridExample extends Component {
   constructor(props) {
     super(props);
 
@@ -29,7 +29,7 @@ export default class GridExample extends PureComponent {
       height: 300,
       gutterSize: 10,
       overscanByPixels: 0,
-      windowScrollerEnabled: false
+      windowScrollerEnabled: true
     };
 
     this.cellRenderer = this.cellRenderer.bind(this);
@@ -37,30 +37,6 @@ export default class GridExample extends PureComponent {
     this.renderAutoSizer = this.renderAutoSizer.bind(this);
     this.renderMasonry = this.renderMasonry.bind(this);
     this.setMasonryRef = this.setMasonryRef.bind(this);
-  }
-
-  render() {
-    const {
-      columnWidth,
-      height,
-      gutterSize,
-      overscanByPixels,
-      windowScrollerEnabled
-    } = this.state;
-
-    let child;
-
-    if (windowScrollerEnabled) {
-      child = (
-        <WindowScroller overscanByPixels={overscanByPixels}>
-          {this.renderAutoSizer}
-        </WindowScroller>
-      );
-    } else {
-      child = this.renderAutoSizer({ height });
-    }
-
-    return <div>{child}</div>;
   }
 
   calculateColumnCount() {
@@ -77,8 +53,10 @@ export default class GridExample extends PureComponent {
 
     return (
       <CellMeasurer cache={this.cache} index={index} key={key} parent={parent}>
-        <div // className={styles.Cell}
-          style={{ ...style, width: columnWidth }}
+        <div
+          style={
+            { ...style, width: columnWidth } // className={styles.Cell}
+          }
         >
           {datum}
         </div>
@@ -108,9 +86,10 @@ export default class GridExample extends PureComponent {
     this.masonry.recomputeCellPositions();
   }
 
-  renderAutoSizer({ height, scrollTop }) {
+  renderAutoSizer({ height, scrollTop, isScrolling }) {
     this.height = height;
     this.scrollTop = scrollTop;
+    this.isScrolling = isScrolling;
 
     const { overscanByPixels } = this.state;
 
@@ -129,16 +108,19 @@ export default class GridExample extends PureComponent {
 
   renderMasonry({ width }) {
     this.width = width;
+    // this.height = height;
 
     this.calculateColumnCount();
     this.initCellPositioner();
 
     const { height, overscanByPixels, windowScrollerEnabled } = this.state;
+    const { children } = this.props;
+    // const stateHeight = this.state.height;
 
     return (
       <Masonry
-        autoHeight={windowScrollerEnabled}
-        cellCount={1000}
+        // autoHeight={windowScrollerEnabled}
+        cellCount={children.length}
         cellMeasurerCache={this.cache}
         cellPositioner={this.cellPositioner}
         cellRenderer={this.cellRenderer}
@@ -146,6 +128,7 @@ export default class GridExample extends PureComponent {
         overscanByPixels={overscanByPixels}
         ref={this.setMasonryRef}
         scrollTop={this.scrollTop}
+        isScrolling={this.isScrolling}
         width={width}
       />
     );
@@ -170,5 +153,29 @@ export default class GridExample extends PureComponent {
 
   setMasonryRef(ref) {
     this.masonry = ref;
+  }
+
+  render() {
+    const {
+      columnWidth,
+      height,
+      gutterSize,
+      overscanByPixels,
+      windowScrollerEnabled
+    } = this.state;
+
+    let child;
+
+    if (windowScrollerEnabled) {
+      child = (
+        <WindowScroller overscanByPixels={overscanByPixels}>
+          {this.renderAutoSizer}
+        </WindowScroller>
+      );
+    } else {
+      child = this.renderAutoSizer({ height });
+    }
+
+    return <div>{child}</div>;
   }
 }

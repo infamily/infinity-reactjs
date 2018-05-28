@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { FormattedDate } from 'react-intl';
 import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import TopicFundData from 'components/TopicFundData';
-import { makePreviewHtml } from 'services/common.services';
+// import { makePreviewHtml } from 'services/common.services';
+import { toPlain } from './helpers';
 import topicService from 'services/topic.service';
 import configs from 'configs';
 import './TopicCard.css';
@@ -79,7 +80,7 @@ export default class TopicCard extends Component {
           <TopicFundData topic={topic} updateData={this.updateData} />
         </div>
         <div className="card__description" onClick={this.goToTopic}>
-          <div className="card__text">{makePreviewHtml(body)}</div>
+          <div className="card__text">{toPlain(body)}</div>
           <br />
           <small>
             <FormattedDate
