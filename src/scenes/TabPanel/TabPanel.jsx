@@ -55,7 +55,7 @@ export default class TabPanel extends Component {
       match: { path }
     } = this.props;
     const { isOpen, fullWidth } = this.state;
-    const fullStyle = fullWidth ? ' tab_container--full' : '';
+    const fullStyle = fullWidth ? 'tab_container--full' : '';
 
     const TabWrapper = TabPanelContent => props => (
       <TabPanelContent
@@ -81,7 +81,7 @@ export default class TabPanel extends Component {
           {state => (
             <div className="tab_layout" style={{ ...transitionStyles[state] }}>
               <div
-                className={`tab_container${fullStyle}`}
+                className={`tab_container ${fullStyle}`}
                 style={{ ...transitionStyles[state] }}
               >
                 <Switch>

@@ -9,6 +9,7 @@ import {
   AutoSizer
 } from 'react-virtualized';
 import 'react-virtualized/styles.css';
+import './Grid.css';
 
 export default class VirtualizedGrid extends PureComponent {
   constructor(props) {
@@ -118,6 +119,7 @@ export default class VirtualizedGrid extends PureComponent {
         isScrolling={this.isScrolling}
         onScroll={this.onChildScroll}
         width={width}
+        className="gird__masonry"
       />
     );
   };
