@@ -40,7 +40,7 @@ export default class TabPanel extends Component {
   close = () => {
     const { push } = this.props.history;
     this.setState({ isOpen: false });
-    setTimeout(() => push(`${configs.linkBase()}/`), 300);
+    setTimeout(() => push(`${configs.linkBase()}/`), 200);
   };
 
   toggleFullScreen = () => {

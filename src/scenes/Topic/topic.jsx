@@ -68,6 +68,7 @@ class Topic extends Component {
     const getId = props => props.match.params.id;
     // check if new topic is provided
     const solve = getId(this.props) !== getId(nextProps);
+
     if (solve) await this.loadTopicData(getId(nextProps));
   }
 

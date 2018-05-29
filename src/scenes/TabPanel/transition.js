@@ -1,22 +1,17 @@
 export default {
   entering: {
-    position: 'fixed',
-    width: '0px',
+    transition: 'all 0.3s ease-out',
     transform: 'translate(100%)'
   },
   entered: {
-    // position: 'relative',
-    transform: 'none',
-    transition: 'width 250ms ease-in-out'
-  },
-  exiting: {
-    position: 'fixed',
+    transition: 'all 0.3s ease-out',
     transform: 'translate(0%)'
   },
+  exiting: {
+    transition: 'all 0.3s ease-out'
+  },
   exited: {
-    // position: 'relative',
-    width: '0px',
-    transform: 'translate(100%)',
-    transition: 'width 250ms ease-in-out'
+    transition: 'all 0.3s ease-out',
+    transform: 'translate(100%)'
   }
 };
