@@ -40,7 +40,7 @@ export default class VirtGrid extends Component {
     const list = this.props.children;
 
     return (
-      <div className="full_height">
+      <div>
         <AutoSizer>
           {({ height, width }) => {
             console.log(height, width);

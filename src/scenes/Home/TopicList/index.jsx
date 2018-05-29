@@ -56,7 +56,7 @@ class TopicList extends Component {
 
     if (view === 'grid')
       return (
-        <div className="full_height">
+        <div>
           <Grid>{elements}</Grid>
         </div>
       );

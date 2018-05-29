@@ -189,21 +189,20 @@ class Home extends Component {
     const fullStyle = view === 'grid' && ' main--full';
 
     return (
-      <div className={`main ${fullStyle} full_height`}>
+      <div className={`main ${fullStyle}`}>
         <HomeConfigPanel
           user={user}
           makeSearch={this.makeSearch}
           updateHomeTopicsByParams={this.updateHomeTopicsByParams}
           setLoading={this.setLoading}
         />
-        <div className="topics__content full_height">
+        <div className="topics__content">
           {loading ? (
             <Loading />
           ) : (
             <InfiniteScroll
               pageStart={1}
               loadMore={this.loadMore}
-              className="full_height"
               hasMore={hasMore}
               loader={<LoadingElements key={0} />}
             >
