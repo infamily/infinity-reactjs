@@ -29,25 +29,18 @@ export default class VirtualizedGrid extends PureComponent {
       gutterSize: 10,
       overscanByPixels: 0
     };
-
-    this.cellRenderer = this.cellRenderer.bind(this);
-    this.onResize = this.onResize.bind(this);
-    this.renderAutoSizer = this.renderAutoSizer.bind(this);
-    this.renderMasonry = this.renderMasonry.bind(this);
-    this.renderMasonry2 = this.renderMasonry2.bind(this);
-    this.setMasonryRef = this.setMasonryRef.bind(this);
   }
 
   static defaultProps = { children: null };
   static propTypes = { children: PropTypes.array };
 
-  calculateColumnCount() {
+  calculateColumnCount = () => {
     const { columnWidth, gutterSize } = this.state;
 
     this.columnCount = Math.floor(this.width / (columnWidth + gutterSize));
-  }
+  };
 
-  cellRenderer({ index, key, parent, style }) {
+  cellRenderer = ({ index, key, parent, style }) => {
     const list = this.props.children;
     const { columnWidth } = this.state;
     const datum = list[index];
@@ -57,9 +50,9 @@ export default class VirtualizedGrid extends PureComponent {
         <div style={{ ...style, width: columnWidth }}>{datum}</div>
       </CellMeasurer>
     );
-  }
+  };
 
-  initCellPositioner() {
+  initCellPositioner = () => {
     if (typeof this.cellPositioner === 'undefined') {
       const { columnWidth, gutterSize } = this.state;
 
@@ -70,18 +63,18 @@ export default class VirtualizedGrid extends PureComponent {
         spacer: gutterSize
       });
     }
-  }
+  };
 
-  onResize({ width }) {
+  onResize = ({ width }) => {
     this.width = width;
 
     this.columnHeights = {};
     this.calculateColumnCount();
     this.resetCellPositioner();
     this.masonry.recomputeCellPositions();
-  }
+  };
 
-  renderAutoSizer({ height, scrollTop, isScrolling, onChildScroll }) {
+  renderAutoSizer = ({ height, scrollTop, isScrolling, onChildScroll }) => {
     this.height = height;
     this.scrollTop = scrollTop;
     this.isScrolling = isScrolling;
@@ -100,9 +93,9 @@ export default class VirtualizedGrid extends PureComponent {
         {this.renderMasonry}
       </AutoSizer>
     );
-  }
+  };
 
-  renderMasonry({ width }) {
+  renderMasonry = ({ width }) => {
     this.width = width;
 
     this.calculateColumnCount();
@@ -127,9 +120,9 @@ export default class VirtualizedGrid extends PureComponent {
         width={width}
       />
     );
-  }
+  };
 
-  resetCellPositioner() {
+  resetCellPositioner = () => {
     const { columnWidth, gutterSize } = this.state;
 
     this.cellPositioner.reset({
@@ -137,11 +130,11 @@ export default class VirtualizedGrid extends PureComponent {
       columnWidth,
       spacer: gutterSize
     });
-  }
+  };
 
-  setMasonryRef(ref) {
+  setMasonryRef = ref => {
     this.masonry = ref;
-  }
+  };
 
   render() {
     const { overscanByPixels } = this.state;
