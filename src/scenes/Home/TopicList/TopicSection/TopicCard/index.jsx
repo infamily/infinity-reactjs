@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedDate } from 'react-intl';
 import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import TopicFundData from 'components/TopicFundData';
-// import { makePreviewHtml } from 'services/common.services';
-import { toPlain } from './helpers';
+import { makePreviewHtml } from 'services/common.services';
 import topicService from 'services/topic.service';
 import configs from 'configs';
 import './TopicCard.css';
@@ -21,7 +20,6 @@ const makeHexDim = (inputHex, opacity) => {
 const getTopicLink = id => `${configs.linkBase()}/split/topic/${id}`;
 const getColor = type => configs.colors[type];
 const getTitleStyle = color => ({
-  // border: `1px solid ${makeHexDim(color, 85)}`,
   borderLeft: `3px solid ${makeHexDim(color, 85)}`
 });
 
@@ -67,7 +65,7 @@ export default class TopicCard extends Component {
     const { topic } = this.state;
     const { title, body, type, created_date } = topic;
     const color = getColor(type);
-    const text = toPlain(body);
+    const text = makePreviewHtml(body);
     return (
       <div
         id={`card-${topic.id}`}
@@ -81,7 +79,7 @@ export default class TopicCard extends Component {
           <TopicFundData topic={topic} updateData={this.updateData} />
         </div>
         <div className="card__description" onClick={this.goToTopic}>
-          <div className="card__text">{text.slice(0, 300)}</div>
+          <div className="card__text">{text}</div>
           <br />
           <small>
             <FormattedDate

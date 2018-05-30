@@ -6,6 +6,7 @@ import {
   createMasonryCellPositioner as createCellPositioner,
   Masonry,
   WindowScroller,
+  recomputeCellPositions,
   AutoSizer
 } from 'react-virtualized';
 import 'react-virtualized/styles.css';
@@ -25,15 +26,37 @@ export default class VirtualizedGrid extends PureComponent {
 
     this.columnHeights = {};
 
-    this.state = {
-      columnWidth: 250,
-      gutterSize: 10,
-      overscanByPixels: 0
-    };
+    this.state = { columnWidth: 250, gutterSize: 10, overscanByPixels: 0 };
   }
 
   static defaultProps = { children: null };
   static propTypes = { children: PropTypes.array };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.children.length !== this.props.children.length) {
+      console.log('nextProps.children.length', nextProps.children.length);
+      // window.scrollBy(0, -100);
+      // const newHeight = this.height * 2;
+      // this.height = newHeight;
+      // this.onItemsLoad();
+    }
+  }
+
+  onItemsLoad = () => {
+    console.log('fire');
+    this.resetCellPositioner();
+    this.masonry.recomputeCellPositions();
+    this.windowScroller.updatePosition();
+    this.moveUp();
+  };
+
+  moveUp = () => {
+    // if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    //   console.log(window.innerHeight + window.scrollY);
+    //   console.log(document.body.offsetHeight);
+    // }
+    window.scrollBy(0, -25);
+  };
 
   calculateColumnCount = () => {
     const { columnWidth, gutterSize } = this.state;
@@ -86,7 +109,7 @@ export default class VirtualizedGrid extends PureComponent {
     return (
       <AutoSizer
         disableHeight
-        height={height}
+        height={this.height}
         onResize={this.onResize}
         overscanByPixels={overscanByPixels}
         scrollTop={this.scrollTop}
@@ -138,11 +161,18 @@ export default class VirtualizedGrid extends PureComponent {
     this.masonry = ref;
   };
 
+  setScrollerRef = ref => {
+    this.windowScroller = ref;
+  };
+
   render() {
     const { overscanByPixels } = this.state;
 
     return (
-      <WindowScroller overscanByPixels={overscanByPixels}>
+      <WindowScroller
+        ref={this.setScrollerRef}
+        overscanByPixels={overscanByPixels}
+      >
         {this.renderAutoSizer}
       </WindowScroller>
     );

@@ -120,10 +120,12 @@ class Home extends Component {
   loadMore = async () => {
     const { topics, count, page } = this.state;
     const { flag, topicSource, categories } = this.props.homeParams;
+    const { view } = this.props.homeParams;
     const next = page + 1;
 
     if (!topics) return;
     if (count === topics.length) return;
+    if (view === 'grid') window.scrollBy(0, -25); // to reset masonry height
 
     const categoryParams = makeCategoriesArray(categories);
     const newTopics = await topicService.getPage(
@@ -143,8 +145,8 @@ class Home extends Component {
 
   hasMore = () => {
     const { count, topics } = this.state;
-    return false;
     return topics && topics.length < count;
+    return false;
   };
 
   updateHomeTopics = data => {

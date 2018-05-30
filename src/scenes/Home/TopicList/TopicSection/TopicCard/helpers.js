@@ -1,5 +1,7 @@
 import marked from 'marked';
 
+// to do: parse plain text to preview
+
 const htmlEscapeToText = text =>
   text.replace(/\&\#[0-9]*;|&amp;/g, escapeCode => {
     if (escapeCode.match(/amp/)) {
