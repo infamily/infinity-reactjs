@@ -32,32 +32,6 @@ export default class VirtualizedGrid extends PureComponent {
   static defaultProps = { children: null };
   static propTypes = { children: PropTypes.array };
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.children.length !== this.props.children.length) {
-      console.log('nextProps.children.length', nextProps.children.length);
-      // window.scrollBy(0, -100);
-      // const newHeight = this.height * 2;
-      // this.height = newHeight;
-      // this.onItemsLoad();
-    }
-  }
-
-  onItemsLoad = () => {
-    console.log('fire');
-    this.resetCellPositioner();
-    this.masonry.recomputeCellPositions();
-    this.windowScroller.updatePosition();
-    this.moveUp();
-  };
-
-  moveUp = () => {
-    // if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    //   console.log(window.innerHeight + window.scrollY);
-    //   console.log(document.body.offsetHeight);
-    // }
-    window.scrollBy(0, -25);
-  };
-
   calculateColumnCount = () => {
     const { columnWidth, gutterSize } = this.state;
 
