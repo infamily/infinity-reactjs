@@ -14,6 +14,14 @@ import HomeConfigPanel from './HomeConfigPanel';
 import messages from './messages';
 import './Home.css';
 
+const checkItem = (topic, user) => {
+  if (!topic.is_draft) return true;
+  if (!user) return false;
+
+  const isOwner = topic.owner.username === user.username;
+  return isOwner;
+};
+
 class Home extends Component {
   constructor() {
     super();
@@ -144,8 +152,8 @@ class Home extends Component {
 
   hasMore = () => {
     const { count, topics } = this.state;
-    return topics && topics.length < count;
     return false;
+    return topics && topics.length < count;
   };
 
   updateHomeTopics = data => {
@@ -174,6 +182,11 @@ class Home extends Component {
       page: 1
     });
     this.setLoading(false);
+  };
+
+  filterTopics = arr => {
+    const { user } = this.props;
+    return arr.filter(item => checkItem(item, user));
   };
 
   setLoading = bool => {
@@ -207,7 +220,7 @@ class Home extends Component {
               hasMore={hasMore}
               loader={<LoadingElements key={0} />}
             >
-              <TopicList topics={topics} view={view} />
+              <TopicList topics={this.filterTopics(topics)} view={view} />
             </InfiniteScroll>
           )}
         </div>

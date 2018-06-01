@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import messages from 'scenes/Home/messages';
 import TopicSection from './TopicSection';
-import Grid from './Grid/VirtualizedGrid';
+// import Grid from './Grid/VirtualizedGrid';
+// import Grid from './Grid/List';
+import Grid from './Grid/VirtualizedList';
 import './TopicList.css';
 
 class TopicList extends Component {

@@ -79,9 +79,11 @@ export default class TopicCard extends Component {
           <TopicFundData topic={topic} updateData={this.updateData} />
         </div>
         <div className="card__description" onClick={this.goToTopic}>
-          <div className="card__text">{text}</div>
+          <div className="card__text card__font">{text}</div>
           <br />
-          <small>
+        </div>
+        <div className="card__progres">
+          <small className="card__date card__font">
             <FormattedDate
               value={created_date}
               month="long"
@@ -89,8 +91,8 @@ export default class TopicCard extends Component {
               day="numeric"
             />
           </small>
+          <PreviewProgressBar topic={topic} />
         </div>
-        <PreviewProgressBar topic={topic} />
       </div>
     );
   }

@@ -3,6 +3,10 @@
   border: 1px solid rgb(216, 216, 216);
   box-shadow: 2px 5px 7px rgb(216, 216, 216);
   overflow: hidden;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .card__title-text {
@@ -17,18 +21,33 @@
 }
 
 .card__description {
-  color: rgb(170, 170, 170);
-  font-size: 14px;
   padding: 10px;
   cursor: pointer;
 }
 
+.card__date {
+  margin-left: 10px;
+  padding: 5px 0;
+}
+
+.card__font {
+  color: rgb(170, 170, 170);
+  font-size: 14px;
+}
+
 .card__text {
   overflow: hidden;
-  max-height: 200px;
+  max-height: 100px;
   padding-bottom: 5px;
 }
 
 .card__data {
   margin: 0 10px;
+}
+
+.card__progres {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(243, 243, 243);
 }

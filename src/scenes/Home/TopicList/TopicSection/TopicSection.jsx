@@ -117,7 +117,7 @@ class TopicSection extends Component {
       );
     };
 
-    const draftStyle = getDraftStyle(this.props.topic);
+    const draftStyle = getDraftStyle(this.props.topic, user);
     const gridStyle = !isLineView && 'topics__item--grid';
     return (
       <div className={`topics__item ${draftStyle} ${gridStyle}`}>
