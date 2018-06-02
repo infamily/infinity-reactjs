@@ -1,0 +1,10 @@
+.not_found__img {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.not_found__box {
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+}
