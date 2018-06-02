@@ -103,6 +103,13 @@ a:visited {
   cursor: pointer;
 }
 
+@media (min-width: 1200px) {
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 650px) {
   .nav__back {
     display: flex;

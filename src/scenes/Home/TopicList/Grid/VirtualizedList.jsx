@@ -5,8 +5,18 @@ import 'react-virtualized/styles.css';
 import './Grid.css';
 
 const styles = {};
-const ITEM_SIZE = 265;
+const ITEM_SIZE = 265; // width and height of the card
 const OVERSCAN = 0;
+
+const getMaxCardWidth = width => {
+  console.log(width, 'wid');
+
+  // card per row
+  if (width >= ITEM_SIZE * 4) return width / 4;
+  if (width >= ITEM_SIZE * 3) return width / 3;
+  if (width >= ITEM_SIZE * 2) return width / 2;
+  return width;
+};
 
 export default class WindowScrollerExample extends PureComponent {
   static propTypes = {
@@ -15,7 +25,10 @@ export default class WindowScrollerExample extends PureComponent {
 
   state = { scrollToIndex: -1, showHeaderText: true };
 
-  setWidth = width => (width > 1200 ? 1200 : width);
+  setWidth = width => {
+    const maxRowWidth = ITEM_SIZE * 4;
+    return width > maxRowWidth ? maxRowWidth : width;
+  };
 
   render() {
     const { scrollToIndex, showHeaderText } = this.state;
@@ -35,6 +48,7 @@ export default class WindowScrollerExample extends PureComponent {
               <AutoSizer disableHeight>
                 {({ width }) => {
                   this.width = this.setWidth(width);
+                  // this.width = width;
                   return (
                     <div ref={registerChild}>
                       <List
@@ -97,9 +111,11 @@ export default class WindowScrollerExample extends PureComponent {
     const fromIndex = index * itemsPerRow;
     const toIndex = Math.min(fromIndex + itemsPerRow, ITEMS_COUNT);
 
+    const cardStyle = { maxWidth: getMaxCardWidth(this.width) };
+
     for (let i = fromIndex; i < toIndex; i += 1) {
       items.push(
-        <div className="grid__row_item" key={i}>
+        <div className="grid__row_item" key={i} style={cardStyle}>
           {children[i]}
         </div>
       );

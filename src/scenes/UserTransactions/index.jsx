@@ -34,7 +34,9 @@ export default class UserTransactions extends Component {
     return (
       <div className="main">
         <NavLink to="/" className="nav__back">
-          &#10094; <FormattedMessage {...messages.homeLink} />
+          <span>
+            &#10094; <FormattedMessage {...messages.homeLink} />
+          </span>
         </NavLink>
         <h1 className="user_contribution__header">
           <FormattedMessage {...messages.by} /> {balance.username}

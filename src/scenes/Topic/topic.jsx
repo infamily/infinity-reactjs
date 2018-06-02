@@ -205,16 +205,22 @@ class Topic extends Component {
       }
     };
 
-    const HomeButton = () =>
-      close ? (
-        <div onClick={close} className="nav__back">
+    const HomeButton = () => {
+      const TextButton = () => (
+        <span>
           &#10094; <FormattedMessage {...messages.homeButton} />
+        </span>
+      );
+      return close ? (
+        <div onClick={close} className="nav__back">
+          <TextButton />
         </div>
       ) : (
         <NavLink to={configs.linkBase()} className="nav__back">
-          &#10094; <FormattedMessage {...messages.homeButton} />
+          <TextButton />
         </NavLink>
       );
+    };
 
     const newButtonText = !addChildSection ? (
       <span>+ {getChild(topic.type)}</span>

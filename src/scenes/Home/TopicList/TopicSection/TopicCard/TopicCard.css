@@ -37,7 +37,6 @@
 
 .card__text {
   overflow: hidden;
-  max-height: 100px;
   padding-bottom: 5px;
 }
 
