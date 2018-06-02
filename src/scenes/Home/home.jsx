@@ -132,7 +132,7 @@ class Home extends Component {
 
     if (!topics) return;
     if (count === topics.length) return;
-    window.scrollBy(0, -25); // to reset masonry height
+    window.scrollBy(0, -55); // to reset masonry height
 
     const categoryParams = makeCategoriesArray(categories);
     const newTopics = await topicService.getPage(
@@ -152,8 +152,8 @@ class Home extends Component {
 
   hasMore = () => {
     const { count, topics } = this.state;
-    return false;
     return topics && topics.length < count;
+    // return false;
   };
 
   updateHomeTopics = data => {
