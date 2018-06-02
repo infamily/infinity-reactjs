@@ -9,8 +9,6 @@ const ITEM_SIZE = 265; // width and height of the card
 const OVERSCAN = 0;
 
 const getMaxCardWidth = width => {
-  console.log(width, 'wid');
-
   // card per row
   if (width >= ITEM_SIZE * 4) return width / 4;
   if (width >= ITEM_SIZE * 3) return width / 3;
@@ -26,13 +24,12 @@ export default class WindowScrollerExample extends PureComponent {
   state = { scrollToIndex: -1, showHeaderText: true };
 
   setWidth = width => {
-    const maxRowWidth = ITEM_SIZE * 4;
-    return width > maxRowWidth ? maxRowWidth : width;
+    const rowWidth = ITEM_SIZE * 5 - 10; // max row width for 4 cards
+    return width > rowWidth ? rowWidth : width;
   };
 
   render() {
-    const { scrollToIndex, showHeaderText } = this.state;
-    const list = this.props.children;
+    const { scrollToIndex } = this.state;
 
     return (
       <div>

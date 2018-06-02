@@ -103,9 +103,9 @@ a:visited {
   cursor: pointer;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .main {
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 0 auto;
   }
 }

@@ -152,8 +152,8 @@ class Home extends Component {
 
   hasMore = () => {
     const { count, topics } = this.state;
-    return topics && topics.length < count;
-    // return false;
+    return false;
+    // return topics && topics.length < count;
   };
 
   updateHomeTopics = data => {
