@@ -22,6 +22,7 @@ class TopicList extends Component {
 
   static propTypes = {
     topics: PropTypes.array,
+    count: PropTypes.number.isRequired,
     view: PropTypes.string.isRequired
   };
 
@@ -35,7 +36,7 @@ class TopicList extends Component {
 
   render() {
     const { topics } = this.state;
-    const { view } = this.props;
+    const { view, count } = this.props;
     const elements =
       topics &&
       topics.map(
@@ -56,7 +57,7 @@ class TopicList extends Component {
     if (view === 'grid')
       return (
         <div>
-          <Grid>{elements}</Grid>
+          <Grid count={count}>{elements}</Grid>
         </div>
       );
     return <div>{elements}</div>;

@@ -1,12 +1,21 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { WindowScroller, List, AutoSizer } from 'react-virtualized';
+import {
+  InfiniteLoader,
+  WindowScroller,
+  List,
+  AutoSizer
+} from 'react-virtualized';
 import 'react-virtualized/styles.css';
 import './Grid.css';
 
 const styles = {};
 const ITEM_SIZE = 265; // width and height of the card
 const OVERSCAN = 0;
+
+// InfiniteLoader constants
+const STATUS_LOADING = 1;
+const STATUS_LOADED = 2;
 
 const getMaxCardWidth = width => {
   // card per row
@@ -16,12 +25,22 @@ const getMaxCardWidth = width => {
   return width;
 };
 
-export default class WindowScrollerExample extends PureComponent {
-  static propTypes = {
-    children: PropTypes.array
-  };
+export default class WindowScrollerExample extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loadedRowCount: 0,
+      loadedRowsMap: null,
+      loadingRowCount: 0,
+      scrollToIndex: -1,
+      showHeaderText: true
+    };
+  }
 
-  state = { scrollToIndex: -1, showHeaderText: true };
+  static propTypes = {
+    children: PropTypes.array,
+    count: PropTypes.number.isRequired
+  };
 
   setWidth = width => {
     const rowWidth = ITEM_SIZE * 5 - 10; // max row width for 4 cards
@@ -34,37 +53,36 @@ export default class WindowScrollerExample extends PureComponent {
     return (
       <div>
         <WindowScroller ref={this.setRef} scrollElement={window}>
-          {({
-            height,
-            isScrolling,
-            registerChild,
-            onChildScroll,
-            scrollTop
-          }) => (
+          {({ height, isScrolling, onChildScroll, scrollTop }) => (
             <div className={styles.WindowScrollerWrapper}>
               <AutoSizer disableHeight>
                 {({ width }) => {
                   this.width = this.setWidth(width);
-                  // this.width = width;
                   return (
-                    <div ref={registerChild}>
-                      <List
-                        ref={el => {
-                          window.listEl = el;
-                        }}
-                        autoHeight
-                        className="gird__masonry"
-                        height={height}
-                        isScrolling={isScrolling}
-                        onScroll={onChildScroll}
-                        overscanRowCount={OVERSCAN}
-                        rowCount={this.countCardRowNumber()}
-                        rowHeight={ITEM_SIZE}
-                        rowRenderer={this.cardRowRenderer}
-                        scrollToIndex={scrollToIndex}
-                        scrollTop={scrollTop}
-                        width={width}
-                      />
+                    <div>
+                      {width &&
+                        this.renderLoader(
+                          ({ onRowsRendered, registerChild }) => (
+                            <List
+                              ref={registerChild}
+                              autoHeight
+                              className="gird__masonry"
+                              height={height}
+                              isScrolling={isScrolling}
+                              onScroll={onChildScroll}
+                              overscanRowCount={OVERSCAN}
+                              rowCount={this.countCardRowNumber(
+                                this.props.count
+                              )}
+                              rowHeight={ITEM_SIZE}
+                              rowRenderer={this.cardRowRenderer}
+                              scrollToIndex={scrollToIndex}
+                              scrollTop={scrollTop}
+                              width={this.width}
+                              onRowsRendered={onRowsRendered}
+                            />
+                          )
+                        )}
                     </div>
                   );
                 }}
@@ -75,6 +93,49 @@ export default class WindowScrollerExample extends PureComponent {
       </div>
     );
   }
+
+  isRowLoaded = ({ index }) => !!this.loadedRowsMap[index]; // STATUS_LOADING or STATUS_LOADED
+
+  setRowsMap = () => {
+    if (this.loadedRowsMap) return;
+
+    const loadedCount = this.countCardRowNumber();
+    const availableRowCount = this.countCardRowNumber(this.props.count);
+
+    const loadedRowsMap = {};
+    for (let i = 0; i < availableRowCount; i += 1) {
+      if (i < loadedCount) loadedRowsMap[i] = STATUS_LOADED;
+      else loadedRowsMap[i] = 0;
+    }
+    console.log(loadedRowsMap);
+
+    // this.setState({ loadedRowsMap });
+    this.loadedRowsMap = loadedRowsMap;
+  };
+
+  loadMoreRows = ({ startIndex, stopIndex }) => {
+    console.log('loadMore');
+    console.log(startIndex, stopIndex);
+
+    // to do: create loading function
+  };
+
+  renderLoader = renderList => {
+    this.setRowsMap();
+    const availableRowCount = this.countCardRowNumber(this.props.count);
+    // const threshold = Math.ceil(rowCount * 0.7);
+
+    return (
+      <InfiniteLoader
+        isRowLoaded={this.isRowLoaded}
+        loadMoreRows={this.loadMoreRows}
+        rowCount={availableRowCount}
+        // threshold={threshold}
+      >
+        {renderList}
+      </InfiniteLoader>
+    );
+  };
 
   hideHeader = () => {
     const { showHeaderText } = this.state;
@@ -91,8 +152,9 @@ export default class WindowScrollerExample extends PureComponent {
     );
   };
 
-  countCardRowNumber = () => {
-    const ITEMS_COUNT = this.props.children.length;
+  countCardRowNumber = (count = null) => {
+    if (this.width === 0) return 0;
+    const ITEMS_COUNT = count || this.props.children.length;
     const itemsPerRow = Math.floor(this.width / ITEM_SIZE);
     const rowCount = Math.ceil(ITEMS_COUNT / itemsPerRow);
     return rowCount;

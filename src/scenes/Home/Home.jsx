@@ -196,7 +196,7 @@ class Home extends Component {
   render() {
     const { user, server } = this.props;
     const { view } = this.props.homeParams;
-    const { topics, loading } = this.state;
+    const { topics, loading, count } = this.state;
     const hasMore = this.hasMore();
 
     if (topics === null || !server) return <Loading />;
@@ -220,7 +220,11 @@ class Home extends Component {
               hasMore={hasMore}
               loader={<LoadingElements key={0} />}
             >
-              <TopicList topics={this.filterTopics(topics)} view={view} />
+              <TopicList
+                topics={this.filterTopics(topics)}
+                view={view}
+                count={count}
+              />
             </InfiniteScroll>
           )}
         </div>
