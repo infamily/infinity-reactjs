@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import messages from 'scenes/Home/messages';
-import TopicSection from './TopicSection';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
+import messages from "scenes/Home/messages";
+import TopicSection from "./TopicSection";
 // import Grid from './Grid/VirtualizedGrid';
 // import Grid from './Grid/List';
-import Grid from './Grid/VirtualizedList';
-import './TopicList.css';
+import Grid from "./Grid/VirtualizedList";
+import "./TopicList.css";
 
 class TopicList extends Component {
   constructor(props) {
@@ -54,10 +54,12 @@ class TopicList extends Component {
         </div>
       );
 
-    if (view === 'grid')
+    if (view === "grid")
       return (
         <div>
-          <Grid count={count}>{elements}</Grid>
+          <Grid count={count} loadMore={this.props.loadMore}>
+            {elements}
+          </Grid>
         </div>
       );
     return <div>{elements}</div>;

@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   InfiniteLoader,
   WindowScroller,
   List,
   AutoSizer
-} from 'react-virtualized';
-import 'react-virtualized/styles.css';
-import './Grid.css';
+} from "react-virtualized";
+import LoadingElements from "components/Loading/LoadingElements";
+import "react-virtualized/styles.css";
+import "./Grid.css";
 
 const styles = {};
 const ITEM_SIZE = 265; // width and height of the card
@@ -25,7 +26,7 @@ const getMaxCardWidth = width => {
   return width;
 };
 
-export default class WindowScrollerExample extends Component {
+export default class VirtualizedList extends Component {
   constructor() {
     super();
     this.state = {
@@ -39,7 +40,8 @@ export default class WindowScrollerExample extends Component {
 
   static propTypes = {
     children: PropTypes.array,
-    count: PropTypes.number.isRequired
+    count: PropTypes.number.isRequired,
+    loadMore: PropTypes.func.isRequired
   };
 
   setWidth = width => {
@@ -96,8 +98,8 @@ export default class WindowScrollerExample extends Component {
 
   isRowLoaded = ({ index }) => !!this.loadedRowsMap[index]; // STATUS_LOADING or STATUS_LOADED
 
-  setRowsMap = () => {
-    if (this.loadedRowsMap) return;
+  setRowsMap = (forceUpdate = null) => {
+    if (!forceUpdate && this.loadedRowsMap) return;
 
     const loadedCount = this.countCardRowNumber();
     const availableRowCount = this.countCardRowNumber(this.props.count);
@@ -107,30 +109,35 @@ export default class WindowScrollerExample extends Component {
       if (i < loadedCount) loadedRowsMap[i] = STATUS_LOADED;
       else loadedRowsMap[i] = 0;
     }
-    console.log(loadedRowsMap);
 
-    // this.setState({ loadedRowsMap });
     this.loadedRowsMap = loadedRowsMap;
   };
 
-  loadMoreRows = ({ startIndex, stopIndex }) => {
-    console.log('loadMore');
-    console.log(startIndex, stopIndex);
+  loaderHandler = async ({ startIndex, stopIndex }) => {
+    const loadedCount = this.countCardRowNumber();
 
-    // to do: create loading function
+    const loadedRowsMap = { ...this.loadedRowsMap };
+    for (let i = startIndex; i <= stopIndex; i += 1) {
+      loadedRowsMap[i] = STATUS_LOADING;
+    }
+    this.loadedRowsMap = loadedRowsMap;
+
+    if (loadedCount <= stopIndex) {
+      await this.props.loadMore();
+      this.setRowsMap("forceUpdate");
+      this.forceUpdate();
+    }
   };
 
   renderLoader = renderList => {
     this.setRowsMap();
     const availableRowCount = this.countCardRowNumber(this.props.count);
-    // const threshold = Math.ceil(rowCount * 0.7);
 
     return (
       <InfiniteLoader
         isRowLoaded={this.isRowLoaded}
-        loadMoreRows={this.loadMoreRows}
+        loadMoreRows={this.loaderHandler}
         rowCount={availableRowCount}
-        // threshold={threshold}
       >
         {renderList}
       </InfiniteLoader>
@@ -173,11 +180,17 @@ export default class WindowScrollerExample extends Component {
     const cardStyle = { maxWidth: getMaxCardWidth(this.width) };
 
     for (let i = fromIndex; i < toIndex; i += 1) {
-      items.push(
-        <div className="grid__row_item" key={i} style={cardStyle}>
-          {children[i]}
-        </div>
-      );
+      const item =
+        this.loadedRowsMap[index] === STATUS_LOADED ? (
+          <div className="grid__row_item" key={i} style={cardStyle}>
+            {children[i]}
+          </div>
+        ) : (
+          <div className="grid__row_item" key={i} style={cardStyle}>
+            <LoadingElements />
+          </div>
+        );
+      items.push(item);
     }
 
     return (

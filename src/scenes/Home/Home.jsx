@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import InfiniteScroll from 'react-infinite-scroller';
-import { FormattedMessage } from 'react-intl';
-import MenuBar from 'scenes/MenuBar';
-import Loading from 'components/Loading';
-import LoadingElements from 'components/Loading/LoadingElements';
-import topicViewService from 'services/topic_view.service';
-import topicService from 'services/topic.service';
-import store_home from './services/store_home';
-import TopicList from './TopicList';
-import { validateHomeParams, makeCategoriesArray } from './helpers';
-import HomeConfigPanel from './HomeConfigPanel';
-import messages from './messages';
-import './Home.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import InfiniteScroll from "react-infinite-scroller";
+import { FormattedMessage } from "react-intl";
+import MenuBar from "scenes/MenuBar";
+import Loading from "components/Loading";
+import LoadingElements from "components/Loading/LoadingElements";
+import topicViewService from "services/topic_view.service";
+import topicService from "services/topic.service";
+import store_home from "./services/store_home";
+import TopicList from "./TopicList";
+import { validateHomeParams, makeCategoriesArray } from "./helpers";
+import HomeConfigPanel from "./HomeConfigPanel";
+import messages from "./messages";
+import "./Home.css";
 
 const checkItem = (topic, user) => {
   if (!topic.is_draft) return true;
@@ -200,7 +200,7 @@ class Home extends Component {
     const hasMore = this.hasMore();
 
     if (topics === null || !server) return <Loading />;
-    const fullStyle = view === 'grid' && ' main--full';
+    const fullStyle = view === "grid" && " main--full";
 
     return (
       <div className={`main ${fullStyle}`}>
@@ -222,6 +222,7 @@ class Home extends Component {
             >
               <TopicList
                 topics={this.filterTopics(topics)}
+                loadMore={this.loadMore}
                 view={view}
                 count={count}
               />

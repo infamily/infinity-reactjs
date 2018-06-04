@@ -222,6 +222,7 @@ class Home extends Component {
             >
               <TopicList
                 topics={this.filterTopics(topics)}
+                loadMore={this.loadMore}
                 view={view}
                 count={count}
               />
