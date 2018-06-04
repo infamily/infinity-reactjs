@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   InfiniteLoader,
   WindowScroller,
   List,
   AutoSizer
-} from "react-virtualized";
-import LoadingElements from "components/Loading/LoadingElements";
-import "react-virtualized/styles.css";
-import "./Grid.css";
+} from 'react-virtualized';
+import LoadingElements from 'components/Loading/LoadingElements';
+import 'react-virtualized/styles.css';
+import './Grid.css';
+import { log } from 'util';
 
 const styles = {};
 const ITEM_SIZE = 265; // width and height of the card
@@ -49,6 +50,12 @@ export default class VirtualizedList extends Component {
     return width > rowWidth ? rowWidth : width;
   };
 
+  onResize = ({ width }) => {
+    this.width = this.setWidth(width);
+    this.setRowsMap();
+    this.forceUpdate();
+  };
+
   render() {
     const { scrollToIndex } = this.state;
 
@@ -57,7 +64,7 @@ export default class VirtualizedList extends Component {
         <WindowScroller ref={this.setRef} scrollElement={window}>
           {({ height, isScrolling, onChildScroll, scrollTop }) => (
             <div className={styles.WindowScrollerWrapper}>
-              <AutoSizer disableHeight>
+              <AutoSizer disableHeight onResize={this.onResize}>
                 {({ width }) => {
                   this.width = this.setWidth(width);
                   return (
@@ -109,6 +116,8 @@ export default class VirtualizedList extends Component {
       if (i < loadedCount) loadedRowsMap[i] = STATUS_LOADED;
       else loadedRowsMap[i] = 0;
     }
+    console.log('loadedRowsMap');
+    console.log(loadedRowsMap);
 
     this.loadedRowsMap = loadedRowsMap;
   };
@@ -124,7 +133,7 @@ export default class VirtualizedList extends Component {
 
     if (loadedCount <= stopIndex) {
       await this.props.loadMore();
-      this.setRowsMap("forceUpdate");
+      this.setRowsMap('forceUpdate');
       this.forceUpdate();
     }
   };
