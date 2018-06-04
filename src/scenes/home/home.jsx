@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InfiniteScroll from 'react-infinite-scroller';
 import { FormattedMessage } from 'react-intl';
 import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
-import LoadingElements from 'components/Loading/LoadingElements';
 import topicViewService from 'services/topic_view.service';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
@@ -152,8 +150,7 @@ class Home extends Component {
 
   hasMore = () => {
     const { count, topics } = this.state;
-    return false;
-    // return topics && topics.length < count;
+    return topics && topics.length < count;
   };
 
   updateHomeTopics = data => {
@@ -197,7 +194,6 @@ class Home extends Component {
     const { user, server } = this.props;
     const { view } = this.props.homeParams;
     const { topics, loading, count } = this.state;
-    const hasMore = this.hasMore();
 
     if (topics === null || !server) return <Loading />;
     const fullStyle = view === 'grid' && ' main--full';
@@ -214,19 +210,13 @@ class Home extends Component {
           {loading ? (
             <Loading />
           ) : (
-            <InfiniteScroll
-              pageStart={1}
+            <TopicList
+              topics={this.filterTopics(topics)}
               loadMore={this.loadMore}
-              hasMore={hasMore}
-              loader={<LoadingElements key={0} />}
-            >
-              <TopicList
-                topics={this.filterTopics(topics)}
-                loadMore={this.loadMore}
-                view={view}
-                count={count}
-              />
-            </InfiniteScroll>
+              hasMore={this.hasMore}
+              view={view}
+              count={count}
+            />
           )}
         </div>
         <MenuBar page={<FormattedMessage {...messages.menuTitle} />} />

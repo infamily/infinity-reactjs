@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { FormattedMessage } from "react-intl";
-import messages from "scenes/Home/messages";
-import TopicSection from "./TopicSection";
-// import Grid from './Grid/VirtualizedGrid';
-// import Grid from './Grid/List';
-import Grid from "./Grid/VirtualizedList";
-import "./TopicList.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import InfiniteScroll from 'react-infinite-scroller';
+import LoadingElements from 'components/Loading/LoadingElements';
+import messages from 'scenes/Home/messages';
+import TopicSection from './TopicSection';
+import Grid from './Grid/VirtualizedList';
+import './TopicList.css';
 
 class TopicList extends Component {
   constructor(props) {
@@ -23,7 +23,9 @@ class TopicList extends Component {
   static propTypes = {
     topics: PropTypes.array,
     count: PropTypes.number.isRequired,
-    view: PropTypes.string.isRequired
+    view: PropTypes.string.isRequired,
+    loadMore: PropTypes.func.isRequired,
+    hasMore: PropTypes.func.isRequired
   };
 
   componentWillReceiveProps(nextProps) {
@@ -54,15 +56,24 @@ class TopicList extends Component {
         </div>
       );
 
-    if (view === "grid")
+    if (view === 'grid')
       return (
-        <div>
-          <Grid count={count} loadMore={this.props.loadMore}>
-            {elements}
-          </Grid>
-        </div>
+        <Grid count={count} loadMore={this.props.loadMore}>
+          {elements}
+        </Grid>
       );
-    return <div>{elements}</div>;
+    console.log(this.props.hasMore, 'this.props.hasMore');
+    const hasMore = this.props.hasMore();
+    return (
+      <InfiniteScroll
+        pageStart={1}
+        loadMore={this.props.loadMore}
+        hasMore={hasMore}
+        loader={<LoadingElements key={0} />}
+      >
+        {elements}
+      </InfiniteScroll>
+    );
   }
 }
 
