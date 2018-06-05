@@ -34,7 +34,9 @@ export default class VirtualizedList extends PureComponent {
       loadedRowsMap: null,
       loadingRowCount: 0,
       scrollToIndex: -1,
-      showHeaderText: true
+      showHeaderText: true,
+      activeRowIndex: -1,
+      activeItemIndex: -1
     };
   }
 
@@ -52,9 +54,144 @@ export default class VirtualizedList extends PureComponent {
   onResize = ({ width }) => {
     this.width = this.setWidth(width);
     this.setRowsMap();
-    // this.forceUpdate();
-    this.scrollToRow(0);
-    console.log('resizing');
+    this.scrollToRow(this.state.activeRowIndex);
+  };
+
+  isRowLoaded = ({ index }) => !!this.loadedRowsMap[index]; // STATUS_LOADING or STATUS_LOADED
+
+  setRowsMap = (forceUpdate = null) => {
+    if (!forceUpdate && this.loadedRowsMap) return;
+
+    const loadedCount = this.countCardRowNumber();
+    const availableRowCount = this.countCardRowNumber(this.props.count);
+
+    const loadedRowsMap = {};
+    for (let i = 0; i < availableRowCount; i += 1) {
+      if (i < loadedCount) loadedRowsMap[i] = STATUS_LOADED;
+      else loadedRowsMap[i] = 0;
+    }
+
+    this.loadedRowsMap = loadedRowsMap;
+  };
+
+  loaderHandler = async ({ startIndex, stopIndex }) => {
+    const loadedCount = this.countCardRowNumber();
+
+    const loadedRowsMap = { ...this.loadedRowsMap };
+    for (let i = startIndex; i <= stopIndex; i += 1) {
+      loadedRowsMap[i] = STATUS_LOADING;
+    }
+    this.loadedRowsMap = loadedRowsMap;
+
+    if (loadedCount <= stopIndex) {
+      await this.props.loadMore();
+      this.setRowsMap('forceUpdate');
+      this.forceUpdate();
+    }
+  };
+
+  hideHeader = () => {
+    const { showHeaderText } = this.state;
+
+    this.setState(
+      {
+        showHeaderText: !showHeaderText
+      },
+      () => {
+        if (this.windowScroller) {
+          this.windowScroller.updatePosition();
+        }
+      }
+    );
+  };
+
+  setNewActiveRowIndex = itemsPerRow => {
+    const activeRowIndex = Math.floor(this.state.activeItemIndex / itemsPerRow);
+    this.setState({ activeRowIndex });
+  };
+
+  countCardRowNumber = (count = null) => {
+    if (this.width === 0) return 0;
+    const ITEMS_COUNT = count || this.props.children.length;
+    const itemsPerRow = Math.floor(this.width / ITEM_SIZE);
+    const rowCount = Math.ceil(ITEMS_COUNT / itemsPerRow);
+    if (this.state.activeItemIndex >= 0) this.setNewActiveRowIndex(itemsPerRow);
+    return rowCount;
+  };
+
+  cardRowRenderer = ({ index, key, style }) => {
+    const { children } = this.props;
+    const ITEMS_COUNT = children.length;
+
+    const itemsPerRow = Math.floor(this.width / ITEM_SIZE);
+
+    const items = [];
+    const fromIndex = index * itemsPerRow;
+    const toIndex = Math.min(fromIndex + itemsPerRow, ITEMS_COUNT);
+
+    const cardStyle = { maxWidth: getMaxCardWidth(this.width) };
+
+    for (let i = fromIndex; i < toIndex; i += 1) {
+      const isActive = i === this.state.activeItemIndex;
+      const activeClass = isActive ? 'grid__active_item' : '';
+
+      const item =
+        this.loadedRowsMap[index] === STATUS_LOADED ? (
+          <div
+            className={`grid__row_item ${activeClass}`}
+            key={i}
+            style={cardStyle}
+            onClick={() => this.memorizeActiveItemIndex(i)}
+          >
+            {children[i]}
+          </div>
+        ) : (
+          <div className="grid__row_item" key={i} style={cardStyle}>
+            <LoadingElements />
+          </div>
+        );
+      items.push(item);
+    }
+
+    return (
+      <div className="grid__row" key={key} style={style}>
+        {items}
+      </div>
+    );
+  };
+
+  memorizeActiveItemIndex = index => {
+    this.setState({ activeItemIndex: index });
+  };
+
+  setRef = windowScroller => {
+    this.windowScroller = windowScroller;
+  };
+
+  onCheckboxChange = event => {
+    this.context.setScrollingCustomElement(event.target.checked);
+  };
+
+  scrollToRow = scrollToIndex => {
+    // low priority to finish rows recalculation
+    setTimeout(() => {
+      this.setState({ scrollToIndex });
+    }, 0);
+  };
+
+  renderLoader = renderList => {
+    this.setRowsMap();
+    const availableRowCount = this.countCardRowNumber(this.props.count);
+
+    return (
+      <InfiniteLoader
+        isRowLoaded={this.isRowLoaded}
+        loadMoreRows={this.loaderHandler}
+        rowCount={availableRowCount}
+      >
+        {renderList}
+      </InfiniteLoader>
+    );
   };
 
   render() {
@@ -103,134 +240,4 @@ export default class VirtualizedList extends PureComponent {
       </div>
     );
   }
-
-  isRowLoaded = ({ index }) => !!this.loadedRowsMap[index]; // STATUS_LOADING or STATUS_LOADED
-
-  setRowsMap = (forceUpdate = null) => {
-    if (!forceUpdate && this.loadedRowsMap) return;
-
-    const loadedCount = this.countCardRowNumber();
-    const availableRowCount = this.countCardRowNumber(this.props.count);
-
-    const loadedRowsMap = {};
-    for (let i = 0; i < availableRowCount; i += 1) {
-      if (i < loadedCount) loadedRowsMap[i] = STATUS_LOADED;
-      else loadedRowsMap[i] = 0;
-    }
-
-    this.loadedRowsMap = loadedRowsMap;
-  };
-
-  loaderHandler = async ({ startIndex, stopIndex }) => {
-    const loadedCount = this.countCardRowNumber();
-
-    const loadedRowsMap = { ...this.loadedRowsMap };
-    for (let i = startIndex; i <= stopIndex; i += 1) {
-      loadedRowsMap[i] = STATUS_LOADING;
-    }
-    this.loadedRowsMap = loadedRowsMap;
-
-    if (loadedCount <= stopIndex) {
-      await this.props.loadMore();
-      this.setRowsMap('forceUpdate');
-      this.forceUpdate();
-    }
-  };
-
-  renderLoader = renderList => {
-    this.setRowsMap();
-    const availableRowCount = this.countCardRowNumber(this.props.count);
-
-    return (
-      <InfiniteLoader
-        isRowLoaded={this.isRowLoaded}
-        loadMoreRows={this.loaderHandler}
-        rowCount={availableRowCount}
-      >
-        {renderList}
-      </InfiniteLoader>
-    );
-  };
-
-  hideHeader = () => {
-    const { showHeaderText } = this.state;
-
-    this.setState(
-      {
-        showHeaderText: !showHeaderText
-      },
-      () => {
-        if (this.windowScroller) {
-          this.windowScroller.updatePosition();
-        }
-      }
-    );
-  };
-
-  countCardRowNumber = (count = null) => {
-    if (this.width === 0) return 0;
-    const ITEMS_COUNT = count || this.props.children.length;
-    const itemsPerRow = Math.floor(this.width / ITEM_SIZE);
-    const rowCount = Math.ceil(ITEMS_COUNT / itemsPerRow);
-    return rowCount;
-  };
-
-  cardRowRenderer = ({ index, key, style }) => {
-    const { children } = this.props;
-    const ITEMS_COUNT = children.length;
-
-    const itemsPerRow = Math.floor(this.width / ITEM_SIZE);
-
-    const items = [];
-    const fromIndex = index * itemsPerRow;
-    const toIndex = Math.min(fromIndex + itemsPerRow, ITEMS_COUNT);
-
-    const cardStyle = { maxWidth: getMaxCardWidth(this.width) };
-
-    for (let i = fromIndex; i < toIndex; i += 1) {
-      const item =
-        this.loadedRowsMap[index] === STATUS_LOADED ? (
-          <div className="grid__row_item" key={i} style={cardStyle}>
-            {children[i]}
-          </div>
-        ) : (
-          <div className="grid__row_item" key={i} style={cardStyle}>
-            <LoadingElements />
-          </div>
-        );
-      items.push(item);
-    }
-
-    return (
-      <div className="grid__row" key={key} style={style}>
-        {items}
-      </div>
-    );
-  };
-
-  setRef = windowScroller => {
-    this.windowScroller = windowScroller;
-  };
-
-  onCheckboxChange = event => {
-    this.context.setScrollingCustomElement(event.target.checked);
-  };
-
-  scrollToRow = scrollToIndex => {
-    // const { children } = this.props;
-    // const list = children;
-
-    // let scrollToIndex = Math.min(
-    //   list.length - 1,
-    //   parseInt(event.target.value, 10)
-    // );
-
-    // if (isNaN(scrollToIndex)) {
-    //   scrollToIndex = undefined;
-    // }
-
-    setTimeout(() => {
-      this.setState({ scrollToIndex });
-    }, 0);
-  };
 }

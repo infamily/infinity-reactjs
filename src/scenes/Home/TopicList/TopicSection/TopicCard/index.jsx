@@ -35,7 +35,6 @@ export default class TopicCard extends Component {
   };
 
   goToTopic = e => {
-    e.stopPropagation();
     const { history } = this.props;
     const {
       topic: { id }
