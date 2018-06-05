@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   InfiniteLoader,
@@ -26,7 +26,7 @@ const getMaxCardWidth = width => {
   return width;
 };
 
-export default class VirtualizedList extends Component {
+export default class VirtualizedList extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -52,7 +52,9 @@ export default class VirtualizedList extends Component {
   onResize = ({ width }) => {
     this.width = this.setWidth(width);
     this.setRowsMap();
-    this.forceUpdate();
+    // this.forceUpdate();
+    this.scrollToRow(0);
+    console.log('resizing');
   };
 
   render() {
@@ -214,18 +216,18 @@ export default class VirtualizedList extends Component {
     this.context.setScrollingCustomElement(event.target.checked);
   };
 
-  onScrollToRowChange = event => {
-    const { children } = this.props;
-    const list = children;
+  scrollToRow = scrollToIndex => {
+    // const { children } = this.props;
+    // const list = children;
 
-    let scrollToIndex = Math.min(
-      list.length - 1,
-      parseInt(event.target.value, 10)
-    );
+    // let scrollToIndex = Math.min(
+    //   list.length - 1,
+    //   parseInt(event.target.value, 10)
+    // );
 
-    if (isNaN(scrollToIndex)) {
-      scrollToIndex = undefined;
-    }
+    // if (isNaN(scrollToIndex)) {
+    //   scrollToIndex = undefined;
+    // }
 
     setTimeout(() => {
       this.setState({ scrollToIndex });

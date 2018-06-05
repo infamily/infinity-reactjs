@@ -38,7 +38,7 @@ class Topic extends Component {
     this.state = {
       topic: {},
       ...initalMeta,
-      comment_id: 0,
+      comment_id: '',
       comment_text: '',
       addChildSection: false, // for panel
       showChildSection: false // for first data pulling
@@ -134,7 +134,7 @@ class Topic extends Component {
 
   clear() {
     this.setState({
-      comment_id: 0,
+      comment_id: '',
       comment_text: ''
     });
   }
@@ -149,7 +149,7 @@ class Topic extends Component {
 
     this.setState({
       comments,
-      comment_id: 0,
+      comment_id: '',
       comment_text: ''
     });
   };
@@ -161,7 +161,7 @@ class Topic extends Component {
       this.setState({
         comments,
         comment_text: '',
-        comment_id: 0
+        comment_id: ''
       });
     this.clear();
   };
