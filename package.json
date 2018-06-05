@@ -1,7 +1,7 @@
 {
   "name": "infinity",
   "version": "0.7.0",
-  "homepage": "http://infinity.family",
+  "homepage": "http://inf.li",
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",

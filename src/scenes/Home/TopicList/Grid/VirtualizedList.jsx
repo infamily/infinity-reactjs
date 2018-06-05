@@ -9,7 +9,6 @@ import {
 import LoadingElements from 'components/Loading/LoadingElements';
 import 'react-virtualized/styles.css';
 import './Grid.css';
-import { log } from 'util';
 
 const styles = {};
 const ITEM_SIZE = 265; // width and height of the card
@@ -116,8 +115,6 @@ export default class VirtualizedList extends Component {
       if (i < loadedCount) loadedRowsMap[i] = STATUS_LOADED;
       else loadedRowsMap[i] = 0;
     }
-    console.log('loadedRowsMap');
-    console.log(loadedRowsMap);
 
     this.loadedRowsMap = loadedRowsMap;
   };
