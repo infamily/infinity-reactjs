@@ -36,7 +36,8 @@ export default class VirtualizedList extends PureComponent {
       scrollToIndex: -1,
       showHeaderText: true,
       activeRowIndex: -1,
-      activeItemIndex: -1
+      activeItemIndex: -1,
+      prevActiveWidth: null
     };
   }
 
@@ -119,6 +120,16 @@ export default class VirtualizedList extends PureComponent {
     return rowCount;
   };
 
+  resolveWidthChange = () => {
+    // const { prevActiveWidth } = this.state;
+    console.log(this.prevActiveWidth, this.width);
+    if (this.width !== this.prevActiveWidth) {
+      this.prevActiveWidth = this.width;
+      return true;
+    }
+    return false;
+  };
+
   cardRowRenderer = ({ index, key, style }) => {
     const { children } = this.props;
     const ITEMS_COUNT = children.length;
@@ -132,8 +143,8 @@ export default class VirtualizedList extends PureComponent {
     const cardStyle = { maxWidth: getMaxCardWidth(this.width) };
 
     for (let i = fromIndex; i < toIndex; i += 1) {
-      const isActive = i === this.state.activeItemIndex;
-      const activeClass = isActive ? 'grid__active_item' : '';
+      const isItemActive = i === this.state.activeItemIndex;
+      const activeClass = isItemActive ? 'grid__active_item' : '';
 
       const item =
         this.loadedRowsMap[index] === STATUS_LOADED ? (
