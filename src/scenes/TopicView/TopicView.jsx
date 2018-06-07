@@ -6,7 +6,8 @@ import {
   FormControl,
   ControlLabel,
   Button,
-  Modal,
+  Tabs,
+  Tab,
   InputGroup,
   ToggleButtonGroup,
   ToggleButton
@@ -17,15 +18,17 @@ import Flag from 'components/FlagToggle';
 import Loading from 'components/Loading';
 import LoadingElements from 'components/Loading/LoadingElements';
 import TextEditor from 'components/TextEditor/TopicEditor';
+import SourceEditor from 'components/TextEditor/SimpleEditor';
 import FormSelect from 'components/FormSelect';
 import CategorySelect from 'components/CategorySelect';
 import SignInLine from 'components/SignInLine';
 import topicViewService from 'services/topic_view.service';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import configs from 'configs';
 import 'react-select/dist/react-select.min.css';
 import messages from './messages';
 import PopupModal from './PopupModal';
+import DeletePopup from './PopupModal/Delete';
 import topicService from './services';
 import './TopicView.css';
 
@@ -67,7 +70,8 @@ class TopicView extends Component {
   };
 
   static defaultProps = {
-    loaderElements: false
+    loaderElements: false,
+    intl: intlShape.isRequired
   };
 
   async componentWillMount() {
@@ -331,7 +335,7 @@ class TopicView extends Component {
       success,
       isLoading
     } = this.state;
-    const { user, loaderElements, history } = this.props;
+    const { user, loaderElements, history, intl } = this.props;
     const { goBack } = history;
 
     if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
@@ -373,29 +377,6 @@ class TopicView extends Component {
         </div>
       );
     };
-
-    const DeletePopup = ({ isOpen, name }) => (
-      <div>
-        <Modal show={isOpen} className="topic_view__modal">
-          <Modal.Header>
-            <Modal.Title>
-              <FormattedMessage {...messages.deleteConfirmation} />
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <FormattedMessage {...messages.deleteConfirmation} />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.deleteTopic}>
-              <FormattedMessage {...messages.delete} />
-            </Button>
-            <Button onClick={() => this.closeModal(name)}>
-              <FormattedMessage {...messages.close} />
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    );
 
     const getPlaceHolder = () => (
       <FormattedMessage {...messages.textPlaceholder} />
@@ -444,11 +425,36 @@ class TopicView extends Component {
                   />
                 )}
               </FormattedMessage>
-              <TextEditor
-                value={topic_text}
-                handleValue={this.handleTopicText}
-                placeholder={getPlaceHolder()}
-              />
+              <Tabs
+                activeKey={this.state.key}
+                onSelect={this.handleSelect}
+                id="controlled-tab-example"
+              >
+                <Tab
+                  eventKey={1}
+                  title={intl.formatMessage({
+                    ...messages.visualEditorTab
+                  })}
+                >
+                  <TextEditor
+                    value={topic_text}
+                    handleValue={this.handleTopicText}
+                    placeholder={getPlaceHolder()}
+                  />
+                </Tab>
+                <Tab
+                  eventKey={2}
+                  title={intl.formatMessage({
+                    ...messages.sourceEditorTab
+                  })}
+                >
+                  <SourceEditor
+                    value={topic_text}
+                    handleValue={this.handleTopicText}
+                    placeholder={getPlaceHolder()}
+                  />
+                </Tab>
+              </Tabs>
             </FormGroup>
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>
@@ -508,11 +514,16 @@ class TopicView extends Component {
           message={message}
           closeModal={this.closeModal}
         />
-        <DeletePopup isOpen={this.state.delete} name="delete" />
+        <DeletePopup
+          deleteTopic={this.deleteTopic}
+          closeModal={this.closeModal}
+          isOpen={this.state.delete}
+          name="delete"
+        />
         <MenuBar page={<FormattedMessage {...messages.menuTitle} />} />
       </div>
     );
   }
 }
 
-export default TopicView;
+export default injectIntl(TopicView);

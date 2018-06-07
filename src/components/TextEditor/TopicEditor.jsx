@@ -15,7 +15,7 @@ class StatefulEditor extends Component {
   };
 
   state = {
-    value: RichTextEditor.createValueFromString(this.props.value, 'markdown') // RichTextEditor.createEmptyValue()
+    value: RichTextEditor.createValueFromString(this.props.value, 'markdown')
   };
 
   onChange = value => {

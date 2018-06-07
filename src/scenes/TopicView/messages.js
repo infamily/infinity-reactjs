@@ -88,5 +88,13 @@ export default defineMessages({
   public: {
     id: 'infinity.scenes.TopicView.public',
     defaultMessage: 'Public'
+  },
+  visualEditorTab: {
+    id: 'infinity.scenes.TopicView.visualEditorTab',
+    defaultMessage: 'Visual Editor'
+  },
+  sourceEditorTab: {
+    id: 'infinity.scenes.TopicView.sourceEditorTab',
+    defaultMessage: 'Source Editor'
   }
 });
