@@ -8,6 +8,7 @@ import './TextEditor.css';
 
 class StatefulEditor extends Component {
   static propTypes = {
+    editor: PropTypes.number.isRequired,
     handleValue: PropTypes.func.isRequired,
     placeholder: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
@@ -18,13 +19,23 @@ class StatefulEditor extends Component {
     value: RichTextEditor.createValueFromString(this.props.value, 'markdown')
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.editor !== nextProps.editor) {
+      const value = RichTextEditor.createValueFromString(
+        nextProps.value,
+        'markdown'
+      );
+      this.setState({ value });
+    }
+  }
+
   onChange = value => {
     this.setState({ value });
     this.debounceTextValue(value);
   };
 
   debounceTextValue = debounce(value => {
-    this.props.handleValue(value);
+    this.props.handleValue(value.toString('markdown'));
   }, 1000);
 
   render() {
@@ -79,14 +90,16 @@ class StatefulEditor extends Component {
       ]
     };
     return (
-      <RichTextEditor
-        className="text_editor"
-        toolbarClassName="text_editor__toolbar"
-        toolbarConfig={toolbarConfig}
-        value={this.state.value}
-        onChange={this.onChange}
-        placeholder={this.props.placeholder}
-      />
+      <div className="text_editor_box">
+        <RichTextEditor
+          className="text_editor"
+          toolbarClassName="text_editor__toolbar"
+          toolbarConfig={toolbarConfig}
+          value={this.state.value}
+          onChange={this.onChange}
+          placeholder={this.props.placeholder}
+        />
+      </div>
     );
   }
 }

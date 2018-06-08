@@ -39,6 +39,8 @@ class TopicView extends Component {
       all_types: configs.topic_types,
       flag: 0,
       id: null,
+      editor: 0,
+      typing: false,
 
       topic_type: 1,
       topic_categories: [],
@@ -146,7 +148,7 @@ class TopicView extends Component {
     return {
       type: topic_type,
       title: topic_title,
-      text: topic_text.toString('markdown'), // editor method
+      text: topic_text, // editor method
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
       is_draft
@@ -319,6 +321,14 @@ class TopicView extends Component {
     push(`${configs.linkBase()}${link}`);
   };
 
+  handleEditor = key => {
+    this.setState({ editor: key });
+  };
+
+  handleTyping = boo => {
+    this.setState({ typing: boo });
+  };
+
   render() {
     const {
       topic_type,
@@ -328,6 +338,7 @@ class TopicView extends Component {
       topic_parents,
       is_draft,
 
+      editor,
       flag,
       all_types,
       message,
@@ -426,12 +437,12 @@ class TopicView extends Component {
                 )}
               </FormattedMessage>
               <Tabs
-                activeKey={this.state.key}
-                onSelect={this.handleSelect}
+                activeKey={this.state.editor}
+                onSelect={this.handleEditor}
                 id="controlled-tab-example"
               >
                 <Tab
-                  eventKey={1}
+                  eventKey={0}
                   title={intl.formatMessage({
                     ...messages.visualEditorTab
                   })}
@@ -440,10 +451,12 @@ class TopicView extends Component {
                     value={topic_text}
                     handleValue={this.handleTopicText}
                     placeholder={getPlaceHolder()}
+                    editor={editor}
+                    handleTyping={this.handleTyping}
                   />
                 </Tab>
                 <Tab
-                  eventKey={2}
+                  eventKey={1}
                   title={intl.formatMessage({
                     ...messages.sourceEditorTab
                   })}
@@ -452,6 +465,8 @@ class TopicView extends Component {
                     value={topic_text}
                     handleValue={this.handleTopicText}
                     placeholder={getPlaceHolder()}
+                    editor={editor}
+                    handleTyping={this.handleTyping}
                   />
                 </Tab>
               </Tabs>
