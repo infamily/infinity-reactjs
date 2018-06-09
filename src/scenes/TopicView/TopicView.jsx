@@ -38,24 +38,21 @@ class TopicView extends Component {
     this.state = {
       all_types: configs.topic_types,
       flag: 0,
-      id: null,
+      editId: null,
       editor: 0,
-      typing: false,
-
       topic_type: 1,
       topic_categories: [],
       topic_title: '',
       topic_text: '',
+      topic_source_title: '',
+      topic_source_text: '',
       topic_parents: [],
       is_draft: false,
       error: false,
       success: false,
       delete: false,
       isLoading: true,
-      message: {
-        title: '',
-        text: ''
-      }
+      message: { title: '', text: '' }
     };
   }
 
@@ -87,7 +84,7 @@ class TopicView extends Component {
 
     this.setState({
       isLoading: false,
-      id: eId,
+      editId: eId,
       ...persistedTopic,
       ...editedData,
       ...parentData
@@ -113,6 +110,7 @@ class TopicView extends Component {
   async getTopicData(id) {
     const { user, history } = this.props;
     const topic = await topicService.getTopic(id);
+    const topicSource = await topicService.getTopicSource(id);
 
     // redirect if isn't owner
     if (!topic || topic.owner.username !== user.username) {
@@ -127,28 +125,35 @@ class TopicView extends Component {
       topic_type: topic.type,
       topic_title: topic.title,
       topic_text: topic.body,
+      topic_source_title: topicSource.title,
+      topic_source_text: topicSource.body,
       is_draft: topic.is_draft,
       topic_categories,
       topic_parents
     };
   }
 
-  formatData = () => {
+  formatData = isSourceEditor => {
     const {
       topic_type,
       topic_categories,
       topic_title,
       topic_text,
+      topic_source_title,
+      topic_source_text,
       topic_parents,
       is_draft
     } = this.state;
 
     const formatted = array => (array[0] ? array.map(item => item.url) : []);
 
+    const title = isSourceEditor ? topic_source_title : topic_title;
+    const text = isSourceEditor ? topic_source_text : topic_text;
+
     return {
       type: topic_type,
-      title: topic_title,
-      text: topic_text, // editor method
+      title,
+      text,
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
       is_draft
@@ -186,19 +191,26 @@ class TopicView extends Component {
   submitTopic = async e => {
     e.preventDefault();
     const { match } = this.props;
-    const { topic_title } = this.state;
-    const edited_id = match.params.eId;
+    const { topic_title, topic_source_title, editor } = this.state;
+    const editingTopicId = match.params.eId;
+    const isSourceEditor = editor === 1;
 
-    if (!topic_title.trim()) {
+    if (!isSourceEditor && !topic_title.trim()) {
       this.showError();
       return;
     }
 
-    const data = this.formatData();
-    data.id = edited_id;
+    if (isSourceEditor && !topic_source_title.trim()) {
+      this.showError();
+      return;
+    }
 
-    const action = edited_id ? 'updateTopic' : 'createTopic';
-    const topic = await topicViewService[action](data);
+    const data = this.formatData(isSourceEditor);
+    data.id = editingTopicId;
+
+    const action = editingTopicId ? 'updateTopic' : 'createTopic';
+    const actionSource = isSourceEditor ? `${action}Source` : action;
+    const topic = await topicViewService[actionSource](data);
 
     if (topic) {
       // this.showSuccessMessage(topic);
@@ -232,8 +244,8 @@ class TopicView extends Component {
 
   deleteTopic = async () => {
     const { match } = this.props;
-    const edited_id = match.params.eId;
-    const result = await topicViewService.deleteTopic(edited_id);
+    const editingTopicId = match.params.eId;
+    const result = await topicViewService.deleteTopic(editingTopicId);
 
     if (result === 'success') {
       this.props.setUpdateTopicList(true);
@@ -285,6 +297,8 @@ class TopicView extends Component {
       topic_type,
       topic_title,
       topic_text,
+      topic_source_title,
+      topic_source_text,
       is_draft,
       topic_categories,
       topic_parents
@@ -294,6 +308,8 @@ class TopicView extends Component {
       topic_type,
       topic_title,
       topic_text,
+      topic_source_title,
+      topic_source_text,
       is_draft,
       topic_categories,
       topic_parents
@@ -311,6 +327,12 @@ class TopicView extends Component {
   handleTopicText = value => {
     this.setState({
       topic_text: value
+    });
+  };
+
+  handleTopicSourceText = value => {
+    this.setState({
+      topic_source_text: value
     });
   };
 
@@ -334,10 +356,11 @@ class TopicView extends Component {
       topic_type,
       topic_categories,
       topic_title,
+      topic_source_title,
       topic_text,
+      topic_source_text,
       topic_parents,
       is_draft,
-
       editor,
       flag,
       all_types,
@@ -365,7 +388,7 @@ class TopicView extends Component {
         </Button>
       );
 
-      return this.state.id ? (
+      return this.state.editId ? (
         <div>
           <BackButton action={this.goToTopic} className="topic_view__back" />
           <Button type="submit">
@@ -391,6 +414,23 @@ class TopicView extends Component {
 
     const getPlaceHolder = () => (
       <FormattedMessage {...messages.textPlaceholder} />
+    );
+
+    const TopicTitleInput = name => (
+      <FormattedMessage {...messages.topicTitleLabel}>
+        {mes => (
+          <FormControl
+            id="formControlsText"
+            className="topic_view__field"
+            type="text"
+            name={name}
+            label={<FormattedMessage {...messages.topicTitleLabel} />}
+            value={this.state[name]}
+            onChange={this.handleChange}
+            placeholder={mes}
+          />
+        )}
+      </FormattedMessage>
     );
 
     return (
@@ -419,23 +459,6 @@ class TopicView extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>
-                <FormattedMessage {...messages.topicTitleLabel} />
-              </ControlLabel>
-              <FormattedMessage {...messages.topicTitle}>
-                {mes => (
-                  <FormControl
-                    id="formControlsText"
-                    className="topic_view__field"
-                    type="text"
-                    name="topic_title"
-                    label="Title"
-                    value={topic_title}
-                    onChange={this.handleChange}
-                    placeholder={mes}
-                  />
-                )}
-              </FormattedMessage>
               <Tabs
                 activeKey={this.state.editor}
                 onSelect={this.handleEditor}
@@ -447,6 +470,7 @@ class TopicView extends Component {
                     ...messages.visualEditorTab
                   })}
                 >
+                  {TopicTitleInput('topic_title')}
                   <TextEditor
                     value={topic_text}
                     handleValue={this.handleTopicText}
@@ -461,9 +485,10 @@ class TopicView extends Component {
                     ...messages.sourceEditorTab
                   })}
                 >
+                  {TopicTitleInput('topic_source_title')}
                   <SourceEditor
-                    value={topic_text}
-                    handleValue={this.handleTopicText}
+                    value={topic_source_text}
+                    handleValue={this.handleTopicSourceText}
                     placeholder={getPlaceHolder()}
                     editor={editor}
                     handleTyping={this.handleTyping}

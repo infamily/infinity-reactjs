@@ -19,7 +19,7 @@ const logger = err => {
 // getCatergoryString returns a category query string for requests
 const getCatergoryString = array =>
   array.reduce(
-    (accumulator, value) => accumulator + '&categories=' + value,
+    (accumulator, value) => `${accumulator}&categories=${value}`,
     ''
   );
 
@@ -83,6 +83,19 @@ class TopicService {
 
       const { data } = await getTopicByLang(lang);
       data.lang = lang;
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  getTopicSource = async id => {
+    try {
+      const axiosNoToken = axios.create();
+      const { data } = await axiosNoToken.get(
+        `${serverService.api}/topics/${id}/`
+      );
+      console.log(data);
       return data;
     } catch (e) {
       console.error(e);

@@ -4,6 +4,7 @@ import serverService from 'services/server.service';
 import topicService from 'services/topic.service';
 
 const getTopic = async id => topicService.getTopic(id);
+const getTopicSource = async id => topicService.getTopicSource(id);
 
 async function getCategory(id) {
   try {
@@ -70,6 +71,7 @@ async function getType(id) {
 export default {
   getCategory,
   getTopic,
+  getTopicSource,
   getParents,
   getCategories,
   addParent,

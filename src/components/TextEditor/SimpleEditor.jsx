@@ -39,7 +39,6 @@ class SimpleStatefulEditor extends Component {
         className="text_editor"
         value={this.state.value}
         onChange={this.onChange}
-        placeholder={() => this.props.placeholder}
       />
     );
   }

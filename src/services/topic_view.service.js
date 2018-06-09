@@ -57,6 +57,53 @@ class TopicViewService {
     }
   };
 
+  createTopicSource = async data => {
+    const lang = langService.current;
+    const { type, title, text, parents, categories, is_draft } = data;
+    try {
+      const parameters = {
+        title,
+        body: text,
+        type,
+        parents,
+        categories,
+        is_draft
+      };
+
+      const { data } = await axios.post(
+        `${serverService.api}/topics/`,
+        parameters
+      );
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  updateTopicSource = async data => {
+    const lang = langService.current;
+    const { type, title, text, parents, categories, id, is_draft } = data;
+    try {
+      const parameters = {
+        title,
+        body: text,
+        languages: [lang],
+        type,
+        parents,
+        categories,
+        is_draft
+      };
+
+      const { data } = await axios.patch(
+        `${serverService.api}/topics/${id}/`,
+        parameters
+      );
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   deleteTopic = async id => {
     try {
       await axios.delete(`${serverService.api}/topics/${id}/`);
@@ -87,7 +134,7 @@ class TopicViewService {
 
     try {
       const res = await axios.get(
-        `${serverService.api}/types/?category=1&is_category=1&lang=${current}` //&parents__isnull=1
+        `${serverService.api}/types/?category=1&is_category=1&lang=${current}` // &parents__isnull=1
       );
 
       this.categoriesByLang[current] = res.data;
