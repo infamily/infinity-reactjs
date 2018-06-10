@@ -58,7 +58,6 @@ class TopicViewService {
   };
 
   createTopicSource = async data => {
-    const lang = langService.current;
     const { type, title, text, parents, categories, is_draft } = data;
     try {
       const parameters = {
@@ -77,6 +76,7 @@ class TopicViewService {
       return data;
     } catch (e) {
       console.error(e);
+      return null;
     }
   };
 

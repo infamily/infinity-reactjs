@@ -89,6 +89,15 @@ export default defineMessages({
     id: 'infinity.scenes.TopicView.public',
     defaultMessage: 'Public'
   },
+  // to do: add to translations (6 bottom fields)
+  visualEditorHint: {
+    id: 'infinity.scenes.TopicView.visualEditorHint',
+    defaultMessage: 'You can create contents in current language.'
+  },
+  sourceEditorHint: {
+    id: 'infinity.scenes.TopicView.sourceEditorHint',
+    defaultMessage: 'You can create contents in any language.'
+  },
   visualEditorTab: {
     id: 'infinity.scenes.TopicView.visualEditorTab',
     defaultMessage: 'Visual Editor'
@@ -96,5 +105,13 @@ export default defineMessages({
   sourceEditorTab: {
     id: 'infinity.scenes.TopicView.sourceEditorTab',
     defaultMessage: 'Source Editor'
+  },
+  visualEditorMsg: {
+    id: 'infinity.scenes.TopicView.visualEditorMsg',
+    defaultMessage: 'Contents will be taken from the Visual Editor.'
+  },
+  sourceEditorMsg: {
+    id: 'infinity.scenes.TopicView.sourceEditorMsg',
+    defaultMessage: 'Contents will be taken from the Source Editor.'
   }
 });

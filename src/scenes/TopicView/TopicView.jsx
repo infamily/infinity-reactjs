@@ -355,8 +355,6 @@ class TopicView extends Component {
     const {
       topic_type,
       topic_categories,
-      topic_title,
-      topic_source_title,
       topic_text,
       topic_source_text,
       topic_parents,
@@ -433,6 +431,12 @@ class TopicView extends Component {
       </FormattedMessage>
     );
 
+    const EditorHint = ({ hintMessages }) => (
+      <p className="topic_view__editor_hint">
+        &#8505; <FormattedMessage {...hintMessages} />
+      </p>
+    );
+
     return (
       <div className="main">
         <div className="topic_view__container">
@@ -470,6 +474,7 @@ class TopicView extends Component {
                     ...messages.visualEditorTab
                   })}
                 >
+                  <EditorHint hintMessages={messages.visualEditorHint} />
                   {TopicTitleInput('topic_title')}
                   <TextEditor
                     value={topic_text}
@@ -485,6 +490,7 @@ class TopicView extends Component {
                     ...messages.sourceEditorTab
                   })}
                 >
+                  <EditorHint hintMessages={messages.sourceEditorHint} />
                   {TopicTitleInput('topic_source_title')}
                   <SourceEditor
                     value={topic_source_text}
@@ -539,6 +545,13 @@ class TopicView extends Component {
             </ToggleButtonGroup>
             <br />
             <br />
+            <div className="topic_view__editor_msg">
+              {editor ? (
+                <FormattedMessage {...messages.sourceEditorMsg} />
+              ) : (
+                <FormattedMessage {...messages.visualEditorMsg} />
+              )}
+            </div>
             <Buttons />
           </form>
         </div>

@@ -31,6 +31,18 @@
   z-index: 0;
 }
 
+.topic_view__editor_msg {
+  color: #555;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+.topic_view__editor_hint {
+  color: #555;
+  font-size: 0.7em;
+  margin: 10px 5px;
+}
+
 /* stabilise flag position */
 .input-group > .dropup.input-group-btn {
   vertical-align: top;
