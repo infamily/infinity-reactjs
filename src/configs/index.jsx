@@ -31,7 +31,6 @@ export default {
   ],
   flags: [
     <FormattedMessage {...messages.all} />,
-    <FormattedMessage {...messages.need} />,
     <FormattedMessage {...messages.goal} />,
     <FormattedMessage {...messages.idea} />,
     <FormattedMessage {...messages.plan} />,

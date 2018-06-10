@@ -46,6 +46,7 @@ class Topic extends Component {
   }
 
   static propTypes = {
+    setUpdateTopicList: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     server: PropTypes.string,
@@ -108,8 +109,8 @@ class Topic extends Component {
   };
 
   scrollToEdit() {
-    const position = this.com_sec.getBoundingClientRect().top;
-    if (position < 0) this.com_sec.scrollIntoView();
+    const position = this.commentSection.getBoundingClientRect().top;
+    if (position < 0) this.commentSection.scrollIntoView();
   }
 
   startToEdit = id => {
@@ -183,7 +184,7 @@ class Topic extends Component {
   };
 
   render() {
-    const { close, user, server } = this.props;
+    const { close, user, server, setUpdateTopicList, history } = this.props;
     const {
       topic,
       comments,
@@ -228,9 +229,11 @@ class Topic extends Component {
             <HomeButton />
             <TopicBody
               topic={topic}
+              history={history}
               parents={parents}
               categories={categories}
               user={user}
+              setUpdateTopicList={setUpdateTopicList}
               updateTopic={this.updateTopic}
             >
               {children}
@@ -253,7 +256,7 @@ class Topic extends Component {
             </div>
             <div
               ref={c => {
-                this.com_sec = c;
+                this.commentSection = c;
               }}
             >
               <CommentForm

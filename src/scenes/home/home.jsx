@@ -50,9 +50,13 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this.scrollToPosition();
+  }
+
+  scrollToPosition = () => {
     const scrollTo = store_home.home_scroll;
     if (scrollTo) window.scrollTo(0, scrollTo);
-  }
+  };
 
   async componentWillReceiveProps(nextProps) {
     if (nextProps.shouldUpdateTopicList) {
@@ -166,6 +170,7 @@ class Home extends Component {
       topicSource,
       categoryParams
     );
+    this.scrollToPosition();
     this.setState({
       topics: data.results,
       count: data.count,

@@ -11,15 +11,20 @@ const getContainerStyle = color => ({
 
 class TopicInfo extends PureComponent {
   static propTypes = {
+    onClick: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired
   };
 
   render() {
-    const { type, color } = this.props;
+    const { type, color, onClick } = this.props;
 
     return (
-      <div className="topic__type" style={getContainerStyle(color)}>
+      <div
+        onClick={onClick}
+        className="topic__type"
+        style={getContainerStyle(color)}
+      >
         <TooltipOverlay
           text={<FormattedMessage {...messages.topicType} />}
           placement="bottom"

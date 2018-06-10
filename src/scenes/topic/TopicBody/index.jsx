@@ -21,6 +21,7 @@ const TopicBody = ({
   parents,
   user,
   categories,
+  history,
   updateTopic
 }) => {
   if (!topic.title) return null;
@@ -50,6 +51,12 @@ const TopicBody = ({
       ''
     );
 
+  const updateListFilterByType = () => {
+    history.push(
+      `${configs.linkBase()}/split/topic/${topic.id}?flag=${topic.type}`
+    );
+  };
+
   return (
     <div className="topic__container">
       <EditTopic isOwner={isOwner} id={topic.id} />
@@ -64,6 +71,7 @@ const TopicBody = ({
         <TopicType
           type={configs.topic_types[topic.type]}
           color={getColor(topic)}
+          onClick={updateListFilterByType}
         />
         <Categories categories={categories} />
       </div>
@@ -89,6 +97,7 @@ const TopicBody = ({
 
 TopicBody.propTypes = {
   topic: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   children: PropTypes.array.isRequired,
   parents: PropTypes.array.isRequired,
   categories: PropTypes.array.isRequired,

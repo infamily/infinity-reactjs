@@ -15,6 +15,7 @@ import TopicSourceToggle from './TopicSourceToggle';
 import SettingsButton from './SettingsButton';
 import { validateHomeParams, makeCategoriesArray } from '../helpers';
 import messages from './messages';
+import store_home from '../services/store_home';
 import './HomeConfigPanel.css';
 
 export default class HomeConfigPanel extends Component {
@@ -40,11 +41,31 @@ export default class HomeConfigPanel extends Component {
   };
 
   async componentWillMount() {
+    this.updateConfigState();
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    const { search } = this.props.location;
+    const nextSearch = nextProps.location.search;
+    if (search !== nextSearch) {
+      console.log('updated config');
+      await this.updateHomeParamsOnNewProps(nextSearch);
+    }
+  }
+
+  updateHomeParamsOnNewProps = async search => {
+    const params = validateHomeParams(search);
+    await this.props.changeHomeParams(params);
+    store_home.home_scroll = 0;
+    await this.props.updateHomeTopicsByParams();
+  };
+
+  updateConfigState = () => {
     const { search } = this.props.location;
     const validParams = validateHomeParams(search);
     const query = validParams && validParams.query;
     if (query) this.setState({ query });
-  }
+  };
 
   updateSearchParams = () => {
     const { view, flag, topicSource, categories } = this.props.homeParams;
