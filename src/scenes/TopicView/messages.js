@@ -96,7 +96,8 @@ export default defineMessages({
   },
   sourceEditorHint: {
     id: 'infinity.scenes.TopicView.sourceEditorHint',
-    defaultMessage: 'You can create contents in any language.'
+    defaultMessage:
+      'You can create contents in any language. Wrap your a title with .:lang:title and a body with .:lang:body to add next language.'
   },
   visualEditorTab: {
     id: 'infinity.scenes.TopicView.visualEditorTab',
