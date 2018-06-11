@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedDate } from 'react-intl';
 import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import TopicFundData from 'components/TopicFundData';
-import { makePreviewHtml } from 'services/common.services';
+import removeMd from 'remove-markdown';
 import topicService from 'services/topic.service';
 import configs from 'configs';
 import './TopicCard.css';
@@ -20,7 +20,6 @@ const makeHexDim = (inputHex, opacity) => {
 const getTopicLink = id => `${configs.linkBase()}/split/topic/${id}`;
 const getColor = type => configs.colors[type];
 const getTitleStyle = color => ({
-  // border: `1px solid ${makeHexDim(color, 85)}`,
   borderLeft: `3px solid ${makeHexDim(color, 85)}`
 });
 
@@ -36,7 +35,6 @@ export default class TopicCard extends Component {
   };
 
   goToTopic = e => {
-    e.stopPropagation();
     const { history } = this.props;
     const {
       topic: { id }
@@ -66,6 +64,8 @@ export default class TopicCard extends Component {
     const { topic } = this.state;
     const { title, body, type, created_date } = topic;
     const color = getColor(type);
+    // const plainBodyText = removeMd(body).substring(0, 300);
+    const plainBodyText = removeMd(body);
     return (
       <div
         id={`card-${topic.id}`}
@@ -79,9 +79,11 @@ export default class TopicCard extends Component {
           <TopicFundData topic={topic} updateData={this.updateData} />
         </div>
         <div className="card__description" onClick={this.goToTopic}>
-          <div className="card__text">{makePreviewHtml(body)}</div>
+          <div className="card__text card__font">{plainBodyText}</div>
           <br />
-          <small>
+        </div>
+        <div className="card__progres">
+          <small className="card__date card__font">
             <FormattedDate
               value={created_date}
               month="long"
@@ -89,8 +91,8 @@ export default class TopicCard extends Component {
               day="numeric"
             />
           </small>
+          <PreviewProgressBar topic={topic} />
         </div>
-        <PreviewProgressBar topic={topic} />
       </div>
     );
   }

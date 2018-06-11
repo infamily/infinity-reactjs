@@ -1,3 +1,7 @@
+.home__confgi_panel {
+  max-width: 800px;
+}
+
 .home_input__settings_btn {
   position: absolute;
   background-color: white;

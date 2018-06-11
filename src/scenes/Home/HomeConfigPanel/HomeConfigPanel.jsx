@@ -143,7 +143,7 @@ export default class HomeConfigPanel extends Component {
     const { view, flag, topicSource, categories } = homeParams;
 
     return (
-      <div className="home__head">
+      <div className="home__confgi_panel">
         <Header user={user} />
         <form onSubmit={this.onSearchSubmit}>
           <FormGroup>

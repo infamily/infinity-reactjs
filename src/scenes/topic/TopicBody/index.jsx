@@ -44,7 +44,7 @@ const TopicBody = ({
     topic.is_draft ? (
       <span className="topic__draft">
         <i>
-          <FormattedMessage {...messages.commentsTitle} />
+          <FormattedMessage {...messages.draft} />
         </i>
       </span>
     ) : (

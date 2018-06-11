@@ -33,6 +33,10 @@
   flex-grow: 1;
 }
 
+.full_height {
+  height: 100%;
+}
+
 .main_layout {
   display: flex;
   flex-direction: row;
@@ -97,6 +101,13 @@ a:visited {
 .nav__back {
   padding-top: 10px;
   cursor: pointer;
+}
+
+@media (min-width: 1300px) {
+  .main {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 650px) {

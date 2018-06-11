@@ -6,7 +6,7 @@ import Transition from 'react-transition-group/Transition';
 import StreamTab from 'scenes/StreamTab';
 import Topic from 'scenes/Topic';
 import TopicView from 'scenes/TopicView';
-import { transitionStyles } from './transition';
+import transitionStyles from './transition';
 import './TabPanel.css';
 
 export default class TabPanel extends Component {
@@ -40,7 +40,7 @@ export default class TabPanel extends Component {
   close = () => {
     const { push } = this.props.history;
     this.setState({ isOpen: false });
-    setTimeout(() => push(`${configs.linkBase()}/`), 300);
+    setTimeout(() => push(`${configs.linkBase()}/`), 200);
   };
 
   toggleFullScreen = () => {
@@ -55,7 +55,7 @@ export default class TabPanel extends Component {
       match: { path }
     } = this.props;
     const { isOpen, fullWidth } = this.state;
-    const fullStyle = fullWidth ? ' tab_container--full' : '';
+    const fullStyle = fullWidth ? 'tab_container--full' : '';
 
     const TabWrapper = TabPanelContent => props => (
       <TabPanelContent
@@ -81,7 +81,7 @@ export default class TabPanel extends Component {
           {state => (
             <div className="tab_layout" style={{ ...transitionStyles[state] }}>
               <div
-                className={`tab_container${fullStyle}`}
+                className={`tab_container ${fullStyle}`}
                 style={{ ...transitionStyles[state] }}
               >
                 <Switch>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
-import './new_button.css';
+import './NewButton.css';
 
 const NewButton = ({ title, action }) => (
   <Button className="new_btn" onClick={action} block>
@@ -11,7 +11,7 @@ const NewButton = ({ title, action }) => (
 
 NewButton.propTypes = {
   action: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.object.isRequired
 };
 
 export default NewButton;

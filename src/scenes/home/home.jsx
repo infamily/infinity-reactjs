@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InfiniteScroll from 'react-infinite-scroller';
 import { FormattedMessage } from 'react-intl';
 import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
-import LoadingElements from 'components/Loading/LoadingElements';
 import topicViewService from 'services/topic_view.service';
 import topicService from 'services/topic.service';
 import store_home from './services/store_home';
-import Topics from './TopicList';
+import TopicList from './TopicList';
 import { validateHomeParams, makeCategoriesArray } from './helpers';
 import HomeConfigPanel from './HomeConfigPanel';
 import messages from './messages';
 import './Home.css';
+
+const checkItem = (topic, user) => {
+  if (!topic.is_draft) return true;
+  if (!user) return false;
+
+  const isOwner = topic.owner.username === user.username;
+  return isOwner;
+};
 
 class Home extends Component {
   constructor() {
@@ -128,6 +134,7 @@ class Home extends Component {
 
     if (!topics) return;
     if (count === topics.length) return;
+    window.scrollBy(0, -55); // to reset masonry height
 
     const categoryParams = makeCategoriesArray(categories);
     const newTopics = await topicService.getPage(
@@ -179,6 +186,11 @@ class Home extends Component {
     this.setLoading(false);
   };
 
+  filterTopics = arr => {
+    const { user } = this.props;
+    return arr.filter(item => checkItem(item, user));
+  };
+
   setLoading = bool => {
     this.setState({ loading: bool });
   };
@@ -186,8 +198,7 @@ class Home extends Component {
   render() {
     const { user, server } = this.props;
     const { view } = this.props.homeParams;
-    const { topics, loading } = this.state;
-    const hasMore = this.hasMore();
+    const { topics, loading, count } = this.state;
 
     if (topics === null || !server) return <Loading />;
     const fullStyle = view === 'grid' && ' main--full';
@@ -204,14 +215,13 @@ class Home extends Component {
           {loading ? (
             <Loading />
           ) : (
-            <InfiniteScroll
-              pageStart={1}
+            <TopicList
+              topics={this.filterTopics(topics)}
               loadMore={this.loadMore}
-              hasMore={hasMore}
-              loader={<LoadingElements key={0} />}
-            >
-              <Topics topics={topics} view={view} />
-            </InfiniteScroll>
+              hasMore={this.hasMore}
+              view={view}
+              count={count}
+            />
           )}
         </div>
         <MenuBar page={<FormattedMessage {...messages.menuTitle} />} />

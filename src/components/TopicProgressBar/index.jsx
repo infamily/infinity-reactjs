@@ -69,9 +69,13 @@ const TopicProgressBar = ({ comment, invest, intl }) => {
   );
 };
 
+TopicProgressBar.defaultProps = {
+  invest: null
+};
+
 TopicProgressBar.propTypes = {
   intl: intlShape.isRequired,
-  invest: PropTypes.number.isRequired,
+  invest: PropTypes.number,
   comment: PropTypes.object.isRequired
 };
 

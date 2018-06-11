@@ -1,15 +1,24 @@
-/* masonry layout */
+.gird__masonry {
+  outline: none;
+}
 
-.my-masonry-grid {
+.grid__row {
   display: flex;
-  margin-left: -10px; /* gutter size offset */
-  width: auto;
-}
-.my-masonry-grid_column {
-  padding-left: 10px; /* gutter size */
-  background-clip: padding-box;
+  flex-direction: row;
 }
 
-.my-masonry-grid_column > div {
-  margin-bottom: 15px;
+.grid__row_item {
+  flex: 1 1 0;
+  padding: 5px;
+}
+
+.grid__active_item h4 {
+  animation: blink 1s ease;
+  animation-iteration-count: 1;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }

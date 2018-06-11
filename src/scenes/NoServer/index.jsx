@@ -12,7 +12,9 @@ const getMessage = str => {
 };
 
 const NoServer = ({ location }) => (
-  <NotFound text={getMessage(location.search)} />
+  <div>
+    <NotFound text={getMessage(location.search)} />
+  </div>
 );
 
 NoServer.propTypes = {

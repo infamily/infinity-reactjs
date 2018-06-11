@@ -100,3 +100,8 @@
     background-color: #fff;
   }
 }
+
+.boxAutoSizer {
+  background-color: white;
+  min-height: 100%;
+}

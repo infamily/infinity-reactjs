@@ -17,7 +17,7 @@ const SignInLine = ({ text }) => (
 );
 
 SignInLine.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.object.isRequired
 };
 
 export default SignInLine;

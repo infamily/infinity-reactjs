@@ -38,7 +38,7 @@ class Topic extends Component {
     this.state = {
       topic: {},
       ...initalMeta,
-      comment_id: 0,
+      comment_id: '',
       comment_text: '',
       addChildSection: false, // for panel
       showChildSection: false // for first data pulling
@@ -68,6 +68,7 @@ class Topic extends Component {
     const getId = props => props.match.params.id;
     // check if new topic is provided
     const solve = getId(this.props) !== getId(nextProps);
+
     if (solve) await this.loadTopicData(getId(nextProps));
   }
 
@@ -133,7 +134,7 @@ class Topic extends Component {
 
   clear() {
     this.setState({
-      comment_id: 0,
+      comment_id: '',
       comment_text: ''
     });
   }
@@ -148,7 +149,7 @@ class Topic extends Component {
 
     this.setState({
       comments,
-      comment_id: 0,
+      comment_id: '',
       comment_text: ''
     });
   };
@@ -160,7 +161,7 @@ class Topic extends Component {
       this.setState({
         comments,
         comment_text: '',
-        comment_id: 0
+        comment_id: ''
       });
     this.clear();
   };
@@ -204,16 +205,22 @@ class Topic extends Component {
       }
     };
 
-    const HomeButton = () =>
-      close ? (
-        <div onClick={close} className="nav__back">
+    const HomeButton = () => {
+      const TextButton = () => (
+        <span>
           &#10094; <FormattedMessage {...messages.homeButton} />
+        </span>
+      );
+      return close ? (
+        <div onClick={close} className="nav__back">
+          <TextButton />
         </div>
       ) : (
         <NavLink to={configs.linkBase()} className="nav__back">
-          &#10094; <FormattedMessage {...messages.homeButton} />
+          <TextButton />
         </NavLink>
       );
+    };
 
     const newButtonText = !addChildSection ? (
       <span>+ {getChild(topic.type)}</span>
