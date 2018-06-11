@@ -15,7 +15,7 @@ const ITEM_SIZE = 265; // width and height of the card
 const OVERSCAN = 0;
 
 // InfiniteLoader constants
-// const STATUS_LOADING = 1;
+const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
 
 const getMaxCardWidth = width => {
@@ -51,7 +51,7 @@ export default class VirtualizedList extends PureComponent {
   onResize = ({ width }) => {
     this.setResize();
     this.width = this.setWidth(width);
-    this.setRowsMap();
+    this.setRowsMap('forceUpdate');
     this.scrollToRow(this.state.activeRowIndex);
   };
 
@@ -68,25 +68,21 @@ export default class VirtualizedList extends PureComponent {
       if (i < loadedCount) loadedRowsMap[i] = STATUS_LOADED;
       else loadedRowsMap[i] = 0;
     }
-
     this.loadedRowsMap = loadedRowsMap;
   };
 
   loaderHandler = async ({ startIndex, stopIndex }) => {
     const loadedCount = this.countCardRowNumber();
 
-    // to do: add loading status
-
-    // const loadedRowsMap = { ...this.loadedRowsMap };
-    // for (let i = startIndex; i <= stopIndex; i += 1) {
-    //   loadedRowsMap[i] = STATUS_LOADING;
-    // }
-    // this.loadedRowsMap = loadedRowsMap;
+    const loadedRowsMap = { ...this.loadedRowsMap };
+    for (let i = startIndex; i <= stopIndex; i += 1) {
+      loadedRowsMap[i] = STATUS_LOADING;
+    }
+    this.loadedRowsMap = loadedRowsMap;
 
     if (loadedCount <= stopIndex) {
       await this.props.loadMore();
       this.setRowsMap('forceUpdate');
-      this.forceUpdate();
     }
   };
 
