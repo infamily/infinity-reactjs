@@ -15,7 +15,7 @@ const ITEM_SIZE = 265; // width and height of the card
 const OVERSCAN = 0;
 
 // InfiniteLoader constants
-const STATUS_LOADING = 1;
+// const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
 
 const getMaxCardWidth = width => {
@@ -30,14 +30,10 @@ export default class VirtualizedList extends PureComponent {
   constructor() {
     super();
     this.state = {
-      loadedRowCount: 0,
-      loadedRowsMap: null,
-      loadingRowCount: 0,
       scrollToIndex: -1,
-      showHeaderText: true,
       activeRowIndex: -1,
       activeItemIndex: -1,
-      prevActiveWidth: null
+      resizing: false
     };
   }
 
@@ -53,6 +49,7 @@ export default class VirtualizedList extends PureComponent {
   };
 
   onResize = ({ width }) => {
+    this.setResize();
     this.width = this.setWidth(width);
     this.setRowsMap();
     this.scrollToRow(this.state.activeRowIndex);
@@ -78,32 +75,19 @@ export default class VirtualizedList extends PureComponent {
   loaderHandler = async ({ startIndex, stopIndex }) => {
     const loadedCount = this.countCardRowNumber();
 
-    const loadedRowsMap = { ...this.loadedRowsMap };
-    for (let i = startIndex; i <= stopIndex; i += 1) {
-      loadedRowsMap[i] = STATUS_LOADING;
-    }
-    this.loadedRowsMap = loadedRowsMap;
+    // to do: add loading status
+
+    // const loadedRowsMap = { ...this.loadedRowsMap };
+    // for (let i = startIndex; i <= stopIndex; i += 1) {
+    //   loadedRowsMap[i] = STATUS_LOADING;
+    // }
+    // this.loadedRowsMap = loadedRowsMap;
 
     if (loadedCount <= stopIndex) {
       await this.props.loadMore();
       this.setRowsMap('forceUpdate');
       this.forceUpdate();
     }
-  };
-
-  hideHeader = () => {
-    const { showHeaderText } = this.state;
-
-    this.setState(
-      {
-        showHeaderText: !showHeaderText
-      },
-      () => {
-        if (this.windowScroller) {
-          this.windowScroller.updatePosition();
-        }
-      }
-    );
   };
 
   setNewActiveRowIndex = itemsPerRow => {
@@ -121,8 +105,6 @@ export default class VirtualizedList extends PureComponent {
   };
 
   resolveWidthChange = () => {
-    // const { prevActiveWidth } = this.state;
-    console.log(this.prevActiveWidth, this.width);
     if (this.width !== this.prevActiveWidth) {
       this.prevActiveWidth = this.width;
       return true;
@@ -144,7 +126,11 @@ export default class VirtualizedList extends PureComponent {
 
     for (let i = fromIndex; i < toIndex; i += 1) {
       const isItemActive = i === this.state.activeItemIndex;
-      const activeClass = isItemActive ? 'grid__active_item' : '';
+      let activeClass = '';
+
+      if (isItemActive && this.state.resizing) {
+        activeClass = 'grid__active_item';
+      }
 
       const item =
         this.loadedRowsMap[index] === STATUS_LOADED ? (
@@ -205,9 +191,15 @@ export default class VirtualizedList extends PureComponent {
     );
   };
 
+  setResize = () => {
+    this.setState({ resizing: true });
+    setTimeout(() => {
+      this.setState({ resizing: false });
+    }, 1500);
+  };
+
   render() {
     const { scrollToIndex } = this.state;
-
     return (
       <div>
         <WindowScroller ref={this.setRef} scrollElement={window}>
@@ -216,6 +208,7 @@ export default class VirtualizedList extends PureComponent {
               <AutoSizer disableHeight onResize={this.onResize}>
                 {({ width }) => {
                   this.width = this.setWidth(width);
+
                   return (
                     <div>
                       {width &&
