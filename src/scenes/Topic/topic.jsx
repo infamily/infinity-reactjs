@@ -46,7 +46,6 @@ class Topic extends Component {
   }
 
   static propTypes = {
-    setUpdateTopicList: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     server: PropTypes.string,
@@ -184,7 +183,7 @@ class Topic extends Component {
   };
 
   render() {
-    const { close, user, server, setUpdateTopicList, history } = this.props;
+    const { close, user, server, history } = this.props;
     const {
       topic,
       comments,
@@ -233,7 +232,6 @@ class Topic extends Component {
               parents={parents}
               categories={categories}
               user={user}
-              setUpdateTopicList={setUpdateTopicList}
               updateTopic={this.updateTopic}
             >
               {children}
