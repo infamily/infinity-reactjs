@@ -8,6 +8,8 @@ import zhLocaleData from 'react-intl/locale-data/zh';
 import enTranslationMessages from './translations/en.json';
 import deTranslationMessages from './translations/de.json';
 import ruTranslationMessages from './translations/ru.json';
+import zhTranslationMessages from './translations/zh.json';
+import ltTranslationMessages from './translations/lt.json';
 
 addLocaleData([
   ...enLocaleData,
@@ -17,7 +19,7 @@ addLocaleData([
   ...zhLocaleData
 ]);
 
-export const appLocales = ['en', 'de', 'ru'];
+export const appLocales = ['en', 'de', 'ru', 'zh', 'lt'];
 export const DEFAULT_LOCALE = 'en';
 
 export const formatTranslationMessages = (locale, messages) => {
@@ -37,5 +39,7 @@ export const formatTranslationMessages = (locale, messages) => {
 export const translationMessages = {
   en: formatTranslationMessages('en', enTranslationMessages),
   de: formatTranslationMessages('de', deTranslationMessages),
-  ru: formatTranslationMessages('ru', ruTranslationMessages)
+  ru: formatTranslationMessages('ru', ruTranslationMessages),
+  zh: formatTranslationMessages('zh', zhTranslationMessages),
+  lt: formatTranslationMessages('lt', ltTranslationMessages)
 };
