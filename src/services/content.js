@@ -20,6 +20,11 @@ export default {
         'wefindx.io': 'Šanchajus',
         'wefindx.com': 'Dublinas',
         '0.0.0.0:8000': 'Vietinis'
+      },
+      ja: {
+        'wefindx.io': '上海',
+        'wefindx.com': 'ダブリン',
+        '0.0.0.0:8000': 'ローカル'
       }
     }
   },
