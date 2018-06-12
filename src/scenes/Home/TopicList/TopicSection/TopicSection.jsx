@@ -28,9 +28,9 @@ class TopicSection extends Component {
     user: PropTypes.object
   };
 
-  saveScroll() {
+  saveScroll = () => {
     store_home.home_scroll = window.scrollY;
-  }
+  };
 
   expand = async (topic, fromId) => {
     const id = topic.id;
@@ -60,8 +60,18 @@ class TopicSection extends Component {
     });
   };
 
+  goToTopic = () => {
+    const { history, topic } = this.props;
+    history.push({ pathname: getTopicLink(topic.id), state: { topic } });
+  };
+
+  onTitleClick = () => {
+    this.goToTopic();
+    this.saveScroll();
+  };
+
   render() {
-    const { user, view, history } = this.props;
+    const { user, view } = this.props;
     const isLineView = view === 'line';
 
     const BadgePoint = ({ topic, fromId }) => {
@@ -89,9 +99,9 @@ class TopicSection extends Component {
     const TitleView = ({ topic, fromId }) => (
       <div className="topic_list__title-box">
         <BadgePoint topic={topic} fromId={fromId} />
-        <Link to={getTopicLink(topic.id)} onClick={this.saveScroll}>
+        <div onClick={this.onTitleClick}>
           <h2 className="topic_list__title">{` ${topic.title}`}</h2>
-        </Link>
+        </div>
       </div>
     );
 
@@ -105,7 +115,7 @@ class TopicSection extends Component {
           {isLineView ? (
             <TitleView topic={topic} fromId={fromId} />
           ) : (
-            <TopicCard topic={topic} history={history} />
+            <TopicCard topic={topic} goToTopic={this.goToTopic} />
           )}
           <div className="topic_list__step" style={getBorder(topic)}>
             {isExpanded &&
@@ -119,6 +129,7 @@ class TopicSection extends Component {
 
     const draftStyle = getDraftStyle(this.props.topic, user);
     const gridStyle = !isLineView && 'topics__item--grid';
+
     return (
       <div className={`topics__item ${draftStyle} ${gridStyle}`}>
         <TopicLine topic={this.props.topic} />

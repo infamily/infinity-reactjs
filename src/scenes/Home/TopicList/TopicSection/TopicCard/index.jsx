@@ -17,7 +17,7 @@ const makeHexDim = (inputHex, opacity) => {
   const result = `rgba(${r},${g},${b},${opacity / 100})`;
   return result;
 };
-const getTopicLink = id => `${configs.linkBase()}/split/topic/${id}`;
+
 const getColor = type => configs.colors[type];
 const getTitleStyle = color => ({
   borderLeft: `3px solid ${makeHexDim(color, 85)}`
@@ -31,16 +31,7 @@ export default class TopicCard extends Component {
 
   static propTypes = {
     topic: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
-
-  goToTopic = e => {
-    const { history } = this.props;
-    const {
-      topic: { id }
-    } = this.state;
-    history.push(getTopicLink(id));
-    // this.scrollToCard();
+    goToTopic: PropTypes.func.isRequired
   };
 
   scrollToCard = () => {
@@ -62,9 +53,10 @@ export default class TopicCard extends Component {
 
   render() {
     const { topic } = this.state;
+    const { goToTopic } = this.props;
     const { title, body, type, created_date } = topic;
     const color = getColor(type);
-    // const plainBodyText = removeMd(body).substring(0, 300);
+
     const plainBodyText = removeMd(body);
     return (
       <div
@@ -72,7 +64,7 @@ export default class TopicCard extends Component {
         className="card__item"
         style={getTitleStyle(color)}
       >
-        <div className="card__title" onClick={this.goToTopic}>
+        <div className="card__title" onClick={goToTopic}>
           <h4 className="card__title-text">{title}</h4>
         </div>
         <div className="card__data">

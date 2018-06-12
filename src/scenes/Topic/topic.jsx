@@ -48,6 +48,9 @@ class Topic extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    location: PropTypes.shape({
+      state: PropTypes.object
+    }).isRequired,
     server: PropTypes.string,
     user: PropTypes.object,
     close: PropTypes.func // tab mode
@@ -73,7 +76,9 @@ class Topic extends Component {
   }
 
   loadTopicData = async id => {
-    const topic = await topicService.getTopic(id);
+    const { state } = this.props.location;
+    const topicByLocation = state && state.topic;
+    const topic = topicByLocation || (await topicService.getTopic(id));
 
     if (!topic) {
       this.props.history.push('/404');
