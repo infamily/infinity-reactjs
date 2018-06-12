@@ -2,20 +2,6 @@ import axios from 'axios';
 import langService from './lang.service';
 import serverService from './server.service';
 
-const getParams = (flag, view, categories) => {
-  const f = flag || '';
-  const categoryParams = getCatergoryString(categories);
-  const viewParam = parseInt(view, 10) ? `&parents__isnull=${view}` : '';
-  const params = `lang=${
-    langService.current
-  }&type=${f}&type__not=0${viewParam}${categoryParams}`;
-  return params;
-};
-
-const logger = err => {
-  console.log(err);
-};
-
 // getCatergoryString returns a category query string for requests
 const getCatergoryString = array =>
   array.reduce(
@@ -23,15 +9,33 @@ const getCatergoryString = array =>
     ''
   );
 
+const getParams = (flag, view, categories, parentsById, childrenById) => {
+  const f = flag || '';
+  const categoryParams = categories ? getCatergoryString(categories) : '';
+  const viewParam = parseInt(view, 10) ? `&parents__isnull=${view}` : '';
+  let params = `lang=${
+    langService.current
+  }&type=${f}&type__not=0${viewParam}${categoryParams}`;
+
+  if (parentsById) params += `&children=${parentsById}`;
+  if (childrenById) params += `&parents=${childrenById}`;
+
+  return params;
+};
+
+const logger = err => {
+  console.log(err);
+};
+
 class TopicService {
   constructor() {
     this.topics = [];
     this.fromPage = 0;
   }
 
-  async getTopics(flag, view, categories) {
+  async getTopics(...args) {
     const { data, error } = await serverService.get(
-      `/topics/?${getParams(flag, view, categories)}`
+      `/topics/?${getParams(...args)}`
     );
     if (data) {
       this.topics = data.results;
@@ -42,9 +46,9 @@ class TopicService {
     return null;
   }
 
-  async getPage(page, flag, view, categories) {
+  async getPage(page, ...args) {
     const { data, error } = await serverService.get(
-      `/topics/?page=${page}&${getParams(flag, view, categories)}`
+      `/topics/?page=${page}&${getParams(...args)}`
     );
     if (data) {
       this.fromPage = page;
@@ -55,9 +59,9 @@ class TopicService {
     return null;
   }
 
-  async search(query, flag, view, categories) {
+  async search(query, ...args) {
     const { data, error } = await serverService.get(
-      `/topics/?search=${query}&${getParams(flag, view, categories)}`
+      `/topics/?search=${query}&${getParams(...args)}`
     );
     if (data) {
       this.topics = data.results;

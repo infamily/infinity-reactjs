@@ -49,9 +49,12 @@ class Home extends Component {
     const validParams = validateHomeParams(search);
     this.setLoading(true);
 
-    validParams
-      ? await this.setFilterBySearchQuery(validParams)
-      : await this.updateListState();
+    if (validParams) {
+      await this.setFilterBySearchQuery(validParams);
+    } else {
+      await this.updateListState();
+    }
+
     this.setLoading(false);
   }
 
@@ -75,25 +78,32 @@ class Home extends Component {
   }
 
   setFilterBySearchQuery = async validParams => {
-    const { flag, topicSource, categories, query, view } = validParams;
+    const { categories, query, childrenById, parentsById } = validParams;
 
-    const homeParams = {};
-    if (view) homeParams.view = view;
-    if (flag) homeParams.flag = flag;
-    if (topicSource) homeParams.topicSource = topicSource;
+    const homeParams = { ...validParams };
     if (categories)
       homeParams.categories = await topicViewService.getCategoriesByIds(
         categories
       );
 
-    await this.props.changeHomeParams({ ...homeParams });
+    await this.props.changeHomeParams({
+      ...homeParams,
+      childrenById: childrenById || null,
+      parentsById: parentsById || null
+    });
+
     if (query) {
       await this.makeSearch(query);
     } else await this.updateHomeTopicsByParams();
   };
 
   makeSearch = async query => {
-    const { flag, categories } = this.props.homeParams;
+    const {
+      flag,
+      categories,
+      parentsById,
+      childrenById
+    } = this.props.homeParams;
     const categoryParams = makeCategoriesArray(categories);
 
     const topicSource = 0; // show all topics
@@ -102,14 +112,22 @@ class Home extends Component {
       query,
       flag,
       topicSource,
-      categoryParams
+      categoryParams,
+      parentsById,
+      childrenById
     );
     this.updateHomeTopics(data);
   };
 
   updateListState = async () => {
     const { page } = this.state;
-    const { flag, topicSource, categories } = this.props.homeParams;
+    const {
+      flag,
+      topicSource,
+      categories,
+      parentsById,
+      childrenById
+    } = this.props.homeParams;
     const { fromPage, topics } = topicService;
     let topicData = { results: topics, count: null };
 
@@ -119,7 +137,9 @@ class Home extends Component {
       topicData = await topicService.getTopics(
         flag,
         topicSource,
-        categoryParams
+        categoryParams,
+        parentsById,
+        childrenById
       );
     }
 
@@ -129,7 +149,13 @@ class Home extends Component {
 
   loadMore = async () => {
     const { topics, count, page } = this.state;
-    const { flag, topicSource, categories } = this.props.homeParams;
+    const {
+      flag,
+      topicSource,
+      categories,
+      parentsById,
+      childrenById
+    } = this.props.homeParams;
     const next = page + 1;
 
     if (!topics) return;
@@ -141,7 +167,9 @@ class Home extends Component {
       next,
       flag,
       topicSource,
-      categoryParams
+      categoryParams,
+      parentsById,
+      childrenById
     );
     const main_pack = topics.concat(newTopics);
     topicService.topics = main_pack; // pile up topics
@@ -168,14 +196,22 @@ class Home extends Component {
   };
 
   updateHomeTopicsByParams = async () => {
-    const { flag, topicSource, categories } = this.props.homeParams;
+    const {
+      flag,
+      topicSource,
+      categories,
+      parentsById,
+      childrenById
+    } = this.props.homeParams;
     const categoryParams = makeCategoriesArray(categories);
 
     this.setLoading(true);
     const data = await topicService.getTopics(
       flag,
       topicSource,
-      categoryParams
+      categoryParams,
+      parentsById,
+      childrenById
     );
     this.scrollToPosition();
     this.setState({

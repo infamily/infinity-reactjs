@@ -58,6 +58,18 @@ const TopicBody = ({
     );
   };
 
+  const getParents = () => {
+    history.push(
+      `${configs.linkBase()}/split/topic/${topic.id}?parentsById=${topic.id}`
+    );
+  };
+
+  const getChildren = () => {
+    history.push(
+      `${configs.linkBase()}/split/topic/${topic.id}?childrenById=${topic.id}`
+    );
+  };
+
   return (
     <div className="topic__container">
       <EditTopic isOwner={isOwner} id={topic.id} />
@@ -81,6 +93,7 @@ const TopicBody = ({
           ...messages.parents
         })}
         items={parents}
+        onLabelClick={getParents}
       />
       <div className="topic__fund_data">
         <TopicFundData topic={topic} updateData={updateTopic} />
@@ -91,6 +104,7 @@ const TopicBody = ({
           ...messages.children
         })}
         items={children}
+        onLabelClick={getChildren}
       />
       <div className="topic__bottom">
         <div>

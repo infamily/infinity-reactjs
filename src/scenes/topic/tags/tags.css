@@ -17,6 +17,7 @@
   font-size: 14px;
   margin-right: 5px;
   border-bottom: 2px solid #bfbfbf;
+  cursor: pointer;
 }
 
 .tags__item {

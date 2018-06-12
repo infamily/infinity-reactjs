@@ -16,12 +16,10 @@ export function parseSearchParameters(search) {
 
   const params = search.substring(1);
   return JSON.parse(
-    '{"' +
-      decodeURI(params)
-        .replace(/"/g, '\\"')
-        .replace(/&/g, '","')
-        .replace(/=/g, '":"') +
-      '"}'
+    `{"${decodeURI(params)
+      .replace(/"/g, '\\"')
+      .replace(/&/g, '","')
+      .replace(/=/g, '":"')}"}`
   );
 }
 
@@ -33,22 +31,34 @@ export const validateCategoryString = str => {
     : [];
 };
 
-// returns valid params or null
-export const validateHomeParams = search => {
-  const searchParams = parseSearchParameters(search);
-  const validParams = validateSearchParams(searchParams);
-  const homeParams = Object.keys(validParams).length ? validParams : null;
-  return homeParams;
-};
-
 const validateSearchParams = obj => {
-  const { flag, topicSource, view, categories, query } = obj;
+  const {
+    flag,
+    topicSource,
+    view,
+    categories,
+    query,
+    parentsById,
+    childrenById
+  } = obj;
   const params = {};
 
   if (flag) {
     const flagParam = parseInt(flag, 10);
     const isValid = !isNaN(flagParam) && flagParam < 6 && flagParam >= 0;
     if (isValid) params.flag = flagParam;
+  }
+
+  if (parentsById) {
+    const parentsByIdParam = parseInt(parentsById, 10);
+    const isValid = !isNaN(parentsByIdParam) && parentsByIdParam > 0;
+    if (isValid) params.parentsById = parentsByIdParam;
+  }
+
+  if (childrenById) {
+    const childrenByIdParam = parseInt(childrenById, 10);
+    const isValid = !isNaN(childrenByIdParam) && childrenByIdParam > 0;
+    if (isValid) params.childrenById = childrenByIdParam;
   }
 
   if (topicSource) {
@@ -68,4 +78,12 @@ const validateSearchParams = obj => {
   if (query) params.query = query;
 
   return params;
+};
+
+// returns valid params or null
+export const validateHomeParams = search => {
+  const searchParams = parseSearchParameters(search);
+  const validParams = validateSearchParams(searchParams);
+  const homeParams = Object.keys(validParams).length ? validParams : null;
+  return homeParams;
 };

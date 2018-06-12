@@ -4,7 +4,9 @@ const initialState = {
   flag: 0,
   view: 'grid', // line | grid
   topicSource: 1,
-  categories: []
+  categories: [],
+  childrenById: null,
+  parentsById: null
 };
 
 export default (state = initialState, action) => {

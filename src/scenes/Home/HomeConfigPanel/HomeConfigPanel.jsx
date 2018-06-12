@@ -67,7 +67,7 @@ export default class HomeConfigPanel extends Component {
     if (query) this.setState({ query });
   };
 
-  updateSearchParams = () => {
+  updateSearchParams = async () => {
     const { view, flag, topicSource, categories } = this.props.homeParams;
     const { query } = this.state;
 
@@ -77,6 +77,11 @@ export default class HomeConfigPanel extends Component {
     if (query) search += `&query=${query}`;
     if (categories.length) search += `&categories=${categoriesArray}`;
 
+    // reset parents/children params
+    await this.props.changeHomeParams({
+      childrenById: null,
+      parentsById: null
+    });
     this.props.history.push({ search });
   };
 

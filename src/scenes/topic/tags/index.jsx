@@ -27,17 +27,20 @@ Tag.propTypes = {
   }).isRequired
 };
 
-const Tags = ({ title, items }) =>
+const Tags = ({ title, items, onLabelClick }) =>
   items[0] ? (
     <div className="tags__tag-box">
-      <span className="tags__title">{title}</span>
+      <span className="tags__title" onClick={onLabelClick}>
+        {title}
+      </span>
       {items.map(topic => <Tag topic={topic} key={topic.id} />)}
     </div>
   ) : null;
 
 Tags.propTypes = {
   title: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  onLabelClick: PropTypes.func.isRequired
 };
 
 export default Tags;
