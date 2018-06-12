@@ -70,7 +70,7 @@ export default class TopicCard extends Component {
         <div className="card__data">
           <TopicFundData topic={topic} updateData={this.updateData} />
         </div>
-        <div className="card__description" onClick={this.goToTopic}>
+        <div className="card__description" onClick={goToTopic}>
           <div className="card__text card__font">{plainBodyText}</div>
           <br />
         </div>
