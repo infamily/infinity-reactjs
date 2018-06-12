@@ -24,6 +24,11 @@ class Language {
         lang: 'cn',
         name: '中文',
         enabled: true
+      },
+      {
+        lang: 'ja',
+        name: '日本語',
+        enabled: true
       }
     ];
 
