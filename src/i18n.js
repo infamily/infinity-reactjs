@@ -4,22 +4,25 @@ import deLocaleData from 'react-intl/locale-data/de';
 import ltLocaleData from 'react-intl/locale-data/lt';
 import ruLocaleData from 'react-intl/locale-data/ru';
 import zhLocaleData from 'react-intl/locale-data/zh';
+import jaLocaleData from 'react-intl/locale-data/ja';
 
 import enTranslationMessages from './translations/en.json';
 import deTranslationMessages from './translations/de.json';
 import ruTranslationMessages from './translations/ru.json';
 import zhTranslationMessages from './translations/zh.json';
 import ltTranslationMessages from './translations/lt.json';
+import jaTranslationMessages from './translations/ja.json';
 
 addLocaleData([
   ...enLocaleData,
   ...deLocaleData,
   ...ltLocaleData,
   ...ruLocaleData,
-  ...zhLocaleData
+  ...zhLocaleData,
+  ...jaLocaleData
 ]);
 
-export const appLocales = ['en', 'de', 'ru', 'zh', 'lt'];
+export const appLocales = ['en', 'de', 'ru', 'zh', 'lt', 'ja'];
 export const DEFAULT_LOCALE = 'en';
 
 export const formatTranslationMessages = (locale, messages) => {
@@ -41,5 +44,6 @@ export const translationMessages = {
   de: formatTranslationMessages('de', deTranslationMessages),
   ru: formatTranslationMessages('ru', ruTranslationMessages),
   zh: formatTranslationMessages('zh', zhTranslationMessages),
-  lt: formatTranslationMessages('lt', ltTranslationMessages)
+  lt: formatTranslationMessages('lt', ltTranslationMessages),
+  ja: formatTranslationMessages('ja', jaTranslationMessages)
 };
