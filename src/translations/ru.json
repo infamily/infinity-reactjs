@@ -122,7 +122,7 @@
   "infinity.scenes.UserTransactions.type": "Тип",
   "infinity.scenes.UserTransactions.contribution": "Вклад",
   "infinity.scenes.UserTransactions.none": "Пусто",
-  "infinity.scenes.NotFound.noContent": "404. А что это Вы искали?).",
+  "infinity.scenes.NotFound.noContent": "404. А что это Вы искали?)",
   "infinity.scenes.NoServer.noServer": "Такого сервера {name} нет.",
   "infinity.scenes.NoServer.such": "",
   "infinity.scenes.Terms.tos": "Условия использования",

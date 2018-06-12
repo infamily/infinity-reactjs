@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Balance from 'components/Balance/Balance';
@@ -22,7 +22,8 @@ const TopicBody = ({
   user,
   categories,
   history,
-  updateTopic
+  updateTopic,
+  intl
 }) => {
   if (!topic.title) return null;
   const isOwner = user && topic.owner.id === user.id;
@@ -75,12 +76,22 @@ const TopicBody = ({
         />
         <Categories categories={categories} />
       </div>
-      <Tags title="Parents" items={parents} />
+      <Tags
+        title={intl.formatMessage({
+          ...messages.parents
+        })}
+        items={parents}
+      />
       <div className="topic__fund_data">
         <TopicFundData topic={topic} updateData={updateTopic} />
       </div>
       <div className="topic__body">{makeHtml(topic.body)}</div>
-      <Tags title="Children" items={children} />
+      <Tags
+        title={intl.formatMessage({
+          ...messages.children
+        })}
+        items={children}
+      />
       <div className="topic__bottom">
         <div>
           <span>{topic.owner.username}</span>
@@ -97,6 +108,7 @@ const TopicBody = ({
 
 TopicBody.propTypes = {
   topic: PropTypes.object.isRequired,
+  intl: intlShape.isRequired,
   history: PropTypes.object.isRequired,
   children: PropTypes.array.isRequired,
   parents: PropTypes.array.isRequired,
@@ -105,4 +117,4 @@ TopicBody.propTypes = {
   user: PropTypes.object
 };
 
-export default TopicBody;
+export default injectIntl(TopicBody);
