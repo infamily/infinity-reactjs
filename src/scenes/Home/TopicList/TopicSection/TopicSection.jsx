@@ -74,14 +74,14 @@ class TopicSection extends Component {
     const isLineView = view === 'line';
 
     const BadgePoint = ({ topic, fromId }) => {
-      const loading = this.state[`${topic.id}loading`] ? ' point_pulse' : '';
+      const loading = this.state[`${topic.id}_isLoading`] ? 'point_pulse' : '';
       const { children } = topic;
 
       if (children.length) {
         return (
           <Badge
             onClick={() => this.expand(topic, fromId)}
-            className={`topic_section__expand${loading}`}
+            className={`topic_section__expand ${loading}`}
             style={badgeStyle(topic)}
           >
             {' '}
@@ -97,9 +97,11 @@ class TopicSection extends Component {
 
     const TitleView = ({ topic, fromId }) => (
       <div className="topic_list__title-box">
-        <BadgePoint topic={topic} fromId={fromId} />
-        <div onClick={this.onTitleClick}>
-          <h2 className="topic_list__title">{` ${topic.title}`}</h2>
+        <div>
+          <BadgePoint topic={topic} fromId={fromId} />
+          <h2 onClick={this.onTitleClick} className="topic_list__title">{` ${
+            topic.title
+          }`}</h2>
         </div>
       </div>
     );

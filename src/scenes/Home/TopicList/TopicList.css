@@ -16,6 +16,7 @@
   display: inline;
   margin-left: 10px;
   margin: 10px;
+  cursor: pointer;
 }
 
 .topic_list__edit {
