@@ -8,6 +8,7 @@ import TopicView from 'scenes/TopicView';
 import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import Loading from 'components/Loading/LoadingElements';
 import commentService from 'services/comment.service';
+import langService from 'services/lang.service';
 import { Panel } from 'react-bootstrap';
 import configs from 'configs';
 import TopicBody from './TopicBody';
@@ -90,7 +91,7 @@ class Topic extends Component {
       ...initalMeta
     });
 
-    const { lang } = topic;
+    const lang = topic.lang || langService.current;
     const comments = await topicService.getComments(id, lang);
     const children = await topicService.getChildren(id, lang);
     const parents = await topicService.getParents(id, lang);
