@@ -45,3 +45,7 @@
     display: inline;
   }
 }
+
+.topics__reset {
+  margin-left: auto;
+}

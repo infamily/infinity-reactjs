@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { Alert, Button } from 'react-bootstrap';
 import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
 import topicViewService from 'services/topic_view.service';
@@ -10,6 +11,7 @@ import TopicList from './TopicList';
 import { validateHomeParams, makeCategoriesArray } from './helpers';
 import HomeConfigPanel from './HomeConfigPanel';
 import messages from './messages';
+import configs from 'configs';
 import './Home.css';
 
 const checkItem = (topic, user) => {
@@ -228,10 +230,33 @@ class Home extends Component {
     this.setState({ loading: bool });
   };
 
+  handleDismiss = async () => {
+    await this.props.changeHomeParams({
+      parentsById: null,
+      childrenById: null
+    });
+    // await this.updateHomeTopicsByParams();
+    const { params } = this.props.match;
+    if (params.id) {
+      this.props.history.push(`${configs.linkBase()}/split/topic/${params.id}`);
+    } else {
+      this.props.history.push(`${configs.linkBase()}`);
+    }
+    this.updateHomeTopicsByParams();
+  };
+
   render() {
     const { user, server } = this.props;
-    const { view } = this.props.homeParams;
+    const { view, parentsById, childrenById } = this.props.homeParams;
     const { topics, loading, count } = this.state;
+
+    const AlertFilter = ({ msg }) => (
+      <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
+        <p className="topics__filter_alert">
+          <span>{msg}</span>
+        </p>
+      </Alert>
+    );
 
     if (topics === null || !server) return <Loading />;
     const fullStyle = view === 'grid' && ' main--full';
@@ -245,6 +270,16 @@ class Home extends Component {
           setLoading={this.setLoading}
         />
         <div className="topics__content">
+          {parentsById && (
+            <AlertFilter
+              msg={<FormattedMessage {...messages.filteredByParents} />}
+            />
+          )}
+          {childrenById && (
+            <AlertFilter
+              msg={<FormattedMessage {...messages.filteredByChildren} />}
+            />
+          )}
           {loading ? (
             <Loading />
           ) : (

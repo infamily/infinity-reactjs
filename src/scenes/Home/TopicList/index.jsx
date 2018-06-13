@@ -62,7 +62,7 @@ class TopicList extends Component {
           {elements}
         </Grid>
       );
-    console.log(this.props.hasMore, 'this.props.hasMore');
+
     const hasMore = this.props.hasMore();
     return (
       <InfiniteScroll

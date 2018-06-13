@@ -8,5 +8,18 @@ export default defineMessages({
   noTopics: {
     id: 'infinity.scenes.Home.TopicList.noTopics',
     defaultMessage: 'No topics. Try to change filter parameters.'
+  },
+  // to do: add to translations
+  filterReset: {
+    id: 'infinity.scenes.Home.TopicList.filterReset',
+    defaultMessage: 'Reset'
+  },
+  filteredByParents: {
+    id: 'infinity.scenes.Home.TopicList.filteredByParents',
+    defaultMessage: 'Parents of the current topic are shown.'
+  },
+  filteredByChildren: {
+    id: 'infinity.scenes.Home.TopicList.filteredByChildren',
+    defaultMessage: 'Children of the current topic are shown.'
   }
 });
