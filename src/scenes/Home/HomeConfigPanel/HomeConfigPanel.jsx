@@ -47,7 +47,7 @@ export default class HomeConfigPanel extends Component {
   async componentWillReceiveProps(nextProps) {
     const { search } = this.props.location;
     const nextSearch = nextProps.location.search;
-    if (search !== nextSearch) {
+    if (search !== nextSearch && nextSearch) {
       const params = validateHomeParams(nextSearch) || {};
 
       // clear all topic relatives params if they are still in store
@@ -77,11 +77,6 @@ export default class HomeConfigPanel extends Component {
     if (query) search += `&query=${query}`;
     if (categories.length) search += `&categories=${categoriesArray}`;
 
-    // reset parents/children params
-    await this.props.changeHomeParams({
-      childrenById: null,
-      parentsById: null
-    });
     this.props.history.push({ search });
   };
 

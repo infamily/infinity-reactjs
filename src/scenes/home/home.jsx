@@ -70,7 +70,6 @@ class Home extends Component {
   async componentWillReceiveProps(nextProps) {
     if (nextProps.shouldUpdateTopicList) {
       this.props.setUpdateTopicList(false);
-
       // clear state to get new topics
       topicService.resetState();
       await this.updateListState();
@@ -78,7 +77,7 @@ class Home extends Component {
   }
 
   setFilterBySearchQuery = async validParams => {
-    const { categories, query, childrenById, parentsById } = validParams;
+    const { categories, query } = validParams;
 
     const homeParams = { ...validParams };
     if (categories)
