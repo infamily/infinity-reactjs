@@ -48,17 +48,17 @@ export default class HomeConfigPanel extends Component {
     const { search } = this.props.location;
     const nextSearch = nextProps.location.search;
     if (search !== nextSearch) {
-      console.log('updated config');
-      await this.updateHomeParamsOnNewProps(nextSearch);
+      const params = validateHomeParams(nextSearch) || {};
+
+      // clear all topic relatives params if they are still in store
+      if (!params.childrenById) params.childrenById = null;
+      if (!params.parentsById) params.parentsById = null;
+
+      await this.props.changeHomeParams(params);
+      store_home.home_scroll = 0;
+      await this.props.updateHomeTopicsByParams();
     }
   }
-
-  updateHomeParamsOnNewProps = async search => {
-    const params = validateHomeParams(search);
-    await this.props.changeHomeParams(params);
-    store_home.home_scroll = 0;
-    await this.props.updateHomeTopicsByParams();
-  };
 
   updateConfigState = () => {
     const { search } = this.props.location;

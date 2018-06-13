@@ -60,13 +60,17 @@ const TopicBody = ({
 
   const getParents = () => {
     history.push(
-      `${configs.linkBase()}/split/topic/${topic.id}?parentsById=${topic.id}`
+      `${configs.linkBase()}/split/topic/${topic.id}?flag=0&parentsById=${
+        topic.id
+      }`
     );
   };
 
   const getChildren = () => {
     history.push(
-      `${configs.linkBase()}/split/topic/${topic.id}?childrenById=${topic.id}`
+      `${configs.linkBase()}/split/topic/${topic.id}?flag=0&childrenById=${
+        topic.id
+      }`
     );
   };
 

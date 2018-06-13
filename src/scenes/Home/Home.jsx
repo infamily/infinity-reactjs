@@ -87,9 +87,7 @@ class Home extends Component {
       );
 
     await this.props.changeHomeParams({
-      ...homeParams,
-      childrenById: childrenById || null,
-      parentsById: parentsById || null
+      ...homeParams
     });
 
     if (query) {
