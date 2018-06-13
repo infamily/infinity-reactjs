@@ -44,3 +44,11 @@
     display: block;
   }
 }
+
+.settings_icon {
+  transition: transform 0.5s ease-out;
+}
+
+.settings_icon:hover {
+  transform: rotate(120deg) scale(1.2);
+}

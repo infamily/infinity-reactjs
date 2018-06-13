@@ -18,7 +18,7 @@ export default class SettingsButton extends PureComponent {
           onClick={this.props.action}
           src={settingsIcon}
           alt="settings icon"
-          className="main__icon_btn"
+          className="main__icon_btn settings_icon"
         />
       </TooltipOverlay>
     );
