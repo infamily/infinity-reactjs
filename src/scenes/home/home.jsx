@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
 import topicViewService from 'services/topic_view.service';
@@ -11,7 +11,6 @@ import TopicList from './TopicList';
 import { validateHomeParams, makeCategoriesArray } from './helpers';
 import HomeConfigPanel from './HomeConfigPanel';
 import messages from './messages';
-import configs from 'configs';
 import './Home.css';
 
 const checkItem = (topic, user) => {
@@ -230,18 +229,11 @@ class Home extends Component {
     this.setState({ loading: bool });
   };
 
-  handleDismiss = async () => {
+  resetRelativeFilter = async () => {
     await this.props.changeHomeParams({
       parentsById: null,
       childrenById: null
     });
-    // await this.updateHomeTopicsByParams();
-    const { params } = this.props.match;
-    if (params.id) {
-      this.props.history.push(`${configs.linkBase()}/split/topic/${params.id}`);
-    } else {
-      this.props.history.push(`${configs.linkBase()}`);
-    }
     this.updateHomeTopicsByParams();
   };
 
@@ -251,7 +243,7 @@ class Home extends Component {
     const { topics, loading, count } = this.state;
 
     const AlertFilter = ({ msg }) => (
-      <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
+      <Alert bsStyle="danger" onDismiss={this.resetRelativeFilter}>
         <p className="topics__filter_alert">
           <span>{msg}</span>
         </p>
