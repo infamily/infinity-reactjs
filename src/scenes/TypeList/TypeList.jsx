@@ -5,7 +5,6 @@ import MenuBar from 'scenes/MenuBar';
 import Loading from 'components/Loading';
 import Header from 'components/Header';
 import TypeItem from 'components/TypeItem';
-import langService from 'services/lang.service';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { getTypes } from './services';
@@ -15,7 +14,6 @@ class TypesList extends Component {
   constructor() {
     super();
     this.state = {
-      content: langService.homeContent(),
       query: '',
       types: null
     };
@@ -50,7 +48,6 @@ class TypesList extends Component {
   };
 
   render() {
-    const { title } = this.state.content;
     const { types, query } = this.state;
     const { user } = this.props;
 
@@ -58,7 +55,7 @@ class TypesList extends Component {
 
     return (
       <div className="main">
-        <Header user={user} title={title} />
+        <Header user={user} />
 
         <FormGroup>
           <InputGroup>

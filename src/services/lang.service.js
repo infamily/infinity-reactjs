@@ -100,10 +100,6 @@ class Language {
     return servers[this.current] || servers.en;
   }
 
-  homeContent() {
-    return texts.main[this.current] || texts.main.en;
-  }
-
   howContent() {
     return texts.how[this.current] || texts.how.en;
   }
