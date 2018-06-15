@@ -4,7 +4,6 @@ import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import TopicFundData from 'components/TopicFundData';
-import Typist from 'react-typist';
 import { NextButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
 import messages from 'scenes/Topic/messages';
@@ -48,9 +47,7 @@ const ShowCaseTopicBody = ({
   return (
     <div className="show_case__container">
       <EditTopic isOwner={isOwner} id={topic.id} />
-      <Typist>
-        <h1 className="show_case__title">{topic.title}</h1>
-      </Typist>
+      <h1 className="show_case__title">{topic.title}</h1>
       <div className="show_case__body">{makeHtml(topic.body)}</div>
       <div className="show_case__bottom">
         <div>

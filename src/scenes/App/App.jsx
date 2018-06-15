@@ -21,6 +21,7 @@ import TabToggle from 'components/TabToggle';
 import TabPanel from 'scenes/TabPanel';
 import NoServer from 'scenes/NoServer';
 import Terms from 'scenes/Terms';
+import SplashScreen from 'scenes/SplashScreen';
 import serverService from 'services/server.service';
 import langService from 'services/lang.service';
 import { translationMessages } from '../../i18n';
@@ -41,6 +42,9 @@ class App extends Component {
 
   static propTypes = {
     user: PropTypes.object,
+    splash: PropTypes.shape({
+      status: PropTypes.bool.isRequired
+    }).isRequired,
     server: PropTypes.string
   };
 
@@ -50,7 +54,7 @@ class App extends Component {
   };
 
   render() {
-    const { user, server } = this.props;
+    const { user, server, splash } = this.props;
     const Routes = ({ match: { path } }) => (
       <Switch>
         {server && <Redirect exact from="/" to={configs.linkBase()} />}
@@ -111,6 +115,7 @@ class App extends Component {
               />
               <Route path="/" component={SetWrapper(DefaultWrapper)} />
             </Switch>
+            {true && <SplashScreen />}
           </div>
         </HashRouter>
       </IntlProvider>
