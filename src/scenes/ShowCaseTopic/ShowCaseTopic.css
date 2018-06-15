@@ -6,7 +6,7 @@
 }
 
 .show_case__box {
-  background-color: rgb(211, 253, 239);
+  background-color: rgb(72, 100, 224);
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -14,6 +14,9 @@
   left: 0;
   top: 0;
   overflow: auto;
+  background-image: url(https://hypercortex.network/assets/images/mountains.jpg);
+  background-blend-mode: darken;
+  color: wheat;
 }
 
 .show_case__content {
