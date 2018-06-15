@@ -5,6 +5,7 @@ import { IntlProvider } from 'react-intl';
 import configs from 'configs';
 import Home from 'scenes/Home';
 import Topic from 'scenes/Topic';
+import ShowCaseTopic from 'scenes/ShowCaseTopic';
 import How from 'scenes/How';
 import What from 'scenes/What';
 import NotFound from 'scenes/NotFound';
@@ -57,6 +58,7 @@ class App extends Component {
         <Route path={`${path}split`} component={Home} />
         <Route path={`${path}topic/:id/comment/:commentId`} component={Topic} />
         <Route path={`${path}topic/:id`} component={Topic} />
+        <Route path={`${path}show-case/:id`} component={ShowCaseTopic} />
         <Route path={`${path}page/how`} component={How} />
         <Route path={`${path}page/what`} component={What} />
         <Route path={`${path}page/otp`} component={OtpLogin} />

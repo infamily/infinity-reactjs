@@ -1,0 +1,141 @@
+.topics__back {
+  color: gray;
+  padding: 20px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.show_case__box {
+  background-color: rgb(211, 253, 239);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  left: 0;
+  top: 0;
+  overflow: auto;
+}
+
+.show_case__content {
+  max-width: 800px;
+  margin: auto;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.show_case__body {
+  margin: 20px 0;
+}
+
+.show_case__title {
+  text-align: center;
+}
+
+.topics__back:hover {
+  box-shadow: 5px black;
+  color: black;
+}
+
+.show_case__container {
+  overflow: auto;
+  height: max-content;
+}
+
+.topics__content-item {
+  margin: 10px;
+  margin-bottom: 70px;
+}
+
+.show_case__draft {
+  margin: 0 5px;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: rgb(238, 238, 238);
+  font-size: 14px;
+}
+
+.show_case__bottom {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.show_case__edit {
+  float: right;
+  margin-top: 20px;
+}
+
+.show_case__impact {
+  font-size: 16px;
+}
+
+.show_case__match {
+  color: #000;
+  font-size: 13px;
+  margin: 0 auto;
+  display: inline-block;
+  min-width: 25px;
+  text-align: center;
+  margin: 0 5px;
+  padding: 0 5px;
+
+  border: 2px solid rgb(205, 107, 127);
+  border-radius: 2px;
+}
+
+.show_case__link_icon {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 5px;
+}
+
+.show_case__link_icon:hover {
+  transform: scale(1.1);
+}
+
+.show_case__edit_panel {
+  border: none;
+  margin-bottom: 0px;
+}
+
+.show_case__category {
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 0;
+  padding: 1px 10px;
+}
+
+.show_case__categories {
+  display: inline;
+  margin-left: 5px;
+}
+
+.show_case__type {
+  color: #fff;
+  font-size: 13px;
+  margin: 0 auto;
+  display: inline-block;
+  min-width: 25px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgb(118, 185, 118);
+  border: 1px solid rgb(118, 185, 118);
+  border-radius: 2px;
+  margin-bottom: 5px;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.show_case__fund_data {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.show_case__tags {
+  margin-top: 10px;
+  min-height: 20px;
+}
