@@ -32,10 +32,13 @@ async function getParents(parents) {
   const formatted = [];
 
   for (const link of parents) {
-    const id = link.match(/topics\/(\d+)/)[1];
-    const topic = await getTopic(id);
-    const { title, url } = topic;
-    formatted.push({ label: title, value: title, url });
+    const linkMatch = link.match(/topics\/(\d+)/);
+    if (linkMatch) {
+      const id = linkMatch[1];
+      const topic = await getTopic(id);
+      const { title, url } = topic;
+      formatted.push({ label: title, value: title, url });
+    }
   }
 
   return formatted;

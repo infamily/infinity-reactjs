@@ -7,6 +7,7 @@ import {
   ControlLabel,
   Button,
   Tabs,
+  Panel,
   Tab,
   InputGroup,
   ToggleButtonGroup,
@@ -18,7 +19,7 @@ import Flag from 'components/FlagToggle';
 import Loading from 'components/Loading';
 import LoadingElements from 'components/Loading/LoadingElements';
 import TextEditor from 'components/TextEditor/TopicEditor';
-import SourceEditor from 'components/TextEditor/SimpleEditor';
+import SimpleEditor from 'components/TextEditor/SimpleEditor';
 import FormSelect from 'components/FormSelect';
 import CategorySelect from 'components/CategorySelect';
 import SignInLine from 'components/SignInLine';
@@ -27,9 +28,11 @@ import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import configs from 'configs';
 import 'react-select/dist/react-select.min.css';
 import messages from './messages';
+import { validateJson } from './helpers';
 import PopupModal from './PopupModal';
 import DeletePopup from './PopupModal/Delete';
 import topicService from './services';
+import defaultDataJson from './defaultDataJson';
 import './TopicView.css';
 
 class TopicView extends Component {
@@ -41,12 +44,14 @@ class TopicView extends Component {
       editId: null,
       editor: 0,
       topic_type: 1,
+      data: '',
       topic_categories: [],
       topic_title: '',
       topic_text: '',
       topic_source_title: '',
       topic_source_text: '',
       topic_parents: [],
+      isDataEditorOpen: false,
       is_draft: false,
       error: false,
       success: false,
@@ -122,6 +127,7 @@ class TopicView extends Component {
     const topic_categories = await topicService.getCategories(topic.categories);
 
     return {
+      data: topic.data,
       topic_type: topic.type,
       topic_title: topic.title,
       topic_text: topic.body,
@@ -139,6 +145,7 @@ class TopicView extends Component {
       topic_categories,
       topic_title,
       topic_text,
+      data,
       topic_source_title,
       topic_source_text,
       topic_parents,
@@ -154,6 +161,7 @@ class TopicView extends Component {
       type: topic_type,
       title,
       text,
+      showcase_data: data,
       parents: formatted(topic_parents),
       categories: formatted(topic_categories),
       is_draft
@@ -166,6 +174,16 @@ class TopicView extends Component {
       message: {
         title: <FormattedMessage {...messages.submitError} />,
         text: <FormattedMessage {...messages.submitErrorText} />
+      }
+    });
+  };
+
+  showShowCaseError = () => {
+    this.setState({
+      error: true,
+      message: {
+        title: <FormattedMessage {...messages.submitError} />,
+        text: <FormattedMessage {...messages.showCaseError} />
       }
     });
   };
@@ -191,7 +209,7 @@ class TopicView extends Component {
   submitTopic = async e => {
     e.preventDefault();
     const { match } = this.props;
-    const { topic_title, topic_source_title, editor } = this.state;
+    const { topic_title, topic_source_title, editor, data } = this.state;
     const editingTopicId = match.params.eId;
     const isSourceEditor = editor === 1;
 
@@ -205,41 +223,23 @@ class TopicView extends Component {
       return;
     }
 
-    const data = this.formatData(isSourceEditor);
-    data.id = editingTopicId;
+    if (data && !validateJson(data)) {
+      this.showShowCaseError();
+      return;
+    }
+
+    const formattedData = this.formatData(isSourceEditor);
+    formattedData.id = editingTopicId;
 
     const action = editingTopicId ? 'updateTopic' : 'createTopic';
     const actionSource = isSourceEditor ? `${action}Source` : action;
-    const topic = await topicViewService[actionSource](data);
+    const topic = await topicViewService[actionSource](formattedData);
 
     if (topic) {
-      // this.showSuccessMessage(topic);
       this.props.setUpdateTopicList(true);
       const link = `${configs.linkBase()}/split/topic/${topic.id}`;
       this.props.history.push(link);
     }
-  };
-
-  showSuccessMessage = topic => {
-    const { id } = topic;
-    const linkText = `${configs.getServer()}/topic/${id}/`;
-    const link = `${configs.linkBase()}/split/topic/${id}`;
-    const PopUpText = (
-      <span onClick={this.refresh}>
-        <FormattedMessage {...messages.available} />
-        <Link to={link}> {linkText}</Link>
-      </span>
-    );
-
-    this.setState({
-      success: true,
-      message: {
-        title: <FormattedMessage {...messages.success} />,
-        text: PopUpText
-      }
-    });
-
-    this.props.clearTopic();
   };
 
   deleteTopic = async () => {
@@ -347,8 +347,14 @@ class TopicView extends Component {
     this.setState({ editor: key });
   };
 
-  handleTyping = boo => {
-    this.setState({ typing: boo });
+  openDataEditor = () => {
+    this.setState(prevState => ({
+      isDataEditorOpen: !prevState.isDataEditorOpen
+    }));
+  };
+
+  onChangeDataEditor = value => {
+    this.setState({ data: value });
   };
 
   render() {
@@ -359,6 +365,8 @@ class TopicView extends Component {
       topic_source_text,
       topic_parents,
       is_draft,
+      isDataEditorOpen,
+      data,
       editor,
       flag,
       all_types,
@@ -371,7 +379,8 @@ class TopicView extends Component {
     const { goBack } = history;
 
     if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
-
+    console.clear();
+    console.warn(this.state, 'this.state');
     const Buttons = () => {
       if (!user)
         return (
@@ -410,9 +419,8 @@ class TopicView extends Component {
       );
     };
 
-    const getPlaceHolder = () => (
-      <FormattedMessage {...messages.textPlaceholder} />
-    );
+    const getPlaceHolder = () =>
+      intl.formatMessage({ ...messages.textPlaceholder });
 
     const TopicTitleInput = name => (
       <FormattedMessage {...messages.topicTitleLabel}>
@@ -481,7 +489,6 @@ class TopicView extends Component {
                     handleValue={this.handleTopicText}
                     placeholder={getPlaceHolder()}
                     editor={editor}
-                    handleTyping={this.handleTyping}
                   />
                 </Tab>
                 <Tab
@@ -492,12 +499,11 @@ class TopicView extends Component {
                 >
                   <EditorHint hintMessages={messages.sourceEditorHint} />
                   {TopicTitleInput('topic_source_title')}
-                  <SourceEditor
+                  <SimpleEditor
                     value={topic_source_text}
                     handleValue={this.handleTopicSourceText}
                     placeholder={getPlaceHolder()}
                     editor={editor}
-                    handleTyping={this.handleTyping}
                   />
                 </Tab>
               </Tabs>
@@ -529,6 +535,35 @@ class TopicView extends Component {
                 />
               </InputGroup>
             </FormGroup>
+            <div
+              onClick={this.openDataEditor}
+              className="topic_view__showcase_handler"
+            >
+              <FormattedMessage {...messages.showCaseData} />
+            </div>
+            <Panel
+              id="collapsible-data-panel"
+              className="topic_view__showcase_editor"
+              expanded={isDataEditorOpen}
+              collapsible
+              defaultExpanded={false}
+            >
+              <Button
+                className="topic_view__fill_data"
+                bsSize="small"
+                onClick={() => this.onChangeDataEditor(defaultDataJson)}
+              >
+                <FormattedMessage {...messages.fillShowCaseData} />
+              </Button>
+              <SimpleEditor
+                value={data}
+                handleValue={this.onChangeDataEditor}
+                placeholder={intl.formatMessage({
+                  ...messages.showCasePlaceholder
+                })}
+                editor={editor}
+              />
+            </Panel>
             <ToggleButtonGroup
               type="radio"
               name="options"

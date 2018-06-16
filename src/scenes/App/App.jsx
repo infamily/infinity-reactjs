@@ -53,7 +53,7 @@ class App extends Component {
   };
 
   render() {
-    const { user, server, splash } = this.props;
+    const { user, server } = this.props;
     const Routes = ({ match: { path } }) => (
       <Switch>
         {server && <Redirect exact from="/" to={configs.linkBase()} />}

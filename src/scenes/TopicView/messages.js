@@ -114,5 +114,21 @@ export default defineMessages({
   sourceEditorMsg: {
     id: 'infinity.scenes.TopicView.sourceEditorMsg',
     defaultMessage: 'Contents will be taken from the Source Editor.'
+  },
+  showCaseData: {
+    id: 'infinity.scenes.TopicView.showCaseData',
+    defaultMessage: 'Showcase Data Editor'
+  },
+  fillShowCaseData: {
+    id: 'infinity.scenes.TopicView.fillShowCaseData',
+    defaultMessage: 'Fill with a default data'
+  },
+  showCasePlaceholder: {
+    id: 'infinity.scenes.TopicView.showCasePlaceholder',
+    defaultMessage: 'Input a valid JSON'
+  },
+  showCaseError: {
+    id: 'infinity.scenes.TopicView.showCaseError',
+    defaultMessage: 'Showcase Error: Invalid JSON'
   }
 });

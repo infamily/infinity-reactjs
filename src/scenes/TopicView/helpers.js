@@ -13,3 +13,12 @@ turndownService.addRule('clearSpaces', {
 export const getMarkdown = html => turndownService.turndown(clearTags(html));
 
 export const getTypeId = link => link.match(/types\/(\d+)/)[1];
+
+export const validateJson = str => {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};

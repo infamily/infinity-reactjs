@@ -1,27 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, intlShape, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import TopicFundData from 'components/TopicFundData';
-import { NextButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
 import messages from 'scenes/Topic/messages';
 import configs from 'configs';
-import TopicType from './TopicType';
-import Categories from './Categories';
-import { getColor } from '../helpers';
 
-const ShowCaseTopicBody = ({
-  topic,
-  children,
-  parents,
-  user,
-  categories,
-  history,
-  updateTopic,
-  intl
-}) => {
+const ShowCaseTopicBody = ({ topic, user, updateTopic }) => {
   if (!topic.title) return null;
   const isOwner = user && topic.owner.id === user.id;
   const EditTopic = ({ isOwner, id }) => {
@@ -35,12 +22,6 @@ const ShowCaseTopicBody = ({
           <FormattedMessage {...messages.edit} />
         </Button>
       </Link>
-    );
-  };
-
-  const updateListFilterByType = () => {
-    history.push(
-      `${configs.linkBase()}/split/topic/${topic.id}?flag=${topic.type}`
     );
   };
 
@@ -63,13 +44,8 @@ const ShowCaseTopicBody = ({
 
 ShowCaseTopicBody.propTypes = {
   topic: PropTypes.object.isRequired,
-  intl: intlShape.isRequired,
-  history: PropTypes.object.isRequired,
-  children: PropTypes.array.isRequired,
-  parents: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
   updateTopic: PropTypes.func.isRequired,
   user: PropTypes.object
 };
 
-export default injectIntl(ShowCaseTopicBody);
+export default ShowCaseTopicBody;

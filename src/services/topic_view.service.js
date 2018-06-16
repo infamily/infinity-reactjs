@@ -11,7 +11,15 @@ class TopicViewService {
 
   createTopic = async data => {
     const lang = langService.current;
-    const { type, title, text, parents, categories, is_draft } = data;
+    const {
+      type,
+      title,
+      text,
+      parents,
+      categories,
+      showcase_data,
+      is_draft
+    } = data;
     try {
       const parameters = {
         title: `.:${lang}:${title}`,
@@ -20,6 +28,7 @@ class TopicViewService {
         type,
         parents,
         categories,
+        data: showcase_data,
         is_draft
       };
 
@@ -35,7 +44,16 @@ class TopicViewService {
 
   updateTopic = async data => {
     const lang = langService.current;
-    const { type, title, text, parents, categories, id, is_draft } = data;
+    const {
+      type,
+      title,
+      text,
+      parents,
+      categories,
+      id,
+      is_draft,
+      showcase_data
+    } = data;
     try {
       const parameters = {
         title: `.:${lang}:${title}`,
@@ -44,6 +62,7 @@ class TopicViewService {
         type,
         parents,
         categories,
+        data: showcase_data,
         is_draft
       };
 
@@ -58,13 +77,22 @@ class TopicViewService {
   };
 
   createTopicSource = async data => {
-    const { type, title, text, parents, categories, is_draft } = data;
+    const {
+      type,
+      title,
+      text,
+      parents,
+      categories,
+      showcase_data,
+      is_draft
+    } = data;
     try {
       const parameters = {
         title,
         body: text,
         type,
         parents,
+        data: showcase_data,
         categories,
         is_draft
       };
@@ -82,7 +110,16 @@ class TopicViewService {
 
   updateTopicSource = async data => {
     const lang = langService.current;
-    const { type, title, text, parents, categories, id, is_draft } = data;
+    const {
+      type,
+      title,
+      text,
+      parents,
+      categories,
+      id,
+      showcase_data,
+      is_draft
+    } = data;
     try {
       const parameters = {
         title,
@@ -90,6 +127,7 @@ class TopicViewService {
         languages: [lang],
         type,
         parents,
+        data: showcase_data,
         categories,
         is_draft
       };

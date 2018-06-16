@@ -71,11 +71,12 @@ export default class HomeConfigPanel extends Component {
     const { view, flag, topicSource, categories } = this.props.homeParams;
     const { query } = this.state;
 
-    const categoriesArray = makeCategoriesArray(categories);
+    const categoriesArray = categories && makeCategoriesArray(categories);
 
     let search = `?flag=${flag}&view=${view}&topicSource=${topicSource}`;
     if (query) search += `&query=${query}`;
-    if (categories.length) search += `&categories=${categoriesArray}`;
+    if (categories && categories.length)
+      search += `&categories=${categoriesArray}`;
 
     this.props.history.push({ search });
   };

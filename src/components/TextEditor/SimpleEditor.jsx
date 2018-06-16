@@ -8,8 +8,12 @@ class SimpleStatefulEditor extends Component {
   static propTypes = {
     editor: PropTypes.number.isRequired,
     handleValue: PropTypes.func.isRequired,
-    placeholder: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
     value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired
+  };
+
+  static defaultProps = {
+    placeholder: ''
   };
 
   state = {
@@ -18,6 +22,10 @@ class SimpleStatefulEditor extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.editor !== nextProps.editor) {
+      this.setState({ value: nextProps.value });
+    }
+
+    if (this.state.value !== nextProps.value) {
       this.setState({ value: nextProps.value });
     }
   }
@@ -37,6 +45,7 @@ class SimpleStatefulEditor extends Component {
       <FormControl
         componentClass="textarea"
         className="text_editor"
+        placeholder={this.props.placeholder}
         value={this.state.value}
         onChange={this.onChange}
       />
