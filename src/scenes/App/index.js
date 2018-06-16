@@ -5,7 +5,6 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     server: state.server
-    // splash: { status: true }
   };
 }
 

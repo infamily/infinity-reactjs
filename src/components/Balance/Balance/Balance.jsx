@@ -27,7 +27,8 @@ class Balance extends Component {
   async updateBalanceState() {
     const { id } = this.props;
     const { data } = await getUserBalance(id);
-    const balance = data !== null ? data.balance : -1;
+    const isData = data && data !== null;
+    const balance = isData ? data.balance : -1;
     const parse = data => parseFloat(data).toFixed(2);
 
     this.setState({
