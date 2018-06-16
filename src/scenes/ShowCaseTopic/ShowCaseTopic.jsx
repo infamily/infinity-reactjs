@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
+import Particles from 'react-particles-js';
 import DocumentMeta from 'react-document-meta';
 import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import Loading from 'components/Loading/LoadingElements';
@@ -10,6 +11,7 @@ import ShowCaseTopicBody from './ShowCaseTopicBody';
 import { getCategories } from './helpers';
 import topicService from './services/topics';
 import messages from './messages';
+import particlesParams from './particlesParams';
 import './ShowCaseTopic.css';
 
 const initalMeta = {
@@ -122,6 +124,10 @@ class Topic extends Component {
     return (
       <DocumentMeta {...meta}>
         <div className="show_case__box">
+          <Particles
+            className="show_case__particles"
+            params={particlesParams}
+          />
           <div className="show_case__content">
             <HomeButton />
             <ShowCaseTopicBody
