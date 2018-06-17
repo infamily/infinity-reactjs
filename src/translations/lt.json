@@ -191,5 +191,32 @@
   "infinity.common.configs.idea": "Idėja",
   "infinity.common.configs.plan": "Planas",
   "infinity.common.configs.step": "Etapas",
-  "infinity.common.configs.task": "Užduotis"
+  "infinity.common.configs.task": "Užduotis",
+  "infinity.scenes.Home.TopicList.filterReset": "Anuliuoti",
+  "infinity.scenes.Home.TopicList.filteredByParents":
+    "Aktyvios temos aukštesnio lygio temos.",
+  "infinity.scenes.Home.TopicList.filteredByChildren":
+    "Aktyvios temos žemesnio lygio temos.",
+  "infinity.scenes.ShowCaseTopic.TopicBody.edit": "Redguoti",
+  "infinity.scenes.ShowCaseTopic.details": "",
+  "infinity.scenes.Topic.children": "Žemesnio lygio",
+  "infinity.scenes.Topic.parents": "Aukštesnio lygio",
+  "infinity.scenes.TopicView.visualEditorHint":
+    "Čia galite rašyti turinį esamąja aktyvia kalba.",
+  "infinity.scenes.TopicView.sourceEditorHint":
+    "Čia galite rašyti turinį bet kuria kalba. Atskirkite kalbas .:lang:pavadinimas ir .:lang:tekstas žymėmis, kur lang yra kalbos raktas (pvz., 'en', 'lt', ir t.t.).",
+  "infinity.scenes.TopicView.visualEditorTab": "Vizualus redaktorius",
+  "infinity.scenes.TopicView.sourceEditorTab": "Šaltinio redaktorius",
+  "infinity.scenes.TopicView.visualEditorMsg":
+    "Turinys bus išsaugotas iš vizualaus redaktoriaus.",
+  "infinity.scenes.TopicView.sourceEditorMsg":
+    "Turinys bus išsaugotas iš šaltinio redaktoriaus.",
+  "infinity.scenes.TopicView.showCaseData":
+    "Prezentacijos puslapio duomenų redaktorius",
+  "infinity.scenes.TopicView.fillShowCaseData":
+    "Užpildyti numatytais duomenimis",
+  "infinity.scenes.TopicView.showCasePlaceholder":
+    "Įveskite teisingą JSON arba palikti tuščią",
+  "infinity.scenes.TopicView.showCaseError":
+    "Prezentacijos klaida: neteisingas JSON"
 }
