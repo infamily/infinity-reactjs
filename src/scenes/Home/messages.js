@@ -9,7 +9,6 @@ export default defineMessages({
     id: 'infinity.scenes.Home.TopicList.noTopics',
     defaultMessage: 'No topics. Try to change filter parameters.'
   },
-  // to do: add to translations
   filterReset: {
     id: 'infinity.scenes.Home.TopicList.filterReset',
     defaultMessage: 'Reset'

@@ -102,7 +102,6 @@ export default defineMessages({
     id: 'infinity.scenes.Topic.CommentForm.leaveComment',
     defaultMessage: 'Leave your comment'
   },
-  // to do: add to translations
   children: {
     id: 'infinity.scenes.Topic.children',
     defaultMessage: 'Children'

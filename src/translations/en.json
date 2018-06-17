@@ -185,5 +185,29 @@
   "infinity.common.configs.idea": "Idea",
   "infinity.common.configs.plan": "Plan",
   "infinity.common.configs.step": "Step",
-  "infinity.common.configs.task": "Task"
+  "infinity.common.configs.task": "Task",
+  "infinity.scenes.Home.TopicList.filterReset": "Reset",
+  "infinity.scenes.Home.TopicList.filteredByParents":
+    "Parents of the current topic are shown.",
+  "infinity.scenes.Home.TopicList.filteredByChildren":
+    "Children of the current topic are shown.",
+  "infinity.scenes.ShowCaseTopic.TopicBody.edit": "Edit",
+  "infinity.scenes.ShowCaseTopic.details": "Details",
+  "infinity.scenes.Topic.children": "Children",
+  "infinity.scenes.Topic.parents": "Parents",
+  "infinity.scenes.TopicView.visualEditorHint":
+    "You can create contents in current language.",
+  "infinity.scenes.TopicView.sourceEditorHint":
+    "You can create contents in any language. Wrap your title with .:lang:title and your text with .:lang:text to add next language.",
+  "infinity.scenes.TopicView.visualEditorTab": "Visual Editor",
+  "infinity.scenes.TopicView.sourceEditorTab": "Source Editor",
+  "infinity.scenes.TopicView.visualEditorMsg":
+    "Contents will be taken from the Visual Editor.",
+  "infinity.scenes.TopicView.sourceEditorMsg":
+    "Contents will be taken from the Source Editor.",
+  "infinity.scenes.TopicView.showCaseData": "Showcase Data Editor",
+  "infinity.scenes.TopicView.fillShowCaseData": "Fill with a default data",
+  "infinity.scenes.TopicView.showCasePlaceholder":
+    "Input a valid JSON or leave blank",
+  "infinity.scenes.TopicView.showCaseError": "Showcase Error: Invalid JSON"
 }

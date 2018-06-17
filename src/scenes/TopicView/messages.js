@@ -89,7 +89,6 @@ export default defineMessages({
     id: 'infinity.scenes.TopicView.public',
     defaultMessage: 'Public'
   },
-  // to do: add to translations (6 bottom fields)
   visualEditorHint: {
     id: 'infinity.scenes.TopicView.visualEditorHint',
     defaultMessage: 'You can create contents in current language.'
