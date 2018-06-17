@@ -14,19 +14,11 @@ import messages from './messages';
 import particlesParams from './particlesParams';
 import './ShowCaseTopic.css';
 
-const initalMeta = {
-  comments: [],
-  parents: [],
-  children: [],
-  categories: []
-};
-
 class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic: {},
-      ...initalMeta
+      topic: {}
     };
   }
 
@@ -37,12 +29,10 @@ class Topic extends Component {
       state: PropTypes.object
     }).isRequired,
     server: PropTypes.string,
-    user: PropTypes.object,
-    close: PropTypes.func // tab mode
+    user: PropTypes.object
   };
 
   static defaultProps = {
-    close: null,
     user: null,
     server: null
   };
@@ -71,8 +61,7 @@ class Topic extends Component {
     }
 
     this.setState({
-      topic,
-      ...initalMeta
+      topic
     });
 
     const categories = getCategories(topic);
@@ -91,7 +80,7 @@ class Topic extends Component {
   };
 
   render() {
-    const { close, user, server, history } = this.props;
+    const { user, server, history } = this.props;
     const { topic, parents, children, categories } = this.state;
 
     if (!topic.id || !server) return <Loading />;
@@ -104,22 +93,16 @@ class Topic extends Component {
       }
     };
 
-    const HomeButton = () => {
-      const TextButton = () => (
+    const HomeButton = () => (
+      <NavLink
+        to={`${configs.linkBase()}/topic/${topic.id}/`}
+        className="nav__back"
+      >
         <span>
-          &#10094; <FormattedMessage {...messages.homeButton} />
+          &#10094; <FormattedMessage {...messages.details} />
         </span>
-      );
-      return close ? (
-        <div onClick={close} className="nav__back">
-          <TextButton />
-        </div>
-      ) : (
-        <NavLink to={configs.linkBase()} className="nav__back">
-          <TextButton />
-        </NavLink>
-      );
-    };
+      </NavLink>
+    );
 
     return (
       <DocumentMeta {...meta}>
