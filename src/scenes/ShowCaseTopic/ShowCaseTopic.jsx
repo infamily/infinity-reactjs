@@ -14,13 +14,22 @@ import messages from './messages';
 import particlesParams from './particlesParams';
 import './ShowCaseTopic.css';
 
+const parseJson = str => {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    return {};
+  }
+};
+
 const getUserStyles = data => {
   const style = {};
   if (!data) return style;
+  const userData = parseJson(data);
 
-  if (data.backgroundImage)
-    style.backgroundImage = `url(${data.backgroundImage})`;
-  if (data.color) style.color = data.color;
+  if (userData.backgroundImage)
+    style.backgroundImage = `url(${userData.backgroundImage})`;
+  if (userData.color) style.color = userData.color;
   return style;
 };
 
@@ -103,8 +112,8 @@ class ShowCaseTopic extends Component {
       }
     };
 
-    const hasBg = topic.data && topic.data.backgroundImage;
     const userStyle = getUserStyles(topic.data);
+    const hasBg = userStyle.backgroundImage;
 
     const HomeButton = () => (
       <NavLink
