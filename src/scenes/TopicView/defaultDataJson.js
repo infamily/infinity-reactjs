@@ -1,6 +1,6 @@
 export default `
   {
-    "background": "#000",
+    "backgroundImage": "https://...image-url.jpg",
     "color": "#fff"
   }
 `;

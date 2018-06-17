@@ -14,7 +14,17 @@ import messages from './messages';
 import particlesParams from './particlesParams';
 import './ShowCaseTopic.css';
 
-class Topic extends Component {
+const getUserStyles = data => {
+  const style = {};
+  if (!data) return style;
+
+  if (data.backgroundImage)
+    style.backgroundImage = `url(${data.backgroundImage})`;
+  if (data.color) style.color = data.color;
+  return style;
+};
+
+class ShowCaseTopic extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,6 +103,9 @@ class Topic extends Component {
       }
     };
 
+    const hasBg = topic.data && topic.data.backgroundImage;
+    const userStyle = getUserStyles(topic.data);
+
     const HomeButton = () => (
       <NavLink
         to={`${configs.linkBase()}/topic/${topic.id}/`}
@@ -106,11 +119,13 @@ class Topic extends Component {
 
     return (
       <DocumentMeta {...meta}>
-        <div className="show_case__box">
-          <Particles
-            className="show_case__particles"
-            params={particlesParams}
-          />
+        <div className="show_case__box" style={userStyle}>
+          {!hasBg && (
+            <Particles
+              className="show_case__particles"
+              params={particlesParams}
+            />
+          )}
           <div className="show_case__content">
             <HomeButton />
             <ShowCaseTopicBody
@@ -132,4 +147,4 @@ class Topic extends Component {
   }
 }
 
-export default Topic;
+export default ShowCaseTopic;

@@ -69,6 +69,8 @@ class QuotaBox extends Component {
       </div>
     );
 
+    const hasHistory = history && history[0];
+
     return (
       <Modal isOpen={isOpen} close={handleOpen}>
         <div className="quota_box">
@@ -85,7 +87,7 @@ class QuotaBox extends Component {
           <p className="quota_box__description">
             <FormattedMessage {...messages.quotaDescription} />
           </p>
-          {history[0] && <History />}
+          {hasHistory && <History />}
         </div>
         <PayCheckout
           updateOuterData={this.updateData}
