@@ -190,5 +190,30 @@
   "infinity.common.configs.idea": "Идея",
   "infinity.common.configs.plan": "План",
   "infinity.common.configs.step": "Шаг",
-  "infinity.common.configs.task": "Задача"
+  "infinity.common.configs.task": "Задача",
+  "infinity.scenes.Home.TopicList.filterReset": "Сброс",
+  "infinity.scenes.Home.TopicList.filteredByParents":
+    "Отображены родительские посты текущего топика.",
+  "infinity.scenes.Home.TopicList.filteredByChildren":
+    "Отображены дочерние посты текущего топика.",
+  "infinity.scenes.ShowCaseTopic.TopicBody.edit": "Редактировать",
+  "infinity.scenes.ShowCaseTopic.details": "Детали",
+  "infinity.scenes.Topic.children": "Дочерние посты",
+  "infinity.scenes.Topic.parents": "Родительские посты",
+  "infinity.scenes.TopicView.visualEditorHint":
+    "Вы можете создать пост на текущем языке.",
+  "infinity.scenes.TopicView.sourceEditorHint":
+    "Вы можете создать пост на любом языке. Оберните ваш заголовок .:lang:заголовок и ваш текст .:lang:текст, чтобы добавить новый язык.",
+  "infinity.scenes.TopicView.visualEditorTab": "Визуальный редактор",
+  "infinity.scenes.TopicView.sourceEditorTab": "Редактор источника",
+  "infinity.scenes.TopicView.visualEditorMsg":
+    "Контент будет взят из визульного редактора.",
+  "infinity.scenes.TopicView.sourceEditorMsg":
+    "Контент будет взят из визульного редактора источника.",
+  "infinity.scenes.TopicView.showCaseData": "Редактор страницы презинтации",
+  "infinity.scenes.TopicView.fillShowCaseData": "Заполнить шаблоном",
+  "infinity.scenes.TopicView.showCasePlaceholder":
+    "Введите валидный JSON или оставте пустым",
+  "infinity.scenes.TopicView.showCaseError":
+    "Ошибка редактора страницы презинтации: Невалидный JSON"
 }
