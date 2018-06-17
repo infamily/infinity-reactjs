@@ -125,7 +125,7 @@ export default defineMessages({
   },
   showCasePlaceholder: {
     id: 'infinity.scenes.TopicView.showCasePlaceholder',
-    defaultMessage: 'Input a valid JSON'
+    defaultMessage: 'Input a valid JSON or leave blank'
   },
   showCaseError: {
     id: 'infinity.scenes.TopicView.showCaseError',
