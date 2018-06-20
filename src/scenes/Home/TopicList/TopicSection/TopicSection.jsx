@@ -59,14 +59,14 @@ class TopicSection extends Component {
     });
   };
 
-  goToTopic = () => {
-    const { history, topic } = this.props;
+  goToTopic = topic => {
+    const { history } = this.props;
     history.push({ pathname: getTopicLink(topic.id), state: { topic } });
   };
 
-  onTitleClick = () => {
-    this.goToTopic();
+  onTitleClick = topic => {
     this.saveScroll();
+    this.goToTopic(topic);
   };
 
   render() {
@@ -99,9 +99,10 @@ class TopicSection extends Component {
       <div className="topic_list__title-box">
         <div>
           <BadgePoint topic={topic} fromId={fromId} />
-          <h2 onClick={this.onTitleClick} className="topic_list__title">{` ${
-            topic.title
-          }`}</h2>
+          <h2
+            onClick={() => this.onTitleClick(topic)}
+            className="topic_list__title"
+          >{` ${topic.title}`}</h2>
         </div>
       </div>
     );
@@ -116,7 +117,7 @@ class TopicSection extends Component {
           {isLineView ? (
             <TitleView topic={topic} fromId={fromId} />
           ) : (
-            <TopicCard topic={topic} goToTopic={this.goToTopic} />
+            <TopicCard topic={topic} goToTopic={() => this.goToTopic(topic)} />
           )}
           <div className="topic_list__step" style={getBorder(topic)}>
             {isExpanded &&
