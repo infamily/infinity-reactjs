@@ -190,5 +190,30 @@
   "infinity.common.configs.idea": "方法",
   "infinity.common.configs.plan": "計画",
   "infinity.common.configs.step": "段階",
-  "infinity.common.configs.task": "用事"
+  "infinity.common.configs.task": "用事",
+  "infinity.scenes.Home.TopicList.filterReset": "リセット",
+  "infinity.scenes.Home.TopicList.filteredByParents":
+    "親トピックが表示されます。",
+  "infinity.scenes.Home.TopicList.filteredByChildren":
+    "子トピックが表示されます。",
+  "infinity.scenes.ShowCaseTopic.TopicBody.edit": "編集",
+  "infinity.scenes.ShowCaseTopic.details": "詳細",
+  "infinity.scenes.Topic.children": "子トピック",
+  "infinity.scenes.Topic.parents": "親トピック",
+  "infinity.scenes.TopicView.visualEditorHint":
+    "現在の言語でトピックを作成できます。",
+  "infinity.scenes.TopicView.sourceEditorHint":
+    "どの言語でも同時にトピックを作成できます。言語タグ .:lang:タイトル、.:lang:本文 でテキストを分割してください。",
+  "infinity.scenes.TopicView.visualEditorTab": "ビジュアルエディタ",
+  "infinity.scenes.TopicView.sourceEditorTab": "ソースエディタ",
+  "infinity.scenes.TopicView.visualEditorMsg":
+    "内容はビジュアルエディタから取得されます。",
+  "infinity.scenes.TopicView.sourceEditorMsg":
+    "内容はソースエディタから取得されます。",
+  "infinity.scenes.TopicView.showCaseData": "プレゼンテーションデータエディタ",
+  "infinity.scenes.TopicView.fillShowCaseData": "デフォルトのデータで埋め込む",
+  "infinity.scenes.TopicView.showCasePlaceholder":
+    "有効なJSONを入力するか、空白にします",
+  "infinity.scenes.TopicView.showCaseError":
+    "プレゼンテーションエラー：無効なJSON"
 }

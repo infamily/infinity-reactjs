@@ -172,5 +172,24 @@
   "infinity.common.configs.plan": "计划",
   "infinity.common.configs.step": "步骤",
   "infinity.common.configs.task": "任务",
-  "infinity.common.buttons.close": "关"
+  "infinity.common.buttons.close": "关",
+  "infinity.scenes.Home.TopicList.filterReset": "重置",
+  "infinity.scenes.Home.TopicList.filteredByParents": "此话题的上级话题",
+  "infinity.scenes.Home.TopicList.filteredByChildren": "此话题的子话题",
+  "infinity.scenes.ShowCaseTopic.TopicBody.edit": "编辑",
+  "infinity.scenes.ShowCaseTopic.details": "细节",
+  "infinity.scenes.Topic.children": "子话题",
+  "infinity.scenes.Topic.parents": "上级话题",
+  "infinity.scenes.TopicView.visualEditorHint": "用中文写内容。",
+  "infinity.scenes.TopicView.sourceEditorHint":
+    "用多语言写内容。把每个语言的内容用 .:lang:话题 和 .:lang:正文 分离。",
+  "infinity.scenes.TopicView.visualEditorTab": "所见编辑器",
+  "infinity.scenes.TopicView.sourceEditorTab": "源文编辑器",
+  "infinity.scenes.TopicView.visualEditorMsg": "内容将来自所见编辑器。",
+  "infinity.scenes.TopicView.sourceEditorMsg": "内容将来自源文编辑器。",
+  "infinity.scenes.TopicView.showCaseData": "展示页面数据编辑器",
+  "infinity.scenes.TopicView.fillShowCaseData": "填写默认数据",
+  "infinity.scenes.TopicView.showCasePlaceholder":
+    "输入一个格式有效的JSON或留空",
+  "infinity.scenes.TopicView.showCaseError": "陈列错误：无效的JSON"
 }
