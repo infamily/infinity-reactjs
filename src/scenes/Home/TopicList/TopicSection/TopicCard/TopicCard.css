@@ -50,3 +50,15 @@
   width: 100%;
   background-color: rgb(243, 243, 243);
 }
+
+.card__comments {
+  float: right;
+  min-width: 55px;
+  padding-right: 10px;
+}
+
+.card_comment_img {
+  max-width: 20px;
+  margin-right: 5px;
+  display: inline;
+}

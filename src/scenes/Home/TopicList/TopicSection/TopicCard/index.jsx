@@ -6,6 +6,7 @@ import TopicFundData from 'components/TopicFundData';
 import removeMd from 'remove-markdown';
 import topicService from 'services/topic.service';
 import configs from 'configs';
+import commentsImg from 'images/comments.svg';
 import './TopicCard.css';
 
 const makeHexDim = (inputHex, opacity) => {
@@ -82,6 +83,14 @@ export default class TopicCard extends Component {
               year="numeric"
               day="numeric"
             />
+            <div className="card__comments">
+              <img
+                src={commentsImg}
+                className="card_comment_img"
+                alt="commentIcon"
+              />
+              <span>{topic.comment_count}</span>
+            </div>
           </small>
           <PreviewProgressBar topic={topic} />
         </div>
