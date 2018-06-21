@@ -1,0 +1,25 @@
+.tab_toggle {
+  text-transform: uppercase;
+  position: fixed;
+  font-size: 14px;
+  top: 10px;
+  right: -65px;
+  padding: 5px;
+  color: #fff;
+  background-color: #76b976;
+  border-radius: 5px 0 0 5px;
+  z-index: 3;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.tab_toggle:hover {
+  background-color: #5e9b5e;
+  right: 0px;
+}
+
+.tab_toggle__sign {
+  font-size: 16px;
+  margin-right: 15px;
+  margin-left: 5px;
+}

@@ -1,5 +1,0 @@
-export const PERSIST_TOPIC = 'PERSIST_TOPIC';
-export const CLEAR_TOPIC = 'CLEAR_TOPIC';
-
-export const PERSIST_COMMENT = 'PERSIST_COMMENT';
-export const CLEAR_COMMENT = 'CLEAR_COMMENT';

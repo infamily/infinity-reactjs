@@ -1,0 +1,32 @@
+.quota_box {
+  padding: 15px;
+  text-align: center;
+}
+
+.quota_box__button {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.quota_box__history_list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.quota_box__history {
+  margin-top: 40px;
+}
+
+.quota_box__description {
+  font-size: 2rem;
+  opacity: 0.8;
+  padding: 15px;
+}
+
+.quota_box__text {
+  font-size: 3rem;
+}
+
+.quota_box__header {
+  font-size: 7rem;
+  margin: 20px 0;
+}
