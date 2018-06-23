@@ -10,7 +10,8 @@ export function formatUserData(raw) {
 
 export function getErrorMessage(data) {
   if (data.email) return { ...messages.invalidMemberByEmail };
-  if (data.captcha.non_field_errors) return { ...messages.invalidCaptcha };
+  if (data.captcha && data.captcha.non_field_errors)
+    return { ...messages.invalidCaptcha };
   if (data.captcha) return { ...messages.invalidCaptcha };
   return { ...messages.commonErrorText };
 }

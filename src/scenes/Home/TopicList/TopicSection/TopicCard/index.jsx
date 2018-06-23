@@ -7,6 +7,7 @@ import removeMd from 'remove-markdown';
 import topicService from 'services/topic.service';
 import configs from 'configs';
 import commentsImg from 'images/comments.svg';
+import classNames from 'classnames';
 import './TopicCard.css';
 
 const makeHexDim = (inputHex, opacity) => {
@@ -62,7 +63,9 @@ export default class TopicCard extends Component {
     return (
       <div
         id={`card-${topic.id}`}
-        className="card__item"
+        className={classNames('card__item', {
+          card__draft: topic.is_draft
+        })}
         style={getTitleStyle(color)}
       >
         <div className="card__title" onClick={goToTopic}>
