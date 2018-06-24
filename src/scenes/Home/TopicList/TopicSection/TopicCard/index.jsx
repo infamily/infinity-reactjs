@@ -8,6 +8,7 @@ import topicService from 'services/topic.service';
 import configs from 'configs';
 import commentsImg from 'images/comments.svg';
 import classNames from 'classnames';
+import DraggableWrapper from './DraggableWrapper';
 import './TopicCard.css';
 
 const makeHexDim = (inputHex, opacity) => {
@@ -68,35 +69,37 @@ export default class TopicCard extends Component {
         })}
         style={getTitleStyle(color)}
       >
-        <div className="card__title" onClick={goToTopic}>
-          <h4 className="card__title-text">{title}</h4>
-        </div>
-        <div className="card__data">
-          <TopicFundData topic={topic} updateData={this.updateData} />
-        </div>
-        <div className="card__description" onClick={goToTopic}>
-          <div className="card__text card__font">{plainBodyText}</div>
-          <br />
-        </div>
-        <div className="card__progres">
-          <small className="card__date card__font">
-            <FormattedDate
-              value={created_date}
-              month="long"
-              year="numeric"
-              day="numeric"
-            />
-            <div className="card__comments">
-              <img
-                src={commentsImg}
-                className="card_comment_img"
-                alt="commentIcon"
+        <DraggableWrapper>
+          <div className="card__title" onClick={goToTopic}>
+            <h4 className="card__title-text">{title}</h4>
+          </div>
+          <div className="card__data">
+            <TopicFundData topic={topic} updateData={this.updateData} />
+          </div>
+          <div className="card__description" onClick={goToTopic}>
+            <div className="card__text card__font">{plainBodyText}</div>
+            <br />
+          </div>
+          <div className="card__progres">
+            <small className="card__date card__font">
+              <FormattedDate
+                value={created_date}
+                month="long"
+                year="numeric"
+                day="numeric"
               />
-              <span>{topic.comment_count}</span>
-            </div>
-          </small>
-          <PreviewProgressBar topic={topic} />
-        </div>
+              <div className="card__comments">
+                <img
+                  src={commentsImg}
+                  className="card_comment_img"
+                  alt="commentIcon"
+                />
+                <span>{topic.comment_count}</span>
+              </div>
+            </small>
+            <PreviewProgressBar topic={topic} />
+          </div>
+        </DraggableWrapper>
       </div>
     );
   }

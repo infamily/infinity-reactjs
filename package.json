@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "classnames": "^2.2.5",
+    "classnames": "^2.2.6",
     "husky": "^0.14.3",
     "lodash": "^4.17.10",
     "payment": "^2.3.0",
@@ -13,6 +13,8 @@
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
     "react-credit-cards": "^0.7.0",
+    "react-dnd": "^5.0.0",
+    "react-dnd-html5-backend": "^5.0.1",
     "react-document-meta": "^2.1.2",
     "react-dom": "^16.1.1",
     "react-html-parser": "^2.0.1",
