@@ -2,6 +2,7 @@
   border-radius: 6px;
   border: 1px solid rgb(216, 216, 216);
   box-shadow: 2px 5px 7px rgb(216, 216, 216);
+  background-color: #fff;
   overflow: hidden;
   height: 240px;
   display: flex;
@@ -11,6 +12,10 @@
 
 .card__draft {
   background: rgb(241, 241, 241);
+}
+
+.card__dragging {
+  opacity: 0.2;
 }
 
 .card__title-text {

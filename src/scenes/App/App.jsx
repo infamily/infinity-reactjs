@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import configs from 'configs';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 import Home from 'scenes/Home';
 import Topic from 'scenes/Topic';
 import ShowCaseTopic from 'scenes/ShowCaseTopic';
@@ -121,4 +123,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default DragDropContext(HTML5Backend)(App);
