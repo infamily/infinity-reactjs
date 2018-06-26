@@ -20,41 +20,20 @@ const cardSource = {
 
   endDrag(props, monitor, component) {
     if (!monitor.didDrop()) {
+      console.log("didn't drop");
       return;
     }
 
     // When dropped on a compatible target, do something
-    const item = monitor.getItem();
+    const sourceId = props.topicId;
     const dropResult = monitor.getDropResult();
-    console.log(item.id, dropResult.listId);
+    const { targetId } = dropResult; // parent
+
+    console.log('dropped', targetId, sourceId);
   }
 };
 
 const cardTarget = {
-  canDrop(props, monitor) {
-    // You can disallow drop based on props or item
-    const item = monitor.getItem();
-    // return canMakeChessMove(item.fromPosition, props.position);
-  },
-
-  hover(props, monitor, component) {
-    // This is fired very often and lets you perform side effects
-    // in response to the hover. You can't handle enter and leave
-    // here—if you need them, put monitor.isOver() into collect() so you
-    // can just use componentWillReceiveProps() to handle enter/leave.
-
-    // You can access the coordinates if you need them
-    // const clientOffset = monitor.getClientOffset();
-    // const componentRect = findDOMNode(component).getBoundingClientRect();
-
-    // You can check whether we're over a nested drop target
-    const isJustOverThisOne = monitor.isOver({ shallow: true });
-
-    // You will receive hover() even for items for which canDrop() is false
-    const canDrop = monitor.canDrop();
-    console.log('hover');
-  },
-
   drop(props, monitor, component) {
     if (monitor.didDrop()) {
       // If you want, you can check whether some nested
@@ -70,7 +49,7 @@ const cardTarget = {
     // You can also do nothing and return a drop result,
     // which will be available as monitor.getDropResult()
     // in the drag source's endDrag() method
-    return { moved: true };
+    return { moved: true, targetId: component.props.topicId };
   }
 };
 
@@ -99,11 +78,22 @@ function collectTarget(connect, monitor) {
 
 class Card extends Component {
   render() {
-    const { isDragging, connectDragSource, connectDropTarget } = this.props;
-
+    const {
+      canDrop,
+      isOver,
+      isDragging,
+      isOverCurrent,
+      connectDragSource,
+      connectDropTarget
+    } = this.props;
     return connectDragSource(
       connectDropTarget(
-        <div className={classNames({ card__dragging: isDragging })}>
+        <div
+          className={classNames('card--draggable', {
+            'card--dragging': isDragging,
+            'card--active': isOverCurrent
+          })}
+        >
           {this.props.children}
         </div>
       )
@@ -112,6 +102,7 @@ class Card extends Component {
 }
 
 Card.propTypes = {
+  topicId: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
 
   // Injected by React DnD:

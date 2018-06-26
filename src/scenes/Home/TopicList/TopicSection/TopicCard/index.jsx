@@ -62,7 +62,7 @@ export default class TopicCard extends Component {
 
     const plainBodyText = removeMd(body);
     return (
-      <DraggableWrapper>
+      <DraggableWrapper topicId={topic.id}>
         <div
           id={`card-${topic.id}`}
           className={classNames('card__item', {
