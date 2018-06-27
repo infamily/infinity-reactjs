@@ -76,6 +76,19 @@ class TopicViewService {
     }
   };
 
+  partialUpdateTopic = async (id, parameters) => {
+    try {
+      const { data } = await axios.patch(
+        `${serverService.api}/topics/${id}/`,
+        parameters
+      );
+      return data;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  };
+
   createTopicSource = async data => {
     const {
       type,

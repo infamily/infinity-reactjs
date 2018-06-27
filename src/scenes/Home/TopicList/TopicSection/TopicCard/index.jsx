@@ -5,6 +5,7 @@ import PreviewProgressBar from 'components/TopicProgressBar/PreviewProgressBar';
 import TopicFundData from 'components/TopicFundData';
 import removeMd from 'remove-markdown';
 import topicService from 'services/topic.service';
+import topicViewService from 'services/topic_view.service';
 import configs from 'configs';
 import commentsImg from 'images/comments.svg';
 import classNames from 'classnames';
@@ -54,20 +55,33 @@ export default class TopicCard extends Component {
     this.setState({ topic: newTopic });
   };
 
-  partialTopicUpdate = () => {
-    console.log(this.state.topic);
+  partialTopicUpdate = async childUrl => {
+    const { id, children } = this.state.topic;
+    const newChidren =
+      children.indexOf(childUrl) < 0 ? children.concat(childUrl) : children;
+    await topicViewService.partialUpdateTopic(id, { children: newChidren });
+    const updatedTopic = {
+      ...this.state.topic,
+      children: newChidren
+    };
+
+    this.setState({
+      topic: updatedTopic
+    });
+    console.log(this.state.topic, childUrl);
   };
 
   render() {
     const { topic } = this.state;
     const { goToTopic } = this.props;
-    const { title, body, type, created_date } = topic;
+    const { id, title, body, type, created_date, url } = topic;
     const color = getColor(type);
 
     const plainBodyText = removeMd(body);
     return (
       <DraggableWrapper
-        topicId={topic.id}
+        topicId={id}
+        topicUrl={url}
         partialTopicUpdate={this.partialTopicUpdate}
       >
         <div

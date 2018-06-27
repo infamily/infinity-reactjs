@@ -24,11 +24,11 @@ const cardSource = {
     }
 
     // When dropped on a compatible target, do something
-    const sourceId = props.topicId;
+    const childUrl = props.topicUrl;
     const dropResult = monitor.getDropResult();
-    const { targetId, partialTopicUpdate } = dropResult; // target (parent)
+    const { partialTopicUpdate } = dropResult; // target (parent)
 
-    await partialTopicUpdate(targetId);
+    await partialTopicUpdate(childUrl);
   }
 };
 
@@ -46,8 +46,8 @@ const cardTarget = {
       return;
     }
 
-    const { partialTopicUpdate, topicId } = component.props;
-    return { targetId: topicId, partialTopicUpdate };
+    const { partialTopicUpdate, topicId, topicUrl } = component.props;
+    return { targetId: topicId, partialTopicUpdate, topicUrl };
   }
 };
 
@@ -103,6 +103,7 @@ class Card extends Component {
 
 Card.propTypes = {
   topicId: PropTypes.number.isRequired,
+  topicUrl: PropTypes.string.isRequired,
   children: PropTypes.object.isRequired,
   partialTopicUpdate: PropTypes.func.isRequired,
 
