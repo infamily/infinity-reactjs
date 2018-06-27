@@ -14,47 +14,45 @@ const ItemTypes = {
 const cardSource = {
   beginDrag(props) {
     // Return the data describing the dragged item
-    const item = { id: props.id };
+    const item = { sourceId: props.topicId };
     return item;
   },
 
-  endDrag(props, monitor, component) {
+  async endDrag(props, monitor, component) {
     if (!monitor.didDrop()) {
-      console.log("didn't drop");
       return;
     }
 
     // When dropped on a compatible target, do something
     const sourceId = props.topicId;
     const dropResult = monitor.getDropResult();
-    const { targetId } = dropResult; // parent
+    const { targetId, partialTopicUpdate } = dropResult; // target (parent)
 
-    console.log('dropped', targetId, sourceId);
+    await partialTopicUpdate(targetId);
   }
 };
 
 const cardTarget = {
+  canDrop(props, monitor) {
+    const item = monitor.getItem();
+    const { sourceId } = item;
+    const targetId = props.topicId;
+
+    const isOverItself = targetId === sourceId;
+    return !isOverItself;
+  },
   drop(props, monitor, component) {
     if (monitor.didDrop()) {
-      // If you want, you can check whether some nested
-      // target already handled drop
       return;
     }
 
-    // Obtain the dragged item
-    const item = monitor.getItem();
-    console.log('drop');
-
-    // You can do something with it
-    // You can also do nothing and return a drop result,
-    // which will be available as monitor.getDropResult()
-    // in the drag source's endDrag() method
-    return { moved: true, targetId: component.props.topicId };
+    const { partialTopicUpdate, topicId } = component.props;
+    return { targetId: topicId, partialTopicUpdate };
   }
 };
 
 /**
- * Specifies the props to inject into your component.
+ * Specifies the source props to inject into the dragging component.
  */
 function collect(connect, monitor) {
   return {
@@ -63,6 +61,9 @@ function collect(connect, monitor) {
   };
 }
 
+/**
+ * Specifies the target props to inject into the container component.
+ */
 function collectTarget(connect, monitor) {
   return {
     // Call this function inside render()
@@ -70,7 +71,6 @@ function collectTarget(connect, monitor) {
     connectDropTarget: connect.dropTarget(),
     // You can ask the monitor about the current drag state:
     isOver: monitor.isOver(),
-    isOverCurrent: monitor.isOver({ shallow: true }),
     canDrop: monitor.canDrop(),
     itemType: monitor.getItemType()
   };
@@ -79,19 +79,19 @@ function collectTarget(connect, monitor) {
 class Card extends Component {
   render() {
     const {
-      canDrop,
-      isOver,
       isDragging,
-      isOverCurrent,
+      isOver,
+      canDrop,
       connectDragSource,
       connectDropTarget
     } = this.props;
+
     return connectDragSource(
       connectDropTarget(
         <div
           className={classNames('card--draggable', {
             'card--dragging': isDragging,
-            'card--active': isOverCurrent
+            'card--active': isOver && canDrop
           })}
         >
           {this.props.children}
@@ -104,10 +104,14 @@ class Card extends Component {
 Card.propTypes = {
   topicId: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
+  partialTopicUpdate: PropTypes.func.isRequired,
 
   // Injected by React DnD:
   isDragging: PropTypes.bool.isRequired,
-  connectDragSource: PropTypes.func.isRequired
+  canDrop: PropTypes.bool.isRequired,
+  isOver: PropTypes.bool.isRequired,
+  connectDragSource: PropTypes.func.isRequired,
+  connectDropTarget: PropTypes.func.isRequired
 };
 
 export default flow(

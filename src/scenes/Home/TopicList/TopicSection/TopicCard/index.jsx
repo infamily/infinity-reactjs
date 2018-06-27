@@ -54,6 +54,10 @@ export default class TopicCard extends Component {
     this.setState({ topic: newTopic });
   };
 
+  partialTopicUpdate = () => {
+    console.log(this.state.topic);
+  };
+
   render() {
     const { topic } = this.state;
     const { goToTopic } = this.props;
@@ -62,7 +66,10 @@ export default class TopicCard extends Component {
 
     const plainBodyText = removeMd(body);
     return (
-      <DraggableWrapper topicId={topic.id}>
+      <DraggableWrapper
+        topicId={topic.id}
+        partialTopicUpdate={this.partialTopicUpdate}
+      >
         <div
           id={`card-${topic.id}`}
           className={classNames('card__item', {
