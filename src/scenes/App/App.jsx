@@ -43,9 +43,6 @@ class App extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    splash: PropTypes.shape({
-      status: PropTypes.bool.isRequired
-    }).isRequired,
     server: PropTypes.string
   };
 
