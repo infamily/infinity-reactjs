@@ -36,9 +36,12 @@ export default class Comments extends Component {
 
   componentDidMount() {
     const { commentId } = this.props.match.params;
-    const comment =
-      commentId && document.getElementById(`comment-${commentId}`);
-    if (comment) comment.scrollIntoView();
+
+    setTimeout(() => {
+      const commentKey = `comment_${commentId}`;
+      const comment = this[commentKey];
+      if (comment) comment.scrollIntoView();
+    }, 500);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -138,8 +141,17 @@ export default class Comments extends Component {
           ) : null;
 
         const isOwner = user && user.id === owner.id;
+        const key = `comment_${id}`;
+
         return (
-          <div key={id} id={`comment-${id}`} className="comment__section">
+          <div
+            key={key}
+            id={key}
+            ref={c => {
+              this[key] = c;
+            }}
+            className="comment__section"
+          >
             <div>{makeHtml(text)}</div>
             <Progress />
             <Transactions id={id} />

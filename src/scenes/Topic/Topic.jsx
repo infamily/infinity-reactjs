@@ -71,9 +71,9 @@ class Topic extends Component {
   async componentWillReceiveProps(nextProps) {
     const getId = props => props.match.params.id;
     // check if new topic is provided
-    const solve = getId(this.props) !== getId(nextProps);
+    const isNew = getId(this.props) !== getId(nextProps);
 
-    if (solve) await this.loadTopicData(getId(nextProps));
+    if (isNew) await this.loadTopicData(getId(nextProps));
   }
 
   loadTopicData = async id => {
