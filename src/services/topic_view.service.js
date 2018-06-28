@@ -122,7 +122,6 @@ class TopicViewService {
   };
 
   updateTopicSource = async data => {
-    const lang = langService.current;
     const {
       type,
       title,
@@ -137,7 +136,7 @@ class TopicViewService {
       const parameters = {
         title,
         body: text,
-        languages: [lang],
+        languages: [],
         type,
         parents,
         data: showcase_data,
