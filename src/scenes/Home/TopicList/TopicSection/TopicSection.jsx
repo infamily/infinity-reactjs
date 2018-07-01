@@ -112,7 +112,6 @@ class TopicSection extends Component {
       const children = this.state[id];
       const isExpanded = this.state[`${id}_isOpen`] && children;
       const isDraggable = Boolean(user && user.id === topic.owner.id);
-      console.log(isDraggable);
 
       return (
         <div className="topic_list__item">

@@ -99,7 +99,6 @@ class TopicService {
       const { data } = await axiosNoToken.get(
         `${serverService.api}/topics/${id}/`
       );
-      console.log(data);
       return data;
     } catch (e) {
       console.error(e);
