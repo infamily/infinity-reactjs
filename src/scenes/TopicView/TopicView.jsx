@@ -378,8 +378,7 @@ class TopicView extends Component {
     const { goBack } = history;
 
     if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
-    console.clear();
-    console.warn(this.state, 'this.state');
+
     const Buttons = () => {
       if (!user)
         return (
@@ -455,7 +454,7 @@ class TopicView extends Component {
               value={topic_type}
             >
               {all_types.map((item, i) => (
-                <option value={i} key={item}>
+                <option value={i} key={i}>
                   {item}
                 </option>
               ))}

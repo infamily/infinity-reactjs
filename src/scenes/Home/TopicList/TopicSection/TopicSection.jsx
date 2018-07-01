@@ -111,13 +111,23 @@ class TopicSection extends Component {
       const { id } = topic;
       const children = this.state[id];
       const isExpanded = this.state[`${id}_isOpen`] && children;
+      const isDraggable = Boolean(user && user.id === topic.owner.id);
+      console.log(isDraggable);
+
       return (
         <div className="topic_list__item">
-          <TopicEditButton topic={topic} user={user} />
           {isLineView ? (
-            <TitleView topic={topic} fromId={fromId} />
+            <div>
+              <TopicEditButton topic={topic} user={user} />
+              <TitleView topic={topic} fromId={fromId} />
+            </div>
           ) : (
-            <TopicCard topic={topic} goToTopic={() => this.goToTopic(topic)} />
+            <TopicCard
+              topic={topic}
+              isDraggable={isDraggable}
+              goToTopic={() => this.goToTopic(topic)}
+              editButton={<TopicEditButton topic={topic} user={user} />}
+            />
           )}
           <div className="topic_list__step" style={getBorder(topic)}>
             {isExpanded &&

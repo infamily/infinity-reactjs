@@ -35,7 +35,9 @@ export default class TopicCard extends Component {
 
   static propTypes = {
     topic: PropTypes.object.isRequired,
-    goToTopic: PropTypes.func.isRequired
+    editButton: PropTypes.object.isRequired,
+    goToTopic: PropTypes.func.isRequired,
+    isDraggable: PropTypes.bool.isRequired
   };
 
   scrollToCard = () => {
@@ -68,20 +70,21 @@ export default class TopicCard extends Component {
     this.setState({
       topic: updatedTopic
     });
-    console.log(this.state.topic, childUrl);
   };
 
   render() {
     const { topic } = this.state;
-    const { goToTopic } = this.props;
+    const { goToTopic, isDraggable, editButton } = this.props;
     const { id, title, body, type, created_date, url } = topic;
     const color = getColor(type);
+    // const Edit = editButton;
 
     const plainBodyText = removeMd(body);
     return (
       <DraggableWrapper
         topicId={id}
         topicUrl={url}
+        isDraggable={isDraggable}
         partialTopicUpdate={this.partialTopicUpdate}
       >
         <div
@@ -91,6 +94,7 @@ export default class TopicCard extends Component {
           })}
           style={getTitleStyle(color)}
         >
+          {editButton}
           <div>
             <div className="card__title" onClick={goToTopic}>
               <h4 className="card__title-text">{title}</h4>

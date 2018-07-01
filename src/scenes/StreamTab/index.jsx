@@ -32,7 +32,7 @@ export default class StreamTab extends Component {
 
   async componentWillMount() {
     const schemas = await getSchemas();
-    if (schemas.length) {
+    if (schemas && schemas.length) {
       const id = getId(schemas[0].url);
       const instances = await getInstance(id);
 

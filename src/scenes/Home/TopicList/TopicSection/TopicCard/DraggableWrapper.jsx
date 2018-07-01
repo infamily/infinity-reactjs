@@ -80,24 +80,25 @@ class Card extends Component {
   render() {
     const {
       isDragging,
+      isDraggable,
       isOver,
       canDrop,
       connectDragSource,
       connectDropTarget
     } = this.props;
 
-    return connectDragSource(
-      connectDropTarget(
-        <div
-          className={classNames('card--draggable', {
-            'card--dragging': isDragging,
-            'card--active': isOver && canDrop
-          })}
-        >
-          {this.props.children}
-        </div>
-      )
+    const CardItem = connectDropTarget(
+      <div
+        className={classNames('card--draggable', {
+          'card--dragging': isDragging,
+          'card--active': isOver && canDrop
+        })}
+      >
+        {this.props.children}
+      </div>
     );
+
+    return isDraggable ? connectDragSource(CardItem) : CardItem;
   }
 }
 
@@ -106,6 +107,7 @@ Card.propTypes = {
   topicUrl: PropTypes.string.isRequired,
   children: PropTypes.object.isRequired,
   partialTopicUpdate: PropTypes.func.isRequired,
+  isDraggable: PropTypes.bool.isRequired,
 
   // Injected by React DnD:
   isDragging: PropTypes.bool.isRequired,
