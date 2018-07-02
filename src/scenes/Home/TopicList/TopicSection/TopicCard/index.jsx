@@ -59,8 +59,9 @@ export default class TopicCard extends Component {
 
   partialTopicUpdate = async childUrl => {
     const { id, children } = this.state.topic;
-    const newChidren =
-      children.indexOf(childUrl) < 0 ? children.concat(childUrl) : children;
+    if (children.indexOf(childUrl) > -1) return;
+
+    const newChidren = children.concat(childUrl);
     await topicViewService.partialUpdateTopic(id, { children: newChidren });
     const updatedTopic = {
       ...this.state.topic,
