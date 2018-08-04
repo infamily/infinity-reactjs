@@ -42,7 +42,8 @@ class Topic extends Component {
       comment_id: '',
       comment_text: '',
       addChildSection: false, // for panel
-      showChildSection: false // for first data pulling
+      showChildSection: false, // for first data pulling
+      commentsLoading: true
     };
   }
 
@@ -102,7 +103,8 @@ class Topic extends Component {
       comments,
       parents,
       children,
-      categories
+      categories,
+      commentsLoading: false
     });
   };
 
@@ -284,6 +286,7 @@ class Topic extends Component {
               startToEdit={this.startToEdit}
               reply={this.reply}
               remove={this.remove}
+              isLoading={this.state.commentsLoading}
             />
             <MenuBar page={<FormattedMessage {...messages.menuTitle} />} />
           </div>
