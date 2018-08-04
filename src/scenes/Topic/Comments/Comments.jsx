@@ -6,6 +6,8 @@ import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
 import TooltipOverlay from 'components/TooltipOverlay';
 import ProgressBar from 'components/TopicProgressBar';
+import LoadingElements from 'components/Loading/LoadingElements';
+import Loading from 'components/Loading';
 import { ClipButton } from 'scenes/Topic/IconButtons';
 import { makeHtml } from 'services/common.services';
 import { FormattedMessage } from 'react-intl';
@@ -31,7 +33,14 @@ export default class Comments extends Component {
     comments: PropTypes.array.isRequired,
     startToEdit: PropTypes.func.isRequired,
     reply: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired
+    remove: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool,
+    loaderElements: PropTypes.bool
+  };
+
+  static defaultProps = {
+    isLoading: true,
+    loaderElements: true
   };
 
   componentDidMount() {
@@ -96,8 +105,10 @@ export default class Comments extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, loaderElements, isLoading } = this.props;
     const { comments, transaction, invest_comment } = this.state;
+
+    if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
 
     const Buttons = ({ id, owner, remains, comment }) =>
       user && (
