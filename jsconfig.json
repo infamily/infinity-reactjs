@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "module": "commonjs",
     "baseUrl": "./src/",
     "paths": {
-      "*": ["*"],
-      "images/*": ["src/images/*"],
-      "components/*": ["src/components/*"],
-      "services/*": ["src/services/*"],
-      "scenes/*": ["src/scenes/*"],
-      "configs/*": ["src/configs/*"]
-    },
-    "target": "es2017",
-    "allowSyntheticDefaultImports": false
+      "*": ["*", "src/*"]
+    }
   },
-  "exclude": ["node_modules", "build"]
+  "include": ["src/**/*"]
 }
