@@ -195,23 +195,22 @@ class Home extends Component {
 
   updateHomeTopicsByParams = async () => {
     const {
-      query,
       flag,
       topicSource,
       categories,
       parentsById,
-      childrenById
+      childrenById,
+      query
     } = this.props.homeParams;
     const categoryParams = makeCategoriesArray(categories);
-
     this.setLoading(true);
     const data = await topicService.getTopics(
-      query,
       flag,
       topicSource,
       categoryParams,
       parentsById,
-      childrenById
+      childrenById,
+      query
     );
     this.scrollToPosition();
     this.setState({

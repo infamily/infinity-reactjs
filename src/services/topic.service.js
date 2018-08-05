@@ -9,7 +9,14 @@ const getCatergoryString = array =>
     ''
   );
 
-const getParams = (flag, view, categories, parentsById, childrenById) => {
+const getParams = (
+  flag,
+  view,
+  categories,
+  parentsById,
+  childrenById,
+  query
+) => {
   const f = flag || '';
   const categoryParams = categories ? getCatergoryString(categories) : '';
   const viewParam = parseInt(view, 10) ? `&parents__isnull=${view}` : '';
@@ -19,6 +26,7 @@ const getParams = (flag, view, categories, parentsById, childrenById) => {
 
   if (parentsById) params += `&children=${parentsById}`;
   if (childrenById) params += `&parents=${childrenById}`;
+  if (query) params += `&search=${query}`;
 
   return params;
 };
@@ -33,9 +41,9 @@ class TopicService {
     this.fromPage = 0;
   }
 
-  async getTopics(query, ...args) {
+  async getTopics(...args) {
     const { data, error } = await serverService.get(
-      `/topics/?${getParams(...args)}&search=${query}`
+      `/topics/?${getParams(...args)}`
     );
     if (data) {
       this.topics = data.results;
