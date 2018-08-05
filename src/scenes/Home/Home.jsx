@@ -195,6 +195,7 @@ class Home extends Component {
 
   updateHomeTopicsByParams = async () => {
     const {
+      query,
       flag,
       topicSource,
       categories,
@@ -205,6 +206,7 @@ class Home extends Component {
 
     this.setLoading(true);
     const data = await topicService.getTopics(
+      query,
       flag,
       topicSource,
       categoryParams,

@@ -33,9 +33,9 @@ class TopicService {
     this.fromPage = 0;
   }
 
-  async getTopics(...args) {
+  async getTopics(query, ...args) {
     const { data, error } = await serverService.get(
-      `/topics/?${getParams(...args)}`
+      `/topics/?${getParams(...args)}&search=${query}`
     );
     if (data) {
       this.topics = data.results;
