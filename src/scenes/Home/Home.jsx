@@ -199,17 +199,18 @@ class Home extends Component {
       topicSource,
       categories,
       parentsById,
-      childrenById
+      childrenById,
+      query
     } = this.props.homeParams;
     const categoryParams = makeCategoriesArray(categories);
-
     this.setLoading(true);
     const data = await topicService.getTopics(
       flag,
       topicSource,
       categoryParams,
       parentsById,
-      childrenById
+      childrenById,
+      query
     );
     this.scrollToPosition();
     this.setState({
