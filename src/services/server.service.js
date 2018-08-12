@@ -5,7 +5,11 @@ class ServerService {
     this.api = null;
     this.paymentAuthorization = null;
 
-    this.api_servers = ['https://wefindx.io', 'https://inf.wefindx.com'];
+    this.api_servers = [
+      'https://wefindx.io',
+      'https://inf.wefindx.com',
+      'https://inf.globalmindshare.org'
+    ];
 
     this.getDefault();
   }

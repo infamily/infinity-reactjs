@@ -4,26 +4,31 @@ export default {
       en: {
         'wefindx.io': 'Shanghai',
         'wefindx.com': 'Dublin',
+        'globalmindshare.org': 'Virginia',
         '0.0.0.0:8000': 'Local Fun'
       },
       cn: {
         'wefindx.io': '上海',
         'wefindx.com': '都柏林',
+        'globalmindshare.org': '弗吉尼',
         '0.0.0.0:8000': '本地乐趣'
       },
       ru: {
         'wefindx.io': 'Шанхай',
         'wefindx.com': 'Дублин',
+        'globalmindshare.org': 'Виргиния',
         '0.0.0.0:8000': 'Песочница'
       },
       lt: {
         'wefindx.io': 'Šanchajus',
         'wefindx.com': 'Dublinas',
+        'globalmindshare.org': 'Virdžinija',
         '0.0.0.0:8000': 'Vietinis'
       },
       ja: {
         'wefindx.io': '上海',
         'wefindx.com': 'ダブリン',
+        'wefindx.com': 'バージニア',
         '0.0.0.0:8000': 'ローカル'
       }
     }
