@@ -10,7 +10,7 @@ export default {
       cn: {
         'wefindx.io': '上海',
         'wefindx.com': '都柏林',
-        'globalmindshare.org': '弗吉尼',
+        'globalmindshare.org': '弗吉尼亚',
         '0.0.0.0:8000': '本地乐趣'
       },
       ru: {
