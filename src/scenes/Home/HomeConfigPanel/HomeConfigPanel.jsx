@@ -95,7 +95,8 @@ export default class HomeConfigPanel extends Component {
       this.setState({ query: '' });
       await this.props.changeHomeParams({
         flag: key,
-        topicSource: 0
+        topicSource: 0,
+        query: ''
       });
       await this.props.updateHomeTopicsByParams();
       this.updateSearchParams();
