@@ -2,7 +2,7 @@
   "infinity.components.Header.title": "Begalybės šeima",
   "infinity.components.Header.subtitle":
     "Atviri pokalbiai ir projektai globaliems tikslams",
-  "infinity.scenes.Home.Menu.title": "Pradinis",
+  "infinity.scenes.Home.Menu.title": "Pradžia",
   "infinity.scenes.Home.TopicList.noTopics":
     "Temų nerasta. Pabandykite pakeisti filtrų parametrus.",
   "infinity.scenes.Home.HomeConfigPanel.search": "Paieška",
@@ -140,11 +140,11 @@
   "infinity.components.FlagToggle.all": "Visi",
   "infinity.components.ServerSelect.server": "Serveris",
   "infinity.components.Menu.newTopic": "Nauja tema",
-  "infinity.components.Menu.home": "Pradinis",
-  "infinity.components.Menu.what": "Kas tai?",
+  "infinity.components.Menu.home": "Pradžia",
+  "infinity.components.Menu.what": "Kas?",
   "infinity.components.Menu.signOut": "Atsijungti",
   "infinity.components.Menu.signIn": "Prisijungti",
-  "infinity.components.Menu.how": "Kaip tai veikia?",
+  "infinity.components.Menu.how": "Kaip?",
   "infinity.components.Menu.menuDefautlTitle": "Meniu",
   "infinity.components.PayCheckout.amountPlaceholder": "Suma",
   "infinity.components.PayCheckout.CurrencyLabel": "Valiuta",
