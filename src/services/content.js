@@ -28,7 +28,7 @@ export default {
       ja: {
         'wefindx.io': '上海',
         'wefindx.com': 'ダブリン',
-        'wefindx.com': 'バージニア',
+        'globalmindshare.org': 'バージニア',
         '0.0.0.0:8000': 'ローカル'
       }
     }
@@ -36,23 +36,15 @@ export default {
   how: {
     en: [
       '<h1 class="en">How does this place work?</h1>',
-      '<p><span class="en">We believe, that technologies that we use, should be made understandable to people.You came here to learn.</span></p>',
-      '<h2>How do I sign up?</h2>',
-      "<p>You send e-mail to <b>people@infinity.family</b>. Mention your phone number, what username you'd like.</p>",
-      '<h2>Want to be part of us?</h2>',
-      '<p> Send a signed <a href="/page/membership.pdf">memership agreement</a> to <b>organizations@infinity.family</b>. Mention why your organization has to be part of Infinity Family.</p>',
-      '<h2>Why be ?</h2>',
-      "<p>Access stock market of projects. As part of the Infinity Family, your company will be able to invest into the projects on Infinity, and take part in shaping the world's future.</p>"
+      '<p>You <a href="/#/page/otp">sign in</a>, and then post topics; read, comment and transact.</p>',
+      "<h2>Can't sign-in, what do I do?</h2>",
+      "You send an e-mail to <b>team@wefindx.org</b>. We'll get back to you shortly.</p>"
     ],
     cn: [
       '<h1 class="en">这个地方如何操作？</h1>',
-      '<p><span class="en">我们觉得我们应该让大家理解我们用的技术。你来这里学习！</span></p>',
-      '<h2>How do I sign up?</h2>',
-      "<p>You send e-mail to <b>people@infinity.family</b>. Mention your phone number, what username you'd like.</p>",
-      '<h2>Want to be part of us?</h2>',
-      '<p> Send a signed <a href="/page/membership.pdf">memership agreement</a> to <b>organizations@infinity.family</b>. Mention why your organization has to be part of Infinity Family.</p>',
-      '<h2>Why be ?</h2>',
-      "<p>Access stock market of projects. As part of the Infinity Family, your company will be able to invest into the projects on Infinity, and take part in shaping the world's future.</p>"
+      '<p>您<a href="/#/page/otp">登录</a>，然后发布主题; 阅读，评论和交易。</p>',
+      '<h2>我不能登录怎么办？</h2>',
+      '您发送电子邮件至<b>team@wefindx.org</b>。 我们很快就会回复你。</p>'
     ]
   },
   what: {
