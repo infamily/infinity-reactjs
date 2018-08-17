@@ -64,9 +64,7 @@ export default {
     en: `<h1 class="en">What is this?</h1>
 
       <p>Infinity is a communal database of Needs, Goals, Ideas, Plans, their Steps and Tasks, with Comments to discuss them and track investments of Time into creation of Assets, and Monetary Transactions to gain transferrable tokens representing the created Assets.</p>
-      We're a community of thinkers, innovators, investors and doers, with an over-arching goals of empowering life to decide its own destiny.
-
-      It is a public space for discussing world's issues, thinking and sharing ideas how to solve them, initiating projects based on those ideas, and funding them, as well as managing their execution, while sharing the process with with world in public, so that people can understand how the work is done, and learn the procedural knowledge, as well as fund that pursuit through creating a market of data and goods. It's a full package to make sense of the world, and run an independent economy.
+      We're a community of thinkers, innovators, investors and doers, with an over-arching goals of empowering life to decide its own destiny. It is a public space for discussing world's issues, thinking and sharing ideas how to solve them, initiating projects based on those ideas, and funding them, as well as managing their execution, while sharing the process with with world in public, so that people can understand how the work is done, and learn the procedural knowledge, as well as fund that pursuit through creating a market of data and goods. It's a full package to make sense of the world, and run an independent economy.
 
       <h2>How does Infinity work?</h2>
       Infinity relies on two major models -- Topic, and Comment, to decompose knowledge. Both are just content items that people can create by providing <i>title</i> and <i>body</i>, or <i>text</i>. Topics have 6 major categories: <i>Need, Goal, Idea, Plan, Step, Task</i>, and Comments have time accounting feature, and <i>Transactions</i>, so that people can invest time and money into creation together, and share returns.
@@ -150,7 +148,7 @@ export default {
       People and organizations like you. Among early contributors - people <a href="https://mindey.com">Mindey</a>, <a href="https://ruta.io">Ruta</a>, <a href="https://aliev.me">Aliev</a> and others, and organizations <a href="https://wefindx.org">WeFindX Foundation</a>, <a href="http://www.globalmindshare.org">Global Mind Share</a> and others (check out more details <a href="https://inf.li/#/wefindx.com:en/@/topic/235">here</a>). Collectively, we are a global family of individuals and organizations - the <b>Infinity Family</b>, and we are welcoming you to join it too.
 
       <h2>How do I join the Infinity Family?</h2>
-      You <a href="/#/page/otp">sign-in</a>, you're already part of us. Write us at team@wefindx.org to get access, or if you want to sign agreement about running run your node for commercial purposes.`
+      You <a href="/#/page/otp">sign-in</a>, you're already part of us. Write us at <b>team@wefindx.org</b>, if you want to get access or run your node for commercial purposes.`
       .split('\n')
       .map(x => x.trim())
   }
