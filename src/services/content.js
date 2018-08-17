@@ -38,13 +38,17 @@ export default {
       '<h1 class="en">How does this place work?</h1>',
       '<p>You <a href="/#/page/otp">sign in</a>, and then post topics; read, comment and transact.</p>',
       "<h2>Can't sign-in, what do I do?</h2>",
-      "You send an e-mail to <b>team@wefindx.org</b>. We'll get back to you shortly.</p>"
+      "You send an e-mail to <b>team@wefindx.org</b>. We'll get back to you shortly.</p>",
+      '<h2>I need a tutorial.</h2>',
+      'Check out the <a href="https://wefindx.org/static/media/inf.mp4">video tutorial</a>.</p>'
     ],
     cn: [
       '<h1 class="en">这个地方如何操作？</h1>',
       '<p>您<a href="/#/page/otp">登录</a>，然后发布主题; 阅读，评论和交易。</p>',
       '<h2>我不能登录怎么办？</h2>',
-      '您发送电子邮件至<b>team@wefindx.org</b>。 我们很快就会回复你。</p>'
+      '您发送电子邮件至<b>team@wefindx.org</b>。 我们很快就会回复你。</p>',
+      '<h2>我需要一个教程</h2>',
+      '欢迎查看<a href="https://wefindx.io/static/tmp/inf.mp4">视频教程</a>。</p>'
     ]
   },
   what: {
