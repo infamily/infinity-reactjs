@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import serverService from 'services/server.service';
 import PropTypes from 'prop-types';
 import MenuBar from 'scenes/MenuBar';
 import EmailView from './EmailView';
@@ -16,7 +17,8 @@ export default class OtpLogin extends Component {
     this.state = {
       view: 'view', // email || login
       email: '',
-      popUp: { state: false, title: '', text: '' }
+      popUp: { state: false, title: '', text: '' },
+      ignoreCaptcha: false
     };
   }
 
@@ -27,6 +29,12 @@ export default class OtpLogin extends Component {
     persistedTopic: PropTypes.object.isRequired,
     user: PropTypes.object
   };
+
+  async componentWillMount() {
+    const constance = await serverService.get('/constance/');
+    const { ignore_captcha } = constance.data;
+    this.setState({ ignoreCaptcha: ignore_captcha });
+  }
 
   login = async password => {
     try {
@@ -135,6 +143,7 @@ export default class OtpLogin extends Component {
           changeView={this.changeView}
           setPopUp={this.setPopUp}
           changeEmail={this.changeEmail}
+          ignoreCaptcha={this.state.ignoreCaptcha}
         />
         <LoginView
           view={view}

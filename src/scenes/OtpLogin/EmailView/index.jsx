@@ -39,6 +39,12 @@ export default class EmailView extends Component {
     if (!this.state.captcha.key) this.refresh();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.ignoreCaptcha) {
+      this.setState({ captcha_1: '123' });
+    }
+  }
+
   refresh = async e => {
     if (e) e.preventDefault();
     try {
@@ -141,6 +147,8 @@ export default class EmailView extends Component {
 
     if (this.props.view !== 'email') return null;
 
+    const captchaDisplay = this.props.ignoreCaptcha ? 'none' : 'block';
+
     return (
       <div>
         <img src={ifIcon} className="otp__logo" alt="infinity" />
@@ -164,7 +172,11 @@ export default class EmailView extends Component {
                 )}
               </FormattedMessage>
             </div>
-            <div id="div_id_captcha" className="form-group">
+            <div
+              id="div_id_captcha"
+              className="form-group"
+              style={{ display: captchaDisplay }}
+            >
               <div className="row">
                 <div className="col-md-8">
                   <input
