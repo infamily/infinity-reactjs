@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
+import { FormattedDate } from 'react-intl';
 import NotificationSystem from 'react-notification-system';
 import Balance from 'components/Balance/Balance';
 import UserBalance from 'components/Balance/UserBalance';
@@ -143,7 +144,8 @@ export default class Comments extends Component {
           owner,
           claimed_hours,
           assumed_hours,
-          remains
+          remains,
+          created_date
         } = comment;
 
         const Progress = () =>
@@ -166,6 +168,12 @@ export default class Comments extends Component {
             <div>{makeHtml(text)}</div>
             <Progress />
             <Transactions id={id} />
+            <FormattedDate
+              value={created_date}
+              month="long"
+              year="numeric"
+              day="numeric"
+            />
             <div className="comments__actions">
               <Buttons
                 owner={owner}
