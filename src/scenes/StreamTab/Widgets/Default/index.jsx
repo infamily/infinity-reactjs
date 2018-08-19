@@ -24,6 +24,12 @@ export default class Instance extends Component {
     const color = configs.objectColors[data.role];
     const objectStyle = { borderColor: color };
 
+    const coverImage = data['data']['_:cover-image'];
+
+    if (coverImage !== undefined) {
+      objectStyle.background = `url(${coverImage})`;
+    }
+
     const Body = () =>
       data.identifiers && data.description ? (
         <div>
@@ -45,7 +51,7 @@ export default class Instance extends Component {
           style={objectStyle}
         >
           {hasData ? <Show action={() => showInstance(data)} /> : null}
-          <Body />
+          {coverImage ? null : <Body />}
         </div>
       </div>
     );
