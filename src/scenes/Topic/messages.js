@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'infinity.scenes.Topic.showCommentsInCurrentLanguage',
     defaultMessage: 'Show comments in current language'
   },
+  languages: {
+    id: 'infinity.scenes.Topic.languages',
+    defaultMessage: 'Languages: '
+  },
   homeButton: {
     id: 'infinity.scenes.Topic.homeButton',
     defaultMessage: 'Home'
