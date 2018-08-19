@@ -111,6 +111,37 @@ class Topic extends Component {
     });
   };
 
+  loadTopicByLanguage = async (id, lang) => {
+    const { state } = this.props.location;
+    const topicByLocation = state && state.topic;
+    const topic = topicByLocation || (await topicService.getTopic(id, lang));
+
+    if (!topic) {
+      this.props.history.push('/404');
+      return;
+    }
+
+    this.setState({
+      topic,
+      ...initalMeta
+    });
+
+    const comments = await topicService.getComments(id, lang);
+    const children = await topicService.getChildren(id, lang);
+    const parents = await topicService.getParents(id, lang);
+    const categories = getCategories(topic);
+
+    this.setState({
+      topic,
+      comments: comments.results,
+      commentsCount: comments.count,
+      parents,
+      children,
+      categories,
+      commentsLoading: false
+    });
+  };
+
   loadAllComments = async (id, topic) => {
     const lang = topic.lang || langService.current;
     this.setState({ commentsLoading: true });
@@ -270,6 +301,20 @@ class Topic extends Component {
             >
               {children}
             </TopicBody>
+            {topic['languages'].length > 0 ? (
+              <FormattedMessage {...messages.languages} />
+            ) : null}
+            {topic['languages'].map((language, index) => (
+              <a
+                role="button"
+                tabIndex={-1}
+                key={index}
+                onClick={() => this.loadTopicByLanguage(topic.id, language)}
+                className="topic__draft topic__category"
+              >
+                {language}
+              </a>
+            ))}
             <PreviewProgressBar topic={topic} />
             <br />
             <NewButton action={this.handleEditSection} title={newButtonText} />

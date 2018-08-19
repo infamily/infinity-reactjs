@@ -4,7 +4,9 @@ import topicService from 'services/topic.service';
 
 const axiosNoToken = axios.create(); // to get data from other servers
 
-const getTopic = async id => topicService.getTopic(id);
+const getTopic = async (id, lang) => {
+  return topicService.getTopic(id, lang);
+};
 const getApi = () => serverService.api;
 
 async function getChildren(id, lang) {
