@@ -32,9 +32,9 @@ async function getParents(id, lang) {
 async function getComments(id, lang) {
   try {
     const { data } = await axiosNoToken.get(
-      `${getApi()}/comments/?topic=${id}&lang=${lang}`
+      `${getApi()}/comments/?topic=${id}${lang ? `&lang=${lang}` : ''}`
     );
-    return data.results;
+    return data;
   } catch (e) {
     console.error(e);
   }

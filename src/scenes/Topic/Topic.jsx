@@ -43,7 +43,9 @@ class Topic extends Component {
       comment_text: '',
       addChildSection: false, // for panel
       showChildSection: false, // for first data pulling
-      commentsLoading: true
+      commentsLoading: true,
+      commentsCount: 0,
+      commentsLoadedInAllLanguages: false
     };
   }
 
@@ -100,11 +102,24 @@ class Topic extends Component {
 
     this.setState({
       topic,
-      comments,
+      comments: comments.results,
+      commentsCount: comments.count,
       parents,
       children,
       categories,
       commentsLoading: false
+    });
+  };
+
+  loadAllComments = async (id, topic) => {
+    const lang = topic.lang || langService.current;
+    this.setState({ commentsLoading: true });
+    const language = this.state.commentsLoadedInAllLanguages ? lang : undefined;
+    const comments = await topicService.getComments(id, language);
+    this.setState({
+      comments: comments.results,
+      commentsLoading: false,
+      commentsLoadedInAllLanguages: !this.state.commentsLoadedInAllLanguages
     });
   };
 
@@ -213,6 +228,10 @@ class Topic extends Component {
       }
     };
 
+    const loadMoreCommentsButtonText = this.state.commentsLoadedInAllLanguages
+      ? messages.showCommentsInCurrentLanguage
+      : messages.loadAllComments;
+
     const HomeButton = () => {
       const TextButton = () => (
         <span>
@@ -281,6 +300,18 @@ class Topic extends Component {
                 topic_id={this.state.topic.id}
               />
             </div>
+            {topic['comment_count'] >= this.state.commentsCount ? (
+              <button
+                onClick={() => this.loadAllComments(this.state.topic.id, topic)}
+              >
+                <FormattedMessage
+                  {...loadMoreCommentsButtonText}
+                  values={{
+                    commentsCount: topic['comment_count']
+                  }}
+                />
+              </button>
+            ) : null}
             <Comments
               comments={comments}
               startToEdit={this.startToEdit}

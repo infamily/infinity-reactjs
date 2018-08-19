@@ -5,6 +5,14 @@ export default defineMessages({
     id: 'infinity.scenes.Topic.Menu.title',
     defaultMessage: 'Menu'
   },
+  loadAllComments: {
+    id: 'infinity.scenes.Topic.loadAllComments',
+    defaultMessage: 'Load comments in all languages ({commentsCount})'
+  },
+  showCommentsInCurrentLanguage: {
+    id: 'infinity.scenes.Topic.showCommentsInCurrentLanguage',
+    defaultMessage: 'Show comments in current language'
+  },
   homeButton: {
     id: 'infinity.scenes.Topic.homeButton',
     defaultMessage: 'Home'
