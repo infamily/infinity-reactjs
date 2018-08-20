@@ -345,7 +345,7 @@ class Topic extends Component {
                 topic_id={this.state.topic.id}
               />
             </div>
-            {topic['comment_count'] >= this.state.commentsCount ? (
+            {topic['comment_count'] > this.state.commentsCount ? (
               <button
                 onClick={() => this.loadAllComments(this.state.topic.id, topic)}
               >
