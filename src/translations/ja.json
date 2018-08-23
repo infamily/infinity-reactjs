@@ -232,5 +232,5 @@
     "すべての言語でコメントを表示する ({commentsCount})",
   "infinity.scenes.Topic.showCommentsInCurrentLanguage":
     "日本のコメントを表示する",
-  "infinity.scenes.Topic.languages": "语言"
+  "infinity.scenes.Topic.languages": "语言: "
 }

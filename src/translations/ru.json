@@ -232,5 +232,5 @@
     "Показать комментарии на всех языках ({commentsCount})",
   "infinity.scenes.Topic.showCommentsInCurrentLanguage":
     "Показать комментарии на русском",
-  "infinity.scenes.Topic.languages": "Языки"
+  "infinity.scenes.Topic.languages": "Языки: "
 }

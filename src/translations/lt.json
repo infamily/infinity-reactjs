@@ -235,5 +235,5 @@
     "Rodyti visų kalbų komentarus ({commentsCount})",
   "infinity.scenes.Topic.showCommentsInCurrentLanguage":
     "Rodyti tik lietuviškus komentarus",
-  "infinity.scenes.Topic.languages": "Kalbos"
+  "infinity.scenes.Topic.languages": "Kalbos: "
 }

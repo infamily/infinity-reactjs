@@ -207,5 +207,5 @@
   "infinity.scenes.Topic.loadAllComments":
     "表示所有语言的评论 ({commentsCount})",
   "infinity.scenes.Topic.showCommentsInCurrentLanguage": "表示中文的评论",
-  "infinity.scenes.Topic.languages": "语言"
+  "infinity.scenes.Topic.languages": "语言: "
 }
