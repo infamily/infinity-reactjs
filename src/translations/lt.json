@@ -168,6 +168,8 @@
   "infinity.components.ProgramToggle.plan": "Planai",
   "infinity.components.ProgramToggle.step": "Etapai",
   "infinity.components.ProgramToggle.task": "Užduotys",
+  "infinity.components.ProgramToggle.bug": "Klaidos",
+  "infinity.components.ProgramToggle.data": "Duomenys",
   "infinity.components.SignInLine.signIn": "Prisijungti",
   "infinity.components.TabDataField.dataField": "Duomenų lauką",
   "infinity.components.TabDataField.putData": "Įveskite duomenis čia",

@@ -151,6 +151,7 @@
   "infinity.components.ProgramToggle.step": "步骤",
   "infinity.components.ProgramToggle.task": "任务",
   "infinity.components.ProgramToggle.bug": "错误报告",
+  "infinity.components.ProgramToggle.data": "获取数据",
   "infinity.components.SignInLine.signIn": "登录",
   "infinity.components.TabDataField.dataField": "数据字段",
   "infinity.components.TabDataField.putData": "请输入您的数据",

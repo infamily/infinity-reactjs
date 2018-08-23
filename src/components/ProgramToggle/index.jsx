@@ -17,6 +17,7 @@ const ProgramToggle = () => {
   const toTasks = () => '';
   const toBugs = () =>
     window.location.replace('https://inf.li/#/wefindx.com:en/@/topic/274/');
+  const toData = () => '';
 
   return (
     <Link to={configs.linkBase()}>
@@ -24,15 +25,34 @@ const ProgramToggle = () => {
         <div className="all_toggle__label" onClick={toTop}>
           <FormattedMessage {...messages.all} />
         </div>
-        <div className="goal_toggle__label" onClick={toGoals}>
-          <FormattedMessage {...messages.goal} />
-        </div>
-        <div className="idea_toggle__label" onClick={toIdeas}>
-          <FormattedMessage {...messages.idea} />
-        </div>
-        <div className="plan_toggle__label" onClick={toPlans}>
-          <FormattedMessage {...messages.plan} />
-        </div>
+
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.goalTooltip} />}
+          placement="bottom"
+        >
+          <div className="goal_toggle__label" onClick={toGoals}>
+            <FormattedMessage {...messages.goal} />
+          </div>
+        </TooltipOverlay>
+
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.ideaTooltip} />}
+          placement="bottom"
+        >
+          <div className="idea_toggle__label" onClick={toIdeas}>
+            <FormattedMessage {...messages.idea} />
+          </div>
+        </TooltipOverlay>
+
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.planTooltip} />}
+          placement="bottom"
+        >
+          <div className="plan_toggle__label" onClick={toPlans}>
+            <FormattedMessage {...messages.plan} />
+          </div>
+        </TooltipOverlay>
+
         <div className="step_toggle__label" onClick={toSteps}>
           <FormattedMessage {...messages.step} />
         </div>
@@ -41,6 +61,9 @@ const ProgramToggle = () => {
         </div>
         <div className="bug_report_toggle__label" onClick={toBugs}>
           <FormattedMessage {...messages.bug} />
+        </div>
+        <div className="data_toggle__label" onClick={toData}>
+          <FormattedMessage {...messages.data} />
         </div>
       </div>
     </Link>

@@ -4,5 +4,6 @@
   "infinity.components.TopicFundData.topicPrizeTooltip":
     "Der Betrag, der für jemanden vergeben wird, der diese Herausforderung löst.",
   "infinity.common.shortCountableHours.COUNT":
-    "{count, number}{count, plural, =0 {''} one {h} other {h}}"
+    "{count, number}{count, plural, =0 {''} one {h} other {h}}",
+  "infinity.components.ProgramToggle.data": "Daten"
 }

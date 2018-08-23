@@ -11,8 +11,8 @@
 
   top: 10px;
   left: -80px;
-  min-width: 97px;
-  min-width: 97px;
+  min-width: 93px;
+  min-width: 93px;
   overflow: auto;
 }
 
@@ -84,6 +84,15 @@
 }
 
 .bug_report_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+
+.data_toggle__label {
   padding: 5px;
   text-transform: uppercase;
   font-family: courier new;

@@ -36,5 +36,24 @@ export default defineMessages({
   bug: {
     id: 'infinity.components.ProgramToggle.bug',
     defaultMessage: 'Bugs'
+  },
+  data: {
+    id: 'infinity.components.ProgramToggle.data',
+    defaultMessage: 'Get Data'
+  },
+  goalTooltip: {
+    id: 'infinity.components.ProgramToggle.goalTooltip',
+    defaultMessage:
+      "Judge objectives. Think like you're a member of U.N. assembly. Are these goals important?"
+  },
+  ideaTooltip: {
+    id: 'infinity.components.ProgramToggle.ideaTooltip',
+    defaultMessage:
+      "Judge novelty. Think like you're a halfbaker. Is this new? Does the rationale make sense?"
+  },
+  planTooltip: {
+    id: 'infinity.components.ProgramToggle.ideaTooltip',
+    defaultMessage:
+      "Manage. Think like you're a business. Share better ways to make returns on investment."
   }
 });

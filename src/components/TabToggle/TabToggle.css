@@ -11,6 +11,7 @@
   z-index: 3;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
+  min-width: 93px;
 }
 
 .tab_toggle:hover {

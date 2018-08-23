@@ -167,6 +167,7 @@
   "infinity.components.ProgramToggle.step": "段階",
   "infinity.components.ProgramToggle.task": "用事",
   "infinity.components.ProgramToggle.bug": "バグ",
+  "infinity.components.ProgramToggle.data": "データ",
   "infinity.components.SignInLine.signIn": "ログイン",
   "infinity.components.TabDataField.dataField": "データフィールド",
   "infinity.components.TabDataField.putData": "あなたのデータをここに入れる",
