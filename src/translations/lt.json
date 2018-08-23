@@ -218,5 +218,8 @@
   "infinity.scenes.TopicView.showCasePlaceholder":
     "Įveskite teisingą JSON arba palikti tuščią",
   "infinity.scenes.TopicView.showCaseError":
-    "Prezentacijos klaida: neteisingas JSON"
+    "Prezentacijos klaida: neteisingas JSON",
+  "infinity.components.TopicFundData.prize": "prizas",
+  "infinity.components.TopicFundData.topicPrizeTooltip":
+    "Pinigų suma rezervuota tiems, kas išspręs šią problemą."
 }

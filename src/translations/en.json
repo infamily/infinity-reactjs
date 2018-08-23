@@ -1,5 +1,5 @@
 {
-  "infinity.components.Header.title": "Infinity Family",
+  "infinity.components.Header.title": "Infinity",
   "infinity.components.Header.subtitle":
     "Open chats and projects to realise global goals",
   "infinity.scenes.Home.Menu.title": "Home",
@@ -209,5 +209,8 @@
   "infinity.scenes.TopicView.fillShowCaseData": "Fill with a default data",
   "infinity.scenes.TopicView.showCasePlaceholder":
     "Input a valid JSON or leave blank",
-  "infinity.scenes.TopicView.showCaseError": "Showcase Error: Invalid JSON"
+  "infinity.scenes.TopicView.showCaseError": "Showcase Error: Invalid JSON",
+  "infinity.components.TopicFundData.prize": "Prize",
+  "infinity.components.TopicFundData.topicPrizeTooltip":
+    "The amount of money allocated to someone who solves this challenge."
 }

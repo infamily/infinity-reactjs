@@ -191,5 +191,8 @@
   "infinity.scenes.TopicView.fillShowCaseData": "填写默认数据",
   "infinity.scenes.TopicView.showCasePlaceholder":
     "输入一个格式有效的JSON或留空",
-  "infinity.scenes.TopicView.showCaseError": "陈列错误：无效的JSON"
+  "infinity.scenes.TopicView.showCaseError": "陈列错误：无效的JSON",
+  "infinity.components.TopicFundData.prize": "奖励",
+  "infinity.components.TopicFundData.topicPrizeTooltip":
+    "为解决这挑战的人分配的金额"
 }

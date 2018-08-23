@@ -215,5 +215,8 @@
   "infinity.scenes.TopicView.showCasePlaceholder":
     "有効なJSONを入力するか、空白にします",
   "infinity.scenes.TopicView.showCaseError":
-    "プレゼンテーションエラー：無効なJSON"
+    "プレゼンテーションエラー：無効なJSON",
+  "infinity.components.TopicFundData.prize": "賞金",
+  "infinity.components.TopicFundData.topicPrizeTooltip":
+    "このチャレンジを解決する人に割り当てられる金額。"
 }

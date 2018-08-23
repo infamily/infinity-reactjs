@@ -215,5 +215,8 @@
   "infinity.scenes.TopicView.showCasePlaceholder":
     "Введите валидный JSON или оставте пустым",
   "infinity.scenes.TopicView.showCaseError":
-    "Ошибка редактора страницы презинтации: Невалидный JSON"
+    "Ошибка редактора страницы презинтации: Невалидный JSON",
+  "infinity.components.TopicFundData.prize": "приз",
+  "infinity.components.TopicFundData.topicPrizeTooltip":
+    "Сумма, выделенная для тех, кто решает эту проблему."
 }
