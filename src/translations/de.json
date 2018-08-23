@@ -2,5 +2,7 @@
   "infinity.components.Header.title": "Unendlichkeitsfamilie",
   "infinity.components.TopicFundData.prize": "Preis",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "Der Betrag, der für jemanden vergeben wird, der diese Herausforderung löst."
+    "Der Betrag, der für jemanden vergeben wird, der diese Herausforderung löst.",
+  "infinity.common.shortCountableHours.COUNT":
+    "{count, number}{count, plural, =0 {''} one {h} other {h}}"
 }

@@ -1,20 +1,22 @@
 .program_toggle {
   font-size: 14px;
   position: fixed;
-  padding: 5px;
-  color: #fff;
-  background-color: #76b976;
+  color: #000;
+  background-color: white;
   border-radius: 0 5px 5px 0;
-  z-index: 3;
+  z-index: 2;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
+  text-align: right;
 
   top: 10px;
   left: -80px;
+  min-width: 97px;
+  min-width: 97px;
+  overflow: auto;
 }
 
 .program_toggle:hover {
-  background-color: #449d44;
   left: 0px;
 }
 
@@ -26,4 +28,66 @@
 
 .program_toggle__label {
   text-transform: uppercase;
+  padding: 5px;
+  overflow: auto;
+}
+
+.all_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+.goal_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: #90b249;
+  color: white;
+  text-align: center;
+  border-radius: 0 5px 0 0;
+}
+.idea_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: #56bfc5;
+  color: white;
+  text-align: center;
+}
+.plan_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: #ff9955;
+  color: white;
+  text-align: center;
+}
+.step_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: #af9cc9;
+  color: white;
+  text-align: center;
+}
+.task_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: #d76b99;
+  color: white;
+  text-align: center;
+  border-radius: 0 0 5px 0;
+}
+
+.bug_report_toggle__label {
+  padding: 5px;
+  text-transform: uppercase;
+  font-family: courier new;
+  background-color: white;
+  color: black;
+  text-align: center;
 }

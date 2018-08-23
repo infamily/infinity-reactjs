@@ -151,7 +151,7 @@
   "infinity.components.PayCheckout.card": "Card Number",
   "infinity.components.PayCheckout.zip": "ZIP",
   "infinity.components.PayCheckout.toFund": "to fund the project",
-  "infinity.components.ProgramToggle.programs": "Programs",
+  "infinity.components.ProgramToggle.programs": "Code",
   "infinity.components.ProgramToggle.importingToolip":
     "Importing programs will be released coming soon...",
   "infinity.components.SignInLine.signIn": "Sign In",
