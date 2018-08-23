@@ -227,5 +227,10 @@
     "プレゼンテーションエラー：無効なJSON",
   "infinity.components.TopicFundData.prize": "賞金",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "このチャレンジを解決する人に割り当てられる金額。"
+    "このチャレンジを解決する人に割り当てられる金額。",
+  "infinity.scenes.Topic.loadAllComments":
+    "すべての言語でコメントを表示する ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
+    "日本のコメントを表示する",
+  "infinity.scenes.Topic.languages": "语言"
 }

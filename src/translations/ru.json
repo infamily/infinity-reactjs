@@ -227,5 +227,10 @@
     "Ошибка редактора страницы презинтации: Невалидный JSON",
   "infinity.components.TopicFundData.prize": "приз",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "Сумма, выделенная для тех, кто решает эту проблему."
+    "Сумма, выделенная для тех, кто решает эту проблему.",
+  "infinity.scenes.Topic.loadAllComments":
+    "Показать комментарии на всех языках ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
+    "Показать комментарии на русском",
+  "infinity.scenes.Topic.languages": "Языки"
 }

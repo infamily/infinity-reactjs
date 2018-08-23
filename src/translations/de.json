@@ -5,5 +5,10 @@
     "Der Betrag, der für jemanden vergeben wird, der diese Herausforderung löst.",
   "infinity.common.shortCountableHours.COUNT":
     "{count, number}{count, plural, =0 {''} one {h} other {h}}",
-  "infinity.components.ProgramToggle.data": "Daten"
+  "infinity.components.ProgramToggle.data": "Daten",
+  "infinity.scenes.Topic.loadAllComments":
+    "Zeige Kommentare in allen Sprachen ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
+    "Zeige Kommentare auf Deutsch",
+  "infinity.scenes.Topic.languages": "Sprachen"
 }

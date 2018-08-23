@@ -230,5 +230,10 @@
     "Prezentacijos klaida: neteisingas JSON",
   "infinity.components.TopicFundData.prize": "prizas",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "Pinigų suma rezervuota tiems, kas išspręs šią problemą."
+    "Pinigų suma rezervuota tiems, kas išspręs šią problemą.",
+  "infinity.scenes.Topic.loadAllComments":
+    "Rodyti visų kalbų komentarus ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
+    "Rodyti tik lietuviškus komentarus",
+  "infinity.scenes.Topic.languages": "Kalbos"
 }

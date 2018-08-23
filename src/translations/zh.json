@@ -203,5 +203,9 @@
   "infinity.scenes.TopicView.showCaseError": "陈列错误：无效的JSON",
   "infinity.components.TopicFundData.prize": "奖励",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "为解决这挑战的人分配的金额"
+    "为解决这挑战的人分配的金额",
+  "infinity.scenes.Topic.loadAllComments":
+    "表示所有语言的评论 ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage": "表示中文的评论",
+  "infinity.scenes.Topic.languages": "语言"
 }
