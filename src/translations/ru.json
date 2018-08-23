@@ -168,6 +168,16 @@
   "infinity.components.ProgramToggle.task": "Задача",
   "infinity.components.ProgramToggle.bug": "Ошибки",
   "infinity.components.ProgramToggle.data": "Данные",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "Судить цели. Подумайте, как вы являетесь членом Ассамблеи Объединенных Наций. Важны ли эти цели?",
+  "infinity.components.ProgramToggle.ideaTooltip":
+    "Судья новизны. Подумайте, как вы, полуботник. Это новое? Имеет ли смысл смысл?",
+  "infinity.components.ProgramToggle.planTooltip":
+    "Реализовать проект. Подумайте, как вы генеральный директор. Как превратить его в жизнеспособный бизнес?",
+  "infinity.components.ProgramToggle.stepTooltip":
+    "Подумайте, как вы менеджер проекта. Будет ли эта разбивка облегчить людям возможность организовать работу?",
+  "infinity.components.ProgramToggle.taskTooltip":
+    "Подумайте, как вы инженер. Имеет ли смысл эта задача, каков правильный способ реализации этой функции?",
   "infinity.components.SignInLine.signIn": "Нажмите войти",
   "infinity.components.TabDataField.dataField": "Поле данных",
   "infinity.components.TabDataField.putData": "Введите ваши данные",

@@ -53,15 +53,28 @@ const ProgramToggle = () => {
           </div>
         </TooltipOverlay>
 
-        <div className="step_toggle__label" onClick={toSteps}>
-          <FormattedMessage {...messages.step} />
-        </div>
-        <div className="task_toggle__label" onClick={toTasks}>
-          <FormattedMessage {...messages.task} />
-        </div>
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.stepTooltip} />}
+          placement="bottom"
+        >
+          <div className="step_toggle__label" onClick={toSteps}>
+            <FormattedMessage {...messages.step} />
+          </div>
+        </TooltipOverlay>
+
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.taskTooltip} />}
+          placement="bottom"
+        >
+          <div className="task_toggle__label" onClick={toTasks}>
+            <FormattedMessage {...messages.task} />
+          </div>
+        </TooltipOverlay>
+
         <div className="bug_report_toggle__label" onClick={toBugs}>
           <FormattedMessage {...messages.bug} />
         </div>
+
         <div className="data_toggle__label" onClick={toData}>
           <FormattedMessage {...messages.data} />
         </div>

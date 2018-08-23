@@ -152,6 +152,16 @@
   "infinity.components.ProgramToggle.task": "任务",
   "infinity.components.ProgramToggle.bug": "错误报告",
   "infinity.components.ProgramToggle.data": "获取数据",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "判断目标。想想你是联合国大会的成员。这些目标是否重要吗？",
+  "infinity.components.ProgramToggle.ideaTooltip":
+    "判断创新。想想你是发明者。这方法是创新吗？这方法是有道理吗？",
+  "infinity.components.ProgramToggle.planTooltip":
+    "实现。想想你是執行長。如何把计划换成到一个可行的业务？",
+  "infinity.components.ProgramToggle.stepTooltip":
+    "想想你是项目经理。这项目细分是否可以让人们轻松组织工作？",
+  "infinity.components.ProgramToggle.taskTooltip":
+    "想想你是工程师。实现此功能的正确方法是什么？",
   "infinity.components.SignInLine.signIn": "登录",
   "infinity.components.TabDataField.dataField": "数据字段",
   "infinity.components.TabDataField.putData": "请输入您的数据",

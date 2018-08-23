@@ -52,8 +52,18 @@ export default defineMessages({
       "Judge novelty. Think like you're a halfbaker. Is this new? Does the rationale make sense?"
   },
   planTooltip: {
-    id: 'infinity.components.ProgramToggle.ideaTooltip',
+    id: 'infinity.components.ProgramToggle.planTooltip',
     defaultMessage:
-      "Manage. Think like you're a business. Share better ways to make returns on investment."
+      "Think like you're a CEO. How to turn it into a viable business?"
+  },
+  stepTooltip: {
+    id: 'infinity.components.ProgramToggle.stepTooltip',
+    defaultMessage:
+      "Think like you're a PM. Will this breakdown make it easy for people to organize the work?"
+  },
+  taskTooltip: {
+    id: 'infinity.components.ProgramToggle.taskTooltip',
+    defaultMessage:
+      "Think like you're an engineer. Does this task make sense, what's the right way to implement this feature?"
   }
 });

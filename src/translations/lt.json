@@ -170,6 +170,16 @@
   "infinity.components.ProgramToggle.task": "Užduotys",
   "infinity.components.ProgramToggle.bug": "Klaidos",
   "infinity.components.ProgramToggle.data": "Duomenys",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "Vertink tikslus. Įsivaizduok, kad esi Jungtinių Tautų asamblėjos narys. Kurie tikslai svarbūs, kodėl?",
+  "infinity.components.ProgramToggle.ideaTooltip":
+    "Vertink idėjas. Įsivaizduok, kad esi išradėjas. Ar pasiūlytas metodas - naujas, ar adekvatus?",
+  "infinity.components.ProgramToggle.planTooltip":
+    "Įgyvendinimas. Įsivaizduok, kad įmonės generalinis direktorius. Kaip paversti tai gyvybingu verslu?",
+  "infinity.components.ProgramToggle.stepTooltip":
+    "Įsivaizduok, kad esi projektų vadovas. Kaip suskaidyti projektą, kad kitiems būtų lengva organizuoti darbą?",
+  "infinity.components.ProgramToggle.taskTooltip":
+    "Įsivaizduo, kad esi inžinierius. Ar ši užduotis prasminga? Koks būtų teisingiausas būdas įgyvendinti šį funkcionalumą?",
   "infinity.components.SignInLine.signIn": "Prisijungti",
   "infinity.components.TabDataField.dataField": "Duomenų lauką",
   "infinity.components.TabDataField.putData": "Įveskite duomenis čia",
