@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'infinity.components.Header.title',
-    defaultMessage: 'Infinity Family'
+    defaultMessage: 'Infinity'
   },
   subtitle: {
     id: 'infinity.components.Header.subtitle',
