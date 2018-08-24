@@ -33,9 +33,9 @@ export default defineMessages({
     id: 'infinity.components.ProgramToggle.task',
     defaultMessage: 'Tasks'
   },
-  bug: {
-    id: 'infinity.components.ProgramToggle.bug',
-    defaultMessage: 'Bugs'
+  develop: {
+    id: 'infinity.components.ProgramToggle.develop',
+    defaultMessage: 'Develop'
   },
   data: {
     id: 'infinity.components.ProgramToggle.data',

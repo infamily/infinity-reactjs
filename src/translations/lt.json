@@ -168,7 +168,7 @@
   "infinity.components.ProgramToggle.plan": "Planai",
   "infinity.components.ProgramToggle.step": "Etapai",
   "infinity.components.ProgramToggle.task": "Užduotys",
-  "infinity.components.ProgramToggle.bug": "Klaidos",
+  "infinity.components.ProgramToggle.develop": "Plėtra",
   "infinity.components.ProgramToggle.data": "Duomenys",
   "infinity.components.ProgramToggle.goalTooltip":
     "Vertink tikslus. Įsivaizduok, kad esi Jungtinių Tautų asamblėjos narys. Kurie tikslai svarbūs, kodėl?",

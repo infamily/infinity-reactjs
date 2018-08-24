@@ -15,8 +15,10 @@ const ProgramToggle = () => {
   const toPlans = () => '';
   const toSteps = () => '';
   const toTasks = () => '';
-  const toBugs = () =>
-    window.location.replace('https://inf.li/#/wefindx.com:en/@/topic/274/');
+  const toDevelop = () =>
+    window.location.replace(
+      'https://inf.li/#/wefindx.com:en/@/split/topic/235?flag=0&childrenById=235'
+    );
   const toData = () => '';
 
   return (
@@ -71,8 +73,8 @@ const ProgramToggle = () => {
           </div>
         </TooltipOverlay>
 
-        <div className="bug_report_toggle__label" onClick={toBugs}>
-          <FormattedMessage {...messages.bug} />
+        <div className="develop_toggle__label" onClick={toDevelop}>
+          <FormattedMessage {...messages.develop} />
         </div>
 
         <div className="data_toggle__label" onClick={toData}>

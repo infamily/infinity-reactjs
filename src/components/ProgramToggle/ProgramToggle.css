@@ -83,9 +83,8 @@
   border-radius: 0 0 5px 0;
 }
 
-.bug_report_toggle__label {
+.develop_toggle__label {
   padding: 5px;
-  text-transform: uppercase;
   font-family: courier new;
   background-color: white;
   color: black;
@@ -94,7 +93,6 @@
 
 .data_toggle__label {
   padding: 5px;
-  text-transform: uppercase;
   font-family: courier new;
   background-color: white;
   color: black;

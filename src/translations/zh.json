@@ -150,8 +150,8 @@
   "infinity.components.ProgramToggle.plan": "计划",
   "infinity.components.ProgramToggle.step": "步骤",
   "infinity.components.ProgramToggle.task": "任务",
-  "infinity.components.ProgramToggle.bug": "错误报告",
-  "infinity.components.ProgramToggle.data": "获取数据",
+  "infinity.components.ProgramToggle.develop": "开发",
+  "infinity.components.ProgramToggle.data": "数据",
   "infinity.components.ProgramToggle.goalTooltip":
     "判断目标。想想你是联合国大会的成员。这些目标是否重要吗？",
   "infinity.components.ProgramToggle.ideaTooltip":

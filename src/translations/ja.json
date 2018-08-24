@@ -166,7 +166,7 @@
   "infinity.components.ProgramToggle.plan": "計画",
   "infinity.components.ProgramToggle.step": "段階",
   "infinity.components.ProgramToggle.task": "用事",
-  "infinity.components.ProgramToggle.bug": "バグ",
+  "infinity.components.ProgramToggle.develop": "開発",
   "infinity.components.ProgramToggle.data": "データ",
   "infinity.components.ProgramToggle.goalTooltip":
     "ターゲットを決定する。 国連総会のメンバーとしてあなたについて考えてみてください。 これらの目標は重要ですか？",

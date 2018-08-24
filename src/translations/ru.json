@@ -166,7 +166,7 @@
   "infinity.components.ProgramToggle.plan": "Планы",
   "infinity.components.ProgramToggle.step": "Шаг",
   "infinity.components.ProgramToggle.task": "Задача",
-  "infinity.components.ProgramToggle.bug": "Ошибки",
+  "infinity.components.ProgramToggle.develop": "Развивка",
   "infinity.components.ProgramToggle.data": "Данные",
   "infinity.components.ProgramToggle.goalTooltip":
     "Судить цели. Подумайте, как вы являетесь членом Ассамблеи Объединенных Наций. Важны ли эти цели?",
