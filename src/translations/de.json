@@ -1,5 +1,5 @@
 {
-  "infinity.components.Header.title": "Unendlichkeitsfamilie",
+  "infinity.components.Header.title": "INFINITY",
   "infinity.components.TopicFundData.prize": "Preis",
   "infinity.components.TopicFundData.topicPrizeTooltip":
     "Der Betrag, der für jemanden vergeben wird, der diese Herausforderung löst.",
@@ -10,5 +10,7 @@
     "Zeige Kommentare in allen Sprachen ({commentsCount})",
   "infinity.scenes.Topic.showCommentsInCurrentLanguage":
     "Zeige Kommentare auf Deutsch",
-  "infinity.scenes.Topic.languages": "Sprachen: "
+  "infinity.scenes.Topic.languages": "Sprachen: ",
+  "infinity.components.Header.subtitle":
+    "Offene Plattform für Verwirklichung globaler Ziele."
 }
