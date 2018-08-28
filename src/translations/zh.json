@@ -1,5 +1,5 @@
 {
-  "infinity.components.Header.title": "因菲尼提",
+  "infinity.components.Header.title": "无界",
   "infinity.components.Header.subtitle": "开放的平台为了实现全球的目标。",
   "infinity.scenes.Home.Menu.title": "首页",
   "infinity.scenes.Home.TopicList.noTopics": "没有内容。尝试一下更改过滤设置。",
@@ -153,11 +153,11 @@
   "infinity.components.ProgramToggle.develop": "开发",
   "infinity.components.ProgramToggle.data": "数据",
   "infinity.components.ProgramToggle.goalTooltip":
-    "判断目标。想想你是联合国大会的成员。这些目标是否重要吗？",
+    "判断目标。想想你是联合国大会的成员。这些目标是否重要呢？",
   "infinity.components.ProgramToggle.ideaTooltip":
-    "判断创新。想想你是发明者。这方法是创新吗？这方法是有道理吗？",
+    "判断创新性。想想你是发明者。这方法是创新吗？这方法有道理吗？",
   "infinity.components.ProgramToggle.planTooltip":
-    "实现。想想你是執行長。如何把计划换成到一个可行的业务？",
+    "实现。想想你是首席执行官。如何把计划变成到一个可行的业务？",
   "infinity.components.ProgramToggle.stepTooltip":
     "想想你是项目经理。这项目细分是否可以让人们轻松组织工作？",
   "infinity.components.ProgramToggle.taskTooltip":
