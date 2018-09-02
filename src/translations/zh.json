@@ -122,6 +122,7 @@
   "infinity.components.ConfigWrapper.connecting": "连接到 {server}...",
   "infinity.components.FlagToggle.all": "全部",
   "infinity.components.ServerSelect.server": "服务器",
+  "infinity.components.Menu.new": "新话题",
   "infinity.components.Menu.newTopic": "新话题",
   "infinity.components.Menu.home": "首页",
   "infinity.components.Menu.what": "这是什么？",

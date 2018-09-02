@@ -137,6 +137,7 @@
   "infinity.components.ConfigWrapper.connecting": "Соединение с {server}...",
   "infinity.components.FlagToggle.all": "Все",
   "infinity.components.ServerSelect.server": "Сервер",
+  "infinity.components.Menu.new": "Создать",
   "infinity.components.Menu.newTopic": "Новый пост",
   "infinity.components.Menu.home": "Главная",
   "infinity.components.Menu.what": "О чем?",

@@ -91,6 +91,10 @@
   text-align: center;
 }
 
+#develop_toggle__link {
+  color: black;
+}
+
 .data_toggle__label {
   padding: 5px;
   font-family: courier new;

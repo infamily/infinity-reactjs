@@ -31,7 +31,7 @@ const ProgramToggle = props => {
 
   return (
     <div className="program_toggle">
-      <div className="all_toggle__label" onClick={goToLink}>
+      <div className="all_toggle__label" onClick={() => goToLink(0)}>
         <FormattedMessage {...messages.all} />
       </div>
 
@@ -80,16 +80,13 @@ const ProgramToggle = props => {
         </div>
       </TooltipOverlay>
 
-      <div
-        className="data_toggle__label"
-        onClick={() =>
-          goToLink(
-            null,
-            '/#/wefindx.com:en/@/split/topic/235?flag=5&view=grid&topicSource=0'
-          )
-        }
-      >
-        <FormattedMessage {...messages.data} />
+      <div className="develop_toggle__label">
+        <a
+          id="develop_toggle__link"
+          href="/#/wefindx.com:en/@/split/topic/235?flag=4&view=grid&topicSource=0"
+        >
+          <FormattedMessage {...messages.develop} />
+        </a>
       </div>
     </div>
   );

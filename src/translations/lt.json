@@ -139,6 +139,7 @@
   "infinity.components.ConfigWrapper.connecting": "Jungiamės prie {server}...",
   "infinity.components.FlagToggle.all": "Visi",
   "infinity.components.ServerSelect.server": "Serveris",
+  "infinity.components.Menu.new": "Rašyti",
   "infinity.components.Menu.newTopic": "Nauja tema",
   "infinity.components.Menu.home": "Pradžia",
   "infinity.components.Menu.what": "Kas?",

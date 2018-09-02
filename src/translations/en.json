@@ -133,6 +133,7 @@
   "infinity.components.ConfigWrapper.connecting": "Connecting {server}...",
   "infinity.components.FlagToggle.all": "All",
   "infinity.components.ServerSelect.server": "Server",
+  "infinity.components.Menu.new": "New",
   "infinity.components.Menu.newTopic": "New Topic",
   "infinity.components.Menu.home": "Home",
   "infinity.components.Menu.what": "What?",
@@ -163,6 +164,8 @@
   "infinity.components.ProgramToggle.task": "Tasks",
   "infinity.components.ProgramToggle.develop": "Develop",
   "infinity.components.ProgramToggle.data": "Get Data",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "Judge objectives. Think like you're a member of U.N. assembly. What is important?",
   "infinity.components.SignInLine.signIn": "Sign In",
   "infinity.components.TabDataField.dataField": "Data Field",
   "infinity.components.TabDataField.putData": "Put your data here",

@@ -137,6 +137,7 @@
   "infinity.components.ConfigWrapper.connecting": "接続中 {server}...",
   "infinity.components.FlagToggle.all": "すべて",
   "infinity.components.ServerSelect.server": "サーバ",
+  "infinity.components.Menu.new": "新規",
   "infinity.components.Menu.newTopic": "新規トピック",
   "infinity.components.Menu.home": "ホーム",
   "infinity.components.Menu.what": "何ですか？",
