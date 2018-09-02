@@ -1,7 +1,7 @@
 {
-  "infinity.components.Header.title": "Семья Инфинити",
+  "infinity.components.Header.title": "ИНФИНИТИ",
   "infinity.components.Header.subtitle":
-    "Открытые проекты для реализации глобальных целей",
+    "Открытые платформа для реализации глобальных целей.",
   "infinity.scenes.Home.Menu.title": "Главная",
   "infinity.scenes.Home.TopicList.noTopics":
     "Нет постов. Пропробуйте изменить фильтр.",
@@ -137,6 +137,7 @@
   "infinity.components.ConfigWrapper.connecting": "Соединение с {server}...",
   "infinity.components.FlagToggle.all": "Все",
   "infinity.components.ServerSelect.server": "Сервер",
+  "infinity.components.Menu.new": "Создать",
   "infinity.components.Menu.newTopic": "Новый пост",
   "infinity.components.Menu.home": "Главная",
   "infinity.components.Menu.what": "О чем?",
@@ -159,6 +160,25 @@
   "infinity.components.ProgramToggle.programs": "Программы",
   "infinity.components.ProgramToggle.importingToolip":
     "Возможность импорта программ будет добавлена...",
+  "infinity.components.ProgramToggle.all": "Все",
+  "infinity.components.ProgramToggle.need": "Запрос",
+  "infinity.components.ProgramToggle.goal": "Цели",
+  "infinity.components.ProgramToggle.idea": "Идеи",
+  "infinity.components.ProgramToggle.plan": "Планы",
+  "infinity.components.ProgramToggle.step": "Шаг",
+  "infinity.components.ProgramToggle.task": "Задача",
+  "infinity.components.ProgramToggle.develop": "Развивка",
+  "infinity.components.ProgramToggle.data": "Данные",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "Судить цели. Подумайте, как вы являетесь членом Ассамблеи Объединенных Наций. Важны ли эти цели?",
+  "infinity.components.ProgramToggle.ideaTooltip":
+    "Судья новизны. Подумайте, как вы, изобретатель. Это новое? Имеет ли смысл смысл?",
+  "infinity.components.ProgramToggle.planTooltip":
+    "Реализовать проект. Подумайте, как вы генеральный директор. Как превратить его в жизнеспособный бизнес?",
+  "infinity.components.ProgramToggle.stepTooltip":
+    "Подумайте, как вы менеджер проекта. Будет ли эта разбивка облегчить людям возможность организовать работу?",
+  "infinity.components.ProgramToggle.taskTooltip":
+    "Подумайте, как вы инженер. Имеет ли смысл эта задача, каков правильный способ реализации этой функции?",
   "infinity.components.SignInLine.signIn": "Нажмите войти",
   "infinity.components.TabDataField.dataField": "Поле данных",
   "infinity.components.TabDataField.putData": "Введите ваши данные",
@@ -218,5 +238,10 @@
     "Ошибка редактора страницы презинтации: Невалидный JSON",
   "infinity.components.TopicFundData.prize": "приз",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "Сумма, выделенная для тех, кто решает эту проблему."
+    "Сумма, выделенная для тех, кто решает эту проблему.",
+  "infinity.scenes.Topic.loadAllComments":
+    "Показать комментарии на всех языках ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
+    "Показать комментарии на русском",
+  "infinity.scenes.Topic.languages": "Языки: "
 }

@@ -1,7 +1,7 @@
 {
-  "infinity.components.Header.title": "Infinity",
+  "infinity.components.Header.title": "INFINITY",
   "infinity.components.Header.subtitle":
-    "Open chats and projects to realise global goals",
+    "Open Platform to Realize Global Goals.",
   "infinity.scenes.Home.Menu.title": "Home",
   "infinity.scenes.Home.TopicList.noTopics":
     "No topics. Try to change filter parameters.",
@@ -133,6 +133,7 @@
   "infinity.components.ConfigWrapper.connecting": "Connecting {server}...",
   "infinity.components.FlagToggle.all": "All",
   "infinity.components.ServerSelect.server": "Server",
+  "infinity.components.Menu.new": "New",
   "infinity.components.Menu.newTopic": "New Topic",
   "infinity.components.Menu.home": "Home",
   "infinity.components.Menu.what": "What?",
@@ -151,9 +152,20 @@
   "infinity.components.PayCheckout.card": "Card Number",
   "infinity.components.PayCheckout.zip": "ZIP",
   "infinity.components.PayCheckout.toFund": "to fund the project",
-  "infinity.components.ProgramToggle.programs": "Programs",
+  "infinity.components.ProgramToggle.programs": "Code",
   "infinity.components.ProgramToggle.importingToolip":
     "Importing programs will be released coming soon...",
+  "infinity.components.ProgramToggle.all": "All",
+  "infinity.components.ProgramToggle.need": "Needs",
+  "infinity.components.ProgramToggle.goal": "Goals",
+  "infinity.components.ProgramToggle.idea": "Ideas",
+  "infinity.components.ProgramToggle.plan": "Plans",
+  "infinity.components.ProgramToggle.step": "Steps",
+  "infinity.components.ProgramToggle.task": "Tasks",
+  "infinity.components.ProgramToggle.develop": "Develop",
+  "infinity.components.ProgramToggle.data": "Get Data",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "Judge objectives. Think like you're a member of U.N. assembly. What is important?",
   "infinity.components.SignInLine.signIn": "Sign In",
   "infinity.components.TabDataField.dataField": "Data Field",
   "infinity.components.TabDataField.putData": "Put your data here",

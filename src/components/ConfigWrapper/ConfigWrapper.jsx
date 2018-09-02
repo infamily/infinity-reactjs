@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ProgramToggle from 'components/ProgramToggle';
 import langService from 'services/lang.service';
 import serverService from 'services/server.service';
 import Loading from 'components/Loading';
@@ -115,6 +116,12 @@ export default class ConfigWrapper extends Component {
         />
       );
     }
-    return <div>{this.props.children}</div>;
+
+    return (
+      <div>
+        <ProgramToggle history={this.props.history} />
+        {this.props.children}
+      </div>
+    );
   }
 }

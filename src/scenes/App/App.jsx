@@ -105,7 +105,6 @@ class App extends Component {
       >
         <HashRouter>
           <div>
-            <ProgramToggle />
             <Switch>
               <Route
                 path="/:configs/@/"

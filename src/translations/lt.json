@@ -1,7 +1,7 @@
 {
-  "infinity.components.Header.title": "Begalybės šeima",
+  "infinity.components.Header.title": "INFINITI",
   "infinity.components.Header.subtitle":
-    "Atviri pokalbiai ir projektai globaliems tikslams",
+    "Atvira platforma globaliems tikslams siekti.",
   "infinity.scenes.Home.Menu.title": "Pradžia",
   "infinity.scenes.Home.TopicList.noTopics":
     "Temų nerasta. Pabandykite pakeisti filtrų parametrus.",
@@ -139,6 +139,7 @@
   "infinity.components.ConfigWrapper.connecting": "Jungiamės prie {server}...",
   "infinity.components.FlagToggle.all": "Visi",
   "infinity.components.ServerSelect.server": "Serveris",
+  "infinity.components.Menu.new": "Rašyti",
   "infinity.components.Menu.newTopic": "Nauja tema",
   "infinity.components.Menu.home": "Pradžia",
   "infinity.components.Menu.what": "Kas?",
@@ -158,9 +159,28 @@
   "infinity.components.PayCheckout.card": "Kortelės numeris",
   "infinity.components.PayCheckout.zip": "Pašto kodas",
   "infinity.components.PayCheckout.toFund": "finansuoti projektą",
-  "infinity.components.ProgramToggle.programs": "Programos",
+  "infinity.components.ProgramToggle.programs": "Kodas",
   "infinity.components.ProgramToggle.importingToolip":
     "Visų programų importo galimybės ruošiamos išlesti...",
+  "infinity.components.ProgramToggle.all": "Viskas",
+  "infinity.components.ProgramToggle.need": "Poreikiai",
+  "infinity.components.ProgramToggle.goal": "Tikslai",
+  "infinity.components.ProgramToggle.idea": "Idėjos",
+  "infinity.components.ProgramToggle.plan": "Planai",
+  "infinity.components.ProgramToggle.step": "Etapai",
+  "infinity.components.ProgramToggle.task": "Užduotys",
+  "infinity.components.ProgramToggle.develop": "Plėtra",
+  "infinity.components.ProgramToggle.data": "Duomenys",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "Vertink tikslus. Įsivaizduok, kad esi Jungtinių Tautų asamblėjos narys. Kurie tikslai svarbūs, kodėl?",
+  "infinity.components.ProgramToggle.ideaTooltip":
+    "Vertink idėjas. Įsivaizduok, kad esi išradėjas. Ar pasiūlytas metodas - naujas, ar adekvatus?",
+  "infinity.components.ProgramToggle.planTooltip":
+    "Įgyvendinimas. Įsivaizduok, kad įmonės generalinis direktorius. Kaip paversti tai gyvybingu verslu?",
+  "infinity.components.ProgramToggle.stepTooltip":
+    "Įsivaizduok, kad esi projektų vadovas. Kaip suskaidyti projektą, kad kitiems būtų lengva organizuoti darbą?",
+  "infinity.components.ProgramToggle.taskTooltip":
+    "Įsivaizduo, kad esi inžinierius. Ar ši užduotis prasminga? Koks būtų teisingiausas būdas įgyvendinti šį funkcionalumą?",
   "infinity.components.SignInLine.signIn": "Prisijungti",
   "infinity.components.TabDataField.dataField": "Duomenų lauką",
   "infinity.components.TabDataField.putData": "Įveskite duomenis čia",
@@ -221,5 +241,10 @@
     "Prezentacijos klaida: neteisingas JSON",
   "infinity.components.TopicFundData.prize": "prizas",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "Pinigų suma rezervuota tiems, kas išspręs šią problemą."
+    "Pinigų suma rezervuota tiems, kas išspręs šią problemą.",
+  "infinity.scenes.Topic.loadAllComments":
+    "Rodyti visų kalbų komentarus ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
+    "Rodyti tik lietuviškus komentarus",
+  "infinity.scenes.Topic.languages": "Kalbos: "
 }

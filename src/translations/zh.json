@@ -1,6 +1,6 @@
 {
-  "infinity.components.Header.title": "无界家庭",
-  "infinity.components.Header.subtitle": "开放的项目为了实现全球的目标",
+  "infinity.components.Header.title": "无界",
+  "infinity.components.Header.subtitle": "开放的平台为了实现全球的目标。",
   "infinity.scenes.Home.Menu.title": "首页",
   "infinity.scenes.Home.TopicList.noTopics": "没有内容。尝试一下更改过滤设置。",
   "infinity.scenes.Home.HomeConfigPanel.search": "搜索",
@@ -122,6 +122,7 @@
   "infinity.components.ConfigWrapper.connecting": "连接到 {server}...",
   "infinity.components.FlagToggle.all": "全部",
   "infinity.components.ServerSelect.server": "服务器",
+  "infinity.components.Menu.new": "新话题",
   "infinity.components.Menu.newTopic": "新话题",
   "infinity.components.Menu.home": "首页",
   "infinity.components.Menu.what": "这是什么？",
@@ -143,6 +144,25 @@
   "infinity.components.ProgramToggle.programs": "程序",
   "infinity.components.ProgramToggle.importingToolip":
     "导入程序功能即将发布...",
+  "infinity.components.ProgramToggle.all": "全部",
+  "infinity.components.ProgramToggle.need": "需要",
+  "infinity.components.ProgramToggle.goal": "目标",
+  "infinity.components.ProgramToggle.idea": "想法",
+  "infinity.components.ProgramToggle.plan": "计划",
+  "infinity.components.ProgramToggle.step": "步骤",
+  "infinity.components.ProgramToggle.task": "任务",
+  "infinity.components.ProgramToggle.develop": "开发",
+  "infinity.components.ProgramToggle.data": "数据",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "判断目标。想想你是联合国大会的成员。这些目标是否重要呢？",
+  "infinity.components.ProgramToggle.ideaTooltip":
+    "判断创新性。想想你是发明者。这方法是创新吗？这方法有道理吗？",
+  "infinity.components.ProgramToggle.planTooltip":
+    "实现。想想你是首席执行官。如何把计划变成到一个可行的业务？",
+  "infinity.components.ProgramToggle.stepTooltip":
+    "想想你是项目经理。这项目细分是否可以让人们轻松组织工作？",
+  "infinity.components.ProgramToggle.taskTooltip":
+    "想想你是工程师。实现此功能的正确方法是什么？",
   "infinity.components.SignInLine.signIn": "登录",
   "infinity.components.TabDataField.dataField": "数据字段",
   "infinity.components.TabDataField.putData": "请输入您的数据",
@@ -194,5 +214,9 @@
   "infinity.scenes.TopicView.showCaseError": "陈列错误：无效的JSON",
   "infinity.components.TopicFundData.prize": "奖励",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "为解决这挑战的人分配的金额"
+    "为解决这挑战的人分配的金额",
+  "infinity.scenes.Topic.loadAllComments":
+    "表示所有语言的评论 ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage": "表示中文的评论",
+  "infinity.scenes.Topic.languages": "语言: "
 }

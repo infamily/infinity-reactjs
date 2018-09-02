@@ -1,7 +1,7 @@
 {
-  "infinity.components.Header.title": "無限の家族",
+  "infinity.components.Header.title": "無限",
   "infinity.components.Header.subtitle":
-    "グローバルな目的を実現するオープンプロジェクト",
+    "グローバルな目的を実現するオープンプラットフォーム。",
   "infinity.scenes.Home.Menu.title": "ホーム",
   "infinity.scenes.Home.TopicList.noTopics":
     "トピックはありません。 フィルターパラメーターを変更してみてください。",
@@ -137,6 +137,7 @@
   "infinity.components.ConfigWrapper.connecting": "接続中 {server}...",
   "infinity.components.FlagToggle.all": "すべて",
   "infinity.components.ServerSelect.server": "サーバ",
+  "infinity.components.Menu.new": "新規",
   "infinity.components.Menu.newTopic": "新規トピック",
   "infinity.components.Menu.home": "ホーム",
   "infinity.components.Menu.what": "何ですか？",
@@ -159,6 +160,25 @@
   "infinity.components.ProgramToggle.programs": "プログラム",
   "infinity.components.ProgramToggle.importingToolip":
     "プログラムのインポートすぐにリリースされる予定です...",
+  "infinity.components.ProgramToggle.all": "全て",
+  "infinity.components.ProgramToggle.need": "必要",
+  "infinity.components.ProgramToggle.goal": "目的",
+  "infinity.components.ProgramToggle.idea": "方法",
+  "infinity.components.ProgramToggle.plan": "計画",
+  "infinity.components.ProgramToggle.step": "段階",
+  "infinity.components.ProgramToggle.task": "用事",
+  "infinity.components.ProgramToggle.develop": "開発",
+  "infinity.components.ProgramToggle.data": "データ",
+  "infinity.components.ProgramToggle.goalTooltip":
+    "ターゲットを決定する。 国連総会のメンバーとしてあなたについて考えてみてください。 これらの目標は重要ですか？",
+  "infinity.components.ProgramToggle.ideaTooltip":
+    "革新を判断する。あなたが発明家であると考えてください。 この方法は革新的ですか？ この方法は意味がありますか？",
+  "infinity.components.ProgramToggle.planTooltip":
+    "実現する。あなたをCEOと考えてください。 実行可能なビジネスに計画を変更するには？",
+  "infinity.components.ProgramToggle.stepTooltip":
+    "プロジェクトマネージャーとしてあなたについて考えてみてください。 このプロジェクトセグメンテーションは、人々が自分の仕事を整理するのを容易にしますか？",
+  "infinity.components.ProgramToggle.taskTooltip":
+    "エンジニアとしてあなたについて考えてみてください。 この機能を実装する正しい方法は何ですか？",
   "infinity.components.SignInLine.signIn": "ログイン",
   "infinity.components.TabDataField.dataField": "データフィールド",
   "infinity.components.TabDataField.putData": "あなたのデータをここに入れる",
@@ -218,5 +238,10 @@
     "プレゼンテーションエラー：無効なJSON",
   "infinity.components.TopicFundData.prize": "賞金",
   "infinity.components.TopicFundData.topicPrizeTooltip":
-    "このチャレンジを解決する人に割り当てられる金額。"
+    "このチャレンジを解決する人に割り当てられる金額。",
+  "infinity.scenes.Topic.loadAllComments":
+    "すべての言語でコメントを表示する ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
+    "日本のコメントを表示する",
+  "infinity.scenes.Topic.languages": "语言: "
 }
