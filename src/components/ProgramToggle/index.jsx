@@ -4,84 +4,94 @@ import TooltipOverlay from 'components/TooltipOverlay';
 import { Link } from 'react-router-dom';
 import configs from 'configs';
 import messages from './messages';
+import queryString from 'query-string';
 import './ProgramToggle.css';
 import pathToRegexp from 'path-to-regexp';
 
-const ProgramToggle = () => {
-  const toTop = () => window.scrollTo(0, 0);
-  const toAll = () => window.scrollTo(0, 0);
-  const toGoals = () => '';
-  const toIdeas = () => '';
-  const toPlans = () => '';
-  const toSteps = () => '';
-  const toTasks = () => '';
-  const toDevelop = () =>
-    window.location.replace(
-      'https://inf.li/#/wefindx.com:en/@/split/topic/235?flag=0&childrenById=235'
-    );
-  const toData = () => '';
+const ProgramToggle = props => {
+  const goToLink = (flagId, link) => {
+    const _props = props;
+    const parsedQueryString = queryString.parse(props.history.location.search);
+    const pathname = props.history.location.pathname;
+
+    if (flagId !== undefined) {
+      parsedQueryString.flag = flagId;
+    }
+
+    const search = queryString.stringify(parsedQueryString);
+
+    window.scrollTo(0, 0);
+
+    if (link) {
+      props.history.push(link);
+    } else {
+      props.history.push({ pathname, search });
+    }
+  };
 
   return (
-    <Link to={configs.linkBase()}>
-      <div className="program_toggle">
-        <div className="all_toggle__label" onClick={toTop}>
-          <FormattedMessage {...messages.all} />
-        </div>
-
-        <TooltipOverlay
-          text={<FormattedMessage {...messages.goalTooltip} />}
-          placement="bottom"
-        >
-          <div className="goal_toggle__label" onClick={toGoals}>
-            <FormattedMessage {...messages.goal} />
-          </div>
-        </TooltipOverlay>
-
-        <TooltipOverlay
-          text={<FormattedMessage {...messages.ideaTooltip} />}
-          placement="bottom"
-        >
-          <div className="idea_toggle__label" onClick={toIdeas}>
-            <FormattedMessage {...messages.idea} />
-          </div>
-        </TooltipOverlay>
-
-        <TooltipOverlay
-          text={<FormattedMessage {...messages.planTooltip} />}
-          placement="bottom"
-        >
-          <div className="plan_toggle__label" onClick={toPlans}>
-            <FormattedMessage {...messages.plan} />
-          </div>
-        </TooltipOverlay>
-
-        <TooltipOverlay
-          text={<FormattedMessage {...messages.stepTooltip} />}
-          placement="bottom"
-        >
-          <div className="step_toggle__label" onClick={toSteps}>
-            <FormattedMessage {...messages.step} />
-          </div>
-        </TooltipOverlay>
-
-        <TooltipOverlay
-          text={<FormattedMessage {...messages.taskTooltip} />}
-          placement="bottom"
-        >
-          <div className="task_toggle__label" onClick={toTasks}>
-            <FormattedMessage {...messages.task} />
-          </div>
-        </TooltipOverlay>
-
-        <div className="develop_toggle__label" onClick={toDevelop}>
-          <FormattedMessage {...messages.develop} />
-        </div>
-
-        <div className="data_toggle__label" onClick={toData}>
-          <FormattedMessage {...messages.data} />
-        </div>
+    <div className="program_toggle">
+      <div className="all_toggle__label" onClick={goToLink}>
+        <FormattedMessage {...messages.all} />
       </div>
-    </Link>
+
+      <TooltipOverlay
+        text={<FormattedMessage {...messages.goalTooltip} />}
+        placement="bottom"
+      >
+        <div className="goal_toggle__label" onClick={() => goToLink(1)}>
+          <FormattedMessage {...messages.goal} />
+        </div>
+      </TooltipOverlay>
+
+      <TooltipOverlay
+        text={<FormattedMessage {...messages.ideaTooltip} />}
+        placement="bottom"
+      >
+        <div className="idea_toggle__label" onClick={() => goToLink(2)}>
+          <FormattedMessage {...messages.idea} />
+        </div>
+      </TooltipOverlay>
+
+      <TooltipOverlay
+        text={<FormattedMessage {...messages.planTooltip} />}
+        placement="bottom"
+      >
+        <div className="plan_toggle__label" onClick={() => goToLink(3)}>
+          <FormattedMessage {...messages.plan} />
+        </div>
+      </TooltipOverlay>
+
+      <TooltipOverlay
+        text={<FormattedMessage {...messages.stepTooltip} />}
+        placement="bottom"
+      >
+        <div className="step_toggle__label" onClick={() => goToLink(4)}>
+          <FormattedMessage {...messages.step} />
+        </div>
+      </TooltipOverlay>
+
+      <TooltipOverlay
+        text={<FormattedMessage {...messages.taskTooltip} />}
+        placement="bottom"
+      >
+        <div className="task_toggle__label" onClick={() => goToLink(5)}>
+          <FormattedMessage {...messages.task} />
+        </div>
+      </TooltipOverlay>
+
+      <div
+        className="data_toggle__label"
+        onClick={() =>
+          goToLink(
+            null,
+            '/#/wefindx.com:en/@/split/topic/235?flag=5&view=grid&topicSource=0'
+          )
+        }
+      >
+        <FormattedMessage {...messages.data} />
+      </div>
+    </div>
   );
 };
 
