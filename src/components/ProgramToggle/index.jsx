@@ -16,6 +16,7 @@ const ProgramToggle = props => {
 
     if (flagId !== undefined) {
       parsedQueryString.flag = flagId;
+      parsedQueryString.topicSource = 0;
     }
 
     const search = queryString.stringify(parsedQueryString);
