@@ -150,6 +150,97 @@ export default {
       <h2>How do I join the Infinity Family?</h2>
       You <a href="/#/page/otp">sign-in</a>, you're already part of us. Write us at <b>team@wefindx.org</b>, if you want to get access or run your node for commercial purposes.`
       .split('\n')
+      .map(x => x.trim()),
+    cn: `<h1 class="en">这是什么？</h1>
+
+      <p>Infinity是一个<b>话题</b>（需求，目标，想法，计划，步骤和任务）的公共数据库，可以通过<b>评论</b>来讨论，跟踪时间，投资创建资产和货币<b>交易</b>以获得代表创建资产的可转让代币。可以访问在 <u>mongodb://public:data@wefindx.net</u> ("infdb")。</p>
+
+      我们是一个由思想家，创新者，投资者和实干家组成的社区，其总体目标是赋予生命以决定自己命运的权力。它是一个公共空间，用于讨论世界问题，思考和分享如何解决问题的想法，基于这些想法启动项目，资助它们，以及管理它们的执行，同时与公众分享这个过程，以便人们能够理解工作是如何完成的，并学习程序性知识，并通过创建数据和商品市场为目的提供资金。这是一个完整的方案，可以了解世界，并经营一个独立的经济体。
+
+      <h2>Infinity如何运作？</h2>
+      Infinity依靠两个主要模型 - Topic和Comment来分解知识。两者都是人们可以通过提供<i>标题</i>和<i>正文</i>或<i>文本</i>来创建的内容项。主题有6个主要类别：<i>需求，目标，想法，计划，步骤，任务</i>。评论具有时间会计功能和<i>交易</i>，以便人们可以将时间和金钱投入到共同创造中，并分享回报。
+
+      <!--<h2>What are Needs? Why do we need them?</h2>
+      Needs are acceptance conditions for goals. A goal is not achievable, if it does not have conditions that can be satisfied. In the future, Needs will be created and linked automatically if you provide the acceptance conditions in the goals as bullet points with tag [Need].-->
+
+      <h2>什么是目标？</h2>
+      目标是我们想要满足的一系列条件。我们使用自然语言来定义目标，简单地将其作为一种主题，具有标题和正文，并通过使用标记[需要]制作项目符号列举可能的接受条件。
+
+      <h2>什么是合适的想法？</h2>
+      任何描述了其创新原理的解决方案。那么，问问自己 - （1）你能描述它是如何起作用的吗？ （2）原则上这是新的吗？如果对这两个问题的回答都是“是”，请继续，描述这个想法将适用于什么情况，以及它将如何起作用，以及预期的结果是什么，这个想法带来了什么变化？
+
+      <h2>什么是计划？</h2>
+      计划是您为了用这些想法实现目标而采取的一系列步骤。要指定目标，想法和步骤，只需在计划文本中使用标记[目标]，[想法]，[步骤]。
+
+      <h2>Why do we need Steps?</h2>
+      Steps divide a Plan into measurable parts. In the future, we'll be able to define [Input] and [Output] attributes for steps in form of <a href="https://github.com/wefindx/StepIO#stepio">StepIO</a> syntax, allowing for automatic estimation of asset risk, and returns on investment. Adding Steps also helps everyone divide the large project into manageable chunks.
+
+      <h2>What is a Task?</h2>
+      A Task is a little chunk of work that is easy enough for a doer to complete without further dividing into smaller chunks. Naturally, it is a matter of subjective perception of a doer. Use Tasks for documenting any ad-hoc initiatives, even if they are not linked to anything - you can link them later.
+
+      <h2>I'd like to share a global problem. How would I do it?</h2>
+      Convert your problem into a goal, and write a Goal. For example, problem "we don\'t have enough of X" could be converted into a goal "get enough of X".
+
+      <h2>Why would I have to convert a problem into a Goal? I feel problems more natural to describe than goals.</h2>
+      That is to keep positive a positive mindset, we like thinking dreams, rather than the status quo. If you need to include the status quo, include it into the description of the goal as an introduction, and then formulate the goal.
+
+      <h2>I have a goal of finding an ideal partner, how do I proceed?</h2>
+      Define it as a general goal to "Improve Partner Discovery," and describe it in general (i.e., <i>many people find it difficult to find an ideal partner,...</i>). Reframing personal problems as world's general ones is a perfect source of incentive to innovate. Before adding a new goal, check if such goal does not exist in the database yet, and include the acceptance conditions in bullet points.
+
+      <h2>I have an idea to start a business to make cookies. Does this qualify as an idea?</h2>
+      No, althought you might be able to describe how it would work, however, many had idea of doing business making cookies, so, it's not something new in principle. Consider creating a Plan, and link it to two [Existing] ideas.
+
+      <h2>But my idea is a new way to deliver nootropics. Would that qualify?</h2>
+      If the is a solution to a problem that nobody had thought of for the domain, it's definitely something new in principle. Make sure to give a proper title to your innovation, and add it to the database.
+
+      <h2>Can I link an idea that is not new?</h2>
+      Yes, but make sure to include keyword [Existing], follwed by source in the description, that will make it clear that the idea is taken from somewhere else, but, this will still enable to create Plan under it, and work on it.
+
+      <h2>I found a related idea somewhere already, how can I add a link?</h2>
+      Just write a comment about it, include tag [Link]. This will make the comment appear in the special section for links.
+
+      <h2>Time claims? What are they?</h2>
+      Everytime you write a comment, you can include some text within curly braces (e.g., <b>{1.5}</b>). If there is a number within curly braces, it is considered and counted as claimed time. It means, that to create the work results you're describing in the comment at the current moment of time, you've required the number of hours within the curly braces. You can include it multiple times in a single comment, and it adds up to the total claimed time within the comment. Additionally, there is a way to claim future time, by adding question mark within the curly braces (e.g., <b>{?1.5}</b>), which implies that this is not yet used time, and it is the estimate of the future time needed to do the things listed within the comment. That is useful, when you're not willing to spend time yet, but just want to provide time estimates to your investors. This gives investors an option to invest into the time estimates, even if there is no actual work done, and secure the priviledge to be the first to receive shares, as soon as the work is done. You indicate the work that is done by updating the comment, and replacing the time claim with question mark into one without it. You can also do that fractionally and incrementally.
+
+      <h2>What if I claimed too much time in one comment, and now want to divide it into Steps?</h2>
+      In the future, you will be able to use keyword [Step] inside the comment to divide time claims into bulleted enumeration of parts. This will auto-create sub-Steps, and a visual links to the original comment at the top of each Step, allowing for further dicussion about each of the steps within the Comment.
+
+      <h2>How do you make sure that tracked records about time and assets are not tampered with?</h2>
+      We store time, money, and transaction data in a network of blockchaindb (BigChainDB). It is not production-ready yet, therefore, keep in mind, that there are no guaranetees yet.
+
+      <h2>What kind of rights does monetary transactions give to investors?</h2>
+      The monetary transactions give investors the rights to quota. Currently, the price of quota unit ("investment hour") is automatically set to equal the average hourly earnings of all employees in private sector of the U.S. (<a href="https://fred.stlouisfed.org/series/CES0500000003">track these series</a>).
+
+      <h2>I have studied and worked a lot, my hour is worth more than that. What do I do?</h2>
+      You simply declare more hours when you do the actual work. For example, if you have spent 3 hours of doubly productive work, just declare that as 6 hours.
+
+      <h2>Who manages the database?</h2>
+      Each of our nodes is managed by a different organization. You can determine which organization you're using based on the text in the URL, and the server choice drop-box at the bottom right. Currently the "Dublin" node is managed by WeFindX Foundation of Ireland, the "Virginia" is managed by GlobalMindShare of United States, and "Shanghai" node is managed by Mindey.
+
+      <h2>What Infinity is not?</h2>
+      Infinity is not simple chat application. You don't come here just to do a private video call, or use it as an e-mail to have private conversations. Consider, that everything said and done on Infinity -- public, and intended for the educational purposes and the benefit of the public. For example, when you structure the project, think not just how the project is better for the participants, but also, how it is better for the random visitor, who wants to understand what is being done.
+
+      <h2>How are you different from Kickstarter?</h2>
+      Kickstarter ends with the funding. After funding a project, you don't get access to all of the nitty-gritty, all the details that the company behind the project is doing every day. We make sure that the investors (that is, public) can keep track of the projects on Infinity, up to the content of the tasks themselves.
+
+      <h2>If it is so open, how are the investors protected from IP theft?</h2>
+      We use asymmetric cryptography, cryptographic signatures, and blockchain technologies to make sure that the ideas, and work results shared by contributors, are uniquely tied to them. When the hash of the files uploaded and messages written is signed with the private key of the participant, and recorded to blockchain, it is possible to prove the identity and time of authorship, making it possible to prove precedence of invention or work result. In other words, if anyone finds others who copied their work, they are much more likely to prove it in a court of law, because immutable records are fetched in blockchain.
+
+      <h2>How are you different from Wikipedia?</h2>
+      Wikipedia focuses on semantic knowledge, we focus on the latest procedural knowledge, which can be gained by actually working on world's issues. Wikipedia describes general information about projects, we try to do the actual projects, and get them self-describe.
+
+      <h2>How are you different from Reddit?</h2>
+      Reddit focuses on free discussions about truth. We care about the truth in a similar way that Reddit does when it comes to humanity's goals, but that's where our Reddit-likeness ends. The rest is of Infinity is pragmatic.
+
+      <h2>How are you different from Halfbakery?</h2>
+      We don't have buns or croissants. Halfbakery is focused on free innovation, doesn't have focus on humanity's top level goals, and doesn't encourage people to work on the ideas and invest into projects.
+
+      <h2>So, who is behind this?</h2>
+      People and organizations like you. Among early contributors - people <a href="https://mindey.com">Mindey</a>, <a href="https://ruta.io">Ruta</a>, <a href="https://aliev.me">Aliev</a> and others, and organizations <a href="https://wefindx.org">WeFindX Foundation</a>, <a href="http://www.globalmindshare.org">Global Mind Share</a> and others (check out more details <a href="https://inf.li/#/wefindx.com:en/@/topic/235">here</a>). Collectively, we are a global family of individuals and organizations - the <b>Infinity Family</b>, and we are welcoming you to join it too.
+
+      <h2>How do I join the Infinity Family?</h2>
+      You <a href="/#/page/otp">sign-in</a>, you're already part of us. Write us at <b>team@wefindx.org</b>, if you want to get access or run your node for commercial purposes.`
+      .split('\n')
       .map(x => x.trim())
   }
 };
