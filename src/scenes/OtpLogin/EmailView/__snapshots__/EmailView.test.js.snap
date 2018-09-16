@@ -1,107 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<EmailView /> matches snapshot 1`] = `
-<div>
-  <img
-    alt="infinity"
-    className="otp__logo"
-    src="if.png"
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <EmailView
+    changeEmail={[Function]}
+    changeView={[Function]}
+    setPopUp={[Function]}
+    view="email"
   />
-  <div
-    className="center-block otp__box"
-  >
-    <h1
-      className="otp__header"
-    >
-      Sign In
-    </h1>
-    <form
-      onSubmit={[Function]}
-      testId="emailSubmitForm"
-    >
-      <div
-        className="form-group"
-      >
-        <input
-          className="form-control otp__input"
-          name="email"
-          onChange={[Function]}
-          placeholder="E-mail address"
-          required={true}
-          type="email"
-          value=""
-        />
-      </div>
-      <div
-        className="form-group"
-        id="div_id_captcha"
-      >
-        <div
-          className="row"
-        >
-          <div
-            className="col-md-8"
-          >
-            <input
-              name="captcha_0"
-              required={true}
-              type="hidden"
-              value=""
-            />
-            <input
-              className="form-control otp__input"
-              name="captcha_1"
-              onChange={[Function]}
-              placeholder="Captcha"
-              required={true}
-              spellCheck="false"
-              value=""
-            />
-          </div>
-          <div
-            className="otp__captcha"
-          >
-            <img
-              alt="captcha"
-              src=""
-            />
-            <a
-              className="primaryAction btn otp__btn"
-              onClick={[Function]}
-            >
-              ↺
-            </a>
-          </div>
-        </div>
-      </div>
-      <div>
-        <CheckBox
-          action={[Function]}
-          error={false}
-          value={false}
-        >
-          <span
-            onClick={[Function]}
-            testId="tosText"
-          >
-            I have read and agree to the
-             
-          </span>
-          <Link
-            replace={false}
-            to="/terms"
-          >
-            Terms of Service
-          </Link>
-        </CheckBox>
-      </div>
-      <button
-        className="primaryAction btn btn-lg otp__btn"
-        type="submit"
-      >
-        CONTINUE
-      </button>
-    </form>
-  </div>
-</div>
+</Router>
 `;

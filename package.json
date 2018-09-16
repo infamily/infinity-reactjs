@@ -7,7 +7,7 @@
     "axios": "^0.17.1",
     "classnames": "^2.2.6",
     "husky": "^0.14.3",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "payment": "^2.3.0",
     "prop-types": "^15.6.0",
     "query-string": "^6.1.0",
@@ -72,6 +72,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "pretty-quick": "pretty-quick"
+    "pretty-quick": "pretty-quick",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom"
   }
 }

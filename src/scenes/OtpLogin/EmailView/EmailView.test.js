@@ -3,6 +3,8 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import EmailView from './index';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { shallowWithIntl } from 'utils';
 
 configure({ adapter: new Adapter() });
 
@@ -25,12 +27,20 @@ describe('<EmailView />', () => {
 
   test('calls componentWillMount', () => {
     jest.spyOn(EmailView.prototype, 'componentWillMount');
-    shallow(<EmailView {...props} />);
+    shallowWithIntl(
+      <Router>
+        <EmailView {...props} />
+      </Router>
+    );
     expect(EmailView.prototype.componentWillMount.mock.calls.length).toBe(1);
   });
 
   test('updates terms on Click', () => {
-    const wrapper = shallow(<EmailView {...props} />);
+    const wrapper = shallowWithIntl(
+      <Router>
+        <EmailView {...props} />
+      </Router>
+    );
     const tosText = wrapper.find('[testId="tosText"]');
     expect(tosText.length).toBe(1);
     tosText.simulate('click');
@@ -38,7 +48,11 @@ describe('<EmailView />', () => {
   });
 
   test('allows user to fillout form', () => {
-    const wrapper = shallow(<EmailView {...props} />);
+    const wrapper = shallowWithIntl(
+      <Router>
+        <EmailView {...props} />
+      </Router>
+    );
     const emailInput = updateInput(wrapper, 'email', 'tony@stark.com');
     const captcha_1Input = updateInput(wrapper, 'captcha_1', 'braaa');
     expect(emailInput.props().value).toBe('tony@stark.com');
@@ -46,7 +60,11 @@ describe('<EmailView />', () => {
   });
 
   test('submits the form', () => {
-    const wrapper = shallow(<EmailView {...props} />);
+    const wrapper = shallowWithIntl(
+      <Router>
+        <EmailView {...props} />
+      </Router>
+    );
 
     updateInput(wrapper, 'email', 'tony@stark.com');
     updateInput(wrapper, 'captcha_1', 'braaa');
@@ -58,7 +76,11 @@ describe('<EmailView />', () => {
   });
 
   test('matches snapshot', () => {
-    const wrapper = shallow(<EmailView {...props} />);
+    const wrapper = shallowWithIntl(
+      <Router>
+        <EmailView {...props} />
+      </Router>
+    );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
