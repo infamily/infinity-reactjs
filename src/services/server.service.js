@@ -28,7 +28,14 @@ class ServerService {
   };
 
   isLocal = () => {
-    const isLocal = window.location.hostname === 'localhost';
+    let isLocal = false;
+
+    try {
+      isLocal = window.location.hostname === 'localhost';
+    } catch (error) {
+      isLocal = false;
+    }
+
     const server = 'http://0.0.0.0:8000';
     const isIncluded = this.api_servers.indexOf(server) > -1;
     if (isLocal && !isIncluded) this.api_servers.push(server);

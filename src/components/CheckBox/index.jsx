@@ -18,7 +18,7 @@ const CheckBox = ({ value, error, children, action }) => {
 
 CheckBox.propTypes = {
   value: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
+  error: PropTypes.bool.isRequired,
   children: PropTypes.object.isRequired,
   action: PropTypes.func.isRequired
 };

@@ -1,10 +1,10 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import EmailView from './index';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { shallowWithIntl } from 'utils';
+import { mountWithIntl } from 'utils';
 
 configure({ adapter: new Adapter() });
 
@@ -27,7 +27,7 @@ describe('<EmailView />', () => {
 
   test('calls componentWillMount', () => {
     jest.spyOn(EmailView.prototype, 'componentWillMount');
-    shallowWithIntl(
+    mountWithIntl(
       <Router>
         <EmailView {...props} />
       </Router>
@@ -36,19 +36,15 @@ describe('<EmailView />', () => {
   });
 
   test('updates terms on Click', () => {
-    const wrapper = shallowWithIntl(
-      <Router>
-        <EmailView {...props} />
-      </Router>
-    );
-    const tosText = wrapper.find('[testId="tosText"]');
+    const wrapper = shallow(<EmailView {...props} />);
+    const tosText = wrapper.find('[testid="tosText"]');
     expect(tosText.length).toBe(1);
     tosText.simulate('click');
     expect(wrapper.state().tosAgreement).toBe(true);
   });
 
   test('allows user to fillout form', () => {
-    const wrapper = shallowWithIntl(
+    const wrapper = mountWithIntl(
       <Router>
         <EmailView {...props} />
       </Router>
@@ -60,7 +56,7 @@ describe('<EmailView />', () => {
   });
 
   test('submits the form', () => {
-    const wrapper = shallowWithIntl(
+    const wrapper = mountWithIntl(
       <Router>
         <EmailView {...props} />
       </Router>
@@ -68,15 +64,15 @@ describe('<EmailView />', () => {
 
     updateInput(wrapper, 'email', 'tony@stark.com');
     updateInput(wrapper, 'captcha_1', 'braaa');
-    wrapper.find('[testId="tosText"]').simulate('click');
+    wrapper.find('[testid="tosText"]').simulate('click');
     wrapper
-      .find('[testId="emailSubmitForm"]')
+      .find('[testid="emailSubmitForm"]')
       .simulate('submit', { preventDefault: () => {} });
     expect(props.changeEmail).toHaveBeenCalledWith('tony@stark.com');
   });
 
   test('matches snapshot', () => {
-    const wrapper = shallowWithIntl(
+    const wrapper = mountWithIntl(
       <Router>
         <EmailView {...props} />
       </Router>
