@@ -1,13 +1,9 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react",
+    "baseUrl": "src",
     "module": "commonjs",
-    "baseUrl": "./src/",
-    "paths": {
-      "*": ["*", "src/*"]
-    }
+    "target": "es2016",
+    "jsx": "react"
   },
-  "include": ["src/**/*"]
+  "exclude": ["node_modules", "**/node_modules/*"]
 }

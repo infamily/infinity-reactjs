@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Panel, Table } from 'react-bootstrap';
 import transactionService from 'services/transaction.service';
 import { FormattedMessage } from 'react-intl';
+import _ from 'lodash';
 import messages from 'scenes/Topic/messages';
 import './Transactions.css';
 
@@ -24,7 +25,7 @@ export default class Transactions extends Component {
     const currencies = await transactionService.getCurrencies();
 
     const getSymbol = cId => {
-      const currency = currencies.find(item => item.id === cId);
+      const currency = _.find(currencies, item => item.id === cId);
       return currency.label || ' ';
     };
 
