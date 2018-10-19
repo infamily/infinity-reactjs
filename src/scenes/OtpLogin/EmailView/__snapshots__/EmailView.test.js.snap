@@ -24,7 +24,9 @@ exports[`<EmailView /> matches snapshot 1`] = `
       "locale": "en",
       "messages": Object {},
       "now": [Function],
+      "onError": [Function],
       "textComponent": "span",
+      "timeZone": null,
     }
   }
 >
@@ -51,9 +53,23 @@ exports[`<EmailView /> matches snapshot 1`] = `
     }
   >
     <EmailView
-      changeEmail={[Function]}
-      changeView={[Function]}
-      setPopUp={[Function]}
+      changeEmail={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              "tony@stark.com",
+            ],
+          ],
+          "results": Array [
+            Object {
+              "isThrow": false,
+              "value": undefined,
+            },
+          ],
+        }
+      }
+      changeView={[MockFunction]}
+      setPopUp={[MockFunction]}
       view="email"
     >
       <div>
