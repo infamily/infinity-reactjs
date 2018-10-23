@@ -15,7 +15,7 @@ const getLink = () => {
   const organization = server && server.split('inf.')[1];
   const serverName = organization || server;
 
-  return `/${serverName}:${langService.current}/@`;
+  return `/${langService.current}/@`;
 };
 
 const getServer = () => `https://${window.location.host}/#${getLink()}`;

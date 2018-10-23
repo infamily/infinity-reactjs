@@ -65,13 +65,19 @@
   },
   "scripts": {
     "doc": "react-doc-generator src -o DOCUMENTATION.md",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "REACT_APP_API_SERVER=inf.wefindx.com react-scripts start",
+    "build": "REACT_APP_API_SERVER=inf.wefindx.com react-scripts build",
     "deploy": "npm run build&&gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
     "pretty-quick": "pretty-quick",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

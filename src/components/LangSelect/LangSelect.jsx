@@ -74,7 +74,7 @@ class Language extends Component {
         >
           <Languages />
         </DropdownButton>
-        <ServerButton mobile={mobile} />
+        {/* <ServerButton mobile={mobile} /> */}
       </ButtonGroup>
     );
 

@@ -26,7 +26,6 @@ export default class TabDataField extends Component {
   };
 
   send = () => {
-    console.log('DATA: ', this.state.text);
     this.setState({ text: '' });
   };
 

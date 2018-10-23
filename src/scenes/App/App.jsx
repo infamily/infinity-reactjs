@@ -55,11 +55,11 @@ class App extends Component {
     const { user, server } = this.props;
     const Routes = ({ match: { path } }) => (
       <Switch>
-        {server && <Redirect exact from="/" to={configs.linkBase()} />}
+        {/* {server && <Redirect exact from="/" to={configs.linkBase()} />} */}
         <Route exact path={path} component={Home} />
         <Route path={`${path}split`} component={Home} />
         <Route path={`${path}topic/:id/comment/:commentId`} component={Topic} />
-        <Route path={`${path}topic/:id`} component={Topic} />
+        <Route path={`${path}:lang/topic/:id`} component={Topic} />
         <Route path={`${path}show-case/:id`} component={ShowCaseTopic} />
         <Route path={`${path}page/how`} component={How} />
         <Route path={`${path}page/what`} component={What} />
