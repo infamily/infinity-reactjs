@@ -2,31 +2,31 @@ export default {
   utils: {
     servers: {
       en: {
-        'wefindx.io': 'Shanghai',
+        'test.wefindx.io': 'Shanghai',
         'wefindx.com': 'Dublin',
         'globalmindshare.org': 'Virginia',
         '0.0.0.0:8000': 'Local Fun'
       },
       cn: {
-        'wefindx.io': '上海',
+        'test.wefindx.io': '上海',
         'wefindx.com': '都柏林',
         'globalmindshare.org': '弗吉尼亚',
         '0.0.0.0:8000': '本地乐趣'
       },
       ru: {
-        'wefindx.io': 'Шанхай',
+        'test.wefindx.io': 'Шанхай',
         'wefindx.com': 'Дублин',
         'globalmindshare.org': 'Виргиния',
         '0.0.0.0:8000': 'Песочница'
       },
       lt: {
-        'wefindx.io': 'Šanchajus',
+        'test.wefindx.io': 'Šanchajus',
         'wefindx.com': 'Dublinas',
         'globalmindshare.org': 'Virdžinija',
         '0.0.0.0:8000': 'Vietinis'
       },
       ja: {
-        'wefindx.io': '上海',
+        'test.wefindx.io': '上海',
         'wefindx.com': 'ダブリン',
         'globalmindshare.org': 'バージニア',
         '0.0.0.0:8000': 'ローカル'
@@ -48,7 +48,7 @@ export default {
       '<h2>我不能登录怎么办？</h2>',
       '您发送电子邮件至<b>team@wefindx.org</b>。 我们很快就会回复你。</p>',
       '<h2>我需要一个教程</h2>',
-      '欢迎查看<a href="https://wefindx.io/static/tmp/inf.mp4">视频教程</a>。</p>'
+      '欢迎查看<a href="https://test.wefindx.io/static/tmp/inf.mp4">视频教程</a>。</p>'
     ]
   },
   what: {

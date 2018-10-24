@@ -6,7 +6,7 @@ class ServerService {
     this.paymentAuthorization = null;
 
     this.api_servers = [
-      'https://wefindx.io',
+      'https://test.wefindx.io',
       'https://inf.wefindx.com',
       'https://inf.globalmindshare.org'
     ];
