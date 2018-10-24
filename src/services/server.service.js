@@ -5,23 +5,27 @@ class ServerService {
     this.api = null;
     this.paymentAuthorization = null;
 
-    this.api_servers = [
-      'https://wefindx.io',
-      'https://inf.wefindx.com',
-      'https://inf.globalmindshare.org'
-    ];
+    // this.api_servers = [
+    //   'https://wefindx.io',
+    //   'https://inf.wefindx.com',
+    //   'https://inf.globalmindshare.org'
+    // ];
+
+    this.api_servers = [`https://${process.env.REACT_APP_API_SERVER}`];
 
     this.getDefault();
   }
 
   getDefault = async () => {
     const raw = localStorage.state_if;
-    let server = raw && JSON.parse(raw).server;
-    server = await this.changeServerByLink(server);
+    let server = this.api_servers[0];
 
-    if (!server) {
-      server = await this.getFastest();
-    }
+    // let server = raw && JSON.parse(raw).server;
+    // server = await this.changeServerByLink(server);
+
+    // if (!server) {
+    //   server = await this.getFastest();
+    // }
 
     this.isLocal(); // add local server in sandbox mode
     this.setDefault(server);
