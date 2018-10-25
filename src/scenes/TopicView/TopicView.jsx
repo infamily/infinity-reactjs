@@ -453,11 +453,13 @@ class TopicView extends Component {
               action={this.handleChange}
               value={topic_type}
             >
-              {all_types.map((item, i) => (
-                <option value={i} key={i}>
-                  {item.props.defaultMessage}
-                </option>
-              ))}
+              {all_types.map((item, i) => {
+                return (
+                  <option value={i} key={i}>
+                    {intl.formatMessage({ ...item.props })}
+                  </option>
+                );
+              })}
             </FormSelect>
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>
@@ -611,5 +613,9 @@ class TopicView extends Component {
     );
   }
 }
+
+TopicView.PropTypes = {
+  intl: intlShape.isRequired
+};
 
 export default injectIntl(TopicView);
