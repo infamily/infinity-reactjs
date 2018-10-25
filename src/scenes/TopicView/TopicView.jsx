@@ -614,7 +614,7 @@ class TopicView extends Component {
   }
 }
 
-TopicView.PropTypes = {
+TopicView.propTypes = {
   intl: intlShape.isRequired
 };
 
