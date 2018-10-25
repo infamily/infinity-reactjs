@@ -455,7 +455,7 @@ class TopicView extends Component {
             >
               {all_types.map((item, i) => (
                 <option value={i} key={i}>
-                  {item}
+                  {item.props.defaultMessage}
                 </option>
               ))}
             </FormSelect>
