@@ -49,8 +49,8 @@ export default class ConfigWrapper extends Component {
       userServerData,
       server
     } = this.props;
-    const params = nextConfigs || match.params.configs; // get configs
-    const [serverName, lang] = params.split(':');
+    const lang = nextConfigs || match.params.configs; // get configs
+    const serverName = process.env.REACT_APP_API_SERVER;
     this.setState({ serverName });
 
     // check configs

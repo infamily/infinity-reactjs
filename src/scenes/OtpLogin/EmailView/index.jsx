@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -108,11 +108,13 @@ export default class EmailView extends Component {
       this.setState({ ...initialState });
       this.props.changeView('login');
     } catch (error) {
-      const formattedText = getErrorMessage(error.response.data);
-      this.setPopUp({
-        title: <FormattedMessage {...messages.signInErrorTitle} />,
-        text: <FormattedMessage {...formattedText} />
-      });
+      if (error.response !== undefined) {
+        const formattedText = getErrorMessage(error.response.data);
+        this.setPopUp({
+          title: <FormattedMessage {...messages.signInErrorTitle} />,
+          text: <FormattedMessage {...formattedText} />
+        });
+      }
     }
   };
 
@@ -156,7 +158,7 @@ export default class EmailView extends Component {
           <h1 className="otp__header">
             <FormattedMessage {...messages.signInTitle} />
           </h1>
-          <form onSubmit={this.onEmailSubmit} testId="emailSubmitForm">
+          <form onSubmit={this.onEmailSubmit} testid="emailSubmitForm">
             <div className="form-group">
               <FormattedMessage {...messages.emailPlaceholder}>
                 {msg => (
@@ -216,12 +218,14 @@ export default class EmailView extends Component {
                 error={tosError}
                 action={this.handleToS}
               >
-                <span onClick={this.handleToS} testId="tosText">
-                  <FormattedMessage {...messages.tosRead} />{' '}
-                </span>
-                <Link to="/terms">
-                  <FormattedMessage {...messages.tos} />
-                </Link>
+                <Fragment>
+                  <span onClick={this.handleToS} testid="tosText">
+                    <FormattedMessage {...messages.tosRead} />{' '}
+                  </span>
+                  <Link to="/terms">
+                    <FormattedMessage {...messages.tos} />
+                  </Link>
+                </Fragment>
               </CheckBox>
             </div>
             <button type="submit" className="primaryAction btn btn-lg otp__btn">

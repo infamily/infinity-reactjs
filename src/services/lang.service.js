@@ -1,4 +1,5 @@
 import axios from 'axios';
+import _ from 'lodash';
 import texts from './content';
 import serverService from './server.service';
 
@@ -62,7 +63,10 @@ class Language {
         default_language = 'cn';
       }
 
-      const lang = this.languages.find(item => item.lang === default_language);
+      const lang = _.find(
+        this.languages,
+        item => item.lang === default_language
+      );
 
       if (lang) {
         this.current = lang.lang;
@@ -79,7 +83,7 @@ class Language {
 
   changeLangByLink = async lang => {
     if (!lang) return;
-    const num = this.languages.findIndex(item => item.lang === lang);
+    const num = _.findIndex(this.languages, item => item.lang === lang);
     num > -1 && (await this.changeLang(num));
   };
 

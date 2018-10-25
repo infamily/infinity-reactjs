@@ -7,7 +7,7 @@
     "axios": "^0.17.1",
     "classnames": "^2.2.6",
     "husky": "^0.14.3",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "payment": "^2.3.0",
     "prop-types": "^15.6.0",
     "query-string": "^6.1.0",
@@ -50,7 +50,6 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
-    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.11.0",
@@ -62,7 +61,7 @@
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
     "react-doc-generator": "^1.2.5",
-    "react-scripts": "1.0.17"
+    "react-scripts": "2.0.0"
   },
   "scripts": {
     "doc": "react-doc-generator src -o DOCUMENTATION.md",
@@ -72,6 +71,13 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "pretty-quick": "pretty-quick"
-  }
+    "pretty-quick": "pretty-quick",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -11,6 +11,7 @@ import commentService from 'services/comment.service';
 import langService from 'services/lang.service';
 import { Panel } from 'react-bootstrap';
 import configs from 'configs';
+import _ from 'lodash';
 import TopicBody from './TopicBody';
 import CommentForm from './CommentForm';
 import Comments from './Comments';
@@ -168,7 +169,7 @@ class Topic extends Component {
   }
 
   startToEdit = id => {
-    const comment = this.state.comments.find(item => item.id === id);
+    const comment = _.find(this.state.comments, item => item.id === id);
     this.setState({
       comment_id: id,
       comment_text: comment.text

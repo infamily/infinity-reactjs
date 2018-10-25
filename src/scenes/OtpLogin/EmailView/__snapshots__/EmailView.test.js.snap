@@ -1,107 +1,247 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<EmailView /> matches snapshot 1`] = `
-<div>
-  <img
-    alt="infinity"
-    className="otp__logo"
-    src="if.png"
-  />
-  <div
-    className="center-block otp__box"
+<BrowserRouter
+  intl={
+    Object {
+      "defaultFormats": Object {},
+      "defaultLocale": "en",
+      "formatDate": [Function],
+      "formatHTMLMessage": [Function],
+      "formatMessage": [Function],
+      "formatNumber": [Function],
+      "formatPlural": [Function],
+      "formatRelative": [Function],
+      "formatTime": [Function],
+      "formats": Object {},
+      "formatters": Object {
+        "getDateTimeFormat": [Function],
+        "getMessageFormat": [Function],
+        "getNumberFormat": [Function],
+        "getPluralFormat": [Function],
+        "getRelativeFormat": [Function],
+      },
+      "locale": "en",
+      "messages": Object {},
+      "now": [Function],
+      "onError": [Function],
+      "textComponent": "span",
+      "timeZone": null,
+    }
+  }
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
   >
-    <h1
-      className="otp__header"
+    <EmailView
+      changeEmail={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              "tony@stark.com",
+            ],
+          ],
+          "results": Array [
+            Object {
+              "isThrow": false,
+              "value": undefined,
+            },
+          ],
+        }
+      }
+      changeView={[MockFunction]}
+      setPopUp={[MockFunction]}
+      view="email"
     >
-      Sign In
-    </h1>
-    <form
-      onSubmit={[Function]}
-      testId="emailSubmitForm"
-    >
-      <div
-        className="form-group"
-      >
-        <input
-          className="form-control otp__input"
-          name="email"
-          onChange={[Function]}
-          placeholder="E-mail address"
-          required={true}
-          type="email"
-          value=""
+      <div>
+        <img
+          alt="infinity"
+          className="otp__logo"
+          src="if.png"
         />
-      </div>
-      <div
-        className="form-group"
-        id="div_id_captcha"
-      >
         <div
-          className="row"
+          className="center-block otp__box"
         >
-          <div
-            className="col-md-8"
+          <h1
+            className="otp__header"
           >
-            <input
-              name="captcha_0"
-              required={true}
-              type="hidden"
-              value=""
-            />
-            <input
-              className="form-control otp__input"
-              name="captcha_1"
-              onChange={[Function]}
-              placeholder="Captcha"
-              required={true}
-              spellCheck="false"
-              value=""
-            />
-          </div>
-          <div
-            className="otp__captcha"
-          >
-            <img
-              alt="captcha"
-              src=""
-            />
-            <a
-              className="primaryAction btn otp__btn"
-              onClick={[Function]}
+            <FormattedMessage
+              defaultMessage="Sign In"
+              id="infinity.scenes.OtpLogin.signInTitle"
+              values={Object {}}
             >
-              ↺
-            </a>
-          </div>
+              <span>
+                Sign In
+              </span>
+            </FormattedMessage>
+          </h1>
+          <form
+            onSubmit={[Function]}
+            testid="emailSubmitForm"
+          >
+            <div
+              className="form-group"
+            >
+              <FormattedMessage
+                defaultMessage="E-mail address"
+                id="infinity.scenes.OtpLogin.EmailView.emailPlaceholder"
+                values={Object {}}
+              >
+                <input
+                  className="form-control otp__input"
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="E-mail address"
+                  required={true}
+                  type="email"
+                  value=""
+                />
+              </FormattedMessage>
+            </div>
+            <div
+              className="form-group"
+              id="div_id_captcha"
+              style={
+                Object {
+                  "display": "block",
+                }
+              }
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col-md-8"
+                >
+                  <input
+                    name="captcha_0"
+                    required={true}
+                    type="hidden"
+                    value=""
+                  />
+                  <FormattedMessage
+                    defaultMessage="Captcha"
+                    id="infinity.scenes.OtpLogin.EmailView.captchaPlaceholder"
+                    values={Object {}}
+                  >
+                    <input
+                      className="form-control otp__input"
+                      name="captcha_1"
+                      onChange={[Function]}
+                      placeholder="Captcha"
+                      required={true}
+                      spellCheck="false"
+                      value=""
+                    />
+                  </FormattedMessage>
+                </div>
+                <div
+                  className="otp__captcha"
+                >
+                  <img
+                    alt="captcha"
+                    src=""
+                  />
+                  <a
+                    className="primaryAction btn otp__btn"
+                    onClick={[Function]}
+                  >
+                    ↺
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div>
+              <CheckBox
+                action={[Function]}
+                error={false}
+                value={false}
+              >
+                <div
+                  className="check_box__container "
+                >
+                  <div
+                    className="check_box "
+                    onClick={[Function]}
+                  />
+                  <p>
+                    <small>
+                      <span
+                        onClick={[Function]}
+                        testid="tosText"
+                      >
+                        <FormattedMessage
+                          defaultMessage="I have read and agree to the"
+                          id="infinity.scenes.OtpLogin.EmailView.tosRead"
+                          values={Object {}}
+                        >
+                          <span>
+                            I have read and agree to the
+                          </span>
+                        </FormattedMessage>
+                         
+                      </span>
+                      <Link
+                        replace={false}
+                        to="/terms"
+                      >
+                        <a
+                          href="/terms"
+                          onClick={[Function]}
+                        >
+                          <FormattedMessage
+                            defaultMessage="Terms of Service"
+                            id="infinity.scenes.OtpLogin.EmailView.tos"
+                            values={Object {}}
+                          >
+                            <span>
+                              Terms of Service
+                            </span>
+                          </FormattedMessage>
+                        </a>
+                      </Link>
+                    </small>
+                  </p>
+                </div>
+              </CheckBox>
+            </div>
+            <button
+              className="primaryAction btn btn-lg otp__btn"
+              type="submit"
+            >
+              <FormattedMessage
+                defaultMessage="Continue"
+                id="infinity.scenes.OtpLogin.EmailView.continue"
+                values={Object {}}
+              >
+                <span>
+                  Continue
+                </span>
+              </FormattedMessage>
+            </button>
+          </form>
         </div>
       </div>
-      <div>
-        <CheckBox
-          action={[Function]}
-          error={false}
-          value={false}
-        >
-          <span
-            onClick={[Function]}
-            testId="tosText"
-          >
-            I have read and agree to the
-             
-          </span>
-          <Link
-            replace={false}
-            to="/terms"
-          >
-            Terms of Service
-          </Link>
-        </CheckBox>
-      </div>
-      <button
-        className="primaryAction btn btn-lg otp__btn"
-        type="submit"
-      >
-        CONTINUE
-      </button>
-    </form>
-  </div>
-</div>
+    </EmailView>
+  </Router>
+</BrowserRouter>
 `;
