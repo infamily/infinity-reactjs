@@ -74,3 +74,9 @@
 .input-group > .dropup.input-group-btn {
   vertical-align: top;
 }
+
+/* Dropdown overalp */
+.Select.is-open {
+  position: relative;
+  z-index: 1000;
+}
