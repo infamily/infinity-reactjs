@@ -389,15 +389,8 @@ class TopicView extends Component {
           </div>
         );
 
-      const BackButton = ({ action, ...rest }) => (
-        <Button onClick={action} {...rest}>
-          &#10094; <FormattedMessage {...messages.back} />
-        </Button>
-      );
-
       return this.state.editId ? (
         <div>
-          <BackButton action={this.goToTopic} className="topic_view__back" />
           <Button type="submit">
             {' '}
             &#9873; <FormattedMessage {...messages.save} />
@@ -411,7 +404,6 @@ class TopicView extends Component {
         </div>
       ) : (
         <div>
-          <BackButton action={goBack} className="topic_view__back" />
           <Button type="submit">
             &#9873; <FormattedMessage {...messages.create} />
           </Button>
