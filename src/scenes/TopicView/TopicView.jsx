@@ -25,8 +25,10 @@ import SignInLine from 'components/SignInLine';
 import topicViewService from 'services/topic_view.service';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import configs from 'configs';
+import { NavLink } from 'react-router-dom';
 import 'react-select/dist/react-select.min.css';
 import messages from './messages';
+import topicMessages from 'scenes/Topic/messages';
 import { validateJson } from './helpers';
 import PopupModal from './PopupModal';
 import DeletePopup from './PopupModal/Delete';
@@ -374,7 +376,7 @@ class TopicView extends Component {
       success,
       isLoading
     } = this.state;
-    const { user, loaderElements, history, intl } = this.props;
+    const { user, loaderElements, history, intl, close } = this.props;
     const { goBack } = history;
 
     if (isLoading) return loaderElements ? <LoadingElements /> : <Loading />;
@@ -443,8 +445,32 @@ class TopicView extends Component {
       </p>
     );
 
+    const HomeButton = () => {
+      const TextButton = () => (
+        <span>
+          &#10094; <FormattedMessage {...topicMessages.homeButton} />
+        </span>
+      );
+      return close ? (
+        <div onClick={close} className="nav__back">
+          <TextButton />
+        </div>
+      ) : (
+        <NavLink to={configs.linkBase()} className="nav__back">
+          <TextButton />
+        </NavLink>
+      );
+    };
+
     return (
       <div className="main">
+        <div
+          className="topics__content-item"
+          style={{ display: 'block', marginBottom: '0px' }}
+        >
+          <HomeButton />
+        </div>
+
         <div className="topic_view__container">
           <form onSubmit={this.submitTopic}>
             <FormSelect
@@ -461,15 +487,6 @@ class TopicView extends Component {
                 );
               })}
             </FormSelect>
-            <FormGroup controlId="formControlsSelect">
-              <ControlLabel>
-                <FormattedMessage {...messages.categoryLabel} />
-              </ControlLabel>
-              <CategorySelect
-                value={topic_categories}
-                action={this.selectCategory}
-              />
-            </FormGroup>
             <FormGroup>
               <Tabs
                 activeKey={this.state.editor}
@@ -507,6 +524,15 @@ class TopicView extends Component {
                   />
                 </Tab>
               </Tabs>
+            </FormGroup>
+            <FormGroup controlId="formControlsSelect">
+              <ControlLabel>
+                <FormattedMessage {...messages.categoryLabel} />
+              </ControlLabel>
+              <CategorySelect
+                value={topic_categories}
+                action={this.selectCategory}
+              />
             </FormGroup>
             <FormGroup controlId="formControlsSelect">
               <ControlLabel>
