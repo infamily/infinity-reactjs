@@ -89,6 +89,14 @@ export default defineMessages({
     id: 'infinity.scenes.TopicView.public',
     defaultMessage: 'Public'
   },
+  offChain: {
+    id: 'infinity.scenes.TopicView.offChain',
+    defaultMessage: 'Off-Chain'
+  },
+  onChain: {
+    id: 'infinity.scenes.TopicView.onChain',
+    defaultMessage: 'On-Chain'
+  },
   visualEditorHint: {
     id: 'infinity.scenes.TopicView.visualEditorHint',
     defaultMessage: 'You can create contents in current language.'

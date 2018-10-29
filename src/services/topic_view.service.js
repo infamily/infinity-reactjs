@@ -18,7 +18,8 @@ class TopicViewService {
       parents,
       categories,
       showcase_data,
-      is_draft
+      is_draft,
+      blockchain
     } = data;
     try {
       const parameters = {
@@ -29,7 +30,8 @@ class TopicViewService {
         parents,
         categories,
         data: showcase_data,
-        is_draft
+        is_draft,
+        blockchain
       };
 
       const { data } = await axios.post(
@@ -52,7 +54,8 @@ class TopicViewService {
       categories,
       id,
       is_draft,
-      showcase_data
+      showcase_data,
+      blockchain
     } = data;
     try {
       const parameters = {
@@ -63,6 +66,7 @@ class TopicViewService {
         parents,
         categories,
         data: showcase_data,
+        blockchain,
         is_draft
       };
 

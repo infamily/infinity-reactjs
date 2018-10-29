@@ -52,6 +52,24 @@ const TopicBody = ({
       ''
     );
 
+  const BlockchainTag = () =>
+    topic.blockchain ? (
+      <span className="topic__draft">
+        <i>
+          <a
+            href={`https://${
+              process.env.REACT_APP_API_SERVER
+            }/topic_snapshots/?topic=${topic.id}`}
+            target="__blank"
+          >
+            <FormattedMessage {...messages.onChain} />
+          </a>
+        </i>
+      </span>
+    ) : (
+      ''
+    );
+
   const updateListFilterByType = () => {
     history.push(
       `${configs.linkBase()}/split/topic/${topic.id}?flag=${topic.type}`
@@ -83,6 +101,7 @@ const TopicBody = ({
           <NextButton />
         </Link>
         <DraftTag />
+        <BlockchainTag />
       </h1>
       <div className="topic__tags">
         <TopicType

@@ -7,7 +7,8 @@ export default (state = {}, action) => {
     case PERSIST_COMMENT:
       return {
         id: action.id,
-        body: action.body
+        body: action.body,
+        blockchain: action.blockchain
       };
     case CLEAR_COMMENT: {
       return {};

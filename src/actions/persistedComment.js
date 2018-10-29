@@ -1,10 +1,11 @@
 import { PERSIST_COMMENT, CLEAR_COMMENT } from '../actiontypes/persisted';
 
-export function persistComment({ id, body }) {
+export function persistComment({ id, body, blockchain }) {
   return {
     type: PERSIST_COMMENT,
     id,
-    body
+    body,
+    blockchain
   };
 }
 

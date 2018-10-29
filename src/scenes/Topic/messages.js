@@ -33,6 +33,14 @@ export default defineMessages({
     id: 'infinity.scenes.Topic.TopicBody.draft',
     defaultMessage: 'draft'
   },
+  onChain: {
+    id: 'infinity.scenes.Topic.TopicBody.onChain',
+    defaultMessage: 'on-chain'
+  },
+  offChain: {
+    id: 'infinity.scenes.Topic.TopicBody.offChain',
+    defaultMessage: 'off-chain'
+  },
   topicType: {
     id: 'infinity.scenes.Topic.TopicBody.topicType',
     defaultMessage: 'Topic type'

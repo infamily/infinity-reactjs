@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SignInLine from 'components/SignInLine';
-import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import {
+  FormGroup,
+  FormControl,
+  ControlLabel,
+  Button,
+  ToggleButtonGroup,
+  ToggleButton
+} from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import messages from 'scenes/Topic/messages';
 import './CommentForm.css';
@@ -11,7 +18,8 @@ class CommentForm extends Component {
     super(props);
     this.state = {
       text: props.text || '',
-      editing: Boolean(props.id)
+      editing: Boolean(props.id),
+      blockchain: false
     };
   }
 
@@ -53,14 +61,16 @@ class CommentForm extends Component {
     const { topic_id, persistComment } = this.props;
     const { text } = this.state;
 
-    persistComment({ id: topic_id, body: text });
+    const blockchain = this.state.blockchain ? 0 : 1;
+
+    persistComment({ id: topic_id, body: text, blockchain });
   };
 
   checkPersisted() {
-    const { persistedComment, topic_id } = this.props;
+    const { persistedComment, topic_id, blockchain } = this.props;
 
     if (persistedComment.id === topic_id) {
-      this.setState({ text: persistedComment.body });
+      this.setState({ text: persistedComment.body, blockchain: !!blockchain });
     }
   }
 
@@ -69,7 +79,8 @@ class CommentForm extends Component {
     const { editing, text } = this.state;
     if (!text) return;
     const action = editing ? 'edit' : 'create';
-    this.props[action](text);
+    const blockchain = this.state.blockchain ? 0 : 1;
+    this.props[action](text, blockchain);
     this.props.clearComment();
     this.setState({ text: '' });
   };
@@ -80,9 +91,37 @@ class CommentForm extends Component {
     });
   };
 
+  onChangeBlockChain = value => {
+    this.setState({
+      blockchain: value
+    });
+  };
+
   render() {
     const { user, clear } = this.props;
-    const { text, editing } = this.state;
+    const { text, editing, blockchain } = this.state;
+
+    const BlockChainButtons = () => {
+      if (!user) {
+        return null;
+      }
+      return (
+        <ToggleButtonGroup
+          type="radio"
+          name="options"
+          className="topic_view__draft"
+          value={blockchain}
+          onChange={this.onChangeBlockChain}
+        >
+          <ToggleButton value={false}>
+            <FormattedMessage {...messages.onChain} />
+          </ToggleButton>
+          <ToggleButton value>
+            <FormattedMessage {...messages.offChain} />
+          </ToggleButton>
+        </ToggleButtonGroup>
+      );
+    };
 
     const Buttons = () => {
       if (!user)
@@ -129,7 +168,14 @@ class CommentForm extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Buttons />
+          <div className="row">
+            <div className="col-sm-3">
+              <Buttons />
+            </div>
+            <div className="col-sm-4">
+              <BlockChainButtons />
+            </div>
+          </div>
         </form>
       </div>
     );
