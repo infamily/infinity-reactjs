@@ -101,6 +101,28 @@ class CommentForm extends Component {
     const { user, clear } = this.props;
     const { text, editing, blockchain } = this.state;
 
+    const BlockChainButtons = () => {
+      if (!user) {
+        return null;
+      }
+      return (
+        <ToggleButtonGroup
+          type="radio"
+          name="options"
+          className="topic_view__draft"
+          value={blockchain}
+          onChange={this.onChangeBlockChain}
+        >
+          <ToggleButton value={false}>
+            <FormattedMessage {...messages.onChain} />
+          </ToggleButton>
+          <ToggleButton value>
+            <FormattedMessage {...messages.offChain} />
+          </ToggleButton>
+        </ToggleButtonGroup>
+      );
+    };
+
     const Buttons = () => {
       if (!user)
         return (
@@ -151,20 +173,7 @@ class CommentForm extends Component {
               <Buttons />
             </div>
             <div className="col-sm-4">
-              <ToggleButtonGroup
-                type="radio"
-                name="options"
-                className="topic_view__draft"
-                value={blockchain}
-                onChange={this.onChangeBlockChain}
-              >
-                <ToggleButton value={false}>
-                  <FormattedMessage {...messages.onChain} />
-                </ToggleButton>
-                <ToggleButton value>
-                  <FormattedMessage {...messages.offChain} />
-                </ToggleButton>
-              </ToggleButtonGroup>
+              <BlockChainButtons />
             </div>
           </div>
         </form>
