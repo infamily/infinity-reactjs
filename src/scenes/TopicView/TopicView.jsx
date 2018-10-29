@@ -54,6 +54,7 @@ class TopicView extends Component {
       topic_parents: [],
       isDataEditorOpen: false,
       is_draft: false,
+      blockchain: false,
       error: false,
       success: false,
       delete: false,
@@ -135,6 +136,7 @@ class TopicView extends Component {
       topic_source_title: topicSource.title,
       topic_source_text: topicSource.body,
       is_draft: topic.is_draft,
+      blockchain: !topic.blockchain,
       topic_categories,
       topic_parents
     };
@@ -210,7 +212,13 @@ class TopicView extends Component {
   submitTopic = async e => {
     e.preventDefault();
     const { match } = this.props;
-    const { topic_title, topic_source_title, editor, data } = this.state;
+    const {
+      topic_title,
+      topic_source_title,
+      editor,
+      data,
+      blockchain
+    } = this.state;
     const editingTopicId = match.params.eId;
     const isSourceEditor = editor === 1;
 
@@ -231,6 +239,8 @@ class TopicView extends Component {
 
     const formattedData = this.formatData(isSourceEditor);
     formattedData.id = editingTopicId;
+
+    formattedData.blockchain = blockchain ? 0 : 1;
 
     const action = editingTopicId ? 'updateTopic' : 'createTopic';
     const actionSource = isSourceEditor ? `${action}Source` : action;
@@ -325,6 +335,12 @@ class TopicView extends Component {
     });
   };
 
+  onChangeBlockChain = value => {
+    this.setState({
+      blockchain: value
+    });
+  };
+
   handleTopicText = value => {
     this.setState({
       topic_text: value
@@ -374,7 +390,8 @@ class TopicView extends Component {
       message,
       error,
       success,
-      isLoading
+      isLoading,
+      blockchain
     } = this.state;
     const { user, loaderElements, history, intl, close } = this.props;
     const { goBack } = history;
@@ -582,20 +599,40 @@ class TopicView extends Component {
                 editor={editor}
               />
             </Panel>
-            <ToggleButtonGroup
-              type="radio"
-              name="options"
-              className="topic_view__draft"
-              value={is_draft}
-              onChange={this.onChangeDraft}
-            >
-              <ToggleButton value={false}>
-                <FormattedMessage {...messages.public} />
-              </ToggleButton>
-              <ToggleButton value>
-                <FormattedMessage {...messages.draft} />
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <div className="row">
+              <div className="col-sm-3">
+                <ToggleButtonGroup
+                  type="radio"
+                  name="options"
+                  className="topic_view__draft"
+                  value={is_draft}
+                  onChange={this.onChangeDraft}
+                >
+                  <ToggleButton value={false}>
+                    <FormattedMessage {...messages.public} />
+                  </ToggleButton>
+                  <ToggleButton value>
+                    <FormattedMessage {...messages.draft} />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </div>
+              <div className="col-sm-4">
+                <ToggleButtonGroup
+                  type="radio"
+                  name="options"
+                  className="topic_view__draft"
+                  value={blockchain}
+                  onChange={this.onChangeBlockChain}
+                >
+                  <ToggleButton value={false}>
+                    <FormattedMessage {...messages.onChain} />
+                  </ToggleButton>
+                  <ToggleButton value>
+                    <FormattedMessage {...messages.offChain} />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </div>
+            </div>
             <br />
             <br />
             <div className="topic_view__editor_msg">

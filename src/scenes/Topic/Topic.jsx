@@ -194,9 +194,9 @@ class Topic extends Component {
     });
   }
 
-  edit = async text => {
+  edit = async (text, blockchain) => {
     const id = this.state.comment_id;
-    const comment = await commentService.updateComment(id, text);
+    const comment = await commentService.updateComment(id, text, blockchain);
 
     const comments = this.state.comments.map(
       item => (item.id === id ? comment : item)
@@ -221,9 +221,9 @@ class Topic extends Component {
     this.clear();
   };
 
-  create = async text => {
+  create = async (text, blockchain) => {
     const { url } = this.state.topic;
-    const comment = await commentService.createComment(url, text);
+    const comment = await commentService.createComment(url, text, blockchain);
     const comments = [comment].concat(this.state.comments);
     this.setState({
       comments,

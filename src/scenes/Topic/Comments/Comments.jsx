@@ -128,12 +128,31 @@ export default class Comments extends Component {
               </Button>
               {remains ? (
                 <Button onClick={() => this.investState(comment)}>
-                  <FormattedMessage {...messages.invest} /> {remains}$h
+                  <FormattedMessage {...messages.invest} /> {remains}
+                  $h
                 </Button>
               ) : null}
             </ButtonGroup>
           )}
         </ButtonGroup>
+      );
+
+    const BlockchainTag = comment =>
+      comment.blockchain ? (
+        <span className="topic__draft">
+          <i>
+            <a
+              href={`https://${
+                process.env.REACT_APP_API_SERVER
+              }/comment_snapshots/?comment=${comment.id}`}
+              target="__blank"
+            >
+              <FormattedMessage {...messages.onChain} />
+            </a>
+          </i>
+        </span>
+      ) : (
+        ''
       );
 
     const CommentsContainer = () =>
@@ -182,6 +201,7 @@ export default class Comments extends Component {
                 comment={comment}
               />
               <div className="comment__owner">
+                {BlockchainTag(comment)}
                 <TooltipOverlay
                   text={this.getCommentPermaLink(id)}
                   placement="bottom"

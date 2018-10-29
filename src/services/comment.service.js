@@ -3,13 +3,14 @@ import langService from './lang.service';
 import serverService from './server.service';
 
 class CommentService {
-  async createComment(url, text) {
+  async createComment(url, text, blockchain) {
     const lang = langService.current;
     try {
       const parameters = {
         topic: url,
         text: '.:' + lang + '\n' + text,
-        languages: [lang]
+        languages: [lang],
+        blockchain
       };
 
       const { data } = await axios.post(
@@ -24,12 +25,13 @@ class CommentService {
     }
   }
 
-  async updateComment(id, text) {
+  async updateComment(id, text, blockchain) {
     const lang = langService.current;
     try {
       const parameters = {
         text: '.:' + lang + '\n' + text,
-        languages: [lang]
+        languages: [lang],
+        blockchain
       };
 
       const { data } = await axios.patch(
