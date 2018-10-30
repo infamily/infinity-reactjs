@@ -81,14 +81,14 @@ const ProgramToggle = props => {
         </div>
       </TooltipOverlay>
 
-      <div className="develop_toggle__label">
+      {/*<div className="develop_toggle__label">
         <a
           id="develop_toggle__link"
           href="/#/wefindx.com:en/@/split/topic/235?flag=4&view=grid&topicSource=0"
         >
           <FormattedMessage {...messages.develop} />
         </a>
-      </div>
+       </div>*/}
     </div>
   );
 };
