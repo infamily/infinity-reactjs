@@ -1,57 +1,45 @@
 {
   "infinity.components.Header.title": "INFINITY",
-  "infinity.components.Header.subtitle":
-    "Open Platform to Realize Global Goals.",
+  "infinity.components.Header.subtitle": "Open Platform to Realize Global Goals.",
   "infinity.scenes.Home.Menu.title": "Home",
-  "infinity.scenes.Home.TopicList.noTopics":
-    "No topics. Try to change filter parameters.",
+  "infinity.scenes.Home.TopicList.noTopics": "No topics. Try to change filter parameters.",
   "infinity.scenes.Home.HomeConfigPanel.search": "Search",
   "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder": "Filter Options",
   "infinity.scenes.Home.HomeConfigPanel.treePlaceholder": "Display as lines",
   "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder": "Display as Grid",
-  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder":
-    "Display only top-level topics",
+  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder": "Display only top-level topics",
   "infinity.scenes.Home.HomeConfigPanel.allPlaceholder": "Display all topics",
-  "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder":
-    "Select categories...",
+  "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder": "Select categories...",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Filter",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.view": "View",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.source": "Source",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.tree": "Tree",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "Grid",
-  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
-    "Top-Level",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel": "Top-Level",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all": "All",
   "infinity.scenes.OtpLogin.signInTitle": "Sign In",
   "infinity.scenes.OtpLogin.commonErrorTitle": "Error",
-  "infinity.scenes.OtpLogin.commonErrorText":
-    "Something went wrong. Try again.",
+  "infinity.scenes.OtpLogin.commonErrorText": "Something went wrong. Try again.",
   "infinity.scenes.OtpLogin.signInErrorTitle": "SignIn Error",
   "infinity.scenes.OtpLogin.invalidCaptcha": "Invalid captcha. Try again.",
-  "infinity.scenes.OtpLogin.signInErrorfillOut":
-    "The field should be filled out.",
+  "infinity.scenes.OtpLogin.signInErrorfillOut": "The field should be filled out.",
   "infinity.scenes.OtpLogin.signInErrorWrongCode": "Wrong code. Try again.",
-  "infinity.scenes.OtpLogin.EmailView.invalidEmail":
-    "Your organization is not a member of this server. Enter a valid email address.",
+  "infinity.scenes.OtpLogin.EmailView.invalidEmail": "Your organization is not a member of this server. Enter a valid email address.",
   "infinity.scenes.OtpLogin.EmailView.serverErrTitle": "Server Error",
-  "infinity.scenes.OtpLogin.EmailView.allFilledOut":
-    "All fields should be filled out.",
+  "infinity.scenes.OtpLogin.EmailView.allFilledOut": "All fields should be filled out.",
   "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "E-mail address",
   "infinity.scenes.OtpLogin.EmailView.captchaPlaceholder": "Captcha",
   "infinity.scenes.OtpLogin.EmailView.otpPlaceholder": "One time password",
   "infinity.scenes.OtpLogin.EmailView.tosRead": "I have read and agree to the",
   "infinity.scenes.OtpLogin.EmailView.tos": "Terms of Service",
   "infinity.scenes.OtpLogin.EmailView.continue": "Continue",
-  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
-    "<strong>One time password</strong> has been send to your email.",
+  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent": "<strong>One time password</strong> has been send to your email.",
   "infinity.scenes.OtpLogin.LoginView.resend": "Resend code",
   "infinity.scenes.OtpLogin.LoginView.submit": "Submit",
   "infinity.scenes.QuotaBox.buy": "Buy credit with card",
   "infinity.scenes.QuotaBox.history": "Payment History",
-  "infinity.scenes.QuotaBox.quotaDescription":
-    "Review the topics and support projects you like.",
-  "infinity.scenes.QuotaBox.countableHours.COUNT":
-    "{count, plural, =0 {No available quota.} one {hour} other {hours}}",
+  "infinity.scenes.QuotaBox.quotaDescription": "Review the topics and support projects you like.",
+  "infinity.scenes.QuotaBox.countableHours.COUNT": "{count, plural, =0 {No available quota.} one {hour} other {hours}}",
   "infinity.scenes.QuotaBox.amounfOfHours": "hours",
   "infinity.scenes.QuotaBox.yourQuota": "Your quota is",
   "infinity.scenes.StreamTab.schema": "Schema",
@@ -70,15 +58,12 @@
   "infinity.scenes.Topic.Comments.investment": "Investment",
   "infinity.scenes.Topic.Comments.invest": "Invest",
   "infinity.scenes.Topic.TransactionBox.buy": "Buy credit with card",
-  "infinity.scenes.Topic.TransactionBox.invalidHours":
-    "Incorrect amount of hours.",
-  "infinity.scenes.Topic.TransactionBox.quotaOver":
-    "The quota limit is reached.",
+  "infinity.scenes.Topic.TransactionBox.invalidHours": "Incorrect amount of hours.",
+  "infinity.scenes.Topic.TransactionBox.quotaOver": "The quota limit is reached.",
   "infinity.scenes.Topic.TransactionBox.remaining": "Remaining today's quota",
   "infinity.scenes.Topic.TransactionBox.amount": "Amount",
   "infinity.scenes.Topic.TransactionBox.receiver": "Receiver:",
-  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT":
-    "{count, plural, =0 {: no available quota.} one {hour} other {hours}}",
+  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: no available quota.} one {hour} other {hours}}",
   "infinity.scenes.Topic.TransactionBox.currency": "Currency",
   "infinity.scenes.Topic.CommentForm.cancel": "Cancel",
   "infinity.scenes.Topic.CommentForm.save": "Save",
@@ -96,8 +81,7 @@
   "infinity.scenes.TopicView.create": "Create",
   "infinity.scenes.TopicView.confirmation": "Confirmation",
   "infinity.scenes.TopicView.select": "Select...",
-  "infinity.scenes.TopicView.deleteConfirmation":
-    "Are you sure want to delete this topic?",
+  "infinity.scenes.TopicView.deleteConfirmation": "Are you sure want to delete this topic?",
   "infinity.scenes.TopicView.close": "Close",
   "infinity.scenes.TopicView.delete": "Delete",
   "infinity.scenes.TopicView.textPlaceholder": "Share your ideas...",
@@ -122,8 +106,7 @@
   "infinity.scenes.NoServer.noServer": "There is no {name} server.",
   "infinity.scenes.NoServer.such": "such",
   "infinity.scenes.Terms.tos": "Terms of service",
-  "infinity.common.shortCountableHours.COUNT":
-    "{count, number}{count, plural, =0 {''} one {h} other {h}}",
+  "infinity.common.shortCountableHours.COUNT": "{count, number}{count, plural, =0 {''} one {h} other {h}}",
   "infinity.components.Balance.balanceTooltip": "Balance",
   "infinity.components.Balance.remainingQuotaTooltip": "Remaining quota",
   "infinity.common.Select.selectPlaceholder": "Select...",
@@ -153,8 +136,7 @@
   "infinity.components.PayCheckout.zip": "ZIP",
   "infinity.components.PayCheckout.toFund": "to fund the project",
   "infinity.components.ProgramToggle.programs": "Code",
-  "infinity.components.ProgramToggle.importingToolip":
-    "Importing programs will be released coming soon...",
+  "infinity.components.ProgramToggle.importingToolip": "Importing programs will be released coming soon...",
   "infinity.components.ProgramToggle.all": "All",
   "infinity.components.ProgramToggle.need": "Needs",
   "infinity.components.ProgramToggle.goal": "Goals",
@@ -164,8 +146,7 @@
   "infinity.components.ProgramToggle.task": "Tasks",
   "infinity.components.ProgramToggle.develop": "Develop",
   "infinity.components.ProgramToggle.data": "Get Data",
-  "infinity.components.ProgramToggle.goalTooltip":
-    "Judge objectives. Think like you're a member of U.N. assembly. What is important?",
+  "infinity.components.ProgramToggle.goalTooltip": "Judge objectives. Think like you're a member of U.N. assembly. What is important?",
   "infinity.components.SignInLine.signIn": "Sign In",
   "infinity.components.TabDataField.dataField": "Data Field",
   "infinity.components.TabDataField.putData": "Put your data here",
@@ -182,8 +163,7 @@
   "infinity.components.TextEditor.heading1": "Heading 1",
   "infinity.components.TextEditor.heading2": "Heading 2",
   "infinity.components.TextEditor.heading3": "Heading 3",
-  "infinity.components.TopicFundData.topicFundTooltip":
-    "The number of hours reserved for the topic",
+  "infinity.components.TopicFundData.topicFundTooltip": "The number of hours reserved for the topic",
   "infinity.components.TopicFundData.fund": "Fund",
   "infinity.components.TopicProgressBar.assumed": "Assumed",
   "infinity.components.TopicProgressBar.overpay": "Overpay",
@@ -199,30 +179,26 @@
   "infinity.common.configs.step": "Step",
   "infinity.common.configs.task": "Task",
   "infinity.scenes.Home.TopicList.filterReset": "Reset",
-  "infinity.scenes.Home.TopicList.filteredByParents":
-    "Parents of the current topic are shown.",
-  "infinity.scenes.Home.TopicList.filteredByChildren":
-    "Children of the current topic are shown.",
+  "infinity.scenes.Home.TopicList.filteredByParents": "Parents of the current topic are shown.",
+  "infinity.scenes.Home.TopicList.filteredByChildren": "Children of the current topic are shown.",
   "infinity.scenes.ShowCaseTopic.TopicBody.edit": "Edit",
   "infinity.scenes.ShowCaseTopic.details": "Details",
   "infinity.scenes.Topic.children": "Children",
   "infinity.scenes.Topic.parents": "Parents",
-  "infinity.scenes.TopicView.visualEditorHint":
-    "You can create contents in current language.",
-  "infinity.scenes.TopicView.sourceEditorHint":
-    "You can create contents in any language. Wrap your title with .:lang:title and your text with .:lang:text to add next language.",
+  "infinity.scenes.TopicView.visualEditorHint": "You can create contents in current language.",
+  "infinity.scenes.TopicView.sourceEditorHint": "You can create contents in any language. Wrap your title with .:lang:title and your text with .:lang:text to add next language.",
   "infinity.scenes.TopicView.visualEditorTab": "Visual Editor",
   "infinity.scenes.TopicView.sourceEditorTab": "Source Editor",
-  "infinity.scenes.TopicView.visualEditorMsg":
-    "Contents will be taken from the Visual Editor.",
-  "infinity.scenes.TopicView.sourceEditorMsg":
-    "Contents will be taken from the Source Editor.",
+  "infinity.scenes.TopicView.visualEditorMsg": "Contents will be taken from the Visual Editor.",
+  "infinity.scenes.TopicView.sourceEditorMsg": "Contents will be taken from the Source Editor.",
   "infinity.scenes.TopicView.showCaseData": "Showcase Data Editor",
   "infinity.scenes.TopicView.fillShowCaseData": "Fill with a default data",
-  "infinity.scenes.TopicView.showCasePlaceholder":
-    "Input a valid JSON or leave blank",
+  "infinity.scenes.TopicView.showCasePlaceholder": "Input a valid JSON or leave blank",
   "infinity.scenes.TopicView.showCaseError": "Showcase Error: Invalid JSON",
   "infinity.components.TopicFundData.prize": "Prize",
-  "infinity.components.TopicFundData.topicPrizeTooltip":
-    "The amount of money allocated to someone who solves this challenge."
+  "infinity.components.TopicFundData.topicPrizeTooltip": "The amount of money allocated to someone who solves this challenge.",
+  "infinity.scenes.TopicView.onChain": "On-Chain",
+  "infinity.scenes.TopicView.offChain": "Off-Chain",
+  "infinity.scenes.Topic.TopicBody.onChain": "on-chain",
+  "infinity.scenes.Topic.TopicBody.offChain": "off-chain"
 }
