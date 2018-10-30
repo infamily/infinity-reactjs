@@ -147,7 +147,7 @@ export default class HomeConfigPanel extends Component {
     return (
       <div className="home__confgi_panel">
         <Header user={user} />
-        <form onSubmit={this.onSearchSubmit}>
+        {/*        <form onSubmit={this.onSearchSubmit}>
           <FormGroup>
             <InputGroup>
               <Flag setFlag={this.setFlag} flag={flag} />
@@ -167,7 +167,7 @@ export default class HomeConfigPanel extends Component {
               </InputGroup.Button>
             </InputGroup>
           </FormGroup>
-        </form>
+        </form> */}
         <Panel
           id="collapsible-data-panel"
           className="home__settings_panel main__shadow_box"
