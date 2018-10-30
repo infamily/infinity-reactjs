@@ -89,7 +89,7 @@ class App extends Component {
         </div>
         {server && (
           <div>
-            <TabToggle match={match} show={!!user} />
+            {/*<TabToggle match={match} show={!!user} />*/}
             <Route path={`${match.path}split`} component={TabPanel} />
           </div>
         )}
