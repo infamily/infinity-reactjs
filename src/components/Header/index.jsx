@@ -18,7 +18,9 @@ const Hours = user => {
 const Header = ({ user }) => (
   <div className="header">
     <h1 className="topics__title">
-      <FormattedMessage {...messages.title} />
+      <a href="/">
+        <FormattedMessage {...messages.title} />
+      </a>
     </h1>
     <p className="header__text">
       <FormattedMessage {...messages.subtitle} />
