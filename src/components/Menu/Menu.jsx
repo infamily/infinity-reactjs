@@ -77,7 +77,7 @@ class Menu extends Component {
           <Link to={configs.linkBase()} className="main-menu__link">
             <FormattedMessage {...messages.home} />
           </Link>
-          <Link
+          {/*<Link
             to={`${configs.linkBase()}/page/what`}
             className="main-menu__link"
           >
@@ -88,7 +88,7 @@ class Menu extends Component {
             className="main-menu__link"
           >
             <FormattedMessage {...messages.how} />
-          </Link>
+          </Link> */}
           <MenuItem divider />
           {this.props.user ? (
             <div className="main-menu__link" onClick={this.signOut}>
