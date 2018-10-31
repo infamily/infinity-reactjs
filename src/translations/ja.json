@@ -1,62 +1,45 @@
 {
   "infinity.components.Header.title": "無限",
-  "infinity.components.Header.subtitle":
-    "グローバルな目的を実現するオープンプラットフォーム。",
+  "infinity.components.Header.subtitle": "グローバルな目的を実現するオープンプラットフォーム。",
   "infinity.scenes.Home.Menu.title": "ホーム",
-  "infinity.scenes.Home.TopicList.noTopics":
-    "トピックはありません。 フィルターパラメーターを変更してみてください。",
+  "infinity.scenes.Home.TopicList.noTopics": "トピックはありません。 フィルターパラメーターを変更してみてください。",
   "infinity.scenes.Home.HomeConfigPanel.search": "検索",
-  "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder":
-    "フィルタオプション",
-  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder":
-    "ツリーとして表示する。",
-  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder":
-    "グリドとして表示する。",
-  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder":
-    "トプレベルのトピックだけを表示する。",
-  "infinity.scenes.Home.HomeConfigPanel.allPlaceholder":
-    "全てのトピックを表示する。",
+  "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder": "フィルタオプション",
+  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder": "ツリーとして表示する。",
+  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder": "グリドとして表示する。",
+  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder": "トプレベルのトピックだけを表示する。",
+  "infinity.scenes.Home.HomeConfigPanel.allPlaceholder": "全てのトピックを表示する。",
   "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder": "カテゴリを選択...",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "フィルタ",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.view": "ビュー",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.source": "ソース",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.tree": "ツリー",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "グリッド",
-  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
-    "トップレベル",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel": "トップレベル",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all": "全て",
   "infinity.scenes.OtpLogin.signInTitle": "ログイン",
   "infinity.scenes.OtpLogin.commonErrorTitle": "エラー",
-  "infinity.scenes.OtpLogin.commonErrorText":
-    "何かが間違っていた。 再試行してください。",
+  "infinity.scenes.OtpLogin.commonErrorText": "何かが間違っていた。 再試行してください。",
   "infinity.scenes.OtpLogin.signInErrorTitle": "ログインエラー",
-  "infinity.scenes.OtpLogin.invalidCaptcha":
-    "無効なキャプチャです。 再試行してください。",
-  "infinity.scenes.OtpLogin.signInErrorfillOut":
-    "フィールドは記入する必要があります。",
-  "infinity.scenes.OtpLogin.signInErrorWrongCode":
-    "不正なコード。 再試行してください。",
-  "infinity.scenes.OtpLogin.EmailView.invalidEmail":
-    "あなたの組織はこのサーバーのメンバーではありません。 有効なメールアドレスを入力してください。",
+  "infinity.scenes.OtpLogin.invalidCaptcha": "無効なキャプチャです。 再試行してください。",
+  "infinity.scenes.OtpLogin.signInErrorfillOut": "フィールドは記入する必要があります。",
+  "infinity.scenes.OtpLogin.signInErrorWrongCode": "不正なコード。 再試行してください。",
+  "infinity.scenes.OtpLogin.EmailView.invalidEmail": "あなたの組織はこのサーバーのメンバーではありません。 有効なメールアドレスを入力してください。",
   "infinity.scenes.OtpLogin.EmailView.serverErrTitle": "サーバーエラー",
-  "infinity.scenes.OtpLogin.EmailView.allFilledOut":
-    "すべてのフィールドに記入してください。",
+  "infinity.scenes.OtpLogin.EmailView.allFilledOut": "すべてのフィールドに記入してください。",
   "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "電子メールアドレス",
   "infinity.scenes.OtpLogin.EmailView.captchaPlaceholder": "キャプチャ",
   "infinity.scenes.OtpLogin.EmailView.otpPlaceholder": "ワンタイムパスワード",
   "infinity.scenes.OtpLogin.EmailView.tosRead": "私は読んで同意する",
   "infinity.scenes.OtpLogin.EmailView.tos": "利用規約",
   "infinity.scenes.OtpLogin.EmailView.continue": "続く",
-  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
-    "<strong>ワンタイムパスワード</strong> があなたのメールアドレスに送信されました。",
+  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent": "<strong>ワンタイムパスワード</strong> があなたのメールアドレスに送信されました。",
   "infinity.scenes.OtpLogin.LoginView.resend": "コードを再送信する",
   "infinity.scenes.OtpLogin.LoginView.submit": "提出する",
   "infinity.scenes.QuotaBox.buy": "クレジットカードで購入する",
   "infinity.scenes.QuotaBox.history": "支払歴",
-  "infinity.scenes.QuotaBox.quotaDescription":
-    "あなたが好きなトピックやプロジェクトをサポートしてください。",
-  "infinity.scenes.QuotaBox.countableHours.COUNT":
-    "{count, plural, =0 {No available quota.} one {時} other {時}}",
+  "infinity.scenes.QuotaBox.quotaDescription": "あなたが好きなトピックやプロジェクトをサポートしてください。",
+  "infinity.scenes.QuotaBox.countableHours.COUNT": "{count, plural, =0 {No available quota.} one {時} other {時}}",
   "infinity.scenes.QuotaBox.amounfOfHours": "時",
   "infinity.scenes.QuotaBox.yourQuota": "Your quota is",
   "infinity.scenes.StreamTab.schema": "スキーマ",
@@ -80,8 +63,7 @@
   "infinity.scenes.Topic.TransactionBox.remaining": "今日の残高限度",
   "infinity.scenes.Topic.TransactionBox.amount": "額",
   "infinity.scenes.Topic.TransactionBox.receiver": "受信者:",
-  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT":
-    "{count, plural, =0 {: no available quota.} one {時} other {時}}",
+  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: no available quota.} one {時} other {時}}",
   "infinity.scenes.Topic.TransactionBox.currency": "通貨",
   "infinity.scenes.Topic.CommentForm.cancel": "キャンセル",
   "infinity.scenes.Topic.CommentForm.save": "保存する",
@@ -99,8 +81,7 @@
   "infinity.scenes.TopicView.create": "作成する",
   "infinity.scenes.TopicView.confirmation": "確認",
   "infinity.scenes.TopicView.select": "選択...",
-  "infinity.scenes.TopicView.deleteConfirmation":
-    "このトピックを削除してもよろしいですか？",
+  "infinity.scenes.TopicView.deleteConfirmation": "このトピックを削除してもよろしいですか？",
   "infinity.scenes.TopicView.close": "閉じる",
   "infinity.scenes.TopicView.delete": "削除",
   "infinity.scenes.TopicView.textPlaceholder": "アイデアを共有しましょう...",
@@ -121,13 +102,11 @@
   "infinity.scenes.UserTransactions.type": "タイプ",
   "infinity.scenes.UserTransactions.contribution": "貢献",
   "infinity.scenes.UserTransactions.none": "None",
-  "infinity.scenes.NotFound.noContent":
-    "404 そのようなコンテンツはありません。",
+  "infinity.scenes.NotFound.noContent": "404 そのようなコンテンツはありません。",
   "infinity.scenes.NoServer.noServer": "サーバーは {name} 見つけません。",
   "infinity.scenes.NoServer.such": "such",
   "infinity.scenes.Terms.tos": "利用規約",
-  "infinity.common.shortCountableHours.COUNT":
-    "{count, number}{count, plural, =0 {''} one {時} other {時}}",
+  "infinity.common.shortCountableHours.COUNT": "{count, number}{count, plural, =0 {''} one {時} other {時}}",
   "infinity.components.Balance.balanceTooltip": "バランス",
   "infinity.components.Balance.remainingQuotaTooltip": "液体バランス",
   "infinity.common.Select.selectPlaceholder": "選択...",
@@ -148,8 +127,7 @@
   "infinity.components.PayCheckout.amountPlaceholder": "金額",
   "infinity.components.PayCheckout.CurrencyLabel": "通貨",
   "infinity.components.PayCheckout.descriptionPlaceholder": "説明",
-  "infinity.components.PayCheckout.serverError":
-    "サーバーエラー。 再試行してください。",
+  "infinity.components.PayCheckout.serverError": "サーバーエラー。 再試行してください。",
   "infinity.components.PayCheckout.pay": "支払う",
   "infinity.components.PayCheckout.name": "名",
   "infinity.components.PayCheckout.cvc": "CVC",
@@ -158,8 +136,7 @@
   "infinity.components.PayCheckout.zip": "郵便番号",
   "infinity.components.PayCheckout.toFund": "プロジェクトに資金を提供する",
   "infinity.components.ProgramToggle.programs": "プログラム",
-  "infinity.components.ProgramToggle.importingToolip":
-    "プログラムのインポートすぐにリリースされる予定です...",
+  "infinity.components.ProgramToggle.importingToolip": "プログラムのインポートすぐにリリースされる予定です...",
   "infinity.components.ProgramToggle.all": "全て",
   "infinity.components.ProgramToggle.need": "必要",
   "infinity.components.ProgramToggle.goal": "目的",
@@ -169,16 +146,11 @@
   "infinity.components.ProgramToggle.task": "用事",
   "infinity.components.ProgramToggle.develop": "開発",
   "infinity.components.ProgramToggle.data": "データ",
-  "infinity.components.ProgramToggle.goalTooltip":
-    "ターゲットを決定する。 国連総会のメンバーとしてあなたについて考えてみてください。 これらの目標は重要ですか？",
-  "infinity.components.ProgramToggle.ideaTooltip":
-    "革新を判断する。あなたが発明家であると考えてください。 この方法は革新的ですか？ この方法は意味がありますか？",
-  "infinity.components.ProgramToggle.planTooltip":
-    "実現する。あなたをCEOと考えてください。 実行可能なビジネスに計画を変更するには？",
-  "infinity.components.ProgramToggle.stepTooltip":
-    "プロジェクトマネージャーとしてあなたについて考えてみてください。 このプロジェクトセグメンテーションは、人々が自分の仕事を整理するのを容易にしますか？",
-  "infinity.components.ProgramToggle.taskTooltip":
-    "エンジニアとしてあなたについて考えてみてください。 この機能を実装する正しい方法は何ですか？",
+  "infinity.components.ProgramToggle.goalTooltip": "ターゲットを決定する。 国連総会のメンバーとしてあなたについて考えてみてください。 これらの目標は重要ですか？",
+  "infinity.components.ProgramToggle.ideaTooltip": "革新を判断する。あなたが発明家であると考えてください。 この方法は革新的ですか？ この方法は意味がありますか？",
+  "infinity.components.ProgramToggle.planTooltip": "実現する。あなたをCEOと考えてください。 実行可能なビジネスに計画を変更するには？",
+  "infinity.components.ProgramToggle.stepTooltip": "プロジェクトマネージャーとしてあなたについて考えてみてください。 このプロジェクトセグメンテーションは、人々が自分の仕事を整理するのを容易にしますか？",
+  "infinity.components.ProgramToggle.taskTooltip": "エンジニアとしてあなたについて考えてみてください。 この機能を実装する正しい方法は何ですか？",
   "infinity.components.SignInLine.signIn": "ログイン",
   "infinity.components.TabDataField.dataField": "データフィールド",
   "infinity.components.TabDataField.putData": "あなたのデータをここに入れる",
@@ -195,8 +167,7 @@
   "infinity.components.TextEditor.heading1": "見出し1",
   "infinity.components.TextEditor.heading2": "見出し2",
   "infinity.components.TextEditor.heading3": "見出し3",
-  "infinity.components.TopicFundData.topicFundTooltip":
-    "トピックに予約されている時間数",
+  "infinity.components.TopicFundData.topicFundTooltip": "トピックに予約されている時間数",
   "infinity.components.TopicFundData.fund": "資金を提供",
   "infinity.components.TopicProgressBar.assumed": "見積もり",
   "infinity.components.TopicProgressBar.overpay": "支払いすぎ",
@@ -212,36 +183,26 @@
   "infinity.common.configs.step": "段階",
   "infinity.common.configs.task": "用事",
   "infinity.scenes.Home.TopicList.filterReset": "リセット",
-  "infinity.scenes.Home.TopicList.filteredByParents":
-    "親トピックが表示されます。",
-  "infinity.scenes.Home.TopicList.filteredByChildren":
-    "子トピックが表示されます。",
+  "infinity.scenes.Home.TopicList.filteredByParents": "親トピックが表示されます。",
+  "infinity.scenes.Home.TopicList.filteredByChildren": "子トピックが表示されます。",
   "infinity.scenes.ShowCaseTopic.TopicBody.edit": "編集",
   "infinity.scenes.ShowCaseTopic.details": "詳細",
   "infinity.scenes.Topic.children": "子トピック",
   "infinity.scenes.Topic.parents": "親トピック",
-  "infinity.scenes.TopicView.visualEditorHint":
-    "現在の言語でトピックを作成できます。",
-  "infinity.scenes.TopicView.sourceEditorHint":
-    "どの言語でも同時にトピックを作成できます。言語タグ .:lang:タイトル、.:lang:本文 でテキストを分割してください。",
+  "infinity.scenes.TopicView.visualEditorHint": "現在の言語でトピックを作成できます。",
+  "infinity.scenes.TopicView.sourceEditorHint": "どの言語でも同時にトピックを作成できます。言語タグ .:lang:タイトル、.:lang:本文 でテキストを分割してください。",
   "infinity.scenes.TopicView.visualEditorTab": "ビジュアルエディタ",
   "infinity.scenes.TopicView.sourceEditorTab": "ソースエディタ",
-  "infinity.scenes.TopicView.visualEditorMsg":
-    "内容はビジュアルエディタから取得されます。",
-  "infinity.scenes.TopicView.sourceEditorMsg":
-    "内容はソースエディタから取得されます。",
+  "infinity.scenes.TopicView.visualEditorMsg": "内容はビジュアルエディタから取得されます。",
+  "infinity.scenes.TopicView.sourceEditorMsg": "内容はソースエディタから取得されます。",
   "infinity.scenes.TopicView.showCaseData": "プレゼンテーションデータエディタ",
   "infinity.scenes.TopicView.fillShowCaseData": "デフォルトのデータで埋め込む",
-  "infinity.scenes.TopicView.showCasePlaceholder":
-    "有効なJSONを入力するか、空白にします",
-  "infinity.scenes.TopicView.showCaseError":
-    "プレゼンテーションエラー：無効なJSON",
+  "infinity.scenes.TopicView.showCasePlaceholder": "有効なJSONを入力するか、空白にします",
+  "infinity.scenes.TopicView.showCaseError": "プレゼンテーションエラー：無効なJSON",
   "infinity.components.TopicFundData.prize": "賞金",
-  "infinity.components.TopicFundData.topicPrizeTooltip":
-    "このチャレンジを解決する人に割り当てられる金額。",
-  "infinity.scenes.Topic.loadAllComments":
-    "すべての言語でコメントを表示する ({commentsCount})",
-  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
-    "日本のコメントを表示する",
-  "infinity.scenes.Topic.languages": "语言: "
+  "infinity.components.TopicFundData.topicPrizeTooltip": "このチャレンジを解決する人に割り当てられる金額。",
+  "infinity.scenes.Topic.loadAllComments": "すべての言語でコメントを表示する ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage": "日本のコメントを表示する",
+  "infinity.scenes.Topic.languages": "语言: ",
+  "infinity.scenes.Topic.Comments.placeholder": "時間を使いましたか？1時間を過ごした場合は{1}、もう半分を過ごす予定がある場合は{?0.5}を入力してください。 \n- タスクA {1} {?1} \n- タスクB {?.5}"
 }

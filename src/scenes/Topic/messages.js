@@ -118,6 +118,11 @@ export default defineMessages({
     id: 'infinity.scenes.Topic.CommentForm.submit',
     defaultMessage: 'Submit'
   },
+  commentPlaceholder: {
+    id: 'infinity.scenes.Topic.Comments.placeholder',
+    defaultMessage:
+      'Spent time? Type {1} if you spent an hour, {?0.5} if you expect to spend a half more. Use it multiple times:\n- Task A {1} {?1}\n- Task B {?.5}'
+  },
   leaveComment: {
     id: 'infinity.scenes.Topic.CommentForm.leaveComment',
     defaultMessage: 'Leave your comment'

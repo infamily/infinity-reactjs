@@ -1,60 +1,45 @@
 {
   "infinity.components.Header.title": "ИНФИНИТИ",
-  "infinity.components.Header.subtitle":
-    "Открытые платформа для реализации глобальных целей.",
+  "infinity.components.Header.subtitle": "Открытые платформа для реализации глобальных целей.",
   "infinity.scenes.Home.Menu.title": "Главная",
-  "infinity.scenes.Home.TopicList.noTopics":
-    "Нет постов. Пропробуйте изменить фильтр.",
+  "infinity.scenes.Home.TopicList.noTopics": "Нет постов. Пропробуйте изменить фильтр.",
   "infinity.scenes.Home.HomeConfigPanel.search": "Поиск",
   "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder": "Фильтр",
-  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder":
-    "Отобразить как заголовки (дерево)",
-  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder":
-    "Отобразить как карточки",
-  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder":
-    "Показать только посты верхнего уровня",
+  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder": "Отобразить как заголовки (дерево)",
+  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder": "Отобразить как карточки",
+  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder": "Показать только посты верхнего уровня",
   "infinity.scenes.Home.HomeConfigPanel.allPlaceholder": "Показать все посты",
-  "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder":
-    "Выберете категории...",
+  "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder": "Выберете категории...",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Фильтр",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.view": "Тип",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.source": "Источник",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.tree": "Дерево",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "Карты",
-  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
-    "Родительские посты",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel": "Родительские посты",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all": "Все",
   "infinity.scenes.OtpLogin.signInTitle": "Вход",
   "infinity.scenes.OtpLogin.commonErrorTitle": "Ошибка =(",
-  "infinity.scenes.OtpLogin.commonErrorText":
-    "Что-то пошло не так. Попробуйте снова.",
+  "infinity.scenes.OtpLogin.commonErrorText": "Что-то пошло не так. Попробуйте снова.",
   "infinity.scenes.OtpLogin.signInErrorTitle": "Ошибка входа",
   "infinity.scenes.OtpLogin.invalidCaptcha": "Неверный код. Попробуйте снова.",
   "infinity.scenes.OtpLogin.signInErrorfillOut": "Поле должно быть заполнено.",
-  "infinity.scenes.OtpLogin.signInErrorWrongCode":
-    "Неверный код. Попробуйте снова.",
-  "infinity.scenes.OtpLogin.EmailView.invalidEmail":
-    "У вашей огранизации еще нет доступа. Введите другой e-mail.",
+  "infinity.scenes.OtpLogin.signInErrorWrongCode": "Неверный код. Попробуйте снова.",
+  "infinity.scenes.OtpLogin.EmailView.invalidEmail": "У вашей огранизации еще нет доступа. Введите другой e-mail.",
   "infinity.scenes.OtpLogin.EmailView.serverErrTitle": "Ошибка сервера",
-  "infinity.scenes.OtpLogin.EmailView.allFilledOut":
-    "Все поля должны быть заполнены.",
+  "infinity.scenes.OtpLogin.EmailView.allFilledOut": "Все поля должны быть заполнены.",
   "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "E-mail",
   "infinity.scenes.OtpLogin.EmailView.captchaPlaceholder": "Код",
   "infinity.scenes.OtpLogin.EmailView.otpPlaceholder": "Одноразовый пароль",
-  "infinity.scenes.OtpLogin.EmailView.tosRead":
-    "Я ознакомился и согласен с документом:",
+  "infinity.scenes.OtpLogin.EmailView.tosRead": "Я ознакомился и согласен с документом:",
   "infinity.scenes.OtpLogin.EmailView.tos": "Условия использования",
   "infinity.scenes.OtpLogin.EmailView.continue": "Продолжить",
-  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
-    "<strong>Одноразовый пароль</strong> был отпрален на ваш e-mail.",
+  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent": "<strong>Одноразовый пароль</strong> был отпрален на ваш e-mail.",
   "infinity.scenes.OtpLogin.LoginView.resend": "Отправить код снова",
   "infinity.scenes.OtpLogin.LoginView.submit": "Отправить",
   "infinity.scenes.QuotaBox.buy": "Оплатить банковской картой",
   "infinity.scenes.QuotaBox.history": "История оплат",
-  "infinity.scenes.QuotaBox.quotaDescription":
-    "Просмотрите проекты и выберете те, которые Вам нравятся.",
-  "infinity.scenes.QuotaBox.countableHours.COUNT":
-    "{count, plural, =0 {No available quota.} one {час} few {часа} many {часов} other {часа}}",
+  "infinity.scenes.QuotaBox.quotaDescription": "Просмотрите проекты и выберете те, которые Вам нравятся.",
+  "infinity.scenes.QuotaBox.countableHours.COUNT": "{count, plural, =0 {No available quota.} one {час} few {часа} many {часов} other {часа}}",
   "infinity.scenes.QuotaBox.amounfOfHours": "часов",
   "infinity.scenes.QuotaBox.yourQuota": "Ваша квота",
   "infinity.scenes.StreamTab.schema": "Схема",
@@ -73,24 +58,20 @@
   "infinity.scenes.Topic.Comments.investment": "Инвестиции",
   "infinity.scenes.Topic.Comments.invest": "Внести",
   "infinity.scenes.Topic.TransactionBox.buy": "Оплатить банковской картой",
-  "infinity.scenes.Topic.TransactionBox.invalidHours":
-    "Неверное количество часов.",
+  "infinity.scenes.Topic.TransactionBox.invalidHours": "Неверное количество часов.",
   "infinity.scenes.Topic.TransactionBox.quotaOver": "Достигнул лимит квоты.",
   "infinity.scenes.Topic.TransactionBox.remaining": "Осталось квоты",
   "infinity.scenes.Topic.TransactionBox.amount": "Количество",
   "infinity.scenes.Topic.TransactionBox.receiver": "Получатель:",
-  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT":
-    "{count, plural, =0 {: нет квоты.} one {час} few {часа} many {часов} other {часа}}",
+  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: нет квоты.} one {час} few {часа} many {часов} other {часа}}",
   "infinity.scenes.Topic.TransactionBox.currency": "Валюта",
   "infinity.scenes.Topic.CommentForm.cancel": "Отменить",
   "infinity.scenes.Topic.CommentForm.save": "Сохранить",
-  "infinity.scenes.Topic.CommentForm.toLeaveComment":
-    "чтобы оставить комментарий",
+  "infinity.scenes.Topic.CommentForm.toLeaveComment": "чтобы оставить комментарий",
   "infinity.scenes.Topic.CommentForm.submit": "Отправить",
   "infinity.scenes.Topic.CommentForm.leaveComment": "Оставьте свой комментарий",
   "infinity.scenes.TopicView.Menu.title": "Меню",
-  "infinity.scenes.TopicView.submitErrorText":
-    "Заголовок обязателен к заполнению.",
+  "infinity.scenes.TopicView.submitErrorText": "Заголовок обязателен к заполнению.",
   "infinity.scenes.TopicView.submitError": "Ошибка при отправке формы",
   "infinity.scenes.TopicView.success": "Успешно",
   "infinity.scenes.TopicView.available": "Ваш пост доступен по ссылке:",
@@ -100,8 +81,7 @@
   "infinity.scenes.TopicView.create": "Создать",
   "infinity.scenes.TopicView.confirmation": "Подтверждение",
   "infinity.scenes.TopicView.select": "Выбрать...",
-  "infinity.scenes.TopicView.deleteConfirmation":
-    "Вы уверены, что хотите удалить пост?",
+  "infinity.scenes.TopicView.deleteConfirmation": "Вы уверены, что хотите удалить пост?",
   "infinity.scenes.TopicView.close": "Закрыть",
   "infinity.scenes.TopicView.delete": "Удалить",
   "infinity.scenes.TopicView.textPlaceholder": "Поделитесь своими мыслями...",
@@ -126,8 +106,7 @@
   "infinity.scenes.NoServer.noServer": "Такого сервера {name} нет.",
   "infinity.scenes.NoServer.such": "",
   "infinity.scenes.Terms.tos": "Условия использования",
-  "infinity.common.shortCountableHours.COUNT":
-    "{count, number}{count, plural, =0 {''} one {ч} other {ч}}",
+  "infinity.common.shortCountableHours.COUNT": "{count, number}{count, plural, =0 {''} one {ч} other {ч}}",
   "infinity.components.Balance.balanceTooltip": "Баланс",
   "infinity.components.Balance.remainingQuotaTooltip": "Оставшаяся квота",
   "infinity.common.Select.selectPlaceholder": "Выбрать...",
@@ -148,8 +127,7 @@
   "infinity.components.PayCheckout.amountPlaceholder": "Количество",
   "infinity.components.PayCheckout.CurrencyLabel": "Валюта",
   "infinity.components.PayCheckout.descriptionPlaceholder": "Описание",
-  "infinity.components.PayCheckout.serverError":
-    "Ошибка сервера. Попробуйте снова.",
+  "infinity.components.PayCheckout.serverError": "Ошибка сервера. Попробуйте снова.",
   "infinity.components.PayCheckout.pay": "Оплатить",
   "infinity.components.PayCheckout.name": "Имя",
   "infinity.components.PayCheckout.cvc": "CVC",
@@ -158,8 +136,7 @@
   "infinity.components.PayCheckout.zip": "Почтовый индекс",
   "infinity.components.PayCheckout.toFund": "чтобы инвестировать в проект",
   "infinity.components.ProgramToggle.programs": "Программы",
-  "infinity.components.ProgramToggle.importingToolip":
-    "Возможность импорта программ будет добавлена...",
+  "infinity.components.ProgramToggle.importingToolip": "Возможность импорта программ будет добавлена...",
   "infinity.components.ProgramToggle.all": "Все",
   "infinity.components.ProgramToggle.need": "Запрос",
   "infinity.components.ProgramToggle.goal": "Цели",
@@ -169,16 +146,11 @@
   "infinity.components.ProgramToggle.task": "Задача",
   "infinity.components.ProgramToggle.develop": "Развивка",
   "infinity.components.ProgramToggle.data": "Данные",
-  "infinity.components.ProgramToggle.goalTooltip":
-    "Судить цели. Подумайте, как вы являетесь членом Ассамблеи Объединенных Наций. Важны ли эти цели?",
-  "infinity.components.ProgramToggle.ideaTooltip":
-    "Судья новизны. Подумайте, как вы, изобретатель. Это новое? Имеет ли смысл смысл?",
-  "infinity.components.ProgramToggle.planTooltip":
-    "Реализовать проект. Подумайте, как вы генеральный директор. Как превратить его в жизнеспособный бизнес?",
-  "infinity.components.ProgramToggle.stepTooltip":
-    "Подумайте, как вы менеджер проекта. Будет ли эта разбивка облегчить людям возможность организовать работу?",
-  "infinity.components.ProgramToggle.taskTooltip":
-    "Подумайте, как вы инженер. Имеет ли смысл эта задача, каков правильный способ реализации этой функции?",
+  "infinity.components.ProgramToggle.goalTooltip": "Судить цели. Подумайте, как вы являетесь членом Ассамблеи Объединенных Наций. Важны ли эти цели?",
+  "infinity.components.ProgramToggle.ideaTooltip": "Судья новизны. Подумайте, как вы, изобретатель. Это новое? Имеет ли смысл смысл?",
+  "infinity.components.ProgramToggle.planTooltip": "Реализовать проект. Подумайте, как вы генеральный директор. Как превратить его в жизнеспособный бизнес?",
+  "infinity.components.ProgramToggle.stepTooltip": "Подумайте, как вы менеджер проекта. Будет ли эта разбивка облегчить людям возможность организовать работу?",
+  "infinity.components.ProgramToggle.taskTooltip": "Подумайте, как вы инженер. Имеет ли смысл эта задача, каков правильный способ реализации этой функции?",
   "infinity.components.SignInLine.signIn": "Нажмите войти",
   "infinity.components.TabDataField.dataField": "Поле данных",
   "infinity.components.TabDataField.putData": "Введите ваши данные",
@@ -195,8 +167,7 @@
   "infinity.components.TextEditor.heading1": "Заголовок 1",
   "infinity.components.TextEditor.heading2": "Заголовок 2",
   "infinity.components.TextEditor.heading3": "Заголовок 3",
-  "infinity.components.TopicFundData.topicFundTooltip":
-    "Количество зарезервированные часов для реализации проекта",
+  "infinity.components.TopicFundData.topicFundTooltip": "Количество зарезервированные часов для реализации проекта",
   "infinity.components.TopicFundData.fund": "Вклад",
   "infinity.components.TopicProgressBar.assumed": "Предологается",
   "infinity.components.TopicProgressBar.overpay": "Дополнительно",
@@ -212,36 +183,26 @@
   "infinity.common.configs.step": "Шаг",
   "infinity.common.configs.task": "Задача",
   "infinity.scenes.Home.TopicList.filterReset": "Сброс",
-  "infinity.scenes.Home.TopicList.filteredByParents":
-    "Отображены родительские посты текущего топика.",
-  "infinity.scenes.Home.TopicList.filteredByChildren":
-    "Отображены дочерние посты текущего топика.",
+  "infinity.scenes.Home.TopicList.filteredByParents": "Отображены родительские посты текущего топика.",
+  "infinity.scenes.Home.TopicList.filteredByChildren": "Отображены дочерние посты текущего топика.",
   "infinity.scenes.ShowCaseTopic.TopicBody.edit": "Редактировать",
   "infinity.scenes.ShowCaseTopic.details": "Детали",
   "infinity.scenes.Topic.children": "Дочерние посты",
   "infinity.scenes.Topic.parents": "Родительские посты",
-  "infinity.scenes.TopicView.visualEditorHint":
-    "Вы можете создать пост на текущем языке.",
-  "infinity.scenes.TopicView.sourceEditorHint":
-    "Вы можете создать пост на любом языке. Оберните ваш заголовок .:lang:заголовок и ваш текст .:lang:текст, чтобы добавить новый язык.",
+  "infinity.scenes.TopicView.visualEditorHint": "Вы можете создать пост на текущем языке.",
+  "infinity.scenes.TopicView.sourceEditorHint": "Вы можете создать пост на любом языке. Оберните ваш заголовок .:lang:заголовок и ваш текст .:lang:текст, чтобы добавить новый язык.",
   "infinity.scenes.TopicView.visualEditorTab": "Визуальный редактор",
   "infinity.scenes.TopicView.sourceEditorTab": "Редактор источника",
-  "infinity.scenes.TopicView.visualEditorMsg":
-    "Контент будет взят из визульного редактора.",
-  "infinity.scenes.TopicView.sourceEditorMsg":
-    "Контент будет взят из визульного редактора источника.",
+  "infinity.scenes.TopicView.visualEditorMsg": "Контент будет взят из визульного редактора.",
+  "infinity.scenes.TopicView.sourceEditorMsg": "Контент будет взят из визульного редактора источника.",
   "infinity.scenes.TopicView.showCaseData": "Редактор страницы презинтации",
   "infinity.scenes.TopicView.fillShowCaseData": "Заполнить шаблоном",
-  "infinity.scenes.TopicView.showCasePlaceholder":
-    "Введите валидный JSON или оставте пустым",
-  "infinity.scenes.TopicView.showCaseError":
-    "Ошибка редактора страницы презинтации: Невалидный JSON",
+  "infinity.scenes.TopicView.showCasePlaceholder": "Введите валидный JSON или оставте пустым",
+  "infinity.scenes.TopicView.showCaseError": "Ошибка редактора страницы презинтации: Невалидный JSON",
   "infinity.components.TopicFundData.prize": "приз",
-  "infinity.components.TopicFundData.topicPrizeTooltip":
-    "Сумма, выделенная для тех, кто решает эту проблему.",
-  "infinity.scenes.Topic.loadAllComments":
-    "Показать комментарии на всех языках ({commentsCount})",
-  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
-    "Показать комментарии на русском",
-  "infinity.scenes.Topic.languages": "Языки: "
+  "infinity.components.TopicFundData.topicPrizeTooltip": "Сумма, выделенная для тех, кто решает эту проблему.",
+  "infinity.scenes.Topic.loadAllComments": "Показать комментарии на всех языках ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage": "Показать комментарии на русском",
+  "infinity.scenes.Topic.languages": "Языки: ",
+  "infinity.scenes.Topic.Comments.placeholder": "Вы использовали время? Введите {1}, если вы потратили час, {?0.5}, если вы ожидаете потратить еще половину. Используйте его несколько раз: \n- Задача A {1} {?1} \n- Задача B {?.5}"
 }

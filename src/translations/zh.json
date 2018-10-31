@@ -24,8 +24,7 @@
   "infinity.scenes.OtpLogin.invalidCaptcha": "无效的图形验证码。再试一次。",
   "infinity.scenes.OtpLogin.signInErrorfillOut": "必填字段未填写。",
   "infinity.scenes.OtpLogin.signInErrorWrongCode": "无效的验证码。再试一次。",
-  "infinity.scenes.OtpLogin.EmailView.invalidEmail":
-    "您的组织不是此服务器的成员。输入一个有效的电子邮件地址。",
+  "infinity.scenes.OtpLogin.EmailView.invalidEmail": "您的组织不是此服务器的成员。输入一个有效的电子邮件地址。",
   "infinity.scenes.OtpLogin.EmailView.serverErrTitle": "服务器错误",
   "infinity.scenes.OtpLogin.EmailView.allFilledOut": "所有的字段都应该填写。",
   "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "邮箱",
@@ -34,16 +33,13 @@
   "infinity.scenes.OtpLogin.EmailView.tosRead": "我已阅读并同意该文件：",
   "infinity.scenes.OtpLogin.EmailView.tos": "服务条款",
   "infinity.scenes.OtpLogin.EmailView.continue": "继续",
-  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
-    "您的<strong>一次性口令</strong>已发送到您的邮箱。",
+  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent": "您的<strong>一次性口令</strong>已发送到您的邮箱。",
   "infinity.scenes.OtpLogin.LoginView.resend": "重新发送口令",
   "infinity.scenes.OtpLogin.LoginView.submit": "提交",
   "infinity.scenes.QuotaBox.buy": "用银行卡买信用",
   "infinity.scenes.QuotaBox.history": "支付历史",
-  "infinity.scenes.QuotaBox.quotaDescription":
-    "欢迎浏览您喜欢的话题和支持项目。",
-  "infinity.scenes.QuotaBox.countableHours.COUNT":
-    "{count, plural, =0 {没有可用的金额。} one {小时} few {小时} many {小时} other {小时}}",
+  "infinity.scenes.QuotaBox.quotaDescription": "欢迎浏览您喜欢的话题和支持项目。",
+  "infinity.scenes.QuotaBox.countableHours.COUNT": "{count, plural, =0 {没有可用的金额。} one {小时} few {小时} many {小时} other {小时}}",
   "infinity.scenes.QuotaBox.amounfOfHours": "小时",
   "infinity.scenes.QuotaBox.yourQuota": "您的金额",
   "infinity.scenes.StreamTab.schema": "来源",
@@ -67,8 +63,7 @@
   "infinity.scenes.Topic.TransactionBox.remaining": "剩余的金额",
   "infinity.scenes.Topic.TransactionBox.amount": "数额",
   "infinity.scenes.Topic.TransactionBox.receiver": "收款用户:",
-  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT":
-    "{count, plural, =0 {: нет квоты.} one {小时} few {小时} many {小时} other {小时}}",
+  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: нет квоты.} one {小时} few {小时} many {小时} other {小时}}",
   "infinity.scenes.Topic.TransactionBox.currency": "货币",
   "infinity.scenes.Topic.CommentForm.cancel": "取消",
   "infinity.scenes.Topic.CommentForm.save": "保存",
@@ -111,8 +106,7 @@
   "infinity.scenes.NoServer.noServer": "找不到服务器 {name} 。",
   "infinity.scenes.NoServer.such": "",
   "infinity.scenes.Terms.tos": "服务条款",
-  "infinity.common.shortCountableHours.COUNT":
-    "{count, number}{count, plural, =0 {''} one {h} other {h}}",
+  "infinity.common.shortCountableHours.COUNT": "{count, number}{count, plural, =0 {''} one {h} other {h}}",
   "infinity.components.Balance.balanceTooltip": "余额",
   "infinity.components.Balance.remainingQuotaTooltip": "可用的金额",
   "infinity.common.Select.selectPlaceholder": "选择...",
@@ -142,8 +136,7 @@
   "infinity.components.PayCheckout.zip": "邮政编码",
   "infinity.components.PayCheckout.toFund": "为项目提供资金",
   "infinity.components.ProgramToggle.programs": "程序",
-  "infinity.components.ProgramToggle.importingToolip":
-    "导入程序功能即将发布...",
+  "infinity.components.ProgramToggle.importingToolip": "导入程序功能即将发布...",
   "infinity.components.ProgramToggle.all": "全部",
   "infinity.components.ProgramToggle.need": "需要",
   "infinity.components.ProgramToggle.goal": "目标",
@@ -153,16 +146,11 @@
   "infinity.components.ProgramToggle.task": "任务",
   "infinity.components.ProgramToggle.develop": "开发",
   "infinity.components.ProgramToggle.data": "数据",
-  "infinity.components.ProgramToggle.goalTooltip":
-    "判断目标。想想你是联合国大会的成员。这些目标是否重要呢？",
-  "infinity.components.ProgramToggle.ideaTooltip":
-    "判断创新性。想想你是发明者。这方法是创新吗？这方法有道理吗？",
-  "infinity.components.ProgramToggle.planTooltip":
-    "实现。想想你是首席执行官。如何把计划变成到一个可行的业务？",
-  "infinity.components.ProgramToggle.stepTooltip":
-    "想想你是项目经理。这项目细分是否可以让人们轻松组织工作？",
-  "infinity.components.ProgramToggle.taskTooltip":
-    "想想你是工程师。实现此功能的正确方法是什么？",
+  "infinity.components.ProgramToggle.goalTooltip": "判断目标。想想你是联合国大会的成员。这些目标是否重要呢？",
+  "infinity.components.ProgramToggle.ideaTooltip": "判断创新性。想想你是发明者。这方法是创新吗？这方法有道理吗？",
+  "infinity.components.ProgramToggle.planTooltip": "实现。想想你是首席执行官。如何把计划变成到一个可行的业务？",
+  "infinity.components.ProgramToggle.stepTooltip": "想想你是项目经理。这项目细分是否可以让人们轻松组织工作？",
+  "infinity.components.ProgramToggle.taskTooltip": "想想你是工程师。实现此功能的正确方法是什么？",
   "infinity.components.SignInLine.signIn": "登录",
   "infinity.components.TabDataField.dataField": "数据字段",
   "infinity.components.TabDataField.putData": "请输入您的数据",
@@ -201,22 +189,19 @@
   "infinity.scenes.Topic.children": "子话题",
   "infinity.scenes.Topic.parents": "上级话题",
   "infinity.scenes.TopicView.visualEditorHint": "用中文写内容。",
-  "infinity.scenes.TopicView.sourceEditorHint":
-    "用多语言写内容。把每个语言的内容用 .:lang:话题 和 .:lang:正文 分离。",
+  "infinity.scenes.TopicView.sourceEditorHint": "用多语言写内容。把每个语言的内容用 .:lang:话题 和 .:lang:正文 分离。",
   "infinity.scenes.TopicView.visualEditorTab": "所见编辑器",
   "infinity.scenes.TopicView.sourceEditorTab": "源文编辑器",
   "infinity.scenes.TopicView.visualEditorMsg": "内容将来自所见编辑器。",
   "infinity.scenes.TopicView.sourceEditorMsg": "内容将来自源文编辑器。",
   "infinity.scenes.TopicView.showCaseData": "展示页面数据编辑器",
   "infinity.scenes.TopicView.fillShowCaseData": "填写默认数据",
-  "infinity.scenes.TopicView.showCasePlaceholder":
-    "输入一个格式有效的JSON或留空",
+  "infinity.scenes.TopicView.showCasePlaceholder": "输入一个格式有效的JSON或留空",
   "infinity.scenes.TopicView.showCaseError": "陈列错误：无效的JSON",
   "infinity.components.TopicFundData.prize": "奖励",
-  "infinity.components.TopicFundData.topicPrizeTooltip":
-    "为解决这挑战的人分配的金额",
-  "infinity.scenes.Topic.loadAllComments":
-    "表示所有语言的评论 ({commentsCount})",
+  "infinity.components.TopicFundData.topicPrizeTooltip": "为解决这挑战的人分配的金额",
+  "infinity.scenes.Topic.loadAllComments": "表示所有语言的评论 ({commentsCount})",
   "infinity.scenes.Topic.showCommentsInCurrentLanguage": "表示中文的评论",
-  "infinity.scenes.Topic.languages": "语言: "
+  "infinity.scenes.Topic.languages": "语言: ",
+  "infinity.scenes.Topic.Comments.placeholder": "用时间了吗？度过了一个小时就写入 {1}，还需要度过半个小时就写入 {?0.5} 。多次可以写入，比如:\n- 任务 A {1} {?1}\n- 任务 B {?.5}"
 }

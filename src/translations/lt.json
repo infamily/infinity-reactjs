@@ -1,62 +1,45 @@
 {
   "infinity.components.Header.title": "INFINITI",
-  "infinity.components.Header.subtitle":
-    "Atvira platforma globaliems tikslams siekti.",
+  "infinity.components.Header.subtitle": "Atvira platforma globaliems tikslams siekti.",
   "infinity.scenes.Home.Menu.title": "Pradžia",
-  "infinity.scenes.Home.TopicList.noTopics":
-    "Temų nerasta. Pabandykite pakeisti filtrų parametrus.",
+  "infinity.scenes.Home.TopicList.noTopics": "Temų nerasta. Pabandykite pakeisti filtrų parametrus.",
   "infinity.scenes.Home.HomeConfigPanel.search": "Paieška",
-  "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder":
-    "Filtrų nustatymai",
-  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder":
-    "Atvaizduoti kaip medį.",
-  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder":
-    "Atvaizduoti kaip korteles.",
-  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder":
-    "Rodyti tik aukščiausio lygio temas.",
+  "infinity.scenes.Home.HomeConfigPanel.settingsPlaceholder": "Filtrų nustatymai",
+  "infinity.scenes.Home.HomeConfigPanel.treePlaceholder": "Atvaizduoti kaip medį.",
+  "infinity.scenes.Home.HomeConfigPanel.gridPlaceholder": "Atvaizduoti kaip korteles.",
+  "infinity.scenes.Home.HomeConfigPanel.topPlaceholder": "Rodyti tik aukščiausio lygio temas.",
   "infinity.scenes.Home.HomeConfigPanel.allPlaceholder": "Rodyti visas temas.",
-  "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder":
-    "Parinkti kateogrijas...",
+  "infinity.scenes.Home.HomeConfigPanel.selectPlaceholder": "Parinkti kateogrijas...",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.filter": "Filtruoti",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.view": "Vaizdas",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.source": "Temos",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.tree": "Medis",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.grid": "Kortos",
-  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel":
-    "Aukščiausio lygio",
+  "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.topLevel": "Aukščiausio lygio",
   "infinity.scenes.Home.HomeConfigPanel.TopicSourceToggle.all": "Visos",
   "infinity.scenes.OtpLogin.signInTitle": "Prisijungti",
   "infinity.scenes.OtpLogin.commonErrorTitle": "Klaida",
-  "infinity.scenes.OtpLogin.commonErrorText":
-    "Kažkas netaip. Pabandykite dar kartą.",
+  "infinity.scenes.OtpLogin.commonErrorText": "Kažkas netaip. Pabandykite dar kartą.",
   "infinity.scenes.OtpLogin.signInErrorTitle": "Prisijungimo klaida",
-  "infinity.scenes.OtpLogin.invalidCaptcha":
-    "Neteisingas captcha. Bandykite dar kartą.",
+  "infinity.scenes.OtpLogin.invalidCaptcha": "Neteisingas captcha. Bandykite dar kartą.",
   "infinity.scenes.OtpLogin.signInErrorfillOut": "Šis laukas yra privalomas.",
-  "infinity.scenes.OtpLogin.signInErrorWrongCode":
-    "Neteisingas kodas. Bandykite dar kartą.",
-  "infinity.scenes.OtpLogin.EmailView.invalidEmail":
-    "Jūsų organizacija nėra šio serverio narys. Įveskite teisingą el. pašto adresą.",
+  "infinity.scenes.OtpLogin.signInErrorWrongCode": "Neteisingas kodas. Bandykite dar kartą.",
+  "infinity.scenes.OtpLogin.EmailView.invalidEmail": "Jūsų organizacija nėra šio serverio narys. Įveskite teisingą el. pašto adresą.",
   "infinity.scenes.OtpLogin.EmailView.serverErrTitle": "Serverio klaida",
-  "infinity.scenes.OtpLogin.EmailView.allFilledOut":
-    "Užpildykite visus laukelius.",
+  "infinity.scenes.OtpLogin.EmailView.allFilledOut": "Užpildykite visus laukelius.",
   "infinity.scenes.OtpLogin.EmailView.emailPlaceholder": "El. pašto adresas",
   "infinity.scenes.OtpLogin.EmailView.captchaPlaceholder": "Captcha",
-  "infinity.scenes.OtpLogin.EmailView.otpPlaceholder":
-    "Vienkartinis slaptažodis",
+  "infinity.scenes.OtpLogin.EmailView.otpPlaceholder": "Vienkartinis slaptažodis",
   "infinity.scenes.OtpLogin.EmailView.tosRead": "Aš perskaičiau ir sutinku su",
   "infinity.scenes.OtpLogin.EmailView.tos": "paslaugų tiekimo sąlygomis",
   "infinity.scenes.OtpLogin.EmailView.continue": "Tęsti",
-  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent":
-    "<strong>Vienkartinis slaptažodis</strong> išsiųstas jūsų nurodyti el. pašto adresu.",
+  "infinity.scenes.OtpLogin.LoginView.HTML.otpHasBeenSent": "<strong>Vienkartinis slaptažodis</strong> išsiųstas jūsų nurodyti el. pašto adresu.",
   "infinity.scenes.OtpLogin.LoginView.resend": "Pakartotinai siųsti",
   "infinity.scenes.OtpLogin.LoginView.submit": "Pateikti",
   "infinity.scenes.QuotaBox.buy": "Pirkti kreditą su banko kortele",
   "infinity.scenes.QuotaBox.history": "Mokėjimų istorija",
-  "infinity.scenes.QuotaBox.quotaDescription":
-    "Peržiūrėkite temas, ir palaikykite jums patinkančius projektus.",
-  "infinity.scenes.QuotaBox.countableHours.COUNT":
-    "{count, plural, =0 {Balansas nulinis.} one {val.} other {val.}}",
+  "infinity.scenes.QuotaBox.quotaDescription": "Peržiūrėkite temas, ir palaikykite jums patinkančius projektus.",
+  "infinity.scenes.QuotaBox.countableHours.COUNT": "{count, plural, =0 {Balansas nulinis.} one {val.} other {val.}}",
   "infinity.scenes.QuotaBox.amounfOfHours": "val.",
   "infinity.scenes.QuotaBox.yourQuota": "Jūsų balansas yra",
   "infinity.scenes.StreamTab.schema": "Šaltinis",
@@ -75,15 +58,12 @@
   "infinity.scenes.Topic.Comments.investment": "Investicijos",
   "infinity.scenes.Topic.Comments.invest": "Investuoti",
   "infinity.scenes.Topic.TransactionBox.buy": "Pirkti kreditus kortele",
-  "infinity.scenes.Topic.TransactionBox.invalidHours":
-    "Klaidingas valandų skaičius.",
+  "infinity.scenes.Topic.TransactionBox.invalidHours": "Klaidingas valandų skaičius.",
   "infinity.scenes.Topic.TransactionBox.quotaOver": "Nepakankamas kreditas.",
-  "infinity.scenes.Topic.TransactionBox.remaining":
-    "Šiandienos kredito limitas",
+  "infinity.scenes.Topic.TransactionBox.remaining": "Šiandienos kredito limitas",
   "infinity.scenes.Topic.TransactionBox.amount": "Kiekis",
   "infinity.scenes.Topic.TransactionBox.receiver": "Gavėjas:",
-  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT":
-    "{count, plural, =0 {: nėra kredito.} one {val.} other {val.}}",
+  "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: nėra kredito.} one {val.} other {val.}}",
   "infinity.scenes.Topic.TransactionBox.currency": "Valiuta",
   "infinity.scenes.Topic.CommentForm.cancel": "Atsisakyti",
   "infinity.scenes.Topic.CommentForm.save": "Išsaugoti",
@@ -91,8 +71,7 @@
   "infinity.scenes.Topic.CommentForm.submit": "Pateikti",
   "infinity.scenes.Topic.CommentForm.leaveComment": "Palikite komentarą",
   "infinity.scenes.TopicView.Menu.title": "Meniu",
-  "infinity.scenes.TopicView.submitErrorText":
-    "Temos pavadinimas yra privalomas.",
+  "infinity.scenes.TopicView.submitErrorText": "Temos pavadinimas yra privalomas.",
   "infinity.scenes.TopicView.submitError": "Pateikimo klaida",
   "infinity.scenes.TopicView.success": "Pavyko",
   "infinity.scenes.TopicView.available": "Jūsų tema yra adresu:",
@@ -102,8 +81,7 @@
   "infinity.scenes.TopicView.create": "Sukurti",
   "infinity.scenes.TopicView.confirmation": "Patvirtinimas",
   "infinity.scenes.TopicView.select": "Pasirinkti...",
-  "infinity.scenes.TopicView.deleteConfirmation":
-    "Ar jūs tikrai norite ištrinti šią temą?",
+  "infinity.scenes.TopicView.deleteConfirmation": "Ar jūs tikrai norite ištrinti šią temą?",
   "infinity.scenes.TopicView.close": "Užverti",
   "infinity.scenes.TopicView.delete": "Ištrinti",
   "infinity.scenes.TopicView.textPlaceholder": "Pasidalinkite savo...",
@@ -128,8 +106,7 @@
   "infinity.scenes.NoServer.noServer": "Nėra serverio {name}.",
   "infinity.scenes.NoServer.such": "tokio",
   "infinity.scenes.Terms.tos": "Paslaugų teikimo sąlygos",
-  "infinity.common.shortCountableHours.COUNT":
-    "{count, number}{count, plural, =0 {''} one {h} other {h}}",
+  "infinity.common.shortCountableHours.COUNT": "{count, number}{count, plural, =0 {''} one {h} other {h}}",
   "infinity.components.Balance.balanceTooltip": "Balansas",
   "infinity.components.Balance.remainingQuotaTooltip": "Likęs kreditas",
   "infinity.common.Select.selectPlaceholder": "Pasirinkti...",
@@ -150,8 +127,7 @@
   "infinity.components.PayCheckout.amountPlaceholder": "Suma",
   "infinity.components.PayCheckout.CurrencyLabel": "Valiuta",
   "infinity.components.PayCheckout.descriptionPlaceholder": "Aprašymas",
-  "infinity.components.PayCheckout.serverError":
-    "Serverio klaida. Bandykite dar kartą.",
+  "infinity.components.PayCheckout.serverError": "Serverio klaida. Bandykite dar kartą.",
   "infinity.components.PayCheckout.pay": "Mokėti",
   "infinity.components.PayCheckout.name": "Vardas",
   "infinity.components.PayCheckout.cvc": "CVC",
@@ -160,8 +136,7 @@
   "infinity.components.PayCheckout.zip": "Pašto kodas",
   "infinity.components.PayCheckout.toFund": "finansuoti projektą",
   "infinity.components.ProgramToggle.programs": "Kodas",
-  "infinity.components.ProgramToggle.importingToolip":
-    "Visų programų importo galimybės ruošiamos išlesti...",
+  "infinity.components.ProgramToggle.importingToolip": "Visų programų importo galimybės ruošiamos išlesti...",
   "infinity.components.ProgramToggle.all": "Viskas",
   "infinity.components.ProgramToggle.need": "Poreikiai",
   "infinity.components.ProgramToggle.goal": "Tikslai",
@@ -171,16 +146,11 @@
   "infinity.components.ProgramToggle.task": "Užduotys",
   "infinity.components.ProgramToggle.develop": "Plėtra",
   "infinity.components.ProgramToggle.data": "Duomenys",
-  "infinity.components.ProgramToggle.goalTooltip":
-    "Vertink tikslus. Įsivaizduok, kad esi Jungtinių Tautų asamblėjos narys. Kurie tikslai svarbūs, kodėl?",
-  "infinity.components.ProgramToggle.ideaTooltip":
-    "Vertink idėjas. Įsivaizduok, kad esi išradėjas. Ar pasiūlytas metodas - naujas, ar adekvatus?",
-  "infinity.components.ProgramToggle.planTooltip":
-    "Įgyvendinimas. Įsivaizduok, kad įmonės generalinis direktorius. Kaip paversti tai gyvybingu verslu?",
-  "infinity.components.ProgramToggle.stepTooltip":
-    "Įsivaizduok, kad esi projektų vadovas. Kaip suskaidyti projektą, kad kitiems būtų lengva organizuoti darbą?",
-  "infinity.components.ProgramToggle.taskTooltip":
-    "Įsivaizduo, kad esi inžinierius. Ar ši užduotis prasminga? Koks būtų teisingiausas būdas įgyvendinti šį funkcionalumą?",
+  "infinity.components.ProgramToggle.goalTooltip": "Vertink tikslus. Įsivaizduok, kad esi Jungtinių Tautų asamblėjos narys. Kurie tikslai svarbūs, kodėl?",
+  "infinity.components.ProgramToggle.ideaTooltip": "Vertink idėjas. Įsivaizduok, kad esi išradėjas. Ar pasiūlytas metodas - naujas, ar adekvatus?",
+  "infinity.components.ProgramToggle.planTooltip": "Įgyvendinimas. Įsivaizduok, kad įmonės generalinis direktorius. Kaip paversti tai gyvybingu verslu?",
+  "infinity.components.ProgramToggle.stepTooltip": "Įsivaizduok, kad esi projektų vadovas. Kaip suskaidyti projektą, kad kitiems būtų lengva organizuoti darbą?",
+  "infinity.components.ProgramToggle.taskTooltip": "Įsivaizduo, kad esi inžinierius. Ar ši užduotis prasminga? Koks būtų teisingiausas būdas įgyvendinti šį funkcionalumą?",
   "infinity.components.SignInLine.signIn": "Prisijungti",
   "infinity.components.TabDataField.dataField": "Duomenų lauką",
   "infinity.components.TabDataField.putData": "Įveskite duomenis čia",
@@ -197,8 +167,7 @@
   "infinity.components.TextEditor.heading1": "Antraštė 1",
   "infinity.components.TextEditor.heading2": "Antraštė 2",
   "infinity.components.TextEditor.heading3": "Antraštė 3",
-  "infinity.components.TopicFundData.topicFundTooltip":
-    "Valandų skaičius skirtas šiai temai",
+  "infinity.components.TopicFundData.topicFundTooltip": "Valandų skaičius skirtas šiai temai",
   "infinity.components.TopicFundData.fund": "Finansuoti",
   "infinity.components.TopicProgressBar.assumed": "Poreikis",
   "infinity.components.TopicProgressBar.overpay": "Permoka",
@@ -213,38 +182,26 @@
   "infinity.common.configs.step": "Etapas",
   "infinity.common.configs.task": "Užduotis",
   "infinity.scenes.Home.TopicList.filterReset": "Anuliuoti",
-  "infinity.scenes.Home.TopicList.filteredByParents":
-    "Aktyvios temos aukštesnio lygio temos.",
-  "infinity.scenes.Home.TopicList.filteredByChildren":
-    "Aktyvios temos žemesnio lygio temos.",
+  "infinity.scenes.Home.TopicList.filteredByParents": "Aktyvios temos aukštesnio lygio temos.",
+  "infinity.scenes.Home.TopicList.filteredByChildren": "Aktyvios temos žemesnio lygio temos.",
   "infinity.scenes.ShowCaseTopic.TopicBody.edit": "Redguoti",
   "infinity.scenes.ShowCaseTopic.details": "",
   "infinity.scenes.Topic.children": "Žemesnio lygio",
   "infinity.scenes.Topic.parents": "Aukštesnio lygio",
-  "infinity.scenes.TopicView.visualEditorHint":
-    "Čia galite rašyti turinį esamąja aktyvia kalba.",
-  "infinity.scenes.TopicView.sourceEditorHint":
-    "Čia galite rašyti turinį bet kuria kalba. Atskirkite kalbas .:lang:pavadinimas ir .:lang:tekstas žymėmis, kur lang yra kalbos raktas (pvz., 'en', 'lt', ir t.t.).",
+  "infinity.scenes.TopicView.visualEditorHint": "Čia galite rašyti turinį esamąja aktyvia kalba.",
+  "infinity.scenes.TopicView.sourceEditorHint": "Čia galite rašyti turinį bet kuria kalba. Atskirkite kalbas .:lang:pavadinimas ir .:lang:tekstas žymėmis, kur lang yra kalbos raktas (pvz., 'en', 'lt', ir t.t.).",
   "infinity.scenes.TopicView.visualEditorTab": "Vizualus redaktorius",
   "infinity.scenes.TopicView.sourceEditorTab": "Šaltinio redaktorius",
-  "infinity.scenes.TopicView.visualEditorMsg":
-    "Turinys bus išsaugotas iš vizualaus redaktoriaus.",
-  "infinity.scenes.TopicView.sourceEditorMsg":
-    "Turinys bus išsaugotas iš šaltinio redaktoriaus.",
-  "infinity.scenes.TopicView.showCaseData":
-    "Prezentacijos puslapio duomenų redaktorius",
-  "infinity.scenes.TopicView.fillShowCaseData":
-    "Užpildyti numatytais duomenimis",
-  "infinity.scenes.TopicView.showCasePlaceholder":
-    "Įveskite teisingą JSON arba palikti tuščią",
-  "infinity.scenes.TopicView.showCaseError":
-    "Prezentacijos klaida: neteisingas JSON",
+  "infinity.scenes.TopicView.visualEditorMsg": "Turinys bus išsaugotas iš vizualaus redaktoriaus.",
+  "infinity.scenes.TopicView.sourceEditorMsg": "Turinys bus išsaugotas iš šaltinio redaktoriaus.",
+  "infinity.scenes.TopicView.showCaseData": "Prezentacijos puslapio duomenų redaktorius",
+  "infinity.scenes.TopicView.fillShowCaseData": "Užpildyti numatytais duomenimis",
+  "infinity.scenes.TopicView.showCasePlaceholder": "Įveskite teisingą JSON arba palikti tuščią",
+  "infinity.scenes.TopicView.showCaseError": "Prezentacijos klaida: neteisingas JSON",
   "infinity.components.TopicFundData.prize": "prizas",
-  "infinity.components.TopicFundData.topicPrizeTooltip":
-    "Pinigų suma rezervuota tiems, kas išspręs šią problemą.",
-  "infinity.scenes.Topic.loadAllComments":
-    "Rodyti visų kalbų komentarus ({commentsCount})",
-  "infinity.scenes.Topic.showCommentsInCurrentLanguage":
-    "Rodyti tik lietuviškus komentarus",
-  "infinity.scenes.Topic.languages": "Kalbos: "
+  "infinity.components.TopicFundData.topicPrizeTooltip": "Pinigų suma rezervuota tiems, kas išspręs šią problemą.",
+  "infinity.scenes.Topic.loadAllComments": "Rodyti visų kalbų komentarus ({commentsCount})",
+  "infinity.scenes.Topic.showCommentsInCurrentLanguage": "Rodyti tik lietuviškus komentarus",
+  "infinity.scenes.Topic.languages": "Kalbos: ",
+  "infinity.scenes.Topic.Comments.placeholder": "Praleidai laiko? Rašyk {1} jei praleidai valandą, {?0.5} jei reikės išleisti dar pusvalandį. Gali naudoti minėti tai daug kartų:\n- Užduotis A {1} {?1}\n- Užduotis B {?.5}"
 }

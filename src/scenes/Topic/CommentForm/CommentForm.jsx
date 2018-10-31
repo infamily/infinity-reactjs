@@ -9,7 +9,7 @@ import {
   ToggleButtonGroup,
   ToggleButton
 } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import messages from 'scenes/Topic/messages';
 import './CommentForm.css';
 
@@ -26,7 +26,8 @@ class CommentForm extends Component {
   static defaultProps = {
     id: null,
     text: null,
-    user: null
+    user: null,
+    intl: intlShape.isRequired
   };
 
   static propTypes = {
@@ -39,7 +40,8 @@ class CommentForm extends Component {
     persistedComment: PropTypes.object.isRequired,
     topic_id: PropTypes.number.isRequired,
     text: PropTypes.string,
-    user: PropTypes.object
+    user: PropTypes.object,
+    intl: intlShape.isRequired
   };
 
   componentWillReceiveProps(nextProps) {
@@ -98,8 +100,11 @@ class CommentForm extends Component {
   };
 
   render() {
-    const { user, clear } = this.props;
+    const { user, clear, intl } = this.props;
     const { text, editing, blockchain } = this.state;
+
+    const getPlaceHolder = () =>
+      intl.formatMessage({ ...messages.commentPlaceholder });
 
     const BlockChainButtons = () => {
       if (!user) {
@@ -162,6 +167,7 @@ class CommentForm extends Component {
                 this.field = c;
               }}
               className="comment__text"
+              placeholder={getPlaceHolder()}
               rows="4"
               name="text"
               value={text}
@@ -182,4 +188,8 @@ class CommentForm extends Component {
   }
 }
 
-export default CommentForm;
+CommentForm.propTypes = {
+  intl: intlShape.isRequired
+};
+
+export default injectIntl(CommentForm);
