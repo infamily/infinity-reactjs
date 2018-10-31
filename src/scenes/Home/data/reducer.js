@@ -2,7 +2,7 @@ import { CHANGE_HOME_PARAMS } from './actiontypes';
 
 const initialState = {
   flag: 0,
-  view: 'grid', // line | grid
+  view: 'line', // line | grid
   topicSource: 1,
   categories: [],
   childrenById: null,
