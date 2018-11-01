@@ -17,6 +17,7 @@ import { validateHomeParams, makeCategoriesArray } from '../helpers';
 import messages from './messages';
 import store_home from '../services/store_home';
 import './HomeConfigPanel.css';
+import ProgramToggle from 'components/ProgramToggle';
 
 export default class HomeConfigPanel extends Component {
   constructor() {
@@ -168,6 +169,10 @@ export default class HomeConfigPanel extends Component {
             </InputGroup>
           </FormGroup>
         </form> */}
+        <div>
+          <ProgramToggle history={this.props.history} />
+          {this.props.children}
+        </div>
         <Panel
           id="collapsible-data-panel"
           className="home__settings_panel main__shadow_box"

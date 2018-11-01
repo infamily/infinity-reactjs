@@ -1,25 +1,28 @@
 .program_toggle {
   font-size: 14px;
-  position: fixed;
+  /* position: fixed; */
+  display: inline;
   color: #000;
   background-color: white;
   border-radius: 0 5px 5px 0;
   z-index: 2;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
-  text-align: right;
+  text-align: left;
+  white-space: nowrap;
 
-  top: 10px;
-  left: -80px;
+  /* top: -65px; */
+  /* left: 245px; */
   min-width: 93px;
   min-width: 93px;
   overflow: auto;
-  margin-top: 77px;
+  margin-left: 0px;
+  margin-top: 0px;
 }
 
-.program_toggle:hover {
-  left: 0px;
-}
+/* .program_toggle:hover { */
+/*   left: 0px; */
+/* } */
 
 .program_toggle__sign {
   font-size: 16px;
@@ -34,6 +37,7 @@
 }
 
 .all_toggle__label {
+  display: inline-block;
   padding: 5px;
   text-transform: uppercase;
   font-family: courier new;
@@ -42,6 +46,7 @@
   text-align: center;
 }
 .goal_toggle__label {
+  display: inline-block;
   padding: 5px;
   text-transform: uppercase;
   font-family: courier new;
@@ -51,6 +56,7 @@
   border-radius: 0 5px 0 0;
 }
 .idea_toggle__label {
+  display: inline-block;
   padding: 5px;
   text-transform: uppercase;
   font-family: courier new;
@@ -59,6 +65,7 @@
   text-align: center;
 }
 .plan_toggle__label {
+  display: inline-block;
   padding: 5px;
   text-transform: uppercase;
   font-family: courier new;
@@ -67,6 +74,7 @@
   text-align: center;
 }
 .step_toggle__label {
+  display: inline-block;
   padding: 5px;
   text-transform: uppercase;
   font-family: courier new;
@@ -75,6 +83,7 @@
   text-align: center;
 }
 .task_toggle__label {
+  display: inline-block;
   padding: 5px;
   text-transform: uppercase;
   font-family: courier new;

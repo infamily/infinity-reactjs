@@ -119,7 +119,7 @@ export default class ConfigWrapper extends Component {
 
     return (
       <div>
-        <ProgramToggle history={this.props.history} />
+        {/*<ProgramToggle history={this.props.history} />*/}
         {this.props.children}
       </div>
     );
