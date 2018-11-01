@@ -53,7 +53,7 @@
   background-color: #90b249;
   color: white;
   text-align: center;
-  border-radius: 0 5px 0 0;
+  border-radius: 5px 0 0 0;
 }
 .idea_toggle__label {
   display: inline-block;
