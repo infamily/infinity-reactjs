@@ -46,7 +46,7 @@
   "infinity.scenes.StreamTab.Widgets.show": "Show",
   "infinity.scenes.StreamTab.Modals.createdAt": "Created at:",
   "infinity.scenes.Topic.Menu.title": "Menu",
-  "infinity.scenes.Topic.homeButton": "Home",
+  "infinity.scenes.Topic.homeButton": "Back",
   "infinity.scenes.Topic.close": "Close",
   "infinity.scenes.Topic.TopicBody.edit": "Edit",
   "infinity.scenes.Topic.TopicBody.draft": "draft",
