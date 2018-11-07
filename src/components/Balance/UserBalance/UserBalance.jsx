@@ -56,7 +56,7 @@ class UserBalance extends Component {
 
     return (
       <div className="balance__hours balance__only">
-        <Link to={`/user-investment/${id}`}>
+        {/*<Link to={`/user-investment/${id}`}>
           <TooltipOverlay
             text={<FormattedMessage {...messages.balanceTooltip} />}
             placement="bottom"
@@ -68,7 +68,8 @@ class UserBalance extends Component {
               />
             </strong>
           </TooltipOverlay>
-        </Link>
+        </Link> */}
+        {/*
         {showQuota && (
           <TooltipOverlay
             text={<FormattedMessage {...messages.remainingQuotaTooltip} />}
@@ -90,6 +91,7 @@ class UserBalance extends Component {
             hours={quota}
           />
         )}
+        */}
         <TooltipOverlay
           text={<FormattedMessage {...messages.claimedTooltip} />}
           placement="bottom"

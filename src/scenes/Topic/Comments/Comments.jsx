@@ -126,12 +126,14 @@ export default class Comments extends Component {
               <Button onClick={() => this.props.reply(owner.username)}>
                 <FormattedMessage {...messages.reply} />
               </Button>
+              {/*
               {remains ? (
                 <Button onClick={() => this.investState(comment)}>
                   <FormattedMessage {...messages.invest} /> {remains}
                   $h
                 </Button>
               ) : null}
+              */}
             </ButtonGroup>
           )}
         </ButtonGroup>

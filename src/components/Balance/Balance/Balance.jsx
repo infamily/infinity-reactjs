@@ -29,21 +29,24 @@ class Balance extends Component {
     const { data } = await getUserBalance(id);
     const isData = data && data !== null;
     const balance = isData ? data.balance : -1;
+    const claimed = isData ? data.claimed : -1;
     const parse = data => parseFloat(data).toFixed(2);
 
     this.setState({
-      hours: parse(balance)
+      hours: parse(balance),
+      declared: parse(claimed)
     });
   }
 
   render() {
-    const { hours } = this.state;
+    const { hours, declared } = this.state;
     const { id } = this.props;
 
     if (!hours || hours < 0) return null;
 
     return (
       <div className="balance__hours balance__only">
+        {/*
         <Link to={`/user-investment/${id}`}>
           <TooltipOverlay
             text={<FormattedMessage {...messages.balanceTooltip} />}
@@ -57,6 +60,18 @@ class Balance extends Component {
             </strong>
           </TooltipOverlay>
         </Link>
+        */}
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.claimedTooltip} />}
+          placement="bottom"
+        >
+          <span className="balance__claimed">
+            <FormattedMessage
+              id="infinity.common.shortCountableHours.COUNT"
+              values={{ count: declared }}
+            />
+          </span>
+        </TooltipOverlay>
       </div>
     );
   }
