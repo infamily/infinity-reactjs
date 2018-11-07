@@ -97,7 +97,10 @@ const TopicBody = ({
       <EditTopic isOwner={isOwner} id={topic.id} />
       <h1>
         {topic.title}
-        <Link to={`${configs.linkBase()}/show-case/${topic.id}`}>
+        {/*<Link to={`${configs.linkBase()}/show-case/${topic.id}`}>
+          <DispButton />
+        </Link>*/}
+        <Link to={`${configs.linkBase()}/topic/${topic.id}`}>
           <NextButton />
         </Link>
         <DraftTag />
