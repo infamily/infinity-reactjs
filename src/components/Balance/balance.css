@@ -33,3 +33,10 @@
   border: 1px solid rgb(118, 185, 118);
   border-radius: 2px;
 }
+
+.balance__claimed {
+  color: #fff;
+  padding: 0 5px;
+  background-color: rgb(136, 175, 136);
+  border-radius: 2px;
+}

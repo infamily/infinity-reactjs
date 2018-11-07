@@ -60,7 +60,7 @@
   "infinity.scenes.Topic.TransactionBox.buy": "カードでクレジットを購入する",
   "infinity.scenes.Topic.TransactionBox.invalidHours": "間違った時間。",
   "infinity.scenes.Topic.TransactionBox.quotaOver": "残高限度に達した",
-  "infinity.scenes.Topic.TransactionBox.remaining": "今日の残高限度",
+  "infinity.scenes.Topic.TransactionBox.remaining": "投資限度額",
   "infinity.scenes.Topic.TransactionBox.amount": "額",
   "infinity.scenes.Topic.TransactionBox.receiver": "受信者:",
   "infinity.scenes.Topic.TransactionBox.countableHours.COUNT": "{count, plural, =0 {: no available quota.} one {時} other {時}}",

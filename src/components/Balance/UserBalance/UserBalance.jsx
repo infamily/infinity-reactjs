@@ -52,6 +52,7 @@ class UserBalance extends Component {
 
     const hours = parseNum(balance.balance);
     const quota = parseNum(balance.credit);
+    const claimed = parseNum(balance.claimed);
 
     return (
       <div className="balance__hours balance__only">
@@ -89,6 +90,17 @@ class UserBalance extends Component {
             hours={quota}
           />
         )}
+        <TooltipOverlay
+          text={<FormattedMessage {...messages.claimedTooltip} />}
+          placement="bottom"
+        >
+          <span className="balance__claimed">
+            <FormattedMessage
+              id="infinity.common.shortCountableHours.COUNT"
+              values={{ count: claimed }}
+            />
+          </span>
+        </TooltipOverlay>
       </div>
     );
   }
