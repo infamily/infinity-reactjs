@@ -11,7 +11,7 @@ npm run build
 npm run deploy (github pages) (need to be origin repository)
 ```
 
-With custom server:
+With custom [server](https://github.com/infamily/infinity#readme):
 
 ```
 REACT_APP_API_SERVER=test.wefindx.io yarn start
