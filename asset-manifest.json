@@ -1,12 +1,17 @@
 {
-  "main.css": "static/css/main.56dae110.css",
-  "main.css.map": "static/css/main.56dae110.css.map",
-  "main.js": "static/js/main.0b27acfa.js",
-  "main.js.map": "static/js/main.0b27acfa.js.map",
-  "static/media/clip.svg": "static/media/clip.f821b1e6.svg",
-  "static/media/comments.svg": "static/media/comments.a838a5c1.svg",
-  "static/media/fullscreen.svg": "static/media/fullscreen.1b265118.svg",
-  "static/media/if.png": "static/media/if.660b5007.png",
-  "static/media/next.svg": "static/media/next.35209993.svg",
-  "static/media/settings.svg": "static/media/settings.1a2dc07d.svg"
+  "main.css": "/static/css/main.794e8388.chunk.css",
+  "main.js": "/static/js/main.f76cd29c.chunk.js",
+  "main.js.map": "/static/js/main.f76cd29c.chunk.js.map",
+  "static/css/1.cd15e1ae.chunk.css": "/static/css/1.cd15e1ae.chunk.css",
+  "static/js/1.d821cceb.chunk.js": "/static/js/1.d821cceb.chunk.js",
+  "static/js/1.d821cceb.chunk.js.map": "/static/js/1.d821cceb.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
+  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
+  "static/media/if.png": "/static/media/if.660b5007.png",
+  "static/media/comments.svg": "/static/media/comments.a838a5c1.svg",
+  "static/media/settings.svg": "/static/media/settings.1a2dc07d.svg",
+  "static/media/clip.svg": "/static/media/clip.f821b1e6.svg",
+  "static/media/next.svg": "/static/media/next.35209993.svg",
+  "static/media/fullscreen.svg": "/static/media/fullscreen.1b265118.svg",
+  "index.html": "/index.html"
 }
